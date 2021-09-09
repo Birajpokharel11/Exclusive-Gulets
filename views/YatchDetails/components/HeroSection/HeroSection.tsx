@@ -40,7 +40,7 @@ const useStyles = makeStyles((theme) =>
     Typography: {
       fontFamily: 'Lato',
       fontStyle: 'normal',
-      fontWeight: '300',
+      fontWeight: 300,
       fontSize: '24px',
       color: ' #FFFFFF'
     },
@@ -56,7 +56,7 @@ const useStyles = makeStyles((theme) =>
     },
     Book: { background: ' rgba(245, 240, 228, 1)', color: '#2A398D' },
     MiddleText: {
-      fontWeight: '600'
+      fontWeight: 600
     },
     Container: {
       padding: '0%',
@@ -66,7 +66,7 @@ const useStyles = makeStyles((theme) =>
     ImageTextFont: {
       fontFamily: ' Lato',
       fontStyle: 'normal',
-      fontWeight: '600',
+      fontWeight: 600,
       fontSize: ' 60px',
       color: '#FFFFFF',
       [theme.breakpoints.down(435)]: {

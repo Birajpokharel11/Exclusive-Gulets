@@ -12,9 +12,9 @@ import TwitterIcon from '@material-ui/icons/Twitter';
 import YouTubeIcon from '@material-ui/icons/YouTube';
 import Searchbar from './Searchbar';
 
-const useStyles = makeStyles({
+const useStyles = makeStyles(() => ({
   root: {
-    background: '#091527',
+    backgroundColor: '#091527',
     width: '100%',
     minheight: '570px',
     paddingBottom: '8%'
@@ -57,7 +57,7 @@ const useStyles = makeStyles({
   TypographyBody: {
     color: 'white'
   }
-});
+}));
 
 const Footer = () => {
   const classes = useStyles();

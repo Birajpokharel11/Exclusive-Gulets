@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import Image from 'next/image'
 import Link from 'next/link';
 import clsx from 'clsx';
 import { makeStyles } from '@material-ui/core/styles';
@@ -27,7 +28,7 @@ import MenuIcon from '@material-ui/icons/Menu';
 import Drawer from '@material-ui/core/Drawer';
 import CloseIcon from '@material-ui/icons/Close';
 
-import logo from '@assets/images/logo.svg';
+import logo from 'assets/images/logo.svg';
 
 const drawerWidth = 400;
 const useStyles = makeStyles((theme) => ({
@@ -43,7 +44,6 @@ const useStyles = makeStyles((theme) => ({
     }
   },
   AppBar: {
-    backgroundColor: '#091527',
     height: '72px',
     maxWidth: '100%',
     zIndex: theme.zIndex.modal + 1
@@ -163,71 +163,46 @@ export default function Header() {
     <>
       <AppBar
         position="fixed"
-        color="primary"
         elevation={0}
         className={classes.AppBar}
       >
-        <Toolbar className={classes.toolbar}>
-          <Button
-            component={Link}
-            href="/"
-            className={classes.logoContainer}
-            onClick={() => setValue(0)}
-          >
-            <img
-              alt="company logo"
-              className={classes.logo}
-              src={logo}
-              width="330"
-            />
-          </Button>
+        <Toolbar>
+        <Image src={logo} alt="me" className={classes.logo}/>
+
           <div style={{ flexGrow: 1 }} />
           <Hidden mdDown>
             <Tabs
               value={value}
               className={classes.tabContainer}
               onChange={handelChange}
-              indicatorColor="none"
             >
               <Tab
                 label="sad"
-                component={Link}
-                href="/YATCHS"
                 style={{ display: 'none', padding: '0', margin: '0' }}
               />
               <Tab
                 className={classes.tab}
                 label="YATCHS"
-                component={Link}
-                href="/yatchs"
                 data-cy="YATCHS"
               />
               <Tab
                 className={classes.tab}
                 label="OFFERS"
-                component={Link}
-                href="/yatchs/offers"
                 data-cy="OFFERS"
               />
               <Tab
                 className={classes.tab}
                 label="DESTINATIONS"
-                component={Link}
-                href="/destinations"
                 data-cy="DESTINATIONS"
               />
               <Tab
                 className={classes.tab}
                 label="BESPOKE EXPERIENCES"
-                component={Link}
-                href="/experiences"
                 data-cy="BESPOKEEXPERIENCES"
               />
               <Tab
                 className={classes.tab}
                 label="NEWS $ BLOGS"
-                component={Link}
-                href="/news-blogs"
                 data-cy="NEWSBLOGS"
               />
               <Tab
@@ -252,32 +227,18 @@ export default function Header() {
                       onKeyDown={handleListKeyDown}
                     >
                       <MenuItem
-                        onMouseEnter={(e) =>
-                          (e.target.style.backgroundColor = '#cadaf3')
-                        }
-                        onMouseLeave={(e) =>
-                          (e.target.style.backgroundColor = '')
-                        }
                         className={clsx(classes.tab, classes.Menu)}
                         onClick={handleCloseTab}
                         data-cy="ABOUTYOU"
-                        component={Link}
                         href="/about"
                       >
                         ABOUT YOU
                       </MenuItem>
                       <MenuItem
-                        onMouseEnter={(e) =>
-                          (e.target.style.backgroundColor = '#cadaf3')
-                        }
-                        onMouseLeave={(e) =>
-                          (e.target.style.backgroundColor = '')
-                        }
                         className={clsx(classes.tab, classes.Menu)}
                         onClick={handleCloseTab}
                         data-cy="DINNING"
-                        component={Link}
-                        href="/dinning"
+                   
                       >
                         DINNING
                       </MenuItem>
@@ -392,8 +353,6 @@ export default function Header() {
           <List className={classes.tab}>
             <Button
               color="inherit"
-              href="/YATCHS"
-              component={Link}
               onClick={handleDrawerClose}
               data-cy="TMB-YATCHS"
             >
@@ -405,8 +364,6 @@ export default function Header() {
 
             <Button
               color="inherit"
-              href="/OFFERS"
-              component={Link}
               data-cy="TMB-OFFERS"
               onClick={handleDrawerClose}
             >
@@ -418,8 +375,6 @@ export default function Header() {
 
             <Button
               color="inherit"
-              href="/DESTINATIONS"
-              component={Link}
               data-cy="TMB-DESTINATIONS"
               onClick={handleDrawerClose}
             >
@@ -431,8 +386,6 @@ export default function Header() {
 
             <Button
               color="inherit"
-              href="/BESPOKEEXPERIENCES"
-              component={Link}
               data-cy="TMB-BESPOKE-EXPERIENCES"
               onClick={handleDrawerClose}
             >
@@ -444,8 +397,6 @@ export default function Header() {
 
             <Button
               color="inherit"
-              href="/NEWSBLOGS"
-              component={Link}
               data-cy="TMB-NEWS-BLOGS"
               onClick={handleDrawerClose}
             >
@@ -457,8 +408,6 @@ export default function Header() {
 
             <Button
               color="inherit"
-              href="/ABOUTYOU"
-              component={Link}
               data-cy="TMB-ABOUT-YOU"
               onClick={handleDrawerClose}
             >
@@ -469,8 +418,6 @@ export default function Header() {
             <Divider variant="middle" style={{ backgroundColor: 'white' }} />
             <Button
               color="inherit"
-              href="/DINNING"
-              component={Link}
               data-cy="TMB-Dinning"
               onClick={handleDrawerClose}
             >

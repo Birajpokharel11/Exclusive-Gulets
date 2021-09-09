@@ -1,4 +1,4 @@
-/* eslint-disable jsx-a11y/alt-text */
+
 import React from 'react';
 import clsx from 'clsx';
 import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
@@ -9,13 +9,14 @@ import Link from '@material-ui/core/Link';
 import NavigateNextIcon from '@material-ui/icons/NavigateNext';
 
 import Aresteas from './Aresteas.svg';
-import Game from './Game.svg';
-import Deck from './Deck.svg';
-import Air from './Air.svg';
-import Ipod from './Ipod.svg';
-import Satellite from './Satellite.svg';
-import Sauna from './Sauna.svg';
-import Wifi from './Wifi.svg';
+import Game from 'assets/images/Game.svg';
+import Deck from 'assets/images/Deck.svg';
+import Air from 'assets/images/Air.svg';
+import Ipod from 'assets/images/Ipod.svg';
+import Satellite from 'assets/images/Satellite.svg';
+import Sauna from 'assets/images/Sauna.svg';
+import Wifi from 'assets/images/Wifi.svg';
+import createTypography from '@material-ui/core/styles/createTypography';
 
 const useStyles = makeStyles((theme) =>
   createStyles({
@@ -29,30 +30,30 @@ const useStyles = makeStyles((theme) =>
     Typography: {
       fontFamily: 'Lato',
       fontStyle: 'normal',
-      fontWeight: '300',
+      fontWeight: 300,
       fontSize: '18px',
       lineHeight: '22px',
       minwidth: '505px',
       color: '#2A398D',
       paddingTop: '20px',
-      [theme.breakpoints.down('560')]: {
+      [theme.breakpoints.down(560)]: {
         width: '343px'
       },
-      [theme.breakpoints.down('385')]: {
+      [theme.breakpoints.down(385)]: {
         width: '300px',
         fontSize: '16px'
       },
-      [theme.breakpoints.up('1400')]: {
+      [theme.breakpoints.up(1400)]: {
         width: '505px'
       }
     },
     Typography1: {
       fontFamily: 'Lato',
       fontStyle: 'normal',
-      fontWeight: '300',
+      fontWeight: 300,
       fontSize: '32px',
       color: '#2A398D',
-      [theme.breakpoints.down('430')]: {
+      [theme.breakpoints.down(430)]: {
         fontSize: '24px'
       }
     },
@@ -73,22 +74,22 @@ const useStyles = makeStyles((theme) =>
       justifyContent: 'flex-end',
       maxwidth: '1268.61px',
       objectFit: 'cover',
-      [theme.breakpoints.down('1444')]: {
+      [theme.breakpoints.down(1444)]: {
         width: '500px',
         height: '750px'
       },
-      [theme.breakpoints.down('1221')]: {
+      [theme.breakpoints.down(1221)]: {
         width: '400px',
         height: '650px'
       },
-      [theme.breakpoints.down('900')]: {
+      [theme.breakpoints.down(900)]: {
         display: 'none'
       }
     },
     TextPosition: {
       paddingLeft: '100px',
       paddingRight: '100px',
-      [theme.breakpoints.down('1110')]: {
+      [theme.breakpoints.down(1110)]: {
         paddingRight: '10px'
       },
       width: '100%',
@@ -190,7 +191,6 @@ export default function Description() {
         aria-label="breadcrumb"
       >
         <Link
-          color="inherit"
           color="textPrimary"
           href="/"
           onClick={handleClick}
@@ -204,14 +204,14 @@ export default function Description() {
         >
           Core
         </Link>
-        <Typography color="">Breadcrumb</Typography>
+        <Typography>Breadcrumb</Typography>
       </Breadcrumbs>
       <Box maxWidth="false" className={classes.Box}>
         <div className={classes.TextPosition}>
           <Typography className={classes.Typography1}>
             ABOUT ATESTEAS
           </Typography>
-          <Typography className={clsx(classes.Typography, classes.Placement1)}>
+          <Typography className={clsx(classes.Typography)}>
             Built in 2011, Corsario is a 56m (inc. bowsprit) modern classic
             sailing yacht, an authentic schooner, that combines state of the art
             construction with a timeless and elegant design that harks back to

@@ -14,7 +14,12 @@ const useStyles = makeStyles((theme) =>
     charterBackground: {
       backgroundImage: `url('./charterYatch.png')`,
       backgroundPosition: 'center',
-      height: '23.75rem'
+      height: '23.75rem',
+      backgroundRepeat: 'no-repeat',
+      backgroundSize: 'cover'
+    },
+    textColor: {
+      color: '#ffffff'
     }
   })
 );
@@ -22,12 +27,25 @@ const useStyles = makeStyles((theme) =>
 export default function CharterYatch() {
   const classes = useStyles();
   return (
-    <Container maxWidth="false" className={classes.root}>
-      {/* <Image src={charterYatch} alt="charterYatch" /> */}
-      <section className={classes.charterBackground}>
-        <Grid container justifyContent="center" alignItems="center">
+    <Box
+      component="section"
+      maxWidth="false"
+      className={classes.charterBackground}
+    >
+      <Container>
+        <Grid
+          container
+          justifyContent="center"
+          alignItems="center"
+          style={{ paddingTop: '5rem' }}
+        >
           <Grid item xs={12}>
-            <Typography color="primary" align="center">
+            <Typography
+              color="primary"
+              align="center"
+              variant="h4"
+              className={classes.textColor}
+            >
               Charter a Luxury Yacht
             </Typography>
           </Grid>
@@ -35,13 +53,18 @@ export default function CharterYatch() {
             <Image src={underLine} alt="underline" />
           </Grid>
           <Grid item>
-            <Typography align="center" color="primary">
+            <Typography
+              align="center"
+              color="primary"
+              className={classes.textColor}
+              variant="subtitle2"
+            >
               The most lavish super yacht to turn heads, or an exclusive gulet
               for a perfect family getaway.
             </Typography>
           </Grid>
         </Grid>
-      </section>
-    </Container>
+      </Container>
+    </Box>
   );
 }

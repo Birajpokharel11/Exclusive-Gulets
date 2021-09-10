@@ -13,6 +13,13 @@ const useStyles = makeStyles((theme) =>
       background: '#F7F7F7',
       height: '122px'
     },
+    charterBackground: {
+      backgroundImage: `url('./charterYatch.png')`,
+      backgroundPosition: 'center',
+      height: '61.875rem',
+      backgroundRepeat: 'no-repeat',
+      backgroundSize: 'cover'
+    },
     Yatch: {
       width: '100%',
       height: ' 671px'
@@ -24,9 +31,15 @@ export default function HeroSection() {
   const classes = useStyles();
   return (
     <>
-      <Box width="100%">
+      <Box
+        component="section"
+        maxWidth="false"
+        className={classes.charterBackground}
+      />
+
+      {/* <Box width="100%">
         <Image src={HeroYatch} alt="HeroYatch" className={classes.Yatch} />
-      </Box>
+      </Box> */}
     </>
   );
 }

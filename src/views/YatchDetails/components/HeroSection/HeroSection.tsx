@@ -1,6 +1,6 @@
 /* eslint-disable jsx-a11y/alt-text */
 import React from 'react';
-import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
+import { createStyles, makeStyles } from '@material-ui/core/styles';
 import {
   Button,
   Container,
@@ -8,9 +8,10 @@ import {
   Typography,
   IconButton
 } from '@material-ui/core';
-import HeroYatch from './HeroYatch.svg';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import clsx from 'clsx';
+
+import HeroYatch from '@assets/images/HeroYatch.svg';
 
 import Filter from './components/Filter';
 
@@ -203,13 +204,13 @@ export default function HeroSection() {
                 justifyContent="center"
                 alignItems="center"
               >
-                <Grid item auto>
+                <Grid item>
                   <IconButton data-cy="FavouriteIcon">
                     <FavoriteIcon style={{ color: 'White' }} />
                   </IconButton>
                 </Grid>
                 <Grid item md container spacing={1}>
-                  <Grid item md auto>
+                  <Grid item md>
                     <Button
                       variant="outlined"
                       size="large"

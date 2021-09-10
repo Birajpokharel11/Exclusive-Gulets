@@ -8,8 +8,8 @@ import {
   Paper,
   Typography
 } from '@material-ui/core';
-import Vector from './SpecialOfferPic/Vector.svg';
-import Dialouge from './Dialouge';
+import Dialouge from './components/OfferModal';
+import Vector from '@assets/images/Vector.svg';
 
 const useStyles = makeStyles((theme) => ({
   initialBox: {

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import Image from 'next/image'
+import Image from 'next/image';
 import Link from 'next/link';
 import clsx from 'clsx';
 import { makeStyles } from '@material-ui/core/styles';
@@ -28,7 +28,7 @@ import MenuIcon from '@material-ui/icons/Menu';
 import Drawer from '@material-ui/core/Drawer';
 import CloseIcon from '@material-ui/icons/Close';
 
-import logo from 'assets/images/logo.svg';
+import logo from '@assets/images/logo.svg';
 
 const drawerWidth = 400;
 const useStyles = makeStyles((theme) => ({
@@ -161,14 +161,9 @@ export default function Header() {
   }, [value]);
   return (
     <>
-      <AppBar
-        position="fixed"
-        elevation={0}
-        className={classes.AppBar}
-      >
+      <AppBar position="fixed" elevation={0} className={classes.AppBar}>
         <Toolbar>
-        <Image src={logo} alt="me" className={classes.logo}/>
-
+          <Image src={logo} alt="me" className={classes.logo} />
           <div style={{ flexGrow: 1 }} />
           <Hidden mdDown>
             <Tabs
@@ -180,16 +175,8 @@ export default function Header() {
                 label="sad"
                 style={{ display: 'none', padding: '0', margin: '0' }}
               />
-              <Tab
-                className={classes.tab}
-                label="YATCHS"
-                data-cy="YATCHS"
-              />
-              <Tab
-                className={classes.tab}
-                label="OFFERS"
-                data-cy="OFFERS"
-              />
+              <Tab className={classes.tab} label="YATCHS" data-cy="YATCHS" />
+              <Tab className={classes.tab} label="OFFERS" data-cy="OFFERS" />
               <Tab
                 className={classes.tab}
                 label="DESTINATIONS"
@@ -238,7 +225,6 @@ export default function Header() {
                         className={clsx(classes.tab, classes.Menu)}
                         onClick={handleCloseTab}
                         data-cy="DINNING"
-                   
                       >
                         DINNING
                       </MenuItem>

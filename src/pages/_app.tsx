@@ -5,6 +5,9 @@ import { ThemeProvider } from '@material-ui/core/styles';
 
 import theme from '../theme';
 
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
+
 export default class MyApp extends App {
   componentDidMount() {
     // Remove the server-side injected CSS.

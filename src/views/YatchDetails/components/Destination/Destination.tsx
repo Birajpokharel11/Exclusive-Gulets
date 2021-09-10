@@ -11,7 +11,7 @@ import useMediaQuery from '@material-ui/core/useMediaQuery';
 import Amat from '@assets/images/Amat.svg';
 import Tube from '@assets/images/Tube.svg';
 
-import MobileSlider from './MobileSlider';
+import MobileSlider from './components/MobileSlider';
 
 const useStyles = makeStyles((theme) =>
   createStyles({
@@ -22,14 +22,14 @@ const useStyles = makeStyles((theme) =>
     listHeader: {
       fontFamily: 'Lato',
       fontStyle: 'normal',
-      fontWeight: '300',
+      fontWeight: 300,
       fontSize: '32px',
       color: '#2A398D'
     },
     listText: {
       fontFamily: 'Lato',
       fontStyle: 'normal',
-      fontWeight: '300',
+      fontWeight: 300,
       fontSize: '18px',
       color: '#2A398D'
     },
@@ -43,7 +43,7 @@ const useStyles = makeStyles((theme) =>
     listitemText2: {
       fontFamily: 'Lato',
       fontStyle: 'normal',
-      fontWeight: '300',
+      fontWeight: 300,
       fontSize: '16px',
       color: '#2A398D'
     }

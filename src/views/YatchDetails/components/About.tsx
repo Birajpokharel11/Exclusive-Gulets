@@ -1,8 +1,7 @@
 import React from 'react';
 import clsx from 'clsx';
-import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
-import { Box, Button, Container, Grid, Typography } from '@material-ui/core';
-import { ImageSearchSharp } from '@material-ui/icons';
+import { createStyles, makeStyles } from '@material-ui/core/styles';
+import { Box, Grid, Typography } from '@material-ui/core';
 import Breadcrumbs from '@material-ui/core/Breadcrumbs';
 import Link from '@material-ui/core/Link';
 import NavigateNextIcon from '@material-ui/icons/NavigateNext';

@@ -3,15 +3,12 @@ import React from 'react';
 import Image from 'next/image';
 import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
 import { Container, Grid, Box, Typography } from '@material-ui/core';
-import underLine from 'assets/images/introductionLine.svg';
+import underLine from '@assets/images/introductionLine.svg';
 
 const useStyles = makeStyles((theme) =>
   createStyles({
     root: {
-      display: 'flex',
-      width: '100%',
-      background: '#F7F7F7',
-      height: '122px'
+      marginTop: '6rem'
     },
     Yatch: {
       width: '100%',
@@ -23,7 +20,7 @@ const useStyles = makeStyles((theme) =>
 export default function Introduction() {
   const classes = useStyles();
   return (
-    <Box width="100%">
+    <Container maxWidth="md" className={classes.root}>
       <Grid container justifyContent="center" alignItems="center">
         <Grid item xs={12}>
           <Typography color="primary" align="center">
@@ -44,6 +41,6 @@ export default function Introduction() {
           </Typography>
         </Grid>
       </Grid>
-    </Box>
+    </Container>
   );
 }

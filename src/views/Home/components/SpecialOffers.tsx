@@ -3,13 +3,13 @@ import React from 'react';
 import Image from 'next/image';
 import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
 import { Container, Grid, Box, Typography } from '@material-ui/core';
-import underLine from 'assets/images/introductionLine.svg';
-import Guest from 'assets/images/homeHeroSection.svg';
+import underLine from '@assets/images/introductionLine.svg';
+import Guest from '@assets/images/heroYatch.png';
 
 const useStyles = makeStyles((theme) =>
   createStyles({
     root: {
-      marginTop: '8rem',
+      marginTop: '6rem',
       backgroundColor: '#F5F0E4'
     },
     Yatch: {
@@ -22,7 +22,7 @@ const useStyles = makeStyles((theme) =>
 export default function Introduction() {
   const classes = useStyles();
   return (
-    <Box className={classes.root} width="100%">
+    <Container maxWidth="false" className={classes.root}>
       <Grid container justifyContent="center" alignItems="center">
         <Grid item xs={12}>
           <Typography color="primary" align="center">
@@ -39,9 +39,9 @@ export default function Introduction() {
           </Typography>
         </Grid>
       </Grid>
-      <Box mt={20}>
+      <Box mt={5}>
         <Grid container justifyContent="center" alignItems="center" spacing={2}>
-          <Grid item container xs={4} spacing={2}>
+          <Grid item container md={4} xs={12} spacing={2}>
             <Grid item container justifyContent="center">
               <Image src={Guest} alt="guest" />
             </Grid>
@@ -60,7 +60,7 @@ export default function Introduction() {
             </Grid>
           </Grid>
 
-          <Grid item container xs={4} spacing={2}>
+          <Grid item container md={4} xs={12} spacing={2}>
             <Grid item container justifyContent="center">
               <Image src={Guest} alt="guest" />
             </Grid>
@@ -79,7 +79,7 @@ export default function Introduction() {
             </Grid>
           </Grid>
 
-          <Grid item container xs={4} spacing={2}>
+          <Grid item container md={4} xs={12} spacing={2}>
             <Grid item container justifyContent="center">
               <Image src={Guest} alt="guest" />
             </Grid>
@@ -99,6 +99,6 @@ export default function Introduction() {
           </Grid>
         </Grid>
       </Box>
-    </Box>
+    </Container>
   );
 }

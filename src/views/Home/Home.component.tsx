@@ -1,4 +1,9 @@
-import { HeroSection, Introduction, SpecialOffers } from './components';
+import {
+  HeroSection,
+  Introduction,
+  SpecialOffers,
+  CharterYatch
+} from './components';
 
 export default function Home() {
   const message: string = 'Hello World!';
@@ -8,6 +13,7 @@ export default function Home() {
       <HeroSection />
       <Introduction />
       <SpecialOffers />
+      <CharterYatch />
     </div>
   );
 }

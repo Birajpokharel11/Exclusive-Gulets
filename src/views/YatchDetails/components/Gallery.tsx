@@ -2,14 +2,14 @@ import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import ImageList from '@material-ui/core/ImageList';
 import ImageListItem from '@material-ui/core/ImageListItem';
-import Pic1 from './GalleryPic/Pic1.svg';
-import Pic2 from './GalleryPic/Pic2.svg';
-import MobilePic1 from './Gallery MobileView/MobilePic1.svg';
-import MobilePic2 from './Gallery MobileView/MobilePic2.svg';
 import ImageListItemBar from '@material-ui/core/ImageListItemBar';
 import { Grid, Typography, useTheme } from '@material-ui/core';
 import IconButton from '@material-ui/core/IconButton';
-import StarBorderIcon from '@material-ui/icons/StarBorder';
+
+import Pic1 from '@assets/images/Pic1.svg';
+import Pic2 from '@assets/images/Pic2.svg';
+import MobilePic1 from '@assets/images/MobilePic1.svg';
+import MobilePic2 from '@assets/images/MobilePic2.svg';
 
 const useStyles = makeStyles((theme) => ({
   root: {

@@ -1,4 +1,3 @@
-
 import React from 'react';
 import clsx from 'clsx';
 import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
@@ -8,15 +7,14 @@ import Breadcrumbs from '@material-ui/core/Breadcrumbs';
 import Link from '@material-ui/core/Link';
 import NavigateNextIcon from '@material-ui/icons/NavigateNext';
 
-import Aresteas from './Aresteas.svg';
-import Game from 'assets/images/Game.svg';
-import Deck from 'assets/images/Deck.svg';
-import Air from 'assets/images/Air.svg';
-import Ipod from 'assets/images/Ipod.svg';
-import Satellite from 'assets/images/Satellite.svg';
-import Sauna from 'assets/images/Sauna.svg';
-import Wifi from 'assets/images/Wifi.svg';
-import createTypography from '@material-ui/core/styles/createTypography';
+import Aresteas from '@assets/images/Aresteas.svg';
+import Game from '@assets/images/Game.svg';
+import Deck from '@assets/images/Deck.svg';
+import Air from '@assets/images/Air.svg';
+import Ipod from '@assets/images/Ipod.svg';
+import Satellite from '@assets/images/Satellite.svg';
+import Sauna from '@assets/images/Sauna.svg';
+import Wifi from '@assets/images/Wifi.svg';
 
 const useStyles = makeStyles((theme) =>
   createStyles({
@@ -190,11 +188,7 @@ export default function Description() {
         separator={<NavigateNextIcon fontSize="small" />}
         aria-label="breadcrumb"
       >
-        <Link
-          color="textPrimary"
-          href="/"
-          onClick={handleClick}
-        >
+        <Link color="textPrimary" href="/" onClick={handleClick}>
           Material-UI
         </Link>
         <Link

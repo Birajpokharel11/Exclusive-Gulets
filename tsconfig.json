@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "baseUrl": "src",
+    "baseUrl": ".",
     "target": "es5",
     "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,
@@ -15,11 +15,11 @@
     "isolatedModules": true,
     "jsx": "preserve",
     "paths": {
-      "@layouts/*": ["layouts/*"],
-      "@assets/*": ["assets/*"],
-      "@components/*": ["components/*"],
-      "@views/*": ["views/*"],
-      "@theme/*": ["theme/*"]
+      "@layouts/*": ["src/layouts/*"],
+      "@assets/*": ["src/assets/*"],
+      "@components/*": ["src/components/*"],
+      "@views/*": ["src/views/*"],
+      "@theme/*": ["src/theme/*"]
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],

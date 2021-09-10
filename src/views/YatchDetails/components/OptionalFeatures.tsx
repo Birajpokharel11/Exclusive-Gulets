@@ -8,13 +8,6 @@ import {
   Paper,
   Typography
 } from '@material-ui/core';
-import Cabins from './AccomodationPic/Cabins.svg';
-import Crew from './AccomodationPic/Crew.svg';
-import Guest from './AccomodationPic/Guest.svg';
-import Divider from '@material-ui/core/Divider';
-import clsx from 'clsx';
-import ListItemIcon from '@material-ui/core/ListItemIcon';
-import ListItemText from '@material-ui/core/ListItemText';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 

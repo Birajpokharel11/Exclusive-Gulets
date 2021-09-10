@@ -1,8 +1,9 @@
 /* eslint-disable jsx-a11y/alt-text */
 import React, { Component } from 'react';
 import Slider from 'react-slick';
-import MobilePic1 from './Gallery MobileView/MobilePic1.svg';
-import MobilePic2 from './Gallery MobileView/MobilePic2.svg';
+
+import MobilePic1 from '@assets/images/MobilePic1.svg';
+import MobilePic2 from '@assets/images/MobilePic2.svg';
 
 const MobileData = [
   {

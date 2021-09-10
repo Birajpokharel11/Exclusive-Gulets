@@ -1,14 +1,15 @@
 import React from 'react';
 import { createStyles, makeStyles } from '@material-ui/core/styles';
 import { Box, Grid, Paper, Typography } from '@material-ui/core';
-import Cabins from './AccomodationPic/Cabins.svg';
-import Crew from './AccomodationPic/Crew.svg';
-import Guest from './AccomodationPic/Guest.svg';
 import Divider from '@material-ui/core/Divider';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
+
+import Cabins from '@assets/images/Cabins.svg';
+import Crew from '@assets/images/Crew.svg';
+import Guest from '@assets/images/Guest.svg';
 
 const useStyles = makeStyles((theme) =>
   createStyles({

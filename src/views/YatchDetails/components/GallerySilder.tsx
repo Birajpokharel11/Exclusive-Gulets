@@ -2,36 +2,33 @@
 import React, { Component } from 'react';
 import Slider from 'react-slick';
 
-import MobilePic1 from '@assets/images/MobilePic1.svg';
-import MobilePic2 from '@assets/images/MobilePic2.svg';
-
 const MobileData = [
   {
-    img: MobilePic1,
+    img: '/assets/images/MobilePic1.svg',
     title: 'Image',
     author: 'author',
     cols: 2
   },
   {
-    img: MobilePic2,
+    img: '/assets/images/MobilePic2.svg',
     title: 'Image',
     author: 'author',
     cols: 1
   },
   {
-    img: MobilePic2,
+    img: '/assets/images/MobilePic2.svg',
     title: 'Image',
     author: 'author',
     cols: 1
   },
   {
-    img: MobilePic2,
+    img: '/assets/images/MobilePic2.svg',
     title: 'Image',
     author: 'author',
     cols: 1
   },
   {
-    img: MobilePic2,
+    img: '/assets/images/MobilePic2.svg',
     title: 'Image',
     author: 'author',
     cols: 1

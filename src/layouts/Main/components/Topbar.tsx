@@ -28,8 +28,6 @@ import MenuIcon from '@material-ui/icons/Menu';
 import Drawer from '@material-ui/core/Drawer';
 import CloseIcon from '@material-ui/icons/Close';
 
-import logo from '@assets/images/logo.svg';
-
 const drawerWidth = 400;
 const useStyles = makeStyles((theme) => ({
   toolbarMargin: {
@@ -163,7 +161,11 @@ export default function Header() {
     <>
       <AppBar position="fixed" elevation={0} className={classes.AppBar}>
         <Toolbar>
-          <Image src={logo} alt="me" className={classes.logo} />
+          <img
+            src="/assets/images/logo.svg"
+            alt="me"
+            className={classes.logo}
+          />
           <div style={{ flexGrow: 1 }} />
           <Hidden mdDown>
             <Tabs

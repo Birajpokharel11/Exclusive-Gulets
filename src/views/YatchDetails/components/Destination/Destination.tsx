@@ -8,8 +8,8 @@ import CardMedia from '@material-ui/core/CardMedia';
 import { useTheme } from '@material-ui/core/styles';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 
-import Amat from '@assets/images/Amat.svg';
-import Tube from '@assets/images/Tube.svg';
+import Amat from './assets/images/Amat.svg';
+import Tube from './assets/images/Tube.svg';
 
 import MobileSlider from './components/MobileSlider';
 
@@ -53,14 +53,14 @@ const useStyles = makeStyles((theme) =>
 function Destinations() {
   const classes = useStyles();
   const theme = useTheme();
-  const matches = useMediaQuery(theme.breakpoints.down('500'));
+  const matches = useMediaQuery(theme.breakpoints.down(500));
 
   return (
     <Paper
-      elevation="0"
+      elevation={0}
       style={{
         width: '100%',
-        minheight: '870px',
+        minHeight: '870px',
         paddingBottom: '10%',
         background: ' #F5F0E4'
       }}
@@ -102,7 +102,7 @@ function Destinations() {
                     component="img"
                     alt="Contemplative Reptile"
                     height="140"
-                    image={Amat}
+                    image="/assets/images/Amat.svg"
                     style={{
                       width: '400px',
                       height: '400px',
@@ -143,7 +143,7 @@ function Destinations() {
                     component="img"
                     alt="Contemplative Reptile"
                     height="140"
-                    image={Tube}
+                    image="/assets/images/Tube.svg"
                     title="Contemplative Reptile"
                   />
                   <CardContent

@@ -3,8 +3,8 @@ import React from 'react';
 import Image from 'next/image';
 import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
 import { Container, Grid, Box, Typography } from '@material-ui/core';
-import underLine from '@assets/images/introductionLine.svg';
-import Guest from '@assets/images/heroYatch.png';
+import underLine from './assets/images/introductionLine.svg';
+import Guest from './assets/images/heroYatch.png';
 
 const useStyles = makeStyles((theme) =>
   createStyles({

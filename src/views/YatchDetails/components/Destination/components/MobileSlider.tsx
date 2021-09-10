@@ -7,8 +7,8 @@ import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import Slider from 'react-slick';
 
-import Amat from '@assets/images/Amat.svg';
-import Tube from '@assets/images/Tube.svg';
+import Amat from './assets/images/Amat.svg';
+import Tube from './assets/images/Tube.svg';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -159,7 +159,7 @@ export default function MobileSlider() {
               component="img"
               alt="Contemplative Reptile"
               height="140"
-              image={Amat}
+              image="/assets/images/Amat.svg"
               style={{
                 width: '400px',
                 height: '400px'
@@ -197,7 +197,7 @@ export default function MobileSlider() {
               component="img"
               alt="Contemplative Reptile"
               height="140"
-              image={Tube}
+              image="/assets/images/Tube.svg"
               title="Contemplative Reptile"
             />
             <CardContent

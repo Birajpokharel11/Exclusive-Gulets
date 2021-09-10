@@ -6,11 +6,6 @@ import ImageListItemBar from '@material-ui/core/ImageListItemBar';
 import { Grid, Typography, useTheme } from '@material-ui/core';
 import IconButton from '@material-ui/core/IconButton';
 
-import Pic1 from '@assets/images/Pic1.svg';
-import Pic2 from '@assets/images/Pic2.svg';
-import MobilePic1 from '@assets/images/MobilePic1.svg';
-import MobilePic2 from '@assets/images/MobilePic2.svg';
-
 const useStyles = makeStyles((theme) => ({
   root: {
     display: 'flex',
@@ -83,31 +78,31 @@ const useStyles = makeStyles((theme) => ({
 
 const itemData = [
   {
-    img: Pic1,
+    img: '/assets/images/Pic1.svg',
     title: 'Relaxing Jacuzzi',
     author: 'author',
     cols: 2
   },
   {
-    img: Pic2,
+    img: '/assets/images/Pic2.svg',
     title: 'Gourmet Dining',
     author: 'author',
     cols: 1
   },
   {
-    img: Pic2,
+    img: '/assets/images/Pic2.svg',
     title: 'Massage Services',
     author: 'author',
     cols: 1
   },
   {
-    img: Pic2,
+    img: '/assets/images/Pic2.svg',
     title: 'Massage Services',
     author: 'author',
     cols: 1
   },
   {
-    img: Pic2,
+    img: '/assets/images/Pic2.svg',
     title: 'Massage Services',
     author: 'author',
     cols: 1
@@ -115,31 +110,31 @@ const itemData = [
 ];
 const MobileData = [
   {
-    img: MobilePic1,
+    img: '/assets/images/MobilePic1.svg',
     title: 'Relaxing Jacuzzi',
     author: 'author',
     cols: 1
   },
   {
-    img: MobilePic2,
+    img: '/assets/images/MobilePic2.svg',
     title: 'Gourmet Dining',
     author: 'author',
     cols: 1
   },
   {
-    img: MobilePic2,
+    img: '/assets/images/MobilePic2.svg',
     title: 'Massage Services',
     author: 'author',
     cols: 1
   },
   {
-    img: MobilePic2,
+    img: '/assets/images/MobilePic2.svg',
     title: 'assage Services',
     author: 'author',
     cols: 1
   },
   {
-    img: MobilePic2,
+    img: '/assets/images/MobilePic2.svg',
     title: 'Massage Services',
     author: 'author',
     cols: 1
@@ -172,7 +167,7 @@ export default function Gallery() {
                       fontFamily: 'lato',
                       fontStyle: 'normal',
                       fontWeight: 'normal',
-                      fortSize: '24px',
+                      fontSize: '24px',
                       color: '#ffffff'
                     }}
                   >

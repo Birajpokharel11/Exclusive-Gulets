@@ -9,7 +9,7 @@ import {
   Typography
 } from '@material-ui/core';
 
-import Yatch from '@assets/images/yatch.svg';
+import Yatch from './assets/images/yatch.svg';
 
 const useStyles = makeStyles((theme) =>
   createStyles({
@@ -116,7 +116,11 @@ export default function Enquire() {
           </Button>
         </div>
       </Paper>
-      <img src={Yatch} alt="HeroYatch" className={classes.Yatch} />
+      <img
+        src="/assets/images/yatch.svg"
+        alt="HeroYatch"
+        className={classes.Yatch}
+      />
     </Container>
   );
 }

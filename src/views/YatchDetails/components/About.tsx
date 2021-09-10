@@ -6,15 +6,6 @@ import Breadcrumbs from '@material-ui/core/Breadcrumbs';
 import Link from '@material-ui/core/Link';
 import NavigateNextIcon from '@material-ui/icons/NavigateNext';
 
-import Aresteas from '@assets/images/Aresteas.svg';
-import Game from '@assets/images/Game.svg';
-import Deck from '@assets/images/Deck.svg';
-import Air from '@assets/images/Air.svg';
-import Ipod from '@assets/images/Ipod.svg';
-import Satellite from '@assets/images/Satellite.svg';
-import Sauna from '@assets/images/Sauna.svg';
-import Wifi from '@assets/images/Wifi.svg';
-
 const useStyles = makeStyles((theme) =>
   createStyles({
     Container: {
@@ -143,32 +134,32 @@ const useStyles = makeStyles((theme) =>
 export default function Description() {
   const itemData = [
     {
-      img: Game,
+      img: '/assets/images/Game.svg',
       title: 'Game Consols'
     },
 
     {
-      img: Wifi,
+      img: '/assets/images/Wifi.svg',
       title: 'Free Wi Fi'
     },
     {
-      img: Satellite,
+      img: '/assets/images/Satellite.svg',
       title: 'Satellite TV'
     },
     {
-      img: Air,
+      img: '/assets/images/Air.svg',
       title: 'Air Conditioning'
     },
     {
-      img: Deck,
+      img: '/assets/images/Deck.svg',
       title: 'Deck Jacuzzi'
     },
     {
-      img: Ipod,
+      img: '/assets/images/Ipod.svg',
       title: 'Ipod Docking'
     },
     {
-      img: Sauna,
+      img: '/assets/images/Sauna.svg',
       title: 'Sauna'
     }
   ];
@@ -217,7 +208,7 @@ export default function Description() {
           </Typography>
           <div>
             <img
-              src={Aresteas}
+              src="/assets/images/Aresteas.svg"
               className={classes.mobileImage}
               data-cy="Atesteas"
             />
@@ -253,7 +244,7 @@ export default function Description() {
           </Grid>
         </div>
         <div>
-          <img src={Aresteas} className={classes.Images} />
+          <img src="/assets/images/Aresteas.svg" className={classes.Images} />
         </div>
       </Box>
     </div>

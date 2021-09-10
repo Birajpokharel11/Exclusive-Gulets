@@ -3,8 +3,7 @@ import React from 'react';
 import Image from 'next/image';
 import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
 import { Container, Grid, Box, Typography } from '@material-ui/core';
-import underLine from 'public/whiteLine.svg';
-import charterYatch from '@assets/images/charterYatch.png';
+import charterYatch from './assets/images/charterYatch.png';
 
 const useStyles = makeStyles((theme) =>
   createStyles({
@@ -12,7 +11,7 @@ const useStyles = makeStyles((theme) =>
       padding: 0
     },
     charterBackground: {
-      backgroundImage: `url('./charterYatch.png')`,
+      backgroundImage: `url(${charterYatch})`,
       backgroundPosition: 'center',
       height: '23.75rem'
     }

@@ -3,7 +3,6 @@ import React from 'react';
 import Image from 'next/image';
 import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
 import { Container, Box } from '@material-ui/core';
-import HeroYatch from './assets/images/heroYatch.png';
 
 const useStyles = makeStyles((theme) =>
   createStyles({
@@ -25,7 +24,11 @@ export default function HeroSection() {
   return (
     <>
       <Box width="100%">
-        <Image src={HeroYatch} alt="HeroYatch" className={classes.Yatch} />
+        <img
+          src="/assets/images/heroYatch.png"
+          alt="HeroYatch"
+          className={classes.Yatch}
+        />
       </Box>
     </>
   );

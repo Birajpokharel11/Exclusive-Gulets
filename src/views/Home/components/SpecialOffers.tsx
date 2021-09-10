@@ -3,8 +3,6 @@ import React from 'react';
 import Image from 'next/image';
 import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
 import { Container, Grid, Box, Typography } from '@material-ui/core';
-import underLine from './assets/images/introductionLine.svg';
-import Guest from './assets/images/heroYatch.png';
 
 const useStyles = makeStyles((theme) =>
   createStyles({
@@ -30,7 +28,7 @@ export default function Introduction() {
           </Typography>
         </Grid>
         <Grid item container justifyContent="center" xs={12}>
-          <Image src={underLine} alt="underline" />
+          <img src="/assets/images/introductionLine.svg" alt="underline" />
         </Grid>
         <Grid item>
           <Typography align="center" color="primary">
@@ -43,7 +41,7 @@ export default function Introduction() {
         <Grid container justifyContent="center" alignItems="center" spacing={2}>
           <Grid item container md={4} xs={12} spacing={2}>
             <Grid item container justifyContent="center">
-              <Image src={Guest} alt="guest" />
+              <img src="/assets/images/heroYatch.png" alt="guest" />
             </Grid>
             <Grid item container justifyContent="center">
               <Typography color="primary" align="center">
@@ -62,7 +60,7 @@ export default function Introduction() {
 
           <Grid item container md={4} xs={12} spacing={2}>
             <Grid item container justifyContent="center">
-              <Image src={Guest} alt="guest" />
+              <img src="/assets/images/heroYatch.png" alt="guest" />
             </Grid>
             <Grid item container justifyContent="center">
               <Typography color="primary" align="center">
@@ -81,7 +79,7 @@ export default function Introduction() {
 
           <Grid item container md={4} xs={12} spacing={2}>
             <Grid item container justifyContent="center">
-              <Image src={Guest} alt="guest" />
+              <img src="/assets/images/heroYatch.png" alt="guest" />
             </Grid>
             <Grid item container justifyContent="center">
               <Typography color="primary" align="center">

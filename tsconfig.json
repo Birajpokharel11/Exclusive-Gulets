@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "baseUrl": ".",
+    "baseUrl": "src",
     "target": "es5",
     "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,
@@ -18,9 +18,10 @@
       "@layouts/*": ["layouts/*"],
       "@assets/*": ["assets/*"],
       "@components/*": ["components/*"],
-      "@views/*": ["views/*"]
+      "@views/*": ["views/*"],
+      "@theme/*": ["theme/*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "theme/index.js"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
   "exclude": ["node_modules"]
 }

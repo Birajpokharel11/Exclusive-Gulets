@@ -7,10 +7,6 @@ import ListItemText from '@material-ui/core/ListItemText';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 
-import Cabins from '@assets/images/Cabins.svg';
-import Crew from '@assets/images/Crew.svg';
-import Guest from '@assets/images/Guest.svg';
-
 const useStyles = makeStyles((theme) =>
   createStyles({
     Box: {
@@ -107,18 +103,18 @@ const useStyles = makeStyles((theme) =>
 );
 const itemData = [
   {
-    img: Cabins,
+    img: '/assets/images/Cabins.svg',
     title: 'Guests',
     Number: '12'
   },
 
   {
-    img: Crew,
+    img: '/assets/images/Crew.svg',
     title: 'Cabin',
     Number: '6'
   },
   {
-    img: Guest,
+    img: 'assets/images/Guest.svg',
     title: 'Crew',
     Number: '11'
   }

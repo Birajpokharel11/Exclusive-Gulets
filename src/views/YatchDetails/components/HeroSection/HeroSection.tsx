@@ -11,8 +11,6 @@ import {
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import clsx from 'clsx';
 
-import HeroYatch from '@assets/images/HeroYatch.svg';
-
 import Filter from './components/Filter';
 
 const useStyles = makeStyles((theme) =>
@@ -136,7 +134,11 @@ export default function HeroSection() {
   return (
     <>
       <Container maxWidth={false} className={classes.Container}>
-        <img src={HeroYatch} alt="HeroYatch" className={classes.Yatch} />
+        <img
+          src="/assets/images/heroYatch.png"
+          alt="HeroYatch"
+          className={classes.Yatch}
+        />
         <div className={classes.imageTextShadows}>
           <div
             style={{

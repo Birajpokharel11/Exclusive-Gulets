@@ -3,8 +3,6 @@ import React from 'react';
 import Image from 'next/image';
 import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
 import { Container, Grid, Box, Typography } from '@material-ui/core';
-import underLine from 'public/whiteLine.svg';
-import charterYatch from '@assets/images/charterYatch.png';
 
 const useStyles = makeStyles((theme) =>
   createStyles({
@@ -12,7 +10,7 @@ const useStyles = makeStyles((theme) =>
       padding: 0
     },
     charterBackground: {
-      backgroundImage: `url('./charterYatch.png')`,
+      backgroundImage: `url('/assets/images/charterYatch.png')`,
       backgroundPosition: 'center',
       height: '23.75rem',
       backgroundRepeat: 'no-repeat',
@@ -50,7 +48,7 @@ export default function CharterYatch() {
             </Typography>
           </Grid>
           <Grid item container justifyContent="center" xs={12}>
-            <Image src={underLine} alt="underline" />
+            <img src="/assets/images/charterYatch.png" alt="underline" />
           </Grid>
           <Grid item>
             <Typography

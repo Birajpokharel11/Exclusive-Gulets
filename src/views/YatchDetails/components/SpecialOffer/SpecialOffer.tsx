@@ -9,7 +9,6 @@ import {
   Typography
 } from '@material-ui/core';
 import Dialouge from './components/OfferModal';
-import Vector from '@assets/images/Vector.svg';
 
 const useStyles = makeStyles((theme) => ({
   initialBox: {
@@ -72,7 +71,11 @@ function SpecialOffer() {
     <Box pb={0} className={classes.initialBox}>
       <Box pt={2} display="flex" alignItems="center">
         <Box pt={1}>
-          <img src={Vector} className={classes.Image} alt="vector" />
+          <img
+            src="/assets/images/Vector.svg"
+            className={classes.Image}
+            alt="vector"
+          />
         </Box>
         <Grid />
         <Grid

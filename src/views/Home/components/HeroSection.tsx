@@ -3,7 +3,6 @@ import React from 'react';
 import Image from 'next/image';
 import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
 import { Container, Box } from '@material-ui/core';
-import HeroYatch from '@assets/images/heroYatch.png';
 
 const useStyles = makeStyles((theme) =>
   createStyles({

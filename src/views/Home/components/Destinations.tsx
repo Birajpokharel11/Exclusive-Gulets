@@ -3,7 +3,7 @@ import React from 'react';
 import Image from 'next/image';
 import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
 import { Container, Grid, Box, Typography, Button } from '@material-ui/core';
-import underLine from '@assets/images/introductionLine.svg';
+import underLine from 'public/assets/images/introductionLine.svg';
 
 const useStyles = makeStyles((theme) =>
   createStyles({

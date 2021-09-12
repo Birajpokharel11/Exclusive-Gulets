@@ -17,6 +17,18 @@ const useStyles = makeStyles((theme) =>
       paddingBottom: '10%',
       [theme.breakpoints.down(815)]: {
         display: 'block'
+      },
+      [theme.breakpoints.down(450)]: {
+        paddingTop: '8%',
+        paddingLeft: '6%',
+        paddingRight: '5%',
+        paddingBottom: '10%'
+      },
+      [theme.breakpoints.down(380)]: {
+        paddingTop: '8%',
+        paddingLeft: '5%',
+        paddingRight: '2%',
+        paddingBottom: '10%'
       }
     },
     TextPosition: {
@@ -25,7 +37,11 @@ const useStyles = makeStyles((theme) =>
     },
 
     listPosition: {
-      flex: '30%'
+      flex: '30%',
+      [theme.breakpoints.down(380)]: {
+        paddingLeft: '0%',
+        paddingRight: '8%'
+      }
     },
     Paper: {
       width: '100%',
@@ -36,7 +52,8 @@ const useStyles = makeStyles((theme) =>
         width: '83%'
       },
       [theme.breakpoints.down(352)]: {
-        width: '83%'
+        width: '83%',
+        padding: '35px 28px'
       }
     },
     FirstTitle: {
@@ -44,20 +61,21 @@ const useStyles = makeStyles((theme) =>
       height: '25px',
       fontFamily: 'Lato',
       fontStyle: 'normal',
-      fontWeight: '300',
+      fontWeight: 300,
       fontSize: '18px',
       lineHeight: '22px',
       paddingBottom: '20px',
       color: '#2A398D'
     },
     Typography: {
-      maxwidth: '820px',
-      minheight: '226px',
+      maxWidth: '670px',
+      minHeight: '226px',
       fontFamily: 'Lato',
       fontStyle: 'normal',
-      fontWeight: '300',
+      fontWeight: 300,
       fontSize: '18px',
-      lineHeight: '21px',
+      lineHeight: '25px',
+      textAlign: 'justify',
       color: '#2A398D'
     },
     ListTitle: {
@@ -71,7 +89,7 @@ const useStyles = makeStyles((theme) =>
     listStyle: {
       fontFamily: 'Lato',
       fontStyle: 'normal',
-      fontWeight: '300',
+      fontWeight: 300,
       fontSize: '16px',
       lineHeight: '52px',
       color: '#00204E',
@@ -83,7 +101,7 @@ const useStyles = makeStyles((theme) =>
     ship: {
       fontFamily: 'Lato',
       fontStyle: 'normal',
-      fontWeight: '300',
+      fontWeight: 300,
       fontSize: '18px',
       lineHeight: '22px',
       color: '#2A398D',
@@ -93,7 +111,7 @@ const useStyles = makeStyles((theme) =>
     shipnumber: {
       fontFamily: 'Lato',
       fontStyle: 'normal',
-      fontWeight: '500',
+      fontWeight: 500,
       fontSize: '18px',
       lineHeight: '22px',
       color: '#2A398D',
@@ -114,7 +132,7 @@ const itemData = [
     Number: '6'
   },
   {
-    img: 'assets/images/Guest.svg',
+    img: '/assets/images/Guest.svg',
     title: 'Crew',
     Number: '11'
   }
@@ -164,7 +182,7 @@ export default function Accomodation() {
       <div className={classes.TextPosition}>
         <Typography className={classes.FirstTitle}>ACCOMODATION</Typography>
         <Typography className={classes.Typography}>
-          {'>'} Corsario's interior layout sleeps up to 12 guests in 6 rooms,
+          Corsario{`'`}sinterior layout sleeps up to 12 guests in 6 rooms,
           including a master suite, 1 VIP stateroom, 2 double cabins and 2 twin
           cabins. She is also capable of carrying up to 8 crew onboard to ensure
           a relaxed luxury yacht experience. Timeless styling, beautiful
@@ -172,9 +190,9 @@ export default function Accomodation() {
           elegant and comfortable atmosphere.
           <br />
           <br />
-          Corsario's impressive leisure and entertainment facilities make her
-          the ideal charter yacht for socialising and entertaining with family
-          and friends.
+          Corsario{`'`}s impressive leisure and entertainment facilities make
+          her the ideal charter yacht for socialising and entertaining with
+          family and friends.
           <br />
           <br />
           Sauna, Air Conditioning, Deck Jacuzzi, WiFi connection on board.
@@ -182,9 +200,10 @@ export default function Accomodation() {
           for more information on gulet Yacht Charter.
         </Typography>
         <Grid container spacing={3} className={classes.Grid}>
-          {itemData.map((item) => (
+          {itemData.map((item, i) => (
             <Grid
               item
+              key={i}
               xs={12}
               sm={6}
               md={6}
@@ -207,7 +226,7 @@ export default function Accomodation() {
       <div className={classes.listPosition}>
         <Paper square className={classes.Paper} elevation={0}>
           <Typography className={classes.ListTitle}>SPECIFICATION</Typography>
-          <List className={classes.tab} style={{ padding: '0, 100px' }}>
+          <List style={{ padding: '0, 100px' }}>
             {list.map((list, index) => {
               return (
                 <>

@@ -10,7 +10,6 @@ const useStyles = makeStyles((theme) =>
   createStyles({
     ButtonGroup: {
       border: ' 1px solid rgba(255, 255, 255, 0.5)',
-      boxSizing: 'borderBox',
       borderRadius: '4px',
       [theme.breakpoints.down(530)]: {
         fontSize: '14px'

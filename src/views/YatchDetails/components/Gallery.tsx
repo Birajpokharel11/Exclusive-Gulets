@@ -184,7 +184,7 @@ export default function Gallery() {
       {console.log('Before update: ', itemData[0])}
       <Grid container spacing={2}>
         {MobileData.map((item, i) => (
-          <Grid item>
+          <Grid item key={i}>
             <Typography className={classes.typography}>{item.title}</Typography>
             <img
               src={item.img}

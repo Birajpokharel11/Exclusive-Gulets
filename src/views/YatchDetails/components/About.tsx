@@ -25,7 +25,8 @@ const useStyles = makeStyles((theme) =>
       color: '#2A398D',
       paddingTop: '20px',
       [theme.breakpoints.down(560)]: {
-        width: '343px'
+        width: '363px',
+        textAlign: 'justify'
       },
       [theme.breakpoints.down(385)]: {
         width: '300px',
@@ -87,11 +88,15 @@ const useStyles = makeStyles((theme) =>
         paddingLeft: '5%'
       },
       [theme.breakpoints.down(560)]: {
-        paddingRight: '6%',
-        paddingLeft: '6%'
+        paddingRight: '2%',
+        paddingLeft: '9%'
       },
       [theme.breakpoints.down(385)]: {
-        paddingRight: '3%',
+        paddingRight: '0%',
+        paddingLeft: '9%'
+      },
+      [theme.breakpoints.down(325)]: {
+        paddingRight: '1%',
         paddingLeft: '3%'
       }
     },
@@ -178,7 +183,7 @@ export default function Description() {
         separator={<NavigateNextIcon fontSize="small" />}
         aria-label="breadcrumb"
       >
-        <Link color="textPrimary" href="/" onClick={handleClick}>
+        <Link color="inherit" href="/" onClick={handleClick}>
           Material-UI
         </Link>
         <Link
@@ -205,7 +210,7 @@ export default function Description() {
             right on the water. Corsario’s experienced Greek crew of seven are
             experts in all that the Greek islands have to offer and will help
             create an unforgettable custom itinerary for her lucky guests.
-          </Typography>
+          </Typography>{' '}
           <div>
             <img
               src="/assets/images/Aresteas.svg"
@@ -225,9 +230,10 @@ export default function Description() {
             guide for more information on gulet Yacht Charter.
           </Typography>
           <Grid container className={classes.Grid}>
-            {itemData.map((item) => (
+            {itemData.map((item, i) => (
               <Grid
                 item
+                key={i}
                 xs={12}
                 sm={6}
                 md={6}

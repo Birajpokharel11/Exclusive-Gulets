@@ -14,7 +14,7 @@ import Searchbar from './Searchbar';
 
 const useStyles = makeStyles((theme: Theme) => ({
   root: {
-    backgroundColor: '#091527',
+    background: '#091527',
     width: '100%',
     minheight: '570px',
     paddingBottom: '8%'
@@ -42,7 +42,8 @@ const useStyles = makeStyles((theme: Theme) => ({
     fontStyle: 'normal',
     fontWeight: 300,
     fontSize: '16px',
-    marginTop: '4%'
+    lineHeight: '19px',
+    marginTop: '6%'
   },
   ListitemsMargin: {
     marginTop: '4%'
@@ -52,7 +53,8 @@ const useStyles = makeStyles((theme: Theme) => ({
     fontStyle: 'normal',
     fontWeight: 'normal',
     fontSize: '20px',
-    color: 'white'
+    color: 'white',
+    lineHeight: '24px'
   },
   TypographyBody: {
     color: 'white'
@@ -68,7 +70,7 @@ const Footer = () => {
         container
         style={{
           paddingTop: '12%',
-          paddingLeft: '14%',
+          paddingLeft: '99px',
           paddingRight: '14%'
         }}
       >
@@ -91,41 +93,40 @@ const Footer = () => {
           <List className={classes.ListItems}>
             <div>
               <ListItem>
-                <Typography className={classes.ListItems}> Kayak</Typography>
+                <Typography className={classes.ListItems}>Browse</Typography>
+              </ListItem>
+              <ListItem>
+                <Typography className={classes.ListItems}>For Sale</Typography>
               </ListItem>
               <ListItem>
                 <Typography className={classes.ListItems}>
-                  Paddle Boards
+                  {' '}
+                  For Charter
                 </Typography>
-              </ListItem>
-              <ListItem>
-                <Typography className={classes.ListItems}> Banana</Typography>
               </ListItem>
             </div>
             <div>
               <ListItem>
-                <Typography className={classes.ListItems}> Kayak</Typography>
+                <Typography className={classes.ListItems}> About</Typography>
               </ListItem>
               <ListItem>
                 <Typography className={classes.ListItems}>
-                  Paddle Boards
+                  Destinations
                 </Typography>
               </ListItem>
               <ListItem>
-                <Typography className={classes.ListItems}> Banana</Typography>
+                <Typography className={classes.ListItems}> Dinning</Typography>
               </ListItem>
             </div>
             <div>
               <ListItem>
-                <Typography className={classes.ListItems}> Kayak</Typography>
+                <Typography className={classes.ListItems}> Blog</Typography>
               </ListItem>
               <ListItem>
-                <Typography className={classes.ListItems}>
-                  Paddle Boards
-                </Typography>
+                <Typography className={classes.ListItems}>SignIn</Typography>
               </ListItem>
               <ListItem>
-                <Typography className={classes.ListItems}> Banana</Typography>
+                <Typography className={classes.ListItems}> Sign Up</Typography>
               </ListItem>
             </div>
           </List>
@@ -149,45 +150,20 @@ const Footer = () => {
               Contact Us
             </Typography>
             <div>
-              <IconButton color="inherit">
-                <FacebookIcon
-                  style={{
-                    width: '56.41px',
-                    height: '52px'
-                  }}
-                />
+              <IconButton color="inherit" data-cy="Footer-facebook">
+                <img src="/assets/images/Facebook.svg" alt="facebook" />
               </IconButton>
-              <IconButton color="inherit">
-                <InstagramIcon
-                  style={{
-                    width: '56.41px',
-                    height: '52px'
-                  }}
-                />
+              <IconButton color="inherit" data-cy="Footer-Instagram">
+                <img src="/assets/images/Instagram.svg" alt="Instagram" />
               </IconButton>
-              <IconButton color="inherit">
-                <LinkedInIcon
-                  style={{
-                    width: '56.41px',
-                    height: '52px'
-                  }}
-                />
+              <IconButton color="inherit" data-cy="Footer-LinkedIn">
+                <img src="/assets/images/LinkedIn.svg" alt="LinkedIn" />
               </IconButton>
-              <IconButton color="inherit">
-                <TwitterIcon
-                  style={{
-                    width: '56.41px',
-                    height: '52px'
-                  }}
-                />
+              <IconButton color="inherit" data-cy="Footer-Twitter">
+                <img src="/assets/images/Twitter.svg" alt="Twitter" />
               </IconButton>
-              <IconButton color="inherit">
-                <YouTubeIcon
-                  style={{
-                    width: '56.41px',
-                    height: '52px'
-                  }}
-                />
+              <IconButton color="inherit" data-cy="Footer-Youtube">
+                <img src="/assets/images/Youtube.svg" alt="Youtube" />
               </IconButton>
             </div>
           </div>

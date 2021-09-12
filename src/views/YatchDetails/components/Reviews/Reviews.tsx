@@ -1,20 +1,33 @@
 import React from 'react';
 import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
-import { Container, Grid, Paper, Typography } from '@material-ui/core';
+import {
+  Container,
+  Grid,
+  Paper,
+  Typography,
+  useMediaQuery
+} from '@material-ui/core';
 import Card from '@material-ui/core/Card';
 import CardActionArea from '@material-ui/core/CardActionArea';
 import CardContent from '@material-ui/core/CardContent';
-import CardMedia from '@material-ui/core/CardMedia';
+import Rating from '@material-ui/lab/Rating';
+import MobileReviewsSlider from './components/MobileReviews';
 import { useTheme } from '@material-ui/core/styles';
-import useMediaQuery from '@material-ui/core/useMediaQuery';
-
-import MobileSlider from './components/MobileSlider';
 
 const useStyles = makeStyles((theme) =>
   createStyles({
     root: {
       maxWidth: 345,
       boxShadow: 'none'
+    },
+    Date: {
+      fontFamily: 'Lato',
+      fontStyle: 'normal',
+      fontWeight: 300,
+      fontSize: '14px',
+      color: '#2A398D',
+      width: '79px',
+      textAlign: 'center'
     },
     listHeader: {
       fontFamily: 'Lato',
@@ -43,16 +56,16 @@ const useStyles = makeStyles((theme) =>
       fontStyle: 'normal',
       fontWeight: 300,
       fontSize: '16px',
-      color: '#2A398D'
+      color: '#2A398D',
+      paddingBottom: '2%'
     }
   })
 );
-
-function Destinations() {
-  const classes = useStyles();
+function Reviews() {
+  const [value, setValue] = React.useState(2);
   const theme = useTheme();
   const matches = useMediaQuery(theme.breakpoints.down(500));
-
+  const classes = useStyles();
   return (
     <Paper
       elevation={0}
@@ -60,7 +73,7 @@ function Destinations() {
         width: '100%',
         minHeight: '870px',
         paddingBottom: '10%',
-        background: ' #F5F0E4'
+        background: ' #ffffff'
       }}
     >
       <Container
@@ -72,15 +85,11 @@ function Destinations() {
           className={classes.listHeader}
           style={{ display: 'flex', justifyContent: 'center' }}
         >
-          Destinations Within Sailing Distance
+          Reviews from Our Customers
         </Typography>
         <Typography
           className={classes.listText}
-          style={{
-            display: 'flex',
-            textAlign: 'justify',
-            paddingTop: '48px'
-          }}
+          style={{ display: 'flex', textAlign: 'justify', paddingTop: '48px' }}
         >
           A text like discover those destinations with your perfect yacht will
           be written here. Perfect location and the perfect yacht for your
@@ -100,34 +109,35 @@ function Destinations() {
             <Grid item xs>
               <Card className={classes.root}>
                 <CardActionArea>
-                  <CardMedia
-                    component="img"
-                    alt="Contemplative Reptile"
-                    height="140"
-                    image="/assets/images/Amat.svg"
-                    style={{
-                      width: '400px',
-                      height: '400px',
-                      objectFit: 'contain'
-                    }}
-                    title="Contemplative Reptile"
-                  />
                   <CardContent style={{ backgroundColor: '#F5F0E4' }}>
-                    <Typography
-                      gutterBottom
-                      style={{ textAlign: 'center' }}
-                      className={classes.listitemText}
-                    >
+                    <Typography gutterBottom className={classes.listitemText}>
                       Cyclades Islands Greece
                     </Typography>
+                    <Typography gutterBottom className={classes.listitemText}>
+                      portugal
+                    </Typography>
+                    <Rating
+                      name="read-only"
+                      value={value}
+                      readOnly
+                      style={{ paddingBottom: '2%' }}
+                    />
                     <Typography
                       variant="body2"
                       color="textSecondary"
                       component="p"
                       className={classes.listitemText2}
                     >
-                      A perfect yacht charter getaway in probably one of the
-                      most romantic, beautiful, and charming place on earth.
+                      “Thank you all so so so much for all of your help and
+                      patience with getting through this kosher week. My family
+                      had the best trip of their lives so I take my hat off to
+                      you all. Please pass on my sincere thanks also to Captain
+                      Askin and his team who I know showed patience and
+                      professionalism throughout what was no doubt a very
+                      challenging week.”
+                    </Typography>
+                    <Typography className={classes.Date}>
+                      August 2020
                     </Typography>
                   </CardContent>
                 </CardActionArea>
@@ -136,33 +146,35 @@ function Destinations() {
             <Grid item xs>
               <Card className={classes.root}>
                 <CardActionArea>
-                  <CardMedia
-                    style={{
-                      width: '400px',
-                      height: '400px',
-                      objectFit: 'contain'
-                    }}
-                    component="img"
-                    alt="Contemplative Reptile"
-                    height="140"
-                    image="/assets/images/Tube.svg"
-                    title="Contemplative Reptile"
-                  />
-                  <CardContent
-                    style={{ backgroundColor: '#F5F0E4' }}
-                    className={classes.listitemText}
-                  >
-                    <Typography gutterBottom style={{ textAlign: 'center' }}>
-                      Dalmatian Islands Croatia
+                  <CardContent style={{ backgroundColor: '#F5F0E4' }}>
+                    <Typography gutterBottom className={classes.listitemText}>
+                      Cyclades Islands Greece
                     </Typography>
+                    <Typography gutterBottom className={classes.listitemText}>
+                      portugal
+                    </Typography>
+                    <Rating
+                      name="read-only"
+                      value={value}
+                      readOnly
+                      style={{ paddingBottom: '2%' }}
+                    />
                     <Typography
                       variant="body2"
                       color="textSecondary"
                       component="p"
                       className={classes.listitemText2}
                     >
-                      The Cyclades are a group of Greek Islands, best known for
-                      the islands of Santorini and Mykonos.
+                      “Thank you all so so so much for all of your help and
+                      patience with getting through this kosher week. My family
+                      had the best trip of their lives so I take my hat off to
+                      you all. Please pass on my sincere thanks also to Captain
+                      Askin and his team who I know showed patience and
+                      professionalism throughout what was no doubt a very
+                      challenging week.”
+                    </Typography>
+                    <Typography className={classes.Date}>
+                      August 2020
                     </Typography>
                   </CardContent>
                 </CardActionArea>
@@ -170,11 +182,11 @@ function Destinations() {
             </Grid>
           </Grid>
         ) : (
-          <MobileSlider />
+          <MobileReviewsSlider />
         )}
       </Container>
     </Paper>
   );
 }
 
-export default Destinations;
+export default Reviews;

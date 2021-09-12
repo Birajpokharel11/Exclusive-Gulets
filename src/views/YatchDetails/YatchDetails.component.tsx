@@ -10,12 +10,14 @@ import {
   OptionalFeatures,
   DestinationSection,
   Reviews,
-  Enquiry
+  Enquiry,
+  SpecialOffer
 } from './components';
 
 const YatchDetails = () => {
   return (
     <Container maxWidth={false} style={{ padding: '0%' }}>
+      <SpecialOffer />
       <HeroSection />
       <AboutSection />
       <GallerySection />

@@ -2,7 +2,9 @@ import {
   HeroSection,
   Introduction,
   SpecialOffers,
-  CharterYatch
+  CharterYatch,
+  Destinations,
+  YatchSlider
 } from './components';
 
 export default function Home() {
@@ -14,6 +16,8 @@ export default function Home() {
       <Introduction />
       <SpecialOffers />
       <CharterYatch />
+      <YatchSlider />
+      <Destinations />
     </div>
   );
 }

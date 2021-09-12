@@ -10,9 +10,26 @@ const useStyles = makeStyles((theme) => ({
     width: '70%',
     height: '52.73px'
   },
+  Button: {
+    backgroundColor: 'white',
+    marginLeft: '10%',
+    width: '104px',
+    fontFamily: ' Lato',
+    fontStyle: 'normal',
+    fontWeight: 500,
+    fontSize: ' 18px',
+    lineHeight: '22px',
+    color: '#2A398D',
+    padding: '3%'
+  },
   input: {
     marginLeft: theme.spacing(1),
-    flex: 1
+    flex: 1,
+    fontFamily: ' Lato',
+    fontStyle: 'normal',
+    fontWeight: 300,
+    fontSize: ' 18px',
+    color: '#091527'
   },
   iconButton: {
     padding: 10
@@ -32,10 +49,7 @@ export default function Searchbar() {
         <InputBase className={classes.input} placeholder="Email" />
       </Paper>
       <div style={{ flexGrow: 0.3 }} />
-      <Button
-        style={{ backgroundColor: 'white', marginLeft: '10%' }}
-        disableElevation
-      >
+      <Button className={classes.Button} disableElevation>
         Search
       </Button>
     </div>

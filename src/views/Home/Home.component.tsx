@@ -4,7 +4,10 @@ import {
   SpecialOffers,
   CharterYatch,
   Destinations,
-  YatchSlider
+  YatchSlider,
+  Experience,
+  NewsAndBlogs,
+  EnquiryForm
 } from './components';
 
 export default function Home() {
@@ -18,6 +21,9 @@ export default function Home() {
       <CharterYatch />
       <YatchSlider />
       <Destinations />
+      <Experience />
+      <NewsAndBlogs />
+      <EnquiryForm />
     </div>
   );
 }

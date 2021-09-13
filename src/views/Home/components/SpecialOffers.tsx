@@ -2,13 +2,19 @@
 import React from 'react';
 import Image from 'next/image';
 import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
-import { Container, Grid, Box, Typography } from '@material-ui/core';
+import { Container, Grid, Box, Typography, Button } from '@material-ui/core';
+import Guest from 'public/assets/images/heroYatch.png';
 
 const useStyles = makeStyles((theme) =>
   createStyles({
     root: {
       marginTop: '6rem',
       backgroundColor: '#F5F0E4'
+    },
+    buttonStyle: {
+      backgroundColor: '#2A398D',
+      color: '#FFFFFF',
+      marginBottom: '4rem'
     },
     Yatch: {
       width: '100%',
@@ -20,7 +26,7 @@ const useStyles = makeStyles((theme) =>
 export default function Introduction() {
   const classes = useStyles();
   return (
-    <Container maxWidth="false" className={classes.root}>
+    <Box maxWidth="false" className={classes.root}>
       <Grid
         container
         justifyContent="center"
@@ -46,7 +52,7 @@ export default function Introduction() {
         <Grid container justifyContent="center" alignItems="center" spacing={2}>
           <Grid item container md={4} xs={12} spacing={2}>
             <Grid item container justifyContent="center">
-              <img src="/assets/images/heroYatch.png" alt="guest" />
+              <Image src={Guest} alt="guest" />
             </Grid>
             <Grid item container justifyContent="center">
               <Typography color="primary" align="center">
@@ -65,7 +71,7 @@ export default function Introduction() {
 
           <Grid item container md={4} xs={12} spacing={2}>
             <Grid item container justifyContent="center">
-              <img src="/assets/images/heroYatch.png" alt="guest" />
+              <Image src={Guest} alt="guest" />
             </Grid>
             <Grid item container justifyContent="center">
               <Typography color="primary" align="center">
@@ -84,7 +90,7 @@ export default function Introduction() {
 
           <Grid item container md={4} xs={12} spacing={2}>
             <Grid item container justifyContent="center">
-              <img src="/assets/images/heroYatch.png" alt="guest" />
+              <Image src={Guest} alt="guest" />
             </Grid>
             <Grid item container justifyContent="center">
               <Typography color="primary" align="center">
@@ -100,8 +106,17 @@ export default function Introduction() {
               </Typography>
             </Grid>
           </Grid>
+          <Grid item container justifyContent="center">
+            <Button
+              variant="contained"
+              size="large"
+              className={classes.buttonStyle}
+            >
+              View All Offers
+            </Button>
+          </Grid>
         </Grid>
       </Box>
-    </Container>
+    </Box>
   );
 }

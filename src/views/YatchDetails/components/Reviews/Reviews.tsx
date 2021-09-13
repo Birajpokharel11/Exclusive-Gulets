@@ -57,7 +57,8 @@ const useStyles = makeStyles((theme) =>
       fontWeight: 300,
       fontSize: '16px',
       color: '#2A398D',
-      paddingBottom: '2%'
+      paddingBottom: '2%',
+      textAlign: 'justify'
     },
     Reviews: {
       paddingTop: '5%'

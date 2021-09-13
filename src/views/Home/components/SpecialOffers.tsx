@@ -2,7 +2,7 @@
 import React from 'react';
 import Image from 'next/image';
 import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
-import { Container, Grid, Box, Typography } from '@material-ui/core';
+import { Container, Grid, Box, Typography, Button } from '@material-ui/core';
 import Guest from 'public/assets/images/heroYatch.png';
 
 const useStyles = makeStyles((theme) =>
@@ -10,6 +10,11 @@ const useStyles = makeStyles((theme) =>
     root: {
       marginTop: '6rem',
       backgroundColor: '#F5F0E4'
+    },
+    buttonStyle: {
+      backgroundColor: '#2A398D',
+      color: '#FFFFFF',
+      marginBottom: '4rem'
     },
     Yatch: {
       width: '100%',
@@ -100,6 +105,15 @@ export default function Introduction() {
                 for guests to rest in the sunshine.
               </Typography>
             </Grid>
+          </Grid>
+          <Grid item container justifyContent="center">
+            <Button
+              variant="contained"
+              size="large"
+              className={classes.buttonStyle}
+            >
+              View All Offers
+            </Button>
           </Grid>
         </Grid>
       </Box>

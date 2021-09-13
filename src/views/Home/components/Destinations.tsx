@@ -50,7 +50,7 @@ export default function Destinations() {
             a different shoreline to discover.​
           </Typography>
         </Grid>
-        <Grid item>
+        <Grid item justifyContent="center">
           <Button variant="contained" className={classes.buttonStyle}>
             View All Destinations​
           </Button>

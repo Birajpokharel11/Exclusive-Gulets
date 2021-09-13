@@ -2,7 +2,7 @@
 import React from 'react';
 import Image from 'next/image';
 import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
-import { Container, Grid, Box, Typography } from '@material-ui/core';
+import { Container, Grid, Box, Typography, Button } from '@material-ui/core';
 
 const useStyles = makeStyles((theme) =>
   createStyles({
@@ -18,6 +18,10 @@ const useStyles = makeStyles((theme) =>
     },
     textColor: {
       color: '#ffffff'
+    },
+    buttonStyle: {
+      backgroundColor: '#F5F0E4',
+      color: '#2A398D'
     }
   })
 );
@@ -36,6 +40,7 @@ export default function CharterYatch() {
           justifyContent="center"
           alignItems="center"
           style={{ paddingTop: '5rem' }}
+          spacing={3}
         >
           <Grid item xs={12}>
             <Typography
@@ -58,6 +63,11 @@ export default function CharterYatch() {
               The most lavish super yacht to turn heads, or an exclusive gulet
               for a perfect family getaway.
             </Typography>
+          </Grid>
+          <Grid item container justifyContent="center">
+            <Button variant="contained" className={classes.buttonStyle}>
+              View All Yachts
+            </Button>
           </Grid>
         </Grid>
       </Container>

@@ -21,7 +21,8 @@ const useStyles = makeStyles((theme) =>
     },
     buttonStyle: {
       backgroundColor: '#2A398D',
-      color: '#FFFFFF'
+      color: '#FFFFFF',
+      marginBottom: '4rem'
     },
     textWidth: {
       width: '100%'

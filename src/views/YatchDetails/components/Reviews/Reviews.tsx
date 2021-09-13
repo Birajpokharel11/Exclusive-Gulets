@@ -58,6 +58,19 @@ const useStyles = makeStyles((theme) =>
       fontSize: '16px',
       color: '#2A398D',
       paddingBottom: '2%'
+    },
+    Reviews: {
+      paddingTop: '5%'
+    },
+    Cards: {
+      width: '100%',
+      paddingTop: '3%',
+      [theme.breakpoints.down(1030)]: {
+        paddingLeft: '10%'
+      },
+      [theme.breakpoints.down(780)]: {
+        paddingLeft: '6%'
+      }
     }
   })
 );
@@ -76,11 +89,7 @@ function Reviews() {
         background: ' #ffffff'
       }}
     >
-      <Container
-        style={{
-          paddingTop: '5%'
-        }}
-      >
+      <Container className={classes.Reviews}>
         <Typography
           className={classes.listHeader}
           style={{ display: 'flex', justifyContent: 'center' }}
@@ -97,13 +106,7 @@ function Reviews() {
           new exciting destination to explore.
         </Typography>
       </Container>
-      <Container
-        maxWidth="md"
-        style={{
-          width: '100%',
-          paddingTop: '3%'
-        }}
-      >
+      <Container maxWidth="md" className={classes.Cards}>
         {!matches ? (
           <Grid container justifyContent="space-around">
             <Grid item xs>

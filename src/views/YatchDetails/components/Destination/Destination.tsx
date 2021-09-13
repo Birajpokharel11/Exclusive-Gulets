@@ -44,6 +44,12 @@ const useStyles = makeStyles((theme) =>
       fontWeight: 300,
       fontSize: '16px',
       color: '#2A398D'
+    },
+    Destinations: {
+      paddingTop: '3%',
+      [theme.breakpoints.down(1030)]: {
+        paddingLeft: '6%'
+      }
     }
   })
 );
@@ -88,13 +94,7 @@ function Destinations() {
           new exciting destination to explore.
         </Typography>
       </Container>
-      <Container
-        maxWidth="md"
-        style={{
-          width: '100%',
-          paddingTop: '3%'
-        }}
-      >
+      <Container maxWidth="md" className={classes.Destinations}>
         {!matches ? (
           <Grid container justifyContent="space-around">
             <Grid item xs>

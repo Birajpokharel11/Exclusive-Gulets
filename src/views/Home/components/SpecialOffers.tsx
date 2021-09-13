@@ -34,12 +34,12 @@ export default function Introduction() {
         style={{ paddingTop: '3rem' }}
       >
         <Grid item xs={12}>
-          <Typography color="primary" align="center">
+          <Typography color="primary" align="center" variant="h4">
             Special Offers
           </Typography>
         </Grid>
         <Grid item container justifyContent="center" xs={12}>
-          <img src="/assets/images/introductionLine.svg" alt="underline" />
+          <img src="/assets/images/smallBlueUnderline.svg" alt="underline" />
         </Grid>
         <Grid item>
           <Typography align="center" color="primary">

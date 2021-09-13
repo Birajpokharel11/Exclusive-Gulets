@@ -7,7 +7,8 @@ import {
   YatchSlider,
   Experience,
   NewsAndBlogs,
-  EnquiryForm
+  EnquiryForm,
+  DestinationGallery
 } from './components';
 
 export default function Home() {
@@ -21,6 +22,7 @@ export default function Home() {
       <CharterYatch />
       <YatchSlider />
       <Destinations />
+      <DestinationGallery />
       <Experience />
       <NewsAndBlogs />
       <EnquiryForm />

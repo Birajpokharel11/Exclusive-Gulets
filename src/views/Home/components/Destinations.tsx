@@ -3,7 +3,7 @@ import React from 'react';
 import Image from 'next/image';
 import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
 import { Container, Grid, Box, Typography, Button } from '@material-ui/core';
-import underLine from 'public/assets/images/introductionLine.svg';
+import underLine from 'public/assets/images/smallBlueUnderline.svg';
 
 const useStyles = makeStyles((theme) =>
   createStyles({
@@ -33,7 +33,7 @@ export default function Destinations() {
         spacing={2}
       >
         <Grid item xs={12}>
-          <Typography color="primary" align="center">
+          <Typography color="primary" align="center" variant="h4">
             Destinations
           </Typography>
         </Grid>

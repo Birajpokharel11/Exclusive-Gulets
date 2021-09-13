@@ -3,6 +3,7 @@ import React from 'react';
 import Image from 'next/image';
 import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
 import { Container, Grid, Box, Typography } from '@material-ui/core';
+import Guest from 'public/assets/images/heroYatch.png';
 
 const useStyles = makeStyles((theme) =>
   createStyles({
@@ -20,7 +21,7 @@ const useStyles = makeStyles((theme) =>
 export default function Introduction() {
   const classes = useStyles();
   return (
-    <Container maxWidth="false" className={classes.root}>
+    <Box maxWidth="false" className={classes.root}>
       <Grid
         container
         justifyContent="center"
@@ -46,7 +47,7 @@ export default function Introduction() {
         <Grid container justifyContent="center" alignItems="center" spacing={2}>
           <Grid item container md={4} xs={12} spacing={2}>
             <Grid item container justifyContent="center">
-              <img src="/assets/images/heroYatch.png" alt="guest" />
+              <Image src={Guest} alt="guest" />
             </Grid>
             <Grid item container justifyContent="center">
               <Typography color="primary" align="center">
@@ -65,7 +66,7 @@ export default function Introduction() {
 
           <Grid item container md={4} xs={12} spacing={2}>
             <Grid item container justifyContent="center">
-              <img src="/assets/images/heroYatch.png" alt="guest" />
+              <Image src={Guest} alt="guest" />
             </Grid>
             <Grid item container justifyContent="center">
               <Typography color="primary" align="center">
@@ -84,7 +85,7 @@ export default function Introduction() {
 
           <Grid item container md={4} xs={12} spacing={2}>
             <Grid item container justifyContent="center">
-              <img src="/assets/images/heroYatch.png" alt="guest" />
+              <Image src={Guest} alt="guest" />
             </Grid>
             <Grid item container justifyContent="center">
               <Typography color="primary" align="center">
@@ -102,6 +103,6 @@ export default function Introduction() {
           </Grid>
         </Grid>
       </Box>
-    </Container>
+    </Box>
   );
 }

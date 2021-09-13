@@ -47,9 +47,7 @@ export default function CharterYatch() {
               Charter a Luxury Yacht
             </Typography>
           </Grid>
-          <Grid item container justifyContent="center" xs={12}>
-            <img src="/assets/images/charterYatch.png" alt="underline" />
-          </Grid>
+
           <Grid item>
             <Typography
               align="center"

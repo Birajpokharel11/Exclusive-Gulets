@@ -3,6 +3,7 @@ import React from 'react';
 import Image from 'next/image';
 import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
 import { Container, Grid, Box, Typography, Button } from '@material-ui/core';
+import underLine from 'public/assets/images/whiteLine.svg';
 
 const useStyles = makeStyles((theme) =>
   createStyles({
@@ -51,6 +52,10 @@ export default function CharterYatch() {
             >
               Charter a Luxury Yacht
             </Typography>
+          </Grid>
+
+          <Grid item container justifyContent="center" xs={12}>
+            <Image src={underLine} alt="underline" />
           </Grid>
 
           <Grid item>

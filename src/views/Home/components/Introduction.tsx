@@ -22,7 +22,7 @@ export default function Introduction() {
     <Container maxWidth="md" className={classes.root}>
       <Grid container justifyContent="center" alignItems="center">
         <Grid item xs={12}>
-          <Typography color="primary" align="center">
+          <Typography color="primary" align="center" variant="h4">
             Luxury Gulet & Yacht Charter Experts since 2009
           </Typography>
         </Grid>
@@ -31,7 +31,7 @@ export default function Introduction() {
           <img src="/assets/images/introductionLine.svg" alt="underline" />
         </Grid>
         <Grid item>
-          <Typography align="center" color="primary">
+          <Typography align="center" color="primary" variant="body1">
             Exclusive Gulets was founded when not many people new the meaning of
             “Gulet”. In less than a decade, we broke the mould! Our passion for
             these beautifully handcrafted vessels and commitment for our clients

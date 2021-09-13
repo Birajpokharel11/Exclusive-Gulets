@@ -3,7 +3,7 @@ import React from 'react';
 import Image from 'next/image';
 import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
 import { Container, Grid, Box, Typography } from '@material-ui/core';
-import underLine from 'public/assets/images/introductionLine.svg';
+import underLine from 'public/assets/images/smallBlueUnderline.svg';
 import Guest from 'public/assets/images/heroYatch.png';
 
 const useStyles = makeStyles((theme) =>
@@ -30,7 +30,7 @@ export default function YatchSlider() {
         style={{ paddingTop: '3rem' }}
       >
         <Grid item xs={12}>
-          <Typography color="primary" align="center">
+          <Typography color="textPrimary" align="center" variant="h4">
             Loved by our Guests
           </Typography>
         </Grid>

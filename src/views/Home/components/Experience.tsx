@@ -18,8 +18,9 @@ const useStyles = makeStyles((theme) =>
       height: ' 671px'
     },
     buttonStyle: {
-      backgroundColor: '#F5F0E4',
-      color: '#2A398D'
+      backgroundColor: '#2A398D',
+      color: '#FFFFFF',
+      marginBottom: '4rem'
     }
   })
 );
@@ -90,6 +91,15 @@ export default function Experience() {
                 stands out for most is the divine, mouth-watering cuisine!
               </Typography>
             </Grid>
+          </Grid>
+          <Grid item container justifyContent="center">
+            <Button
+              variant="contained"
+              size="large"
+              className={classes.buttonStyle}
+            >
+              View All Experiences
+            </Button>
           </Grid>
         </Grid>
       </Container>

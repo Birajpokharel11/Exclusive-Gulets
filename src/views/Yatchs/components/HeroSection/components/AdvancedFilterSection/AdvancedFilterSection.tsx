@@ -5,27 +5,18 @@ import {
   withStyles,
   Theme
 } from '@material-ui/core/styles';
-import InputLabel from '@material-ui/core/InputLabel';
-import MenuItem from '@material-ui/core/MenuItem';
-import FormControl from '@material-ui/core/FormControl';
-import Select from '@material-ui/core/Select';
-import NativeSelect from '@material-ui/core/NativeSelect';
-import InputBase from '@material-ui/core/InputBase';
-import KeyboardArrowDownIcon from '@material-ui/icons/KeyboardArrowDown';
-import { red } from '@material-ui/core/colors';
+import { Box } from '@material-ui/core';
+import Search from './Search';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
-    margin: {
-      width: '200px',
-      [theme.breakpoints.down('md')]: {
-        width: '150px'
-      }
+    Box: {
+      width: '100%',
+      height: '132px',
+      minHeight: '132px',
+      background: '#091527'
     },
-    icon: {
-      fill: 'white',
-      transform: 'rotate(180deg)'
-    }
+    icon: {}
   })
 );
 
@@ -33,8 +24,10 @@ export default function AdvancedFilterSection() {
   const classes = useStyles();
 
   const [age, setAge] = React.useState('');
-  const handleChange = (event: React.ChangeEvent<{ value: unknown }>) => {
-    setAge(event.target.value as string);
-  };
-  return <div></div>;
+
+  return (
+    <Box className={classes.Box}>
+      <Search />
+    </Box>
+  );
 }

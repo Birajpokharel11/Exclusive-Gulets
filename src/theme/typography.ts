@@ -1,6 +1,7 @@
 import palette from './palette';
 
 export default {
+  fontFamily: 'Lato',
   h1: {
     color: palette.text.primary,
     fontWeight: 500,

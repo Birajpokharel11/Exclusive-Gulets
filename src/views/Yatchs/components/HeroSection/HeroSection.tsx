@@ -13,6 +13,8 @@ import FavoriteIcon from '@material-ui/icons/Favorite';
 import clsx from 'clsx';
 import { AddBox } from '@material-ui/icons';
 import Destination from './components/Destination';
+import AdvancedFilterSection from './components/AdvancedFilterSection/AdvancedFilterSection';
+import typography from '@theme/typography';
 const useStyles = makeStyles((theme) =>
   createStyles({
     Container: {
@@ -30,6 +32,8 @@ const useStyles = makeStyles((theme) =>
       position: 'absolute',
       top: '0',
       width: '100%',
+      zIndex: 1,
+
       background:
         ' linear-gradient(177.05deg, #091527 4.18%, rgba(9, 21, 39, 0.914539) 43.61%, rgba(9, 21, 39, 0.291523) 88.63%, rgba(9, 21, 39, 0) 94.76%)',
       height: '263px'
@@ -81,6 +85,9 @@ export default function HeroSection() {
         </Box>
         <div className={classes.Box2} />
       </Container>
+      <Box>
+        <AdvancedFilterSection />
+      </Box>
     </>
   );
 }

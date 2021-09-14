@@ -47,7 +47,7 @@ const useStyles = makeStyles((theme: Theme) =>
     Button: {
       width: '190px',
       height: '52px',
-      background: '#F5F0E4',
+
       [theme.breakpoints.down(780)]: {
         width: '228px',
         position: 'absolute',
@@ -105,7 +105,12 @@ export default function Destinations() {
         </Grid>
         <div style={{ flexGrow: 1 }} />
 
-        <Button className={classes.Button} data-cy="View-Yatchs">
+        <Button
+          variant="contained"
+          color="primary"
+          className={classes.Button}
+          data-cy="View-Yatchs"
+        >
           <Typography style={{ color: '#2A398D' }} variant="subtitle1">
             View Yatchs
           </Typography>

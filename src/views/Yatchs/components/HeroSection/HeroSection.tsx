@@ -15,6 +15,7 @@ import { AddBox } from '@material-ui/icons';
 import Destination from './components/Destination';
 import AdvancedFilterSection from './components/AdvancedFilterSection/AdvancedFilterSection';
 import typography from '@theme/typography';
+import Gallery from './components/Gallery/Gallery';
 const useStyles = makeStyles((theme) =>
   createStyles({
     Container: {
@@ -87,6 +88,7 @@ export default function HeroSection() {
       </Container>
       <Box>
         <AdvancedFilterSection />
+        <Gallery />
       </Box>
     </>
   );

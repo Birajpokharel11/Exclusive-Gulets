@@ -9,7 +9,7 @@ import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
-import { NativeSelect, Grid, Typography, Button } from '@material-ui/core';
+import { NativeSelect, Grid, Typography, Button, Box } from '@material-ui/core';
 import InputBase from '@material-ui/core/InputBase';
 import KeyboardArrowDownIcon from '@material-ui/icons/KeyboardArrowDown';
 import { red } from '@material-ui/core/colors';
@@ -34,11 +34,26 @@ const BootstrapInput = withStyles((theme: Theme) =>
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     margin: {
-      width: '400px'
+      width: '400px',
+      [theme.breakpoints.down('md')]: {
+        width: '167px'
+      }
     },
     icon: {
       fill: 'white',
       transform: 'rotate(180deg)'
+    },
+    Button: {
+      width: '190px',
+      height: '52px',
+      background: '#F5F0E4',
+      [theme.breakpoints.down(780)]: {
+        width: '228px',
+        position: 'absolute',
+        top: '110%',
+        left: '36%',
+        right: '50%'
+      }
     }
   })
 );
@@ -53,7 +68,7 @@ export default function Destinations() {
   return (
     <div>
       <Grid container>
-        <Grid item md>
+        <Grid item md style={{ paddingBottom: '2%' }}>
           <FormControl className={classes.margin}>
             <NativeSelect
               color="primary"
@@ -78,22 +93,21 @@ export default function Destinations() {
             </NativeSelect>
           </FormControl>
         </Grid>
+        <div style={{ flexGrow: 1 }} />
         <Grid item md>
           <Filter />
         </Grid>
+        <div style={{ flexGrow: 1 }} />
+
         <Grid item md>
           <Guests />
         </Grid>
+        <div style={{ flexGrow: 1 }} />
 
-        <Button
-          style={{
-            width: '190px',
-            height: '52px',
-            background: '#F5F0E4',
-            marginRight: '20% '
-          }}
-        >
-          <Typography variant="subtitle1">View Yatchs</Typography>
+        <Button className={classes.Button} data-cy="View-Yatchs">
+          <Typography style={{ color: '#2A398D' }} variant="subtitle1">
+            View Yatchs
+          </Typography>
         </Button>
       </Grid>
     </div>

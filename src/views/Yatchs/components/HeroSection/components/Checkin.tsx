@@ -30,7 +30,10 @@ const BootstrapInput = withStyles((theme: Theme) =>
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     margin: {
-      width: '200px'
+      width: '200px',
+      [theme.breakpoints.down('md')]: {
+        width: '150px'
+      }
     },
     icon: {
       fill: 'white',

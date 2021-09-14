@@ -21,8 +21,8 @@ const useStyles = makeStyles((theme) =>
     },
     Yatch: {
       width: '100%',
+      height: '546px',
       objectFit: 'cover',
-      height: 'auto',
       display: 'block'
     },
 
@@ -33,6 +33,15 @@ const useStyles = makeStyles((theme) =>
       background:
         ' linear-gradient(177.05deg, #091527 4.18%, rgba(9, 21, 39, 0.914539) 43.61%, rgba(9, 21, 39, 0.291523) 88.63%, rgba(9, 21, 39, 0) 94.76%)',
       height: '263px'
+    },
+    Box2: {
+      position: 'absolute',
+      bottom: '0',
+      width: '100%',
+      background:
+        ' linear-gradient(180deg, #071529 0%, rgba(7, 21, 41, 0.17) 34.38%, rgba(7, 21, 41, 0) 50%, rgba(7, 21, 41, 0.17) 66.67%, #071529 100%)',
+      height: '546px',
+      opacity: '0.8'
     },
     Heading: {
       textAlign: 'center',
@@ -57,7 +66,7 @@ export default function HeroSection() {
           alt="HeroYatch"
           className={classes.Yatch}
         />
-        <Box className={classes.imageTextShadows}>
+        <Box pt={14} pb={3} className={classes.imageTextShadows}>
           <Container maxWidth="xl">
             <Typography variant="h3" className={classes.Heading}>
               a yacht for every occasıon
@@ -65,11 +74,12 @@ export default function HeroSection() {
             <Typography variant="h6" className={classes.SubHeading}>
               Filter as your needs and find your dream yacht.
             </Typography>
-            <Box>
+            <Box pt={12}>
               <Destination />
             </Box>
           </Container>
         </Box>
+        <div className={classes.Box2}>asdsdaasdadasdasdasdasdasdasdasd</div>
       </Container>
     </>
   );

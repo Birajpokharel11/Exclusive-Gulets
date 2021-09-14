@@ -21,6 +21,7 @@ import {
   StepButton,
   StepConnector,
   StepIcon,
+  StepLabel,
   Paper
 } from '@material-ui/core';
 import KeyboardArrowLeft from '@material-ui/icons/KeyboardArrowLeft';
@@ -80,6 +81,15 @@ const useStyles = makeStyles((theme) =>
     },
     connectorLine: {
       borderTopWidth: '999px'
+    },
+    stepIconRoot: {
+      color: 'pink',
+      '&.MuiStepIcon-active': {
+        color: 'red'
+      },
+      '&.MuiStepIcon-completed': {
+        color: 'green'
+      }
     }
   })
 );
@@ -158,17 +168,23 @@ export default function YatchSlider() {
     setActiveStep(step);
   };
 
-  const StepIcon = () => (
+  const StepIcon = ({ ownerState }) => (
     <div
       style={{
         position: 'relative',
         height: '8px',
         width: '100px',
-        backgroundColor: '#2A398D',
+        backgroundColor: ownerState.active ? '#2A398D' : '#ffffff',
         borderRadius: '4px'
       }}
     />
   );
+
+  function ColorlibStepIcon(props) {
+    const { active, completed } = props;
+
+    return <StepIcon ownerState={{ completed, active }} />;
+  }
 
   return (
     <Box component="section" maxWidth="false">
@@ -274,9 +290,13 @@ export default function YatchSlider() {
 
                   return (
                     <Step key={index} {...stepProps}>
-                      <StepButton icon={<StepIcon />} {...buttonProps}>
+                      {/* <StepButton icon={<StepIcon />} {...buttonProps}>
                         {step.place}
-                      </StepButton>
+                      </StepButton> */}
+                      <StepLabel StepIconComponent={ColorlibStepIcon}>
+                        {step.place}
+                      </StepLabel>
+
                       <Typography variant="body1" align="center">
                         <Image src={Location} alt="location" /> {step.country}
                       </Typography>

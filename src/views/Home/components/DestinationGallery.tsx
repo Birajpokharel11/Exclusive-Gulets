@@ -66,7 +66,7 @@ export default function DestinationGallery() {
   return (
     <Box component="section" maxWidth="false">
       <Grid container style={{ paddingTop: '3rem' }} spacing={2}>
-        <Grid item container xs={6}>
+        <Grid item container sm={6} xs={12}>
           <Grid item>
             <div className={classes.wrapper}>
               <div className={classes.box1}>
@@ -101,7 +101,7 @@ export default function DestinationGallery() {
           </Grid>
         </Grid>
 
-        <Grid item xs={6}>
+        <Grid item sm={6} xs={12}>
           <div className={classes.wrapper}>
             <div className={classes.box5}>
               <img

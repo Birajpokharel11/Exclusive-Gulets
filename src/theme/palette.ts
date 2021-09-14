@@ -7,16 +7,10 @@ export default {
   black,
   white,
   primary: {
-    contrastText: white,
-    dark: colors.indigo[900],
-    main: '#091527',
-    light: colors.indigo[100]
+    main: '#091527'
   },
   secondary: {
-    contrastText: white,
-    dark: colors.blue[900],
-    main: colors.blue['A400'],
-    light: colors.blue['A400']
+    main: '#19857b'
   },
   success: {
     contrastText: white,

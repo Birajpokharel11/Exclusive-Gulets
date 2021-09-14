@@ -66,7 +66,7 @@ export default function HeroSection() {
           alt="HeroYatch"
           className={classes.Yatch}
         />
-        <Box pt={14} pb={3} className={classes.imageTextShadows}>
+        <Box pt={14} className={classes.imageTextShadows}>
           <Container maxWidth="xl">
             <Typography variant="h3" className={classes.Heading}>
               a yacht for every occasıon
@@ -79,7 +79,7 @@ export default function HeroSection() {
             </Box>
           </Container>
         </Box>
-        <div className={classes.Box2}>asdsdaasdadasdasdasdasdasdasdasd</div>
+        <div className={classes.Box2} />
       </Container>
     </>
   );

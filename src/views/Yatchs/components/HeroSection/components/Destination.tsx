@@ -24,6 +24,7 @@ const BootstrapInput = withStyles((theme: Theme) =>
       backgroundColor: 'none',
       color: 'white',
       border: '1px solid #ced4da',
+      background: 'rgba(12, 22, 37, 0.6)',
       height: '30px',
       fontSize: 16,
       padding: '10px 26px 10px 12px'

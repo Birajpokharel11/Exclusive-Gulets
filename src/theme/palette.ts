@@ -7,10 +7,10 @@ export default {
   black,
   white,
   primary: {
-    main: '#ffffff'
+    main: '#091527'
   },
   secondary: {
-    main: '#19857b'
+    main: '#ffffff'
   },
   success: {
     contrastText: white,

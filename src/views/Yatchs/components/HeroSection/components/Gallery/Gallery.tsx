@@ -19,16 +19,22 @@ const useStyles = makeStyles((theme: Theme) =>
       fill: 'white',
       transform: 'rotate(180deg)'
     },
-    SpecialOffer: {
+    InstantOffer: {
       textTransform: 'capitalize',
+      width: '119px',
+      height: '38px',
+      borderRadius: '0',
       zIndex: 2,
       '&:hover': {
         background: 'rgba(12, 22, 37, 0.6)'
       }
     },
-    InstantBooking: {
+    SpecialOffer: {
       background: '#AB3996',
       color: 'white',
+      width: '109px',
+      height: '38px',
+      borderRadius: '0',
       textTransform: 'capitalize',
       zIndex: 2,
 
@@ -40,7 +46,7 @@ const useStyles = makeStyles((theme: Theme) =>
       display: 'block',
       objectFit: 'cover',
       width: '100%',
-      opacity: '0.85'
+      opacity: '0.95'
     },
     BoxShadows: {
       position: 'absolute',
@@ -216,34 +222,44 @@ export default function Gallery() {
                 style={{
                   position: 'absolute',
                   bottom: '10%',
-                  left: '1%',
+                  left: '3%',
                   color: 'white',
                   zIndex: 2
                 }}
               >
-                <Typography color="inherit">{item.title} </Typography>
-                <Typography color="inherit">{item.subtitle}</Typography>
+                <Typography variant="h4" color="inherit">
+                  {item.title}{' '}
+                </Typography>
+                <Typography variant="h6" color="inherit">
+                  {item.subtitle}
+                </Typography>
               </Box>
               {(item.SpecialOffers || item.InstantBooking) && (
                 <Box className={classes.Boxitems}>
+                  {item.InstantBooking && (
+                    <Button
+                      data-cy={`Instant-Booking`}
+                      className={classes.SpecialOffer}
+                    >
+                      <Typography color="secondary" variant="overline">
+                        {' '}
+                        Special Offer
+                      </Typography>
+                    </Button>
+                  )}
                   {item.SpecialOffers && (
                     <>
                       <Button
                         color="primary"
                         variant="outlined"
-                        className={classes.SpecialOffer}
+                        className={classes.InstantOffer}
                       >
-                        Special Offer
+                        <Typography color="secondary" variant="overline">
+                          {' '}
+                          Instant Offer
+                        </Typography>
                       </Button>
                     </>
-                  )}
-                  {item.InstantBooking && (
-                    <Button
-                      data-cy={`Instant-Booking`}
-                      className={classes.InstantBooking}
-                    >
-                      Instant Booking
-                    </Button>
                   )}
                 </Box>
               )}
@@ -253,9 +269,13 @@ export default function Gallery() {
                   <img src="/assets/images/gallery/location.svg" />
                 </IconButton>
 
-                <Box>
-                  <Typography variant="body2">France,Monaco </Typography>
-                  <Typography>Turkey</Typography>
+                <Box style={{ color: 'white' }}>
+                  <Typography color="inherit" variant="body1">
+                    France,Monaco
+                  </Typography>
+                  <Typography color="inherit" variant="body1">
+                    Turkey
+                  </Typography>
                 </Box>
               </Box>
             </Box>

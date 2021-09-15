@@ -44,13 +44,13 @@ export default function EnquiryForm() {
           style={{ paddingTop: '5rem' }}
         >
           <Grid item xs={12}>
-            <Typography variant="h4" color="primary" align="center">
+            <Typography variant="h2" color="textPrimary" align="center">
               We can save you time & money.
             </Typography>
           </Grid>
 
           <Grid item>
-            <Typography align="center" color="primary">
+            <Typography align="center" color="textPrimary" variant="subtitle1">
               We understand that your time is valuable, and it is no easy task
               to choose the right boat out of so many! Our on-line portfolio
               represents a small number of the yachts that eXclusive Gulets has

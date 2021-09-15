@@ -39,7 +39,7 @@ export default function Experience() {
           style={{ paddingTop: '5rem' }}
         >
           <Grid item xs={12}>
-            <Typography variant="h4" color="primary" align="center">
+            <Typography variant="h2" color="textPrimary" align="center">
               Explore Bespoke Experiences
             </Typography>
           </Grid>
@@ -48,7 +48,7 @@ export default function Experience() {
             <Image src={underLine} alt="underline" />
           </Grid>
           <Grid item>
-            <Typography align="center" color="primary">
+            <Typography align="center" color="textPrimary" variant="subtitle1">
               ​There is more to yachting than just spending a week or so
               sailing. Special celebration, adrenaline-fuelled adventure or
               mindful relaxation. Our experienced team is dedicated to tailor
@@ -62,13 +62,13 @@ export default function Experience() {
               <Image src={YatchParty} alt="guest" />
             </Grid>
             <Grid item container justifyContent="center">
-              <Typography color="primary" align="center">
+              <Typography color="textPrimary" align="center">
                 What to expect when chartering a gulet or yacht?{' '}
               </Typography>
             </Grid>
 
             <Grid item>
-              <Typography align="center" color="primary">
+              <Typography align="center" color="textPrimary">
                 Chartering a yacht or gulet for a vacation is pure bliss on
                 water. What more can you ask for with a trained crew to take
                 care of your every need, a world-class chef to...
@@ -80,13 +80,13 @@ export default function Experience() {
               <Image src={YatchYoga} alt="guest" />
             </Grid>
             <Grid item container justifyContent="center">
-              <Typography color="primary" align="center">
+              <Typography color="textPrimary" align="center">
                 The Art of Dining Onboard a Private Yacht{' '}
               </Typography>
             </Grid>
 
             <Grid item>
-              <Typography align="center" color="primary">
+              <Typography align="center" color="textPrimary">
                 Among the many pleasures of chartering a private yacht, one that
                 stands out for most is the divine, mouth-watering cuisine!
               </Typography>

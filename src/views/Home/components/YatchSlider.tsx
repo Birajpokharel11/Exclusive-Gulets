@@ -21,6 +21,8 @@ import {
   StepButton,
   StepConnector,
   StepIcon,
+  StepLabel,
+  Hidden,
   Paper
 } from '@material-ui/core';
 import KeyboardArrowLeft from '@material-ui/icons/KeyboardArrowLeft';
@@ -52,7 +54,6 @@ const StyleConnector = withStyles({
 const useStyles = makeStyles((theme) =>
   createStyles({
     root: {
-      marginTop: '6rem',
       backgroundColor: '#F5F0E4'
     },
     Yatch: {
@@ -80,6 +81,15 @@ const useStyles = makeStyles((theme) =>
     },
     connectorLine: {
       borderTopWidth: '999px'
+    },
+    stepIconRoot: {
+      color: 'pink',
+      '&.MuiStepIcon-active': {
+        color: 'red'
+      },
+      '&.MuiStepIcon-completed': {
+        color: 'green'
+      }
     }
   })
 );
@@ -158,20 +168,26 @@ export default function YatchSlider() {
     setActiveStep(step);
   };
 
-  const StepIcon = () => (
+  const StepIcon = ({ ownerState }) => (
     <div
       style={{
         position: 'relative',
         height: '8px',
         width: '100px',
-        backgroundColor: '#2A398D',
+        backgroundColor: ownerState.active ? '#2A398D' : '#ffffff',
         borderRadius: '4px'
       }}
     />
   );
 
+  function ColorlibStepIcon(props) {
+    const { active, completed } = props;
+
+    return <StepIcon ownerState={{ completed, active }} />;
+  }
+
   return (
-    <Box component="section" maxWidth="false">
+    <Box component="section" maxWidth="false" className={classes.root}>
       <Grid
         container
         justifyContent="center"
@@ -179,7 +195,7 @@ export default function YatchSlider() {
         style={{ paddingTop: '3rem' }}
       >
         <Grid item xs={12}>
-          <Typography color="textPrimary" align="center" variant="h4">
+          <Typography color="textPrimary" align="center" variant="h2">
             Loved by our Guests
           </Typography>
         </Grid>
@@ -187,105 +203,109 @@ export default function YatchSlider() {
           <Image src={underLine} alt="underline" />
         </Grid>
         <Grid item>
-          <Typography align="center" color="primary">
+          <Typography align="center" color="textPrimary" variant="subtitle1">
             Recently Confirmed Charters
           </Typography>
         </Grid>
       </Grid>
       <Container maxWidth="lg">
-        <div>
-          <AutoPlaySwipeableViews
-            axis={theme.direction === 'rtl' ? 'x-reverse' : 'x'}
-            index={activeStep}
-            onChangeIndex={handleStepChange}
-            enableMouseEvents
-          >
-            {tutorialSteps.map((step, index) => (
-              <div key={step.place}>
-                {Math.abs(activeStep - index) <= 2 ? (
-                  <Grid container justifyContent="center" alignItems="center">
-                    <Grid item container md={6} xs={12} direction="column">
-                      <Grid item>
-                        <Typography color="primary" variant="h5">
-                          {step.place}
-                        </Typography>
-                      </Grid>
-                      <Grid item>
-                        <Typography color="primary">{step.country}</Typography>
-                      </Grid>
-                      <Grid item>
-                        <Typography color="primary">
-                          {step.description}
-                        </Typography>
-                      </Grid>
-                      <Grid item>
-                        <Button
-                          variant="contained"
-                          className={classes.buttonStyle}
-                        >
-                          View Details
-                        </Button>
-                      </Grid>
-                      <Grid item>
-                        <Typography color="primary">
-                          “Thank you all so so so much for all of your help and
-                          patience with getting through this kosher week. My
-                          family had the best trip of their lives so I take my
-                          hat off to you all. Please pass on my sincere thanks
-                          also to Captain Askin and his team who I know showed
-                          patience and professionalism throughout what was no
-                          doubt a very challenging week.”
-                        </Typography>
-                      </Grid>
-                      <Grid item>
-                        <Typography color="primary">Yasmin, Israel</Typography>
-                      </Grid>
+        <AutoPlaySwipeableViews
+          axis={theme.direction === 'rtl' ? 'x-reverse' : 'x'}
+          index={activeStep}
+          onChangeIndex={handleStepChange}
+          enableMouseEvents
+        >
+          {tutorialSteps.map((step, index) => (
+            <div key={step.place}>
+              {Math.abs(activeStep - index) <= 2 ? (
+                <Grid container justifyContent="center" alignItems="center">
+                  <Grid item container md={6} xs={12} direction="column">
+                    <Grid item>
+                      <Typography color="primary" variant="h5">
+                        {step.place}
+                      </Typography>
                     </Grid>
-
-                    <Grid item container md={6} xs={12} spacing={2}>
-                      <Grid item container justifyContent="center">
-                        <Image src={Guest} alt="guest" />
-                      </Grid>
+                    <Grid item>
+                      <Typography color="primary">{step.country}</Typography>
+                    </Grid>
+                    <Grid item>
+                      <Typography color="primary">
+                        {step.description}
+                      </Typography>
+                    </Grid>
+                    <Grid item>
+                      <Button
+                        variant="contained"
+                        className={classes.buttonStyle}
+                      >
+                        View Details
+                      </Button>
+                    </Grid>
+                    <Grid item>
+                      <Typography color="primary">
+                        “Thank you all so so so much for all of your help and
+                        patience with getting through this kosher week. My
+                        family had the best trip of their lives so I take my hat
+                        off to you all. Please pass on my sincere thanks also to
+                        Captain Askin and his team who I know showed patience
+                        and professionalism throughout what was no doubt a very
+                        challenging week.”
+                      </Typography>
+                    </Grid>
+                    <Grid item>
+                      <Typography color="primary">Yasmin, Israel</Typography>
                     </Grid>
                   </Grid>
-                ) : null}
-              </div>
-            ))}
-          </AutoPlaySwipeableViews>
 
-          <Grid container>
+                  <Grid item container md={6} xs={12} justifyContent="center">
+                    <Image src={Guest} alt="guest" />
+                  </Grid>
+                </Grid>
+              ) : null}
+            </div>
+          ))}
+        </AutoPlaySwipeableViews>
+
+        <Grid container>
+          <Hidden smDown>
             <Grid item container xs={2}>
               <Button disabled={activeStep === 0} onClick={handleBack}>
                 <KeyboardArrowLeft />
                 Back
               </Button>
             </Grid>
+          </Hidden>
 
-            <Grid item xs={8}>
-              <Stepper
-                alternativeLabel
-                nonLinear
-                activeStep={activeStep}
-                connector={<StyleConnector />}
-              >
-                {tutorialSteps.map((step, index) => {
-                  const stepProps = {};
-                  const buttonProps = {};
+          <Grid item xs={8}>
+            <Stepper
+              alternativeLabel
+              nonLinear
+              activeStep={activeStep}
+              connector={<StyleConnector />}
+              style={{ backgroundColor: '#F5F0E4' }}
+            >
+              {tutorialSteps.map((step, index) => {
+                const stepProps = {};
+                const buttonProps = {};
 
-                  return (
-                    <Step key={index} {...stepProps}>
-                      <StepButton icon={<StepIcon />} {...buttonProps}>
+                return (
+                  <Step key={index} {...stepProps}>
+                    {/* <StepButton icon={<StepIcon />} {...buttonProps}>
                         {step.place}
-                      </StepButton>
-                      <Typography variant="body1" align="center">
-                        <Image src={Location} alt="location" /> {step.country}
-                      </Typography>
-                    </Step>
-                  );
-                })}
-              </Stepper>
-            </Grid>
+                      </StepButton> */}
+                    <StepLabel StepIconComponent={ColorlibStepIcon}>
+                      {step.place}
+                    </StepLabel>
 
+                    <Typography variant="body1" align="center">
+                      <Image src={Location} alt="location" /> {step.country}
+                    </Typography>
+                  </Step>
+                );
+              })}
+            </Stepper>
+          </Grid>
+          <Hidden smDown>
             <Grid item container justifyContent="flex-end" xs={2}>
               <Button
                 color="primary"
@@ -296,8 +316,8 @@ export default function YatchSlider() {
                 <KeyboardArrowRight />
               </Button>
             </Grid>
-          </Grid>
-        </div>
+          </Hidden>
+        </Grid>
       </Container>
     </Box>
   );

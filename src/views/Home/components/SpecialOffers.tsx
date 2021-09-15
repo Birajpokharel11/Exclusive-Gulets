@@ -34,7 +34,7 @@ export default function Introduction() {
         style={{ paddingTop: '3rem' }}
       >
         <Grid item xs={12}>
-          <Typography color="primary" align="center" variant="h4">
+          <Typography color="textPrimary" align="center" variant="h2">
             Special Offers
           </Typography>
         </Grid>
@@ -42,9 +42,9 @@ export default function Introduction() {
           <img src="/assets/images/smallBlueUnderline.svg" alt="underline" />
         </Grid>
         <Grid item>
-          <Typography align="center" color="primary">
+          <Typography align="center" variant="subtitle1" color="textPrimary">
             Yachting does not need to break the bank. Explore our incredible
-            offers on a range of yachts in spectacular destinations.{' '}
+            offers on a range of yachts in spectacular destinations.
           </Typography>
         </Grid>
       </Grid>

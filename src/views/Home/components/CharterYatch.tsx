@@ -41,13 +41,13 @@ export default function CharterYatch() {
           justifyContent="center"
           alignItems="center"
           style={{ paddingTop: '5rem' }}
-          spacing={3}
+          spacing={2}
         >
           <Grid item xs={12}>
             <Typography
               color="primary"
               align="center"
-              variant="h4"
+              variant="h2"
               className={classes.textColor}
             >
               Charter a Luxury Yacht
@@ -63,7 +63,7 @@ export default function CharterYatch() {
               align="center"
               color="primary"
               className={classes.textColor}
-              variant="subtitle2"
+              variant="subtitle1"
             >
               The most lavish super yacht to turn heads, or an exclusive gulet
               for a perfect family getaway.

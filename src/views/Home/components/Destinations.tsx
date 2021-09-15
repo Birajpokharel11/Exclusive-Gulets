@@ -33,7 +33,7 @@ export default function Destinations() {
         spacing={2}
       >
         <Grid item xs={12}>
-          <Typography color="primary" align="center" variant="h4">
+          <Typography color="textPrimary" align="center" variant="h2">
             Destinations
           </Typography>
         </Grid>
@@ -42,7 +42,7 @@ export default function Destinations() {
           <Image src={underLine} alt="underline" />
         </Grid>
         <Grid item>
-          <Typography align="center" color="primary">
+          <Typography align="center" color="textPrimary" variant="subtitle1">
             Perfect location and the perfect yacht for your ultimate charter
             experience. There is no better way than chartering a luxury gulet or
             yacht to see more of the world. With two third of the Earth covered

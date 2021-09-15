@@ -10,7 +10,7 @@ import underLine from 'public/assets/images/smallBlueUnderline.svg';
 const useStyles = makeStyles((theme) =>
   createStyles({
     root: {
-      marginTop: '5rem'
+      marginTop: '2rem'
     },
     Yatch: {
       width: '100%',
@@ -37,7 +37,7 @@ export default function NewsAndBlogs() {
           style={{ paddingTop: '5rem' }}
         >
           <Grid item xs={12}>
-            <Typography variant="h4" color="primary" align="center">
+            <Typography variant="h2" color="textPrimary" align="center">
               News & Blogs
             </Typography>
           </Grid>
@@ -46,7 +46,7 @@ export default function NewsAndBlogs() {
             <Image src={underLine} alt="underline" />
           </Grid>
           <Grid item>
-            <Typography align="center" color="primary">
+            <Typography align="center" color="textPrimary" variant="subtitle1">
               Keep up to date with our latest yachting news, charter
               destinations, special offers and more.
             </Typography>

@@ -19,8 +19,38 @@ const useStyles = makeStyles((theme: Theme) =>
       fill: 'white',
       transform: 'rotate(180deg)'
     },
-    ButtonOffers: {
-      textTransform: 'capitalize'
+    SpecialOffer: {
+      textTransform: 'capitalize',
+      zIndex: 2,
+      '&:hover': {
+        background: 'rgba(12, 22, 37, 0.6)'
+      }
+    },
+    InstantBooking: {
+      background: '#AB3996',
+      color: 'white',
+      textTransform: 'capitalize',
+      zIndex: 2,
+
+      '&:hover': {
+        background: '#AB3996'
+      }
+    },
+    Img: {
+      display: 'block',
+      objectFit: 'cover',
+      width: '100%',
+      opacity: '0.85'
+    },
+    BoxShadows: {
+      position: 'absolute',
+      height: '100%',
+      width: '100%',
+      mixBlendMode: 'normal',
+      zIndex: 1,
+
+      background:
+        'linear-gradient(180deg, #071529 0%, rgba(7, 21, 41, 0) 50%, #071529 100%)'
     },
     Boxitems: {
       display: 'flex',
@@ -30,14 +60,17 @@ const useStyles = makeStyles((theme: Theme) =>
       flexDirection: 'column',
       [theme.breakpoints.down(1440)]: {
         bottom: '60%'
+      },
+      [theme.breakpoints.down(2327)]: {
+        bottom: '58%'
       }
     },
     location: {
       display: 'flex',
       position: 'absolute',
-      bottom: '40%',
-      left: '180%',
-      right: '0'
+      zIndex: 2,
+      top: 20,
+      right: 10
     }
   })
 );
@@ -48,27 +81,13 @@ export default function Gallery() {
   const [offers, setOffers] = React.useState(true);
   const Gallery = [
     {
-      img: '/assets/images/gallery/Yatchs1.png',
-      title: 'ARESTEAS',
-      subtitle: 'From €145.000 to €165.000 | 166m | 10 Guests ',
-      location: 'France,Monaco',
-      offers: true,
-      cols: 'Turkey'
-    },
-    {
-      img: '/assets/images/gallery/Yatchs2.png',
-      title: 'ARESTEAS',
-      subtitle: 'From €145.000 to €165.000 | 166m | 10 Guests ',
-      location: 'France,Monaco',
-      offers: true,
-      cols: 'Turkey'
-    },
-    {
       img: '/assets/images/gallery/Yatchs3.png',
       title: 'ARESTEAS',
       subtitle: 'From €145.000 to €165.000 | 166m | 10 Guests ',
       location: 'France,Monaco',
-      offers: true,
+      SpecialOffers: false,
+
+      InstantBooking: true,
       cols: 'Turkey'
     },
     {
@@ -76,7 +95,9 @@ export default function Gallery() {
       title: 'ARESTEAS',
       subtitle: 'From €145.000 to €165.000 | 166m | 10 Guests ',
       location: 'France,Monaco',
-      offers: true,
+      SpecialOffers: true,
+
+      InstantBooking: false,
       cols: 'Turkey'
     },
     {
@@ -84,7 +105,9 @@ export default function Gallery() {
       title: 'ARESTEAS',
       subtitle: 'From €145.000 to €165.000 | 166m | 10 Guests ',
       location: 'France,Monaco',
-      offers: true,
+      SpecialOffers: true,
+
+      InstantBooking: true,
       cols: 'Turkey'
     },
     {
@@ -92,7 +115,9 @@ export default function Gallery() {
       title: 'ARESTEAS',
       subtitle: 'From €145.000 to €165.000 | 166m | 10 Guests ',
       location: 'France,Monaco',
-      offers: true,
+      SpecialOffers: true,
+
+      InstantBooking: false,
       cols: 'Turkey'
     },
     {
@@ -100,7 +125,8 @@ export default function Gallery() {
       title: 'ARESTEAS',
       subtitle: 'From €145.000 to €165.000 | 166m | 10 Guests ',
       location: 'France,Monaco',
-      offers: true,
+      SpecialOffers: false,
+      InstantBooking: true,
       cols: 'Turkey'
     },
     {
@@ -108,7 +134,9 @@ export default function Gallery() {
       title: 'ARESTEAS',
       subtitle: 'From €145.000 to €165.000 | 166m | 10 Guests ',
       location: 'France,Monaco',
-      offers: true,
+      SpecialOffers: true,
+
+      InstantBooking: true,
       cols: 'Turkey'
     },
     {
@@ -116,7 +144,8 @@ export default function Gallery() {
       title: 'ARESTEAS',
       subtitle: 'From €145.000 to €165.000 | 166m | 10 Guests ',
       location: 'France,Monaco',
-      offers: true,
+      SpecialOffers: false,
+      InstantBooking: true,
       cols: 'Turkey'
     },
     {
@@ -124,7 +153,8 @@ export default function Gallery() {
       title: 'ARESTEAS',
       subtitle: 'From €145.000 to €165.000 | 166m | 10 Guests ',
       location: 'France,Monaco',
-      offers: true,
+      SpecialOffers: true,
+      InstantBooking: true,
       cols: 'Turkey'
     },
     {
@@ -132,7 +162,8 @@ export default function Gallery() {
       title: 'ARESTEAS',
       subtitle: 'From €145.000 to €165.000 | 166m | 10 Guests ',
       location: 'France,Monaco',
-      offers: true,
+      SpecialOffers: true,
+      InstantBooking: true,
       cols: 'Turkey'
     },
     {
@@ -140,7 +171,26 @@ export default function Gallery() {
       title: 'ARESTEAS',
       subtitle: 'From €145.000 to €165.000 | 166m | 10 Guests ',
       location: 'France,Monaco',
-      offers: true,
+      SpecialOffers: false,
+      InstantBooking: false,
+      cols: 'Turkey'
+    },
+    {
+      img: '/assets/images/gallery/Yatchs2.png',
+      title: 'ARESTEAS',
+      subtitle: 'From €145.000 to €165.000 | 166m | 10 Guests ',
+      location: 'France,Monaco',
+      SpecialOffers: true,
+      InstantBooking: true,
+      cols: 'Turkey'
+    },
+    {
+      img: '/assets/images/gallery/Yatchs3.png',
+      title: 'ARESTEAS',
+      subtitle: 'From €145.000 to €165.000 | 166m | 10 Guests ',
+      location: 'France,Monaco',
+      SpecialOffers: true,
+      InstantBooking: true,
       cols: 'Turkey'
     }
   ];
@@ -148,50 +198,64 @@ export default function Gallery() {
     <Box>
       <Grid container>
         {Gallery.map((item, i) => (
-          <Grid item md={4} lg={3} xl={2} key={i}>
-            {' '}
-            <Box style={{ position: 'relative', border: '1px solid white' }}>
-              <img
-                src={item.img}
-                style={{ display: 'block', objectFit: 'cover', width: '100%' }}
-              />
+          <Grid
+            item
+            md={4}
+            lg={3}
+            xl={2}
+            key={i}
+            style={{
+              position: 'relative',
+              border: '1px solid white'
+            }}
+          >
+            <Box>
+              <img src={item.img} className={classes.Img} />
+              {/* <div className={classes.BoxShadows} /> */}
               <Box
                 style={{
                   position: 'absolute',
                   bottom: '10%',
                   left: '1%',
-                  color: 'white'
+                  color: 'white',
+                  zIndex: 2
                 }}
               >
                 <Typography color="inherit">{item.title} </Typography>
                 <Typography color="inherit">{item.subtitle}</Typography>
               </Box>
-              <Box className={classes.Boxitems}>
-                {item.offers && (
-                  <>
+              {(item.SpecialOffers || item.InstantBooking) && (
+                <Box className={classes.Boxitems}>
+                  {item.SpecialOffers && (
+                    <>
+                      <Button
+                        color="primary"
+                        variant="outlined"
+                        className={classes.SpecialOffer}
+                      >
+                        Special Offer
+                      </Button>
+                    </>
+                  )}
+                  {item.InstantBooking && (
                     <Button
-                      variant="contained"
-                      className={classes.ButtonOffers}
-                    >
-                      Special Offer
-                    </Button>
-                    <Button
-                      variant="contained"
-                      className={classes.ButtonOffers}
+                      data-cy={`Instant-Booking`}
+                      className={classes.InstantBooking}
                     >
                       Instant Booking
                     </Button>
-                  </>
-                )}
-                <Box className={classes.location}>
-                  <IconButton>
-                    <img src="/assets/images/gallery/location.svg" />
-                  </IconButton>
+                  )}
+                </Box>
+              )}
 
-                  <Box>
-                    <Typography variant="body2">France,Monaco </Typography>
-                    <Typography>Turkey</Typography>
-                  </Box>
+              <Box className={classes.location}>
+                <IconButton>
+                  <img src="/assets/images/gallery/location.svg" />
+                </IconButton>
+
+                <Box>
+                  <Typography variant="body2">France,Monaco </Typography>
+                  <Typography>Turkey</Typography>
                 </Box>
               </Box>
             </Box>

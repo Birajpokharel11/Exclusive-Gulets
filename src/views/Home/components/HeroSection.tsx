@@ -15,7 +15,7 @@ const useStyles = makeStyles((theme) =>
     charterBackground: {
       backgroundImage: `url('./charterYatch.png')`,
       backgroundPosition: 'center',
-      height: '61.875rem',
+      height: '100vh',
       backgroundRepeat: 'no-repeat',
       backgroundSize: 'cover'
     },

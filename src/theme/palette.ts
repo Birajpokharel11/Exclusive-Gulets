@@ -1,11 +1,10 @@
+import { PaletteOptions } from '@material-ui/core/styles/createPalette';
 import { colors } from '@material-ui/core';
 
 const white = '#FFFFFF';
 const black = '#000000';
 
-export default {
-  black,
-  white,
+const palette: PaletteOptions = {
   primary: {
     main: '#091527'
   },
@@ -38,13 +37,13 @@ export default {
   },
   text: {
     primary: '#2A398D',
-    secondary: colors.blueGrey[600],
-    link: colors.blue[600]
+    secondary: colors.blueGrey[600]
   },
   background: {
     default: '#F4F6F8',
     paper: white
   },
-  icon: colors.blueGrey[600],
   divider: colors.grey[200]
 };
+
+export default palette;

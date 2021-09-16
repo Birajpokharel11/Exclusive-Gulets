@@ -1,7 +1,8 @@
+import { TypographyOptions } from '@material-ui/core/styles/createTypography';
 import palette from './palette';
 
-export default {
-  fontFamily: 'Lato',
+const typography: TypographyOptions = {
+  fontFamily: ['Lato', 'Roboto', 'sans-serif'].join(','),
   h1: {
     color: palette.text.primary,
     fontWeight: 500,
@@ -84,7 +85,8 @@ export default {
     fontSize: '11px',
     fontWeight: 500,
     letterSpacing: '0.33px',
-    lineHeight: '13px',
-    textTransform: 'capatilize'
+    lineHeight: '13px'
   }
 };
+
+export default typography;

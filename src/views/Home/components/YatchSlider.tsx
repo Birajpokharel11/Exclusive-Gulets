@@ -1,6 +1,8 @@
 /* eslint-disable jsx-a11y/alt-text */
 import React from 'react';
 import Image from 'next/image';
+import useMediaQuery from '@material-ui/core/useMediaQuery';
+
 import {
   createStyles,
   makeStyles,
@@ -152,6 +154,7 @@ const tutorialSteps = [
 export default function YatchSlider() {
   const classes = useStyles();
   const theme = useTheme();
+  const matches = useMediaQuery(theme.breakpoints.down('sm'));
 
   const [activeStep, setActiveStep] = React.useState(0);
   const maxSteps = tutorialSteps.length;
@@ -173,7 +176,7 @@ export default function YatchSlider() {
       style={{
         position: 'relative',
         height: '8px',
-        width: '100px',
+        width: matches ? '40px' : '100px',
         backgroundColor: ownerState.active ? '#2A398D' : '#ffffff',
         borderRadius: '4px'
       }}
@@ -219,19 +222,25 @@ export default function YatchSlider() {
             <div key={step.place}>
               {Math.abs(activeStep - index) <= 2 ? (
                 <Grid container justifyContent="center" alignItems="center">
-                  <Grid item container md={6} xs={12} direction="column">
+                  <Grid
+                    item
+                    container
+                    md={6}
+                    xs={12}
+                    direction="column"
+                    spacing={1}
+                  >
                     <Grid item>
-                      <Typography color="primary" variant="h5">
-                        {step.place}
+                      <Typography variant="h3">{step.place}</Typography>
+                    </Grid>
+                    <Grid item>
+                      <Typography variant="subtitle1">
+                        <Image src={Location} alt="location" height={18} />
+                        {step.country}
                       </Typography>
                     </Grid>
                     <Grid item>
-                      <Typography color="primary">{step.country}</Typography>
-                    </Grid>
-                    <Grid item>
-                      <Typography color="primary">
-                        {step.description}
-                      </Typography>
+                      <Typography variant="h4">{step.description}</Typography>
                     </Grid>
                     <Grid item>
                       <Button
@@ -242,7 +251,7 @@ export default function YatchSlider() {
                       </Button>
                     </Grid>
                     <Grid item>
-                      <Typography color="primary">
+                      <Typography variant="subtitle1">
                         “Thank you all so so so much for all of your help and
                         patience with getting through this kosher week. My
                         family had the best trip of their lives so I take my hat
@@ -253,7 +262,7 @@ export default function YatchSlider() {
                       </Typography>
                     </Grid>
                     <Grid item>
-                      <Typography color="primary">Yasmin, Israel</Typography>
+                      <Typography>Yasmin, Israel</Typography>
                     </Grid>
                   </Grid>
 
@@ -276,7 +285,7 @@ export default function YatchSlider() {
             </Grid>
           </Hidden>
 
-          <Grid item xs={8}>
+          <Grid item container xs={matches ? 12 : 8} justifyContent="center">
             <Stepper
               alternativeLabel
               nonLinear
@@ -308,7 +317,6 @@ export default function YatchSlider() {
           <Hidden smDown>
             <Grid item container justifyContent="flex-end" xs={2}>
               <Button
-                color="primary"
                 onClick={handleNext}
                 disabled={activeStep === maxSteps - 1}
               >

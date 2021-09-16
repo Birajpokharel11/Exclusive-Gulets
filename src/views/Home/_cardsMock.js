@@ -1,4 +1,4 @@
-import mockImg from "assets/images/yachts/img5.jpg";
+import mockImg from '@assets/images/yachts/img5.jpg';
 
 export default {
   experiences: [
@@ -6,16 +6,18 @@ export default {
       image: { url: mockImg },
       id: '1231231fasasbbasasdasd',
       title: 'What to expect when chartering a gulet or yacht?',
-      description: 'Chartering a yacht or gulet for a vacation is pure bliss on water. What more can you ask for with a trained crew to take care of your every need, a world-class chef to...',
+      description:
+        'Chartering a yacht or gulet for a vacation is pure bliss on water. What more can you ask for with a trained crew to take care of your every need, a world-class chef to...',
       url: '/'
     },
     {
       image: { url: mockImg },
       id: '1231231f341409adakm',
       title: 'The Art of Dining Onboard a Private Yacht',
-      description: 'Among the many pleasures of chartering a private yacht, one that stands out for most is the divine, mouth-watering cuisine!',
+      description:
+        'Among the many pleasures of chartering a private yacht, one that stands out for most is the divine, mouth-watering cuisine!',
       url: '/'
-    },
+    }
   ],
   newsAndBlogs: [
     {
@@ -44,7 +46,8 @@ export default {
     {
       img: mockImg,
       id: '1231231f',
-      title: 'Mare Nostrum is offering a 5% discount on the week of July 6 - 13 2021',
+      title:
+        'Mare Nostrum is offering a 5% discount on the week of July 6 - 13 2021',
       text: 'The 43-meter Mare Nostrum was hand-crafted from a variety of rare exotic woods collected from different parts of the world in 2008.',
       url: '/'
     },
@@ -58,9 +61,10 @@ export default {
     {
       img: mockImg,
       id: '123lousnbjva1231f',
-      title: 'Mare Nostrum is offering a 5% discount on the week of July 6 - 13 2021',
+      title:
+        'Mare Nostrum is offering a 5% discount on the week of July 6 - 13 2021',
       text: 'The 43-meter Mare Nostrum was hand-crafted from a variety of rare exotic woods collected from different parts of the world in 2008.',
       url: '/'
-    },
+    }
   ]
-}
+};

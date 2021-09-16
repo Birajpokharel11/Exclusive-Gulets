@@ -28,16 +28,15 @@ interface Props {
 
 const useStyles = makeStyles((theme) =>
   createStyles({
-    root: {
-      height: '100%'
-    },
-    content: {
-      height: '100%'
+    carouselStyle: {
+      padding: '1rem'
     }
   })
 );
 
 const CardWithSlider = ({ cardsData }: Props) => {
+  const classes = useStyles();
+
   const theme = useTheme();
   const matchesMD = useMediaQuery(theme.breakpoints.up('md'));
   const matchesSM = useMediaQuery(theme.breakpoints.up('sm'));
@@ -45,7 +44,7 @@ const CardWithSlider = ({ cardsData }: Props) => {
   let slickSettings: Settings = {
     infinite: true,
     speed: 500,
-    className: 'card-slider',
+    className: classes.carouselStyle,
     centerPadding: '30px'
   };
   if (matchesMD)
@@ -73,7 +72,7 @@ const CardWithSlider = ({ cardsData }: Props) => {
 
   const mapGridCards = () => {
     return cardsData.map((card) => (
-      <Grid item md={4} key={card.id}>
+      <Grid item style={{ padding: '1rem' }} md={4} key={card.id}>
         <MediaCard {...card} />
       </Grid>
     ));

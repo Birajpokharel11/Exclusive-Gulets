@@ -10,7 +10,6 @@ import Typography from '@material-ui/core/Typography';
 
 const useStyles = makeStyles({
   root: {
-    margin: '2rem',
     backgroundColor: '#F5F0E4'
   },
   media: {

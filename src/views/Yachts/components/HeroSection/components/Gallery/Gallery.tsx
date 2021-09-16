@@ -6,6 +6,7 @@ import {
   Theme
 } from '@material-ui/core/styles';
 import { Box, Button, Grid, IconButton, Typography } from '@material-ui/core';
+import PaginationSection from './PaginationComponents';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -216,7 +217,11 @@ export default function Gallery() {
             }}
           >
             <Box>
-              <img src={item.img} className={classes.Img} />
+              <img
+                src={item.img}
+                className={classes.Img}
+                data-cy={`Gallery Images${i}`}
+              />
               {/* <div className={classes.BoxShadows} /> */}
               <Box
                 style={{
@@ -238,7 +243,7 @@ export default function Gallery() {
                 <Box className={classes.Boxitems}>
                   {item.InstantBooking && (
                     <Button
-                      data-cy={`Instant-Booking`}
+                      data-cy={`Special-Offer ${i}`}
                       className={classes.SpecialOffer}
                     >
                       <Typography color="secondary" variant="overline">
@@ -252,6 +257,7 @@ export default function Gallery() {
                       <Button
                         color="primary"
                         variant="outlined"
+                        data-cy={`Instant-Offer ${i}`}
                         className={classes.InstantOffer}
                       >
                         <Typography color="secondary" variant="overline">
@@ -282,6 +288,7 @@ export default function Gallery() {
           </Grid>
         ))}
       </Grid>
+      <PaginationSection />
     </Box>
   );
 }

@@ -34,9 +34,9 @@ const typography: TypographyOptions = {
   h5: {
     color: palette.text.primary,
     fontWeight: 500,
-    fontSize: '16px',
+    fontSize: '18px',
     letterSpacing: '-0.05px',
-    lineHeight: '20px'
+    lineHeight: '21.6px'
   },
   h6: {
     color: palette.text.primary,

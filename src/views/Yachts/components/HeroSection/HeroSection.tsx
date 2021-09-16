@@ -16,6 +16,8 @@ import Destination from './components/Destination';
 import AdvancedFilterSection from './components/AdvancedFilterSection/AdvancedFilterSection';
 import typography from '@theme/typography';
 import Gallery from './components/Gallery/Gallery';
+import Destinations from './components/Destinations/DestinationPhoto';
+
 const useStyles = makeStyles((theme) =>
   createStyles({
     Container: {
@@ -89,6 +91,7 @@ export default function HeroSection() {
       <Box>
         <AdvancedFilterSection />
         <Gallery />
+        <Destinations />
       </Box>
     </>
   );

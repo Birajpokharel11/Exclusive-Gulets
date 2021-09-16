@@ -1,8 +1,9 @@
 import React from 'react';
+
 import WithLayout from '@components/WithLayout';
 import Main from '@layouts/Main';
-import Yatchs from '@views/Yatchs';
+import YatchListPage from '@views/YachtList';
 
 export default function Yatch() {
-  return <WithLayout component={Yatchs} layout={Main} />;
+  return <WithLayout component={YatchListPage} layout={Main} />;
 }

@@ -1,5 +1,10 @@
 import { useRef } from 'react';
-import { useTheme } from '@material-ui/core/styles';
+import {
+  createStyles,
+  makeStyles,
+  useTheme,
+  Theme
+} from '@material-ui/core/styles';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 import Box from '@material-ui/core/Box';
 import Grid from '@material-ui/core/Grid';
@@ -20,6 +25,17 @@ interface Card {
 interface Props {
   cardsData: Card[];
 }
+
+const useStyles = makeStyles((theme) =>
+  createStyles({
+    root: {
+      height: '100%'
+    },
+    content: {
+      height: '100%'
+    }
+  })
+);
 
 const CardWithSlider = ({ cardsData }: Props) => {
   const theme = useTheme();

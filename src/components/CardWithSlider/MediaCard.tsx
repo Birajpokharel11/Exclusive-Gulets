@@ -9,8 +9,14 @@ import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 
 const useStyles = makeStyles({
-  root: {},
-  media: {}
+  root: {
+    margin: '2rem',
+    backgroundColor: '#F5F0E4'
+  },
+  media: {
+    height: '270px',
+    width: 'auto'
+  }
 });
 
 export default function MediaCard(props) {
@@ -21,16 +27,20 @@ export default function MediaCard(props) {
       <CardActionArea>
         <CardMedia
           className={classes.media}
-          image="/static/images/cards/contemplative-reptile.jpg"
+          image={props.imgPath ?? ''}
           title="Contemplative Reptile"
         />
         <CardContent>
-          <Typography gutterBottom variant="h5">
-            Lizard
+          <Typography gutterBottom variant="h5" align="center">
+            {props.title ?? ''}
           </Typography>
-          <Typography variant="body2" color="textSecondary" component="p">
-            Lizards are a widespread group of squamate reptiles, with over 6,000
-            species, ranging across all continents except Antarctica
+          <Typography
+            variant="body2"
+            color="textSecondary"
+            component="p"
+            align="center"
+          >
+            {props.description ?? ''}
           </Typography>
         </CardContent>
       </CardActionArea>

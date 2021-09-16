@@ -4,10 +4,10 @@ import loader from '@assets/animations/loader.json';
 import spinner from '@assets/animations/spinner_new_white.json';
 
 interface Props {
-  width?: number;
-  height?: number;
-  play: boolean;
-  type: string;
+  width?: string | number;
+  height?: string | number;
+  play?: boolean;
+  type?: string;
 }
 
 export const Spinner = (props: Props) => (

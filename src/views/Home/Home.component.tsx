@@ -1,5 +1,7 @@
+import { createStyles, makeStyles } from '@material-ui/core/styles';
+
+import Box from '@material-ui/core/Box';
 import {
-  HeroSection,
   Introduction,
   SpecialOffers,
   CharterYatch,
@@ -10,13 +12,25 @@ import {
   EnquiryForm,
   DestinationGallery
 } from './components';
+import HeroSection from './components/HeroSection1';
+
+const useStyles = makeStyles((theme) =>
+  createStyles({
+    root: {
+      height: 'calc(100vh - 64px)',
+      padding: 0
+    }
+  })
+);
 
 export default function Home() {
-  const message: string = 'Hello World!';
+  const classes = useStyles();
 
   return (
     <div>
-      <HeroSection />
+      <Box className={classes.root}>
+        <HeroSection />
+      </Box>
       <Introduction />
       <SpecialOffers />
       <CharterYatch />

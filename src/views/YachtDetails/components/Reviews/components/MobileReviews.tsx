@@ -1,4 +1,3 @@
-/* eslint-disable jsx-a11y/alt-text */
 import React from 'react';
 import Slider from 'react-slick';
 import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';

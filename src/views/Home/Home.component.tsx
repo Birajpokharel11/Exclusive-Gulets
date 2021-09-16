@@ -9,8 +9,7 @@ import {
   YatchSlider,
   Experience,
   NewsAndBlogs,
-  EnquiryForm,
-  DestinationGallery
+  EnquiryForm
 } from './components';
 import HeroSection from './components/HeroSection1';
 
@@ -36,7 +35,6 @@ export default function Home() {
       <CharterYatch />
       <YatchSlider />
       <Destinations />
-      <DestinationGallery />
       <Experience />
       <NewsAndBlogs />
       <EnquiryForm />

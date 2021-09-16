@@ -9,7 +9,7 @@ import underLine from 'public/assets/images/introductionLine.svg';
 const useStyles = makeStyles((theme) =>
   createStyles({
     root: {
-      marginTop: '6rem',
+      marginTop: '2rem',
       backgroundColor: '#F5F0E4'
     },
     Yatch: {

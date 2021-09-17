@@ -44,7 +44,6 @@ export default function Destinations() {
           <Grid item>
             <Typography
               align="center"
-              color="textSecondary"
               variant="subtitle1"
               style={{ marginTop: '32px' }}
             >

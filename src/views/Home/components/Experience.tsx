@@ -19,7 +19,10 @@ const useStyles = makeStyles((theme) =>
     buttonStyle: {
       backgroundColor: '#2A398D',
       color: '#FFFFFF',
-      marginBottom: '4rem'
+      marginBottom: '4rem',
+      '&:hover': {
+        backgroundColor: '#2A398D'
+      }
     }
   })
 );

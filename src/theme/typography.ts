@@ -14,9 +14,9 @@ const typography: TypographyOptions = {
   h2: {
     color: palette.text.primary,
     fontWeight: 300,
-    fontSize: '29px',
+    fontSize: '32px',
     letterSpacing: '-0.24px',
-    lineHeight: '32px'
+    lineHeight: '38px'
   },
   h3: {
     color: palette.text.primary,
@@ -48,16 +48,17 @@ const typography: TypographyOptions = {
   },
   subtitle1: {
     color: palette.text.primary,
-    fontSize: '16px',
+    fontWeight: 300,
+    fontSize: '18px',
     letterSpacing: '-0.05px',
-    lineHeight: '25px'
+    lineHeight: '22px'
   },
   subtitle2: {
-    color: palette.text.secondary,
+    color: palette.text.primary,
     fontWeight: 300,
-    fontSize: '14px',
+    fontSize: '16px',
     letterSpacing: '-0.05px',
-    lineHeight: '21px'
+    lineHeight: '19px'
   },
   body1: {
     color: palette.text.primary,
@@ -67,10 +68,10 @@ const typography: TypographyOptions = {
     lineHeight: '21px'
   },
   body2: {
-    color: palette.text.secondary,
+    color: palette.text.primary,
     fontSize: '12px',
     letterSpacing: '-0.04px',
-    lineHeight: '18px'
+    lineHeight: '14px'
   },
   button: {
     color: palette.text.primary,

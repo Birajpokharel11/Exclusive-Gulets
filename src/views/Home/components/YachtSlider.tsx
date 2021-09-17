@@ -230,16 +230,18 @@ export default function YatchSlider() {
                     spacing={1}
                   >
                     <Grid item>
-                      <Typography variant="h3">{step.place}</Typography>
+                      <Typography variant="h2">{step.place}</Typography>
                     </Grid>
                     <Grid item>
-                      <Typography variant="subtitle1">
+                      <Typography variant="subtitle2">
                         <Image src={Location} alt="location" height={18} />
                         {step.country}
                       </Typography>
                     </Grid>
                     <Grid item>
-                      <Typography variant="h4">{step.description}</Typography>
+                      <Typography variant="subtitle1">
+                        {step.description}
+                      </Typography>
                     </Grid>
                     <Grid item>
                       <Button
@@ -250,7 +252,7 @@ export default function YatchSlider() {
                       </Button>
                     </Grid>
                     <Grid item>
-                      <Typography variant="subtitle1">
+                      <Typography variant="subtitle2">
                         “Thank you all so so so much for all of your help and
                         patience with getting through this kosher week. My
                         family had the best trip of their lives so I take my hat
@@ -261,7 +263,7 @@ export default function YatchSlider() {
                       </Typography>
                     </Grid>
                     <Grid item>
-                      <Typography>Yasmin, Israel</Typography>
+                      <Typography variant="body2">Yasmin, Israel</Typography>
                     </Grid>
                   </Grid>
 

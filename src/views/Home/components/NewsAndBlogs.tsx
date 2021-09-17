@@ -57,13 +57,17 @@ export default function NewsAndBlogs() {
               <Image src={YatchParty} alt="guest" />
             </Grid>
             <Grid item container justifyContent="center">
-              <Typography color="primary" align="center">
+              <Typography
+                align="center"
+                variant="subtitle1"
+                style={{ fontWeight: 'bold' }}
+              >
                 What to expect when chartering a gulet or yacht?{' '}
               </Typography>
             </Grid>
 
             <Grid item>
-              <Typography align="center" color="primary">
+              <Typography align="center" variant="subtitle2">
                 Chartering a yacht or gulet for a vacation is pure bliss on
                 water. What more can you ask for with a trained crew to take
                 care of your every need, a world-class chef to...
@@ -75,13 +79,17 @@ export default function NewsAndBlogs() {
               <Image src={YatchYoga} alt="guest" />
             </Grid>
             <Grid item container justifyContent="center">
-              <Typography color="primary" align="center">
+              <Typography
+                align="center"
+                variant="subtitle1"
+                style={{ fontWeight: 'bold' }}
+              >
                 The Art of Dining Onboard a Private Yacht{' '}
               </Typography>
             </Grid>
 
             <Grid item>
-              <Typography align="center" color="primary">
+              <Typography align="center" variant="subtitle2">
                 Among the many pleasures of chartering a private yacht, one that
                 stands out for most is the divine, mouth-watering cuisine!
               </Typography>
@@ -92,13 +100,17 @@ export default function NewsAndBlogs() {
               <Image src={YatchYoga} alt="guest" />
             </Grid>
             <Grid item container justifyContent="center">
-              <Typography color="primary" align="center">
+              <Typography
+                align="center"
+                variant="subtitle1"
+                style={{ fontWeight: 'bold' }}
+              >
                 The Glamorous Gulet, Mare Nostrum
               </Typography>
             </Grid>
 
             <Grid item>
-              <Typography align="center" color="primary">
+              <Typography align="center" variant="subtitle2">
                 Luxury and value don’t often come in the same package but they
                 do aboard Mare Nostrum, a 144ft gulet, which offers yacht
                 charters on the south-west coast of Turkey...

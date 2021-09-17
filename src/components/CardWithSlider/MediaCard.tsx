@@ -30,15 +30,15 @@ export default function MediaCard(props) {
           title="Contemplative Reptile"
         />
         <CardContent>
-          <Typography gutterBottom variant="h5" align="center">
+          <Typography
+            gutterBottom
+            variant="subtitle1"
+            align="center"
+            style={{ fontWeight: 'bold' }}
+          >
             {props.title ?? ''}
           </Typography>
-          <Typography
-            variant="body2"
-            color="textSecondary"
-            component="p"
-            align="center"
-          >
+          <Typography variant="subtitle2" component="p" align="center">
             {props.description ?? ''}
           </Typography>
         </CardContent>

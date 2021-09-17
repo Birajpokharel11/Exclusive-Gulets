@@ -251,7 +251,7 @@ export default function YatchSlider() {
                         View Details
                       </Button>
                     </Grid>
-                    <Grid item>
+                    {/* <Grid item>
                       <Typography variant="subtitle2">
                         “Thank you all so so so much for all of your help and
                         patience with getting through this kosher week. My
@@ -264,7 +264,7 @@ export default function YatchSlider() {
                     </Grid>
                     <Grid item>
                       <Typography variant="body2">Yasmin, Israel</Typography>
-                    </Grid>
+                    </Grid> */}
                   </Grid>
 
                   <Grid item container md={6} xs={12} justifyContent="center">

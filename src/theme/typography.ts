@@ -1,5 +1,9 @@
+import { createTheme } from '@material-ui/core/styles';
 import { TypographyOptions } from '@material-ui/core/styles/createTypography';
+
 import palette from './palette';
+
+const theme = createTheme();
 
 const typography: TypographyOptions = {
   fontFamily: ['Lato', 'sans-serif'].join(','),
@@ -16,7 +20,11 @@ const typography: TypographyOptions = {
     fontWeight: 300,
     fontSize: '32px',
     letterSpacing: '-0.24px',
-    lineHeight: '38px'
+    lineHeight: '38px',
+    [theme.breakpoints.down('sm')]: {
+      fontSize: '24px',
+      lineHeight: '29px'
+    }
   },
   h3: {
     color: palette.text.primary,

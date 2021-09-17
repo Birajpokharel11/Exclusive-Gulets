@@ -1,14 +1,14 @@
 import React from 'react';
 import Image from 'next/image';
 import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
-import Box from '@material-ui/core/Box';
+import { Typography, Box } from '@material-ui/core';
 
 const useStyles = makeStyles((theme) =>
   createStyles({
     wrapper: {
       marginTop: '2.5rem',
       display: 'grid',
-      gridGap: '1rem',
+      gridGap: '0.7rem',
       gridTemplateColumns: 'repeat(4, 1fr)',
       gridTemplateRows: 'repeat(3, 18vw)',
       padding: '0 1rem',
@@ -18,6 +18,26 @@ const useStyles = makeStyles((theme) =>
       [theme.breakpoints.down('sm')]: {
         gridTemplateRows: 'repeat(3, 44vw)'
       }
+    },
+    Typography1: {
+      position: 'absolute',
+      zIndex: 1,
+      top: '1.5rem',
+      left: '1.5rem',
+      fontStyle: 'normal',
+      fontWeight: 'normal',
+      fontSize: '18px',
+      lineHeight: '22px'
+    },
+
+    imgShadow1: {
+      position: 'absolute',
+      width: '100%',
+      top: 0,
+      height: '70px',
+      background:
+        'linear-gradient(0deg,rgba(9,21,39,.980392) .01%,rgba(9,21,39,.87) 43.52%,rgba(9,21,39,.24) 93.23%,rgba(9,21,39,0) 99.99%)',
+      transform: 'rotate(-180deg)'
     },
     image: {
       width: '100%',
@@ -82,68 +102,61 @@ const useStyles = makeStyles((theme) =>
     }
   })
 );
-// comment
-
+const Images = [
+  {
+    src: '/assets/images/destinationPic/images3.png',
+    typography: 'Destination Name'
+  },
+  {
+    src: '/assets/images/destinationPic/images1.png',
+    typography: 'Destination Name'
+  },
+  {
+    src: '/assets/images/destinationPic/images5.png',
+    typography: 'Destination Name'
+  },
+  {
+    src: '/assets/images/destinationPic/images5.png',
+    typography: 'Destination Name'
+  },
+  {
+    src: '/assets/images/destinationPic/images4.jpg',
+    typography: 'Destination Name'
+  },
+  {
+    src: '/assets/images/destinationPic/images6.jpg',
+    typography: 'Destination Name'
+  },
+  {
+    src: '/assets/images/destinationPic/images6.jpg',
+    typography: 'Destination Name'
+  },
+  {
+    src: '/assets/images/destinationPic/images3.png',
+    typography: 'Destination Name'
+  }
+];
 export default function DestinationGallery() {
   const classes = useStyles();
   return (
     <Box className={classes.wrapper}>
-      <Box className={classes.box1}>
-        <img
-          src="assets/images/heroYatch.png"
-          alt="Guest"
-          className={classes.image}
-        />
-      </Box>
-      <Box className={classes.box2}>
-        <img
-          src="assets/images/heroYatch.png"
-          alt="Guest"
-          className={classes.image}
-        />
-      </Box>
-      <Box className={classes.box3}>
-        <img
-          src="assets/images/heroYatch.png"
-          alt="Guest"
-          className={classes.image}
-        />
-      </Box>
-      <Box className={classes.box4}>
-        <img
-          src="assets/images/heroYatch.png"
-          alt="Guest"
-          className={classes.image}
-        />
-      </Box>
-      <Box className={classes.box5}>
-        <img
-          src="assets/images/heroYatch.png"
-          alt="Guest"
-          className={classes.image}
-        />
-      </Box>
-      <Box className={classes.box6}>
-        <img
-          src="assets/images/heroYatch.png"
-          alt="Guest"
-          className={classes.image}
-        />
-      </Box>
-      <Box className={classes.box7}>
-        <img
-          src="assets/images/heroYatch.png"
-          alt="Guest"
-          className={classes.image}
-        />
-      </Box>
-      <Box className={classes.box8}>
-        <img
-          src="assets/images/heroYatch.png"
-          alt="Guest"
-          className={classes.image}
-        />
-      </Box>
+      {Images.map((item, i) => (
+        <Box
+          key={i}
+          className={classes[`box${i + 1}`]}
+          style={{ position: 'relative' }}
+        >
+          <img src={item.src} alt="Guest" className={classes.image} />
+          <Typography
+            variant="h5"
+            color="secondary"
+            className={classes.Typography1}
+          >
+            {item.typography}
+          </Typography>
+          <div className={classes.imgShadow1} />
+        </Box>
+      ))}
     </Box>
   );
 }

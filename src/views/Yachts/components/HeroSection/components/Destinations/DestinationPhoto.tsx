@@ -5,6 +5,7 @@ import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
 import { Container, Grid, Box, Typography, Button } from '@material-ui/core';
 import underLine from 'public/assets/images/smallBlueUnderline.svg';
 import PhotoSection from './PhotoSection';
+import DestinationGallery from '@views/Home/components/Destinations/DestinationGallery';
 const useStyles = makeStyles((theme) =>
   createStyles({
     root: {
@@ -73,7 +74,7 @@ export default function DestinationPhoto() {
         </Grid>
       </Container>
       <Box>
-        <PhotoSection />
+        <DestinationGallery />
       </Box>
     </>
   );

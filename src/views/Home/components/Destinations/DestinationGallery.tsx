@@ -82,6 +82,7 @@ const useStyles = makeStyles((theme) =>
     }
   })
 );
+// comment
 
 export default function DestinationGallery() {
   const classes = useStyles();

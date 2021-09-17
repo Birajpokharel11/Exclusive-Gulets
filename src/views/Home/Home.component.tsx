@@ -22,13 +22,13 @@ const useStyles = makeStyles((theme) =>
   })
 );
 
-export default function Home() {
+export default function Home(props) {
   const classes = useStyles();
 
   return (
     <div>
       <Box className={classes.root}>
-        <HeroSection />
+        <HeroSection {...props} />
       </Box>
       <Introduction />
       <SpecialOffers />

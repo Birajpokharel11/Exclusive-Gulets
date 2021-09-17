@@ -12,7 +12,7 @@ const useStyles = makeStyles(() => ({
   }
 }));
 
-const Minimal = (props) => {
+const Main = (props) => {
   const { children, ...rest } = props;
 
   const classes = useStyles();
@@ -26,4 +26,4 @@ const Minimal = (props) => {
   );
 };
 
-export default Minimal;
+export default Main;

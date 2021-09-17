@@ -26,7 +26,10 @@ const useStyles = makeStyles((theme) =>
     },
     box1: {
       gridColumn: '1/3',
-      gridRow: '1/2'
+      gridRow: '1/2',
+      [theme.breakpoints.down('sm')]: {
+        gridColumn: '1/5'
+      }
     },
     box2: {
       gridColumn: '3/4',
@@ -44,11 +47,17 @@ const useStyles = makeStyles((theme) =>
     },
     box4: {
       gridColumn: '1/2',
-      gridRow: '2/4'
+      gridRow: '2/4',
+      [theme.breakpoints.down('sm')]: {
+        gridColumn: '1/3'
+      }
     },
     box5: {
       gridColumn: '2/3',
-      gridRow: '2/3'
+      gridRow: '2/3',
+      [theme.breakpoints.down('sm')]: {
+        gridColumn: '3/5'
+      }
     },
     box6: {
       gridColumn: '3/4',
@@ -59,7 +68,10 @@ const useStyles = makeStyles((theme) =>
     },
     box7: {
       gridColumn: ' 2/3',
-      gridRow: '3/4'
+      gridRow: '3/4',
+      [theme.breakpoints.down('sm')]: {
+        gridColumn: '3/5'
+      }
     },
     box8: {
       gridColumn: '3/5',

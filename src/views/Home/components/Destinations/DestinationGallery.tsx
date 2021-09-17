@@ -136,7 +136,7 @@ const Images = [
     typography: 'Destination Name'
   }
 ];
-export default function DestinationGallery() {
+export default function PhotoSection() {
   const classes = useStyles();
   return (
     <Box className={classes.wrapper}>
@@ -146,7 +146,12 @@ export default function DestinationGallery() {
           className={classes[`box${i + 1}`]}
           style={{ position: 'relative' }}
         >
-          <img src={item.src} alt="Guest" className={classes.image} />
+          <Image
+            layout="fill"
+            src={item.src}
+            alt="Guest"
+            className={classes.image}
+          />
           <Typography
             variant="h5"
             color="secondary"

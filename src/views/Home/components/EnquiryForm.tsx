@@ -1,12 +1,16 @@
 import React from 'react';
-import Image from 'next/image';
 import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
-import { Container, Grid, Box, Typography, Button } from '@material-ui/core';
+import {
+  Container,
+  Grid,
+  Box,
+  Typography,
+  Button,
+  Select
+} from '@material-ui/core';
 import { MenuItem, TextField } from '@material-ui/core';
 
-import YatchParty from 'public/assets/images/yatchParty.png';
-import YatchYoga from 'public/assets/images/yatchYoga.png';
-import underLine from 'public/assets/images/introductionLine.svg';
+import { menuProps } from '@utils/utils';
 
 const useStyles = makeStyles((theme) =>
   createStyles({
@@ -92,17 +96,16 @@ export default function EnquiryForm() {
               />
             </Grid>
             <Grid item xs={3}>
-              <TextField
-                id="select"
+              <Select
                 value="country"
-                select
                 variant="outlined"
                 className={classes.textWidth}
+                MenuProps={{ ...menuProps }}
               >
                 <MenuItem value="country">Country</MenuItem>
                 <MenuItem value="ten">Ten</MenuItem>
                 <MenuItem value="twenty">Twenty</MenuItem>
-              </TextField>
+              </Select>
             </Grid>
             <Grid item xs={9}>
               <TextField

@@ -2,6 +2,9 @@ import React, { useState, useEffect, useRef } from 'react';
 import { createStyles, makeStyles, useTheme } from '@material-ui/core/styles';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 import Box from '@material-ui/core/Box';
+import Container from '@material-ui/core/Container';
+import IconButton from '@material-ui/core/IconButton';
+import Typography from '@material-ui/core/Typography';
 import ReactPlayer from 'react-player/lazy';
 import * as _screenfull from 'screenfull';
 import { Screenfull } from 'screenfull';
@@ -9,6 +12,11 @@ import { Screenfull } from 'screenfull';
 const screenfull = _screenfull as Screenfull;
 
 import Spinner from '@components/Spinner';
+import PlayIcon from '@components/icons/PlayIcon';
+import SoundVolumeIcon from '@components/icons/SoundVolumeIcon';
+import SoundMutedIcon from '@components/icons/SoundMutedIcon';
+
+import { smoothScroll } from '@utils/misc';
 
 const useStyles = makeStyles((theme) =>
   createStyles({
@@ -44,11 +52,42 @@ const useStyles = makeStyles((theme) =>
       [theme.breakpoints.down('sm')]: {
         transform: 'scale(2)'
       }
+    },
+    overlay: {
+      position: 'relative',
+      background:
+        'linear-gradient(0deg, #091527fa 0.01%, rgba(9, 21, 39, 0.87) 43.52%, rgba(9, 21, 39, 0.24) 93.23%, rgba(9, 21, 39, 0) 99.99%)',
+      alignSelf: 'end',
+      padding: '30px 0',
+      display: 'flex',
+      textAlign: 'center',
+      color: '#f5f0e4',
+      fontWeight: 300,
+      zIndex: 1
+    },
+    controls: {
+      display: 'flex',
+      flexDirection: 'row',
+      justifyContent: 'center',
+      paddingBottom: '1rem'
+    },
+    controlBtn: {
+      height: 38,
+      width: 38,
+      padding: 0
+    },
+    playIcon: {
+      width: '34px',
+      height: '32px'
+    },
+    volumeIcon: {
+      width: '32px',
+      height: '30px'
     }
   })
 );
 
-export const HomeVideo = () => {
+export const HomeVideo = ({ isIOS }) => {
   const classes = useStyles();
   const theme = useTheme();
   const matchesMD = useMediaQuery(theme.breakpoints.up('md'));
@@ -98,6 +137,9 @@ export const HomeVideo = () => {
     setUrl(url);
   }, [matchesMD]);
 
+  const scrollDownHandler = () =>
+    smoothScroll.scrollToElementById('home-intro');
+
   return (
     <Box className={classes.videoWrapper}>
       {isLoading ? (
@@ -121,6 +163,80 @@ export const HomeVideo = () => {
         ref={playerRef}
         onStart={() => setLoading(false)}
       />
+      <Box className={classes.overlay} style={{ paddingBottom: '3.5rem' }}>
+        <Container>
+          <div
+            className={classes.controls}
+            style={{ display: isLoading ? 'none' : 'flex' }}
+          >
+            <IconButton
+              className={classes.controlBtn}
+              id="button-play-fullscreen"
+              onClick={() => {
+                setMuted(false);
+                if (screenfull.isEnabled) {
+                  screenfull.request(playerRef.current.wrapper);
+                }
+              }}
+              hidden={isIOS}
+            >
+              <PlayIcon className={classes.playIcon} />
+            </IconButton>
+            <IconButton
+              className={classes.controlBtn}
+              id="button-sound-toggle"
+              onClick={() => setMuted(!muted)}
+            >
+              {muted ? (
+                <SoundVolumeIcon className={classes.volumeIcon} />
+              ) : (
+                <SoundMutedIcon className={classes.volumeIcon} />
+              )}
+            </IconButton>
+          </div>
+
+          <Typography
+            variant="h1"
+            color="inherit"
+            style={{ marginBottom: '15px' }}
+          >
+            Explore the World of Exclusive Gulets
+          </Typography>
+
+          <Typography
+            component="div"
+            color="inherit"
+            style={{ marginBottom: '32px' }}
+          >
+            Experience Exceptional Yachting
+          </Typography>
+
+          <Box className="scrollDown">
+            <IconButton onClick={scrollDownHandler}>
+              <svg
+                width="16"
+                height="21"
+                viewBox="0 0 16 21"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M15 1L8 9L1 1"
+                  stroke="white"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                />
+                <path
+                  d="M15 11L8 19L1 11"
+                  stroke="white"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                />
+              </svg>
+            </IconButton>
+          </Box>
+        </Container>
+      </Box>
     </Box>
   );
 };

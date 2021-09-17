@@ -35,6 +35,10 @@ const palette: PaletteOptions = {
     main: colors.red[600],
     light: colors.red[400]
   },
+  common: {
+    white,
+    black
+  },
   text: {
     primary: '#2A398D',
     secondary: colors.blueGrey[600]

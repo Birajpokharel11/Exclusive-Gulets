@@ -2,13 +2,14 @@ import { TypographyOptions } from '@material-ui/core/styles/createTypography';
 import palette from './palette';
 
 const typography: TypographyOptions = {
-  fontFamily: ['Lato', 'Roboto', 'sans-serif'].join(','),
+  fontFamily: ['Lato', 'sans-serif'].join(','),
   h1: {
-    color: palette.text.primary,
+    color: palette.common.white,
     fontWeight: 300,
-    fontSize: '35px',
-    letterSpacing: '-0.24px',
-    lineHeight: '40px'
+    fontSize: '26px',
+    letterSpacing: '.1em',
+    lineHeight: '40px',
+    textTransform: 'uppercase'
   },
   h2: {
     color: palette.text.primary,
@@ -60,7 +61,8 @@ const typography: TypographyOptions = {
   },
   body1: {
     color: palette.text.primary,
-    fontSize: '14px',
+    fontSize: '18px',
+    fontWeight: 300,
     letterSpacing: '-0.05px',
     lineHeight: '21px'
   },

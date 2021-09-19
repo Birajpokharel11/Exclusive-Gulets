@@ -108,9 +108,7 @@ export default function Destinations() {
           className={classes.Button}
           data-cy="View-Yatchs"
         >
-          <Typography style={{ color: '#2A398D' }} variant="subtitle1">
-            View Yatchs
-          </Typography>
+          View Yatchs
         </Button>
       </Grid>
     </div>

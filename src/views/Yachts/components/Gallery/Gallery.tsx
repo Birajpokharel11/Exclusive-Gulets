@@ -49,9 +49,9 @@ const useStyles = makeStyles((theme: Theme) =>
       objectFit: 'cover',
       width: '100%',
       opacity: '0.95',
+      transition: '0.4s ease',
       '&:hover': {
-        transform: 'scale(1.1)',
-        transition: 'transform 6s cubic-bezier(0.25, 0.45, 0.45, 0.95)'
+        transform: 'scale(1.04)'
       }
     },
     BoxShadows: {

@@ -17,7 +17,7 @@ import AdvancedFilterSection from './components/AdvancedFilterSection/AdvancedFi
 import typography from '@theme/typography';
 import Gallery from './components/Gallery/Gallery';
 import Destinations from './components/Destinations/DestinationPhoto';
-import { Experience } from '@views/Home/components';
+import { EnquiryForm, Experience } from '@views/Home/components';
 
 const useStyles = makeStyles((theme) =>
   createStyles({
@@ -39,7 +39,8 @@ const useStyles = makeStyles((theme) =>
       zIndex: 1,
 
       background:
-        ' linear-gradient(177.05deg, #091527 4.18%, rgba(9, 21, 39, 0.914539) 43.61%, rgba(9, 21, 39, 0.291523) 88.63%, rgba(9, 21, 39, 0) 94.76%)',
+        ' linear-gradient(180deg,rgba(9,21,39,.980392) .01%,rgba(9,21,39,.87) 43.52%,rgba(9,21,39,.24) 93.23%,rgba(9,21,39,0) 99.99%)',
+
       height: '263px'
     },
     Box2: {
@@ -94,6 +95,7 @@ export default function HeroSection() {
         <Gallery />
         <Destinations />
         <Experience />
+        <EnquiryForm />
       </Box>
     </>
   );

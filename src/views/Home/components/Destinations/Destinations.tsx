@@ -4,7 +4,9 @@ import Image from 'next/image';
 import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
 import { Container, Grid, Box, Typography, Button } from '@material-ui/core';
 import underLine from 'public/assets/images/smallBlueUnderline.svg';
+
 import DestinationGallery from '@views/Home/components/Destinations/DestinationGallery';
+
 const useStyles = makeStyles((theme) =>
   createStyles({
     root: {
@@ -54,11 +56,7 @@ export default function Destinations() {
               explore and a different shoreline to discover.​
             </Typography>
           </Grid>
-          <Grid
-            item
-            justifyContent="center"
-            style={{ marginTop: '56px', marginBottom: '60px' }}
-          >
+          <Grid item style={{ marginTop: '56px', marginBottom: '60px' }}>
             <Button variant="contained" className={classes.buttonStyle}>
               <Typography
                 color="secondary"
@@ -71,6 +69,8 @@ export default function Destinations() {
           </Grid>
         </Grid>
       </Container>
+
+      <DestinationGallery />
     </>
   );
 }

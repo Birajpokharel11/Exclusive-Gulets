@@ -34,7 +34,7 @@ const useStyles = makeStyles((theme) =>
   })
 );
 
-export default function EnquiryForm() {
+export default function Enquiry() {
   const classes = useStyles();
   return (
     <Box maxWidth="false" className={classes.root}>

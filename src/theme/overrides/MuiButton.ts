@@ -1,6 +1,6 @@
 export default {
   containedPrimary: {
-    backgroundColor: '#F5F0E4'
+    backgroundColor: '#2a398d'
   },
   containedSecondary: {
     backgroundColor: '#F5F0E4'
@@ -13,5 +13,14 @@ export default {
       border: ' 1px solid rgba(255, 255, 255, 0.5)'
     }
   },
-  outlinedSecondary: { backgroundColor: 'rgba(0, 0, 0, 0.03)' }
+  outlinedSecondary: { backgroundColor: 'rgba(0, 0, 0, 0.03)' },
+  label: {
+    textTransform: 'none',
+    fontWeight: 500,
+    fontSize: '18px',
+    lineHeight: '22px'
+  },
+  containedSizeLarge: {
+    padding: '15px 50px'
+  }
 };

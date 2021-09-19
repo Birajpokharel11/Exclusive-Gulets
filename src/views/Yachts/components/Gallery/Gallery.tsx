@@ -47,7 +47,11 @@ const useStyles = makeStyles((theme: Theme) =>
       display: 'block',
       objectFit: 'cover',
       width: '100%',
-      opacity: '0.95'
+      opacity: '0.95',
+      '&:hover': {
+        transform: 'scale(1.1)',
+        transition: 'transform 6s cubic-bezier(0.25, 0.45, 0.45, 0.95)'
+      }
     },
     BoxShadows: {
       position: 'absolute',
@@ -222,7 +226,6 @@ export default function Gallery() {
                 className={classes.Img}
                 data-cy={`Gallery Images${i}`}
               />
-              {/* <div className={classes.BoxShadows} /> */}
               <Box
                 style={{
                   position: 'absolute',
@@ -253,19 +256,16 @@ export default function Gallery() {
                     </Button>
                   )}
                   {item.SpecialOffers && (
-                    <>
-                      <Button
-                        color="primary"
-                        variant="outlined"
-                        data-cy={`Instant-Offer ${i}`}
-                        className={classes.InstantOffer}
-                      >
-                        <Typography color="secondary" variant="overline">
-                          {' '}
-                          Instant Offer
-                        </Typography>
-                      </Button>
-                    </>
+                    <Button
+                      color="primary"
+                      variant="outlined"
+                      data-cy={`Instant-Offer ${i}`}
+                      className={classes.InstantOffer}
+                    >
+                      <Typography color="secondary" variant="overline">
+                        Instant Offer
+                      </Typography>
+                    </Button>
                   )}
                 </Box>
               )}

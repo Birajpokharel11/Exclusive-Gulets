@@ -1,9 +1,9 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 
-import { Topbar, Footer } from './components';
+import { Footer } from '../Main/components';
 
-const useStyles = makeStyles(() => ({
+const useStyles = makeStyles((theme) => ({
   root: {
     height: '100%'
   },
@@ -12,18 +12,17 @@ const useStyles = makeStyles(() => ({
   }
 }));
 
-const Main = (props) => {
+const Minimal = (props) => {
   const { children, ...rest } = props;
 
   const classes = useStyles();
 
   return (
     <div className={classes.root}>
-      <Topbar {...rest} />
       <main className={classes.content}>{children}</main>
       <Footer />
     </div>
   );
 };
 
-export default Main;
+export default Minimal;

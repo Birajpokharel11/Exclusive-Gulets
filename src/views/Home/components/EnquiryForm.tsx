@@ -6,9 +6,10 @@ import {
   Box,
   Typography,
   Button,
-  Select
+  Select,
+  MenuItem,
+  TextField
 } from '@material-ui/core';
-import { MenuItem, TextField } from '@material-ui/core';
 
 import { menuProps } from '@utils/utils';
 
@@ -67,17 +68,17 @@ export default function EnquiryForm() {
         <Grid container spacing={3}>
           <Grid item container md={6} xs={12} spacing={2}>
             <Grid item xs={3}>
-              <TextField
+              <Select
                 id="select"
                 value="title"
-                select
                 variant="outlined"
                 className={classes.textWidth}
+                MenuProps={menuProps}
               >
                 <MenuItem value="title">Title</MenuItem>
                 <MenuItem value="ten">Ten</MenuItem>
                 <MenuItem value="twenty">Twenty</MenuItem>
-              </TextField>
+              </Select>
             </Grid>
             <Grid item xs={9}>
               <TextField
@@ -100,7 +101,7 @@ export default function EnquiryForm() {
                 value="country"
                 variant="outlined"
                 className={classes.textWidth}
-                MenuProps={{ ...menuProps }}
+                MenuProps={menuProps}
               >
                 <MenuItem value="country">Country</MenuItem>
                 <MenuItem value="ten">Ten</MenuItem>

@@ -54,11 +54,7 @@ export default function Destinations() {
               explore and a different shoreline to discover.​
             </Typography>
           </Grid>
-          <Grid
-            item
-            justifyContent="center"
-            style={{ marginTop: '56px', marginBottom: '60px' }}
-          >
+          <Grid item style={{ marginTop: '56px', marginBottom: '60px' }}>
             <Button variant="contained" className={classes.buttonStyle}>
               <Typography
                 color="secondary"

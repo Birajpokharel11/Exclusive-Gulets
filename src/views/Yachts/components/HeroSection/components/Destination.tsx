@@ -5,14 +5,11 @@ import {
   withStyles,
   Theme
 } from '@material-ui/core/styles';
-import InputLabel from '@material-ui/core/InputLabel';
-import MenuItem from '@material-ui/core/MenuItem';
 import FormControl from '@material-ui/core/FormControl';
-import Select from '@material-ui/core/Select';
 import { NativeSelect, Grid, Typography, Button, Box } from '@material-ui/core';
 import InputBase from '@material-ui/core/InputBase';
 import KeyboardArrowDownIcon from '@material-ui/icons/KeyboardArrowDown';
-import { red } from '@material-ui/core/colors';
+
 import Filter from './Filter';
 import Guests from './Guests';
 

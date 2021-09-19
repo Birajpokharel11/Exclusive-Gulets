@@ -9,15 +9,8 @@ import {
   IconButton,
   Box
 } from '@material-ui/core';
-import FavoriteIcon from '@material-ui/icons/Favorite';
-import clsx from 'clsx';
-import { AddBox } from '@material-ui/icons';
+
 import Destination from './components/Destination';
-import AdvancedFilterSection from './components/AdvancedFilterSection/AdvancedFilterSection';
-import typography from '@theme/typography';
-import Gallery from './components/Gallery/Gallery';
-import Destinations from './components/Destinations/DestinationPhoto';
-import { Experience } from '@views/Home/components';
 
 const useStyles = makeStyles((theme) =>
   createStyles({
@@ -67,34 +60,26 @@ const useStyles = makeStyles((theme) =>
 export default function HeroSection() {
   const classes = useStyles();
   return (
-    <>
-      <Container maxWidth={false} className={classes.Container}>
-        <img
-          src="/assets/images/Yatchss.png"
-          alt="HeroYatch"
-          className={classes.Yatch}
-        />
-        <Box pt={14} className={classes.imageTextShadows}>
-          <Container maxWidth="xl">
-            <Typography variant="h3" className={classes.Heading}>
-              a yacht for every occasıon
-            </Typography>
-            <Typography variant="h6" className={classes.SubHeading}>
-              Filter as your needs and find your dream yacht.
-            </Typography>
-            <Box pt={12}>
-              <Destination />
-            </Box>
-          </Container>
-        </Box>
-        <div className={classes.Box2} />
-      </Container>
-      <Box>
-        <AdvancedFilterSection />
-        <Gallery />
-        <Destinations />
-        <Experience />
+    <Container maxWidth={false} className={classes.Container}>
+      <img
+        src="/assets/images/Yatchss.png"
+        alt="HeroYatch"
+        className={classes.Yatch}
+      />
+      <Box pt={14} className={classes.imageTextShadows}>
+        <Container maxWidth="xl">
+          <Typography variant="h3" className={classes.Heading}>
+            a yacht for every occasıon
+          </Typography>
+          <Typography variant="h6" className={classes.SubHeading}>
+            Filter as your needs and find your dream yacht.
+          </Typography>
+          <Box pt={12}>
+            <Destination />
+          </Box>
+        </Container>
       </Box>
-    </>
+      <div className={classes.Box2} />
+    </Container>
   );
 }

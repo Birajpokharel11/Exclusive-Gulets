@@ -25,6 +25,7 @@ const useStyles = makeStyles((theme) =>
     },
     buttonStyle: {
       backgroundColor: '#2A398D',
+      '&:hover': { background: '#2A398D' },
       color: '#FFFFFF',
       marginBottom: '4rem'
     },
@@ -49,7 +50,7 @@ export default function Enquiry() {
         >
           <Grid item xs={12}>
             <Typography variant="h2" color="textPrimary" align="center">
-              We can save you time & money.
+              Couldn’t Find the Yacht You are Looking For
             </Typography>
           </Grid>
 

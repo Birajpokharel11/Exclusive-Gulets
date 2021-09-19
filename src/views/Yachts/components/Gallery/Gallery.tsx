@@ -6,6 +6,7 @@ import {
   Theme
 } from '@material-ui/core/styles';
 import { Box, Button, Grid, IconButton, Typography } from '@material-ui/core';
+
 import PaginationSection from './PaginationComponents';
 
 const useStyles = makeStyles((theme: Theme) =>

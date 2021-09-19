@@ -1,11 +1,10 @@
 /* eslint-disable jsx-a11y/alt-text */
 import React from 'react';
-import Image from 'next/image';
 import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
-import { Container, Grid, Box, Typography, Button } from '@material-ui/core';
-import underLine from 'public/assets/images/smallBlueUnderline.svg';
-import DestinationGallery from '@views/Home/components/Destinations/DestinationGallery';
-import { Destinations } from '@views/Home/components';
+import Box from '@material-ui/core/Box';
+
+import Destinations from '@views/Home/components/Destinations';
+
 const useStyles = makeStyles((theme) =>
   createStyles({
     root: {
@@ -29,7 +28,6 @@ export default function DestinationPhoto() {
     <>
       <Box>
         <Destinations />
-        <DestinationGallery />
       </Box>
     </>
   );

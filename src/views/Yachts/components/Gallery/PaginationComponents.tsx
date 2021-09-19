@@ -5,15 +5,9 @@ import {
   withStyles,
   Theme
 } from '@material-ui/core/styles';
-import {
-  Box,
-  Button,
-  Container,
-  Grid,
-  IconButton,
-  Typography
-} from '@material-ui/core';
+import { Box, Container, Typography } from '@material-ui/core';
 import Pagination from './Pagination';
+
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     Box: { width: '100%', background: '#091527' },

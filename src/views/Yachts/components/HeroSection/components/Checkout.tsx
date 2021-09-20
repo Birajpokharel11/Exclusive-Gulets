@@ -1,79 +1,44 @@
+import 'date-fns';
 import React from 'react';
+import Grid from '@material-ui/core/Grid';
+import DateFnsUtils from '@date-io/date-fns';
 import {
-  createStyles,
-  makeStyles,
-  withStyles,
-  Theme
-} from '@material-ui/core/styles';
-import InputLabel from '@material-ui/core/InputLabel';
-import MenuItem from '@material-ui/core/MenuItem';
-import FormControl from '@material-ui/core/FormControl';
-import Select from '@material-ui/core/Select';
-import NativeSelect from '@material-ui/core/NativeSelect';
-import InputBase from '@material-ui/core/InputBase';
+  MuiPickersUtilsProvider,
+  KeyboardTimePicker,
+  KeyboardDatePicker
+} from '@material-ui/pickers';
+import { Icon } from '@material-ui/core';
 import KeyboardArrowDownIcon from '@material-ui/icons/KeyboardArrowDown';
-import { red } from '@material-ui/core/colors';
-
-const BootstrapInput = withStyles((theme: Theme) =>
-  createStyles({
-    input: {
-      borderRadius: 4,
-      position: 'relative',
-      backgroundColor: 'none',
-      color: 'white',
-      fontSize: 18,
-      padding: '10px 26px 10px 12px'
-    }
-  })
-)(InputBase);
-
-const useStyles = makeStyles((theme: Theme) =>
-  createStyles({
-    margin: {
-      width: '200px',
-      [theme.breakpoints.down('md')]: {
-        width: '150px'
-      }
-    },
-    icon: {
-      fill: 'white',
-      transform: 'rotate(180deg)'
-    }
-  })
-);
 
 export default function Checkout() {
-  const classes = useStyles();
+  // The first commit of Material-UI
+  const [selectedDate, setSelectedDate] = React.useState<Date | null>(
+    new Date('2021-08-18T21:11:54')
+  );
 
-  const [age, setAge] = React.useState('');
-  const handleChange = (event: React.ChangeEvent<{ value: unknown }>) => {
-    setAge(event.target.value as string);
+  const handleDateChange = (date: Date | null) => {
+    setSelectedDate(date);
   };
+
   return (
-    <div>
-      <FormControl className={classes.margin}>
-        <NativeSelect
-          color="primary"
-          classes={{
-            icon: classes.icon
-          }}
-          IconComponent={KeyboardArrowDownIcon}
-          id="demo-customized-select-native"
-          value={age}
-          onChange={handleChange}
-          input={<BootstrapInput />}
-        >
-          <option style={{ background: 'black' }} value={10}>
-            CheckOut
-          </option>
-          <option style={{ background: 'black' }} value={20}>
-            Twenty
-          </option>
-          <option style={{ background: 'black' }} value={30}>
-            Thirty
-          </option>
-        </NativeSelect>
-      </FormControl>
-    </div>
+    <MuiPickersUtilsProvider utils={DateFnsUtils}>
+      <KeyboardDatePicker
+        style={{
+          color: 'white',
+          fontSize: 18,
+          padding: '10px 26px 10px 12px'
+        }}
+        disableToolbar
+        variant="inline"
+        format="MM/dd/yyyy"
+        value={selectedDate}
+        onChange={handleDateChange}
+        InputProps={{
+          disableUnderline: true,
+          style: { color: 'white' }
+        }}
+        keyboardIcon={<KeyboardArrowDownIcon style={{ color: 'white' }} />}
+      />
+    </MuiPickersUtilsProvider>
   );
 }

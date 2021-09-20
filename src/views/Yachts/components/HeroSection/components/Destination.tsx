@@ -6,7 +6,17 @@ import {
   Theme
 } from '@material-ui/core/styles';
 import FormControl from '@material-ui/core/FormControl';
-import { NativeSelect, Grid, Typography, Button, Box } from '@material-ui/core';
+import {
+  Select,
+  Grid,
+  Typography,
+  Button,
+  Box,
+  InputLabel,
+  MenuItem,
+  Checkbox,
+  ListItemText
+} from '@material-ui/core';
 import InputBase from '@material-ui/core/InputBase';
 import KeyboardArrowDownIcon from '@material-ui/icons/KeyboardArrowDown';
 
@@ -57,40 +67,54 @@ const useStyles = makeStyles((theme: Theme) =>
     }
   })
 );
-
+const names = [
+  'Oliver Hansen',
+  'Van Henry',
+  'April Tucker',
+  'Ralph Hubbard',
+  'Omar Alexander',
+  'Carlos Abbott',
+  'Miriam Wagner',
+  'Bradley Wilkerson',
+  'Virginia Andrews',
+  'Kelly Snyder'
+];
 export default function Destinations() {
   const classes = useStyles();
-
-  const [age, setAge] = React.useState('');
-  const handleChange = (event: React.ChangeEvent<{ value: unknown }>) => {
-    setAge(event.target.value as string);
+  const handleChange = (event) => {
+    setPersonName(event.target.value);
   };
+  const [personName, setPersonName] = React.useState(['Destinations:']);
+
   return (
     <div>
       <Grid container>
         <Grid item md style={{ paddingBottom: '2%' }}>
           <FormControl className={classes.margin}>
-            <NativeSelect
-              color="primary"
+            <Select
+              id="demo-mutiple-checkbox"
+              multiple
               classes={{
                 icon: classes.icon
               }}
               IconComponent={KeyboardArrowDownIcon}
-              id="demo-customized-select-native"
-              value={age}
+              value={personName}
               onChange={handleChange}
               input={<BootstrapInput />}
+              renderValue={(selected) => selected.join(' ')}
             >
-              <option style={{ background: 'black' }} value={10}>
-                Destinations
-              </option>
-              <option style={{ background: 'black' }} value={20}>
-                Twenty
-              </option>
-              <option style={{ background: 'black' }} value={30}>
-                Thirty
-              </option>
-            </NativeSelect>
+              <div style={{ position: 'relative' }}>
+                {names.map((name) => (
+                  <MenuItem key={name} value={name}>
+                    <Checkbox
+                      color="primary"
+                      checked={personName.indexOf(name) > -1}
+                    />
+                    <ListItemText primary={name} />
+                  </MenuItem>
+                ))}
+              </div>
+            </Select>
           </FormControl>
         </Grid>
         <div style={{ flexGrow: 1 }} />

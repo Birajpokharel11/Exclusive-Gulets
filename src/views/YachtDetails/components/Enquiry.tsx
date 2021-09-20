@@ -30,11 +30,11 @@ const useStyles = makeStyles((theme) =>
       position: 'absolute',
       top: '20%',
       left: '3%',
-      [theme.breakpoints.down('1440')]: {
+      [theme.breakpoints.down(1440)]: {
         width: '48%',
         paddingTop: '4%'
       },
-      [theme.breakpoints.down('768')]: {
+      [theme.breakpoints.down(768)]: {
         width: '75%',
         height: '280px',
         paddingRight: '4%',
@@ -47,15 +47,15 @@ const useStyles = makeStyles((theme) =>
       minwidth: '700px ',
       fontFamily: 'Lato',
       fontStyle: 'normal',
-      fontWeight: '600',
+      fontWeight: 600,
       fontSize: '40px',
       lineHeight: '48px',
       color: 'white',
-      [theme.breakpoints.down('1024')]: {
+      [theme.breakpoints.down(102)]: {
         fontSize: '32px',
         lineHeight: '38px'
       },
-      [theme.breakpoints.down('768')]: {
+      [theme.breakpoints.down(768)]: {
         fontWeight: 'normal',
         fontSize: '22px',
         lineHeight: '29px'
@@ -66,10 +66,10 @@ const useStyles = makeStyles((theme) =>
       height: ' 1080px',
       objectFit: 'cover',
       display: 'block',
-      [theme.breakpoints.down('1024')]: {
+      [theme.breakpoints.down(102)]: {
         height: '859px'
       },
-      [theme.breakpoints.up('2040')]: {
+      [theme.breakpoints.up(2040)]: {
         height: '1480px'
       }
     },
@@ -79,20 +79,20 @@ const useStyles = makeStyles((theme) =>
       height: '52px',
       position: 'absolute',
       top: '50%',
-      [theme.breakpoints.down('1440')]: {
+      [theme.breakpoints.down(144)]: {
         marginTop: '10%'
       },
-      [theme.breakpoints.down('1024')]: {
+      [theme.breakpoints.down(102)]: {
         marginTop: '4%'
       },
-      [theme.breakpoints.down('425')]: {
+      [theme.breakpoints.down(425)]: {
         marginTop: '10%'
       }
     },
     ButtonTypography: {
       fontFamily: 'Lato',
       fontStyle: 'normal',
-      fontWeight: '550',
+      fontWeight: 550,
       fontSize: '18px',
       lineHeight: '22px',
       color: '#2A398D'

@@ -49,7 +49,7 @@ const useStyles = makeStyles((theme: Theme) =>
       objectFit: 'cover',
       width: '100%',
       opacity: '0.95',
-      transition: '0.4s ease',
+      transition: '0.9s ease',
       '&:hover': {
         overflow: 'hidden',
         width: '100%',

@@ -4,17 +4,16 @@ import { connect } from 'react-redux';
 import WithLayout from '@components/WithLayout';
 import Main from '@layouts/Main';
 import DestinationPage from '@views/Destinations';
-import { fetchDestinationStart } from '../store/destination/destination.actions';
-import { DESTINATIONS_SORTING } from '../../constants/sorting';
-import { DESTINATIONS_LIMIT_PER_PAGE } from '../../constants/limits';
+import { fetchDestinationStart } from '@store/destination/destination.actions';
+import { DestinationSort, Limits } from '@utils/enums';
 
 const Destinations = (props) => {
   const { onFetchDestinationStart } = props;
   useEffect(() => {
     onFetchDestinationStart({
-      ...DESTINATIONS_SORTING,
+      ...DestinationSort,
       page: 1,
-      amount_per_page: DESTINATIONS_LIMIT_PER_PAGE
+      amount_per_page: Limits.DESTINATIONS_PER_PAGE
     });
   }, []);
   return <WithLayout component={DestinationPage} layout={Main} />;

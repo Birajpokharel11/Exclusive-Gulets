@@ -66,11 +66,12 @@ export default function CardList(props) {
   return (
     <Container maxWidth="lg">
       <Grid container>
-        {cardContent.map((card) => (
+        {cardContent.map((card, index) => (
           <Card
             className={classes.root}
             classes={{ root: classes.cardStyle }}
             elevation={0}
+            key={index}
           >
             <CardActionArea>
               <CardMedia

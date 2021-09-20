@@ -97,7 +97,8 @@ export default function Header() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [open, setOpen] = useState(false);
 
-  const handelChange = (e, value) => {
+  const handleChange = (e, value) => {
+    console.log('value after handleChange>>>', value);
     setValue(value);
   };
 
@@ -140,7 +141,7 @@ export default function Header() {
       setValue(1);
     } else if (window.location.pathname === '/OFFERS' && value !== 2) {
       setValue(2);
-    } else if (window.location.pathname === '/DESTINATIONS' && value !== 3) {
+    } else if (window.location.pathname === '/destinations' && value !== 3) {
       setValue(3);
     } else if (
       window.location.pathname === '/BESPOKEEXPERIENCES' &&
@@ -171,7 +172,7 @@ export default function Header() {
             <Tabs
               value={value}
               className={classes.tabContainer}
-              onChange={handelChange}
+              onChange={handleChange}
             >
               <Tab
                 label="sad"
@@ -183,6 +184,7 @@ export default function Header() {
                 className={classes.tab}
                 label="DESTINATIONS"
                 data-cy="DESTINATIONS"
+                href="/destinations"
               />
               <Tab
                 className={classes.tab}

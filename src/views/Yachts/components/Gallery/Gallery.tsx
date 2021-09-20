@@ -51,7 +51,9 @@ const useStyles = makeStyles((theme: Theme) =>
       opacity: '0.95',
       transition: '0.4s ease',
       '&:hover': {
-        transform: 'scale(1.04)'
+        overflow: 'hidden',
+        width: '100%',
+        transform: 'scale(1.4)'
       }
     },
     BoxShadows: {
@@ -221,7 +223,7 @@ export default function Gallery() {
               border: '1px solid white'
             }}
           >
-            <Box>
+            <Box style={{ overflow: 'hidden' }}>
               <img
                 src={item.img}
                 className={classes.Img}

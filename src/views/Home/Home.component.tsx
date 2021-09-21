@@ -1,6 +1,7 @@
+import { useEffect } from 'react';
 import { createStyles, makeStyles } from '@material-ui/core/styles';
 
-import Box from '@material-ui/core/Box';
+import { Box, CircularProgress } from '@material-ui/core';
 import {
   Introduction,
   SpecialOffers,
@@ -12,6 +13,7 @@ import {
   EnquiryForm
 } from './components';
 import HeroSection from './components/HeroSection1';
+import container from './Home.container';
 
 const useStyles = makeStyles((theme) =>
   createStyles({
@@ -22,8 +24,19 @@ const useStyles = makeStyles((theme) =>
   })
 );
 
-export default function Home(props) {
+const Home = (props) => {
   const classes = useStyles();
+
+  const {
+    onFetchOfferStart,
+    onFetchRandomDestinationStart,
+    destination: { loading, randomDestination }
+  } = props;
+
+  useEffect(() => {
+    onFetchOfferStart();
+    onFetchRandomDestinationStart();
+  }, []);
 
   return (
     <div>
@@ -34,10 +47,12 @@ export default function Home(props) {
       <SpecialOffers />
       <CharterYatch />
       <YatchSlider />
-      <Destinations />
+      <Destinations {...props} />
       <Experience />
       <NewsAndBlogs />
       <EnquiryForm />
     </div>
   );
-}
+};
+
+export default container(Home);

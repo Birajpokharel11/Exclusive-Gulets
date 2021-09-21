@@ -19,7 +19,26 @@ export function* fetchDestinationAsync({ payload }: AnyAction) {
     yield put(destinationAction.fetchDestinationSuccess(data.destinations));
   } catch (err) {
     console.error('error received>>>', err);
-    yield put(destinationAction.fetchDestinationSuccess(err));
+    yield put(destinationAction.fetchDestinationFailure(err));
+  }
+}
+
+export function* fetchRandomDestinationAsync() {
+  try {
+    console.log('inside of random destination saga');
+    const { data } = yield axios.get(
+      `http://localhost:3000/api/v1/destinations/random_destinations`
+    );
+    console.log(
+      'value of response fetchRandomDestinationAsync>>>',
+      data.destinations
+    );
+    yield put(
+      destinationAction.fetchRandomDestinationSuccess(data.destinations)
+    );
+  } catch (err) {
+    console.error('error received>>>', err);
+    yield put(destinationAction.fetchRandomDestinationFailure(err));
   }
 }
 
@@ -30,6 +49,13 @@ export function* watchFetchDestination() {
   );
 }
 
+export function* watchFetchRandomDestination() {
+  yield takeLatest(
+    DestinationType.FETCH_RANDOM_DESTINATION_START,
+    fetchRandomDestinationAsync
+  );
+}
+
 export function* destinationSagas() {
-  yield all([call(watchFetchDestination)]);
+  yield all([call(watchFetchDestination), call(watchFetchRandomDestination)]);
 }

@@ -1,7 +1,7 @@
 import React from 'react';
 import Image from 'next/image';
 import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
-import { Typography, Box } from '@material-ui/core';
+import { Typography, Box, CircularProgress } from '@material-ui/core';
 
 const useStyles = makeStyles((theme) =>
   createStyles({
@@ -136,32 +136,39 @@ const Images = [
     typography: 'Destination Name'
   }
 ];
-export default function PhotoSection() {
+export default function PhotoSection(props) {
+  const {
+    destination: { randomDestination, loading }
+  } = props;
+  console.log('value of randomdestination>>', randomDestination);
   const classes = useStyles();
   return (
     <Box className={classes.wrapper}>
-      {Images.map((item, i) => (
-        <Box
-          key={i}
-          className={classes[`box${i + 1}`]}
-          style={{ position: 'relative' }}
-        >
-          <Image
-            layout="fill"
-            src={item.src}
-            alt="Guest"
-            className={classes.image}
-          />
-          <Typography
-            variant="h5"
-            color="secondary"
-            className={classes.Typography1}
+      {loading ? (
+        <CircularProgress />
+      ) : (
+        randomDestination.map((item, i) => (
+          <Box
+            key={i}
+            className={classes[`box${i + 1}`]}
+            style={{ position: 'relative' }}
           >
-            {item.typography}
-          </Typography>
-          <div className={classes.imgShadow1} />
-        </Box>
-      ))}
+            <img
+              src={item.featured_image.slider.url}
+              alt="Guest"
+              className={classes.image}
+            />
+            <Typography
+              variant="h5"
+              color="secondary"
+              className={classes.Typography1}
+            >
+              {item.title}
+            </Typography>
+            <div className={classes.imgShadow1} />
+          </Box>
+        ))
+      )}
     </Box>
   );
 }

@@ -24,7 +24,7 @@ const useStyles = makeStyles((theme) =>
   })
 );
 
-export default function Destinations() {
+export default function Destinations(props) {
   const classes = useStyles();
   return (
     <>
@@ -70,7 +70,7 @@ export default function Destinations() {
         </Grid>
       </Container>
 
-      <DestinationGallery />
+      <DestinationGallery {...props} />
     </>
   );
 }

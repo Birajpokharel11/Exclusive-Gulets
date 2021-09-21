@@ -1,41 +1,23 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
   createStyles,
   makeStyles,
   withStyles,
   Theme
 } from '@material-ui/core/styles';
-import InputLabel from '@material-ui/core/InputLabel';
-import MenuItem from '@material-ui/core/MenuItem';
-import FormControl from '@material-ui/core/FormControl';
-import Select from '@material-ui/core/Select';
-import NativeSelect from '@material-ui/core/NativeSelect';
+
 import InputBase from '@material-ui/core/InputBase';
-import KeyboardArrowDownIcon from '@material-ui/icons/KeyboardArrowDown';
-import { red } from '@material-ui/core/colors';
 import {
   Box,
   Button,
-  ClickAwayListener,
   Dialog,
   DialogActions,
-  Grid,
   Paper,
-  Typography
+  Typography,
+  Grid
 } from '@material-ui/core';
-
-const BootstrapInput = withStyles((theme: Theme) =>
-  createStyles({
-    input: {
-      borderRadius: 4,
-      position: 'relative',
-      background: 'transparent',
-      color: 'white',
-      fontSize: 18,
-      padding: '10px 26px 10px 12px'
-    }
-  })
-)(InputBase);
+import DatePicker from 'react-datepicker';
+import 'react-datepicker/dist/react-datepicker.css';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -62,7 +44,9 @@ export default function Dialouge({ w, setw }) {
   const [week, setWeek] = React.useState(false);
   const [Cweek, setCweek] = React.useState(false);
   const [month, setMonth] = React.useState(false);
-  const [calender, setCalender] = React.useState(false);
+  const [calender, setCalender] = React.useState('calendar');
+  const [startDate, setStartDate] = useState(new Date());
+
   return (
     <div>
       <Dialog open={w} onClose={handleClose}>
@@ -83,20 +67,22 @@ export default function Dialouge({ w, setw }) {
               <Button
                 className={classes.Button}
                 variant="contained"
-                color="secondary"
-                onClick={() => setCalender(!calender)}
+                color="primary"
+                size="large"
+                onClick={() => setCalender('calendar')}
               >
-                Calender
+                Calendar
               </Button>
               <Button
-                onClick={() => setCalender(!calender)}
+                onClick={() => setCalender('flexible')}
                 variant="contained"
-                color="primary"
+                color="secondary"
+                size="large"
               >
                 I{`'`}m Fexible
               </Button>
             </Box>
-            {!calender && (
+            {calender === 'flexible' ? (
               <Box>
                 <Box p={2} display="flex" justifyContent="center">
                   <Typography>
@@ -137,8 +123,16 @@ export default function Dialouge({ w, setw }) {
                   </Box>
                 </Box>
               </Box>
+            ) : (
+              <Grid container justifyContent="center">
+                <DatePicker
+                  selected={startDate}
+                  onChange={(date) => setStartDate(date)}
+                  monthsShown={2}
+                  inline
+                />
+              </Grid>
             )}
-            {<Box></Box>}
           </Paper>
         </DialogActions>
       </Dialog>

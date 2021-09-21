@@ -30,7 +30,6 @@ const BootstrapInput = withStyles((theme: Theme) =>
       borderRadius: 4,
       position: 'relative',
       background: 'transparent',
-      color: 'white',
       fontSize: 18,
       padding: '10px 26px 10px 12px'
     }

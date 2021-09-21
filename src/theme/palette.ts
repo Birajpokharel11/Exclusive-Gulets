@@ -4,14 +4,6 @@ import { colors } from '@material-ui/core';
 const white = '#FFFFFF';
 const black = '#000000';
 
-declare module '@material-ui/core/styles/createPalette' {
-  interface PaletteOptions {
-    white: string;
-    black: string;
-    icon?: string;
-  }
-}
-
 const palette: PaletteOptions = {
   white,
   black,

@@ -215,6 +215,8 @@ export default function Gallery() {
           <Grid
             item
             md={4}
+            sm={6}
+            xs={12}
             lg={3}
             xl={2}
             key={i}

@@ -5,8 +5,10 @@ import { CircularProgress } from '@material-ui/core';
 
 import BannerSection from '@components/BannerSection';
 import CardList from '@components/CardList';
-import { DESTINATIONS_SORTING } from '../../../constants/sorting';
-import { DESTINATIONS_LIMIT_PER_PAGE } from '../../../constants/limits';
+import { Limits, DestinationSort } from '@utils/enums';
+
+// import { DESTINATIONS_SORTING } from '../../../constants/sorting';
+// import { DESTINATIONS_LIMIT_PER_PAGE } from '../../../constants/limits';
 import container from './Destinations.container';
 
 const useStyles = makeStyles((theme) =>
@@ -28,9 +30,9 @@ const Destinations = (props) => {
 
   useEffect(() => {
     onFetchDestinationStart({
-      ...DESTINATIONS_SORTING,
+      ...DestinationSort,
       page: 1,
-      amount_per_page: DESTINATIONS_LIMIT_PER_PAGE
+      amount_per_page: Limits.DESTINATIONS_PER_PAGE
     });
   }, []);
 

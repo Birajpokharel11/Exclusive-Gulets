@@ -103,17 +103,15 @@ export default function Destinations() {
               input={<BootstrapInput />}
               renderValue={(selected) => selected.join(' ')}
             >
-              <div style={{ position: 'relative' }}>
-                {names.map((name) => (
-                  <MenuItem key={name} value={name}>
-                    <Checkbox
-                      color="primary"
-                      checked={personName.indexOf(name) > -1}
-                    />
-                    <ListItemText primary={name} />
-                  </MenuItem>
-                ))}
-              </div>
+              {names.map((name) => (
+                <MenuItem key={name} value={name}>
+                  <Checkbox
+                    color="primary"
+                    checked={personName.indexOf(name) > -1}
+                  />
+                  <ListItemText primary={name} />
+                </MenuItem>
+              ))}
             </Select>
           </FormControl>
         </Grid>

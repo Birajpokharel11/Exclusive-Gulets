@@ -1,9 +1,16 @@
 export default {
   containedPrimary: {
-    backgroundColor: '#2a398d'
+    backgroundColor: '#2a398d',
+    borderRadious: '0px',
+    '&:hover': {
+      backgroundColor: '#2a398d'
+    }
   },
   containedSecondary: {
-    backgroundColor: '#F5F0E4'
+    backgroundColor: '#F5F0E4',
+    '&:hover': {
+      backgroundColor: '#F5F0E4'
+    }
   },
   outlinedPrimary: {
     border: ' 1px solid rgba(255, 255, 255, 0.5)',

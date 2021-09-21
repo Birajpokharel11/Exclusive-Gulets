@@ -10,7 +10,7 @@ import {
 import { Icon } from '@material-ui/core';
 import KeyboardArrowDownIcon from '@material-ui/icons/KeyboardArrowDown';
 
-export default function Checkout() {
+export default function Checkin() {
   // The first commit of Material-UI
   const [selectedDate, setSelectedDate] = React.useState<Date | null>(
     new Date('2021-08-18T21:11:54')

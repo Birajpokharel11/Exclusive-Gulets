@@ -1,6 +1,7 @@
 import React from 'react';
 import {
   createStyles,
+  useTheme,
   makeStyles,
   withStyles,
   Theme
@@ -13,7 +14,7 @@ import {
   useMediaQuery
 } from '@material-ui/core';
 import Pagination from './Pagination';
-import { useTheme } from '@material-ui/styles';
+
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     Box: { width: '100%', background: '#091527' },
@@ -41,7 +42,7 @@ export default function PaginationSection() {
   return (
     <Box className={classes.Box}>
       <Container maxWidth="xl" className={classes.Container}>
-        <Typography align={matches ? 'center' : ''} color="secondary">
+        <Typography align={matches ? 'center' : undefined} color="secondary">
           120 yachts are listed
         </Typography>
         <Pagination />

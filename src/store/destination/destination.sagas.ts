@@ -10,13 +10,13 @@ import * as destinationAction from './destination.actions';
 export function* fetchDestinationAsync({ payload }: AnyAction) {
   try {
     console.log('inside of fetchDestination saga', payload);
-    const response = yield axios.get(
-      `/destinations.json?${queryString.stringify(payload)}`
+    const { data } = yield axios.get(
+      `http://localhost:3000/api/v1/destinations.json?${queryString.stringify(
+        payload
+      )}`
     );
-    console.log('value of response>>>', response);
-    yield put(destinationAction.fetchDestinationSuccess(response));
-
-    destinationAction.fetchDestinationSuccess(response);
+    console.log('value of response>>>', data.destinations);
+    yield put(destinationAction.fetchDestinationSuccess(data.destinations));
   } catch (err) {
     console.error('error received>>>', err);
     yield put(destinationAction.fetchDestinationSuccess(err));

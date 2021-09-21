@@ -63,47 +63,57 @@ const cardContent = [
 export default function CardList(props) {
   const classes = useStyles();
 
+  const { cardList } = props;
+
   return (
     <Container maxWidth="lg">
       <Grid container>
-        {cardContent.map((card, index) => (
-          <Card
-            className={classes.root}
-            classes={{ root: classes.cardStyle }}
-            elevation={0}
-            key={index}
-          >
-            <CardActionArea>
-              <CardMedia
-                component="img"
-                alt="Contemplative Reptile"
-                height="290"
-                width="352"
-                image="./charterYatch.png"
-                title="Contemplative Reptile"
-              />
-              <CardContent>
-                <Typography
-                  gutterBottom
-                  variant="h2"
-                  component="h2"
-                  align="center"
-                >
-                  {card.title}
-                </Typography>
-                <Divider className={classes.dividerColor} variant="middle" />
-                <Typography
-                  variant="subtitle1"
-                  color="textSecondary"
-                  component="p"
-                  align="center"
-                >
-                  {card.subTitle}
-                </Typography>
-              </CardContent>
-            </CardActionArea>
-          </Card>
-        ))}
+        {cardList.length ? (
+          cardList.map((card, index) => (
+            <Card
+              className={classes.root}
+              classes={{ root: classes.cardStyle }}
+              elevation={0}
+              key={index}
+            >
+              <CardActionArea>
+                <CardMedia
+                  component="img"
+                  alt="destination"
+                  height="290"
+                  width="352"
+                  image={card.featured_image.url}
+                  title="Contemplative Reptile"
+                />
+                <CardContent>
+                  <Typography
+                    gutterBottom
+                    variant="h2"
+                    component="h2"
+                    align="center"
+                  >
+                    {card?.title}
+                  </Typography>
+                  <Divider className={classes.dividerColor} variant="middle" />
+                  <Typography
+                    variant="subtitle1"
+                    color="textSecondary"
+                    component="p"
+                    align="center"
+                  >
+                    {card?.description}
+                  </Typography>
+                </CardContent>
+              </CardActionArea>
+            </Card>
+          ))
+        ) : (
+          <Grid item container justifyContent="center">
+            <Typography variant="h2" align="center">
+              Data Not Found!
+            </Typography>
+          </Grid>
+        )}
       </Grid>
     </Container>
   );

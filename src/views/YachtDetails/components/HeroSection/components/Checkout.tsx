@@ -18,17 +18,17 @@ const useStyles = makeStyles((theme) =>
       alignItems: 'center',
       fontFamily: 'Lato',
       fontStyle: 'normal',
-      fontWeight: '300',
+      fontWeight: 300,
       fontSize: '18px',
       textTransform: 'uppercase',
       width: '100%',
-      [theme.breakpoints.down('530')]: {
+      [theme.breakpoints.down(530)]: {
         fontSize: '14px'
       },
-      [theme.breakpoints.down('380')]: {
+      [theme.breakpoints.down(380)]: {
         fontSize: '10px'
       },
-      [theme.breakpoints.down('325')]: {
+      [theme.breakpoints.down(325)]: {
         fontSize: '10px'
       }
     },
@@ -36,14 +36,14 @@ const useStyles = makeStyles((theme) =>
       color: 'white',
       width: ' 38px',
       height: '34px',
-      [theme.breakpoints.down('325')]: {
+      [theme.breakpoints.down(325)]: {
         width: ' 20px',
         height: '30px'
       }
     },
     FlexGrow: {
       flexGrow: 1,
-      [theme.breakpoints.down('564')]: {
+      [theme.breakpoints.down(564)]: {
         display: 'none'
       }
     }
@@ -80,7 +80,7 @@ export default function CheckOut() {
 
   return (
     <>
-      <ButtonGroup variant="" ref={anchorRef}>
+      <ButtonGroup ref={anchorRef}>
         <Button
           onClick={handleClick}
           style={{ color: 'white' }}

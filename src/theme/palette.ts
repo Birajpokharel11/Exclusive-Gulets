@@ -5,6 +5,9 @@ const white = '#FFFFFF';
 const black = '#000000';
 
 const palette: PaletteOptions = {
+  white,
+  black,
+  icon: '#eee',
   primary: {
     main: '#091527'
   },
@@ -34,10 +37,6 @@ const palette: PaletteOptions = {
     dark: colors.red[900],
     main: colors.red[600],
     light: colors.red[400]
-  },
-  common: {
-    white,
-    black
   },
   text: {
     primary: '#2A398D',

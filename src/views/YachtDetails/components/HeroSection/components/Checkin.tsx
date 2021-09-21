@@ -1,16 +1,13 @@
 import React from 'react';
-
+import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import ButtonGroup from '@material-ui/core/ButtonGroup';
 import KeyboardArrowDownIcon from '@material-ui/icons/KeyboardArrowDown';
 import ClickAwayListener from '@material-ui/core/ClickAwayListener';
-import Grow from '@material-ui/core/Grow';
 import Paper from '@material-ui/core/Paper';
 import Popper from '@material-ui/core/Popper';
 import MenuItem from '@material-ui/core/MenuItem';
 import MenuList from '@material-ui/core/MenuList';
-import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
-import { Divider } from '@material-ui/core';
 
 const useStyles = makeStyles((theme) =>
   createStyles({
@@ -19,17 +16,17 @@ const useStyles = makeStyles((theme) =>
       alignItems: 'center',
       fontFamily: 'Lato',
       fontStyle: 'normal',
-      fontWeight: '300',
+      fontWeight: 300,
       fontSize: '18px',
       textTransform: 'uppercase',
       width: '100%',
-      [theme.breakpoints.down('530')]: {
+      [theme.breakpoints.down(530)]: {
         fontSize: '14px'
       },
-      [theme.breakpoints.down('380')]: {
+      [theme.breakpoints.down(380)]: {
         fontSize: '10px'
       },
-      [theme.breakpoints.down('325')]: {
+      [theme.breakpoints.down(325)]: {
         fontSize: '10px'
       }
     },
@@ -37,7 +34,7 @@ const useStyles = makeStyles((theme) =>
       color: 'white',
       width: ' 38px',
       height: '34px',
-      [theme.breakpoints.down('325')]: {
+      [theme.breakpoints.down(325)]: {
         width: ' 20px',
         height: '30px'
       }
@@ -45,7 +42,7 @@ const useStyles = makeStyles((theme) =>
     ButtonGroup: {},
     FlexGrow: {
       flexGrow: 1,
-      [theme.breakpoints.down('564')]: {
+      [theme.breakpoints.down(564)]: {
         display: 'none'
       }
     }
@@ -82,7 +79,7 @@ export default function Checkin() {
 
   return (
     <>
-      <ButtonGroup variant="" ref={anchorRef} className={classes.ButtonGroup}>
+      <ButtonGroup ref={anchorRef} className={classes.ButtonGroup}>
         <Button
           onClick={handleClick}
           style={{ color: 'white' }}

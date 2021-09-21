@@ -108,13 +108,13 @@ export default function ImageSlider() {
     <div>
       <Slider {...settings}>
         {MobileData.map((item, index) => (
-          <div>
+          <div key={index}>
             <img
               src={item.img}
               data-cy={`images-slider-pic-${index}`}
               style={{
                 width: '98%',
-                maxheight: '500px',
+                maxHeight: '500px',
                 display: 'flex',
                 gap: '2rem'
               }}

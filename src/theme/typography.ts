@@ -8,7 +8,7 @@ const theme = createTheme();
 const typography: TypographyOptions = {
   fontFamily: ['Lato', 'sans-serif'].join(','),
   h1: {
-    color: palette.common.white,
+    color: palette.white,
     fontWeight: 300,
     fontSize: '26px',
     letterSpacing: '.1em',

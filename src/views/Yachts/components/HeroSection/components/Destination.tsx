@@ -101,7 +101,6 @@ export default function Destinations() {
               value={personName}
               onChange={handleChange}
               input={<BootstrapInput />}
-              renderValue={(selected) => selected.join(' ')}
             >
               {names.map((name) => (
                 <MenuItem key={name} value={name}>

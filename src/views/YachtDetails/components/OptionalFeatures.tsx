@@ -21,7 +21,6 @@ const useStyles = makeStyles((theme) =>
     },
     TypographyHeading: {
       fontFamily: 'Lato',
-      fontFamily: 'Lato',
       fontStyle: 'normal',
       fontWeight: 'normal',
       fontSize: '18px',
@@ -30,9 +29,8 @@ const useStyles = makeStyles((theme) =>
     },
     ListItems: {
       fontFamily: 'Lato',
-      fontFamily: 'Lato',
       fontStyle: 'normal',
-      fontWeight: '300',
+      fontWeight: 300,
       fontSize: '18px',
       color: '#2A398D',
       paddingDown: '10px'
@@ -47,7 +45,7 @@ export default function YatchServices() {
         <Typography className={classes.TypographyHeading}>TOYS</Typography>
         <Grid container>
           <Grid item xs={12} sm={6} md={3} lg={3}>
-            <div className={classes.demo}>
+            <div>
               <List className={classes.ListItems}>
                 <ListItem>
                   <Typography className={classes.ListItems}>* Kayak</Typography>
@@ -66,7 +64,7 @@ export default function YatchServices() {
             </div>
           </Grid>
           <Grid item xs={12} sm={6} md={3} lg={3}>
-            <div className={classes.demo}>
+            <div>
               <List className={classes.ListItems}>
                 <ListItem>
                   <Typography className={classes.ListItems}>
@@ -87,7 +85,7 @@ export default function YatchServices() {
             </div>
           </Grid>
           <Grid item xs={12} sm={6} md={3} lg={3}>
-            <div className={classes.demo}>
+            <div>
               <List className={classes.ListItems}>
                 <ListItem>
                   <Typography className={classes.ListItems}>
@@ -108,7 +106,7 @@ export default function YatchServices() {
             </div>
           </Grid>
           <Grid item xs={12} sm={6} md={3} lg={3}>
-            <div className={classes.demo}>
+            <div>
               <List className={classes.ListItems}>
                 <ListItem>
                   <Typography className={classes.ListItems}>
@@ -128,7 +126,7 @@ export default function YatchServices() {
       <div>
         <Grid container style={{ paddingTop: '120px', paddingBottom: '10px' }}>
           <Grid item sm={4} md={6} lg={6}>
-            <div className={classes.demo}>
+            <div>
               <Typography className={classes.TypographyHeading}>
                 INCLUSIVE TERMS
               </Typography>
@@ -160,7 +158,7 @@ export default function YatchServices() {
             </div>
           </Grid>
           <Grid item sm={4} md={6} lg={6}>
-            <div className={classes.demo}>
+            <div>
               {' '}
               <Typography className={classes.TypographyHeading}>
                 OPTIONAL EXTRAS

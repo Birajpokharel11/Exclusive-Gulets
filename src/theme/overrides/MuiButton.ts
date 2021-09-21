@@ -1,4 +1,13 @@
-export default {
+import { StyleRules } from '@material-ui/core/styles/withStyles';
+import { ButtonClassKey } from '@material-ui/core/Button';
+
+const MuiButton: Partial<StyleRules<ButtonClassKey, {}>> = {
+  label: {
+    textTransform: 'none',
+    fontWeight: 500,
+    fontSize: '18px',
+    lineHeight: '22px'
+  },
   containedPrimary: {
     backgroundColor: '#2a398d',
     borderRadious: '0px',
@@ -21,13 +30,9 @@ export default {
     }
   },
   outlinedSecondary: { backgroundColor: 'rgba(0, 0, 0, 0.03)' },
-  label: {
-    textTransform: 'none',
-    fontWeight: 500,
-    fontSize: '18px',
-    lineHeight: '22px'
-  },
   containedSizeLarge: {
     padding: '15px 50px'
   }
 };
+
+export default MuiButton;

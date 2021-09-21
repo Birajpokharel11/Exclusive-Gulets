@@ -1,14 +1,11 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import { Container, Grid, Paper, Typography } from '@material-ui/core';
 import Card from '@material-ui/core/Card';
 import CardActionArea from '@material-ui/core/CardActionArea';
 import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
+import Typography from '@material-ui/core/Typography';
 import Slider from 'react-slick';
-
-import Amat from './assets/images/Amat.svg';
-import Tube from './assets/images/Tube.svg';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -23,7 +20,7 @@ const useStyles = makeStyles((theme) => ({
   imageList: {
     width: '100%',
     height: 905,
-    [theme.breakpoints.down('500')]: {
+    [theme.breakpoints.down(500)]: {
       display: 'none',
       MarginLeft: '100px',
       maxwidth: '80%',
@@ -33,7 +30,7 @@ const useStyles = makeStyles((theme) => ({
   MobileView: {
     display: 'none',
 
-    [theme.breakpoints.down('500')]: {
+    [theme.breakpoints.down(500)]: {
       display: 'block',
       width: '100%',
       marginLeft: '15px',
@@ -41,7 +38,7 @@ const useStyles = makeStyles((theme) => ({
       background:
         'linear-gradient(354.05deg, #091527 4.18%, rgba(9, 21, 39, 0.914539) 43.61%, rgba(9, 21, 39, 0) 94.76%)'
     },
-    [theme.breakpoints.down('420')]: {
+    [theme.breakpoints.down(420)]: {
       display: 'block',
       width: '100%',
       marginLeft: 'auto',
@@ -59,13 +56,13 @@ const useStyles = makeStyles((theme) => ({
     display: 'none',
     background:
       'linear-gradient(180.05deg, #091527 4.18%, rgba(9, 21, 39, 0.914539) 43.61%, rgba(9, 21, 39, 0) 94.76%)',
-    [theme.breakpoints.down('500')]: {
+    [theme.breakpoints.down(500)]: {
       display: 'block',
       left: '4.30%',
       top: '18%',
       padding: '8%'
     },
-    [theme.breakpoints.down('380')]: {
+    [theme.breakpoints.down(380)]: {
       display: 'block',
       left: '0%',
       top: '18%',
@@ -167,19 +164,10 @@ export default function MobileSlider() {
               title="Contemplative Reptile"
             />
             <CardContent style={{ backgroundColor: '#F5F0E4' }}>
-              <Typography
-                gutterBottom
-                style={{ textAlign: 'center' }}
-                className={classes.listitemText}
-              >
+              <Typography gutterBottom style={{ textAlign: 'center' }}>
                 Cyclades Islands Greece
               </Typography>
-              <Typography
-                variant="body2"
-                color="textSecondary"
-                component="p"
-                className={classes.listitemText2}
-              >
+              <Typography variant="body2" color="textSecondary" component="p">
                 A perfect yacht charter getaway in probably one of the most
                 romantic, beautiful, and charming place on earth.
               </Typography>
@@ -200,19 +188,11 @@ export default function MobileSlider() {
               image="/assets/images/Tube.svg"
               title="Contemplative Reptile"
             />
-            <CardContent
-              style={{ backgroundColor: '#F5F0E4' }}
-              className={classes.listitemText}
-            >
+            <CardContent style={{ backgroundColor: '#F5F0E4' }}>
               <Typography gutterBottom style={{ textAlign: 'center' }}>
                 Dalmatian Islands Croatia
               </Typography>
-              <Typography
-                variant="body2"
-                color="textSecondary"
-                component="p"
-                className={classes.listitemText2}
-              >
+              <Typography variant="body2" color="textSecondary" component="p">
                 The Cyclades are a group of Greek Islands, best known for the
                 islands of Santorini and Mykonos.
               </Typography>

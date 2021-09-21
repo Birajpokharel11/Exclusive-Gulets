@@ -1,6 +1,6 @@
 import { MenuProps } from '@material-ui/core/Menu';
 
-export const menuProps: MenuProps = {
+export const menuProps: Partial<MenuProps> = {
   anchorOrigin: {
     vertical: 'bottom',
     horizontal: 'left'

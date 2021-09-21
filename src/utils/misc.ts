@@ -31,14 +31,20 @@ export function getCountryStr(countryList, countryListLength) {
   });
 }
 
-export const smoothScroll = {
+export interface SmoothScrollProps {
+  timer?: any;
+  stop?: () => void;
+  scrollToElementById?: (id?: any, props?: any, cb?: any) => boolean;
+}
+
+export const smoothScroll: SmoothScrollProps = {
   timer: null,
 
   stop: function () {
     clearTimeout(this.timer);
   },
 
-  scrollToElementById: function (id, props: any = {}, cb) {
+  scrollToElementById: function (id, props = {}, cb) {
     if (!id) {
       return false;
     }

@@ -19,7 +19,7 @@ const useStyles = makeStyles((theme) => ({
   imageList: {
     width: '100%',
     height: 905,
-    [theme.breakpoints.down('500')]: {
+    [theme.breakpoints.down(500)]: {
       display: 'none',
       MarginLeft: '100px',
       maxwidth: '80%',
@@ -29,7 +29,7 @@ const useStyles = makeStyles((theme) => ({
   MobileView: {
     display: 'none',
 
-    [theme.breakpoints.down('500')]: {
+    [theme.breakpoints.down(500)]: {
       display: 'block',
       width: '100%',
       marginLeft: '15px',
@@ -37,7 +37,7 @@ const useStyles = makeStyles((theme) => ({
       background:
         'linear-gradient(354.05deg, #091527 4.18%, rgba(9, 21, 39, 0.914539) 43.61%, rgba(9, 21, 39, 0) 94.76%)'
     },
-    [theme.breakpoints.down('420')]: {
+    [theme.breakpoints.down(420)]: {
       display: 'block',
       width: '100%',
       marginLeft: 'auto',
@@ -55,13 +55,13 @@ const useStyles = makeStyles((theme) => ({
     display: 'none',
     background:
       'linear-gradient(180.05deg, #091527 4.18%, rgba(9, 21, 39, 0.914539) 43.61%, rgba(9, 21, 39, 0) 94.76%)',
-    [theme.breakpoints.down('500')]: {
+    [theme.breakpoints.down(500)]: {
       display: 'block',
       left: '4.30%',
       top: '18%',
       padding: '8%'
     },
-    [theme.breakpoints.down('380')]: {
+    [theme.breakpoints.down(380)]: {
       display: 'block',
       left: '0%',
       top: '18%',
@@ -158,7 +158,7 @@ export default function Gallery() {
             <ImageListItemBar
               position="top"
               actionIcon={
-                <IconButton aria-label={item.Typography} style={{}}>
+                <IconButton>
                   <Typography
                     style={{
                       display: 'flex',

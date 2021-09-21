@@ -34,7 +34,7 @@ const useStyles = makeStyles((theme: Theme) =>
     },
     Filters: { width: '214px', height: '53px' },
     FilterTypo: {
-      paddingLeft: [theme.spacing(2)],
+      paddingLeft: theme.spacing(2),
       textTransform: 'capitalize'
     },
     Sort: {

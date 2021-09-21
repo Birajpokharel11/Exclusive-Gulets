@@ -4,7 +4,18 @@ import { colors } from '@material-ui/core';
 const white = '#FFFFFF';
 const black = '#000000';
 
+declare module '@material-ui/core/styles/createPalette' {
+  interface PaletteOptions {
+    white: string;
+    black: string;
+    icon?: string;
+  }
+}
+
 const palette: PaletteOptions = {
+  white,
+  black,
+  icon: '#eee',
   primary: {
     main: '#091527'
   },
@@ -34,10 +45,6 @@ const palette: PaletteOptions = {
     dark: colors.red[900],
     main: colors.red[600],
     light: colors.red[400]
-  },
-  common: {
-    white,
-    black
   },
   text: {
     primary: '#2A398D',

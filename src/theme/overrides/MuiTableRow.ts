@@ -1,6 +1,9 @@
+import { StyleRules } from '@material-ui/core/styles/withStyles';
+import { TableRowClassKey } from '@material-ui/core/TableRow';
+
 import palette from '../palette';
 
-export default {
+const MuiTableRow: Partial<StyleRules<TableRowClassKey, {}>> = {
   root: {
     '&$selected': {
       backgroundColor: palette.background.default
@@ -12,3 +15,5 @@ export default {
     }
   }
 };
+
+export default MuiTableRow;

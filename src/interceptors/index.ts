@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-import responseErrorMessage from '../utils/responseErrorMessages';
+import { responseErrorMessage } from '@utils/misc';
 
 export default (store) => {
   // req

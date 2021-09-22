@@ -1,4 +1,6 @@
 import React from 'react';
+import Link from 'next/link';
+
 import {
   createStyles,
   makeStyles,
@@ -212,85 +214,88 @@ export default function Gallery() {
     <Box>
       <Grid container>
         {Gallery.map((item, i) => (
-          <Grid
-            item
-            md={4}
-            sm={6}
-            xs={12}
-            lg={3}
-            xl={2}
-            key={i}
-            style={{
-              position: 'relative',
-              border: '1px solid white'
-            }}
-          >
-            <Box style={{ overflow: 'hidden' }}>
-              <img
-                src={item.img}
-                className={classes.Img}
-                data-cy={`Gallery Images${i}`}
-              />
-              <Box
-                style={{
-                  position: 'absolute',
-                  bottom: '10%',
-                  left: '3%',
-                  color: 'white',
-                  zIndex: 2
-                }}
-              >
-                <Typography variant="h4" color="inherit">
-                  {item.title}{' '}
-                </Typography>
-                <Typography variant="h6" color="inherit">
-                  {item.subtitle}
-                </Typography>
-              </Box>
-              {(item.SpecialOffers || item.InstantBooking) && (
-                <Box className={classes.Boxitems}>
-                  {item.InstantBooking && (
-                    <Button
-                      data-cy={`Special-Offer ${i}`}
-                      className={classes.SpecialOffer}
-                    >
-                      <Typography color="secondary" variant="overline">
-                        {' '}
-                        Special Offer
-                      </Typography>
-                    </Button>
-                  )}
-                  {item.SpecialOffers && (
-                    <Button
-                      color="primary"
-                      variant="outlined"
-                      data-cy={`Instant-Offer ${i}`}
-                      className={classes.InstantOffer}
-                    >
-                      <Typography color="secondary" variant="overline">
-                        Instant Offer
-                      </Typography>
-                    </Button>
-                  )}
-                </Box>
-              )}
-
-              <Box className={classes.location}>
-                <IconButton>
-                  <img src="/assets/images/gallery/location.svg" />
-                </IconButton>
-
-                <Box style={{ color: 'white' }}>
-                  <Typography color="inherit" variant="body1">
-                    France,Monaco
+          <Link href="yachts/test" key={i}>
+            <Grid
+              item
+              md={4}
+              sm={6}
+              xs={12}
+              lg={3}
+              xl={2}
+              key={i}
+              style={{
+                position: 'relative',
+                border: '1px solid white',
+                cursor: 'pointer'
+              }}
+            >
+              <Box style={{ overflow: 'hidden' }}>
+                <img
+                  src={item.img}
+                  className={classes.Img}
+                  data-cy={`Gallery Images${i}`}
+                />
+                <Box
+                  style={{
+                    position: 'absolute',
+                    bottom: '10%',
+                    left: '3%',
+                    color: 'white',
+                    zIndex: 2
+                  }}
+                >
+                  <Typography variant="h4" color="inherit">
+                    {item.title}{' '}
                   </Typography>
-                  <Typography color="inherit" variant="body1">
-                    Turkey
+                  <Typography variant="h6" color="inherit">
+                    {item.subtitle}
                   </Typography>
                 </Box>
+                {(item.SpecialOffers || item.InstantBooking) && (
+                  <Box className={classes.Boxitems}>
+                    {item.InstantBooking && (
+                      <Button
+                        data-cy={`Special-Offer ${i}`}
+                        className={classes.SpecialOffer}
+                      >
+                        <Typography color="secondary" variant="overline">
+                          {' '}
+                          Special Offer
+                        </Typography>
+                      </Button>
+                    )}
+                    {item.SpecialOffers && (
+                      <Button
+                        color="primary"
+                        variant="outlined"
+                        data-cy={`Instant-Offer ${i}`}
+                        className={classes.InstantOffer}
+                      >
+                        <Typography color="secondary" variant="overline">
+                          Instant Offer
+                        </Typography>
+                      </Button>
+                    )}
+                  </Box>
+                )}
+
+                <Box className={classes.location}>
+                  <IconButton>
+                    <img src="/assets/images/gallery/location.svg" />
+                  </IconButton>
+
+                  <Box style={{ color: 'white' }}>
+                    <Typography color="inherit" variant="body1">
+                      France,Monaco
+                    </Typography>
+                    <Typography color="inherit" variant="body1">
+                      Turkey
+                    </Typography>
+                  </Box>
+                </Box>
               </Box>
-            </Box>
-          </Grid>
+            </Grid>
+          </Link>
         ))}
       </Grid>
       <PaginationSection />

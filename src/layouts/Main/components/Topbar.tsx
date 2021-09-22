@@ -37,6 +37,7 @@ const useStyles = makeStyles((theme) => ({
   logo: {
     maxWidth: ' 210px',
     minHeight: '35.84px',
+    cursor: 'pointer',
     [theme.breakpoints.down(340)]: {
       width: '180px'
     }
@@ -162,11 +163,13 @@ export default function Header() {
     <>
       <AppBar position="fixed" elevation={0} className={classes.AppBar}>
         <Toolbar>
-          <img
-            src="/assets/images/logo.svg"
-            alt="me"
-            className={classes.logo}
-          />
+          <Link href="/">
+            <img
+              src="/assets/images/logo.svg"
+              alt="me"
+              className={classes.logo}
+            />
+          </Link>
           <div style={{ flexGrow: 1 }} />
           <Hidden mdDown>
             <Tabs

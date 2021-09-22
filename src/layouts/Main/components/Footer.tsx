@@ -89,195 +89,166 @@ const Footer = () => {
   return (
     <Box className={classes.root}>
       <Container>
-        <Box>
-          <Grid
-            container
-            className={classes.Grid}
-            justifyContent="space-between"
-          >
-            <Grid item md={4} style={{ color: 'white', fontFamily: 'lato' }}>
-              <Typography className={classes.TypographyHeading}>
-                EXCLUSIVE GULETS
-              </Typography>
-              <Typography className={classes.ListItems2}>
-                Level 1. Devonshire House
-                <br /> One Mayfair Place <br />
-                Mayfair, London ,<br />
-                W1J8AJ, ENGLAND
-                <br />
-                <br />
-                info@exclusivegulet.com <br />
-                t. +44 208 144 58 34
-              </Typography>
-            </Grid>
-            <Grid item md={4}>
-              <List className={classes.ListItems}>
-                <div>
-                  <ListItem>
-                    <Typography className={classes.ListItems}>
-                      Browse
-                    </Typography>
-                  </ListItem>
-                  <ListItem>
-                    <Typography className={classes.ListItems}>
-                      For Sale
-                    </Typography>
-                  </ListItem>
-                  <ListItem>
-                    <Typography className={classes.ListItems}>
-                      {' '}
-                      For Charter
-                    </Typography>
-                  </ListItem>
-                </div>
-                <div>
-                  <ListItem>
-                    <Typography className={classes.ListItems}>
-                      {' '}
-                      About
-                    </Typography>
-                  </ListItem>
-                  <ListItem>
-                    <Typography className={classes.ListItems}>
-                      Destinations
-                    </Typography>
-                  </ListItem>
-                  <ListItem>
-                    <Typography className={classes.ListItems}>
-                      {' '}
-                      Dinning
-                    </Typography>
-                  </ListItem>
-                </div>
-                <div>
-                  <ListItem>
-                    <Typography className={classes.ListItems}> Blog</Typography>
-                  </ListItem>
-                  <ListItem>
-                    <Typography className={classes.ListItems}>
-                      SignIn
-                    </Typography>
-                  </ListItem>
-                  <ListItem>
-                    <Typography className={classes.ListItems}>
-                      {' '}
-                      Sign Up
-                    </Typography>
-                  </ListItem>
-                </div>
-              </List>
-            </Grid>
-            <Grid item md={4}>
-              <div className={classes.YatchStyle}>
-                <Typography className={classes.TypographyHeading}>
-                  Yacht-Style Newsletter
-                </Typography>
-                <Typography
-                  className={clsx(classes.ListItems, classes.ListitemsMargin)}
-                >
-                  If you like yachts you need this newsletter in your life.
-                </Typography>
-              </div>
-              <Searchbar />
-              {!matches && (
-                <div
-                  style={{
-                    color: 'white',
-                    marginTop: '16%',
-                    marginBottom: '11%'
-                  }}
-                >
-                  <Typography className={classes.TypographyHeading}>
-                    Contact Us
-                  </Typography>
-                  <div>
-                    <IconButton color="inherit" data-cy="Footer-facebook">
-                      <img src="/assets/images/Facebook.svg" alt="facebook" />
-                    </IconButton>
-                    <IconButton color="inherit" data-cy="Footer-Instagram">
-                      <img src="/assets/images/Instagram.svg" alt="Instagram" />
-                    </IconButton>
-                    <IconButton color="inherit" data-cy="Footer-LinkedIn">
-                      <img src="/assets/images/LinkedIn.svg" alt="LinkedIn" />
-                    </IconButton>
-                    <IconButton color="inherit" data-cy="Footer-Twitter">
-                      <img src="/assets/images/Twitter.svg" alt="Twitter" />
-                    </IconButton>
-                    <IconButton color="inherit" data-cy="Footer-Youtube">
-                      <img src="/assets/images/Youtube.svg" alt="Youtube" />
-                    </IconButton>
-                  </div>
-                </div>
-              )}
-            </Grid>
-            <Grid>
-              {' '}
-              {matches && (
-                <div
-                  style={{
-                    color: 'white',
-                    marginTop: '16%',
-                    marginBottom: '11%'
-                  }}
-                >
-                  <Typography className={classes.TypographyHeading}>
-                    Contact Us
-                  </Typography>
-                  <div>
-                    <IconButton color="inherit" data-cy="Footer-facebook">
-                      <img src="/assets/images/Facebook.svg" alt="facebook" />
-                    </IconButton>
-                    <IconButton color="inherit" data-cy="Footer-Instagram">
-                      <img src="/assets/images/Instagram.svg" alt="Instagram" />
-                    </IconButton>
-                    <IconButton color="inherit" data-cy="Footer-LinkedIn">
-                      <img src="/assets/images/LinkedIn.svg" alt="LinkedIn" />
-                    </IconButton>
-                    <IconButton color="inherit" data-cy="Footer-Twitter">
-                      <img src="/assets/images/Twitter.svg" alt="Twitter" />
-                    </IconButton>
-                    <IconButton color="inherit" data-cy="Footer-Youtube">
-                      <img src="/assets/images/Youtube.svg" alt="Youtube" />
-                    </IconButton>
-                  </div>
-                </div>
-              )}
-            </Grid>
+        <Grid container justifyContent="space-between">
+          <Grid item md={4} style={{ color: 'white', fontFamily: 'lato' }}>
+            <Typography className={classes.TypographyHeading}>
+              EXCLUSIVE GULETS
+            </Typography>
+            <Typography className={classes.ListItems2}>
+              Level 1. Devonshire House
+              <br /> One Mayfair Place <br />
+              Mayfair, London ,<br />
+              W1J8AJ, ENGLAND
+              <br />
+              <br />
+              info@exclusivegulet.com <br />
+              t. +44 208 144 58 34
+            </Typography>
           </Grid>
-        </Box>
-        <Box>
-          <Grid
-            container
-            justifyContent="center"
-            alignItems="center"
-            style={{
-              color: 'white',
-              width: '100%'
-            }}
-          >
-            <Grid item md={7}>
-              <Typography className={classes.ListItems}>
-                Copyright 2019 - EXCLUSIVE GULETS
+          <Grid item md={4}>
+            <List className={classes.ListItems}>
+              <div>
+                <ListItem>
+                  <Typography className={classes.ListItems}>Browse</Typography>
+                </ListItem>
+                <ListItem>
+                  <Typography className={classes.ListItems}>
+                    For Sale
+                  </Typography>
+                </ListItem>
+                <ListItem>
+                  <Typography className={classes.ListItems}>
+                    For Charter
+                  </Typography>
+                </ListItem>
+              </div>
+              <div>
+                <ListItem>
+                  <Typography className={classes.ListItems}> About</Typography>
+                </ListItem>
+                <ListItem>
+                  <Typography className={classes.ListItems}>
+                    Destinations
+                  </Typography>
+                </ListItem>
+                <ListItem>
+                  <Typography className={classes.ListItems}>Dinning</Typography>
+                </ListItem>
+              </div>
+              <div>
+                <ListItem>
+                  <Typography className={classes.ListItems}> Blog</Typography>
+                </ListItem>
+                <ListItem>
+                  <Typography className={classes.ListItems}>SignIn</Typography>
+                </ListItem>
+                <ListItem>
+                  <Typography className={classes.ListItems}>Sign Up</Typography>
+                </ListItem>
+              </div>
+            </List>
+          </Grid>
+          <Grid item md={4}>
+            <div className={classes.YatchStyle}>
+              <Typography className={classes.TypographyHeading}>
+                Yacht-Style Newsletter
               </Typography>
-            </Grid>
-            <Grid item md={5}>
+              <Typography
+                className={clsx(classes.ListItems, classes.ListitemsMargin)}
+              >
+                If you like yachts you need this newsletter in your life.
+              </Typography>
+            </div>
+            <Searchbar />
+            {!matches && (
               <div
-                color="inherit"
                 style={{
-                  display: 'flex',
-                  alignItems: 'center',
-                  gap: '5rem',
-                  marginLeft: '7%'
+                  color: 'white',
+                  marginTop: '16%',
+                  marginBottom: '11%'
                 }}
               >
-                <Typography className={classes.ListItems}>Privacy</Typography>
-                <Typography className={classes.ListItems}>
-                  Terms and Conditions
+                <Typography className={classes.TypographyHeading}>
+                  Contact Us
                 </Typography>
+                <div>
+                  <IconButton color="inherit" data-cy="Footer-facebook">
+                    <img src="/assets/images/Facebook.svg" alt="facebook" />
+                  </IconButton>
+                  <IconButton color="inherit" data-cy="Footer-Instagram">
+                    <img src="/assets/images/Instagram.svg" alt="Instagram" />
+                  </IconButton>
+                  <IconButton color="inherit" data-cy="Footer-LinkedIn">
+                    <img src="/assets/images/Linkedin.svg" alt="LinkedIn" />
+                  </IconButton>
+                  <IconButton color="inherit" data-cy="Footer-Twitter">
+                    <img src="/assets/images/Twitter.svg" alt="Twitter" />
+                  </IconButton>
+                  <IconButton color="inherit" data-cy="Footer-Youtube">
+                    <img src="/assets/images/Youtube.svg" alt="Youtube" />
+                  </IconButton>
+                </div>
               </div>
+            )}
+          </Grid>
+          <Grid>
+            {matches && (
+              <div
+                style={{
+                  color: 'white',
+                  marginTop: '16%',
+                  marginBottom: '11%'
+                }}
+              >
+                <Typography className={classes.TypographyHeading}>
+                  Contact Us
+                </Typography>
+                <div>
+                  <IconButton color="inherit" data-cy="Footer-facebook">
+                    <img src="/assets/images/Facebook.svg" alt="facebook" />
+                  </IconButton>
+                  <IconButton color="inherit" data-cy="Footer-Instagram">
+                    <img src="/assets/images/Instagram.svg" alt="Instagram" />
+                  </IconButton>
+                  <IconButton color="inherit" data-cy="Footer-LinkedIn">
+                    <img src="/assets/images/Linkedin.svg" alt="LinkedIn" />
+                  </IconButton>
+                  <IconButton color="inherit" data-cy="Footer-Twitter">
+                    <img src="/assets/images/Twitter.svg" alt="Twitter" />
+                  </IconButton>
+                  <IconButton color="inherit" data-cy="Footer-Youtube">
+                    <img src="/assets/images/Youtube.svg" alt="Youtube" />
+                  </IconButton>
+                </div>
+              </div>
+            )}
+          </Grid>
+        </Grid>
+        <Grid
+          container
+          justifyContent="center"
+          alignItems="center"
+          style={{
+            color: 'white',
+            width: '100%'
+          }}
+        >
+          <Grid item md={7}>
+            <Typography className={classes.ListItems}>
+              Copyright 2019 - EXCLUSIVE GULETS
+            </Typography>
+          </Grid>
+          <Grid item container justifyContent="space-between" md={5}>
+            <Grid item>
+              <Typography className={classes.ListItems}>Privacy</Typography>
+            </Grid>
+            <Grid item>
+              <Typography className={classes.ListItems}>
+                Terms and Conditions
+              </Typography>
             </Grid>
           </Grid>
-        </Box>
+        </Grid>
       </Container>
     </Box>
   );

@@ -1,20 +1,20 @@
 import React from 'react';
-import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
-import Paper from '@material-ui/core/Paper';
-import InputBase from '@material-ui/core/InputBase';
-import IconButton from '@material-ui/core/IconButton';
-import MenuIcon from '@material-ui/icons/Menu';
-import SearchIcon from '@material-ui/icons/Search';
-import DirectionsIcon from '@material-ui/icons/Directions';
 import {
-  Box,
-  Button,
-  Container,
-  Typography,
-  useMediaQuery
-} from '@material-ui/core';
-import { useTheme } from '@material-ui/styles';
+  makeStyles,
+  useTheme,
+  createStyles,
+  Theme
+} from '@material-ui/core/styles';
+import { useMediaQuery } from '@material-ui/core';
+import Box from '@material-ui/core/Box';
+import Paper from '@material-ui/core/Paper';
+import Container from '@material-ui/core/Container';
+import Button from '@material-ui/core/Button';
+import InputBase from '@material-ui/core/InputBase';
+import Typography from '@material-ui/core/Typography';
+import IconButton from '@material-ui/core/IconButton';
 import Divider from '@material-ui/core/Divider';
+
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     root: {

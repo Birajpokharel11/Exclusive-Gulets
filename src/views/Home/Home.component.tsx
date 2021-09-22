@@ -27,17 +27,6 @@ const useStyles = makeStyles((theme) =>
 const Home = (props) => {
   const classes = useStyles();
 
-  const {
-    onFetchOfferStart,
-    onFetchRandomDestinationStart,
-    destination: { loading, randomDestination }
-  } = props;
-
-  useEffect(() => {
-    onFetchOfferStart();
-    onFetchRandomDestinationStart();
-  }, []);
-
   return (
     <div>
       <Box className={classes.root}>
@@ -47,7 +36,7 @@ const Home = (props) => {
       <SpecialOffers />
       <CharterYatch />
       <YatchSlider />
-      <Destinations {...props} />
+      <Destinations />
       <Experience />
       <NewsAndBlogs />
       <EnquiryForm />

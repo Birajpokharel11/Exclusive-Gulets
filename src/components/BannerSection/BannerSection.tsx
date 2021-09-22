@@ -35,6 +35,7 @@ const useStyles = makeStyles((theme) =>
 );
 
 export default function BannerSection(props) {
+  const { title, description } = props;
   const classes = useStyles();
 
   return (
@@ -47,7 +48,7 @@ export default function BannerSection(props) {
               color="inherit"
               style={{ marginBottom: '15px' }}
             >
-              DESTINATIONS
+              {title}
             </Typography>
 
             <Typography
@@ -56,11 +57,7 @@ export default function BannerSection(props) {
               variant="subtitle1"
               style={{ marginBottom: '32px' }}
             >
-              Perfect location and the perfect yacht for your ultimate charter
-              experience. There is no better way than chartering a luxury gulet
-              or yacht to see more of the world. With two third of the Earth
-              covered in water, there is always a new exciting destination to
-              explore and a different shoreline to discover.
+              {description}
             </Typography>
           </Container>
         </Box>

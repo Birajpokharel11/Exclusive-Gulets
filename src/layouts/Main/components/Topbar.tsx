@@ -178,8 +178,18 @@ export default function Header() {
                 label="sad"
                 style={{ display: 'none', padding: '0', margin: '0' }}
               />
-              <Tab className={classes.tab} label="YATCHS" data-cy="YATCHS" />
-              <Tab className={classes.tab} label="OFFERS" data-cy="OFFERS" />
+              <Tab
+                className={classes.tab}
+                label="YATCHS"
+                data-cy="YATCHS"
+                href="/yachts"
+              />
+              <Tab
+                className={classes.tab}
+                label="OFFERS"
+                data-cy="OFFERS"
+                href="/yachts/offers"
+              />
               <Tab
                 className={classes.tab}
                 label="DESTINATIONS"
@@ -190,11 +200,13 @@ export default function Header() {
                 className={classes.tab}
                 label="BESPOKE EXPERIENCES"
                 data-cy="BESPOKEEXPERIENCES"
+                href="/experiences"
               />
               <Tab
                 className={classes.tab}
                 label="NEWS $ BLOGS"
                 data-cy="NEWSBLOGS"
+                href="/news-blogs"
               />
               <Tab
                 className={classes.tab}

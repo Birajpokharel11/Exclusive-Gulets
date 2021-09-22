@@ -9,7 +9,7 @@ import { Limits, DestinationSort } from '@utils/enums';
 
 // import { DESTINATIONS_SORTING } from '../../../constants/sorting';
 // import { DESTINATIONS_LIMIT_PER_PAGE } from '../../../constants/limits';
-import container from './Destinations.container';
+import container from './BespokeExperiences.container';
 
 const useStyles = makeStyles((theme) =>
   createStyles({
@@ -40,8 +40,8 @@ const Destinations = (props) => {
     <div>
       <BannerSection
         {...props}
-        title="DESTINATIONS"
-        description="Perfect location and the perfect yacht for your ultimate charter experience. There is no better way than chartering a luxury gulet or yacht to see more of the world. With two third of the Earth covered in water, there is always a new exciting destination to explore and a different shoreline to discover."
+        title="EXCLUSIVE GULETS"
+        description="Experience Exceptional Yachting"
       />
       {loading ? <CircularProgress /> : <CardList cardList={destinations} />}
     </div>

@@ -214,7 +214,13 @@ export default function Gallery() {
     <Box>
       <Grid container>
         {Gallery.map((item, i) => (
-          <Link href="yachts/test" key={i}>
+          <Link
+            href={{
+              pathname: '/yachts/[slug]',
+              query: { slug: '1' }
+            }}
+            key={i}
+          >
             <Grid
               item
               md={4}

@@ -22,7 +22,8 @@ const useStyles = makeStyles((theme) =>
   })
 );
 
-export default function NewsAndBlogs() {
+export default function NewsAndBlogs(props) {
+  const { postsList } = props;
   const classes = useStyles();
   return (
     <Box maxWidth="false" className={classes.root}>
@@ -52,71 +53,31 @@ export default function NewsAndBlogs() {
           </Grid>
         </Grid>
         <Grid container spacing={3}>
-          <Grid item container md={4} xs={12} spacing={2}>
-            <Grid item container justifyContent="center">
-              <Image src={YatchParty} alt="guest" />
-            </Grid>
-            <Grid item container justifyContent="center">
-              <Typography
-                align="center"
-                variant="subtitle1"
-                style={{ fontWeight: 'bold' }}
-              >
-                What to expect when chartering a gulet or yacht?{' '}
-              </Typography>
-            </Grid>
+          {postsList.map((post) => (
+            <Grid item container md={4} xs={12} spacing={2}>
+              <Grid item container justifyContent="center">
+                <Image src={YatchParty} alt="guest" />
+              </Grid>
+              <Grid item container justifyContent="center">
+                <Typography
+                  align="center"
+                  variant="subtitle1"
+                  style={{ fontWeight: 'bold' }}
+                >
+                  {post.title}
+                </Typography>
+              </Grid>
 
-            <Grid item>
-              <Typography align="center" variant="subtitle2">
-                Chartering a yacht or gulet for a vacation is pure bliss on
-                water. What more can you ask for with a trained crew to take
-                care of your every need, a world-class chef to...
-              </Typography>
+              <Grid item>
+                <Typography
+                  align="center"
+                  variant="subtitle2"
+                  dangerouslySetInnerHTML={{ __html: post.description }}
+                />
+              </Grid>
             </Grid>
-          </Grid>
-          <Grid item container md={4} xs={12} spacing={2}>
-            <Grid item container justifyContent="center">
-              <Image src={YatchYoga} alt="guest" />
-            </Grid>
-            <Grid item container justifyContent="center">
-              <Typography
-                align="center"
-                variant="subtitle1"
-                style={{ fontWeight: 'bold' }}
-              >
-                The Art of Dining Onboard a Private Yacht{' '}
-              </Typography>
-            </Grid>
+          ))}
 
-            <Grid item>
-              <Typography align="center" variant="subtitle2">
-                Among the many pleasures of chartering a private yacht, one that
-                stands out for most is the divine, mouth-watering cuisine!
-              </Typography>
-            </Grid>
-          </Grid>
-          <Grid item container md={4} xs={12} spacing={2}>
-            <Grid item container justifyContent="center">
-              <Image src={YatchYoga} alt="guest" />
-            </Grid>
-            <Grid item container justifyContent="center">
-              <Typography
-                align="center"
-                variant="subtitle1"
-                style={{ fontWeight: 'bold' }}
-              >
-                The Glamorous Gulet, Mare Nostrum
-              </Typography>
-            </Grid>
-
-            <Grid item>
-              <Typography align="center" variant="subtitle2">
-                Luxury and value don’t often come in the same package but they
-                do aboard Mare Nostrum, a 144ft gulet, which offers yacht
-                charters on the south-west coast of Turkey...
-              </Typography>
-            </Grid>
-          </Grid>
           <Grid item container justifyContent="center">
             <Button variant="contained" className={classes.buttonStyle}>
               View All News & Blogs

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Container from '@material-ui/core/Container';
 
 import HeroSection from './components/HeroSection';
@@ -7,17 +7,28 @@ import AdvancedFilterSection from './components/AdvancedFilterSection';
 import { Destinations } from '@views/Home/components';
 import Experiences from './components/Experiences';
 import Enquiry from './components/Enquiry';
-const YatchDetails = () => {
+import container from './Yatchs.container';
+
+const YatchDetails = (props) => {
+  const {
+    onFetchRandomDestinationStart,
+    destination: { randomDestination }
+  } = props;
+
+  useEffect(() => {
+    onFetchRandomDestinationStart();
+  }, []);
+
   return (
     <Container maxWidth={false} style={{ padding: '0%' }}>
       <HeroSection />
       <AdvancedFilterSection />
       <Gallery />
-      <Destinations />
+      <Destinations destinationList={randomDestination} />
       <Experiences />
       <Enquiry />
     </Container>
   );
 };
 
-export default YatchDetails;
+export default container(YatchDetails);

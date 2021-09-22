@@ -14,7 +14,7 @@ const useStyles = makeStyles((theme) =>
       [theme.breakpoints.down('md')]: {
         width: '350px'
       },
-      height: '50px',
+      maxHeight: '50px',
       borderRadius: '4px',
       [theme.breakpoints.down(530)]: {
         fontSize: '14px'

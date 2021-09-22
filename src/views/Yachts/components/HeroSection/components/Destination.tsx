@@ -22,6 +22,7 @@ import KeyboardArrowDownIcon from '@material-ui/icons/KeyboardArrowDown';
 
 import Filter from './Filter';
 import Guests from './Guests';
+import YachtsPreviewDialouge from './YachtsPreviewDialouge';
 
 const BootstrapInput = withStyles((theme: Theme) =>
   createStyles({
@@ -85,6 +86,13 @@ export default function Destinations() {
     setPersonName(event.target.value);
   };
   const [personName, setPersonName] = React.useState(['Destinations:']);
+  const [open, setOpen] = React.useState(false);
+  const handleDrawerOpen = () => {
+    setOpen(true);
+  };
+  const handleDrawerClose = () => {
+    setOpen(false);
+  };
 
   return (
     <div>
@@ -128,11 +136,13 @@ export default function Destinations() {
         <Button
           variant="contained"
           className={classes.Button}
+          onClick={handleDrawerOpen}
           data-cy="View-Yatchs"
         >
           View Yatchs
         </Button>
       </Grid>
+      <YachtsPreviewDialouge open={open} setOpen={setOpen} />
     </div>
   );
 }

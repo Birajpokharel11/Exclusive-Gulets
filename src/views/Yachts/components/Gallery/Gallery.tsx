@@ -28,7 +28,7 @@ const useStyles = makeStyles((theme: Theme) =>
       width: '119px',
       height: '38px',
       borderRadius: '0',
-      zIndex: 2,
+
       '&:hover': {
         background: 'rgba(12, 22, 37, 0.6)'
       }
@@ -40,7 +40,6 @@ const useStyles = makeStyles((theme: Theme) =>
       height: '38px',
       borderRadius: '0',
       textTransform: 'capitalize',
-      zIndex: 2,
 
       '&:hover': {
         background: '#AB3996'
@@ -63,7 +62,6 @@ const useStyles = makeStyles((theme: Theme) =>
       height: '100%',
       width: '100%',
       mixBlendMode: 'normal',
-      zIndex: 1,
 
       background:
         'linear-gradient(180deg, #071529 0%, rgba(7, 21, 41, 0) 50%, #071529 100%)'
@@ -84,7 +82,7 @@ const useStyles = makeStyles((theme: Theme) =>
     location: {
       display: 'flex',
       position: 'absolute',
-      zIndex: 2,
+
       top: 20,
       right: 10
     }
@@ -246,8 +244,7 @@ export default function Gallery() {
                     position: 'absolute',
                     bottom: '10%',
                     left: '3%',
-                    color: 'white',
-                    zIndex: 2
+                    color: 'white'
                   }}
                 >
                   <Typography variant="h4" color="inherit">

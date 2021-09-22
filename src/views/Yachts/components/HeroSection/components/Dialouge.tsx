@@ -18,7 +18,7 @@ import {
 } from '@material-ui/core';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
-
+import CloseIcon from '@material-ui/icons/Close';
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     margin: {

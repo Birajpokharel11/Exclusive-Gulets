@@ -68,14 +68,14 @@ export default function Search() {
       </Paper>
       <Divider orientation="vertical" flexItem />
       <Box style={{ display: 'flex', gap: '1.5rem' }}>
-        <Button className={classes.Filters} color="primary" variant="">
+        <Button className={classes.Filters} color="primary">
           <img src="/assets/images/AFilter.svg" />
           <Typography color="inherit" className={classes.FilterTypo}>
             Advanced Filters
           </Typography>
         </Button>
         <Divider orientation="vertical" flexItem />
-        <Button className={classes.Sort} color="primary" variant="">
+        <Button className={classes.Sort} color="primary">
           <img src="/assets/images/Sort.svg" />
           <Typography
             color="inherit"

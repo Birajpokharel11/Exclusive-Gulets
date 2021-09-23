@@ -10,7 +10,7 @@ import {
   Box
 } from '@material-ui/core';
 
-import Destination from './components/Destination';
+import Search from './components/Search';
 
 const useStyles = makeStyles((theme) =>
   createStyles({
@@ -76,7 +76,7 @@ export default function HeroSection() {
             Filter as your needs and find your dream yacht.
           </Typography>
           <Box pt={12}>
-            <Destination />
+            <Search />
           </Box>
         </Container>
       </Box>

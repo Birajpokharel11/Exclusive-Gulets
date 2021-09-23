@@ -1,80 +1,145 @@
-import React from 'react';
-import {
-  createStyles,
-  makeStyles,
-  withStyles,
-  Theme
-} from '@material-ui/core/styles';
-import InputLabel from '@material-ui/core/InputLabel';
-import MenuItem from '@material-ui/core/MenuItem';
-import FormControl from '@material-ui/core/FormControl';
-import Select from '@material-ui/core/Select';
-import NativeSelect from '@material-ui/core/NativeSelect';
+import React, { useState } from 'react';
+import clsx from 'clsx';
+import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
+import Grid from '@material-ui/core/Grid';
+import FormLabel from '@material-ui/core/FormLabel';
 import InputBase from '@material-ui/core/InputBase';
-import KeyboardArrowDownIcon from '@material-ui/icons/KeyboardArrowDown';
-import { red } from '@material-ui/core/colors';
+import ClickAwayListener from '@material-ui/core/ClickAwayListener';
+import Grow from '@material-ui/core/Grow';
+import Paper from '@material-ui/core/Paper';
+import Popper from '@material-ui/core/Popper';
+import IconButton from '@material-ui/core/IconButton';
+import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 
-const BootstrapInput = withStyles((theme: Theme) =>
+const useStyles = makeStyles((theme) =>
   createStyles({
-    input: {
-      borderRadius: 4,
-      position: 'relative',
-      backgroundColor: 'none',
-      color: 'white',
-      height: '30px',
-      border: '1px solid #ced4da',
+    ButtonGroup: {
+      border: ' 1px solid rgba(255, 255, 255, 0.5)',
+      width: '450px',
       background: 'rgba(12, 22, 37, 0.6)',
-      fontSize: 16,
-      padding: '10px 26px 10px 12px'
-    }
-  })
-)(InputBase);
-
-const useStyles = makeStyles((theme: Theme) =>
-  createStyles({
-    margin: {
-      width: '200px',
       [theme.breakpoints.down('md')]: {
-        width: '164px'
+        width: '350px'
+      },
+      maxHeight: '50px',
+      borderRadius: '4px',
+      [theme.breakpoints.down(530)]: {
+        fontSize: '14px'
       }
     },
+    Button: { '&:hover': { baackground: 'red' } },
     icon: {
       fill: 'white',
+      transform: 'rotate(180deg)'
+    },
+    inputRoot: {
+      flex: 1
+    },
+    input: {
+      padding: '14.5px 14px'
+    },
+    label: {
+      fontStyle: 'normal',
+      fontWeight: 'normal',
+      fontSize: '12px',
+      lineHeight: '14px',
+      color: '#FFFFFF'
+    },
+    expand: {
+      transform: 'rotate(0deg)',
+      marginLeft: 'auto',
+      transition: theme.transitions.create('transform', {
+        duration: theme.transitions.duration.shortest
+      })
+    },
+    expandOpen: {
       transform: 'rotate(180deg)'
     }
   })
 );
 
-export default function Guests() {
+export default function Filter() {
   const classes = useStyles();
 
-  const [age, setAge] = React.useState('');
-  const handleChange = (event: React.ChangeEvent<{ value: unknown }>) => {
-    setAge(event.target.value as string);
+  const [open, setOpen] = useState(false);
+  const anchorRef = React.useRef<HTMLDivElement>(null);
+
+  const handleToggle = () => {
+    setOpen((prevOpen) => !prevOpen);
   };
+
+  const handleClose = (event: React.MouseEvent<EventTarget>) => {
+    if (
+      anchorRef.current &&
+      anchorRef.current.contains(event.target as HTMLElement)
+    ) {
+      return;
+    }
+
+    setOpen(false);
+  };
+
+  function handleListKeyDown(event: React.KeyboardEvent) {
+    if (event.key === 'Tab') {
+      event.preventDefault();
+      setOpen(false);
+    }
+  }
+
+  // return focus to the button when we transitioned from !open -> open
+  const prevOpen = React.useRef(open);
+  React.useEffect(() => {
+    if (prevOpen.current === true && open === false) {
+      anchorRef.current!.focus();
+    }
+
+    prevOpen.current = open;
+  }, [open]);
+
   return (
-    <FormControl className={classes.margin}>
-      <NativeSelect
-        color="primary"
-        classes={{
-          icon: classes.icon
-        }}
-        IconComponent={KeyboardArrowDownIcon}
-        id="demo-customized-select-native"
-        value={age}
-        onChange={handleChange}
-        input={<BootstrapInput />}
+    <>
+      <FormLabel className={classes.label}>Guests</FormLabel>
+      <div ref={anchorRef} className={classes.ButtonGroup}>
+        <Grid container justifyContent="center">
+          <Grid item xs style={{ display: 'flex' }}>
+            <InputBase
+              classes={{
+                input: classes.input
+              }}
+              placeholder="Check in"
+            />
+            <IconButton
+              className={clsx(classes.expand, {
+                [classes.expandOpen]: open
+              })}
+              onClick={handleToggle}
+              aria-label="show more"
+            >
+              <ExpandMoreIcon />
+            </IconButton>
+          </Grid>
+        </Grid>
+      </div>
+      <Popper
+        open={open}
+        anchorEl={anchorRef.current}
+        role={undefined}
+        transition
+        disablePortal
       >
-        <option style={{ background: 'black' }} value={10}>
-          Guests
-        </option>
-        <option style={{ background: 'black' }} value={20}>
-          Twenty
-        </option>
-        <option style={{ background: 'black' }} value={30}>
-          Thirty
-        </option>
-      </NativeSelect>
-    </FormControl>
+        {({ TransitionProps, placement }) => (
+          <Grow
+            {...TransitionProps}
+            style={{
+              transformOrigin:
+                placement === 'bottom' ? 'center top' : 'center bottom'
+            }}
+          >
+            <ClickAwayListener onClickAway={handleClose}>
+              <Paper></Paper>
+            </ClickAwayListener>
+          </Grow>
+        )}
+      </Popper>
+    </>
   );
 }

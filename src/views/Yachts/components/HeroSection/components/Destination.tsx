@@ -2,72 +2,60 @@ import React from 'react';
 import {
   createStyles,
   makeStyles,
-  withStyles,
+  useTheme,
   Theme
 } from '@material-ui/core/styles';
+import Input from '@material-ui/core/Input';
+import InputLabel from '@material-ui/core/InputLabel';
+import MenuItem from '@material-ui/core/MenuItem';
 import FormControl from '@material-ui/core/FormControl';
-import {
-  Select,
-  Grid,
-  Typography,
-  Button,
-  Box,
-  InputLabel,
-  MenuItem,
-  Checkbox,
-  ListItemText
-} from '@material-ui/core';
-import InputBase from '@material-ui/core/InputBase';
-import KeyboardArrowDownIcon from '@material-ui/icons/KeyboardArrowDown';
+import FormLabel from '@material-ui/core/FormLabel';
+import ListItemText from '@material-ui/core/ListItemText';
+import Select from '@material-ui/core/Select';
+import Checkbox from '@material-ui/core/Checkbox';
 
-import Filter from './Filter';
-import Guests from './Guests';
-import YachtsPreviewDialouge from './YachtsPreviewDialouge';
-
-const BootstrapInput = withStyles((theme: Theme) =>
-  createStyles({
-    input: {
-      borderRadius: 4,
-      position: 'relative',
-      backgroundColor: 'none',
-      color: 'white',
-      border: '1px solid #ced4da',
-      background: 'rgba(12, 22, 37, 0.6)',
-      height: '30px',
-      fontSize: 16,
-      padding: '10px 26px 10px 12px'
-    }
-  })
-)(InputBase);
+import { menuProps } from '@utils/utils';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
-    margin: {
-      width: '400px',
-      [theme.breakpoints.down('md')]: {
-        width: '167px'
+    root: {
+      background: 'rgba(12, 22, 37, 0.6)',
+      border: '1px solid rgba(255, 255, 255, 0.5)',
+      boxSizing: 'border-box',
+      borderRadius: '4px',
+      '&:focus': {
+        background: 'rgba(12, 22, 37, 0.6)',
+        border: '1px solid rgba(255, 255, 255, 0.5)',
+        boxSizing: 'border-box',
+        borderRadius: '4px'
+      },
+      '&.MuiOutlinedInput-inputMarginDense': {
+        paddingTop: '14.5px',
+        paddingBottom: '15px'
       }
     },
-    icon: {
-      fill: 'white',
-      transform: 'rotate(180deg)'
-    },
-    Button: {
-      width: '190px',
-      height: '52px',
-      background: '#F5F0E4',
-      color: '#2A398D',
-      '&:hover': { background: '#F5F0E4' },
-      [theme.breakpoints.down(780)]: {
-        width: '228px',
-        position: 'absolute',
-        top: '110%',
-        left: '36%',
-        right: '50%'
-      }
+    label: {
+      fontStyle: 'normal',
+      fontWeight: 'normal',
+      fontSize: '12px',
+      lineHeight: '14px',
+      color: '#FFFFFF'
     }
   })
 );
+
+const ITEM_HEIGHT = 48;
+const ITEM_PADDING_TOP = 8;
+const MenuProps = {
+  ...menuProps,
+  PaperProps: {
+    style: {
+      maxHeight: ITEM_HEIGHT * 4.5 + ITEM_PADDING_TOP,
+      width: 250
+    }
+  }
+};
+
 const names = [
   'Oliver Hansen',
   'Van Henry',
@@ -80,69 +68,40 @@ const names = [
   'Virginia Andrews',
   'Kelly Snyder'
 ];
-export default function Destinations() {
+
+export default function MultipleSelect() {
   const classes = useStyles();
-  const handleChange = (event) => {
-    setPersonName(event.target.value);
-  };
-  const [personName, setPersonName] = React.useState(['Destinations:']);
-  const [open, setOpen] = React.useState(false);
-  const handleDrawerOpen = () => {
-    setOpen(true);
-  };
-  const handleDrawerClose = () => {
-    setOpen(false);
+  const theme = useTheme();
+  const [personName, setPersonName] = React.useState<string[]>([]);
+
+  const handleChange = (event: React.ChangeEvent<{ value: unknown }>) => {
+    setPersonName(event.target.value as string[]);
   };
 
   return (
-    <div>
-      <Grid container>
-        <Grid item md style={{ paddingBottom: '2%' }}>
-          <FormControl className={classes.margin}>
-            <Select
-              id="demo-mutiple-checkbox"
-              multiple
-              classes={{
-                icon: classes.icon
-              }}
-              IconComponent={KeyboardArrowDownIcon}
-              value={personName}
-              onChange={handleChange}
-              input={<BootstrapInput />}
-            >
-              {names.map((name) => (
-                <MenuItem key={name} value={name}>
-                  <Checkbox
-                    color="primary"
-                    checked={personName.indexOf(name) > -1}
-                  />
-                  <ListItemText primary={name} />
-                </MenuItem>
-              ))}
-            </Select>
-          </FormControl>
-        </Grid>
-        <div style={{ flexGrow: 1 }} />
-        <Grid item md>
-          <Filter />
-        </Grid>
-        <div style={{ flexGrow: 1 }} />
-
-        <Grid item md>
-          <Guests />
-        </Grid>
-        <div style={{ flexGrow: 1 }} />
-
-        <Button
-          variant="contained"
-          className={classes.Button}
-          onClick={handleDrawerOpen}
-          data-cy="View-Yatchs"
-        >
-          View Yatchs
-        </Button>
-      </Grid>
-      <YachtsPreviewDialouge open={open} setOpen={setOpen} />
-    </div>
+    <>
+      <FormLabel className={classes.label}>Destination</FormLabel>
+      <Select
+        variant="outlined"
+        fullWidth
+        multiple
+        classes={{
+          root: classes.root
+        }}
+        MenuProps={MenuProps}
+        onChange={handleChange}
+        value={personName}
+        renderValue={(selected) => (selected as string[]).join(', ')}
+        placeholder="Select Destination"
+        margin="dense"
+      >
+        {names.map((name) => (
+          <MenuItem key={name} value={name}>
+            <Checkbox checked={personName.indexOf(name) > -1} />
+            <ListItemText primary={name} />
+          </MenuItem>
+        ))}
+      </Select>
+    </>
   );
 }

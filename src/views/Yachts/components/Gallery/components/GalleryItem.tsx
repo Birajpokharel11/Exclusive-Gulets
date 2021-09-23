@@ -1,10 +1,12 @@
 import React from 'react';
-import Link from 'next/link';
+
 import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
 import Box from '@material-ui/core/Box';
 import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
+
+import Link from '@components/Link';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -99,15 +101,9 @@ export default function GalleryItem({
   const [offers, setOffers] = React.useState(true);
 
   return (
-    <Link
-      href={{
-        pathname: '/yachts/[slug]',
-        query: { slug: '1' }
-      }}
-      key={i}
-    >
-      <Box className={classes.root}>
-        <Box className={classes.view}>
+    <Box className={classes.root}>
+      <Box className={classes.view}>
+        <Link href={`/yachts/${i}`}>
           <img
             src={img}
             className={classes.Img}
@@ -115,57 +111,58 @@ export default function GalleryItem({
             alt=""
           />
           <Box className={classes.BoxShadows} />
-        </Box>
-        <Box className={classes.details}>
-          <Typography variant="h4" color="inherit">
-            {title}{' '}
-          </Typography>
-          <Typography variant="h6" color="inherit">
-            {subtitle}
-          </Typography>
-        </Box>
-        {(SpecialOffers || InstantBooking) && (
-          <Box className={classes.Boxitems}>
-            {InstantBooking && (
-              <Button
-                data-cy={`Special-Offer ${i}`}
-                className={classes.SpecialOffer}
-              >
-                <Typography color="secondary" variant="overline">
-                  Special Offer
-                </Typography>
-              </Button>
-            )}
-            {SpecialOffers && (
-              <Button
-                color="primary"
-                variant="outlined"
-                data-cy={`Instant-Offer ${i}`}
-                className={classes.InstantOffer}
-              >
-                <Typography color="secondary" variant="overline">
-                  Instant Offer
-                </Typography>
-              </Button>
-            )}
-          </Box>
-        )}
+        </Link>
+      </Box>
 
-        <Box className={classes.location}>
-          <IconButton>
-            <img src="/assets/images/gallery/location.svg" />
-          </IconButton>
+      <Box className={classes.details}>
+        <Typography variant="h4" color="inherit">
+          {title}{' '}
+        </Typography>
+        <Typography variant="h6" color="inherit">
+          {subtitle}
+        </Typography>
+      </Box>
+      {(SpecialOffers || InstantBooking) && (
+        <Box className={classes.Boxitems}>
+          {InstantBooking && (
+            <Button
+              data-cy={`Special-Offer ${i}`}
+              className={classes.SpecialOffer}
+            >
+              <Typography color="secondary" variant="overline">
+                Special Offer
+              </Typography>
+            </Button>
+          )}
+          {SpecialOffers && (
+            <Button
+              color="primary"
+              variant="outlined"
+              data-cy={`Instant-Offer ${i}`}
+              className={classes.InstantOffer}
+            >
+              <Typography color="secondary" variant="overline">
+                Instant Offer
+              </Typography>
+            </Button>
+          )}
+        </Box>
+      )}
 
-          <Box style={{ color: 'white' }}>
-            <Typography color="inherit" variant="body1">
-              France,Monaco
-            </Typography>
-            <Typography color="inherit" variant="body1">
-              Turkey
-            </Typography>
-          </Box>
+      <Box className={classes.location}>
+        <IconButton>
+          <img src="/assets/images/gallery/location.svg" />
+        </IconButton>
+
+        <Box style={{ color: 'white' }}>
+          <Typography color="inherit" variant="body1">
+            France,Monaco
+          </Typography>
+          <Typography color="inherit" variant="body1">
+            Turkey
+          </Typography>
         </Box>
       </Box>
-    </Link>
+    </Box>
   );
 }

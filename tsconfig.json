@@ -21,7 +21,8 @@
       "@views/*": ["src/views/*"],
       "@theme/*": ["src/theme/*"],
       "@utils/*": ["src/utils/*"],
-      "@store/*": ["src/store/*"]
+      "@store/*": ["src/store/*"],
+      "@mocks/*": ["src/mocks/*"]
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],

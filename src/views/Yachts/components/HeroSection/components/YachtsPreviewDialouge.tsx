@@ -52,13 +52,19 @@ const useStyles = makeStyles((theme) => ({
       padding: '0px,0px,0px,32px'
     }
   },
+  SOfferBox:{width:'100%', position:'relative',height:'80px', overflow:'hidden',minHeight:'80px', background:'#F7F7F7'},
+  Vector:{
+    position:'absolute',
+    left:0,
+    top:5,
+    width:'107px'
+  },
   drawer: {
     backgroundColor: '#091527'
   },
   drawerPaper: {
     width: drawerWidth,
     backgroundColor: '#071529D9',
-    paddingRight: '2%',
     [theme.breakpoints.down(785)]: {
       width: '80%'
     },
@@ -70,7 +76,7 @@ const useStyles = makeStyles((theme) => ({
     fontWeight: 400,
     fontSize: '26px'
   },
-  button: { color: '#2A398D ', width: '200px', height: '52px',  },
+  button: { color: '#2A398D ', width: '200px', height: `calc(100vh-70)`,  },
   Typography2:{fontWeight:'normal'}
 }));
 const MobileData = [
@@ -86,7 +92,6 @@ export default function YachtsPreviewDialouge(props) {
   const { open, setOpen } = props;
   return (
     <>
-      <div className={classes.toolbarMargin} />
       <Drawer
         className={classes.drawer}
         variant="persistent"
@@ -96,6 +101,19 @@ export default function YachtsPreviewDialouge(props) {
           paper: classes.drawerPaper
         }}
       >
+        
+        {true && (<><div className={classes.toolbarMargin} />
+        <Box className={classes.SOfferBox}> <Grid item container justifyContent="center" lg={12}>
+        <img
+        src="/assets/images/Vector.svg"
+       className={classes.Vector}
+        alt="vector"
+      />
+          <Box color='#2A398D'>
+          <Typography color="inherit" variant = "h1" align="center">There wıll be a special offer text here!</Typography>
+          </Box >
+          </Grid></Box></>)}
+
         <div className={classes.toolbarMargin} />
         <Box display="flex" pt={1} justifyContent="space-between">
           <Box display="flex" alignItems="center" pl={3}>

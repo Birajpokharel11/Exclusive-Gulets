@@ -194,7 +194,6 @@ export default function Filter() {
         transition
         style={{zIndex:1}}
         disablePortal
-        style={{ zIndex: 1 }}
       >
         {({ TransitionProps, placement }) => (
           <Grow

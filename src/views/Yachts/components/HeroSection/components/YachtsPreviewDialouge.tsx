@@ -137,7 +137,7 @@ export default function YachtsPreviewDialouge(props) {
           </Grid>
         </Box>
         <Box>
-          <Grid container justifyContent="center" flexDirection="column">
+          <Grid container justifyContent="center" direction="column">
             {MobileData.map((item, i) => (
               <Grid item key={i}>
                 <Box display="flex" style={{ gap: '2rem' }}>

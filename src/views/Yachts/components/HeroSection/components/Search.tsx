@@ -26,17 +26,8 @@ import YachtsPreviewDialouge from './YachtsPreviewDialouge';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
-    margin: {
-      width: '400px',
-      [theme.breakpoints.down('md')]: {
-        width: '167px'
-      }
-    },
-    icon: {
-      fill: 'white',
-      transform: 'rotate(180deg)'
-    },
     Button: {
+      marginTop: '18px',
       width: '190px',
       height: '52px',
       background: '#F5F0E4',

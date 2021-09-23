@@ -193,6 +193,7 @@ export default function Filter() {
         role={undefined}
         transition
         disablePortal
+        style={{ zIndex: 1 }}
       >
         {({ TransitionProps, placement }) => (
           <Grow

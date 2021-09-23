@@ -63,7 +63,7 @@ const cardContent = [
 export default function CardList(props) {
   const classes = useStyles();
 
-  const { cardList } = props;
+  const { cardList, newsBlog } = props;
 
   return (
     <Container maxWidth="lg">
@@ -95,14 +95,25 @@ export default function CardList(props) {
                     {card?.title}
                   </Typography>
                   <Divider className={classes.dividerColor} variant="middle" />
-                  <Typography
-                    variant="subtitle1"
-                    color="textSecondary"
-                    component="p"
-                    align="center"
-                  >
-                    {card?.description}
-                  </Typography>
+                  {newsBlog ? (
+                    <Typography
+                      variant="subtitle1"
+                      color="textSecondary"
+                      component="p"
+                      align="center"
+                    >
+                      {card?.meta_description}
+                    </Typography>
+                  ) : (
+                    <Typography
+                      variant="subtitle1"
+                      color="textSecondary"
+                      component="p"
+                      align="center"
+                    >
+                      {card?.description}
+                    </Typography>
+                  )}
                 </CardContent>
               </CardActionArea>
             </Card>

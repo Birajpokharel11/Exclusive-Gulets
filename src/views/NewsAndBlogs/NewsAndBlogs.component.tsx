@@ -25,7 +25,9 @@ const Destinations = (props) => {
 
   const {
     onFetchDestinationStart,
-    destination: { loading, destinations }
+    onFetchPostsStart,
+    destination: { loading, destinations },
+    posts: { postsList }
   } = props;
 
   useEffect(() => {
@@ -34,6 +36,7 @@ const Destinations = (props) => {
       page: 1,
       amount_per_page: Limits.DESTINATIONS_PER_PAGE
     });
+    onFetchPostsStart();
   }, []);
 
   return (
@@ -43,7 +46,11 @@ const Destinations = (props) => {
         title="NEWS & BLOGS"
         description="Keep up to date with our latest yachting news, charter destinations, special offers and more…"
       />
-      {loading ? <CircularProgress /> : <CardList cardList={destinations} />}
+      {loading ? (
+        <CircularProgress />
+      ) : (
+        <CardList cardList={postsList} newsBlog="newsBlog" />
+      )}
     </div>
   );
 };

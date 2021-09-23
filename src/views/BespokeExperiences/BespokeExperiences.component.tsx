@@ -25,6 +25,7 @@ const Destinations = (props) => {
 
   const {
     onFetchDestinationStart,
+    onFetchExperiencesStart,
     destination: { loading, destinations }
   } = props;
 
@@ -34,6 +35,7 @@ const Destinations = (props) => {
       page: 1,
       amount_per_page: Limits.DESTINATIONS_PER_PAGE
     });
+    onFetchExperiencesStart();
   }, []);
 
   return (

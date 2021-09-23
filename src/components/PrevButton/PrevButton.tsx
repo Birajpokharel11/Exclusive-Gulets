@@ -11,6 +11,10 @@ const useStyles = makeStyles(() => ({
   },
   label: {
     color: '#2a398d'
+  },
+  icon: {
+    fontSize: '1em',
+    color: '#2a398d'
   }
 }));
 
@@ -27,7 +31,7 @@ const ButtonChevron = ({ className, onClick, type }: Props) => {
     if (type === 'icon') {
       return (
         <IconButton onClick={onClick} className={clsx(classes.root, className)}>
-          <ArrowBackIosIcon fontSize="small" />
+          <ArrowBackIosIcon className={classes.icon} />
         </IconButton>
       );
     }

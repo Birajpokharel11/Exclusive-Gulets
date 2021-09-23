@@ -1,5 +1,5 @@
 import React from 'react';
-import Slider from 'react-slick';
+import clsx from 'clsx';
 import { withStyles, makeStyles, useTheme } from '@material-ui/core/styles';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 import Hidden from '@material-ui/core/Hidden';
@@ -10,10 +10,11 @@ import StepButton from '@material-ui/core/StepButton';
 import StepConnector from '@material-ui/core/StepConnector';
 import Button from '@material-ui/core/Button';
 import Grid from '@material-ui/core/Grid';
+import Slider from 'react-slick';
 
 import PrevButton from '@components/PrevButton';
 import NextButton from '@components/NextButton';
-import clsx from 'clsx';
+import Location from '@components/icons/Location';
 
 const StyleConnector = withStyles({
   active: {
@@ -99,13 +100,7 @@ const SliderNav: React.FC<Props> = ({ sliderRef, data, activeSlideIndex }) => {
                     <Typography variant="h5">{step.place}</Typography>
 
                     <Typography variant="body1" align="center">
-                      <svg
-                        width="15"
-                        height="20"
-                        viewBox="0 0 15 20"
-                        fill="none"
-                        xmlns="http://www.w3.org/2000/svg"
-                      ></svg>{' '}
+                      <Location style={{}} />
                       {step.country}
                       {/* {getCountryStr(
                         step.sailing_countries,

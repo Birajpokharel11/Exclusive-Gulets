@@ -6,8 +6,6 @@ import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
 
-import Link from '@components/Link';
-
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     root: {
@@ -67,6 +65,7 @@ const useStyles = makeStyles((theme: Theme) =>
     },
     view: {
       transition: '0.5s ease',
+      cursor: 'pointer',
       '&:hover': {
         width: '100%',
         transform: 'scale(1.2)'
@@ -89,12 +88,13 @@ const useStyles = makeStyles((theme: Theme) =>
 );
 
 export default function GalleryItem({
+  i,
   img,
   title,
   subtitle,
   SpecialOffers,
   InstantBooking,
-  i
+  handleDrawerOpen
 }) {
   const classes = useStyles();
 
@@ -102,16 +102,14 @@ export default function GalleryItem({
 
   return (
     <Box className={classes.root}>
-      <Box className={classes.view}>
-        <Link href={`/yachts/${i}`}>
-          <img
-            src={img}
-            className={classes.Img}
-            data-cy={`Gallery Images${i}`}
-            alt=""
-          />
-          <Box className={classes.BoxShadows} />
-        </Link>
+      <Box className={classes.view} onClick={() => handleDrawerOpen()}>
+        <img
+          src={img}
+          className={classes.Img}
+          data-cy={`Gallery Images${i}`}
+          alt=""
+        />
+        <Box className={classes.BoxShadows} />
       </Box>
 
       <Box className={classes.details}>

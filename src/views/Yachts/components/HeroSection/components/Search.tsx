@@ -50,11 +50,6 @@ export default function Destinations() {
     setPersonName(event.target.value);
   };
   const [personName, setPersonName] = React.useState(['Destinations:']);
-  const [open, setOpen] = React.useState(false);
-  const handleDrawerOpen = () => {
-    setOpen(!open);
-  };
-
 
   return (
     <Container>
@@ -72,14 +67,12 @@ export default function Destinations() {
           <Button
             variant="contained"
             className={classes.Button}
-            onClick={handleDrawerOpen}
             data-cy="View-Yatchs"
           >
             View Yatchs
           </Button>
         </Grid>
       </Grid>
-      <YachtsPreviewDialouge open={open} setOpen={setOpen}/>
     </Container>
   );
 }

@@ -1,8 +1,7 @@
 import React from 'react';
-import Image from 'next/image';
 import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
 import { Container, Grid, Box, Typography, Button } from '@material-ui/core';
-import Guest from 'public/assets/images/heroYatch.png';
+
 import CardWithSlider from '@components/CardWithSlider';
 
 const useStyles = makeStyles((theme) =>
@@ -79,76 +78,22 @@ export default function Introduction() {
         </Grid>
 
         <CardWithSlider cardsData={specialOffers} />
+
+        <Grid
+          container
+          justifyContent="center"
+          alignItems="center"
+          style={{ paddingTop: '3rem' }}
+        >
+          <Button
+            variant="contained"
+            size="large"
+            className={classes.buttonStyle}
+          >
+            View All Offers
+          </Button>
+        </Grid>
       </Container>
-      {/* <Grid container justifyContent="center" alignItems="center" spacing={2}>
-          <Grid item container md={4} xs={12} spacing={2}>
-            <Grid item container justifyContent="center">
-              <Image src={Guest} alt="guest" />
-            </Grid>
-            <Grid item container justifyContent="center">
-              <Typography color="primary" align="center">
-                Mare Nostrum is offering a 5% discount on the week of July 6 -
-                13 2021
-              </Typography>
-            </Grid>
-
-            <Grid item container md={4} xs={12} spacing={2}>
-              <Grid item container justifyContent="center">
-                <Image src={Guest} alt="guest" />
-              </Grid>
-              <Grid item container justifyContent="center">
-                <Typography color="primary" align="center">
-                  20% early booking discount on the low season rates
-                </Typography>
-              </Grid>
-
-              <Grid item>
-                <Typography align="center" color="primary">
-                  The aft section has mainly been left clear for guests to use
-                  for outdoor exercise, however there are bean bag loungers to
-                  port for guests to rest in the sunshine.
-                </Typography>
-              </Grid>
-            </Grid>
-
-            <Grid item container md={4} xs={12} spacing={2}>
-              <Grid item container justifyContent="center">
-                <Image src={Guest} alt="guest" />
-              </Grid>
-              <Grid item container justifyContent="center">
-                <Typography color="primary" align="center">
-                  Mare Nostrum is offering a 5% discount on the week of July 6 -
-                  13 2021
-                </Typography>
-              </Grid>
-              <Grid item>
-                <Typography align="center" color="primary">
-                  The aft section has mainly been left clear for guests to use
-                  for outdoor exercise, however there are bean bag loungers to
-                  port for guests to rest in the sunshine.
-                </Typography>
-              </Grid>
-            </Grid>
-            <Grid item container justifyContent="center">
-              <Button
-                variant="contained"
-                size="large"
-                className={classes.buttonStyle}
-              >
-                View All Offers
-              </Button>
-            </Grid>
-          </Grid>
-          <Grid item container justifyContent="center">
-            <Button
-              variant="contained"
-              size="large"
-              className={classes.buttonStyle}
-            >
-              View All Offers
-            </Button>
-          </Grid>
-        </Grid> */}
     </Box>
   );
 }

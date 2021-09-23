@@ -7,7 +7,7 @@ import {
 } from '@material-ui/core/styles';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 import Box from '@material-ui/core/Box';
-import Grid from '@material-ui/core/Grid';
+import Grid, { GridSize } from '@material-ui/core/Grid';
 import Slider, { Settings } from 'react-slick';
 
 import NextArrow from '@components/icons/NextArrow';
@@ -24,6 +24,7 @@ interface Card {
 
 interface Props {
   cardsData: Card[];
+  md?: GridSize;
 }
 
 const useStyles = makeStyles((theme) =>
@@ -34,7 +35,7 @@ const useStyles = makeStyles((theme) =>
   })
 );
 
-const CardWithSlider = ({ cardsData }: Props) => {
+const CardWithSlider = ({ cardsData, md = 4 }: Props) => {
   const classes = useStyles();
 
   const theme = useTheme();
@@ -72,7 +73,7 @@ const CardWithSlider = ({ cardsData }: Props) => {
 
   const mapGridCards = () => {
     return cardsData.map((card) => (
-      <Grid item style={{ padding: '1rem' }} md={4} key={card.id}>
+      <Grid item style={{ padding: '1rem' }} md={md} key={card.id}>
         <MediaCard {...card} />
       </Grid>
     ));

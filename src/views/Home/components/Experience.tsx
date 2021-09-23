@@ -6,6 +6,8 @@ import YatchParty from 'public/assets/images/yatchParty.png';
 import YatchYoga from 'public/assets/images/yatchYoga.png';
 import underLine from 'public/assets/images/introductionLine.svg';
 
+import CardWithSlider from '@components/CardWithSlider';
+
 const useStyles = makeStyles((theme) =>
   createStyles({
     root: {
@@ -27,6 +29,23 @@ const useStyles = makeStyles((theme) =>
   })
 );
 
+const data = [
+  {
+    id: '1',
+    title: 'What to expect when chartering a gulet or yacht?',
+    description:
+      'Chartering a yacht or gulet for a vacation is pure bliss on water. What more can you ask for with a trained crew to take care of your every need, a world-class chef to...',
+    imgPath: '/assets/images/yatchParty.png'
+  },
+  {
+    id: '2',
+    title: 'The Art of Dining Onboard a Private Yacht',
+    description:
+      'Among the many pleasures of chartering a private yacht, one that stands out for most is the divine, mouth-watering cuisine!',
+    imgPath: '/assets/images/yatchYoga.png'
+  }
+];
+
 export default function Experience() {
   const classes = useStyles();
   return (
@@ -47,7 +66,7 @@ export default function Experience() {
           </Grid>
 
           <Grid item container justifyContent="center" xs={12}>
-            <Image src={underLine} alt="underline" />
+            <img src="/assets/images/introductionLine.svg" alt="underline" />
           </Grid>
           <Grid item>
             <Typography align="center" color="textPrimary" variant="subtitle1">
@@ -58,64 +77,17 @@ export default function Experience() {
             </Typography>
           </Grid>
         </Grid>
-        <Grid container spacing={3}>
-          <Grid item container md={6} xs={12} spacing={2}>
-            <Grid item container justifyContent="center">
-              <Image src={YatchParty} alt="guest" />
-            </Grid>
-            <Grid item container justifyContent="center">
-              <Typography
-                color="textPrimary"
-                align="center"
-                variant="subtitle1"
-                style={{ fontWeight: 'bold' }}
-              >
-                What to expect when chartering a gulet or yacht?{' '}
-              </Typography>
-            </Grid>
 
-            <Grid item>
-              <Typography
-                align="center"
-                color="textPrimary"
-                variant="subtitle2"
-              >
-                Chartering a yacht or gulet for a vacation is pure bliss on
-                water. What more can you ask for with a trained crew to take
-                care of your every need, a world-class chef to...
-              </Typography>
-            </Grid>
-          </Grid>
-          <Grid item container md={6} xs={12} spacing={2}>
-            <Grid item container justifyContent="center">
-              <Image src={YatchYoga} alt="guest" />
-            </Grid>
-            <Grid item container justifyContent="center">
-              <Typography
-                align="center"
-                variant="subtitle1"
-                style={{ fontWeight: 'bold' }}
-              >
-                The Art of Dining Onboard a Private Yacht{' '}
-              </Typography>
-            </Grid>
+        <CardWithSlider cardsData={data} md={6} />
 
-            <Grid item>
-              <Typography align="center" variant="subtitle2">
-                Among the many pleasures of chartering a private yacht, one that
-                stands out for most is the divine, mouth-watering cuisine!
-              </Typography>
-            </Grid>
-          </Grid>
-          <Grid item container justifyContent="center">
-            <Button
-              variant="contained"
-              size="large"
-              className={classes.buttonStyle}
-            >
-              View All Experiences
-            </Button>
-          </Grid>
+        <Grid container justifyContent="center">
+          <Button
+            variant="contained"
+            size="large"
+            className={classes.buttonStyle}
+          >
+            View All Experiences
+          </Button>
         </Grid>
       </Container>
     </Box>

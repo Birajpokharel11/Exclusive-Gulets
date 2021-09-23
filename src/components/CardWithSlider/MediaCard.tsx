@@ -10,11 +10,16 @@ import Typography from '@material-ui/core/Typography';
 
 const useStyles = makeStyles({
   root: {
-    backgroundColor: '#F5F0E4'
+    backgroundColor: '#0000'
   },
   media: {
     height: '270px',
     width: 'auto'
+  },
+  btnLabel: {
+    color: '#ab3996',
+    fontSize: '16px',
+    fontWeight: 400
   }
 });
 
@@ -29,20 +34,25 @@ export default function MediaCard(props) {
           image={props.imgPath ?? ''}
           title="Contemplative Reptile"
         />
-        <CardContent>
-          <Typography
-            gutterBottom
-            variant="subtitle1"
-            align="center"
-            style={{ fontWeight: 'bold' }}
-          >
-            {props.title ?? ''}
-          </Typography>
-          <Typography variant="subtitle2" component="p" align="center">
-            {props.description ?? ''}
-          </Typography>
-        </CardContent>
       </CardActionArea>
+      <CardContent>
+        <Typography
+          gutterBottom
+          variant="subtitle1"
+          align="center"
+          style={{ fontWeight: 'bold' }}
+        >
+          {props.title ?? ''}
+        </Typography>
+        <Typography variant="subtitle2" component="p" align="center">
+          {props.description ?? ''}
+        </Typography>
+      </CardContent>
+      <CardActions style={{ justifyContent: 'center' }}>
+        <Button size="small" classes={{ label: classes.btnLabel }}>
+          Read More
+        </Button>
+      </CardActions>
     </Card>
   );
 }

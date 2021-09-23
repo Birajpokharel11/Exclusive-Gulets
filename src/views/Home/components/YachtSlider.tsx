@@ -11,11 +11,19 @@ import { slider } from '@mocks/_homeSliderMock';
 const useStyles = makeStyles((theme) =>
   createStyles({
     root: {
-      backgroundColor: '#F5F0E4'
+      backgroundColor: '#F5F0E4',
+      position: 'relative'
     },
     Yatch: {
       width: '100%',
       height: ' 671px'
+    },
+    gridContainer: {
+      paddingTop: '3rem',
+      marginBottom: '1rem',
+      [theme.breakpoints.up('md')]: {
+        marginBottom: '60px'
+      }
     },
     buttonStyle: {
       backgroundColor: '#2A398D',
@@ -59,7 +67,7 @@ export default function YatchSlider() {
         container
         justifyContent="center"
         alignItems="center"
-        style={{ paddingTop: '3rem' }}
+        className={classes.gridContainer}
       >
         <Grid item xs={12}>
           <Typography color="textPrimary" align="center" variant="h2">

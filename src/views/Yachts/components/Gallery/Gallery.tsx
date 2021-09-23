@@ -2,7 +2,7 @@ import React from 'react';
 import Box from '@material-ui/core/Box';
 import Grid from '@material-ui/core/Grid';
 
-import { data } from '@mocks/_galleryMock';
+import { data } from '../../../../mocks/_galleryMock';
 
 import GalleryItem from './components/GalleryItem';
 import PaginationSection from './components/PaginationComponents';

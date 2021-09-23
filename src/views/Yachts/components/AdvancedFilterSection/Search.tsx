@@ -7,6 +7,7 @@ import {
 } from '@material-ui/core/styles';
 import { useMediaQuery } from '@material-ui/core';
 import Box from '@material-ui/core/Box';
+import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
 import Container from '@material-ui/core/Container';
 import Button from '@material-ui/core/Button';
@@ -14,6 +15,9 @@ import InputBase from '@material-ui/core/InputBase';
 import Typography from '@material-ui/core/Typography';
 import IconButton from '@material-ui/core/IconButton';
 import Divider from '@material-ui/core/Divider';
+
+import AdvanceFilter from './components/AdvanceFilter';
+import Sort from './components/Sort';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -34,21 +38,9 @@ const useStyles = makeStyles((theme: Theme) =>
       color: 'white'
     },
     Container: {
-      display: 'flex',
-      padding: '40px 6%',
-      justifyContent: 'space-between'
+      padding: '40px 0'
     },
     iconButton: {
-      color: 'white'
-    },
-    Filters: { color: 'white', width: '214px', height: '53px' },
-    FilterTypo: {
-      paddingLeft: theme.spacing(2),
-      textTransform: 'capitalize'
-    },
-    Sort: {
-      maxWidth: '121px',
-      height: '53px',
       color: 'white'
     }
   })
@@ -57,35 +49,23 @@ const useStyles = makeStyles((theme: Theme) =>
 export default function Search() {
   const classes = useStyles();
   const theme = useTheme();
-  const matches = useMediaQuery(theme.breakpoints.down('xs'));
+
   return (
-    <Container maxWidth="xl" className={classes.Container}>
-      <Paper component="form" className={classes.root}>
-        <IconButton className={classes.iconButton} aria-label="menu">
-          <img src="/assets/images/Search.svg" />
-        </IconButton>
-        <InputBase className={classes.input} placeholder="Search By Name" />
-      </Paper>
-      <Divider orientation="vertical" flexItem />
-      <Box style={{ display: 'flex', gap: '1.5rem' }}>
-        <Button className={classes.Filters} color="primary">
-          <img src="/assets/images/AFilter.svg" />
-          <Typography color="inherit" className={classes.FilterTypo}>
-            Advanced Filters
-          </Typography>
-        </Button>
-        <Divider orientation="vertical" flexItem />
-        <Button className={classes.Sort} color="primary">
-          <img src="/assets/images/Sort.svg" />
-          <Typography
-            color="inherit"
-            variant="h5"
-            className={classes.FilterTypo}
-          >
-            Sort
-          </Typography>
-        </Button>
-      </Box>
+    <Container maxWidth="lg" className={classes.Container}>
+      <Grid container>
+        <Grid item md={8}>
+          <Paper component="form" className={classes.root}>
+            <IconButton className={classes.iconButton} aria-label="menu">
+              <img src="/assets/images/Search.svg" />
+            </IconButton>
+            <InputBase className={classes.input} placeholder="Search By Name" />
+          </Paper>
+        </Grid>
+        <Grid item md={4} container justifyContent="flex-end">
+          <AdvanceFilter />
+          <Sort />
+        </Grid>
+      </Grid>
     </Container>
   );
 }

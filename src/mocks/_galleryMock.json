@@ -1,0 +1,115 @@
+[
+  {
+    "img": "/assets/images/gallery/Yatchs3.png",
+    "title": "ARESTEAS",
+    "subtitle": "From €145.000 to €165.000 | 166m | 10 Guests ",
+    "location": "France,Monaco",
+    "SpecialOffers": false,
+
+    "InstantBooking": true,
+    "cols": "Turkey"
+  },
+  {
+    "img": "/assets/images/gallery/Yatchs4.png",
+    "title": "ARESTEAS",
+    "subtitle": "From €145.000 to €165.000 | 166m | 10 Guests ",
+    "location": "France,Monaco",
+    "SpecialOffers": true,
+
+    "InstantBooking": false,
+    "cols": "Turkey"
+  },
+  {
+    "img": "/assets/images/gallery/Yatchs1.png",
+    "title": "ARESTEAS",
+    "subtitle": "From €145.000 to €165.000 | 166m | 10 Guests ",
+    "location": "France,Monaco",
+    "SpecialOffers": true,
+
+    "InstantBooking": true,
+    "cols": "Turkey"
+  },
+  {
+    "img": "/assets/images/gallery/Yatchs2.png",
+    "title": "ARESTEAS",
+    "subtitle": "From €145.000 to €165.000 | 166m | 10 Guests ",
+    "location": "France,Monaco",
+    "SpecialOffers": true,
+
+    "InstantBooking": false,
+    "cols": "Turkey"
+  },
+  {
+    "img": "/assets/images/gallery/Yatchs3.png",
+    "title": "ARESTEAS",
+    "subtitle": "From €145.000 to €165.000 | 166m | 10 Guests ",
+    "location": "France,Monaco",
+    "SpecialOffers": false,
+    "InstantBooking": true,
+    "cols": "Turkey"
+  },
+  {
+    "img": "/assets/images/gallery/Yatchs4.png",
+    "title": "ARESTEAS",
+    "subtitle": "From €145.000 to €165.000 | 166m | 10 Guests ",
+    "location": "France,Monaco",
+    "SpecialOffers": true,
+
+    "InstantBooking": true,
+    "cols": "Turkey"
+  },
+  {
+    "img": "/assets/images/gallery/Yatchs1.png",
+    "title": "ARESTEAS",
+    "subtitle": "From €145.000 to €165.000 | 166m | 10 Guests ",
+    "location": "France,Monaco",
+    "SpecialOffers": false,
+    "InstantBooking": true,
+    "cols": "Turkey"
+  },
+  {
+    "img": "/assets/images/gallery/Yatchs2.png",
+    "title": "ARESTEAS",
+    "subtitle": "From €145.000 to €165.000 | 166m | 10 Guests ",
+    "location": "France,Monaco",
+    "SpecialOffers": true,
+    "InstantBooking": true,
+    "cols": "Turkey"
+  },
+  {
+    "img": "/assets/images/gallery/Yatchs3.png",
+    "title": "ARESTEAS",
+    "subtitle": "From €145.000 to €165.000 | 166m | 10 Guests ",
+    "location": "France,Monaco",
+    "SpecialOffers": true,
+    "InstantBooking": true,
+    "cols": "Turkey"
+  },
+  {
+    "img": "/assets/images/gallery/Yatchs4.png",
+    "title": "ARESTEAS",
+    "subtitle": "From €145.000 to €165.000 | 166m | 10 Guests ",
+    "location": "France,Monaco",
+    "SpecialOffers": false,
+    "InstantBooking": false,
+    "cols": "Turkey"
+  },
+  {
+    "img": "/assets/images/gallery/Yatchs2.png",
+    "title": "ARESTEAS",
+    "subtitle": "From €145.000 to €165.000 | 166m | 10 Guests ",
+    "location": "France,Monaco",
+    "SpecialOffers": true,
+    "InstantBooking": true,
+    "cols": "Turkey"
+  },
+  {
+    "img": "/assets/images/gallery/Yatchs3.png",
+    "title": "ARESTEAS",
+    "subtitle": "From €145.000 to €165.000 | 166m | 10 Guests ",
+    "location": "France,Monaco",
+    "SpecialOffers": true,
+    "InstantBooking": true,
+    "cols": "Turkey"
+  }
+]

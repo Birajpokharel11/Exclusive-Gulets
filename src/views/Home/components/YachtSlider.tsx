@@ -6,7 +6,7 @@ import { Container, Grid, Box, Typography } from '@material-ui/core';
 import underLine from 'public/assets/images/smallBlueUnderline.svg';
 
 import CustomSlider from '@components/CustomSlider';
-import { slider } from '@mocks/_homeSliderMock';
+import { slider } from '../../../mocks/_homeSliderMock';
 
 const useStyles = makeStyles((theme) =>
   createStyles({

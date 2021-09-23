@@ -8,7 +8,7 @@ import dest_6 from '@assets/images/Home/_destinations/dest_6.jpeg';
 import dest_7 from '@assets/images/Home/_destinations/dest_7.jpeg';
 import dest_8 from '@assets/images/Home/_destinations/dest_8.jpeg';
 
-export default [
+export const gallery = [
   {
     path: '/blogs',
     img: dest_1

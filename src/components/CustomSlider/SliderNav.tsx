@@ -1,4 +1,5 @@
 import React from 'react';
+import Slider from 'react-slick';
 import { useTheme, withStyles } from '@material-ui/core/styles';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 import Typography from '@material-ui/core/Typography';
@@ -37,11 +38,17 @@ function getCountryStr(countryList, countryListLength) {
   });
 }
 
-const SliderNav = ({ ref, data, activeSlideIndex }: Props) => {
+interface Props {
+  sliderRef: React.Ref<Slider>;
+  data: any[];
+  activeSlideIndex: number;
+}
+
+const SliderNav: React.FC<Props> = ({ sliderRef, data, activeSlideIndex }) => {
   const theme = useTheme();
   const matches = useMediaQuery(theme.breakpoints.down('sm'));
 
-  const { slickPrev, slickNext, slickGoTo } = ref.current;
+  const { slickPrev, slickNext, slickGoTo } = sliderRef?.current;
 
   return (
     <Grid container direction="column" alignItems="center">
@@ -70,7 +77,7 @@ const SliderNav = ({ ref, data, activeSlideIndex }: Props) => {
               return (
                 <Step key={index} {...stepProps}>
                   <StepButton {...buttonProps} onClick={() => slickGoTo(index)}>
-                    <Typography variant="h5">{step.name}</Typography>
+                    <Typography variant="h5">{step.place}</Typography>
 
                     <Typography variant="body1" align="center">
                       <svg
@@ -89,10 +96,11 @@ const SliderNav = ({ ref, data, activeSlideIndex }: Props) => {
                           fill="#2A398D"
                         />
                       </svg>{' '}
-                      {getCountryStr(
+                      {step.country}
+                      {/* {getCountryStr(
                         step.sailing_countries,
                         step.sailing_countries.length
-                      )}
+                      )} */}
                     </Typography>
                   </StepButton>
                 </Step>
@@ -119,11 +127,5 @@ const SliderNav = ({ ref, data, activeSlideIndex }: Props) => {
     </Grid>
   );
 };
-
-interface Props {
-  ref?: any;
-  data?: any[];
-  activeSlideIndex?: number;
-}
 
 export default SliderNav;

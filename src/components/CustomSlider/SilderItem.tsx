@@ -18,7 +18,7 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundImage: (props: any) => `url(${props.image})`,
+    backgroundImage: `url(/assets/images/heroYatch.png)`,
     backgroundSize: 'cover',
     backgroundRepeat: 'no-repeat',
     backgroundPosition: 'center'
@@ -37,7 +37,7 @@ const useStyles = makeStyles((theme) => ({
 const SildeItem = (props) => {
   const classes = useStyles(props);
   return (
-    <Grid className={classes.grid} container>
+    <Grid className={classes.grid} container spacing={2}>
       <Grid className={classes.content} item lg={7} xs={12}>
         <Typography variant="h3">{props.place}</Typography>
         <Typography variant="subtitle1" className={classes.wrapIcon}>
@@ -67,7 +67,7 @@ const SildeItem = (props) => {
           View Details
         </Button>
       </Grid>
-      <Grid className={classes.imgContainer} item lg={5}>
+      <Grid className={classes.imgContainer} item lg={5} md={6}>
         <div className={classes.img}></div>
       </Grid>
     </Grid>

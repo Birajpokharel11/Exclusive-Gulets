@@ -4,7 +4,11 @@ import Slider from 'react-slick';
 import SilderItem from './SilderItem';
 import SliderNav from './SliderNav';
 
-const CustomSlider = ({ endpoint, trowSliderData }) => {
+interface Props {
+  sliderData: any[];
+}
+
+const CustomSlider = ({ sliderData }: Props) => {
   // constants
   const INITAL_SLIDE = 0;
   const slickSettings = {
@@ -24,10 +28,8 @@ const CustomSlider = ({ endpoint, trowSliderData }) => {
     }
   };
 
-  const [sliderData, setSliderData] = useState([]);
-
   const [activeSlideIndex, setActiveSlideIndex] = useState(INITAL_SLIDE);
-  const sliderRef = useRef(null);
+  const sliderRef = useRef<Slider | null>(null);
 
   const detectChangeOnLastItem = (oldIndex, newIndex) => {
     if (oldIndex === sliderData.length - 1 && newIndex === 0) {
@@ -38,18 +40,15 @@ const CustomSlider = ({ endpoint, trowSliderData }) => {
 
   return (
     <>
-      {sliderData.length && (
-        <>
-          <Slider {...slickSettings} ref={sliderRef}>
-            {sliderData.map((item) => (
-              <SilderItem key={item.id} {...item} />
-            ))}
-          </Slider>
-        </>
-      )}
+      <Slider {...slickSettings} ref={sliderRef}>
+        {sliderData.map((item) => (
+          <SilderItem key={item.id} {...item} />
+        ))}
+      </Slider>
+
       {sliderData.length && sliderRef.current && (
         <SliderNav
-          ref={sliderRef}
+          sliderRef={sliderRef}
           data={sliderData}
           activeSlideIndex={activeSlideIndex}
         />

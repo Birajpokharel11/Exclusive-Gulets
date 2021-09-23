@@ -29,7 +29,7 @@ const CustomSlider = ({ sliderData }: Props) => {
   };
 
   const [activeSlideIndex, setActiveSlideIndex] = useState(INITAL_SLIDE);
-  const sliderRef = useRef<Slider | null>(null);
+  const sliderRef = useRef<Slider>(null);
 
   const detectChangeOnLastItem = (oldIndex, newIndex) => {
     if (oldIndex === sliderData.length - 1 && newIndex === 0) {

@@ -58,7 +58,7 @@ function getCountryStr(countryList, countryListLength) {
 }
 
 interface Props {
-  sliderRef: React.Ref<Slider>;
+  sliderRef: React.RefObject<Slider>;
   data: any[];
   activeSlideIndex: number;
 }

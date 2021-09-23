@@ -8,7 +8,8 @@ import {
   IconButton,
   Drawer,
   Grid,
-  Button
+  Button,
+  Container,
 } from '@material-ui/core';
 
 import CloseIcon from '@material-ui/icons/Close';
@@ -29,11 +30,6 @@ const useStyles = makeStyles((theme) => ({
       width: '180px'
     }
   },
-  AppBar: {
-    height: '72px',
-    maxWidth: '100%',
-    zIndex: theme.zIndex.modal + 1
-  },
   tab: {
     fontFamily: 'Lato',
     fontStyle: 'normal',
@@ -48,10 +44,10 @@ const useStyles = makeStyles((theme) => ({
 
     color: '#FFFFFF'
   },
-  logoContainer: {
+  logoBox: {
     padding: 0
   },
-  tabContainer: {
+  tabBox: {
     [theme.breakpoints.down('lg')]: {
       padding: '0px,0px,0px,32px'
     }
@@ -74,14 +70,15 @@ const useStyles = makeStyles((theme) => ({
     fontWeight: 400,
     fontSize: '26px'
   },
-  button: { color: '#2A398D ', width: '200px', height: '52px' }
+  button: { color: '#2A398D ', width: '200px', height: '52px',  },
+  Typography2:{fontWeight:'normal'}
 }));
 const MobileData = [
   { Heading: 'yachtsType', yachtsType: 'Motor Yacht, 2009' },
-  { Heading: 'length', yachtsType: '42m' },
-  { Heading: 'CruisingRegions', yachtsType: ' France, Italy' },
   { Heading: 'Guests', yachtsType: '14' },
-  { Heading: 'yachtsTCabinype', yachtsType: '7' },
+  { Heading: 'length', yachtsType: '42m' },
+  { Heading: 'Cabin', yachtsType: '7' },
+  { Heading: 'CruisingRegions', yachtsType: ' France, Italy' },
   { Heading: 'Crew', yachtsType: '7' }
 ];
 export default function YachtsPreviewDialouge(props) {
@@ -129,7 +126,7 @@ export default function YachtsPreviewDialouge(props) {
         <Box pl={3}>
           <YachtsSlider />
         </Box>
-        <Box pt={1}>
+        <Box pt={1} pb={6}>
           <Grid container justifyContent="center">
             <Button className={classes.button} variant="contained">
               View Details
@@ -137,13 +134,13 @@ export default function YachtsPreviewDialouge(props) {
           </Grid>
         </Box>
         <Box>
-          <Grid container justifyContent="center" direction="column">
+          <Grid  container  >
             {MobileData.map((item, i) => (
-              <Grid item key={i}>
-                <Box display="flex" style={{ gap: '2rem' }}>
-                  <Typography>{item.Heading}</Typography>
-                  <Typography>{item.yachtsType}</Typography>
-                </Box>
+              <Grid item key={i} xs={6}>
+                <Container maxWidth="md"style={{display:'flex', width:'80%', padding:'19px',justifyContent:'space-between'}}>
+                 <Typography color="secondary">{item.Heading}</Typography>
+                 <Typography variant="h5" className={classes.Typography2} color="secondary">{item.yachtsType}</Typography>
+                </Container>
               </Grid>
             ))}
           </Grid>

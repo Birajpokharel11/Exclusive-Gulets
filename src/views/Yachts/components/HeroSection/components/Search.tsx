@@ -52,11 +52,9 @@ export default function Destinations() {
   const [personName, setPersonName] = React.useState(['Destinations:']);
   const [open, setOpen] = React.useState(false);
   const handleDrawerOpen = () => {
-    setOpen(true);
+    setOpen(!open);
   };
-  const handleDrawerClose = () => {
-    setOpen(false);
-  };
+
 
   return (
     <Container>
@@ -81,6 +79,7 @@ export default function Destinations() {
           </Button>
         </Grid>
       </Grid>
+      <YachtsPreviewDialouge open={open} setOpen={setOpen}/>
     </Container>
   );
 }

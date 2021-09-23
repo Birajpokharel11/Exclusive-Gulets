@@ -192,6 +192,7 @@ export default function Filter() {
         anchorEl={anchorRef.current}
         role={undefined}
         transition
+        style={{zIndex:1}}
         disablePortal
       >
         {({ TransitionProps, placement }) => (

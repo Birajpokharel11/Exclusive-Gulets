@@ -1,33 +1,33 @@
 import { HYDRATE } from 'next-redux-wrapper';
 
-import * as DestinationType from './offer.types';
+import * as ExperiencesType from './experiences.types';
 
 const INITIAL_STATE = {
-  destinations: [],
+  experiences: [],
   error: null,
   loading: false
 };
 
-const destinationReducer = (state = INITIAL_STATE, action) => {
+const experiencesReducer = (state = INITIAL_STATE, action) => {
   const { type, payload } = action;
   switch (type) {
     case HYDRATE:
-      return { ...state, ...payload.offer };
+      return { ...state, ...payload.experience };
 
-    case DestinationType.FETCH_OFFER_START:
+    case ExperiencesType.FETCH_EXPERIENCES_START:
       return {
         ...state,
         loading: true
       };
 
-    case DestinationType.FETCH_OFFER_SUCCESS:
+    case ExperiencesType.FETCH_EXPERIENCES_SUCCESS:
       return {
         ...state,
-        destinations: payload,
+        experiences: payload,
         loading: false
       };
 
-    case DestinationType.FETCH_OFFER_FAILURE:
+    case ExperiencesType.FETCH_EXPERIENCES_FAILURE:
       return {
         ...state,
         loading: false,
@@ -39,4 +39,4 @@ const destinationReducer = (state = INITIAL_STATE, action) => {
   }
 };
 
-export default destinationReducer;
+export default experiencesReducer;

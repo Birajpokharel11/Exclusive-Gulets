@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Container from '@material-ui/core/Container';
 
 import HeroSection from './components/HeroSection';
@@ -9,18 +9,30 @@ import Experiences from './components/Experiences';
 import Enquiry from './components/Enquiry';
 import PreviewDrawer from './components/PreviewDrawer';
 
-const YatchDetails = () => {
-  const [open, setOpen] = React.useState(false);
+import container from './Yatchs.container';
+
+const YatchDetails = (props) => {
+  const {
+    onFetchRandomDestinationStart,
+    destination: { randomDestination }
+  } = props;
+
+  const [open, setOpen] = useState(false);
   const handleDrawerToggle = () => {
     setOpen(!open);
   };
+
+
+  useEffect(() => {
+    onFetchRandomDestinationStart();
+  }, []);
 
   return (
     <Container maxWidth={false} style={{ padding: '0%' }}>
       <HeroSection />
       <AdvancedFilterSection />
       <Gallery handleDrawerOpen={handleDrawerToggle} />
-      <Destinations />
+      <Destinations destinationList={randomDestination} />
       <Experiences />
       <Enquiry />
       {open && (
@@ -30,4 +42,4 @@ const YatchDetails = () => {
   );
 };
 
-export default YatchDetails;
+export default container(YatchDetails);

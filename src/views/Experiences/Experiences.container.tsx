@@ -1,15 +1,9 @@
 import { connect } from 'react-redux';
 
-import { fetchDestinationStart } from '../../store/destination/destination.actions';
-
 const mapStateToProps = (state, props) => ({
-  destination: state.destination
+  experience: state.experience
 });
 
-const mapDispatchToProps = (dispatch) => ({
-  onFetchDestinationStart: (data) => dispatch(fetchDestinationStart(data))
-});
-
-const container = connect(mapStateToProps, mapDispatchToProps);
+const container = connect(mapStateToProps, null);
 
 export default container;

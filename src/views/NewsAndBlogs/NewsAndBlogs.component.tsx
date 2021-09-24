@@ -6,7 +6,7 @@ import { CircularProgress } from '@material-ui/core';
 import BannerSection from '@components/BannerSection';
 import CardList from '@components/CardList';
 
-import container from './Experiences.container';
+import container from './NewsAndBlogs.container';
 
 const useStyles = makeStyles((theme) =>
   createStyles({
@@ -17,23 +17,28 @@ const useStyles = makeStyles((theme) =>
   })
 );
 
-const BespokeExperiences = (props) => {
+const Destinations = (props) => {
   const classes = useStyles();
 
   const {
-    experience: { loading, experiences }
+    destination: { loading, destinations },
+    posts: { postsList }
   } = props;
 
   return (
     <div>
       <BannerSection
         {...props}
-        title="EXCLUSIVE GULETS"
-        description="Experience Exceptional Yachting"
+        title="NEWS & BLOGS"
+        description="Keep up to date with our latest yachting news, charter destinations, special offers and more…"
       />
-      {loading ? <CircularProgress /> : <CardList cardList={experiences} />}
+      {loading ? (
+        <CircularProgress />
+      ) : (
+        <CardList cardList={postsList} newsBlog="newsBlog" />
+      )}
     </div>
   );
 };
 
-export default container(BespokeExperiences);
+export default container(Destinations);

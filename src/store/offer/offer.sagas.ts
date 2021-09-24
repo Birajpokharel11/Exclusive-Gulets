@@ -13,8 +13,8 @@ export function* fetchOfferAsync() {
     const { data } = yield axios.get(
       `http://localhost:3000/api/v1/special_offers`
     );
-    console.log('value of response>>>', data);
-    yield put(destinationAction.fetchOfferSuccess(data.destinations));
+    console.log('value of response fetchOfferAsync>>>', data);
+    yield put(destinationAction.fetchOfferSuccess(data.offers));
   } catch (err) {
     console.error('error received>>>', err);
     yield put(destinationAction.fetchOfferFailure(err));

@@ -26,6 +26,19 @@ const useStyles = makeStyles((theme) =>
 
 const Home = (props) => {
   const classes = useStyles();
+  const {
+    onFetchOfferStart,
+    onFetchRandomDestinationStart,
+    onFetchPostsStart,
+    destination: { randomDestination },
+    posts: { postsList }
+  } = props;
+
+  useEffect(() => {
+    onFetchOfferStart();
+    onFetchRandomDestinationStart();
+    onFetchPostsStart();
+  }, []);
 
   return (
     <div>
@@ -36,9 +49,9 @@ const Home = (props) => {
       <SpecialOffers />
       <CharterYatch />
       <YatchSlider />
-      <Destinations />
+      <Destinations destinationList={randomDestination} />
       <Experience />
-      <NewsAndBlogs />
+      <NewsAndBlogs postsList={postsList} />
       <EnquiryForm />
     </div>
   );

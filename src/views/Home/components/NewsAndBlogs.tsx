@@ -1,5 +1,5 @@
 import React from 'react';
-
+import Image from 'next/image';
 import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
 import { Container, Grid, Box, Typography, Button } from '@material-ui/core';
 import CardWithSlider from '@components/CardWithSlider';
@@ -44,7 +44,8 @@ const data = [
   }
 ];
 
-export default function NewsAndBlogs() {
+export default function NewsAndBlogs(props) {
+  const { postsList } = props;
   const classes = useStyles();
   return (
     <Box maxWidth="false" className={classes.root}>
@@ -73,13 +74,37 @@ export default function NewsAndBlogs() {
             </Typography>
           </Grid>
         </Grid>
+        <Grid container spacing={3}>
+          {postsList.map((post) => (
+            <Grid item container md={4} xs={12} spacing={2}>
+              <Grid item container justifyContent="center">
+                <Image src={YatchParty} alt="guest" />
+              </Grid>
+              <Grid item container justifyContent="center">
+                <Typography
+                  align="center"
+                  variant="subtitle1"
+                  style={{ fontWeight: 'bold' }}
+                >
+                  {post.title}
+                </Typography>
+              </Grid>
 
-        <CardWithSlider cardsData={data} />
+              <Grid item>
+                <Typography
+                  align="center"
+                  variant="subtitle2"
+                  dangerouslySetInnerHTML={{ __html: post.description }}
+                />
+              </Grid>
+            </Grid>
+          ))}
 
-        <Grid container justifyContent="center">
-          <Button variant="contained" color="primary" size="large">
-            View All News & Blogs
-          </Button>
+          <Grid item container justifyContent="center">
+            <Button variant="contained" className={classes.buttonStyle}>
+              View All News & Blogs
+            </Button>
+          </Grid>
         </Grid>
       </Container>
     </Box>

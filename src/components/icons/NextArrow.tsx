@@ -6,7 +6,15 @@ import ArrowForwardIosIcon from '@material-ui/icons/ArrowForwardIos';
 const useStyles = makeStyles(() => ({
   root: {
     backgroundColor: '#ffffff',
-    borderRadius: 999999
+    position: 'absolute',
+    top: '45%',
+    transform: 'translateY(-50%)',
+    zIndex: 10,
+    right: 0
+  },
+  icon: {
+    fontSize: '1rem',
+    color: '#2a398d'
   }
 }));
 
@@ -15,7 +23,7 @@ export default function NextArrow(props) {
 
   return (
     <IconButton onClick={props.onClick} className={classes.root}>
-      <ArrowForwardIosIcon fontSize="small" />
+      <ArrowForwardIosIcon className={classes.icon} />
     </IconButton>
   );
 }

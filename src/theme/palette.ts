@@ -3,10 +3,14 @@ import { colors } from '@material-ui/core';
 
 const white = '#FFFFFF';
 const black = '#000000';
+const blue = '#2a398d';
+const beige = '#f5f0e4';
 
 const palette: PaletteOptions = {
   white,
   black,
+  blue,
+  beige,
   icon: '#eee',
   primary: {
     main: '#091527'

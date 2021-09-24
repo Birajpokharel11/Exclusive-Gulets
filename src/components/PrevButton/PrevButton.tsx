@@ -19,7 +19,7 @@ const useStyles = makeStyles(() => ({
 }));
 
 interface Props {
-  onClick: () => void;
+  onClick?: () => void;
   type: string;
   className?: string;
 }

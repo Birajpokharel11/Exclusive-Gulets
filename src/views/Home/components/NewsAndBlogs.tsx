@@ -7,7 +7,7 @@ import CardWithSlider from '@components/CardWithSlider';
 const useStyles = makeStyles((theme) =>
   createStyles({
     root: {
-      marginTop: '2rem'
+      padding: '2rem 0'
     },
     Yatch: {
       width: '100%',

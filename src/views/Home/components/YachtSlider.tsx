@@ -12,7 +12,10 @@ const useStyles = makeStyles((theme) =>
   createStyles({
     root: {
       backgroundColor: '#F5F0E4',
-      position: 'relative'
+      padding: '60px 0',
+      [theme.breakpoints.up('sm')]: {
+        padding: '80px 0 100px'
+      }
     },
     Yatch: {
       width: '100%',

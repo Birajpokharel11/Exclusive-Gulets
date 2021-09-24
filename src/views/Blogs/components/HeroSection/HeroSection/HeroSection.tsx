@@ -13,7 +13,6 @@ import Breadcrumbs from '@material-ui/core/Breadcrumbs';
 import Link from '@material-ui/core/Link';
 import NavigateNextIcon from '@material-ui/icons/NavigateNext';
 
-
 const useStyles = makeStyles((theme) =>
   createStyles({
     Container: {
@@ -41,7 +40,7 @@ const useStyles = makeStyles((theme) =>
     Heading: {
       textAlign: 'center',
       textTransform: 'uppercase',
-      color: '#F5F0E4'
+      fontWeight: 400
     },
     SubHeading: {
       textAlign: 'center',
@@ -59,26 +58,25 @@ export default function HeroSection() {
   const classes = useStyles();
   return (
     <>
-    <Container maxWidth={false} className={classes.Container}>
-      <img
-        src="/assets/images/blogs/blogs.png"
-        alt="HeroYatch"
-        className={classes.Yatch}
-      />
-      <Box pt={14} className={classes.imageTextShadows}>
-        <Container maxWidth="md">
-          <Typography variant="h1" className={classes.Heading}>The Art of Dining Onboard a Private Yacht
-          </Typography>
-          <Typography variant="subtitle1" className={classes.SubHeading}>
-         {`"`}I fell in love with the Mediterranean philosophy of good wine, good food and family.{`"`}
-         <br/>
-         <Container maxWidth="sm"><Typography align="right" color="secondary">Stephen White</Typography></Container>
-          </Typography>
-
-        </Container>
-      </Box>
-    </Container>
-
+      <Container maxWidth={false} className={classes.Container}>
+        <img
+          src="/assets/images/blogs/blogs.png"
+          alt="HeroYatch"
+          className={classes.Yatch}
+        />
+        <Box pt={14} className={classes.imageTextShadows}>
+          <Container maxWidth="md">
+            <Typography variant="h1" align="center" className={classes.Heading}>
+              The ideal summer vacation getaway is available NOW!
+            </Typography>
+            <Typography variant="subtitle1" className={classes.SubHeading}>
+              The Caribbean is calling and there is a luxury charter yacht with
+              your name on it.
+              <br />
+            </Typography>
+          </Container>
+        </Box>
+      </Container>
     </>
   );
 }

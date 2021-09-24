@@ -7,6 +7,7 @@ import Typography from '@material-ui/core/Typography';
 import Stepper from '@material-ui/core/Stepper';
 import Step from '@material-ui/core/Step';
 import StepButton from '@material-ui/core/StepButton';
+import StepLabel from '@material-ui/core/StepLabel';
 import StepConnector from '@material-ui/core/StepConnector';
 import Button from '@material-ui/core/Button';
 import Grid from '@material-ui/core/Grid';
@@ -70,6 +71,24 @@ const SliderNav: React.FC<Props> = ({ sliderRef, data, activeSlideIndex }) => {
 
   const { slickPrev, slickNext, slickGoTo } = sliderRef?.current;
 
+  const StepIcon = ({ ownerState }) => (
+    <div
+      style={{
+        position: 'relative',
+        height: '8px',
+        width: matches ? '40px' : '100px',
+        backgroundColor: ownerState.active ? '#2A398D' : '#ffffff',
+        borderRadius: '4px'
+      }}
+    />
+  );
+
+  function ColorlibStepIcon(props) {
+    const { active, completed } = props;
+
+    return <StepIcon ownerState={{ completed, active }} />;
+  }
+
   return (
     <Grid container alignItems="center" justify="center">
       <Grid item>
@@ -95,20 +114,25 @@ const SliderNav: React.FC<Props> = ({ sliderRef, data, activeSlideIndex }) => {
 
             return (
               <Step key={index} {...stepProps}>
-                <StepButton {...buttonProps} onClick={() => slickGoTo(index)}>
+                <StepLabel StepIconComponent={ColorlibStepIcon}>
+                  {step.place}
+                  <Typography variant="body1" align="center">
+                    <Location style={{}} />
+                    {step.country}
+                  </Typography>
+                </StepLabel>
+
+                {/* <StepButton {...buttonProps} onClick={() => slickGoTo(index)}>
                   <Hidden smDown>
                     <Typography variant="h5">{step.place}</Typography>
 
                     <Typography variant="body1" align="center">
                       <Location style={{}} />
                       {step.country}
-                      {/* {getCountryStr(
-                        step.sailing_countries,
-                        step.sailing_countries.length
-                      )} */}
+                
                     </Typography>
                   </Hidden>
-                </StepButton>
+                </StepButton> */}
               </Step>
             );
           })}

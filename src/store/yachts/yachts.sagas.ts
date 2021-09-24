@@ -7,20 +7,14 @@ import axios from 'axios';
 import * as PostsType from './yachts.types';
 import * as postsAction from './yachts.actions';
 
-export function* fetchYachtsAsync({ payload }: AnyAction) {
-  const sort = {};
+export function* fetchYachtsAsync() {
   try {
     console.log('fetchYachtsAsync>>>');
     const { data } = yield axios.post(
-      `http://localhost:3000/api/v1/posts/search/filter_yachts.json?${queryString.stringify(
-        sort
-      )}`,
-      {
-        body: JSON.stringify(payload)
-      }
+      'http://localhost:3000/api/v1/search/filter_yachts.json'
     );
-    console.log('value of response fetchYachtsAsync>>>', data);
-    yield put(postsAction.fetchYachtsSuccess(data.posts));
+    console.log('value of response fetchYachtsAsync>>>', data.yachts);
+    yield put(postsAction.fetchYachtsSuccess(data.yachts));
   } catch (err) {
     console.error('error received>>>', err);
     yield put(postsAction.fetchYachtsFailure(err));

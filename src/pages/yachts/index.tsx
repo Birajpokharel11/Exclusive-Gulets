@@ -11,23 +11,17 @@ export default function Yatch() {
   return <WithLayout component={YachtPage} layout={Main} />;
 }
 
-// export const getServerSideProps = wrapper.getServerSideProps(
-//   (store) => async () => {
-//     const sort_by_value = 'charter_price';
-//     const sort_order_value = 'desc';
-//     const data = {
-//       page: 1,
-//       sort: { sort_by: sort_by_value, sort_order: sort_order_value }
-//     };
-//     store.dispatch(fetchYachtsStart(data));
-//     store.dispatch(END);
+export const getServerSideProps = wrapper.getServerSideProps(
+  (store) => async () => {
+    store.dispatch(fetchYachtsStart());
+    store.dispatch(END);
 
-//     await store.sagaTask?.toPromise();
-//     const myStore = store.getState();
-//     const yacht = myStore.yacht;
+    await store.sagaTask?.toPromise();
+    const myStore = store.getState();
+    const yacht = myStore.yacht;
 
-//     return {
-//       props: { yacht }
-//     };
-//   }
-// );
+    return {
+      props: { yacht }
+    };
+  }
+);

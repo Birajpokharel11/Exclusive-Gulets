@@ -12,7 +12,7 @@ const YachtsReducer = (state = INITIAL_STATE, action) => {
   const { type, payload } = action;
   switch (type) {
     case HYDRATE:
-      return { ...state, ...payload.posts };
+      return { ...state, ...payload.yacht };
 
     case YachtsType.FETCH_YACHTS_START:
       return {

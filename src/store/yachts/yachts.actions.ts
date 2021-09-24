@@ -1,8 +1,7 @@
 import * as YachtsType from './yachts.types';
 
-export const fetchYachtsStart = (data) => ({
-  type: YachtsType.FETCH_YACHTS_START,
-  payload: data
+export const fetchYachtsStart = () => ({
+  type: YachtsType.FETCH_YACHTS_START
 });
 
 export const fetchYachtsSuccess = (result) => ({

@@ -5,10 +5,7 @@ import { CircularProgress } from '@material-ui/core';
 
 import BannerSection from '@components/BannerSection';
 import CardList from '@components/CardList';
-import { Limits, DestinationSort } from '@utils/enums';
 
-// import { DESTINATIONS_SORTING } from '../../../constants/sorting';
-// import { DESTINATIONS_LIMIT_PER_PAGE } from '../../../constants/limits';
 import container from './BespokeExperiences.container';
 
 const useStyles = makeStyles((theme) =>
@@ -20,23 +17,12 @@ const useStyles = makeStyles((theme) =>
   })
 );
 
-const Destinations = (props) => {
+const BespokeExperiences = (props) => {
   const classes = useStyles();
 
   const {
-    onFetchDestinationStart,
-    onFetchExperiencesStart,
-    destination: { loading, destinations }
+    experience: { loading, experiences }
   } = props;
-
-  useEffect(() => {
-    onFetchDestinationStart({
-      ...DestinationSort,
-      page: 1,
-      amount_per_page: Limits.DESTINATIONS_PER_PAGE
-    });
-    onFetchExperiencesStart();
-  }, []);
 
   return (
     <div>
@@ -45,9 +31,9 @@ const Destinations = (props) => {
         title="EXCLUSIVE GULETS"
         description="Experience Exceptional Yachting"
       />
-      {loading ? <CircularProgress /> : <CardList cardList={destinations} />}
+      {loading ? <CircularProgress /> : <CardList cardList={experiences} />}
     </div>
   );
 };
 
-export default container(Destinations);
+export default container(BespokeExperiences);

@@ -5,10 +5,7 @@ import { CircularProgress } from '@material-ui/core';
 
 import BannerSection from '@components/BannerSection';
 import CardList from '@components/CardList';
-import { Limits, DestinationSort } from '@utils/enums';
 
-// import { DESTINATIONS_SORTING } from '../../../constants/sorting';
-// import { DESTINATIONS_LIMIT_PER_PAGE } from '../../../constants/limits';
 import container from './NewsAndBlogs.container';
 
 const useStyles = makeStyles((theme) =>
@@ -24,20 +21,9 @@ const Destinations = (props) => {
   const classes = useStyles();
 
   const {
-    onFetchDestinationStart,
-    onFetchPostsStart,
     destination: { loading, destinations },
     posts: { postsList }
   } = props;
-
-  useEffect(() => {
-    onFetchDestinationStart({
-      ...DestinationSort,
-      page: 1,
-      amount_per_page: Limits.DESTINATIONS_PER_PAGE
-    });
-    onFetchPostsStart();
-  }, []);
 
   return (
     <div>

@@ -12,7 +12,7 @@ const destinationReducer = (state = INITIAL_STATE, action) => {
   const { type, payload } = action;
   switch (type) {
     case HYDRATE:
-      return { ...state, ...payload };
+      return { ...state, ...payload.offer };
 
     case DestinationType.FETCH_OFFER_START:
       return {

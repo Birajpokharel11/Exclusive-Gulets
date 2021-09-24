@@ -19,13 +19,15 @@ const useStyles = makeStyles(() => ({
 }));
 
 interface Props {
-  onClick: () => void;
+  onClick?: () => void;
   type: string;
   className?: string;
 }
 
 const ButtonChevron = ({ className, onClick, type }: Props) => {
   const classes = useStyles();
+
+  console.log({ className });
 
   const renderButton = () => {
     if (type === 'icon') {

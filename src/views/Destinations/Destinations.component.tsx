@@ -1,4 +1,7 @@
 import React, { useEffect } from 'react';
+import { END } from 'redux-saga';
+import { wrapper } from '../../store';
+import { fetchDestinationStart } from '../../store/destination/destination.actions';
 
 import { createStyles, makeStyles } from '@material-ui/core/styles';
 import { CircularProgress } from '@material-ui/core';
@@ -24,17 +27,8 @@ const Destinations = (props) => {
   const classes = useStyles();
 
   const {
-    onFetchDestinationStart,
     destination: { loading, destinations }
   } = props;
-
-  useEffect(() => {
-    onFetchDestinationStart({
-      ...DestinationSort,
-      page: 1,
-      amount_per_page: Limits.DESTINATIONS_PER_PAGE
-    });
-  }, []);
 
   return (
     <div>

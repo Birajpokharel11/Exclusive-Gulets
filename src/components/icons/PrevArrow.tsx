@@ -7,7 +7,15 @@ import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
 const useStyles = makeStyles(() => ({
   root: {
     backgroundColor: '#ffffff',
-    borderRadius: 999999
+    position: 'absolute',
+    top: '45%',
+    transform: 'translateY(-50%)',
+    zIndex: 10,
+    left: 0
+  },
+  icon: {
+    fontSize: '1rem',
+    color: '#2a398d'
   }
 }));
 
@@ -16,7 +24,7 @@ export default function PrevArrow(props) {
 
   return (
     <IconButton onClick={props.onClick} className={classes.root}>
-      <ArrowBackIosIcon fontSize="small" />
+      <ArrowBackIosIcon className={classes.icon} />
     </IconButton>
   );
 }

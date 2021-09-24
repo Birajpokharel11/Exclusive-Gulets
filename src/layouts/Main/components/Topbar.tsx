@@ -207,9 +207,9 @@ export default function Header() {
               />
               <Tab
                 className={classes.tab}
-                label="NEWS $ BLOGS"
+                label="NEWS & BLOGS"
                 data-cy="NEWSBLOGS"
-                href="/news-blogs"
+                href="/blogs"
               />
               <Tab
                 className={classes.tab}

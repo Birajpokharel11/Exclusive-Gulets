@@ -78,7 +78,7 @@ export default function Experience() {
           </Grid>
         </Grid>
 
-        <CardWithSlider cardsData={data} md={6} />
+        <CardWithSlider cardsData={data} />
 
         <Grid container justifyContent="center">
           <Button

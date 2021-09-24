@@ -12,7 +12,7 @@ const siteCoordinatorReducer = (state = INITIAL_STATE, action) => {
 
   switch (type) {
     case HYDRATE:
-      return { ...state, ...payload };
+      return { ...state, ...payload.siteCoordinator };
     case SiteCoordinatorType.LANGUAGE_CHANGE:
       console.log('changed language>>', payload);
       updatedState = {

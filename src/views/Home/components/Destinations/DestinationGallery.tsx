@@ -136,19 +136,19 @@ const Images = [
     typography: 'Destination Name'
   }
 ];
-export default function PhotoSection() {
+export default function PhotoSection(props) {
   const classes = useStyles();
+  const { destinationList } = props;
   return (
     <Box className={classes.wrapper}>
-      {Images.map((item, i) => (
+      {destinationList.map((item, i) => (
         <Box
           key={i}
           className={classes[`box${i + 1}`]}
           style={{ position: 'relative' }}
         >
-          <Image
-            layout="fill"
-            src={item.src}
+          <img
+            src={item.featured_image.slider.url}
             alt="Guest"
             className={classes.image}
           />
@@ -157,7 +157,7 @@ export default function PhotoSection() {
             color="secondary"
             className={classes.Typography1}
           >
-            {item.typography}
+            {item.title}
           </Typography>
           <div className={classes.imgShadow1} />
         </Box>

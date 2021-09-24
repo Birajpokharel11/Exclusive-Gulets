@@ -1,8 +1,12 @@
 import React from 'react';
+
 import { createStyles, makeStyles } from '@material-ui/core/styles';
-import Box from '@material-ui/core/Box';
+import { CircularProgress } from '@material-ui/core';
 
 import BannerSection from '@components/BannerSection';
+import CardList from '@components/CardList';
+
+import container from './Blogs.container';
 
 const useStyles = makeStyles((theme) =>
   createStyles({
@@ -13,18 +17,28 @@ const useStyles = makeStyles((theme) =>
   })
 );
 
-const Blogs = (props) => {
+const Destinations = (props) => {
   const classes = useStyles();
 
+  const {
+    destination: { loading, destinations },
+    posts: { postsList }
+  } = props;
+
   return (
-    <Box>
+    <div>
       <BannerSection
         {...props}
         title="NEWS & BLOGS"
-        description="Keep up to date with our latest yachting news, charter Blogs, special offers and more…"
+        description="Keep up to date with our latest yachting news, charter destinations, special offers and more…"
       />
-    </Box>
+      {loading ? (
+        <CircularProgress />
+      ) : (
+        <CardList cardList={postsList} newsBlog="newsBlog" />
+      )}
+    </div>
   );
 };
 
-export default Blogs;
+export default container(Destinations);

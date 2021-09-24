@@ -78,7 +78,11 @@ export default function NewsAndBlogs(props) {
         <CardWithSlider cardsData={data} />
 
         <Grid container justifyContent="center">
-          <Button variant="contained" className={classes.buttonStyle}>
+          <Button
+            variant="contained"
+            size="large"
+            className={classes.buttonStyle}
+          >
             View All News & Blogs
           </Button>
         </Grid>

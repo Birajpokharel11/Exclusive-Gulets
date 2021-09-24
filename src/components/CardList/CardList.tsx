@@ -79,11 +79,11 @@ export default function CardList(props) {
               <CardActionArea>
                 <CardMedia
                   component="img"
-                  alt="destination"
+                  alt="image"
                   height="290"
                   width="352"
                   image={card.featured_image.url}
-                  title="Contemplative Reptile"
+                  title="title"
                 />
                 <CardContent>
                   <Typography

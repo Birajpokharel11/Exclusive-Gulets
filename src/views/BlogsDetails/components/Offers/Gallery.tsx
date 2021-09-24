@@ -10,8 +10,10 @@ const useStyles = makeStyles((theme) =>
       display: 'grid',
       gridGap: '0.7rem',
       padding: '0 1rem',
-        gridTemplateRows: 'repeat(3, 20vw)',
+      gridTemplateRows: 'repeat(3, 20vw)',
+      [theme.breakpoints.up('md')]: {
         gridTemplateRows: 'repeat(3, 44vw)'
+      }
     },
     Typography1: {
       position: 'absolute',
@@ -46,11 +48,10 @@ const useStyles = makeStyles((theme) =>
       }
     },
     box2: {
-        display: 'none'
+      display: 'none'
     },
     box3: {
-    
-        display: 'none'
+      display: 'none'
     },
     box4: {
       gridColumn: '1/3',
@@ -67,7 +68,7 @@ const useStyles = makeStyles((theme) =>
       }
     },
     box6: {
-        display: 'none'
+      display: 'none'
     },
     box7: {
       gridColumn: ' 3/3',
@@ -77,7 +78,7 @@ const useStyles = makeStyles((theme) =>
       }
     },
     box8: {
-        display: 'none'
+      display: 'none'
     }
   })
 );

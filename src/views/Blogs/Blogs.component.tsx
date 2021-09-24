@@ -1,19 +1,29 @@
 import React from 'react';
-import Container from '@material-ui/core/Container';
+import { createStyles, makeStyles } from '@material-ui/core/styles';
+import Box from '@material-ui/core/Box';
 
-import HeroSection from './components/HeroSection/HeroSection';
-import Offers from './components/Offers';
-const Blogs = () => {
-  const [open, setOpen] = React.useState(false);
-  const handleDrawerToggle = () => {
-    setOpen(!open);
-  };
+import BannerSection from '@components/BannerSection';
+
+const useStyles = makeStyles((theme) =>
+  createStyles({
+    root: {
+      height: 'calc(100vh - 64px)',
+      padding: 0
+    }
+  })
+);
+
+const Blogs = (props) => {
+  const classes = useStyles();
 
   return (
-    <Container maxWidth={false} style={{ padding: '0%' }}>
-      <HeroSection />
-     <Offers/>
-    </Container>
+    <Box>
+      <BannerSection
+        {...props}
+        title="NEWS & BLOGS"
+        description="Keep up to date with our latest yachting news, charter Blogs, special offers and more…"
+      />
+    </Box>
   );
 };
 

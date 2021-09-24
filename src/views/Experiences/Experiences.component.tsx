@@ -9,7 +9,7 @@ import { Limits, DestinationSort } from '@utils/enums';
 
 // import { DESTINATIONS_SORTING } from '../../../constants/sorting';
 // import { DESTINATIONS_LIMIT_PER_PAGE } from '../../../constants/limits';
-import container from './NewsAndBlogs.container';
+import container from './Experiences.container';
 
 const useStyles = makeStyles((theme) =>
   createStyles({
@@ -40,8 +40,8 @@ const Destinations = (props) => {
     <div>
       <BannerSection
         {...props}
-        title="NEWS & BLOGS"
-        description="Keep up to date with our latest yachting news, charter destinations, special offers and more…"
+        title="EXCLUSIVE GULETS"
+        description="Experience Exceptional Yachting"
       />
       {loading ? <CircularProgress /> : <CardList cardList={destinations} />}
     </div>

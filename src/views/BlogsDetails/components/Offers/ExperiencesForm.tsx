@@ -10,9 +10,9 @@ import {
   MenuItem,
   TextField
 } from '@material-ui/core';
-import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 
 import { menuProps } from '@utils/utils';
+import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 
 const useStyles = makeStyles((theme) =>
   createStyles({
@@ -41,12 +41,12 @@ export default function ExperiencesFrom() {
   const classes = useStyles();
   return (
     <Box maxWidth="false">
-      <Container maxWidth="md">
+      <Box>
         <Typography variant="h3" color="textPrimary" align="center">
           Create your own experience
         </Typography>
-      </Container>
-      <Container>
+      </Box>
+      <Box>
         <div style={{ marginTop: '30px' }} />
         <Select
           id="select"
@@ -109,7 +109,7 @@ export default function ExperiencesFrom() {
         >
           Enquire
         </Button>
-      </Container>
+      </Box>
     </Box>
   );
 }

@@ -4,9 +4,8 @@ import WithLayout from '@components/WithLayout';
 import Main from '@layouts/Main';
 import BespokeExperiencesPage from '@views/Experiences';
 import { END } from 'redux-saga';
-import { wrapper } from '../store';
-import { fetchExperiencesStart } from '../store/experiences/experiences.actions';
-
+import { wrapper } from '@store/index';
+import { fetchExperiencesStart } from '@store/experiences/experiences.actions';
 
 export default function Experiences() {
   return <WithLayout component={BespokeExperiencesPage} layout={Main} />;

@@ -2,8 +2,8 @@ import React, { useEffect } from 'react';
 import { Limits, DestinationSort } from '@utils/enums';
 
 import { END } from 'redux-saga';
-import { wrapper } from '../store';
-import { fetchDestinationStart } from '../store/destination/destination.actions';
+import { wrapper } from '@store/index';
+import { fetchDestinationStart } from '@store/destination/destination.actions';
 
 import WithLayout from '@components/WithLayout';
 import Main from '@layouts/Main';

@@ -74,37 +74,13 @@ export default function NewsAndBlogs(props) {
             </Typography>
           </Grid>
         </Grid>
-        <Grid container spacing={3}>
-          {postsList.map((post) => (
-            <Grid item container md={4} xs={12} spacing={2}>
-              <Grid item container justifyContent="center">
-                <Image src={YatchParty} alt="guest" />
-              </Grid>
-              <Grid item container justifyContent="center">
-                <Typography
-                  align="center"
-                  variant="subtitle1"
-                  style={{ fontWeight: 'bold' }}
-                >
-                  {post.title}
-                </Typography>
-              </Grid>
 
-              <Grid item>
-                <Typography
-                  align="center"
-                  variant="subtitle2"
-                  dangerouslySetInnerHTML={{ __html: post.description }}
-                />
-              </Grid>
-            </Grid>
-          ))}
+        <CardWithSlider cardsData={data} />
 
-          <Grid item container justifyContent="center">
-            <Button variant="contained" className={classes.buttonStyle}>
-              View All News & Blogs
-            </Button>
-          </Grid>
+        <Grid container justifyContent="center">
+          <Button variant="contained" className={classes.buttonStyle}>
+            View All News & Blogs
+          </Button>
         </Grid>
       </Container>
     </Box>

@@ -1,7 +1,7 @@
 import React from 'react';
 import { END } from 'redux-saga';
-import { wrapper } from '../../store';
-import { fetchYachtsStart } from '../../store/yachts/yachts.actions';
+import { wrapper } from '@store/index';
+import { fetchYachtsStart } from '@store/yachts/yachts.actions';
 
 import WithLayout from '@components/WithLayout';
 import Main from '@layouts/Main';

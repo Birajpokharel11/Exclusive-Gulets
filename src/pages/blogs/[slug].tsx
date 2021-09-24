@@ -1,8 +1,8 @@
 import React from 'react';
 
 import { END } from 'redux-saga';
-import { wrapper } from '../store';
-import { fetchPostsStart } from '../store/posts/posts.actions';
+import { wrapper } from '@store/index';
+import { fetchPostsStart } from '@store/posts/posts.actions';
 
 import WithLayout from '@components/WithLayout';
 import Main from '@layouts/Main';

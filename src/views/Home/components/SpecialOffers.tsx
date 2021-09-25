@@ -1,13 +1,14 @@
 import React from 'react';
 import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
-import { Container, Grid, Box, Typography, Button } from '@material-ui/core';
+import { Container, Grid, Box, Button } from '@material-ui/core';
 
+import Typography from '@modules/components/Typography';
 import CardWithSlider from '@components/CardWithSlider';
 
 const useStyles = makeStyles((theme) =>
   createStyles({
     root: {
-      marginTop: '6rem',
+      padding: '4rem 0',
       backgroundColor: '#F5F0E4'
     },
     buttonStyle: {
@@ -55,27 +56,16 @@ export default function Introduction() {
   return (
     <Box className={classes.root}>
       <Container maxWidth="lg">
-        <Grid
-          container
-          justifyContent="center"
-          alignItems="center"
-          style={{ paddingTop: '3rem' }}
-        >
-          <Grid item xs={12}>
-            <Typography color="textPrimary" align="center" variant="h2">
-              Special Offers
-            </Typography>
-          </Grid>
-          <Grid item container justifyContent="center" xs={12}>
-            <img src="/assets/images/smallBlueUnderline.svg" alt="underline" />
-          </Grid>
-          <Grid item>
-            <Typography align="center" variant="subtitle1" color="textPrimary">
-              Yachting does not need to break the bank. Explore our incredible
-              offers on a range of yachts in spectacular destinations.
-            </Typography>
-          </Grid>
-        </Grid>
+        <Box textAlign="center" pt="3rem" pb="3rem">
+          <Typography color="textPrimary" align="center" variant="h2" stripped>
+            Special Offers
+          </Typography>
+
+          <Typography align="center" variant="subtitle1" color="textPrimary">
+            Yachting does not need to break the bank. Explore our incredible
+            offers on a range of yachts in spectacular destinations.
+          </Typography>
+        </Box>
 
         <CardWithSlider cardsData={specialOffers} />
 

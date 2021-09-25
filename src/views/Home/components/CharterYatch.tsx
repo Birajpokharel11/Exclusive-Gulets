@@ -1,23 +1,38 @@
 import React from 'react';
-import Image from 'next/image';
-import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
-import { Container, Grid, Box, Typography, Button } from '@material-ui/core';
-import underLine from 'public/assets/images/whiteLine.svg';
+
+import { createStyles, makeStyles } from '@material-ui/core/styles';
+import { Container, Grid, Box, Button } from '@material-ui/core';
+
+import Typography from '@modules/components/Typography';
 
 const useStyles = makeStyles((theme) =>
   createStyles({
     root: {
       padding: 0
     },
-    charterBackground: {
+    bgImage: {
       backgroundImage: `url('/assets/images/charterYatch.png')`,
       backgroundPosition: 'center',
       height: '23.75rem',
       backgroundRepeat: 'no-repeat',
-      backgroundSize: 'cover'
+      backgroundSize: 'cover',
+      filter: 'blur(3px)'
     },
-    textColor: {
-      color: '#ffffff'
+    bgContainer: {
+      color: '#ffffff',
+      position: 'absolute',
+      top: '50%',
+      left: '50%',
+      transform: 'translate(-50%, -50%)',
+      zIndex: 2,
+      padding: '20px',
+      textAlign: 'center'
+    },
+    subtitle: {
+      marginBottom: 40,
+      [theme.breakpoints.up('sm')]: {
+        marginBottom: 60
+      }
     },
     buttonStyle: {
       backgroundColor: '#F5F0E4',
@@ -29,50 +44,25 @@ const useStyles = makeStyles((theme) =>
 export default function CharterYatch() {
   const classes = useStyles();
   return (
-    <Box
-      component="section"
-      maxWidth="false"
-      className={classes.charterBackground}
-    >
-      <Container>
-        <Grid
-          container
-          justifyContent="center"
-          alignItems="center"
-          style={{ paddingTop: '5rem' }}
-          spacing={2}
+    <Box component="section" style={{ position: 'relative' }}>
+      <Box className={classes.bgImage} />
+      <Container maxWidth="sm" className={classes.bgContainer}>
+        <Typography color="inherit" align="center" variant="h2" stripped>
+          Charter a Luxury Yacht
+        </Typography>
+        <Typography
+          color="inherit"
+          align="center"
+          variant="subtitle1"
+          className={classes.subtitle}
         >
-          <Grid item xs={12}>
-            <Typography
-              color="primary"
-              align="center"
-              variant="h2"
-              className={classes.textColor}
-            >
-              Charter a Luxury Yacht
-            </Typography>
-          </Grid>
-
-          <Grid item container justifyContent="center" xs={12}>
-            <Image src={underLine} alt="underline" />
-          </Grid>
-
-          <Grid item>
-            <Typography
-              align="center"
-              color="primary"
-              className={classes.textColor}
-              variant="subtitle1"
-            >
-              The most lavish super yacht to turn heads, or an exclusive gulet
-              for a perfect family getaway.
-            </Typography>
-          </Grid>
-          <Grid item container justifyContent="center">
-            <Button variant="contained" className={classes.buttonStyle}>
-              View All Yachts
-            </Button>
-          </Grid>
+          The most lavish super yacht to turn heads, or an exclusive gulet for a
+          perfect family getaway.
+        </Typography>
+        <Grid container justifyContent="center">
+          <Button color="secondary" variant="contained" size="large">
+            View All Yachts
+          </Button>
         </Grid>
       </Container>
     </Box>

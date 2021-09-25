@@ -1,6 +1,12 @@
 import React from 'react';
 import Image from 'next/image';
-import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
+import {
+  createStyles,
+  makeStyles,
+  useTheme,
+  Theme
+} from '@material-ui/core/styles';
+import useMediaQuery from '@material-ui/core/useMediaQuery';
 import { Container, Grid, Box, Button } from '@material-ui/core';
 
 import Typography from '@modules/components/Typography';
@@ -49,6 +55,8 @@ const data = [
 export default function NewsAndBlogs(props) {
   const { postsList } = props;
   const classes = useStyles();
+  const theme = useTheme();
+  const matchesSM = useMediaQuery(theme.breakpoints.up('sm'));
   return (
     <Box className={classes.root}>
       <Container maxWidth="xl">
@@ -67,6 +75,7 @@ export default function NewsAndBlogs(props) {
 
         <Grid container justifyContent="center">
           <Button
+            fullWidth={matchesSM ? undefined : true}
             variant="contained"
             size="large"
             className={classes.buttonStyle}

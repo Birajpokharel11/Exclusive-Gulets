@@ -1,6 +1,12 @@
 import React from 'react';
 import Image from 'next/image';
-import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
+import {
+  createStyles,
+  makeStyles,
+  useTheme,
+  Theme
+} from '@material-ui/core/styles';
+import useMediaQuery from '@material-ui/core/useMediaQuery';
 import { Container, Grid, Box, Button } from '@material-ui/core';
 
 import Typography from '@modules/components/Typography';
@@ -46,6 +52,8 @@ const data = [
 
 export default function Experience() {
   const classes = useStyles();
+  const theme = useTheme();
+  const matchesSM = useMediaQuery(theme.breakpoints.up('sm'));
   return (
     <Box component="section" className={classes.root}>
       <Container>
@@ -66,6 +74,7 @@ export default function Experience() {
 
         <Grid container justifyContent="center">
           <Button
+            fullWidth={matchesSM ? undefined : true}
             variant="contained"
             size="large"
             className={classes.buttonStyle}

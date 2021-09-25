@@ -1,7 +1,13 @@
 /* eslint-disable jsx-a11y/alt-text */
 import React from 'react';
 import Image from 'next/image';
-import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
+import {
+  createStyles,
+  makeStyles,
+  useTheme,
+  Theme
+} from '@material-ui/core/styles';
+import useMediaQuery from '@material-ui/core/useMediaQuery';
 import { Container, Grid, Box, Button } from '@material-ui/core';
 
 import Typography from '@modules/components/Typography';
@@ -22,6 +28,8 @@ const useStyles = makeStyles((theme) =>
 
 export default function Destinations(props) {
   const classes = useStyles();
+  const theme = useTheme();
+  const matchesSM = useMediaQuery(theme.breakpoints.up('sm'));
   return (
     <>
       <Container maxWidth="md" className={classes.root}>
@@ -49,6 +57,7 @@ export default function Destinations(props) {
           style={{ paddingTop: '3rem' }}
         >
           <Button
+            fullWidth={matchesSM ? undefined : true}
             variant="contained"
             size="large"
             className={classes.buttonStyle}

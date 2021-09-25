@@ -1,5 +1,11 @@
 import React from 'react';
-import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
+import {
+  createStyles,
+  makeStyles,
+  useTheme,
+  Theme
+} from '@material-ui/core/styles';
+import useMediaQuery from '@material-ui/core/useMediaQuery';
 import { Container, Grid, Box, Button } from '@material-ui/core';
 
 import Typography from '@modules/components/Typography';
@@ -53,6 +59,8 @@ const specialOffers = [
 
 export default function Introduction() {
   const classes = useStyles();
+  const theme = useTheme();
+  const matchesSM = useMediaQuery(theme.breakpoints.up('sm'));
   return (
     <Box className={classes.root}>
       <Container maxWidth="lg">
@@ -76,6 +84,7 @@ export default function Introduction() {
           style={{ paddingTop: '3rem' }}
         >
           <Button
+            fullWidth={matchesSM ? undefined : true}
             variant="contained"
             size="large"
             className={classes.buttonStyle}

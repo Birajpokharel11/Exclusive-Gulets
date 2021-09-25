@@ -10,9 +10,6 @@ import YatchsRecommend from './components/YatchsRecommend';
 import Recommendation from './components/Recommendation';
 
 const DestinationsDetails = (props) => {
-  const { yachts, next_page, destinations, featured_destination, post } =
-    this.props;
-
   return (
     <Box>
       <Banner />

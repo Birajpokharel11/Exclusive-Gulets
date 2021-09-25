@@ -1,12 +1,9 @@
 import React, { useEffect } from 'react';
-import { END } from 'redux-saga';
-import { wrapper } from '../../store';
-import { fetchDestinationStart } from '../../store/destination/destination.actions';
 
 import { createStyles, makeStyles } from '@material-ui/core/styles';
-import { CircularProgress } from '@material-ui/core';
 import Box from '@material-ui/core/Box';
 import Container from '@material-ui/core/Container';
+import { CircularProgress } from '@material-ui/core';
 
 
 

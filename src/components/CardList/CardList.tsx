@@ -58,7 +58,13 @@ const cardContent = [
   }
 ];
 
-export default function CardList({ list, next_page, page }) {
+interface Props {
+  list?: any[];
+  next_page?: any;
+  page?: string;
+}
+
+export default function CardList({ list, next_page, page }: Props) {
   const classes = useStyles();
 
   return (

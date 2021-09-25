@@ -21,7 +21,7 @@ const useStyles = makeStyles((theme) =>
   })
 );
 
-const Destinations = (props) => {
+const BlogsDetails = (props) => {
   const classes = useStyles();
 
   const {
@@ -51,4 +51,4 @@ const Destinations = (props) => {
   );
 };
 
-export default container(Destinations);
+export default container(BlogsDetails);

@@ -1,27 +1,29 @@
 import React from 'react';
 import Button from '@material-ui/core/Button';
-import  Grid, {GridSize} from '@material-ui/core/Grid';
+import Grid, { GridSize } from '@material-ui/core/Grid';
+import Paper from '@material-ui/core/Paper';
 
-interface Props = {
+interface Props {
   lg?: GridSize;
   md?: GridSize;
+  title?: string;
   onClick?: () => void;
 }
 
-const DiscoverMore = ({ lg = 4, md = 4, onClick }: Props) => {
+const DiscoverMore = ({ title, onClick }: Props) => {
   return (
-    <Grid item lg={lg} md={md} xs={12}>
-      <div className="load-moregems">
+    <Grid item lg={4} md={4} xs={12}>
+      <Paper>
         <div className="gems-content" style={{ textAlign: 'center' }}>
           <p className="title">
             Discover more
             <br />
-            Destinations
+            {title}
           </p>
           <p className="txt">Go on... be curious</p>
           <Button title="More" onClick={onClick} />
         </div>
-      </div>
+      </Paper>
     </Grid>
   );
 };

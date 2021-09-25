@@ -11,7 +11,7 @@ import { Screenfull } from 'screenfull';
 
 const screenfull = _screenfull as Screenfull;
 
-import Spinner from '@components/Spinner';
+import Spinner from '@components/Spinner/Spinner';
 import PlayIcon from '@modules/icons/PlayIcon';
 import SoundVolumeIcon from '@modules/icons/SoundVolumeIcon';
 import SoundMutedIcon from '@modules/icons/SoundMutedIcon';

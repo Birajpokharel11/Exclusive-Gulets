@@ -37,6 +37,10 @@ const useStyles = makeStyles((theme) =>
           margin: '0 2em'
         },
 
+        '& .slick-track': {
+          display: 'flex'
+        },
+
         '& .slick-slide': {
           [theme.breakpoints.up('sm')]: {
             padding: '0 15px'

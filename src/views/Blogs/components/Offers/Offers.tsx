@@ -302,7 +302,7 @@ export default function Offers() {
           </Grid>
           <Grid item xs>
             {' '}
-            <Box display="felx" alignItems="center">
+            <Box alignItems="center">
               <Button className={classes.ButtonTM}>Enquite</Button>
             </Box>
           </Grid>

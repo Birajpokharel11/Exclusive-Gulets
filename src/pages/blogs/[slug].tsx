@@ -12,17 +12,17 @@ export default function NewsBlogs() {
   return <WithLayout component={BlogsDetails} layout={Main} />;
 }
 
-export const getServerSideProps = wrapper.getServerSideProps(
-  (store) => async () => {
-    store.dispatch(fetchPostsStart());
-    store.dispatch(END);
+// export const getServerSideProps = wrapper.getServerSideProps(
+//   (store) => async () => {
+//     store.dispatch(fetchPostsStart());
+//     store.dispatch(END);
 
-    await store.sagaTask?.toPromise();
-    const myStore = store.getState();
-    const posts = myStore.posts;
+//     await store.sagaTask?.toPromise();
+//     const myStore = store.getState();
+//     const posts = myStore.posts;
 
-    return {
-      props: { posts }
-    };
-  }
-);
+//     return {
+//       props: { posts }
+//     };
+//   }
+// );

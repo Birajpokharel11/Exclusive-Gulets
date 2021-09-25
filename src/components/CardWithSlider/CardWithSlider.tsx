@@ -11,8 +11,8 @@ import Hidden from '@material-ui/core/Hidden';
 import Grid, { GridSize } from '@material-ui/core/Grid';
 import Slider, { Settings } from 'react-slick';
 
-import NextArrow from '@components/icons/NextArrow';
-import PrevArrow from '@components/icons/PrevArrow';
+import NextArrow from '@modules/icons/NextArrow';
+import PrevArrow from '@modules/icons/PrevArrow';
 import MediaCard from './MediaCard';
 
 interface Card {

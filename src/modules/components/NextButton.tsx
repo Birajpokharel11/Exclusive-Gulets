@@ -28,8 +28,6 @@ interface Props {
 const ButtonChevron = ({ className, onClick, type }: Props) => {
   const classes = useStyles();
 
-  console.log({ className });
-
   const renderButton = () => {
     if (type === 'icon') {
       return (

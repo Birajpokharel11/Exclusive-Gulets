@@ -8,7 +8,7 @@ const useStyles = makeStyles(() => ({
   root: {
     backgroundColor: '#ffffff',
     position: 'absolute',
-    top: '45%',
+    top: '35%',
     transform: 'translateY(-50%)',
     zIndex: 10,
     left: 0,

@@ -141,7 +141,7 @@ export const HomeVideo = ({ isIOS }) => {
     smoothScroll.scrollToElementById('home-intro');
 
   return (
-    <Box className={classes.videoWrapper}>
+    <Box component="section" className={classes.videoWrapper}>
       {isLoading ? (
         <div className={classes.loaderWrapper}>
           <Spinner width="100%" height="50%" />

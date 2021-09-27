@@ -1,6 +1,6 @@
 /* eslint-disable jsx-a11y/alt-text */
 import React from 'react';
-import Image from 'next/image';
+import clsx from 'clsx';
 import {
   createStyles,
   makeStyles,
@@ -16,7 +16,7 @@ import DestinationGallery from './components/Gallery';
 const useStyles = makeStyles((theme) =>
   createStyles({
     root: {
-      paddingTop: '4rem'
+      padding: '4rem 0 2rem'
     },
     buttonStyle: {
       backgroundColor: '#2A398D',
@@ -26,13 +26,25 @@ const useStyles = makeStyles((theme) =>
   })
 );
 
-export default function Destinations({ title, subtitle, destinations }) {
+interface Props {
+  className?: string;
+  title: string;
+  subtitle: string;
+  destinations: any[];
+}
+
+export default function Destinations({
+  className,
+  title,
+  subtitle,
+  destinations
+}: Props) {
   const classes = useStyles();
   const theme = useTheme();
   const matchesSM = useMediaQuery(theme.breakpoints.up('sm'));
   return (
-    <>
-      <Container maxWidth="md" className={classes.root}>
+    <Box component="section" className={clsx(classes.root, className)}>
+      <Container maxWidth="md">
         <Box textAlign="center">
           <Typography color="textPrimary" align="center" variant="h2" stripped>
             {title}
@@ -64,6 +76,6 @@ export default function Destinations({ title, subtitle, destinations }) {
       </Container>
 
       <DestinationGallery destinationList={destinations} />
-    </>
+    </Box>
   );
 }

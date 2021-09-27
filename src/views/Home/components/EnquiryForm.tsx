@@ -16,7 +16,7 @@ import { menuProps } from '@utils/utils';
 const useStyles = makeStyles((theme) =>
   createStyles({
     root: {
-      marginTop: '6rem',
+      padding: '4rem 0 3rem',
       backgroundColor: '#F5F0E4'
     },
     Yatch: {
@@ -25,8 +25,7 @@ const useStyles = makeStyles((theme) =>
     },
     buttonStyle: {
       backgroundColor: '#2A398D',
-      color: '#FFFFFF',
-      marginBottom: '4rem'
+      color: '#FFFFFF'
     },
     textWidth: {
       width: '100%'
@@ -37,15 +36,14 @@ const useStyles = makeStyles((theme) =>
 export default function EnquiryForm() {
   const classes = useStyles();
   return (
-    <Box maxWidth="false" className={classes.root}>
-      <Container maxWidth="md">
+    <Box component="section" className={classes.root}>
+      <Container>
         <Grid
           container
           justifyContent="center"
           alignItems="center"
           direction="column"
           spacing={2}
-          style={{ paddingTop: '5rem' }}
         >
           <Grid item xs={12}>
             <Typography variant="h2" color="textPrimary" align="center">
@@ -63,8 +61,6 @@ export default function EnquiryForm() {
             </Typography>
           </Grid>
         </Grid>
-      </Container>
-      <Container>
         <Grid container spacing={3}>
           <Grid item container md={6} xs={12} spacing={2}>
             <Grid item xs={3}>

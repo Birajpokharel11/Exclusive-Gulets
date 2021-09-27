@@ -37,7 +37,7 @@ export default function EnquiryForm() {
   const classes = useStyles();
   return (
     <Box component="section" className={classes.root}>
-      <Container>
+      <Container maxWidth="md">
         <Grid
           container
           justifyContent="center"
@@ -61,6 +61,8 @@ export default function EnquiryForm() {
             </Typography>
           </Grid>
         </Grid>
+      </Container>
+      <Container>
         <Grid container spacing={3}>
           <Grid item container md={6} xs={12} spacing={2}>
             <Grid item xs={3}>
@@ -113,7 +115,7 @@ export default function EnquiryForm() {
               />
             </Grid>
           </Grid>
-          <Grid item container md={6} xs={12}>
+          <Grid item md={6} xs={12}>
             <TextField
               id="standard-multiline-static"
               label="Your Comments"

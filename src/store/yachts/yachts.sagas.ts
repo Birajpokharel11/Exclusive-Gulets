@@ -11,7 +11,7 @@ export function* fetchYachtsAsync() {
   try {
     console.log('fetchYachtsAsync>>>');
     const { data } = yield axios.post(
-      'http://localhost:3000/api/v1/search/filter_yachts.json'
+      'https://app.exclusivegulets.com/api/v1/search/filter_yachts.json'
     );
     console.log('value of response fetchYachtsAsync>>>', data.yachts);
     yield put(postsAction.fetchYachtsSuccess(data.yachts));

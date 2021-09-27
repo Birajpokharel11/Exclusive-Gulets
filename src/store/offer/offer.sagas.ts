@@ -11,7 +11,7 @@ export function* fetchOfferAsync() {
   try {
     console.log('fetchOfferAsync>>>');
     const { data } = yield axios.get(
-      `http://localhost:3000/api/v1/special_offers`
+      `https://app.exclusivegulets.com/api/v1/special_offers`
     );
     console.log('value of response fetchOfferAsync>>>', data);
     yield put(destinationAction.fetchOfferSuccess(data.offers));

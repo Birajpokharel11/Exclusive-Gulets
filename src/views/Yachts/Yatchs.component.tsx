@@ -14,7 +14,9 @@ import container from './Yatchs.container';
 
 const YatchDetails = (props) => {
   const {
-    destination: { randomDestination }
+    destination: { randomDestination },
+    yacht: { yachtsList },
+    experience: { experiences }
   } = props;
 
   const [open, setOpen] = useState(false);
@@ -26,9 +28,9 @@ const YatchDetails = (props) => {
     <Box component="section">
       <HeroSection />
       <AdvancedFilterSection />
-      <Gallery handleDrawerOpen={handleDrawerToggle} />
+      <Gallery handleDrawerOpen={handleDrawerToggle} yachtsList={yachtsList} />
       <Destinations destinationList={randomDestination} />
-      <Experiences />
+      <Experiences experiences={experiences} />
       {open && (
         <PreviewDrawer open={open} handleDrawerToggle={handleDrawerToggle} />
       )}

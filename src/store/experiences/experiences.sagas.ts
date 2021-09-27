@@ -11,7 +11,7 @@ export function* fetchExperiencesAsync() {
   try {
     console.log('fetchExperiencesAsync>>>');
     const { data } = yield axios.get(
-      `http://localhost:3000/api/v1/experiences.json`
+      `https://app.exclusivegulets.com/api/v1/experiences.json`
     );
     console.log('value of response fetchOfferAsync>>>', data);
     yield put(experiencesAction.fetchExperiencesSuccess(data.experiences));

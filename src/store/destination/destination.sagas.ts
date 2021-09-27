@@ -11,7 +11,7 @@ export function* fetchDestinationAsync({ payload }: AnyAction) {
   try {
     console.log('inside of fetchDestination saga', payload);
     const { data } = yield axios.get(
-      `http://localhost:3000/api/v1/destinations.json?${queryString.stringify(
+      `https://app.exclusivegulets.com/api/v1/destinations.json?${queryString.stringify(
         payload
       )}`
     );
@@ -27,7 +27,7 @@ export function* fetchRandomDestinationAsync() {
   try {
     console.log('inside of random destination saga');
     const { data } = yield axios.get(
-      `http://localhost:3000/api/v1/destinations/random_destinations`
+      `https://app.exclusivegulets.com/api/v1/destinations/random_destinations`
     );
     console.log(
       'value of response fetchRandomDestinationAsync>>>',

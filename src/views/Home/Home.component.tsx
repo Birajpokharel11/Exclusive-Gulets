@@ -27,18 +27,10 @@ const useStyles = makeStyles((theme) =>
 const Home = (props) => {
   const classes = useStyles();
   const {
-    onFetchOfferStart,
-    onFetchRandomDestinationStart,
-    onFetchPostsStart,
     destination: { randomDestination },
-    posts: { postsList }
+    posts: { postsList },
+    offer: { offers }
   } = props;
-
-  useEffect(() => {
-    onFetchOfferStart();
-    onFetchRandomDestinationStart();
-    onFetchPostsStart();
-  }, []);
 
   return (
     <div>
@@ -46,7 +38,7 @@ const Home = (props) => {
         <HeroSection {...props} />
       </Box>
       <Introduction />
-      <SpecialOffers />
+      <SpecialOffers offers={offers} />
       <CharterYatch />
       <YatchSlider />
       <Destinations destinationList={randomDestination} />

@@ -89,22 +89,29 @@ const useStyles = makeStyles((theme: Theme) =>
 
 export default function GalleryItem({
   i,
-  img,
-  title,
+  main_image: { url },
+  name,
   subtitle,
   SpecialOffers,
   InstantBooking,
-  handleDrawerOpen
+  handleDrawerOpen,
+  charter_price,
+  number_of_passengers,
+  length,
+  charter_max_price,
+  sailing_countries
 }) {
   const classes = useStyles();
 
   const [offers, setOffers] = React.useState(true);
 
+  console.log('data received >>>', url, name);
+
   return (
     <Box className={classes.root}>
       <Box className={classes.view} onClick={() => handleDrawerOpen()}>
         <img
-          src={img}
+          src={url}
           className={classes.Img}
           data-cy={`Gallery Images${i}`}
           alt=""
@@ -114,10 +121,11 @@ export default function GalleryItem({
 
       <Box className={classes.details}>
         <Typography variant="h4" color="inherit">
-          {title}{' '}
+          {name}
         </Typography>
         <Typography variant="h6" color="inherit">
-          {subtitle}
+          From €{charter_price} to €{charter_max_price} | {length}m |
+          {number_of_passengers} Guests
         </Typography>
       </Box>
       {(SpecialOffers || InstantBooking) && (
@@ -153,12 +161,13 @@ export default function GalleryItem({
         </IconButton>
 
         <Box style={{ color: 'white' }}>
-          <Typography color="inherit" variant="body1">
-            France,Monaco
-          </Typography>
-          <Typography color="inherit" variant="body1">
-            Turkey
-          </Typography>
+          {sailing_countries.length
+            ? sailing_countries.map((sail, index) => (
+                <Typography color="inherit" variant="body1" key={index}>
+                  {sail.name}
+                </Typography>
+              ))
+            : '-'}
         </Box>
       </Box>
     </Box>

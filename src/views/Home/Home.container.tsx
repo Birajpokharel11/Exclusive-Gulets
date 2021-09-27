@@ -11,8 +11,7 @@ const mapStateToProps = (state, props) => ({
 
 const mapDispatchToProps = (dispatch) => ({
   onFetchOfferStart: () => dispatch(fetchOfferStart()),
-  onFetchRandomDestinationStart: () => dispatch(fetchRandomDestinationStart()),
-  onFetchPostsStart: () => dispatch(fetchPostsStart())
+  onFetchRandomDestinationStart: () => dispatch(fetchRandomDestinationStart())
 });
 
 const container = connect(mapStateToProps, mapDispatchToProps);

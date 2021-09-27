@@ -11,7 +11,7 @@ export function* fetchDestinationAsync({ payload }: AnyAction) {
   try {
     console.log('inside of fetchDestination saga', payload);
     const { data } = yield axios.get(
-      `http://localhost:3000/api/v1/destinations.json?${queryString.stringify(
+      `https://app.exclusivegulets.com/api/v1/destinations.json?${queryString.stringify(
         payload
       )}`
     );

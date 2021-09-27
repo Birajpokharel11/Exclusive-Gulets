@@ -25,8 +25,7 @@ const BlogsDetails = (props) => {
   const classes = useStyles();
 
   const {
-    blogs: { loading },
-    posts: { postsList }
+    blogs: { loading, blogs }
   } = props;
 
   return (
@@ -37,7 +36,7 @@ const BlogsDetails = (props) => {
         {...props}
       />
 
-      <Box component="section">
+      {/* <Box component="section">
         <BackgroundVectors />
         <Container>
           <Box mb={4}>
@@ -45,7 +44,7 @@ const BlogsDetails = (props) => {
           </Box>
           <CardList list={postsList} />
         </Container>
-      </Box>
+      </Box> */}
       <FooterSlider />
     </Box>
   );

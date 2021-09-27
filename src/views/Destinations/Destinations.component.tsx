@@ -5,8 +5,6 @@ import Box from '@material-ui/core/Box';
 import Container from '@material-ui/core/Container';
 import { CircularProgress } from '@material-ui/core';
 
-
-
 import Typography from '@modules/components/Typography';
 
 import BannerSection from '@components/BannerSection';
@@ -33,7 +31,7 @@ const Destinations = (props) => {
   const classes = useStyles();
 
   const {
-    destinations: { loading, destinations },
+    destinations: { loading, destinations }
   } = props;
 
   return (
@@ -48,7 +46,7 @@ const Destinations = (props) => {
         <BackgroundVectors />
         <Container>
           <Box mb={4}>
-            <Typography>{featured_destination.content}</Typo>
+            <Typography>{featured_destination.content}</Typography>
           </Box>
           <CardList list={destinations} />
         </Container>

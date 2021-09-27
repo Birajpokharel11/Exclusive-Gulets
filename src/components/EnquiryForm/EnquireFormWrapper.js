@@ -1,4 +1,6 @@
-import { useResize } from 'hooks/useResize';
+// import { useResize } from 'hooks/useResize';
+import { useTheme } from '@material-ui/core/styles';
+import useMediaQuery from '@material-ui/core/useMediaQuery';
 import React, { useState } from 'react';
 // import FormAfterSend from './FormAfterSend'
 import EnquireForm from './index';
@@ -6,6 +8,8 @@ import './index.scss';
 
 function EnquireFormWrapper({ smallContainerWidth, maxToScroll }) {
   const [windowWidth] = useResize();
+  const theme = useTheme();
+  const matches = useMediaQuery(theme.breakpoints.down('md'));
   // const [showAfterFormSend, setShowAfterFormSend] = useState(false)
   // const [success, setSuccess] = useState(false)
 
@@ -19,7 +23,7 @@ function EnquireFormWrapper({ smallContainerWidth, maxToScroll }) {
 
   return (
     <div
-      style={windowWidth <= 992 ? { display: 'none' } : null}
+      style={matches ? { display: 'none' } : null}
       className="col-lg-4 d-lg-block sticky_block"
     >
       <div className="form_container">

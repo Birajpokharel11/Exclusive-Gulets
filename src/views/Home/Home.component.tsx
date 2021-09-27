@@ -33,15 +33,12 @@ const Home = (props) => {
   const {
     onFetchOfferStart,
     onFetchRandomDestinationStart,
-    onFetchPostsStart,
-    destination: { randomDestination },
-    posts: { postsList }
+    destination: { randomDestination }
   } = props;
 
   useEffect(() => {
     onFetchOfferStart();
     onFetchRandomDestinationStart();
-    onFetchPostsStart();
   }, []);
 
   return (
@@ -62,7 +59,7 @@ const Home = (props) => {
         destinations={Images}
       />
       <Experience />
-      <NewsAndBlogs postsList={postsList} />
+      <NewsAndBlogs />
       <EnquiryForm />
     </div>
   );

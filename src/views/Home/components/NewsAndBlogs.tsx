@@ -1,13 +1,21 @@
 import React from 'react';
 import Image from 'next/image';
-import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
-import { Container, Grid, Box, Typography, Button } from '@material-ui/core';
+import {
+  createStyles,
+  makeStyles,
+  useTheme,
+  Theme
+} from '@material-ui/core/styles';
+import useMediaQuery from '@material-ui/core/useMediaQuery';
+import { Container, Grid, Box, Button } from '@material-ui/core';
+
+import Typography from '@modules/components/Typography';
 import CardWithSlider from '@components/CardWithSlider';
 
 const useStyles = makeStyles((theme) =>
   createStyles({
     root: {
-      padding: '2rem 0'
+      padding: '4rem 0'
     },
     Yatch: {
       width: '100%',
@@ -47,38 +55,31 @@ const data = [
 export default function NewsAndBlogs(props) {
   const { postsList } = props;
   const classes = useStyles();
+  const theme = useTheme();
+  const matchesSM = useMediaQuery(theme.breakpoints.up('sm'));
   return (
-    <Box maxWidth="false" className={classes.root}>
+    <Box className={classes.root}>
       <Container maxWidth="xl">
-        <Grid
-          container
-          justifyContent="center"
-          alignItems="center"
-          direction="column"
-          spacing={2}
-          style={{ paddingTop: '5rem' }}
-        >
-          <Grid item xs={12}>
-            <Typography variant="h2" color="textPrimary" align="center">
-              News & Blogs
-            </Typography>
-          </Grid>
+        <Box textAlign="center">
+          <Typography variant="h2" color="textPrimary" align="center" stripped>
+            News & Blogs
+          </Typography>
 
-          <Grid item container justifyContent="center" xs={12}>
-            <img src="/assets/images/smallBlueUnderline.svg" alt="underline" />
-          </Grid>
-          <Grid item>
-            <Typography align="center" color="textPrimary" variant="subtitle1">
-              Keep up to date with our latest yachting news, charter
-              destinations, special offers and more.
-            </Typography>
-          </Grid>
-        </Grid>
+          <Typography align="center" color="textPrimary" variant="subtitle1">
+            Keep up to date with our latest yachting news, charter destinations,
+            special offers and more.
+          </Typography>
+        </Box>
 
         <CardWithSlider cardsData={data} />
 
         <Grid container justifyContent="center">
-          <Button variant="contained" className={classes.buttonStyle}>
+          <Button
+            fullWidth={matchesSM ? undefined : true}
+            variant="contained"
+            size="large"
+            className={classes.buttonStyle}
+          >
             View All News & Blogs
           </Button>
         </Grid>

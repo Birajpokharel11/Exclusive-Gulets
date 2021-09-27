@@ -4,7 +4,7 @@ import { makeStyles, Theme } from '@material-ui/core/styles';
 import Box from '@material-ui/core/Box';
 import Typography from '@material-ui/core/Typography';
 
-import Location from '@components/icons/Location';
+import Location from '@modules/icons/Location';
 
 const useStyles = makeStyles((theme: Theme) => ({
   thumbItem: {

@@ -1,6 +1,5 @@
-/* eslint-disable jsx-a11y/alt-text */
 import React from 'react';
-import { createStyles, makeStyles } from '@material-ui/core/styles';
+import { createStyles, makeStyles, useTheme } from '@material-ui/core/styles';
 import {
   Button,
   Container,
@@ -15,7 +14,6 @@ import Link from 'next/link';
 import NavigateNextIcon from '@material-ui/icons/NavigateNext';
 import Gallery from './Gallery';
 import ExperiencesFrom from './ExperiencesForm';
-import { useTheme } from '@material-ui/styles';
 
 const useStyles = makeStyles((theme) =>
   createStyles({
@@ -81,13 +79,15 @@ const useStyles = makeStyles((theme) =>
 );
 
 export default function Offers() {
+  const classes = useStyles();
+  const theme = useTheme();
+  const matches = useMediaQuery(theme.breakpoints.down('lg'));
+
   function handleClick(event) {
     event.preventDefault();
     console.info('You clicked a breadcrumb.');
   }
-  const classes = useStyles();
-  const theme = useTheme();
-  const matches = useMediaQuery(theme.breakpoints.down('lg'));
+
   return (
     <>
       <Box>

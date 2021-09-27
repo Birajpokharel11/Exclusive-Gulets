@@ -18,6 +18,7 @@
       "@layouts/*": ["src/layouts/*"],
       "@assets/*": ["src/assets/*"],
       "@components/*": ["src/components/*"],
+      "@modules/*": ["src/modules/*"],
       "@views/*": ["src/views/*"],
       "@theme/*": ["src/theme/*"],
       "@utils/*": ["src/utils/*"],
@@ -25,6 +26,11 @@
       "@mocks/*": ["src/mocks/*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    "src/theme/overrides/MuiTextField.tx"
+  ],
   "exclude": ["node_modules"]
 }

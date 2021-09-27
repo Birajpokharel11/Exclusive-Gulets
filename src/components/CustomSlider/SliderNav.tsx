@@ -6,8 +6,8 @@ import Box from '@material-ui/core/Box';
 import Grid from '@material-ui/core/Grid';
 import Slider from 'react-slick';
 
-import PrevButton from '@components/PrevButton';
-import NextButton from '@components/NextButton';
+import PrevButton from '@modules/components/PrevButton';
+import NextButton from '@modules/components/NextButton';
 
 import CustomStepper from './CustomStepper';
 

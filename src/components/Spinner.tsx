@@ -10,14 +10,19 @@ interface Props {
   type?: string;
 }
 
-export const Spinner = (props: Props) => (
+export const Spinner = ({
+  width = 300,
+  height = 300,
+  play = false,
+  type
+}: Props) => (
   <Lottie
-    width={props.width ? props.width : 300}
-    height={props.height ? props.height : 300}
+    width={width}
+    height={height}
     options={{
       loop: true,
-      autoplay: props.play,
-      animationData: props.type === 'button' ? loader : spinner
+      autoplay: play,
+      animationData: type === 'button' ? loader : spinner
     }}
   />
 );

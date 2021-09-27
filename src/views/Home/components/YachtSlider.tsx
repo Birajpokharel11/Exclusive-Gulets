@@ -1,17 +1,18 @@
 import React from 'react';
 import Image from 'next/image';
 import { createStyles, makeStyles, withStyles } from '@material-ui/core/styles';
-import { Container, Grid, Box, Typography } from '@material-ui/core';
+import { Container, Grid, Box } from '@material-ui/core';
 
-import underLine from 'public/assets/images/smallBlueUnderline.svg';
+import Typography from '@modules/components/Typography';
 
 import CustomSlider from '@components/CustomSlider';
-import { slider } from '../../../mocks/_homeSliderMock';
+import { slider } from '@mocks/_homeSliderMock';
 
 const useStyles = makeStyles((theme) =>
   createStyles({
     root: {
       backgroundColor: '#F5F0E4',
+      position: 'relative',
       padding: '60px 0',
       [theme.breakpoints.up('sm')]: {
         padding: '80px 0 100px'
@@ -65,27 +66,16 @@ const useStyles = makeStyles((theme) =>
 export default function YatchSlider() {
   const classes = useStyles();
   return (
-    <Box component="section" maxWidth="false" className={classes.root}>
-      <Grid
-        container
-        justifyContent="center"
-        alignItems="center"
-        className={classes.gridContainer}
-      >
-        <Grid item xs={12}>
-          <Typography color="textPrimary" align="center" variant="h2">
-            Loved by our Guests
-          </Typography>
-        </Grid>
-        <Grid item container justifyContent="center" xs={12}>
-          <Image src={underLine} alt="underline" />
-        </Grid>
-        <Grid item>
-          <Typography align="center" color="textPrimary" variant="subtitle1">
-            Recently Confirmed Charters
-          </Typography>
-        </Grid>
-      </Grid>
+    <Box component="section" className={classes.root}>
+      <Box textAlign="center" className={classes.gridContainer}>
+        <Typography color="textPrimary" variant="h2" stripped>
+          Loved by our Guests
+        </Typography>
+
+        <Typography color="textPrimary" variant="subtitle1">
+          Recently Confirmed Charters
+        </Typography>
+      </Box>
       <Container maxWidth="lg">
         <CustomSlider sliderData={slider} />
       </Container>

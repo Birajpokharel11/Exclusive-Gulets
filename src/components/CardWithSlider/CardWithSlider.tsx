@@ -11,8 +11,8 @@ import Hidden from '@material-ui/core/Hidden';
 import Grid, { GridSize } from '@material-ui/core/Grid';
 import Slider, { Settings } from 'react-slick';
 
-import NextArrow from '@components/icons/NextArrow';
-import PrevArrow from '@components/icons/PrevArrow';
+import NextArrow from '@modules/icons/NextArrow';
+import PrevArrow from '@modules/icons/PrevArrow';
 import MediaCard from './MediaCard';
 
 interface Card {
@@ -37,6 +37,10 @@ const useStyles = makeStyles((theme) =>
           margin: '0 2em'
         },
 
+        '& .slick-track': {
+          display: 'flex'
+        },
+
         '& .slick-slide': {
           [theme.breakpoints.up('sm')]: {
             padding: '0 15px'
@@ -56,39 +60,36 @@ const CardWithSlider = ({ cardsData }: Props) => {
 
   console.log({ matchesSM, matchesXS });
 
-  const [slickSettings, setSlickSettings] = useState({});
-
-  useEffect(() => {
-    let slickSettings: Settings = {
-      infinite: true,
-      speed: 500,
-      className: classes.carouselStyle,
-      centerPadding: '30px'
-    };
-    if (matchesSM) {
-      slickSettings = {
-        ...slickSettings,
-        arrows: true,
-        prevArrow: <PrevArrow />,
-        nextArrow: <NextArrow />,
-        slidesToShow: 2,
-        slidesToScroll: 1
-      };
-    }
-
-    if (matchesXS) {
-      slickSettings = {
-        ...slickSettings,
-        dots: true,
-        arrows: true,
-        prevArrow: <PrevArrow />,
-        nextArrow: <NextArrow />,
-        slidesToShow: 1,
-        slidesToScroll: 1
-      };
-    }
-    setSlickSettings(slickSettings);
-  }, [matchesSM, matchesXS]);
+  const slickSettings: Settings = {
+    infinite: true,
+    arrows: false,
+    speed: 500,
+    className: classes.carouselStyle,
+    centerPadding: '30px',
+    responsive: [
+      {
+        breakpoint: 959,
+        settings: {
+          arrows: true,
+          slidesToShow: 2,
+          slidesToScroll: 1,
+          prevArrow: <PrevArrow />,
+          nextArrow: <NextArrow />
+        }
+      },
+      {
+        breakpoint: 675,
+        settings: {
+          dots: true,
+          arrows: true,
+          slidesToShow: 1,
+          slidesToScroll: 1,
+          prevArrow: <PrevArrow />,
+          nextArrow: <NextArrow />
+        }
+      }
+    ]
+  };
 
   // ref
   const sliderRef = useRef<Slider>(null);

@@ -12,9 +12,9 @@ import { Screenfull } from 'screenfull';
 const screenfull = _screenfull as Screenfull;
 
 import Spinner from '@components/Spinner';
-import PlayIcon from '@components/icons/PlayIcon';
-import SoundVolumeIcon from '@components/icons/SoundVolumeIcon';
-import SoundMutedIcon from '@components/icons/SoundMutedIcon';
+import PlayIcon from '@modules/icons/PlayIcon';
+import SoundVolumeIcon from '@modules/icons/SoundVolumeIcon';
+import SoundMutedIcon from '@modules/icons/SoundMutedIcon';
 
 import { smoothScroll } from '@utils/misc';
 

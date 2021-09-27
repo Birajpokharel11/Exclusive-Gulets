@@ -9,7 +9,7 @@ import {
   Typography
 } from '@material-ui/core';
 
-import BackArrow from '@components/icons/BackArrow';
+import BackArrow from '@modules/icons/BackArrow';
 
 const useStyles = makeStyles((theme) => ({
   root: {

@@ -5,7 +5,7 @@ import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 
-import Location from '@components/icons/Location';
+import Location from '@modules/icons/Location';
 
 const useStyles = makeStyles((theme) => ({
   root: {

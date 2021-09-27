@@ -41,7 +41,7 @@ const BlogsDetails = (props) => {
         <BackgroundVectors />
         <Container>
           <Box mb={4}>
-            <Typography>{blog?.fields?.single_subheading}</Typo>
+            <Typography>{blog?.fields?.single_subheading}</Typography>
           </Box>
           <CardList list={postsList} />
         </Container>

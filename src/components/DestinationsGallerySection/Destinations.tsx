@@ -11,7 +11,7 @@ import useMediaQuery from '@material-ui/core/useMediaQuery';
 import { Container, Grid, Box, Button } from '@material-ui/core';
 
 import Typography from '@modules/components/Typography';
-import DestinationGallery from '@views/Home/components/Destinations/DestinationGallery';
+import DestinationGallery from './components/Gallery';
 
 const useStyles = makeStyles((theme) =>
   createStyles({

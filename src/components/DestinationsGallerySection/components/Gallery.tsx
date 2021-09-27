@@ -102,40 +102,7 @@ const useStyles = makeStyles((theme) =>
     }
   })
 );
-const Images = [
-  {
-    src: '/assets/images/destinationPic/images3.png',
-    typography: 'Destination Name'
-  },
-  {
-    src: '/assets/images/destinationPic/images1.png',
-    typography: 'Destination Name'
-  },
-  {
-    src: '/assets/images/destinationPic/images5.png',
-    typography: 'Destination Name'
-  },
-  {
-    src: '/assets/images/destinationPic/images5.png',
-    typography: 'Destination Name'
-  },
-  {
-    src: '/assets/images/destinationPic/images4.jpg',
-    typography: 'Destination Name'
-  },
-  {
-    src: '/assets/images/destinationPic/images6.jpg',
-    typography: 'Destination Name'
-  },
-  {
-    src: '/assets/images/destinationPic/images6.jpg',
-    typography: 'Destination Name'
-  },
-  {
-    src: '/assets/images/destinationPic/images3.png',
-    typography: 'Destination Name'
-  }
-];
+
 export default function PhotoSection({ destinationList }) {
   const classes = useStyles();
 
@@ -148,7 +115,7 @@ export default function PhotoSection({ destinationList }) {
           style={{ position: 'relative' }}
         >
           <img
-            src={item.featured_image.slider.url}
+            src={item?.featured_image?.slider?.url}
             alt="Guest"
             className={classes.image}
           />
@@ -157,7 +124,7 @@ export default function PhotoSection({ destinationList }) {
             color="secondary"
             className={classes.Typography1}
           >
-            {item.title}
+            {item?.title}
           </Typography>
           <div className={classes.imgShadow1} />
         </Box>

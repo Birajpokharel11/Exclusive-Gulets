@@ -1,34 +1,66 @@
 export const Images = [
   {
-    src: '/assets/images/destinationPic/images3.png',
-    typography: 'Destination Name'
+    title: 'Destination Name',
+    featured_image: {
+      slider: {
+        url: '/assets/images/destinationPic/images3.png'
+      }
+    }
   },
   {
-    src: '/assets/images/destinationPic/images1.png',
-    typography: 'Destination Name'
+    title: 'Destination Name',
+    featured_image: {
+      slider: {
+        url: '/assets/images/destinationPic/images1.png'
+      }
+    }
   },
   {
-    src: '/assets/images/destinationPic/images5.png',
-    typography: 'Destination Name'
+    title: 'Destination Name',
+    featured_image: {
+      slider: {
+        url: '/assets/images/destinationPic/images5.png'
+      }
+    }
   },
   {
-    src: '/assets/images/destinationPic/images5.png',
-    typography: 'Destination Name'
+    title: 'Destination Name',
+    featured_image: {
+      slider: {
+        url: '/assets/images/destinationPic/images5.png'
+      }
+    }
   },
   {
-    src: '/assets/images/destinationPic/images4.jpg',
-    typography: 'Destination Name'
+    title: 'Destination Name',
+    featured_image: {
+      slider: {
+        url: '/assets/images/destinationPic/images4.jpg'
+      }
+    }
   },
   {
-    src: '/assets/images/destinationPic/images6.jpg',
-    typography: 'Destination Name'
+    title: 'Destination Name',
+    featured_image: {
+      slider: {
+        url: '/assets/images/destinationPic/images6.jpg'
+      }
+    }
   },
   {
-    src: '/assets/images/destinationPic/images6.jpg',
-    typography: 'Destination Name'
+    title: 'Destination Name',
+    featured_image: {
+      slider: {
+        url: '/assets/images/destinationPic/images6.jpg'
+      }
+    }
   },
   {
-    src: '/assets/images/destinationPic/images3.png',
-    typography: 'Destination Name'
+    title: 'Destination Name',
+    featured_image: {
+      slider: {
+        url: '/assets/images/destinationPic/images3.png'
+      }
+    }
   }
 ];

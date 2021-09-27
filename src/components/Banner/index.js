@@ -13,69 +13,59 @@ export const Banner = (props) => {
     bgImageUrl,
     bottomTitle,
     description,
-    bottomSubTitle,
+    bottomSubTitle
   } = props;
 
   return (
     <div className="hero-slider section destination-hero">
-
-      {props.createBreadcrumbs && props.createBreadcrumbs({
-        breadcrumbName: props.breadcrumbName ? props.breadcrumbName : null,
-        theme: 'dark'
-      })
-      }
+      {props.createBreadcrumbs &&
+        props.createBreadcrumbs({
+          breadcrumbName: props.breadcrumbName ? props.breadcrumbName : null,
+          theme: 'dark'
+        })}
 
       <div
         id="destination_pg"
         style={{
-          backgroundColor: "#091527",
+          backgroundColor: '#091527',
           backgroundImage: `url(${bgImageUrl})`
         }}
         className="hero-item HRO_SEC"
       >
         <div className="slider-dark-overlay" />
-        {
-          (title || description) && (
-            <div className="container">
-              <div className="row">
-                <div className="hero-content-wrap col">
-                  <div className="hero-content destination-content">
-                    <div className="row">
-                      <div className="col-lg-7 col-md-6 col order-2 order-lg-1">
-                        <div className="des-content-hero">
-                          <h1>{title}</h1>
-                          <p className="sec_destinatom_p">{description}</p>
-                        </div>
+        {(title || description) && (
+          <div className="container">
+            <div className="row">
+              <div className="hero-content-wrap col">
+                <div className="hero-content destination-content">
+                  <div className="row">
+                    <div className="col-lg-7 col-md-6 col order-2 order-lg-1">
+                      <div className="des-content-hero">
+                        <h1>{title}</h1>
+                        <p className="sec_destinatom_p">{description}</p>
                       </div>
-                      <div className="col-lg-5 col-md-6 order-1 order-lg-2 video-margin" />
                     </div>
+                    <div className="col-lg-5 col-md-6 order-1 order-lg-2 video-margin" />
                   </div>
                 </div>
               </div>
             </div>
-          )
-        }
-        {
-          !!withScroll && <ScrollDown id={withScroll} />
-        }
-        {
-          withSocial && <Socials />
-        }
+          </div>
+        )}
+        {!!withScroll && <ScrollDown id={withScroll} />}
+        {withSocial && <Socials />}
         {children}
         <div className="overlay-wrapper">
-          {
-            !!bottomTitle && !!bottomSubTitle && (
-              <div className='blog_overlay'>
-                <div className='container'>
-                  <h1>{bottomTitle}</h1>
-                  <div className="separator" />
-                  <p dangerouslySetInnerHTML={{ __html: bottomSubTitle }} />
-                </div>
+          {!!bottomTitle && !!bottomSubTitle && (
+            <div className="blog_overlay">
+              <div className="container">
+                <h1>{bottomTitle}</h1>
+                <div className="separator" />
+                <p dangerouslySetInnerHTML={{ __html: bottomSubTitle }} />
               </div>
-            )
-          }
+            </div>
+          )}
         </div>
-
       </div>
     </div>
   );

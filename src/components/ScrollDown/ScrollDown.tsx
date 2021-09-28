@@ -1,21 +1,54 @@
-import React from 'react';
+import { Box, Button, Typography, IconButton, Hidden } from '@material-ui/core';
 
-import { smoothScroll } from '../../utils/smoothScroll';
+import { smoothScroll } from '@utils/misc';
 
-import bannerarow from '../../assets/images/icons/banner-arrow.png';
-
-export const ScrollDown = props => {
-  const { id } = props;
-
+export const ScrollDown = ({ id }) => {
   const scrollToId = () => {
     smoothScroll.scrollToElementById(id);
   };
 
   return (
-   <div className="arrow-down" onClick={scrollToId}>
-     <p className="scroll-text">Scroll Down</p>
-     <img src={bannerarow} className="img-responsive" alt="button arrow" />
-   </div>
+    <Hidden mdDown>
+      <Box>
+        <Button disableRipple>
+          <Button disableRipple>
+            <Box
+              style={{
+                alignItems: 'center',
+                width: '100px',
+                cursor: 'pointer'
+              }}
+            >
+              <Box
+                mt={50}
+                style={{
+                  transform: 'rotate(-90deg)',
+                  marginBottom: '30%'
+                }}
+              >
+                <Typography color="secondary">Scroll Down</Typography>
+              </Box>
+              <IconButton
+                style={{
+                  display: 'flex',
+                  color: 'white',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  transform: 'rotate(360deg)',
+                  marginLeft: '30px',
+                  height: '100px'
+                }}
+              >
+                <img
+                  src="/assets/images/icons/banner-arrow.png"
+                  alt="button arrow"
+                />
+              </IconButton>
+            </Box>
+          </Button>
+        </Button>
+      </Box>
+    </Hidden>
   );
 };
 

@@ -1,12 +1,13 @@
 import React from 'react';
 import Image from 'next/image';
+import { createStyles, makeStyles } from '@material-ui/core/styles';
+import { Box } from '@material-ui/core';
+
 import vector4 from '../../assets/images/icons/vector4.png';
 import vector2 from '../../assets/images/Blog/blog-vector2.svg';
 import vector3 from '../../assets/images/Blog_single/vector3.svg';
 import vectorblog1 from '../../assets/images/Blog_single/wheel-vector.svg';
-import { createStyles, makeStyles } from '@material-ui/core/styles';
-import { classNames } from 'react-select/dist/declarations/src/utils';
-import { Box } from '@material-ui/core';
+
 const useStyles = makeStyles((theme) =>
   createStyles({
     Container1: {

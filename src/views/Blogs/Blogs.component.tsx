@@ -48,7 +48,7 @@ const BlogsDetails = (props) => {
         // </Box> */}
       {/* )} */}
 
-      <FooterSlider />
+      {/* <FooterSlider /> */}
     </Box>
   );
 };

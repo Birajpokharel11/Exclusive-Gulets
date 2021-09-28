@@ -1,41 +1,79 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
+import { createStyles, makeStyles } from '@material-ui/core/styles';
+import { Box, IconButton, Hidden } from '@material-ui/core';
 
-import { selectContent } from '../../selectors/root';
+import TwitterIcon from '@material-ui/icons/Twitter';
+import LinkedInIcon from '@material-ui/icons/LinkedIn';
+import InstagramIcon from '@material-ui/icons/Instagram';
+import FacebookIcon from '@material-ui/icons/Facebook';
+import YouTubeIcon from '@material-ui/icons/YouTube';
+
+const useStyles = makeStyles((theme) =>
+  createStyles({
+    iconSection: {
+      position: 'absolute',
+      color: 'white',
+      right: '5vw',
+      bottom: '15%',
+      zIndex: 1
+    },
+    icon: {
+      margin: '39px 0 0',
+      '&:hover': { color: 'orange' }
+    }
+  })
+);
 
 export const Socials = () => {
-  const content = useSelector(selectContent);
+  const classes = useStyles();
 
   return (
-    <div className="social-links-top">
-      <ul>
-        <li>
-          <a href={content.fields?.twitter_link} >
-            <i className="fa fa-twitter" />
-          </a>
-        </li>
-        <li>
-          <a href={content.fields?.linkedin_link} >
-            <i className="fa fa-linkedin" />
-          </a>
-        </li>
-        <li>
-          <a href={content.fields?.instagram_link} >
-            <i className="fa fa-instagram" />
-          </a>
-        </li>
-        <li>
-          <a href={content.fields?.facebook_link} >
-            <i className="fa fa-facebook" />
-          </a>
-        </li>
-        <li>
-          <a href="https://www.youtube.com/channel/UCRupGbMd1sUrXiYgRE9pePw/featured">
-            <i className="fa fa-youtube" />
-          </a>
-        </li>
-      </ul>
-    </div>
+    <Hidden xsDown>
+      <Box
+        className={classes.iconSection}
+        display="flex"
+        flexDirection="column"
+      >
+        <IconButton
+          className={classes.icon}
+          href="https://twitter.com/exclusivegulets"
+          target="_blank"
+        >
+          <TwitterIcon />
+        </IconButton>
+
+        <IconButton
+          className={classes.icon}
+          href="https://www.linkedin.com/company/exclusive-gulets-ltd/?viewAsMember=true"
+          target="_blank"
+        >
+          <LinkedInIcon />
+        </IconButton>
+
+        <IconButton
+          className={classes.icon}
+          href="https://www.instagram.com/exclusive_gulets/"
+          target="_blank"
+        >
+          <InstagramIcon />
+        </IconButton>
+
+        <IconButton
+          className={classes.icon}
+          href="https://www.facebook.com/exclusiveguletsandyachts"
+          target="_blank"
+        >
+          <FacebookIcon />
+        </IconButton>
+        <IconButton
+          className={classes.icon}
+          href="https://www.youtube.com/channel/UCRupGbMd1sUrXiYgRE9pePw/featured"
+          target="_blank"
+        >
+          <YouTubeIcon />
+        </IconButton>
+      </Box>
+    </Hidden>
   );
 };
 

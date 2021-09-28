@@ -41,7 +41,12 @@ const Destinations = (props) => {
           <Box mb={4} mt={6}>
             <Typography
               align="center"
-              style={{ color: '#00204e', fontWeight: 300 }}
+              style={{
+                color: '#00204e',
+                fontSize: '20px',
+                fontWeight: 300,
+                lineHeight: '28px'
+              }}
             >
               There is more to yachting than just spending a week or so sailing.
               We share our experiences on the best itineraries to suit you,

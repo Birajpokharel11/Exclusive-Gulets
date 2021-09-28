@@ -30,10 +30,15 @@ const DiscoverMore = ({ title, onClick }: Props) => {
           padding: '30px 20px'
         }}
       >
-        <CardContent>
+        <CardContent style={{ padding: '30px' }}>
           <Typography
-            align="justify"
-            style={{ fontSize: '30px', fontWeight: 700, marginBottom: '20px' }}
+            align="center"
+            style={{
+              fontSize: '30px',
+              lineHeight: '30px',
+              fontWeight: 700,
+              marginBottom: '20px'
+            }}
           >
             Discover more Blogs
           </Typography>
@@ -43,7 +48,7 @@ const DiscoverMore = ({ title, onClick }: Props) => {
               color: '#ceba9f',
               fontSize: '20px',
               fontWeight: 700,
-              marginBottom: '150px'
+              marginBottom: '100px'
             }}
             align="center"
           >

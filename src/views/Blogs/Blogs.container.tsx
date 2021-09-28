@@ -1,11 +1,9 @@
 import { connect } from 'react-redux';
 
 const mapStateToProps = (state, props) => ({
-  destination: state.destination,
-  posts: state.posts,
   blogs: state.blogs
 });
-
+console.log('hello', mapStateToProps);
 const container = connect(mapStateToProps, null);
 
 export default container;

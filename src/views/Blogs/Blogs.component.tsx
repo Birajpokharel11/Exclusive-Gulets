@@ -36,15 +36,18 @@ const BlogsDetails = (props) => {
         {...props}
       />
       <BackgroundVectors />
-      {/* <Box component="section">
-        <BackgroundVectors />
-        <Container>
-          <Box mb={4}>
-            <Typography>{blog?.fields?.single_subheading}</Typography>
-          </Box>
-          <CardList list={postsList} />
-        </Container>
-      </Box> */}
+      {loading && <CircularProgress />}
+      {/* // ) : (
+        // <Box component="section">
+        //   <Container>
+        //     <Box mb={4}>
+        //       <Typography>{blog?.fields?.single_subheading}</Typography>
+        //     </Box>
+        //     <CardList list={postsList} />
+        //   </Container>
+        // </Box> */}
+      {/* )} */}
+
       <FooterSlider />
     </Box>
   );

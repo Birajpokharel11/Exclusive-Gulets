@@ -1,4 +1,4 @@
-import { createStyles, makeStyles } from '@material-ui/core/styles';
+import { createStyles, makeStyles, useTheme } from '@material-ui/core/styles';
 
 import {
   Box,
@@ -7,7 +7,8 @@ import {
   Container,
   IconButton,
   Breadcrumbs,
-  Grid
+  Grid,
+  useMediaQuery
 } from '@material-ui/core';
 import TwitterIcon from '@material-ui/icons/Twitter';
 import LinkedInIcon from '@material-ui/icons/LinkedIn';
@@ -48,7 +49,8 @@ const useStyles = makeStyles((theme) =>
       position: 'absolute',
       color: 'white',
       right: 80,
-      top: 150
+      top: 150,
+      [theme.breakpoints.down('md')]: { top: 5 }
     },
     icon: {
       margin: '39px 0 0',
@@ -60,6 +62,8 @@ const useStyles = makeStyles((theme) =>
 export default function BannerSection(props) {
   const { title, description } = props;
   const classes = useStyles();
+  const theme = useTheme();
+  const matches = useMediaQuery(theme.breakpoints.down(1000));
 
   return (
     <div>
@@ -126,39 +130,40 @@ export default function BannerSection(props) {
         </Box>
         <Box>
           <BreadCrumbs />
-
-          <Button disableRipple>
-            <Box
-              style={{
-                alignItems: 'center',
-                width: '100px',
-                cursor: 'pointer'
-              }}
-            >
+          {!matches && (
+            <Button disableRipple>
               <Box
-                mt={50}
                 style={{
-                  transform: 'rotate(-90deg)',
-                  marginBottom: '30%'
-                }}
-              >
-                <Typography color="secondary">Scroll Down</Typography>
-              </Box>
-              <IconButton
-                style={{
-                  display: 'flex',
-                  color: 'white',
                   alignItems: 'center',
-                  justifyContent: 'center',
-                  transform: 'rotate(360deg)',
-                  marginLeft: '30px',
-                  height: '100px'
+                  width: '100px',
+                  cursor: 'pointer'
                 }}
               >
-                <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAgAAAAtCAQAAAA5Z+KFAAAAQ0lEQVR42u3IQQ0AIAwEwZNUCUhBCo6QhAQkLIEWggQe3KPpjrRGIukehfLhwzNAxjZg5HkaNsE/yalSI+XU6SeDIge9v5zP4NyKjgAAAABJRU5ErkJggg==" />
-              </IconButton>
-            </Box>
-          </Button>
+                <Box
+                  mt={50}
+                  style={{
+                    transform: 'rotate(-90deg)',
+                    marginBottom: '30%'
+                  }}
+                >
+                  <Typography color="secondary">Scroll Down</Typography>
+                </Box>
+                <IconButton
+                  style={{
+                    display: 'flex',
+                    color: 'white',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    transform: 'rotate(360deg)',
+                    marginLeft: '30px',
+                    height: '100px'
+                  }}
+                >
+                  <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAgAAAAtCAQAAAA5Z+KFAAAAQ0lEQVR42u3IQQ0AIAwEwZNUCUhBCo6QhAQkLIEWggQe3KPpjrRGIukehfLhwzNAxjZg5HkaNsE/yalSI+XU6SeDIge9v5zP4NyKjgAAAABJRU5ErkJggg==" />
+                </IconButton>
+              </Box>
+            </Button>
+          )}
         </Box>
       </Box>
     </div>

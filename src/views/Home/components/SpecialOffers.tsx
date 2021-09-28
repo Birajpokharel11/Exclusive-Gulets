@@ -19,7 +19,10 @@ const useStyles = makeStyles((theme) =>
     },
     buttonStyle: {
       backgroundColor: '#2A398D',
-      color: '#FFFFFF'
+      color: '#FFFFFF',
+      '&:hover': {
+        backgroundColor: '#2A398D'
+      }
     },
     Yatch: {
       width: '100%',

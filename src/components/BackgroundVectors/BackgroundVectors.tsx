@@ -6,15 +6,26 @@ import vector3 from '../../assets/images/Blog_single/vector3.svg';
 import vectorblog1 from '../../assets/images/Blog_single/wheel-vector.svg';
 import { createStyles, makeStyles } from '@material-ui/core/styles';
 import { classNames } from 'react-select/dist/declarations/src/utils';
+import { Box } from '@material-ui/core';
 const useStyles = makeStyles((theme) =>
   createStyles({
     Container1: {
-      maxWidth: '100%'
+      maxWidth: '90%'
     },
-    Container4: { transform: 'rotate(-180deg)' },
-    Container6: {
+    Container3: {
+      width: '350px',
+      transform: 'rotate(90deg)'
+    },
+    Container4: {
+      width: '100%',
+      transform: 'rotate(-180deg)'
+    },
+    Container5: {
       maxWidth: '100%',
-
+      marginLeft: '75%'
+    },
+    Container6: {
+      maxWidth: '50%',
       position: 'absolute',
       top: 630,
       transform: 'rotate(90deg)'
@@ -29,44 +40,21 @@ export const BackgroundVectors = () => {
   return (
     <>
       <div className={classes.Container6}>
-        <Image
-          src={vectorblog1}
-          className={classes.vector}
-          alt="vector blog1"
-        />
+        <Image width={250} src={vectorblog1} alt="vector blog1" />
       </div>
-      <div className={classes.Container1} id="destination_vctr2">
-        <Image
-          src={vector2}
-          className={classes.vector}
-          alt="Background vector art"
-        />
-      </div>
-      <div className={classes.Container2} id="destination_vctr3">
-        <Image
-          src={vector3}
-          className={classes.vector}
-          alt="Background vector art"
-        />
-      </div>
-      <div className={classes.Container3} id="destination_vctr1">
-        <Image
-          src={vector2}
-          className={classes.vector}
-          alt="Background vector art"
-        />
-      </div>
-      <div className={classes.Container4}>
-        <Image
-          src={vectorblog1}
-          className={classes.vector}
-          alt="vector blog1"
-        />
-      </div>
-
+      <div style={{ marginTop: '180px' }} />
       <div className={classes.Container5}>
-        <Image src={vector4} className={classes.vector} alt="vector blog1" />
+        <Image width={280} src={vector4} alt="vector blog1" />
       </div>
+      <div style={{ marginTop: '180px' }} />
+      <Box display="flex">
+        <div className={classes.Container3}>
+          <Image width={250} height={350} src={vector2} alt="vector blog1" />
+        </div>
+        <div className={classes.Container4}>
+          <Image width={250} src={vectorblog1} alt="vector blog1" />
+        </div>
+      </Box>
     </>
   );
 };

@@ -27,8 +27,8 @@ const useStyles = makeStyles((theme) =>
     },
     Container6: {
       maxWidth: '50%',
-      position: 'absolute',
-      top: 630,
+      position: 'relative',
+      top: 280,
       transform: 'rotate(90deg)'
     },
 
@@ -39,7 +39,7 @@ const useStyles = makeStyles((theme) =>
 export const BackgroundVectors = () => {
   const classes = useStyles();
   return (
-    <>
+    <Box style={{ zIndex: 1 }}>
       <div className={classes.Container6}>
         <Image width={250} src={vectorblog1} alt="vector blog1" />
       </div>
@@ -56,7 +56,7 @@ export const BackgroundVectors = () => {
           <Image width={250} src={vectorblog1} alt="vector blog1" />
         </div>
       </Box>
-    </>
+    </Box>
   );
 };
 

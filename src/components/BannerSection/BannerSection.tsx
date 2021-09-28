@@ -9,7 +9,7 @@ const useStyles = makeStyles((theme) =>
   createStyles({
     root: {
       backgroundImage: `url('/assets/images/charterYatch.png')`,
-      zIndex: 1,
+      zIndex: 2,
       backgroundPosition: 'center',
       height: '60vh',
       backgroundRepeat: 'no-repeat',
@@ -27,7 +27,7 @@ const useStyles = makeStyles((theme) =>
       textAlign: 'center',
       color: '#f5f0e4',
       fontWeight: 300,
-      zIndex: 1,
+      zIndex: 2,
       bottom: 0,
       width: '100%'
     }

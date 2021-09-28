@@ -9,8 +9,8 @@ import BannerSection from '@components/BannerSection';
 import BackgroundVectors from '@components/BackgroundVectors';
 import CardList from '@components/CardList';
 import FooterSlider from '@components/FooterSlider';
-
 import container from './Blogs.container';
+import Image from 'next/image';
 
 const useStyles = makeStyles((theme) =>
   createStyles({
@@ -35,7 +35,7 @@ const BlogsDetails = (props) => {
         description="Keep up to date with our latest yachting news, charter destinations, special offers and more…"
         {...props}
       />
-
+      <BackgroundVectors />
       {/* <Box component="section">
         <BackgroundVectors />
         <Container>

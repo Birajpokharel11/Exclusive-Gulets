@@ -1,8 +1,7 @@
 import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
-import { Socials } from '../Socials/index';
-import { ScrollDown } from '../ScrollDown/index';
-import './index.scss';
+import Socials from '../Socials';
+import ScrollDown from '../ScrollDown/';
 
 export const Banner = (props) => {
   const {

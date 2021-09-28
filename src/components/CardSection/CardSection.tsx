@@ -1,8 +1,6 @@
 import React, { useEffect } from 'react';
-import { Link } from 'react-router-dom';
+
 import Cards from '../Cards/index';
-import { useResize } from '../../../hooks/useResize';
-import './index.scss';
 
 function CardSection({
   title = 'Perfect Location Matches Perfect Experience',

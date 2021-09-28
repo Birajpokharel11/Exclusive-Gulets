@@ -8,7 +8,7 @@ import ScrollDown from '@components/ScrollDown';
 const useStyles = makeStyles((theme) =>
   createStyles({
     root: {
-      backgroundImage: `url('./charterYatch.png')`,
+      backgroundImage: `url('/assets/images/charterYatch.png')`,
       zIndex: 1,
       backgroundPosition: 'center',
       height: '60vh',

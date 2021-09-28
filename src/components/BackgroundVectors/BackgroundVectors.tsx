@@ -14,7 +14,7 @@ const useStyles = makeStyles((theme) =>
     Container4: { transform: 'rotate(-180deg)' },
     Container6: {
       maxWidth: '100%',
-      overflow: 'hidden',
+
       position: 'absolute',
       top: 630,
       transform: 'rotate(90deg)'

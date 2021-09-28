@@ -98,14 +98,13 @@ export default function CardList({ list, next_page, page }: Props) {
                 {page === 'destinations' && (
                   <Divider className={classes.dividerColor} variant="middle" />
                 )}
-
                 <Typography
                   variant="subtitle1"
                   color="textSecondary"
                   component="p"
                   align="center"
                 >
-                  {item?.description ?? item?.meta_description}
+                  {item?.meta_description}
                 </Typography>
 
                 {page !== 'destinations' && (
@@ -119,7 +118,7 @@ export default function CardList({ list, next_page, page }: Props) {
             </CardActionArea>
           </Card>
         ))}
-      {!!next_page && <DiscoverMore />}
+      <DiscoverMore />
     </Grid>
   );
 }

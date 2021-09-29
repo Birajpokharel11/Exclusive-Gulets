@@ -19,6 +19,12 @@ const useStyles = makeStyles((theme) =>
     root: {
       height: 'calc(100vh - 64px)',
       padding: 0
+    },
+    heading: {
+      color: '#00204e',
+      fontSize: '20px',
+      fontWeight: 300,
+      lineHeight: '28px'
     }
   })
 );
@@ -38,15 +44,7 @@ const Destinations = (props) => {
       <Container>
         <Box mb={4} mt={6}>
           <BackgroundVectors />
-          <Typography
-            align="center"
-            style={{
-              color: '#00204e',
-              fontSize: '20px',
-              fontWeight: 300,
-              lineHeight: '28px'
-            }}
-          >
+          <Typography align="center" className={classes.heading}>
             There is more to yachting than just spending a week or so sailing.
             We share our experiences on the best itineraries to suit you,
             organise on board celebrations, exciting excursions, restaurant

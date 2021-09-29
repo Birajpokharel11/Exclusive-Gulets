@@ -34,6 +34,24 @@ const useStyles = makeStyles((theme) =>
       '&:hover': {
         background: '#2A398D'
       }
+    },
+    card: {
+      height: '325px',
+      color: '#00204e',
+      width: '352px',
+      background: '#f8f8fa'
+    },
+    typography1: {
+      fontSize: '30px',
+      lineHeight: '30px',
+      fontWeight: 700,
+      marginBottom: '20px'
+    },
+    typography2: {
+      color: '#ceba9f',
+      fontSize: '20px',
+      fontWeight: 700,
+      marginBottom: '100px'
     }
   })
 );
@@ -50,40 +68,19 @@ const DiscoverMore = (props) => {
   console.log('props', props);
 
   return (
-    <Card
-      elevation={0}
-      style={{
-        height: '325px',
-        color: '#00204e',
-        width: '352px',
-        background: '#f8f8fa'
-      }}
-    >
+    <Card elevation={0} className={classes.card}>
       <CardActionArea
         style={{
           padding: '30px 20px'
         }}
       >
         <CardContent style={{ padding: '30px' }}>
-          <Typography
-            align="center"
-            style={{
-              fontSize: '30px',
-              lineHeight: '30px',
-              fontWeight: 700,
-              marginBottom: '20px'
-            }}
-          >
+          <Typography align="center" className={classes.typography1}>
             Discover more Blogs
           </Typography>
           <Typography
             variant="subtitle1"
-            style={{
-              color: '#ceba9f',
-              fontSize: '20px',
-              fontWeight: 700,
-              marginBottom: '100px'
-            }}
+            className={classes.typography2}
             align="center"
           >
             Go on... be curious
@@ -95,7 +92,6 @@ const DiscoverMore = (props) => {
                 variant="contained"
                 className={classes.Button}
               >
-                {' '}
                 More
               </Button>
             </Grid>

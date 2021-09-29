@@ -1,7 +1,9 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Slider from 'react-slick';
 
-const ImgSlider = () => {
+const ImgSlider = ({ featured_destination }) => {
+  const [activeSlide, setActiveSlide] = useState(0);
+
   const settings = {
     dots: true,
     speed: 500,
@@ -27,12 +29,8 @@ const ImgSlider = () => {
         }
       }
     ],
-    beforeChange: (current, next) =>
-      this.setState({
-        oldSlide: current,
-        activeSlide: next === -1 ? 0 : next
-      }),
-    afterChange: (current) => this.setState({ activeSlide2: current })
+    beforeChange: (current, next) => console.log({ current, next }),
+    afterChange: (current) => console.log({ current })
   };
 
   return (
@@ -55,7 +53,7 @@ const ImgSlider = () => {
                 </Slider>
               </div>
               <h4 className="desti_pagin desti_pagination">
-                {this.state.activeSlide < 0 ? 1 : this.state.activeSlide + 1} /{' '}
+                {activeSlide < 0 ? 1 : activeSlide + 1} /{' '}
                 {featured_destination.attachments.length}
               </h4>
             </div>

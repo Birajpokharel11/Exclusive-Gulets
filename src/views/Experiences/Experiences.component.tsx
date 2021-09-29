@@ -44,10 +44,10 @@ const Experiences = (props) => {
           <Box mb={4}>
             {/*<Typography>{featured_destination.content}</Typography>*/}
           </Box>
-          <CardList list={destinations} />
+          <CardList list={experiences} />
         </Container>
       </Box>
-      <FooterSlider />
+      {/* <FooterSlider /> */}
     </Box>
   );
 };

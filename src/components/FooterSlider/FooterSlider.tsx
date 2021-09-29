@@ -1,164 +1,186 @@
 import React from 'react';
-import axios from 'axios';
+
+import { makeStyles, Theme } from '@material-ui/core/styles';
+import { Box, Container, Divider, Grid } from '@material-ui/core';
 import Slider from 'react-slick';
 
-import * as SC from './StyledFooterSlide';
+import Typography from '@modules/components/Typography';
 
-import vectoelast from '../../assets/images/icons/footer vector.svg';
-import buttonarrow from '../../assets/images/icons/button-arrow-yellow.svg';
-import destination1 from '../../assets/images/yachts/image-13.png';
+const useStyles = makeStyles((theme: Theme) => ({
+  footerSlider: {
+    position: 'relative',
 
-export class FooterSlider extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      yachts: []
-    };
+    '& .slick-slide.slide-center': {
+      minHeight: '368px',
+      marginTop: '-92px',
+      marginBottom: '-92px',
+      opacity: '.75'
+    }
+  },
+  inner: {
+    padding: '0 15px'
+  },
+  sliderHover: {
+    position: 'relative'
+  },
+  bgImage: {
+    transition: 'transform .5s,-webkit-transform .5s',
+    marginBottom: 0,
+    height: '400px',
+    [theme.breakpoints.up('sm')]: {
+      height: 'auto',
+      maxWidth: '100%',
+      transition: 'all 1s ease',
+      marginBottom: '25px'
+    }
+  },
+  dropShadow: {
+    [theme.breakpoints.down('md')]: {
+      position: 'absolute',
+      bottom: 0,
+      background:
+        'linear-gradient(180deg,rgba(7,21,41,0) 54.17%,rgba(7,21,41,.83) 86.98%)',
+      paddingBottom: '30px',
+      width: '100%'
+    }
+  },
+  quoteDetails: {
+    padding: '0 20px',
+    position: 'relative',
+    bottom: '30px'
+  },
+  footerVector: {
+    position: 'absolute',
+    width: '15%',
+    bottom: 0,
+    left: 0
   }
+}));
 
-  componentDidMount() {
-    axios
-      .get(
-        `${process.env.REACT_APP_API_URL}/yachts/yachts_for_destination.json`
-      )
-      .then((response) => {
-        this.setState({
-          yachts: response.data.yachts
-        });
-      })
-      .catch();
-  }
+export const FooterSlider = ({ yachts }) => {
+  const classes = useStyles();
 
-  render() {
-    const yachts = this.state.yachts;
-    const settings = {
-      className: 'center',
-      centerMode: true,
-      infinite: true,
-      // lazyLoad: true,
-      focusOnSelect: true,
-      cssEase: 'ease',
-      touchMove: true,
-      waitForAnimate: true,
-      centerPadding: '0',
-      slidesToShow: 4,
-      initialSlide: 2,
-      autoplay: false,
-      speed: 1000,
-      responsive: [
-        {
-          breakpoint: 1500,
-          settings: {
-            centerMode: true,
-            centerPadding: '0px',
-            slidesToShow: 3
-          }
-        },
-        {
-          breakpoint: 1100,
-          settings: {
-            centerMode: true,
-            centerPadding: '0px',
-            slidesToShow: 2
-          }
-        },
-        {
-          breakpoint: 999,
-          settings: {
-            slidesToShow: 2,
-            slidesToScroll: 1,
-            dots: true,
-            centerMode: false
-          }
-        },
-        {
-          breakpoint: 480,
-          settings: {
-            slidesToShow: 1,
-            slidesToScroll: 1,
-            dots: true,
-            centerMode: false
-          }
+  const settings = {
+    className: classes.footerSlider,
+    centerMode: true,
+    infinite: true,
+    // lazyLoad: true,
+    focusOnSelect: true,
+    cssEase: 'ease',
+    touchMove: true,
+    waitForAnimate: true,
+    centerPadding: '0',
+    slidesToShow: 4,
+    initialSlide: 2,
+    autoplay: false,
+    speed: 1000,
+    responsive: [
+      {
+        breakpoint: 1500,
+        settings: {
+          centerMode: true,
+          centerPadding: '0px',
+          slidesToShow: 3
         }
-      ]
-    };
+      },
+      {
+        breakpoint: 1100,
+        settings: {
+          centerMode: true,
+          centerPadding: '0px',
+          slidesToShow: 2
+        }
+      },
+      {
+        breakpoint: 999,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 1,
+          dots: true,
+          centerMode: false
+        }
+      },
+      {
+        breakpoint: 480,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1,
+          dots: true,
+          centerMode: false
+        }
+      }
+    ]
+  };
 
-    return (
-      <div className="ftr">
-        {/* slider section */}
-        <section
-          id="yachts-carousel"
-          className="blog_section section fix yachts-carousel"
-        >
-          <div className="container-fluid" id="brd_sliderbtm">
-            <div className="row">
-              <div className="col-lg-4 col-md-4">
-                <div className="heading">
-                  <h1>Yachts for any destination {yachts.count}</h1>
-                  <p>Accessible and fun at affordable prices</p>
-                </div>
-              </div>
-              <div className="col-lg-8 col-md-8" id="footer_slider">
-                <Slider {...settings}>
-                  {yachts.map((yacht, index) => {
-                    return [
-                      <div key={index}>
-                        <div className="inner">
-                          <div className="ftr_slider-hover">
-                            <SC.ResponsiveImg
-                              backgroundUrl={
-                                yacht.main_image.search_thumb.url
-                                  ? yacht.main_image.search_thumb.url
-                                  : destination1
-                              }
-                              className="img-responsive"
-                            />
-                            <div className="slider_ftrdtl">
-                              <div className="Quote_dtails">
-                                <h2>{yacht.name}</h2>
-                                <p>
-                                  {yacht.length} m /{' '}
-                                  {Math.round(yacht.length * 3.28)} ft |{' '}
-                                  {yacht.type ? yacht.type.name : ''} |{' '}
-                                  {yacht.build_year}
-                                </p>
-                                <div className="quote_link-ftr">
-                                  <span className="quote_pa">
-                                    <a
-                                      href={'/yachts/' + yacht.slug}
-                                      className="getaqut"
-                                    >
-                                      Discover More{' '}
-                                      <img
-                                        src={buttonarrow}
-                                        className="quote_orange"
-                                      />
-                                    </a>
-                                  </span>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
+  return (
+    <Box component="section" id="yachts-carousel">
+      <Container maxWidth={false}>
+        <Grid container>
+          <Grid item md={4}>
+            <Typography variant="h2">Yachts for any destination</Typography>
+            <Typography variant="h2">
+              Accessible and fun at affordable prices
+            </Typography>
+          </Grid>
+          <Grid item md={8}>
+            <Slider {...settings}>
+              {yachts.map((yacht, index) => (
+                <Box key={index} className={classes.inner}>
+                  <div className={classes.sliderHover}>
+                    <div
+                      style={{
+                        minHeight: '184px',
+                        backgroundImage: yacht.main_image.search_thumb.url
+                          ? `url("${yacht.main_image.search_thumb.url}")`
+                          : `url("/assets/images/yachts/image-13.png")`,
+                        backgroundRepeat: 'no-repeat',
+                        backgroundSize: 'cover',
+                        backgroundClip: 'border-box',
+                        backgroundPosition: 'center center'
+                      }}
+                      className={classes.bgImage}
+                    />
+                    <div className={classes.dropShadow}>
+                      <div className={classes.quoteDetails}>
+                        <Typography variant="h2">{yacht.name}</Typography>
+                        <Typography>
+                          {yacht.length} m / {Math.round(yacht.length * 3.28)}{' '}
+                          ft | {yacht.type ? yacht.type.name : ''} |{' '}
+                          {yacht.build_year}
+                        </Typography>
+                        <div className="quote_link-ftr">
+                          <span className="quote_pa">
+                            <a
+                              href={'/yachts/' + yacht.slug}
+                              className="getaqut"
+                            >
+                              Discover More{' '}
+                              <img
+                                src="/assets/images/icons/button-arrow-yellow.svg"
+                                className="quote_orange"
+                              />
+                            </a>
+                          </span>
                         </div>
                       </div>
-                    ];
-                  })}
-                </Slider>
-              </div>
-            </div>
-          </div>
-          <div className="des-slider-vector">
-            <img
-              src={vectoelast}
-              className="img-responsive"
-              alt="Footer vector"
-            />
-          </div>
-          <hr className="bottm_linee"></hr>
-        </section>
-      </div>
-    );
-  }
-}
+                    </div>
+                  </div>
+                </Box>
+              ))}
+            </Slider>
+          </Grid>
+        </Grid>
+      </Container>
+      <Box className={classes.footerVector}>
+        <img
+          src="/assets/images/icons/footer vector.svg"
+          className="img-responsive"
+          alt="Footer vector"
+        />
+      </Box>
+      <Divider />
+    </Box>
+  );
+};
 
 export default FooterSlider;

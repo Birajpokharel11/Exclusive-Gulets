@@ -46,7 +46,7 @@ const Destinations = (props) => {
           <CardList list={destinations} route="destinations" />
         </Container>
       </Box>
-      <FooterSlider />
+      {/* <FooterSlider /> */}
     </Box>
   );
 };

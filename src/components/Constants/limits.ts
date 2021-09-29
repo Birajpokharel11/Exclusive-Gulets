@@ -1,2 +1,0 @@
-export const BLOGS_LIMIT_PER_PAGE = 5;
-export const DESTINATIONS_LIMIT_PER_PAGE = 5;

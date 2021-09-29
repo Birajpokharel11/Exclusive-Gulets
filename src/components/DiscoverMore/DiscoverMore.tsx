@@ -1,7 +1,6 @@
 import React from 'react';
 import Button from '@material-ui/core/Button';
 import Grid, { GridSize } from '@material-ui/core/Grid';
-import Paper from '@material-ui/core/Paper';
 import {
   Card,
   CardActionArea,
@@ -10,10 +9,7 @@ import {
   Typography
 } from '@material-ui/core';
 import { createStyles, makeStyles } from '@material-ui/core/styles';
-import { classNames } from 'react-select/dist/declarations/src/utils';
-import { BLOGS_SORTING } from '@components/Sorting/sorting';
-import { fetchBlogStart } from '@store/blogs/blog.actions';
-import container from './DiscoverMore.container';
+
 interface Props {
   onClick?: () => any;
 }
@@ -56,16 +52,8 @@ const useStyles = makeStyles((theme) =>
   })
 );
 
-const DiscoverMore = (props) => {
+const DiscoverMore = ({ onClick }: Props) => {
   const classes = useStyles();
-  const { fetchBlogStart } = props;
-  const [number, setNumber] = React.useState(10);
-  const handleClick = () => {
-    setNumber((prev) => prev + 5);
-    console.log(number, 'number');
-    fetchBlogStart({ amount_per_page: number });
-  };
-  console.log('props', props);
 
   return (
     <Card elevation={0} className={classes.card}>
@@ -88,7 +76,7 @@ const DiscoverMore = (props) => {
           <Grid container>
             <Grid item container justifyContent="center">
               <Button
-                onClick={handleClick}
+                onClick={onClick}
                 variant="contained"
                 className={classes.Button}
               >
@@ -102,4 +90,4 @@ const DiscoverMore = (props) => {
   );
 };
 
-export default container(DiscoverMore);
+export default DiscoverMore;

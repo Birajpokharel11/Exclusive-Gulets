@@ -1,36 +1,20 @@
 import React from 'react';
 import Box from '@material-ui/core/Box';
 
-import Banner from '@components/Banner';
+import Banner from '@components/BannerSection';
 import ContentSection from '@components/ContentSection';
 import DestinationsGallerySection from '@components/DestinationsGallerySection';
 import YahtsSlider from '@components/YachtSlider';
 
 import { Images } from '@mocks/_destinationMocks';
-import CardSection from '@components/CardSection/CardSection';
-import EnquireFormMobileWrapper from '@components/EnquiryForm/EnquireFormMobileWrapper';
 
 const Blogs = () => {
-  const [open, setOpen] = React.useState(false);
-  const handleDrawerToggle = () => {
-    setOpen(!open);
-  };
-
   return (
     <Box>
-      <Banner
-        findOutSize={this.getBannerHeight}
-        bgImageUrl={post.featured_image?.featured?.url}
-        bottomTitle={post.title}
-        bottomSubTitle={post.description}
-        breadcrumbName={post.title}
-      />
+      <Banner />
 
       {/* Second section  */}
-      <ContentSection
-        post={post}
-        general_content={this.state.general_content}
-      />
+      <ContentSection />
 
       {/* Third Section  */}
       <YahtsSlider
@@ -46,17 +30,6 @@ const Blogs = () => {
            there is always a new exciting destination to explore and a different shoreline to discover.​"
         destinations={Images}
       />
-
-      {/* Fourth Section  */}
-      <CardSection
-        title="Related Blogs"
-        cardsData={this.props.related_posts}
-        bgColor="#F5F0E4"
-        subtitle="We thought that you might also like the content below, enjoy!"
-      />
-
-      {/* <MobileForm /> */}
-      <EnquireFormMobileWrapper smallContainerWidth={true} />
     </Box>
   );
 };

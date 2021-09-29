@@ -1,7 +1,9 @@
-import { Button } from '@material-ui/core';
 import React from 'react';
+import Link from 'next/link';
 
-const Recommedation = () => {
+import DiscoverMore from '@components/DiscoverMore';
+
+const Recommedation = ({ yachts, next_page }) => {
   return (
     <section
       className="section fix other-gems singl_bloggemg wow slideInUp"
@@ -15,16 +17,16 @@ const Recommedation = () => {
           </div>
         </div>
         <div className="row">
-          {yachts.map((yacht) => (
-            <div className="col-lg-6 col-md-6 col-sm-12" key={yacht.slug}>
-              <Link to={`/yachts/${yacht.slug}`}>
+          {yachts.map((yacht, index) => (
+            <div key={yacht.slug} className="col-lg-6 col-md-6 col-sm-12">
+              <Link href={`/yachts/${yacht.slug}`}>
                 <div className="gems">
                   <div className="gems-img">
                     <img
                       src={
                         yacht && yacht.main_image.slider.url
                           ? yacht.main_image.slider.url
-                          : subblog1
+                          : ''
                       }
                       className="img-responsive"
                       alt="subblog"
@@ -33,13 +35,7 @@ const Recommedation = () => {
                   <div className="gems-content">
                     <p className="title">{yacht && yacht.name}</p>
                     <div className="location">
-                      <div className="icon">
-                        <InlineSvg
-                          svg={locationPin}
-                          fill="#f7b654"
-                          className="location-pin"
-                        />
-                      </div>
+                      <div className="icon"></div>
                       <p>
                         {yacht &&
                           yacht.sailing_countries &&
@@ -49,32 +45,18 @@ const Recommedation = () => {
                     <p className="txt">
                       {yacht &&
                         yacht.about &&
-                        parse(yacht.about.substr(0, 200) + '...')}
+                        yacht.about.substr(0, 200) + '...'}
                     </p>
                   </div>
                 </div>
               </Link>
             </div>
           ))}
-          {!!next_page && (
-            <div className="col-lg-6 col-md-6 col-sm-12">
-              <div className="load-moregems">
-                <div className="gems-content" style={{ textAlign: 'center' }}>
-                  <p className="title">
-                    Load more
-                    <br />
-                    luxury Gulets
-                  </p>
-                  <p className="txt">Go on... be curious</p>
-                  <Button title="More" onClick={this.handlePagination} />
-                </div>
-              </div>
-            </div>
-          )}
+          {!!next_page && <DiscoverMore />}
         </div>
       </div>
       <div className="background-vector other-grms-vector">
-        <img src={vtr1} className="img-responsive" alt="Blog vector4" />
+        <img src="" className="img-responsive" alt="Blog vector4" />
       </div>
     </section>
   );

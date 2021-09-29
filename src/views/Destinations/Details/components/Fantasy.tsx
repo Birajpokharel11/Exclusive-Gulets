@@ -1,8 +1,5 @@
-import { Box, Container } from '@material-ui/core';
 import React from 'react';
-
-import img11 from '../../../assets/images/yachts/image-11.png';
-import vector2 from '../../../assets/images/Blog/blog-vector2.svg';
+import { Box, Container } from '@material-ui/core';
 
 const Fantasy = ({ item }) => {
   return (
@@ -20,7 +17,11 @@ const Fantasy = ({ item }) => {
             </div>
             <div className="post-author" id="author_destinatoin">
               <div className="avatar">
-                <img src={img11} className="img-responsive" alt="avtar" />
+                <img
+                  src="/assets/images/yachts/image-11.png"
+                  className="img-responsive"
+                  alt="avtar"
+                />
               </div>
               <p className="desc">{item.testimonial}</p>
             </div>
@@ -41,7 +42,7 @@ const Fantasy = ({ item }) => {
         id="destination_vctr1"
       >
         <img
-          src={vector2}
+          src="/assets/images/Blog/blog-vector2.svg"
           className="img-responsive"
           alt="Background vector art"
         />

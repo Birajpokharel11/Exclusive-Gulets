@@ -56,7 +56,7 @@ const data = [
 ];
 
 export default function NewsAndBlogs(props) {
-  const { postsList } = props;
+  const { posts } = props;
   const classes = useStyles();
   const theme = useTheme();
   const matchesSM = useMediaQuery(theme.breakpoints.up('sm'));
@@ -74,7 +74,7 @@ export default function NewsAndBlogs(props) {
           </Typography>
         </Box>
 
-        <CardWithSlider cardsData={data} />
+        <CardWithSlider cardsData={posts} />
 
         <Grid container justifyContent="center">
           <Button

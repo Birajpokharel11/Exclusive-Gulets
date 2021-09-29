@@ -64,7 +64,11 @@ export default function Experiences(props) {
             experiences.map((item) => (
               <Grid item container md={6} xs={12} spacing={2}>
                 <Grid item container justifyContent="center">
-                  <Image src={YatchParty} alt="guest" />
+                  <img
+                    src={item.featured_image?.url}
+                    alt="guest"
+                    style={{ width: '100%', height: '100%' }}
+                  />
                 </Grid>
                 <Grid item container justifyContent="center">
                   <Typography

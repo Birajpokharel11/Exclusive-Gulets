@@ -49,7 +49,8 @@ const data = [
   }
 ];
 
-export default function Experience() {
+export default function Experience(props) {
+  const { experiences } = props;
   const classes = useStyles();
   const theme = useTheme();
   const matchesSM = useMediaQuery(theme.breakpoints.up('sm'));
@@ -69,7 +70,7 @@ export default function Experience() {
           </Typography>
         </Box>
 
-        <CardWithSlider cardsData={data} />
+        <CardWithSlider cardsData={experiences} />
 
         <Grid container justifyContent="center">
           <Button

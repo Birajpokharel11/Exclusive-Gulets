@@ -33,8 +33,8 @@ const Experiences = (props) => {
   return (
     <Box>
       <BannerSection
-        title="NEWS & BLOGS"
-        description="Keep up to date with our latest yachting news, charter destinations, special offers and more…"
+        title="EXCLUSIVE GULETS"
+        description="Experience Exceptional Yachting"
         {...props}
       />
 

@@ -11,7 +11,7 @@ export function* fetchPostsAsync() {
   try {
     console.log('fetchPostsAsync>>>');
     const { data } = yield axios.get(
-      `http://localhost:3000/api/v1/posts/latest_posts`
+      `https://app.exclusivegulets.com/api/v1/posts.json`
     );
     console.log('value of response fetchOfferAsync>>>', data);
     yield put(postsAction.fetchPostsSuccess(data.posts));

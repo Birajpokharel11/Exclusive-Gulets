@@ -19,7 +19,12 @@ export default function Introduction() {
     <Box component="section" className={classes.root}>
       <Container maxWidth="md">
         <Box textAlign="center">
-          <Typography color="textPrimary" align="center" variant="h2">
+          <Typography
+            color="textPrimary"
+            align="center"
+            variant="h2"
+            id="home-intro"
+          >
             Luxury Gulet & Yacht Charter Experts since 2009
           </Typography>
 

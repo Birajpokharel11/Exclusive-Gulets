@@ -58,8 +58,6 @@ const CardWithSlider = ({ cardsData }: Props) => {
   const matchesSM = useMediaQuery(theme.breakpoints.down('sm'));
   const matchesXS = useMediaQuery(theme.breakpoints.down('xs'));
 
-  console.log({ matchesSM, matchesXS });
-
   const slickSettings: Settings = {
     infinite: true,
     arrows: false,

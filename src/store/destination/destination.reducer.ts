@@ -3,8 +3,11 @@ import { HYDRATE } from 'next-redux-wrapper';
 import * as DestinationType from './destination.types';
 
 const INITIAL_STATE = {
-  destinations: [],
-  randomDestination: [],
+  destinationIds: [],
+  destinations: {},
+  next_page: 0,
+  current_page: 0,
+  featured_destination: {},
   error: null,
   loading: false
 };

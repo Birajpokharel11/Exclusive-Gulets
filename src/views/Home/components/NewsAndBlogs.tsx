@@ -23,7 +23,10 @@ const useStyles = makeStyles((theme) =>
     },
     buttonStyle: {
       backgroundColor: '#2A398D',
-      color: '#FFFFFF'
+      color: '#FFFFFF',
+      '&:hover': {
+        backgroundColor: '#2A398D'
+      }
     }
   })
 );
@@ -58,7 +61,7 @@ export default function NewsAndBlogs(props) {
   const theme = useTheme();
   const matchesSM = useMediaQuery(theme.breakpoints.up('sm'));
   return (
-    <Box className={classes.root}>
+    <Box component="section" className={classes.root}>
       <Container maxWidth="xl">
         <Box textAlign="center">
           <Typography variant="h2" color="textPrimary" align="center" stripped>

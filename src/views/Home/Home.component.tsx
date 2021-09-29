@@ -2,17 +2,21 @@ import { useEffect } from 'react';
 import { createStyles, makeStyles } from '@material-ui/core/styles';
 
 import { Box, CircularProgress } from '@material-ui/core';
+
+import { Images } from '@mocks/_destinationMocks';
+
+import YachtSlider from '@components/YachtSlider';
+import DestinationsGallerySection from '@components/DestinationsGallerySection';
 import {
   Introduction,
   SpecialOffers,
   CharterYatch,
-  Destinations,
-  YatchSlider,
   Experience,
   NewsAndBlogs,
   EnquiryForm
 } from './components';
 import HeroSection from './components/HeroSection1';
+
 import container from './Home.container';
 
 const useStyles = makeStyles((theme) =>
@@ -29,15 +33,12 @@ const Home = (props) => {
   const {
     onFetchOfferStart,
     onFetchRandomDestinationStart,
-    onFetchPostsStart,
-    destination: { randomDestination },
-    posts: { postsList }
+    destination: { randomDestination }
   } = props;
 
   useEffect(() => {
     onFetchOfferStart();
     onFetchRandomDestinationStart();
-    onFetchPostsStart();
   }, []);
 
   return (
@@ -48,10 +49,17 @@ const Home = (props) => {
       <Introduction />
       <SpecialOffers />
       <CharterYatch />
-      <YatchSlider />
-      <Destinations destinationList={randomDestination} />
+      <YachtSlider
+        title="Loved by our Guests"
+        subtitle="Recently Confirmed Charters"
+      />
+      <DestinationsGallerySection
+        title="Destinations"
+        subtitle="Perfect location and the perfect yacht for your ultimate charter experience. There is no better way than chartering a luxury gulet or yacht to see more of the world. With two third of the Earth covered in water, there is always a new exciting destination to explore and a different shoreline to discover.​"
+        destinations={Images}
+      />
       <Experience />
-      <NewsAndBlogs postsList={postsList} />
+      <NewsAndBlogs />
       <EnquiryForm />
     </div>
   );

@@ -1,13 +1,17 @@
 import React, { useEffect } from 'react';
-import { END } from 'redux-saga';
-import { wrapper } from '../../store';
-import { fetchDestinationStart } from '../../store/destination/destination.actions';
 
 import { createStyles, makeStyles } from '@material-ui/core/styles';
+import Box from '@material-ui/core/Box';
+import Container from '@material-ui/core/Container';
 import { CircularProgress } from '@material-ui/core';
 
+import Typography from '@modules/components/Typography';
+
 import BannerSection from '@components/BannerSection';
+import BackgroundVectors from '@components/BackgroundVectors';
 import CardList from '@components/CardList';
+import FooterSlider from '@components/FooterSlider';
+
 import { Limits, DestinationSort } from '@utils/enums';
 
 // import { DESTINATIONS_SORTING } from '../../../constants/sorting';
@@ -27,18 +31,28 @@ const Destinations = (props) => {
   const classes = useStyles();
 
   const {
-    destination: { loading, destinations }
+    destinations: { loading, destinations }
   } = props;
 
   return (
-    <div>
+    <Box>
       <BannerSection
+        title="NEWS & BLOGS"
+        description="Keep up to date with our latest yachting news, charter destinations, special offers and more…"
         {...props}
-        title="DESTINATIONS"
-        description="Perfect location and the perfect yacht for your ultimate charter experience. There is no better way than chartering a luxury gulet or yacht to see more of the world. With two third of the Earth covered in water, there is always a new exciting destination to explore and a different shoreline to discover."
       />
-      {loading ? <CircularProgress /> : <CardList cardList={destinations} />}
-    </div>
+
+      <Box component="section">
+        <BackgroundVectors />
+        <Container>
+          <Box mb={4}>
+            <Typography>{featured_destination.content}</Typography>
+          </Box>
+          <CardList list={destinations} />
+        </Container>
+      </Box>
+      <FooterSlider />
+    </Box>
   );
 };
 

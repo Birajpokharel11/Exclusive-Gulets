@@ -3,7 +3,11 @@ import { HYDRATE } from 'next-redux-wrapper';
 import * as PostsType from './posts.types';
 
 const INITIAL_STATE = {
-  postsList: [],
+  blogIds: [],
+  blogs: {},
+  next_page: 0,
+  current_page: 0,
+  featured_blog: {},
   error: null,
   loading: false
 };

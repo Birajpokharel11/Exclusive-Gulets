@@ -3,7 +3,7 @@ import { all, call } from 'redux-saga/effects';
 import { authSagas } from './auth/auth.sagas';
 import { destinationSagas } from './destination/destination.sagas';
 import { offerSagas } from './offer/offer.sagas';
-import { postsSagas } from './posts/posts.sagas';
+import { blogSagas } from './blogs/blog.sagas';
 import { experiencesSagas } from './experiences/experiences.sagas';
 import { yachtsSagas } from './yachts/yachts.sagas';
 
@@ -12,7 +12,7 @@ export default function* rootSaga() {
     call(authSagas),
     call(destinationSagas),
     call(offerSagas),
-    call(postsSagas),
+    call(blogSagas),
     call(experiencesSagas),
     call(yachtsSagas)
   ]);

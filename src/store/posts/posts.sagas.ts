@@ -11,7 +11,7 @@ export function* fetchPostsAsync() {
   try {
     console.log('fetchPostsAsync>>>');
     const { data } = yield axios.get(
-      `https://app.exclusivegulets.com/api/v1/posts/latest_posts`
+      `${process.env.REACT_APP_PROD_URL}/posts/latest_posts`
     );
     console.log('value of response fetchOfferAsync>>>', data);
     yield put(postsAction.fetchPostsSuccess(data.posts));

@@ -11,7 +11,7 @@ export function* fetchYachtsAsync() {
   try {
     console.log('fetchYachtsAsync>>>');
     const { data } = yield axios.post(
-      'https://app.exclusivegulets.com/api/v1/search/filter_yachts.json'
+      `${process.env.REACT_APP_PROD_URL}/search/filter_yachts.json`
     );
     console.log('value of response fetchYachtsAsync>>>', data.yachts);
     yield put(postsAction.fetchYachtsSuccess(data.yachts));
@@ -26,7 +26,7 @@ export function* fetchYachtByIdAsync({ payload }: AnyAction) {
   try {
     console.log('fetchYachtsAsync>>>');
     const { data } = yield axios.get(
-      `https://app.exclusivegulets.com/api/v1/yachts/${yacht_id}?user_id=${user_id}`
+      `${process.env.REACT_APP_PROD_URL}/yachts/${yacht_id}?user_id=${user_id}`
     );
     console.log('value of response fetchYachtsAsync>>>', data.yachts);
     yield put(postsAction.fetchYachtsSuccess(data.yachts));

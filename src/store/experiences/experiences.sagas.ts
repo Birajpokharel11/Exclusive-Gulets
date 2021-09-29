@@ -11,7 +11,7 @@ export function* fetchExperiencesAsync() {
   try {
     console.log('fetchExperiencesAsync>>>');
     const { data } = yield axios.get(
-      `https://app.exclusivegulets.com/api/v1/experiences.json`
+      `${process.env.REACT_APP_PROD_URL}/experiences.json`
     );
     console.log('value of response fetchOfferAsync>>>', data);
     yield put(experiencesAction.fetchExperiencesSuccess(data.experiences));
@@ -25,7 +25,7 @@ export function* fetchExperienceByIdAsync({ payload: { id } }: AnyAction) {
   try {
     console.log('fetchExperienceByIdAsync>>>');
     const { data } = yield axios.get(
-      `https://app.exclusivegulets.com/api/v1/experiences/${id}`
+      `${process.env.REACT_APP_PROD_URL}/experiences/${id}`
     );
     console.log('value of response fetchOfferAsync>>>', data);
     yield put(experiencesAction.fetchExperienceByIdSuccess(data.experience));

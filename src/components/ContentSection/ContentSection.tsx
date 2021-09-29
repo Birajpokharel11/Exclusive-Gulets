@@ -89,7 +89,7 @@ export default function ContentSection(props) {
             <img
               src={contentData?.side_image?.url}
               alt="Picture of the author"
-              style={{ height: '770px' }}
+              style={{ height: '100%', width: '100%' }}
             />
           </Grid>
         </Grid>

@@ -66,7 +66,8 @@ function SamplePrevArrow(props) {
   );
 }
 
-export default function ImageSlider() {
+export default function ImageSlider(props) {
+  const { data } = props;
   const settings = {
     dots: true,
     infinite: true,
@@ -107,10 +108,10 @@ export default function ImageSlider() {
   return (
     <div>
       <Slider {...settings}>
-        {MobileData.map((item, index) => (
+        {data.attachments.map((item, index) => (
           <div key={index}>
             <img
-              src={item.img}
+              src={item.file?.url}
               data-cy={`images-slider-pic-${index}`}
               style={{
                 width: '98%',

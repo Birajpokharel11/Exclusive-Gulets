@@ -1,4 +1,6 @@
 import { createStyles, makeStyles } from '@material-ui/core/styles';
+import Router from 'next/router';
+
 import {
   Button,
   Typography,
@@ -67,6 +69,19 @@ interface Props {
 export default function CardList({ list, next_page, page }: Props) {
   const classes = useStyles();
 
+  const { cardList, newsBlog, route } = props;
+
+  const redirectDetailsPage = (data) => {
+    if (route === 'destinations') {
+      Router.push({
+        pathname: `/destinations/${data.title}`,
+        query: {
+          id: data.id
+        }
+      });
+    }
+  };
+
   return (
     <Grid container>
       {list.length &&
@@ -76,6 +91,7 @@ export default function CardList({ list, next_page, page }: Props) {
             classes={{ root: classes.cardStyle }}
             elevation={0}
             key={index}
+            onClick={() => redirectDetailsPage(item)}
           >
             <CardActionArea>
               <CardMedia

@@ -1,181 +1,108 @@
-import React, { Component } from 'react';
-import parse from 'html-react-parser';
+import _ from 'lodash';
 
-import vectorblog1 from '../../assets/images/Blog_single/wheel-vector.svg';
-import vector3 from '../../assets/images/Blog_single/fish-vector.svg';
-import vtr1 from '../../assets/images/Blog_single/Vector2.svg';
-import vctr2 from '../../assets/images/Blog_single/vector3.svg';
-import Facebook from '../../assets/images/Blog_single/Facebook.svg';
-import Instagram from '../../assets/images/Blog_single/Instagram.svg';
-import Twitter from '../../assets/images/Blog_single/Twitter.svg';
-import Linkedin from '../../assets/images/Blog_single/LinkedIn.svg';
-import YouTube from '../../assets/images/Blog_single/YouTube.svg';
-import EnquireFormWrapper from '../EnquiryForm/EnquireFormWrapper';
-import EnquireForm from '../EnquiryForm/index';
+import { createStyles, makeStyles } from '@material-ui/core/styles';
+import Router from 'next/router';
+import Image from 'next/image';
+import testimonial from '../../assets/images/testimonial.png';
 
-class ContentSection extends Component {
-  constructor(props) {
-    super(props);
+import { Box, Button, Typography, Container, Grid } from '@material-ui/core';
 
-    this.state = {
-      showAllContent: false,
-      contentHeight: 0
-    };
-    this.contentRef = React.createRef();
-  }
+const useStyles = makeStyles((theme) =>
+  createStyles({
+    container: {
+      margin: '1rem'
+    },
+    root: {
+      maxWidth: 345,
+      margin: '2rem'
+    },
+    dividerColor: {
+      backgroundColor: 'rgb(206, 186, 159)',
+      margin: '1rem 0 1rem '
+    },
+    cardStyle: {
+      borderRadius: '0'
+    },
+    heading: {
+      fontSize: '48px',
+      fontWeight: 700,
+      color: '#00204e',
+      lineHeight: 1.2
+    },
+    intro_content: {
+      color: '#00204e'
+    },
+    testimonialImage: {
+      borderRadius: 999999
+    }
+  })
+);
 
-  toggleContentBlock = () => {
-    this.setState({ showAllContent: !this.state.showAllContent });
-  };
+export default function ContentSection(props) {
+  const classes = useStyles();
 
-  componentDidUpdate() {
-    if (this.state.contentHeight === this.contentRef.current.scrollHeight)
-      return;
-    this.setState({ contentHeight: this.contentRef.current.scrollHeight });
-  }
-  render() {
-    return (
-      <section
-        style={{ paddingTop: '40px' }}
-        id="singleblog-page"
-        className="section singleblog-page wow slideInUp"
-        data-wow-duration="1s"
-      >
-        <div className="row">
-          <div className="banner-bottom-description" />
-        </div>
-        <div className="background-vector">
-          <img
-            src={vectorblog1}
-            className="img-responsive"
-            alt="vector blog1"
-          />
-        </div>
-        <div className="container-lg">
-          <div className="background-vector other-grms-vector">
-            <img src={vtr1} className="img-responsive" alt="Blog vector4" />
-          </div>
-          <div
-            className="row mtp wow slideInUp"
-            data-wow-duration="1s"
-            id="padding_mobtopbtm"
-          >
-            <div
-              className={
-                this.state.showAllContent
-                  ? 'col-lg-8 col-md-12 main_content_container'
-                  : 'col-lg-8 col-md-12 main_content_container main_content_container_hide_not_fit'
-              }
-            >
-              <p ref={this.contentRef}>
-                {this.props.post &&
-                  this.props.post.content &&
-                  parse(this.props.post.content)}
-              </p>
-              <div
-                style={
-                  this.state.showAllContent || this.state.contentHeight <= 910
-                    ? { display: 'none' }
-                    : null
-                }
-                className="read_more"
-              >
-                <button onClick={this.toggleContentBlock}>Read More</button>
-              </div>
-            </div>
+  const { contentData } = props;
 
-            <EnquireFormWrapper smallContainerWidth={true} />
-            {/* <EnquireForm windowWidth={1500} /> */}
-          </div>
-          <div className="background-vector2">
-            <img src={vctr2} className="img-responsive" alt="vector2" />
-          </div>
-          <div className="col-lg-8 col-12 row mtp article-footer align-items-center">
-            <div className="col-6 p-0">
-              <div className="published-date">
-                <p>
-                  {this.props.post &&
-                    new Date(this.props.post.created_at).getDate()}{' '}
-                  / {new Date(this.props.post.created_at).getMonth() + 1} /{' '}
-                  {new Date(this.props.post.created_at).getFullYear()}
-                </p>
-              </div>
-            </div>
-            <div className="col-6 p-0">
-              <div className="social-share">
-                <ul>
-                  <li>
-                    <a
-                      target="_blank"
-                      href="https://www.facebook.com/exclusiveguletsandyachts"
-                    >
-                      <img
-                        src={Facebook}
-                        className="img-responsive"
-                        alt="Facebook icon"
-                      />
-                    </a>
-                  </li>
-                  <li>
-                    <a
-                      target="_blank"
-                      href="https://www.instagram.com/exclusive_gulets/"
-                    >
-                      <img
-                        src={Instagram}
-                        className="img-responsive"
-                        alt="Instagram icon"
-                      />
-                    </a>
-                  </li>
-                  <li>
-                    <a
-                      target="_blank"
-                      href="https://www.linkedin.com/company/exclusive-gulets-ltd/?viewAsMember=true"
-                    >
-                      <img
-                        src={Linkedin}
-                        className="img-responsive"
-                        alt="Linkedin icon"
-                      />
-                    </a>
-                  </li>
-                  <li>
-                    <a
-                      target="_blank"
-                      href="https://twitter.com/exclusivegulets"
-                    >
-                      <img
-                        src={Twitter}
-                        className="img-responsive"
-                        alt="Twitter icon"
-                      />
-                    </a>
-                  </li>
-                  <li>
-                    <a
-                      target="_blank"
-                      href="https://www.youtube.com/channel/UCRupGbMd1sUrXiYgRE9pePw/featured"
-                    >
-                      <img
-                        src={YouTube}
-                        className="img-responsive"
-                        alt="Facebook icon"
-                      />
-                    </a>
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </div>
-        </div>
+  const createMarkup = (encodedHtml) => ({
+    __html: _.unescape(encodedHtml)
+  });
 
-        <div className="background-vector3">
-          <img src={vector3} className="img-responsive" alt="vector" />
-        </div>
-      </section>
-    );
-  }
+  return (
+    <Box component="section" maxWidth="false" mt={5}>
+      <Container maxWidth="md">
+        <Grid container spacing={4}>
+          <Grid item container sm={6} xs={12}>
+            <Grid item>
+              <Typography variant="h2" className={classes.heading}>
+                {contentData?.heading}
+              </Typography>
+            </Grid>
+            <Grid item>
+              <Typography variant="subtitle1" className={classes.intro_content}>
+                {contentData?.intro_content}
+              </Typography>
+            </Grid>
+            <Grid item>
+              <Typography variant="subtitle1" className={classes.intro_content}>
+                {contentData?.intro_content_2}
+              </Typography>
+            </Grid>
+            <Grid item container>
+              <Grid item xs={3}>
+                <Image
+                  src={testimonial}
+                  alt="img"
+                  className={classes.testimonialImage}
+                />
+              </Grid>
+              <Grid item xs={9}>
+                <Typography
+                  variant="subtitle2"
+                  className={classes.intro_content}
+                >
+                  {contentData?.testimonial}
+                </Typography>
+              </Grid>
+            </Grid>
+          </Grid>
+          <Grid item sm={6} xs={12}>
+            <img
+              src={contentData?.side_image?.url}
+              alt="Picture of the author"
+              style={{ height: '770px' }}
+            />
+          </Grid>
+        </Grid>
+        <Grid container>
+          <Grid item>
+            <Typography
+              variant="subtitle2"
+              className={classes.intro_content}
+              dangerouslySetInnerHTML={createMarkup(contentData?.content)}
+            />
+          </Grid>
+        </Grid>
+      </Container>
+    </Box>
+  );
 }
-
-export default ContentSection;

@@ -4,7 +4,9 @@ import { fetchOfferStart } from '../../store/offer/offer.actions';
 import { fetchRandomDestinationStart } from '../../store/destination/destination.actions';
 
 const mapStateToProps = (state, props) => ({
-  destination: state.destination
+  destination: state.destination,
+  yacht: state.yacht,
+  experience: state.experience
 });
 
 const mapDispatchToProps = (dispatch) => ({

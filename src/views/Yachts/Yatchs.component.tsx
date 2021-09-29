@@ -14,11 +14,17 @@ import container from './Yatchs.container';
 
 const YatchDetails = (props) => {
   const {
-    destination: { randomDestination }
+    destination: { randomDestination },
+    yacht: { yachtsList },
+    experience: { experiences }
   } = props;
 
   const [open, setOpen] = useState(false);
-  const handleDrawerToggle = () => {
+  const [selectedYacht, setSelectedYacht] = useState({});
+  const handleDrawerToggle = (id) => {
+    const filteredYatch = yachtsList.find((x) => x.id === id);
+    console.log('filteredYatch>>', filteredYatch);
+    setSelectedYacht(filteredYatch);
     setOpen(!open);
   };
 
@@ -26,11 +32,15 @@ const YatchDetails = (props) => {
     <Box component="section">
       <HeroSection />
       <AdvancedFilterSection />
-      <Gallery handleDrawerOpen={handleDrawerToggle} />
+      <Gallery handleDrawerOpen={handleDrawerToggle} yachtsList={yachtsList} />
       <Destinations destinationList={randomDestination} />
-      <Experiences />
+      <Experiences experiences={experiences} />
       {open && (
-        <PreviewDrawer open={open} handleDrawerToggle={handleDrawerToggle} />
+        <PreviewDrawer
+          open={open}
+          handleDrawerToggle={handleDrawerToggle}
+          selectedYacht={selectedYacht}
+        />
       )}
     </Box>
   );

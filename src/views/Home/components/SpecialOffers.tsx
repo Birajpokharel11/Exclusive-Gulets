@@ -59,7 +59,8 @@ const specialOffers = [
   }
 ];
 
-export default function Introduction() {
+export default function Introduction(props) {
+  const { offers } = props;
   const classes = useStyles();
   const theme = useTheme();
   const matchesSM = useMediaQuery(theme.breakpoints.up('sm'));
@@ -77,7 +78,7 @@ export default function Introduction() {
           </Typography>
         </Box>
 
-        <CardWithSlider cardsData={specialOffers} />
+        <CardWithSlider cardsData={offers} />
 
         <Grid
           container

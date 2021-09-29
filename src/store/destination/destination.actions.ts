@@ -28,3 +28,18 @@ export const fetchRandomDestinationFailure = (error) => ({
   type: DestinationType.FETCH_RANDOM_DESTINATION_FAILURE,
   payload: error
 });
+
+export const fetchDestinationByIdStart = (id) => ({
+  type: DestinationType.FETCH_DESTINATION_BY_ID_START,
+  payload: { id }
+});
+
+export const fetchDestinationByIdSuccess = (result) => ({
+  type: DestinationType.FETCH_DESTINATION_BY_ID_SUCCESS,
+  payload: result
+});
+
+export const fetchDestinationByIdFailure = (error) => ({
+  type: DestinationType.FETCH_DESTINATION_BY_ID_FAILURE,
+  payload: error
+});

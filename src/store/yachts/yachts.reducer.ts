@@ -4,6 +4,7 @@ import * as YachtsType from './yachts.types';
 
 const INITIAL_STATE = {
   yachtsList: [],
+  yacht: {},
   error: null,
   loading: false
 };
@@ -28,6 +29,26 @@ const YachtsReducer = (state = INITIAL_STATE, action) => {
       };
 
     case YachtsType.FETCH_YACHTS_FAILURE:
+      return {
+        ...state,
+        loading: false,
+        error: payload
+      };
+
+    case YachtsType.FETCH_YACHT_BY_ID_START:
+      return {
+        ...state,
+        loading: true
+      };
+
+    case YachtsType.FETCH_YACHT_BY_ID_SUCCESS:
+      return {
+        ...state,
+        yacht: payload,
+        loading: false
+      };
+
+    case YachtsType.FETCH_YACHT_BY_ID_FAILURE:
       return {
         ...state,
         loading: false,

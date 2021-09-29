@@ -1,33 +1,109 @@
-import React from 'react';
-import Box from '@material-ui/core/Box';
+import React, { useEffect } from 'react';
 
-import Banner from '@components/Banner';
+import { createStyles, makeStyles } from '@material-ui/core/styles';
+import { CircularProgress, Grid, Box } from '@material-ui/core';
 
-import Fantasy from './components/Fantasy';
-import ImgSlider from './components/ImgSlider';
-import Content from './components/Content';
-import YatchsRecommend from './components/YatchsRecommend';
-import Recommendation from './components/Recommendation';
+import BannerSection from '@components/BannerSection';
+import CardList from '@components/CardList';
+import ContentSection from '@components/ContentSection';
+
+import container from './DestinationsDetails.container';
+import Typography from '@modules/components/Typography';
+import YachtList from './components/YachtList';
+
+const useStyles = makeStyles((theme) =>
+  createStyles({
+    root: {
+      height: 'calc(100vh - 64px)',
+      padding: 0
+    },
+    selectionYachtHeader: {
+      color: '#cc9855',
+      fontWeight: 700
+    },
+    destinationHeader: {
+      color: '#cc9855',
+      fontWeight: 700
+    }
+  })
+);
 
 const DestinationsDetails = (props) => {
+  const classes = useStyles();
+
+  const {
+    destination: {
+      loading,
+      destinations,
+      destination: {
+        featured_destination,
+        destinations: otherDestinations,
+        yachts
+      }
+    }
+  } = props;
+
   return (
-    <Box>
-      <Banner />
-
-      {/* Second section */}
-      <Fantasy />
-
-      {/* Slider section */}
-      <ImgSlider />
-
-      {/* Third section */}
-      <Content />
-
-      {!!yachts.length && <YatchsRecommend />}
-
-      <Recommendation />
-    </Box>
+    <div>
+      <BannerSection
+        {...props}
+        title={featured_destination?.title}
+        description={featured_destination?.description}
+        backgroundImage={featured_destination.featured_image?.url}
+      />
+      {loading ? (
+        <CircularProgress />
+      ) : (
+        <ContentSection contentData={featured_destination} />
+      )}
+      {loading ? (
+        <CircularProgress />
+      ) : (
+        <Box component="section" maxWidth="false" mt={9}>
+          <Grid
+            container
+            justifyContent="center"
+            alignItems="center"
+            direction="column"
+          >
+            <Grid item>
+              <Typography variant="h2" className={classes.selectionYachtHeader}>
+                EXCLUSIVE GULETS
+              </Typography>
+            </Grid>
+            <Grid item>
+              <Typography variant="subtitle1">A Selection of Yachts</Typography>
+            </Grid>
+          </Grid>
+          <YachtList cardList={yachts} />
+        </Box>
+      )}
+      {loading ? (
+        <CircularProgress />
+      ) : (
+        <Box component="section" maxWidth="false" mt={9}>
+          <Grid
+            container
+            justifyContent="center"
+            alignItems="center"
+            direction="column"
+          >
+            <Grid item>
+              <Typography variant="h2" className={classes.selectionYachtHeader}>
+                DESTINATIONS
+              </Typography>
+            </Grid>
+            <Grid item>
+              <Typography variant="h2">
+                Discover secret locations around the world
+              </Typography>
+            </Grid>
+          </Grid>
+          <CardList cardList={otherDestinations} />
+        </Box>
+      )}
+    </div>
   );
 };
 
-export default DestinationsDetails;
+export default container(DestinationsDetails);

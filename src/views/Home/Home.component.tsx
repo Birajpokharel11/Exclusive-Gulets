@@ -31,15 +31,10 @@ const useStyles = makeStyles((theme) =>
 const Home = (props) => {
   const classes = useStyles();
   const {
-    onFetchOfferStart,
-    onFetchRandomDestinationStart,
-    destination: { randomDestination }
+    destination: { randomDestination },
+    posts: { postsList },
+    offer: { offers }
   } = props;
-
-  useEffect(() => {
-    onFetchOfferStart();
-    onFetchRandomDestinationStart();
-  }, []);
 
   return (
     <div>
@@ -47,7 +42,7 @@ const Home = (props) => {
         <HeroSection {...props} />
       </Box>
       <Introduction />
-      <SpecialOffers />
+      <SpecialOffers offers={offers} />
       <CharterYatch />
       <YachtSlider
         title="Loved by our Guests"

@@ -8,8 +8,10 @@ import ScrollDown from '@components/ScrollDown';
 const useStyles = makeStyles((theme) =>
   createStyles({
     root: {
-      backgroundImage: `url('/assets/images/charterYatch.png')`,
-      zIndex: 2,
+      backgroundImage: (props) =>
+        props.backgroundImage
+          ? `url("${props.backgroundImage}")`
+          : `url('./charterYatch.png')`,
       backgroundPosition: 'center',
       height: '60vh',
       backgroundRepeat: 'no-repeat',
@@ -27,7 +29,7 @@ const useStyles = makeStyles((theme) =>
       textAlign: 'center',
       color: '#f5f0e4',
       fontWeight: 300,
-      zIndex: 2,
+      zIndex: 1,
       bottom: 0,
       width: '100%'
     }
@@ -35,8 +37,8 @@ const useStyles = makeStyles((theme) =>
 );
 
 export default function BannerSection(props) {
-  const { title, description } = props;
-  const classes = useStyles();
+  const { title, description, backgroundImage } = props;
+  const classes = useStyles(props);
 
   return (
     <Box component="section" maxWidth="false" className={classes.root}>

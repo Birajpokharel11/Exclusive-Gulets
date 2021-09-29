@@ -9,7 +9,6 @@ import PaginationSection from './components/PaginationComponents';
 import Typography from '@modules/components/Typography';
 
 export default function Gallery({ handleDrawerOpen, yachtsList }) {
-  console.log('yatchlist data in gallery>>', yachtsList);
   return (
     <Box component="section">
       <Grid container>
@@ -17,7 +16,7 @@ export default function Gallery({ handleDrawerOpen, yachtsList }) {
           <Grid item md={4} sm={6} xs={12} lg={3} xl={2} key={i}>
             <GalleryItem
               i={i}
-              handleDrawerOpen={handleDrawerOpen}
+              handleDrawerOpen={() => handleDrawerOpen(item.id)}
               SpecialOffers="specialoffers"
               InstantBooking="instantbooking"
               {...item}

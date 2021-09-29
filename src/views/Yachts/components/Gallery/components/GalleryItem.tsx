@@ -38,7 +38,8 @@ const useStyles = makeStyles((theme: Theme) =>
     Img: {
       display: 'block',
       objectFit: 'cover',
-      width: '100%'
+      width: '100%',
+      minHeight: '360px'
     },
     BoxShadows: {
       top: 0,
@@ -104,8 +105,6 @@ export default function GalleryItem({
   const classes = useStyles();
 
   const [offers, setOffers] = React.useState(true);
-
-  console.log('data received >>>', url, name);
 
   return (
     <Box className={classes.root}>

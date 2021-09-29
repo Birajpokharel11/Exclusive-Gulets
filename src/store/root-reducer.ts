@@ -5,6 +5,7 @@ import siteCoordinatorReducer from './siteCoordinator/siteCoordinator.reducer';
 import destinationReducer from './destination/destination.reducer';
 import offerReducer from './offer/offer.reducer';
 import blogReducer from './blogs/blog.reducer';
+import postsReducer from './posts/posts.reducer';
 import experiencesReducer from './experiences/experiences.reducer';
 import YachtsReducer from './yachts/yachts.reducer';
 
@@ -13,6 +14,7 @@ const rootReducer = combineReducers({
   destination: destinationReducer,
   offer: offerReducer,
   blogs: blogReducer,
+  posts: postsReducer,
   siteCoordinator: siteCoordinatorReducer,
   experience: experiencesReducer,
   yacht: YachtsReducer

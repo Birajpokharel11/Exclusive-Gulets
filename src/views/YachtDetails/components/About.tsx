@@ -61,7 +61,8 @@ const useStyles = makeStyles((theme) =>
       flex: '50%',
       display: 'flex',
       justifyContent: 'flex-end',
-      maxwidth: '1268.61px',
+      // maxwidth: '1268.61px',
+      height: '770px',
       objectFit: 'cover',
       [theme.breakpoints.down(1444)]: {
         width: '500px',

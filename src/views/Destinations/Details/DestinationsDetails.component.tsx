@@ -16,6 +16,14 @@ const useStyles = makeStyles((theme) =>
     root: {
       height: 'calc(100vh - 64px)',
       padding: 0
+    },
+    selectionYachtHeader: {
+      color: '#cc9855',
+      fontWeight: 700
+    },
+    destinationHeader: {
+      color: '#cc9855',
+      fontWeight: 700
     }
   })
 );
@@ -59,7 +67,9 @@ const DestinationsDetails = (props) => {
             direction="column"
           >
             <Grid item>
-              <Typography variant="h2">EXCLUSIVE GULETS</Typography>
+              <Typography variant="h2" className={classes.selectionYachtHeader}>
+                EXCLUSIVE GULETS
+              </Typography>
             </Grid>
             <Grid item>
               <Typography variant="subtitle1">A Selection of Yachts</Typography>
@@ -79,7 +89,9 @@ const DestinationsDetails = (props) => {
             direction="column"
           >
             <Grid item>
-              <Typography variant="h2">DESTINATIONS</Typography>
+              <Typography variant="h2" className={classes.selectionYachtHeader}>
+                DESTINATIONS
+              </Typography>
             </Grid>
             <Grid item>
               <Typography variant="h2">

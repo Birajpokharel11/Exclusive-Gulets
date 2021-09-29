@@ -63,13 +63,11 @@ const cardContent = [
 interface Props {
   list?: any[];
   next_page?: any;
-  page?: string;
+  route?: string;
 }
 
-export default function CardList({ list, next_page, page }: Props) {
+export default function CardList({ list, next_page, route }: Props) {
   const classes = useStyles();
-
-  const { cardList, newsBlog, route } = props;
 
   const redirectDetailsPage = (data) => {
     if (route === 'destinations') {
@@ -111,7 +109,7 @@ export default function CardList({ list, next_page, page }: Props) {
                 >
                   {item?.title}
                 </Typography>
-                {page === 'destinations' && (
+                {route === 'destinations' && (
                   <Divider className={classes.dividerColor} variant="middle" />
                 )}
                 <Typography
@@ -123,7 +121,7 @@ export default function CardList({ list, next_page, page }: Props) {
                   {item?.meta_description}
                 </Typography>
 
-                {page !== 'destinations' && (
+                {route !== 'destinations' && (
                   <p className="date">
                     {new Date(item.created_at).getDate()} /{' '}
                     {new Date(item.created_at).getMonth() + 1} /{' '}
@@ -134,7 +132,7 @@ export default function CardList({ list, next_page, page }: Props) {
             </CardActionArea>
           </Card>
         ))}
-      <DiscoverMore />
+      {next_page && <DiscoverMore />}
     </Grid>
   );
 }

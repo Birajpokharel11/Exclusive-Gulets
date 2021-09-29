@@ -5,13 +5,15 @@ import { Box, Typography, Container } from '@material-ui/core';
 import Socials from '@components/Socials';
 import ScrollDown from '@components/ScrollDown';
 
+type BgProps = {
+  bgImg: string;
+};
+
 const useStyles = makeStyles((theme) =>
   createStyles({
     root: {
-      backgroundImage: (props) =>
-        props.backgroundImage
-          ? `url("${props.backgroundImage}")`
-          : `url('./charterYatch.png')`,
+      backgroundImage: ({ bgImg }: BgProps) =>
+        bgImg ? `url("${bgImg}")` : `url('/assets/images/charterYatch.png')`,
       backgroundPosition: 'center',
       height: '60vh',
       backgroundRepeat: 'no-repeat',
@@ -36,9 +38,24 @@ const useStyles = makeStyles((theme) =>
   })
 );
 
-export default function BannerSection(props) {
-  const { title, description, backgroundImage } = props;
-  const classes = useStyles(props);
+interface Props {
+  title?: string;
+  description?: string;
+  backgroundImage?: string;
+  withSocial?: boolean;
+  withScroll?: string;
+}
+
+export default function BannerSection({
+  title,
+  description,
+  backgroundImage,
+  withSocial,
+  withScroll
+}: Props) {
+  const classes = useStyles({
+    bgImg: backgroundImage
+  });
 
   return (
     <Box component="section" maxWidth="false" className={classes.root}>
@@ -63,9 +80,9 @@ export default function BannerSection(props) {
         </Container>
       </Box>
 
-      <Socials />
+      {withSocial && <Socials />}
 
-      <ScrollDown id="id-test" />
+      {withScroll && <ScrollDown id={withScroll} />}
     </Box>
   );
 }

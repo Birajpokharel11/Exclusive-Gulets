@@ -99,7 +99,7 @@ const DestinationsDetails = (props) => {
               </Typography>
             </Grid>
           </Grid>
-          <CardList cardList={otherDestinations} />
+          <CardList list={otherDestinations} />
         </Box>
       )}
     </div>

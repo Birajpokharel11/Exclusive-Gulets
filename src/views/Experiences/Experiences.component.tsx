@@ -42,7 +42,7 @@ const Experiences = (props) => {
         <BackgroundVectors />
         <Container>
           <Box mb={4}>
-            <Typography>{featured_destination.content}</Typography>
+            {/*<Typography>{featured_destination.content}</Typography>*/}
           </Box>
           <CardList list={destinations} />
         </Container>

@@ -1,5 +1,5 @@
 import React from 'react';
-
+import { Limits, BlogSort } from '@utils/enums';
 import WithLayout from '@components/WithLayout';
 import Main from '@layouts/Main';
 import Blogs from '@views/Blogs';
@@ -14,7 +14,13 @@ export default function Experiences() {
 export const getServerSideProps = wrapper.getServerSideProps(
   (store) => async () => {
     if (store.getState()) {
-      store.dispatch(fetchBlogStart());
+      store.dispatch(
+        fetchBlogStart({
+          ...BlogSort,
+          page: 1,
+          amount_per_page: Limits.BLOGS_PER_PAGE
+        })
+      );
       store.dispatch(END);
 
       await store.sagaTask?.toPromise();

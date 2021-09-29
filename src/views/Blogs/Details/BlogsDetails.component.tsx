@@ -7,6 +7,8 @@ import DestinationsGallerySection from '@components/DestinationsGallerySection';
 import YahtsSlider from '@components/YachtSlider';
 
 import { Images } from '@mocks/_destinationMocks';
+import CardSection from '@components/CardSection/CardSection';
+import EnquireFormMobileWrapper from '@components/EnquiryForm/EnquireFormMobileWrapper';
 
 const Blogs = () => {
   const [open, setOpen] = React.useState(false);

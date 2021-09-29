@@ -20,7 +20,7 @@ export const ScrollDown = ({ id }) => {
               }}
             >
               <Box
-                mt={50}
+                mt={30}
                 style={{
                   transform: 'rotate(-90deg)',
                   marginBottom: '30%'

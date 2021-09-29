@@ -35,35 +35,29 @@ const Destinations = (props) => {
         description="Keep up to date with our latest yachting news, charter destinations, special offers and more…"
         {...props}
       />
-      <Box component="section" mb={20} style={{ position: 'relative' }}>
-        <BackgroundVectors />
-        <Box style={{ position: 'absolute', top: 0, left: 300 }}>
-          <Container>
-            <Box mb={4} mt={6}>
-              <Typography
-                align="center"
-                style={{
-                  color: '#00204e',
-                  fontSize: '20px',
-                  fontWeight: 300,
-                  lineHeight: '28px'
-                }}
-              >
-                There is more to yachting than just spending a week or so
-                sailing. We share our experiences on the best itineraries to
-                suit you, organise on board celebrations, exciting excursions,
-                restaurant bookings, spa treatments, fitness instruction and
-                more. Read our news and blogs below for some insight and get in
-                touch for your own tailor-made escape on water.
-              </Typography>
-            </Box>
-            <CardList list={blogs} />
-          </Container>
+      <Container>
+        <Box mb={4} mt={6}>
+          <BackgroundVectors />
+          <Typography
+            align="center"
+            style={{
+              color: '#00204e',
+              fontSize: '20px',
+              fontWeight: 300,
+              lineHeight: '28px'
+            }}
+          >
+            There is more to yachting than just spending a week or so sailing.
+            We share our experiences on the best itineraries to suit you,
+            organise on board celebrations, exciting excursions, restaurant
+            bookings, spa treatments, fitness instruction and more. Read our
+            news and blogs below for some insight and get in touch for your own
+            tailor-made escape on water.
+          </Typography>
+          <CardList list={blogs} />
         </Box>
-      </Box>
-
+      </Container>
       {/* <FooterSlider /> */}
-      {/* {loading && <CircularProgress />} */}
     </Box>
   );
 };

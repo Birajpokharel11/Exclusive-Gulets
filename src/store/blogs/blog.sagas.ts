@@ -7,11 +7,13 @@ import axios from 'axios';
 import * as blogType from './blog.types';
 import * as blogAction from './blog.actions';
 
-export function* fetchBlogAsync() {
+export function* fetchBlogAsync({ payload }) {
   try {
-    console.log('inside of fetchBlog saga');
+    console.log('inside of fetchBlog sasadasdasdga', payload);
     const { data } = yield axios.get(
-      `https://app.exclusivegulets.com/api/v1/posts.json`
+      `https://app.exclusivegulets.com/api/v1/posts.json?${queryString.stringify(
+        payload
+      )}`
     );
     console.log('value of response of blogs >>>', data.posts);
     yield put(blogAction.fetchBlogSuccess(data.posts));

@@ -1,7 +1,8 @@
 import * as BlogType from './blog.types';
 
-export const fetchBlogStart = () => ({
-  type: BlogType.FETCH_BLOG_START
+export const fetchBlogStart = (data) => ({
+  type: BlogType.FETCH_BLOG_START,
+  payload: data
 });
 
 export const fetchBlogSuccess = (result) => ({

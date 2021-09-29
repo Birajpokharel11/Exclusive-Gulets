@@ -9,12 +9,46 @@ import {
   CardMedia,
   Typography
 } from '@material-ui/core';
-
+import { createStyles, makeStyles } from '@material-ui/core/styles';
+import { classNames } from 'react-select/dist/declarations/src/utils';
+import { BLOGS_SORTING } from '@components/Sorting/sorting';
+import { fetchBlogStart } from '@store/blogs/blog.actions';
+import container from './DiscoverMore.container';
 interface Props {
-  onClick?: () => void;
+  onClick?: () => any;
 }
 
-const DiscoverMore = ({ title, onClick }: Props) => {
+const useStyles = makeStyles((theme) =>
+  createStyles({
+    Container: {
+      padding: '0%',
+      position: 'relative'
+    },
+    Button: {
+      padding: '15px 50px',
+      fontWeight: 500,
+      fontSize: '18px',
+      lineHeight: '22px',
+      background: '#2A398D',
+      color: 'white',
+      '&:hover': {
+        background: '#2A398D'
+      }
+    }
+  })
+);
+
+const DiscoverMore = (props) => {
+  const classes = useStyles();
+  const { fetchBlogStart } = props;
+  const [number, setNumber] = React.useState(10);
+  const handleClick = () => {
+    setNumber((prev) => prev + 5);
+    console.log(number, 'number');
+    fetchBlogStart({ amount_per_page: number });
+  };
+  console.log('props', props);
+
   return (
     <Card
       elevation={0}
@@ -57,15 +91,9 @@ const DiscoverMore = ({ title, onClick }: Props) => {
           <Grid container>
             <Grid item container justifyContent="center">
               <Button
+                onClick={handleClick}
                 variant="contained"
-                style={{
-                  padding: '15px 50px',
-                  fontWeight: 500,
-                  fontSize: '18px',
-                  lineHeight: '22px',
-                  background: '#2A398D',
-                  color: 'white'
-                }}
+                className={classes.Button}
               >
                 {' '}
                 More
@@ -78,4 +106,4 @@ const DiscoverMore = ({ title, onClick }: Props) => {
   );
 };
 
-export default DiscoverMore;
+export default container(DiscoverMore);

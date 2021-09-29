@@ -15,7 +15,7 @@ const useStyles = makeStyles((theme) =>
       color: 'white',
       right: '5vw',
       bottom: '15%',
-      zIndex: 1
+      zIndex: 2
     },
     icon: {
       margin: '39px 0 0',
@@ -30,6 +30,7 @@ export const Socials = () => {
   return (
     <Hidden xsDown>
       <Box
+        mb={3}
         className={classes.iconSection}
         display="flex"
         flexDirection="column"

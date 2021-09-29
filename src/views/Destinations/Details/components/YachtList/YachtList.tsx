@@ -1,5 +1,6 @@
 import { createStyles, makeStyles } from '@material-ui/core/styles';
 import Router from 'next/router';
+import _ from 'lodash';
 
 import {
   Box,
@@ -34,37 +35,10 @@ const useStyles = makeStyles((theme) =>
   })
 );
 
-const cardContent = [
-  {
-    title: 'Caribbean',
-    subTitle:
-      'Where the legendary genial charm and tranquility of paradise behold. '
-  },
-  {
-    title: 'Spanish Coast & Balearics',
-    subTitle:
-      'Behold the splendid land that beautifies living in the lap of luxury. '
-  },
-  {
-    title: 'Northern Islands Croatia',
-    subTitle:
-      'A thousand ancient islands with magical nature and rich heritage.'
-  },
-  {
-    title: 'French Riviera ',
-    subTitle:
-      'A perfect yacht charter getaway in probably one of the most romantic, beautiful, and charming place on earth. '
-  },
-  {
-    title: 'Dalmatian Islands Croatia',
-    subTitle: 'Medieval charm meets the glittering coastline'
-  }
-];
-
-export default function CardList(props) {
+export default function YachtList(props) {
   const classes = useStyles();
 
-  const { cardList, newsBlog, route } = props;
+  const { cardList, route } = props;
 
   const redirectDetailsPage = (data) => {
     if (route === 'destinations') {
@@ -76,6 +50,10 @@ export default function CardList(props) {
       });
     }
   };
+
+  const createMarkup = (encodedHtml) => ({
+    __html: _.unescape(encodedHtml)
+  });
 
   return (
     <Container maxWidth="lg">
@@ -95,7 +73,7 @@ export default function CardList(props) {
                   alt="image"
                   height="290"
                   width="352"
-                  image={card.featured_image?.url}
+                  image={card.featured_image_1?.url}
                   title="title"
                 />
                 <CardContent>
@@ -105,28 +83,34 @@ export default function CardList(props) {
                     component="h2"
                     align="center"
                   >
-                    {card?.title}
+                    {card?.name}
                   </Typography>
-                  <Divider className={classes.dividerColor} variant="middle" />
-                  {newsBlog ? (
-                    <Typography
-                      variant="subtitle1"
-                      color="textSecondary"
-                      component="p"
-                      align="center"
-                    >
-                      {card?.meta_description}
-                    </Typography>
-                  ) : (
-                    <Typography
-                      variant="subtitle1"
-                      color="textSecondary"
-                      component="p"
-                      align="center"
-                    >
-                      {card?.description}
-                    </Typography>
-                  )}
+                  <Grid container justifyContent="center" alignItems="center">
+                    {card.sailing_countries.length &&
+                      card.sailing_countries.map((country, i) => (
+                        <>
+                          {i > 0 && ', '}
+
+                          <Typography
+                            gutterBottom
+                            variant="subtitle1"
+                            component="p"
+                            align="center"
+                            style={{ display: ' inline-block' }}
+                          >
+                            {country?.name}
+                          </Typography>
+                        </>
+                      ))}
+                  </Grid>
+
+                  <Typography
+                    variant="h6"
+                    color="textSecondary"
+                    component="p"
+                    align="center"
+                    dangerouslySetInnerHTML={createMarkup(card?.about)}
+                  />
                 </CardContent>
               </CardActionArea>
             </Card>

@@ -21,6 +21,20 @@ export function* fetchExperiencesAsync() {
   }
 }
 
+export function* fetchExperienceByIdAsync({ payload: { id } }: AnyAction) {
+  try {
+    console.log('fetchExperienceByIdAsync>>>');
+    const { data } = yield axios.get(
+      `https://app.exclusivegulets.com/api/v1/experiences/${id}`
+    );
+    console.log('value of response fetchOfferAsync>>>', data);
+    yield put(experiencesAction.fetchExperienceByIdSuccess(data.experience));
+  } catch (err) {
+    console.error('error received>>>', err);
+    yield put(experiencesAction.fetchExperienceByIdFailure(err));
+  }
+}
+
 export function* watchExperiencesOffer() {
   yield takeLatest(
     ExperiencesType.FETCH_EXPERIENCES_START,
@@ -28,6 +42,13 @@ export function* watchExperiencesOffer() {
   );
 }
 
+export function* watchExperienceById() {
+  yield takeLatest(
+    ExperiencesType.FETCH_EXPERIENCE_BY_ID_START,
+    fetchExperienceByIdAsync
+  );
+}
+
 export function* experiencesSagas() {
-  yield all([call(watchExperiencesOffer)]);
+  yield all([call(watchExperiencesOffer), call(watchExperienceById)]);
 }

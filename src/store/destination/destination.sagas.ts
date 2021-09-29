@@ -42,6 +42,20 @@ export function* fetchRandomDestinationAsync() {
   }
 }
 
+export function* fetchDestinationByIdAsync({ payload: { id } }: AnyAction) {
+  try {
+    console.log('fetchDestinationByIdAsync>>', id);
+    const { data } = yield axios.get(
+      `https://app.exclusivegulets.com/api/v1/destinations/${id}.json`
+    );
+    console.log('data fetchDestinationByIdAsync ', data);
+    yield put(destinationAction.fetchDestinationByIdSuccess(data));
+  } catch (err) {
+    console.error('error received>>>', err);
+    yield put(destinationAction.fetchDestinationByIdFailure(err));
+  }
+}
+
 export function* watchFetchDestination() {
   yield takeLatest(
     DestinationType.FETCH_DESTINATION_START,
@@ -56,6 +70,17 @@ export function* watchFetchRandomDestination() {
   );
 }
 
+export function* watchDestinationById() {
+  yield takeLatest(
+    DestinationType.FETCH_DESTINATION_BY_ID_START,
+    fetchDestinationByIdAsync
+  );
+}
+
 export function* destinationSagas() {
-  yield all([call(watchFetchDestination), call(watchFetchRandomDestination)]);
+  yield all([
+    call(watchFetchDestination),
+    call(watchFetchRandomDestination),
+    call(watchDestinationById)
+  ]);
 }

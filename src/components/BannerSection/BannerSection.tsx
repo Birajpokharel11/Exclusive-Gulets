@@ -9,7 +9,10 @@ const useStyles = makeStyles((theme) =>
     //   padding: 0
     // },
     root: {
-      backgroundImage: `url('./charterYatch.png')`,
+      backgroundImage: ({ props }) =>
+        props.backgroundImage
+          ? `url("${props.backgroundImage}")`
+          : `url('./charterYatch.png')`,
       backgroundPosition: 'center',
       height: '60vh',
       backgroundRepeat: 'no-repeat',
@@ -35,8 +38,8 @@ const useStyles = makeStyles((theme) =>
 );
 
 export default function BannerSection(props) {
-  const { title, description } = props;
-  const classes = useStyles();
+  const { title, description, backgroundImage } = props;
+  const classes = useStyles({ props });
 
   return (
     <div>

@@ -1,8 +1,8 @@
 import * as DestinationType from './destination.types';
 
-export const fetchDestinationStart = (data) => ({
+export const fetchDestinationStart = (page = 1, amount_per_page = 5) => ({
   type: DestinationType.FETCH_DESTINATION_START,
-  payload: data
+  payload: { page, amount_per_page }
 });
 
 export const fetchDestinationSuccess = (result) => ({

@@ -12,6 +12,7 @@ import { createStyles, makeStyles } from '@material-ui/core/styles';
 
 interface Props {
   onClick?: () => any;
+  showMore?: () => any;
 }
 
 const useStyles = makeStyles((theme) =>
@@ -52,7 +53,7 @@ const useStyles = makeStyles((theme) =>
   })
 );
 
-const DiscoverMore = ({ onClick }: Props) => {
+const DiscoverMore = ({ showMore }: Props) => {
   const classes = useStyles();
 
   return (
@@ -76,7 +77,7 @@ const DiscoverMore = ({ onClick }: Props) => {
           <Grid container>
             <Grid item container justifyContent="center">
               <Button
-                onClick={onClick}
+                onClick={showMore}
                 variant="contained"
                 className={classes.Button}
               >

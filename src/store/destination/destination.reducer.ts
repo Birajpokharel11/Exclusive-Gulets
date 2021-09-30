@@ -4,6 +4,8 @@ import * as DestinationType from './destination.types';
 
 const INITIAL_STATE = {
   destinations: [],
+  next_page: 0,
+  current_page: 0,
   randomDestination: [],
   destination: {},
   error: null,

@@ -6,7 +6,7 @@ const mapStateToProps = (state, props) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  fetchPostsStart: (blogs) => dispatch(fetchPostsStart(blogs))
+  fetchPostsStart: (page) => dispatch(fetchPostsStart(page))
 });
 
 const container = connect(mapStateToProps, mapDispatchToProps);

@@ -10,7 +10,7 @@ import BannerSection from '@components/BannerSection';
 import BackgroundVectors from '@components/BackgroundVectors';
 import CardList from '@components/CardList';
 import FooterSlider from '@components/FooterSlider';
-
+import Router from 'next/router';
 import container from './Destinations.container';
 
 const useStyles = makeStyles((theme) =>
@@ -23,11 +23,29 @@ const useStyles = makeStyles((theme) =>
 );
 
 const Destinations = (props) => {
+  const {
+    destination: { loading, destinations, fetchDestinationStart }
+  } = props;
+
   const classes = useStyles();
 
-  const {
-    destination: { loading, destinations }
-  } = props;
+  const [number, setNumber] = React.useState(10);
+  const route = 'destinations';
+  const showMore = () => {
+    console.log('helloworld', number);
+    fetchDestinationStart(5);
+  };
+  // const redirectDetailsPage = (data) => {
+  //   if (route === 'destinations') {
+  //     console.log('routse', route);
+  //     Router.push({
+  //       pathname: `/destinations/${data.title}`,
+  //       query: {
+  //         id: data.id
+  //       }
+  //     });
+  //   }
+  // };
 
   return (
     <Box>
@@ -43,7 +61,11 @@ const Destinations = (props) => {
           <Box mb={4}>
             {/*<Typography>{featured_destination.content}</Typography>*/}
           </Box>
-          <CardList list={destinations} route="destinations" />
+          <CardList
+            list={destinations}
+            showMore={showMore}
+            // redirectDetailsPage={redirectDetailsPage}
+          />
         </Container>
       </Box>
       {/* <FooterSlider /> */}

@@ -1,19 +1,14 @@
 import React from 'react';
 
 import { createStyles, makeStyles } from '@material-ui/core/styles';
-import {
-  Box,
-  CircularProgress,
-  Container,
-  Typography
-} from '@material-ui/core';
+import { Box, Container, Typography } from '@material-ui/core';
 
 import BannerSection from '@components/BannerSection';
 import CardList from '@components/CardList';
 
 import container from './Blogs.container';
 import BackgroundVectors from '@components/BackgroundVectors';
-
+import { CircularProgress } from '@material-ui/core';
 const useStyles = makeStyles((theme) =>
   createStyles({
     root: {
@@ -28,22 +23,39 @@ const useStyles = makeStyles((theme) =>
     }
   })
 );
+interface Props {
+  posts?: any[];
+  loading?: any;
+  fetchPostsStart?: (page) => any;
+}
 
-const Destinations = (props) => {
+function Destinations({ posts, loading, fetchPostsStart }: Props) {
   const classes = useStyles();
-  const { posts, loading, fetchPostsStart } = props;
-  const [number, setNumber] = React.useState(10);
-  const showMore = () => {
-    setNumber((prev) => prev + 5);
-    fetchPostsStart({ amount_per_page: number });
-  };
+  const [page, setpage] = React.useState(1);
+  const [amount_per_page, setAmount_per_page] = React.useState(5);
 
+  const showMore = () => {
+    setpage((prev) => prev + 1);
+    console.log('helloworld', page, amount_per_page);
+
+    fetchPostsStart({ page, amount_per_page });
+  };
+  const route = 'blogs';
+  // const redirectDetailsPage = (data) => {
+  //   if (route === 'blogs') {
+  //     Router.push({
+  //       pathname: `/destinations/${data.title}`,
+  //       query: {
+  //         id: data.id
+  //       }
+  //     });
+  //   }
+  // };
   return (
     <Box>
       <BannerSection
         title="NEWS & BLOGS"
         description="Keep up to date with our latest yachting news, charter destinations, special offers and more…"
-        {...props}
       />
       <Container>
         <Box mb={4} mt={6}>
@@ -56,12 +68,20 @@ const Destinations = (props) => {
             news and blogs below for some insight and get in touch for your own
             tailor-made escape on water.
           </Typography>
-          <CardList list={posts.postsList} showMore={showMore} />
+          {loading ? (
+            <CircularProgress />
+          ) : (
+            <CardList
+              list={posts.postsList}
+              showMore={showMore}
+              // redirectDetailsPage={redirectDetailsPage}
+            />
+          )}
         </Box>
       </Container>
       {/* <FooterSlider /> */}
     </Box>
   );
-};
+}
 
 export default container(Destinations);

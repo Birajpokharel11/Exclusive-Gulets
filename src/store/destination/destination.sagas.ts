@@ -1,5 +1,4 @@
 import { takeLatest, call, all, put } from 'redux-saga/effects';
-import { AnyAction } from 'redux';
 import queryString from 'query-string';
 
 import axios from 'axios';
@@ -7,13 +6,16 @@ import axios from 'axios';
 import * as DestinationType from './destination.types';
 import * as destinationAction from './destination.actions';
 
-export function* fetchDestinationAsync({ payload }: AnyAction) {
+export function* fetchDestinationAsync({
+  payload: { page = 1, amount_per_page = 5 }
+}) {
   try {
-    console.log('inside of fetchDestination saga', payload);
     const { data } = yield axios.get(
-      `${
-        process.env.REACT_APP_PROD_URL
-      }/destinations.json?${queryString.stringify(payload)}`
+      `https://app.exclusivegulets.com/api/v1/destinations.json`,
+      {
+        page: page,
+        amount_per_page: amount_per_page
+      }
     );
     console.log('value of response>>>', data.destinations);
     yield put(destinationAction.fetchDestinationSuccess(data.destinations));
@@ -42,7 +44,7 @@ export function* fetchRandomDestinationAsync() {
   }
 }
 
-export function* fetchDestinationByIdAsync({ payload: { id } }: AnyAction) {
+export function* fetchDestinationByIdAsync({ payload: { id } }) {
   try {
     console.log('fetchDestinationByIdAsync>>', id);
     const { data } = yield axios.get(

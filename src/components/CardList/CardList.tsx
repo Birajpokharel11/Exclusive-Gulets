@@ -63,24 +63,12 @@ const cardContent = [
 interface Props {
   list?: any[];
   next_page?: any;
-  route?: string;
   showMore?: () => any;
+  redirectDetailsPage?: any;
 }
 
-export default function CardList({ list, next_page, route, showMore }: Props) {
+export default function CardList({ list, next_page, showMore }: Props) {
   const classes = useStyles();
-
-  const redirectDetailsPage = (data) => {
-    if (route === 'destinations') {
-      console.log('routse', route);
-      Router.push({
-        pathname: `/destinations/${data.title}`,
-        query: {
-          id: data.id
-        }
-      });
-    }
-  };
 
   return (
     <Grid container>
@@ -91,7 +79,7 @@ export default function CardList({ list, next_page, route, showMore }: Props) {
             classes={{ root: classes.cardStyle }}
             elevation={0}
             key={index}
-            onClick={() => redirectDetailsPage(item)}
+            // onClick={() => redirectDetailsPage(item)}
           >
             <CardActionArea>
               <CardMedia
@@ -111,9 +99,9 @@ export default function CardList({ list, next_page, route, showMore }: Props) {
                 >
                   {item?.title}
                 </Typography>
-                {route === 'destinations' && (
-                  <Divider className={classes.dividerColor} variant="middle" />
-                )}
+                {/* {route === 'destinations' && ( */}
+                <Divider className={classes.dividerColor} variant="middle" />
+                {/* )} */}
                 <Typography
                   variant="subtitle1"
                   color="textSecondary"
@@ -123,18 +111,20 @@ export default function CardList({ list, next_page, route, showMore }: Props) {
                   {item?.meta_description}
                 </Typography>
 
-                {route !== 'destinations' && (
+                {/* {route !== 'destinations' && (
                   <p className="date">
                     {new Date(item.created_at).getDate()} /{' '}
                     {new Date(item.created_at).getMonth() + 1} /{' '}
                     {new Date(item.created_at).getFullYear()}
                   </p>
-                )}
+                )} */}
               </CardContent>
             </CardActionArea>
           </Card>
         ))}
-      <DiscoverMore onClick={showMore} />
+      {/* {next_page &&  */}
+      <DiscoverMore showMore={showMore} />
+      {/* } */}
     </Grid>
   );
 }

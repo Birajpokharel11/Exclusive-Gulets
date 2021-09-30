@@ -5,7 +5,7 @@ import * as PostsType from './posts.types';
 const INITIAL_STATE = {
   blogIds: [],
   blogs: {},
-  next_page: 0,
+  next_page: 1,
   current_page: 0,
   featured_blog: {},
   postsList: [],
@@ -28,7 +28,7 @@ const PostsReducer = (state = INITIAL_STATE, action) => {
     case PostsType.FETCH_POSTS_SUCCESS:
       return {
         ...state,
-        postsList: payload,
+        postsList: [...state.postsList, ...payload],
         loading: false
       };
 

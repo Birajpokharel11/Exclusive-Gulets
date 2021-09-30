@@ -64,9 +64,10 @@ interface Props {
   list?: any[];
   next_page?: any;
   route?: string;
+  showMore?: () => void;
 }
 
-export default function CardList({ list, next_page, route }: Props) {
+export default function CardList({ list, next_page, route, showMore }: Props) {
   const classes = useStyles();
 
   const redirectDetailsPage = (data) => {
@@ -132,7 +133,7 @@ export default function CardList({ list, next_page, route }: Props) {
             </CardActionArea>
           </Card>
         ))}
-      {next_page && <DiscoverMore />}
+      {next_page && <DiscoverMore onClick={showMore} />}
     </Grid>
   );
 }

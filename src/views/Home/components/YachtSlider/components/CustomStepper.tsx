@@ -125,8 +125,8 @@ const CustomStepper: React.FC<Props> = ({
 
         <Box className={classes.location}>
           <Location style={{ width: 15, height: 20 }} />
-          {item.sailing_countries.length &&
-            item.sailing_countries.map((country, i) => (
+          {item.ailing_countries.length &&
+            item.ailing_countries.map((country, i) => (
               <>
                 {i > 0 && ', '}
 

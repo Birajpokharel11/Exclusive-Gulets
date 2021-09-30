@@ -77,7 +77,7 @@ export default function YatchSlider({ title, subtitle, contentData }) {
         </Typography>
       </Box>
       <Container maxWidth="lg">
-        <CustomSlider sliderData={contentData ? contentData : slider} />
+        <CustomSlider sliderData={contentData} />
       </Container>
     </Box>
   );

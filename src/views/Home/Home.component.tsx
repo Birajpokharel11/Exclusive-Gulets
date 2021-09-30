@@ -5,7 +5,7 @@ import { Box, CircularProgress } from '@material-ui/core';
 
 import { Images } from '@mocks/_destinationMocks';
 
-import YachtSlider from '@components/YachtSlider';
+import YachtSlider from './components/YachtSlider';
 import DestinationsGallerySection from '@components/DestinationsGallerySection';
 import {
   Introduction,
@@ -34,7 +34,10 @@ const Home = (props) => {
     destination: { randomDestination },
     experience: { experiences },
     posts: { postsList },
-    offer: { offers }
+    offer: { offers },
+    home: {
+      home: { yachts }
+    }
   } = props;
 
   return (
@@ -48,6 +51,7 @@ const Home = (props) => {
       <YachtSlider
         title="Loved by our Guests"
         subtitle="Recently Confirmed Charters"
+        contentData={yachts}
       />
       <DestinationsGallerySection
         title="Destinations"

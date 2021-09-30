@@ -64,10 +64,17 @@ interface Props {
   list?: any[];
   next_page?: any;
   route?: string;
+  routeRedirect: any;
   showMore?: () => void;
 }
 
-export default function CardList({ list, next_page, route, showMore }: Props) {
+export default function CardList({
+  list,
+  next_page,
+  route,
+  showMore,
+  routeRedirect
+}: Props) {
   const classes = useStyles();
 
   const redirectDetailsPage = (data) => {
@@ -78,6 +85,8 @@ export default function CardList({ list, next_page, route, showMore }: Props) {
           id: data.id
         }
       });
+    } else if (route === 'experiences') {
+      routeRedirect(data);
     }
   };
 

@@ -54,7 +54,10 @@ const DestinationsDetails = (props) => {
       {loading ? (
         <CircularProgress />
       ) : (
-        <ContentSection contentData={featured_destination} />
+        <ContentSection
+          contentData={featured_destination}
+          route="destinationDetails"
+        />
       )}
       {loading ? (
         <CircularProgress />
@@ -81,7 +84,7 @@ const DestinationsDetails = (props) => {
       {loading ? (
         <CircularProgress />
       ) : (
-        <Box component="section" maxWidth="false" mt={9}>
+        <Box component="section" maxWidth="md" mt={9}>
           <Grid
             container
             justifyContent="center"

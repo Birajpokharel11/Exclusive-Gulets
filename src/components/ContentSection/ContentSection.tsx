@@ -43,7 +43,7 @@ const useStyles = makeStyles((theme) =>
 export default function ContentSection(props) {
   const classes = useStyles();
 
-  const { contentData } = props;
+  const { contentData, route } = props;
 
   return (
     <Box component="section" maxWidth="false" mt={5}>
@@ -65,31 +65,35 @@ export default function ContentSection(props) {
                 {contentData?.intro_content_2}
               </Typography>
             </Grid>
-            <Grid item container>
-              <Grid item xs={3}>
-                <Image
-                  src={testimonial}
-                  alt="img"
-                  className={classes.testimonialImage}
-                />
+            {route === 'destinationDetails' && (
+              <Grid item container>
+                <Grid item xs={3}>
+                  <Image
+                    src={testimonial}
+                    alt="img"
+                    className={classes.testimonialImage}
+                  />
+                </Grid>
+                <Grid item xs={9}>
+                  <Typography
+                    variant="subtitle2"
+                    className={classes.intro_content}
+                  >
+                    {contentData?.testimonial}
+                  </Typography>
+                </Grid>
               </Grid>
-              <Grid item xs={9}>
-                <Typography
-                  variant="subtitle2"
-                  className={classes.intro_content}
-                >
-                  {contentData?.testimonial}
-                </Typography>
-              </Grid>
+            )}
+          </Grid>
+          {route === 'destinationDetails' && (
+            <Grid item sm={6} xs={12}>
+              <img
+                src={contentData?.side_image?.url}
+                alt="Picture of the author"
+                style={{ height: '100%', width: '100%' }}
+              />
             </Grid>
-          </Grid>
-          <Grid item sm={6} xs={12}>
-            <img
-              src={contentData?.side_image?.url}
-              alt="Picture of the author"
-              style={{ height: '100%', width: '100%' }}
-            />
-          </Grid>
+          )}
         </Grid>
         <Grid container>
           <Grid item>

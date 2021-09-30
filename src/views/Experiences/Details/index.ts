@@ -1,1 +1,1 @@
-export { default } from './Experiences.component';
+export { default } from './ExperiencesDetails.component';

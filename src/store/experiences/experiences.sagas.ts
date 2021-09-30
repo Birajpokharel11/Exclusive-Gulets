@@ -28,7 +28,7 @@ export function* fetchExperienceByIdAsync({ payload: { id } }: AnyAction) {
       `${process.env.REACT_APP_PROD_URL}/experiences/${id}`
     );
     console.log('value of response fetchOfferAsync>>>', data);
-    yield put(experiencesAction.fetchExperienceByIdSuccess(data.experience));
+    yield put(experiencesAction.fetchExperienceByIdSuccess(data));
   } catch (err) {
     console.error('error received>>>', err);
     yield put(experiencesAction.fetchExperienceByIdFailure(err));

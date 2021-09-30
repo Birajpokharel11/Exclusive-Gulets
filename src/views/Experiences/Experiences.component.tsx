@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import Router from 'next/router';
 
 import { createStyles, makeStyles } from '@material-ui/core/styles';
 import { CircularProgress } from '@material-ui/core';
@@ -30,6 +31,16 @@ const Experiences = (props) => {
     experience: { loading, experiences }
   } = props;
 
+  const routeRedirect = (data) => {
+    console.log('route redirect experience===>', data);
+    Router.push({
+      pathname: `/experiences/${data.title}`,
+      query: {
+        id: data.id
+      }
+    });
+  };
+
   return (
     <Box>
       <BannerSection
@@ -44,7 +55,11 @@ const Experiences = (props) => {
           <Box mb={4}>
             {/*<Typography>{featured_destination.content}</Typography>*/}
           </Box>
-          <CardList list={experiences} />
+          <CardList
+            list={experiences}
+            route="experiences"
+            routeRedirect={routeRedirect}
+          />
         </Container>
       </Box>
       {/* <FooterSlider /> */}

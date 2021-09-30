@@ -4,7 +4,7 @@ import * as ExperiencesType from './experiences.types';
 
 const INITIAL_STATE = {
   experiences: [],
-  experience: {},
+  soleExperience: {},
   error: null,
   loading: false
 };
@@ -44,7 +44,7 @@ const experiencesReducer = (state = INITIAL_STATE, action) => {
     case ExperiencesType.FETCH_EXPERIENCE_BY_ID_SUCCESS:
       return {
         ...state,
-        experience: payload,
+        soleExperience: payload,
         loading: false
       };
 

@@ -4,6 +4,7 @@ import { Box, Typography, Container } from '@material-ui/core';
 
 import Socials from '@components/Socials';
 import ScrollDown from '@components/ScrollDown';
+import { createMarkup } from '@utils/misc';
 
 type BgProps = {
   bgImg: string;
@@ -44,6 +45,7 @@ interface Props {
   backgroundImage?: string;
   withSocial?: boolean;
   withScroll?: string;
+  route?: string;
 }
 
 export default function BannerSection({
@@ -51,7 +53,8 @@ export default function BannerSection({
   description,
   backgroundImage,
   withSocial,
-  withScroll
+  withScroll,
+  route
 }: Props) {
   const classes = useStyles({
     bgImg: backgroundImage
@@ -69,14 +72,24 @@ export default function BannerSection({
             {title}
           </Typography>
 
-          <Typography
-            component="div"
-            color="inherit"
-            variant="subtitle1"
-            style={{ marginBottom: '32px' }}
-          >
-            {description}
-          </Typography>
+          {route === 'soleExperience' ? (
+            <Typography
+              component="div"
+              color="inherit"
+              variant="subtitle1"
+              style={{ marginBottom: '32px' }}
+              dangerouslySetInnerHTML={createMarkup(description)}
+            />
+          ) : (
+            <Typography
+              component="div"
+              color="inherit"
+              variant="subtitle1"
+              style={{ marginBottom: '32px' }}
+            >
+              {description}
+            </Typography>
+          )}
         </Container>
       </Box>
 

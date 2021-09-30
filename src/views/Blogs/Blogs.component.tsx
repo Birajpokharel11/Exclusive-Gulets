@@ -34,10 +34,7 @@ const Destinations = (props) => {
   const { posts, loading, fetchPostsStart } = props;
   const [number, setNumber] = React.useState(10);
   const showMore = () => {
-    ``;
     setNumber((prev) => prev + 5);
-    console.log('helloworld', number);
-    console.log('fetchPosts', fetchPostsStart({ amount_per_page: number }));
     fetchPostsStart({ amount_per_page: number });
   };
 

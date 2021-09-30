@@ -31,9 +31,16 @@ const useStyles = makeStyles((theme) =>
 
 const Destinations = (props) => {
   const classes = useStyles();
+  const { posts, loading, fetchPostsStart } = props;
+  const [number, setNumber] = React.useState(10);
+  const showMore = () => {
+    ``;
+    setNumber((prev) => prev + 5);
+    console.log('helloworld', number);
+    console.log('fetchPosts', fetchPostsStart({ amount_per_page: number }));
+    fetchPostsStart({ amount_per_page: number });
+  };
 
-  const { blogs, loading } = props;
-  console.log('Blogs', blogs);
   return (
     <Box>
       <BannerSection
@@ -52,7 +59,7 @@ const Destinations = (props) => {
             news and blogs below for some insight and get in touch for your own
             tailor-made escape on water.
           </Typography>
-          <CardList list={blogs} />
+          <CardList list={posts.postsList} showMore={showMore} />
         </Box>
       </Container>
       {/* <FooterSlider /> */}

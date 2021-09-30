@@ -1,7 +1,8 @@
 import * as PostsType from './posts.types';
 
-export const fetchPostsStart = () => ({
-  type: PostsType.FETCH_POSTS_START
+export const fetchPostsStart = (data) => ({
+  type: PostsType.FETCH_POSTS_START,
+  payload: data
 });
 
 export const fetchPostsSuccess = (result) => ({

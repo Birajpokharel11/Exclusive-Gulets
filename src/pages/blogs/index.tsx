@@ -1,12 +1,11 @@
 import React from 'react';
-
-import { END } from 'redux-saga';
-import { wrapper } from '@store/index';
-import { fetchPostsStart } from '@store/posts/posts.actions';
-
+import { Limits, BlogSort } from '@utils/enums';
 import WithLayout from '@components/WithLayout';
 import Main from '@layouts/Main';
 import Blogs from '@views/Blogs';
+import { END } from 'redux-saga';
+import { wrapper } from '@store/index';
+import { fetchPostsStart } from '@store/posts/posts.actions';
 
 export default function Experiences() {
   return <WithLayout component={Blogs} layout={Main} />;
@@ -14,15 +13,20 @@ export default function Experiences() {
 
 export const getServerSideProps = wrapper.getServerSideProps(
   (store) => async () => {
-    store.dispatch(fetchPostsStart());
-    store.dispatch(END);
+    if (store.getState()) {
+      store.dispatch(
+        fetchPostsStart({
+          ...BlogSort,
+          page: 1,
+          amount_per_page: Limits.BLOGS_PER_PAGE
+        })
+      );
+      store.dispatch(END);
 
-    await store.sagaTask?.toPromise();
-    const myStore = store.getState();
-    const posts = myStore.posts;
-
-    return {
-      props: { posts }
-    };
+      await store.sagaTask?.toPromise();
+      return {
+        props: {}
+      };
+    }
   }
 );

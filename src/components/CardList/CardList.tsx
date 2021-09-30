@@ -64,7 +64,7 @@ interface Props {
   list?: any[];
   next_page?: any;
   route?: string;
-  showMore?: () => void;
+  showMore?: () => any;
 }
 
 export default function CardList({ list, next_page, route, showMore }: Props) {
@@ -72,6 +72,7 @@ export default function CardList({ list, next_page, route, showMore }: Props) {
 
   const redirectDetailsPage = (data) => {
     if (route === 'destinations') {
+      console.log('routse', route);
       Router.push({
         pathname: `/destinations/${data.title}`,
         query: {
@@ -133,7 +134,7 @@ export default function CardList({ list, next_page, route, showMore }: Props) {
             </CardActionArea>
           </Card>
         ))}
-      {next_page && <DiscoverMore onClick={showMore} />}
+      <DiscoverMore onClick={showMore} />
     </Grid>
   );
 }

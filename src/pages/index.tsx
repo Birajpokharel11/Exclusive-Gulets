@@ -28,6 +28,7 @@ export const getServerSideProps = wrapper.getServerSideProps(
     await store.sagaTask?.toPromise();
     const myStore = store.getState();
     const posts = myStore.posts;
+    console.log({ posts });
 
     return {
       props: { posts }

@@ -8,6 +8,7 @@ const INITIAL_STATE = {
   next_page: 0,
   current_page: 0,
   featured_blog: {},
+  postsList: [],
   error: null,
   loading: false
 };

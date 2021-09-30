@@ -32,8 +32,10 @@ const useStyles = makeStyles((theme) =>
 const Destinations = (props) => {
   const classes = useStyles();
 
-  const { blogs, loading } = props;
-  console.log('Blogs', blogs);
+  const {
+    posts: { loading, blogs }
+  } = props;
+
   return (
     <Box>
       <BannerSection

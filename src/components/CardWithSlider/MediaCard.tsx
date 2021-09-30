@@ -1,4 +1,6 @@
 import React from 'react';
+import _ from 'lodash';
+
 import { makeStyles, createStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardActionArea from '@material-ui/core/CardActionArea';
@@ -31,12 +33,16 @@ const useStyles = makeStyles((theme) =>
 export default function MediaCard(props) {
   const classes = useStyles();
 
+  const createMarkup = (encodedHtml) => ({
+    __html: _.unescape(encodedHtml)
+  });
+
   return (
     <Card className={classes.root} elevation={0}>
       <CardActionArea>
         <CardMedia
           className={classes.media}
-          image={props.imgPath ?? ''}
+          image={(props.image?.url || props.featured_image?.url) ?? ''}
           title="Contemplative Reptile"
         />
       </CardActionArea>
@@ -49,9 +55,12 @@ export default function MediaCard(props) {
         >
           {props.title ?? ''}
         </Typography>
-        <Typography variant="subtitle2" component="p" align="center">
-          {props.description ?? ''}
-        </Typography>
+        <Typography
+          variant="subtitle2"
+          component="p"
+          align="center"
+          dangerouslySetInnerHTML={createMarkup(props?.description)}
+        />
       </CardContent>
       <CardActions style={{ justifyContent: 'center' }}>
         <Button size="small" classes={{ label: classes.btnLabel }}>

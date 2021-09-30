@@ -5,7 +5,7 @@ import { Container, Grid, Box } from '@material-ui/core';
 
 import Typography from '@modules/components/Typography';
 
-import CustomSlider from '@components/CustomSlider';
+import CustomSlider from './components/CustomSlider';
 import { slider } from '@mocks/_homeSliderMock';
 
 const useStyles = makeStyles((theme) =>
@@ -63,17 +63,17 @@ const useStyles = makeStyles((theme) =>
   })
 );
 
-export default function YatchSlider() {
+export default function YatchSlider({ title, subtitle }) {
   const classes = useStyles();
   return (
     <Box component="section" className={classes.root}>
       <Box textAlign="center" className={classes.gridContainer}>
         <Typography color="textPrimary" variant="h2" stripped>
-          Loved by our Guests
+          {title}
         </Typography>
 
         <Typography color="textPrimary" variant="subtitle1">
-          Recently Confirmed Charters
+          {subtitle}
         </Typography>
       </Box>
       <Container maxWidth="lg">

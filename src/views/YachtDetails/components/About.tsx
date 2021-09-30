@@ -61,7 +61,8 @@ const useStyles = makeStyles((theme) =>
       flex: '50%',
       display: 'flex',
       justifyContent: 'flex-end',
-      maxwidth: '1268.61px',
+      // maxwidth: '1268.61px',
+      height: '770px',
       objectFit: 'cover',
       [theme.breakpoints.down(1444)]: {
         width: '500px',
@@ -136,7 +137,8 @@ const useStyles = makeStyles((theme) =>
   })
 );
 
-export default function Description() {
+export default function Description(props) {
+  const { data } = props;
   const itemData = [
     {
       img: '/assets/images/Game.svg',
@@ -197,19 +199,14 @@ export default function Description() {
       </Breadcrumbs>
       <Box maxWidth="false" className={classes.Box}>
         <div className={classes.TextPosition}>
-          <Typography className={classes.Typography1}>
-            ABOUT ATESTEAS
+          <Typography
+            className={classes.Typography1}
+            style={{ textTransform: 'uppercase' }}
+          >
+            ABOUT {data?.name}
           </Typography>
           <Typography className={clsx(classes.Typography)}>
-            Built in 2011, Corsario is a 56m (inc. bowsprit) modern classic
-            sailing yacht, an authentic schooner, that combines state of the art
-            construction with a timeless and elegant design that harks back to
-            the classic yachts of the previous century. Exceptional seakeeping
-            and performance under sail make her an exciting base for those
-            looking to experience the thrills of traditional sailing and life
-            right on the water. Corsario’s experienced Greek crew of seven are
-            experts in all that the Greek islands have to offer and will help
-            create an unforgettable custom itinerary for her lucky guests.
+            {data?.about}
           </Typography>{' '}
           <div>
             <img
@@ -250,7 +247,7 @@ export default function Description() {
           </Grid>
         </div>
         <div>
-          <img src="/assets/images/Aresteas.svg" className={classes.Images} />
+          <img src={data.main_image?.url} className={classes.Images} />
         </div>
       </Box>
     </div>

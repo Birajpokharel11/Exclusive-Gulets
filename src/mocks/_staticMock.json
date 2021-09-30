@@ -1,0 +1,377 @@
+{
+  "general": {
+    "id": 4,
+    "slug": "general",
+    "name": "General",
+    "fields": {
+      "twitter_link": "https://twitter.com/exclusivegulets",
+      "facebook_link": "https://www.facebook.com/exclusiveguletsandyachts",
+      "linkedin_link": "https://www.linkedin.com/company/exclusive-gulets-ltd/?viewAsMember=true",
+      "instagram_link": "https://www.instagram.com/exclusive_gulets/"
+    }
+  },
+  "meta_descriptions": {
+    "home": {
+      "meta_description": null
+    },
+    "why-charter": {
+      "meta_description": null
+    },
+    "search": {
+      "meta_description": null
+    },
+    "general": {
+      "meta_description": null
+    },
+    "blog": {
+      "meta_description": "Keep up to date with our latest yachting news, charter destinations, special offers, gulet rentals and read new updates about current travel situation."
+    },
+    "privacy": {
+      "meta_description": null
+    },
+    "terms": {
+      "meta_description": null
+    },
+    "destinations": {
+      "2": {
+        "meta_description": "Ripe with an abundance of breath-taking scenery, the Dodecanese Islands boast an eclectic mix of architectural heritage and local traditions."
+      },
+      "14": {
+        "meta_description": "Laced with untouched islands strewn along the glittering azure waters of the Adriatic Sea, Croatia is an exciting and timeless gulet charter destination. "
+      },
+      "16": {
+        "meta_description": " Turkey’s intoxicating allure and varied attractions make it as beautiful as it is vibrant, ensuring pleasure and relaxation wherever visitors find themselves roaming. Enjoy Turquoise Coast Turkey"
+      },
+      "17": {
+        "meta_description": "Widely considered to be Italy’s most picturesque coastline, the Amalfi Coast’s landscape of towering bluffs and pastel-hued villages terraced into the tumbling hillsides have long made it a magnet for the world’s exclusive travellers."
+      },
+      "18": {
+        "meta_description": "The Gulf of Hisaronu is one of the most sought-after regions in the Anatolia peninsula. The warm weather around the gulf,tempered by cooling winds, creating ideal sailing conditions and the perfect playground for water sports."
+      },
+      "20": {
+        "meta_description": "Choose the best destination for your Yachting or Gulet Trip"
+      },
+      "22": {
+        "meta_description": "Halicarnassus is the historical name for Bodrum, a city on the peninsula of the same name. It is also the gateway of the Gulf of Gokӧva, one of Turkey's iconic blue cruise routes."
+      },
+      "24": {
+        "meta_description": "Discerning travellers are drawn to the diverse experiences of a gulet cruise along the Gulf of Fethiye.The Gulf of Fethiye was known as the Gulf of Telmessos after the ancient city of Telmessos on which modern Fethiye now sits. "
+      },
+      "25": {
+        "meta_description": "Nestled along the glittering Saronic Gulf, the Saronic Islands are just off the coast of Athens. One of the best destinations for Yacht cruise."
+      },
+      "26": {
+        "meta_description": "The Ionian island becomes the irresistible and enticing destinations of captivating yacht charter in Grecian Sea."
+      },
+      "27": {
+        "meta_description": "The Sporades islands are almost in the center of the Aegean Sea. An exotic fusion of turquoise and crystalline waters and the blue skies refreshing views makes the Sporades most perfect for a sun-kissed vacation. "
+      },
+      "28": {
+        "meta_description": "The Cyclades islands is located at southeast mainland of Greece. Cyclades Island is the most sandy and crystal clear waters perfect for swimming and various water sport to indulge in. "
+      },
+      "29": {
+        "meta_description": "Start sailing with some of the refreshing nautical oceans and relaxing cruising Emerald Coast of Italy. "
+      },
+      "30": {
+        "meta_description": "Indulge into an experience between historical ancient places with a mix of modernized structures behind the beaches that surround the northern islands of Croatia."
+      },
+      "31": {
+        "meta_description": "Chartering a yacht in the South of France is the most exclusive, private, and enjoyable way to embrace this yachting hotspot. South of France has perhaps the largest selection of luxury charter yachts to choose from."
+      },
+      "32": {
+        "meta_description": "There are lots of undeniable reasons for this vivacious country's enduring popularity, many of which discerning travelers will be able to discover the moment they touch down for a Spain yacht charter."
+      },
+      "64": {
+        "meta_description": "The Caribbean is one of the world's prime yachting locales, offering diversity, warm weather, and fine scenery."
+      }
+    },
+    "posts": {
+      "2": {
+        "meta_description": "The best way to discover Turkey is through sailing.All you need for this journey, in which you will immerse yourself in every shade of blue amongst virgin waters, is a yacht from Exclusive Gulets."
+      },
+      "6": {
+        "meta_description": "MARE NOSTRUM, a 144ft gulet, which offers yacht charters on the south-west coast of Turkey (where rates are a fraction of those in the Greek Islands, on the Italian Riviera or on the Côte d'Azur)."
+      },
+      "8": {
+        "meta_description": "The  art of dining onboard a private yacht is brought to reality by a dedicated crew and cordon bleu cook standing by to bring your culinary delights to reality. "
+      },
+      "9": {
+        "meta_description": "On-board one of our exclusive gulets or yachts, you are less likely to catch COVID-19 because you are in an isolated environment with your family members with our crew members who are tested regularly."
+      },
+      "10": {
+        "meta_description": "With more strangers around, the risk of getting infected increases. A yacht can take you away from the crowd to reduce the risk of covid-19."
+      },
+      "11": {
+        "meta_description": "As some borders start to open up to foreign travelers, it can be a daunting task to decide on safe holiday options. Riding the wave of Covid-19 "
+      },
+      "12": {
+        "meta_description": "With Covid-19 our plans have been put to a halt. As the current situation heads in a more positive direction, it’s time to revisit our plans and go on that well-deserved gulet cruise."
+      },
+      "13": {
+        "meta_description": "While some may feel that a yachting holiday for the family may not satisfy the thrill of adventure for some, they may need to think again."
+      },
+      "14": {
+        "meta_description": "Ideas on how to spend your honeymoon in hard times. A private yacht experience is the ideal honeymoon getaway and one of the safer travel options during the Covid pandemic"
+      },
+      "15": {
+        "meta_description": "Exclusive Gulets  have a selection of yachts that can be booked with the assurance of a free cancelation! MYBA agreements are signed for these bookings which means the funds will be held in Escrow until the charter sets sail."
+      },
+      "16": {
+        "meta_description": "See the best yacht and gulet charter destinations for sailing in Europe.  Sailing destinationations to choose when rent a yacht. "
+      },
+      "17": {
+        "meta_description": "To set sail into the sunset on a gulet or a yacht are both equally appealing, but the crunch will come down to the traveller's personal choice - a custom craft synonymous with sailing in Turkey, or a modern, streamlined recreational vessel also at home on European waters."
+      },
+      "19": {
+        "meta_description": "Chartering a yacht or gulet for a vacation is pure bliss on water.  But there are a few house rules to follow when you are chartering a gulet or yacht. "
+      },
+      "20": {
+        "meta_description": "Wouldn't it be great to go on a wellness retreat that harnesses the healing powers of the body and ocean? Yoga cruise vacation can help you find the tranquillity your body is yearning for."
+      },
+      "21": {
+        "meta_description": "The Caribbean is calling and there is a luxury charter yacht with your name on it. With Covid-19 vaccinations in full swing in the United States, the UK, and other countries across the world, we're excited that international travel is taking off again."
+      },
+      "22": {
+        "meta_description": "Sailing the Aegean Sea in a custom-built work of art. The Silver Moon is more than just a leisure craft. Described as a 'work of art', this superior 36 metre yacht is custom-made in the maritime tradition of ship building."
+      },
+      "23": {
+        "meta_description": "The splendour of ARESTEAS is magnificent to behold as it pairs the romance of life under sail with generous volume and luxury lifestyle amenities."
+      }
+    }
+  },
+  "blog": {
+    "id": 5,
+    "slug": "blog",
+    "name": "Blog",
+    "fields": {
+      "heading": "News & Blogs",
+      "single_heading": "Keep up to date with our latest yachting news, charter destinations, special offers and more…",
+      "meta_description": "Keep up to date with our latest yachting news, charter destinations, special offers, gulet rentals and read new updates about current travel situation.",
+      "single_subheading": "There is more to yachting than just spending a week or so sailing. We share our experiences on the best itineraries to suit you, organise on board celebrations, exciting excursions, restaurant bookings, spa treatments, fitness instruction and more. Read our news and blogs below for some insight and get in touch for your own tailor-made escape on water."
+    }
+  },
+  "home_images": {
+    "id": 1,
+    "header_image": {
+      "url": "https://qqwlknvx.tinifycdn.com/uploads/home/header_image/1/All_About_U_Header.jpeg",
+      "thumb": {
+        "url": "https://qqwlknvx.tinifycdn.com/uploads/home/header_image/1/thumb_All_About_U_Header.jpeg"
+      }
+    },
+    "bottom_image": {
+      "url": "https://qqwlknvx.tinifycdn.com/uploads/home/bottom_image/1/OZD_2068asdgb.jpg",
+      "thumb": {
+        "url": "https://qqwlknvx.tinifycdn.com/uploads/home/bottom_image/1/thumb_OZD_2068asdgb.jpg"
+      }
+    },
+    "section_image_1": {
+      "url": "https://qqwlknvx.tinifycdn.com/uploads/home/section_image_1/1/Tag_1.jpeg",
+      "thumb": {
+        "url": "https://qqwlknvx.tinifycdn.com/uploads/home/section_image_1/1/thumb_Tag_1.jpeg"
+      },
+      "side": {
+        "url": "https://qqwlknvx.tinifycdn.com/uploads/home/section_image_1/1/side_Tag_1.jpeg"
+      },
+      "block": {
+        "url": "https://qqwlknvx.tinifycdn.com/uploads/home/section_image_1/1/block_Tag_1.jpeg"
+      }
+    },
+    "section_image_2": {
+      "url": "https://qqwlknvx.tinifycdn.com/uploads/home/section_image_2/1/Tag1Dark.jpg",
+      "thumb": {
+        "url": "https://qqwlknvx.tinifycdn.com/uploads/home/section_image_2/1/thumb_Tag1Dark.jpg"
+      },
+      "side": {
+        "url": "https://qqwlknvx.tinifycdn.com/uploads/home/section_image_2/1/side_Tag1Dark.jpg"
+      },
+      "block": {
+        "url": "https://qqwlknvx.tinifycdn.com/uploads/home/section_image_2/1/block_Tag1Dark.jpg"
+      }
+    },
+    "section_image_3": {
+      "url": "https://qqwlknvx.tinifycdn.com/uploads/home/section_image_3/1/Tag4.jpg",
+      "thumb": {
+        "url": "https://qqwlknvx.tinifycdn.com/uploads/home/section_image_3/1/thumb_Tag4.jpg"
+      },
+      "side": {
+        "url": "https://qqwlknvx.tinifycdn.com/uploads/home/section_image_3/1/side_Tag4.jpg"
+      },
+      "block": {
+        "url": "https://qqwlknvx.tinifycdn.com/uploads/home/section_image_3/1/block_Tag4.jpg"
+      }
+    },
+    "section_image_4": {
+      "url": "https://qqwlknvx.tinifycdn.com/uploads/home/section_image_4/1/05_Gulet_Miss_B_Dark.jpg",
+      "thumb": {
+        "url": "https://qqwlknvx.tinifycdn.com/uploads/home/section_image_4/1/thumb_05_Gulet_Miss_B_Dark.jpg"
+      },
+      "side": {
+        "url": "https://qqwlknvx.tinifycdn.com/uploads/home/section_image_4/1/side_05_Gulet_Miss_B_Dark.jpg"
+      },
+      "block": {
+        "url": "https://qqwlknvx.tinifycdn.com/uploads/home/section_image_4/1/block_05_Gulet_Miss_B_Dark.jpg"
+      }
+    },
+    "section_image_5": {
+      "url": "https://qqwlknvx.tinifycdn.com/uploads/home/section_image_5/1/Tag3Dark.jpg",
+      "thumb": {
+        "url": "https://qqwlknvx.tinifycdn.com/uploads/home/section_image_5/1/thumb_Tag3Dark.jpg"
+      },
+      "side": {
+        "url": "https://qqwlknvx.tinifycdn.com/uploads/home/section_image_5/1/side_Tag3Dark.jpg"
+      },
+      "block": {
+        "url": "https://qqwlknvx.tinifycdn.com/uploads/home/section_image_5/1/block_Tag3Dark.jpg"
+      }
+    },
+    "created_at": "2020-03-06T06:11:55.816Z",
+    "updated_at": "2021-02-28T19:19:21.306Z"
+  },
+  "why_charter_images": {
+    "id": 1,
+    "image_1": {
+      "url": "https://qqwlknvx.tinifycdn.com/uploads/why_charter/image_1/1/AdobeStock_296776232_Thailand.jpg",
+      "thumb": {
+        "url": "https://qqwlknvx.tinifycdn.com/uploads/why_charter/image_1/1/thumb_AdobeStock_296776232_Thailand.jpg"
+      }
+    },
+    "image_2": {
+      "url": "https://qqwlknvx.tinifycdn.com/uploads/why_charter/image_2/1/AdobeStock_350154345_S.jpg",
+      "thumb": {
+        "url": "https://qqwlknvx.tinifycdn.com/uploads/why_charter/image_2/1/thumb_AdobeStock_350154345_S.jpg"
+      }
+    },
+    "image_3": {
+      "url": "https://qqwlknvx.tinifycdn.com/uploads/why_charter/image_3/1/crewed-yacht-charter.jpg",
+      "thumb": {
+        "url": "https://qqwlknvx.tinifycdn.com/uploads/why_charter/image_3/1/thumb_crewed-yacht-charter.jpg"
+      }
+    },
+    "image_4": {
+      "url": "https://qqwlknvx.tinifycdn.com/uploads/why_charter/image_4/1/All_About_u_II__30__Flip.jpg",
+      "thumb": {
+        "url": "https://qqwlknvx.tinifycdn.com/uploads/why_charter/image_4/1/thumb_All_About_u_II__30__Flip.jpg"
+      }
+    },
+    "created_at": "2020-03-06T06:12:00.993Z",
+    "updated_at": "2020-11-23T12:43:45.782Z"
+  },
+  "blog_images": {
+    "id": 1,
+    "header_image": {
+      "url": "https://qqwlknvx.tinifycdn.com/uploads/blog/header_image/1/dubrovnik.jpg",
+      "thumb": {
+        "url": "https://qqwlknvx.tinifycdn.com/uploads/blog/header_image/1/thumb_dubrovnik.jpg"
+      }
+    },
+    "created_at": "2020-05-26T21:17:43.007Z",
+    "updated_at": "2020-05-27T09:56:19.228Z"
+  },
+  "dining": {
+    "id": 1,
+    "title": "Exclusive Dining",
+    "description": "<p style=\"text-align: center;\">The discovery of a good wine is increasingly better for mankind than the discovery of a new star.</p>\r\n\r\n<p style=\"text-align: center;\">~ Leonardo Da Vinci.</p>\r\n\r\n<p style=\"text-align: center;\">If you are interested in trying a selection of locally produced premium wine, we can certainly help you with that. For those stargazers... well, you wouldn&#39;t need our help. Lying on a sun-warmed deck at night watching the glittering stars, you are guaranteed to have a good show in the unpolluted night sky theater!</p>\r\n",
+    "content": "<h4>&nbsp;</h4>\r\n\r\n<h4>&nbsp;</h4>\r\n\r\n<h4>Dine on the very best gourmet cuisines, cooked and expertly prepared by your private world class chef &amp; enjoy a personalised menu of gastronomic delights.</h4>\r\n\r\n<p>At Exclusive Gulets, we are committed to serve first class meals on all our charters. Gulets are provisioned early in the morning by our local teams, using only local produce fresh ingredients which are mostly organic and all meals are prepared by your very own chef on-board for the ultimate alfresco dining experience. Please be sure to inform us of any special dietary requirements you may have, so the chef can prepare accordingly.<br />\r\n&nbsp;<br />\r\nThere is always a selection of appetizers like stuffed peppers, pan fried aubergines and artichokes. The ancient alluvial river valleys between the high mountains grow a remarkable range of salads, vegetables and fruits. Pulses are traditionally cooked on slow heat in extra virgin olive oil and they are the favourites of vegetarians.<br />\r\n&nbsp;<br />\r\nSucculent fresh fish and other seafood is sometimes caught by the crew or the guests themselves or bought from local fishermen who come along when they have a catch to sell. For meat lovers lamb, beef or free-range chicken is seasoned with fresh herbs like basil, oregano, tarragon, thyme and paprika and cooked on a barbecue to capture all the flavours.</p>\r\n\r\n<p>&nbsp;</p>\r\n\r\n<p>Before you embark upon your luxury charter, you and your guests will be asked to complete a preference sheet which will itemise in detail any dietary requirements, food allergies and medical conditions that the crew should be made aware of prior to departure. Be as detailed as you can be, if you are on a strict diet, mention it, if you only like white chocolate, put it down as the crew will then use this sheet to familiarise themselves with your likes, dislikes and how you like to dine. Be completely honest and maybe even adventurous and you will not be disappointed. Once this preference sheet has been reviewed by the crew, you can rest assured that the cuisine on-board your yacht charter will be nothing less than perfect.</p>\r\n\r\n<p>&nbsp;</p>\r\n\r\n<p>&nbsp;</p>\r\n\r\n<h4>Whether you prefer alfresco lunches, formal dining, beach picnics&nbsp;or sundeck snacking, our on board Chef will cater to your every gastronomic delight, from beautifully assembled four course meals to delicious snacks and nibbles, there is no doubt that your food experience will be nothing but delightful.</h4>\r\n\r\n<h4>&nbsp;</h4>\r\n\r\n<p>Remember, chefs will not have access to large supplies of ingredients once the yacht has set sail and although it may be possible to source ingredients locally; this is dependent on your charter destination. Be sure to mention if you have a special occasion whilst on board as yacht charter crews love to host a party. From pirate themed nights to decadent dinner parties, what better way to celebrate than with a feast of culinary delights alongside your favourite people with a slice of personalised birthday cake for dessert? From delectable beach picnics to delicious hors d&#39;oeuvres your on board chef can prepare astounding meals which are perfectly tailored to your own personal preferences, bon appetit!</p>\r\n",
+    "featured_image": {
+      "url": "https://qqwlknvx.tinifycdn.com/uploads/dining/featured_image/1/Dining-Onboard-4.jpg",
+      "thumb": {
+        "url": "https://qqwlknvx.tinifycdn.com/uploads/dining/featured_image/1/thumb_Dining-Onboard-4.jpg"
+      },
+      "featured": {
+        "url": "https://qqwlknvx.tinifycdn.com/uploads/dining/featured_image/1/featured_Dining-Onboard-4.jpg"
+      },
+      "side_image": {
+        "url": "https://qqwlknvx.tinifycdn.com/uploads/dining/featured_image/1/side_image_Dining-Onboard-4.jpg"
+      },
+      "slider": {
+        "url": "https://qqwlknvx.tinifycdn.com/uploads/dining/featured_image/1/slider_Dining-Onboard-4.jpg"
+      }
+    },
+    "images": [
+      "61b5fd1f-371e-4887-a39b-4abdce3bb1ea.jpg",
+      "5ca358a6-7819-436c-b3c7-a49a39262f0c.jpg",
+      "c23c3783-24e6-4b51-a93f-4f6f28ea90a8.jpg"
+    ],
+    "featured": false,
+    "temp_images": [
+      "61b5fd1f-371e-4887-a39b-4abdce3bb1ea.jpg",
+      "5ca358a6-7819-436c-b3c7-a49a39262f0c.jpg",
+      "c23c3783-24e6-4b51-a93f-4f6f28ea90a8.jpg"
+    ],
+    "deleting_images": [],
+    "slug": "exclusive-dining",
+    "side_image": {
+      "url": "https://qqwlknvx.tinifycdn.com/uploads/dining/side_image/1/Dining.jpg",
+      "thumb": {
+        "url": "https://qqwlknvx.tinifycdn.com/uploads/dining/side_image/1/thumb_Dining.jpg"
+      },
+      "featured": {
+        "url": "https://qqwlknvx.tinifycdn.com/uploads/dining/side_image/1/featured_Dining.jpg"
+      },
+      "side_image": {
+        "url": "https://qqwlknvx.tinifycdn.com/uploads/dining/side_image/1/side_image_Dining.jpg"
+      },
+      "slider": {
+        "url": "https://qqwlknvx.tinifycdn.com/uploads/dining/side_image/1/slider_Dining.jpg"
+      }
+    },
+    "created_at": "2020-12-29T15:55:57.133Z",
+    "updated_at": "2021-02-23T13:41:20.159Z"
+  },
+  "dining_images": [
+    {
+      "id": 3516,
+      "file": {
+        "url": "https://qqwlknvx.tinifycdn.com/uploads/dining/images/1/c23c3783-24e6-4b51-a93f-4f6f28ea90a8.jpg",
+        "slider": {
+          "url": "https://qqwlknvx.tinifycdn.com/uploads/dining/images/1/slider_c23c3783-24e6-4b51-a93f-4f6f28ea90a8.jpg"
+        },
+        "search_slider": {
+          "url": null
+        }
+      },
+      "imageable_type": "Dining",
+      "imageable_id": 1,
+      "created_at": "2021-03-05T16:09:08.000Z",
+      "updated_at": "2021-03-05T16:09:08.000Z",
+      "processed": true,
+      "sequence": null
+    },
+    {
+      "id": 3515,
+      "file": {
+        "url": "https://qqwlknvx.tinifycdn.com/uploads/dining/images/1/5ca358a6-7819-436c-b3c7-a49a39262f0c.jpg",
+        "slider": {
+          "url": "https://qqwlknvx.tinifycdn.com/uploads/dining/images/1/slider_5ca358a6-7819-436c-b3c7-a49a39262f0c.jpg"
+        },
+        "search_slider": {
+          "url": null
+        }
+      },
+      "imageable_type": "Dining",
+      "imageable_id": 1,
+      "created_at": "2021-03-05T16:09:07.999Z",
+      "updated_at": "2021-03-05T16:09:07.999Z",
+      "processed": true,
+      "sequence": null
+    },
+    {
+      "id": 3514,
+      "file": {
+        "url": "https://qqwlknvx.tinifycdn.com/uploads/dining/images/1/61b5fd1f-371e-4887-a39b-4abdce3bb1ea.jpg",
+        "slider": {
+          "url": "https://qqwlknvx.tinifycdn.com/uploads/dining/images/1/slider_61b5fd1f-371e-4887-a39b-4abdce3bb1ea.jpg"
+        },
+        "search_slider": {
+          "url": null
+        }
+      },
+      "imageable_type": "Dining",
+      "imageable_id": 1,
+      "created_at": "2021-03-05T16:09:07.996Z",
+      "updated_at": "2021-03-05T16:09:07.996Z",
+      "processed": true,
+      "sequence": null
+    }
+  ]
+}

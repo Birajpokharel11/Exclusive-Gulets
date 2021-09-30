@@ -1,15 +1,19 @@
 import { createStyles, makeStyles } from '@material-ui/core/styles';
 
-import { Box, Button, Typography, Container } from '@material-ui/core';
+import { Box, Typography, Container } from '@material-ui/core';
+
+import Socials from '@components/Socials';
+import ScrollDown from '@components/ScrollDown';
+
+type BgProps = {
+  bgImg: string;
+};
 
 const useStyles = makeStyles((theme) =>
   createStyles({
-    // root: {
-    //   height: 'calc(100vh - 64px)',
-    //   padding: 0
-    // },
     root: {
-      backgroundImage: `url('./charterYatch.png')`,
+      backgroundImage: ({ bgImg }: BgProps) =>
+        bgImg ? `url("${bgImg}")` : `url('/assets/images/charterYatch.png')`,
       backgroundPosition: 'center',
       height: '60vh',
       backgroundRepeat: 'no-repeat',
@@ -34,34 +38,51 @@ const useStyles = makeStyles((theme) =>
   })
 );
 
-export default function BannerSection(props) {
-  const { title, description } = props;
-  const classes = useStyles();
+interface Props {
+  title?: string;
+  description?: string;
+  backgroundImage?: string;
+  withSocial?: boolean;
+  withScroll?: string;
+}
+
+export default function BannerSection({
+  title,
+  description,
+  backgroundImage,
+  withSocial,
+  withScroll
+}: Props) {
+  const classes = useStyles({
+    bgImg: backgroundImage
+  });
 
   return (
-    <div>
-      <Box component="section" maxWidth="false" className={classes.root}>
-        <Box className={classes.overlay}>
-          <Container>
-            <Typography
-              variant="h2"
-              color="inherit"
-              style={{ marginBottom: '15px' }}
-            >
-              {title}
-            </Typography>
+    <Box component="section" maxWidth="false" className={classes.root}>
+      <Box className={classes.overlay}>
+        <Container>
+          <Typography
+            variant="h2"
+            color="inherit"
+            style={{ marginBottom: '15px' }}
+          >
+            {title}
+          </Typography>
 
-            <Typography
-              component="div"
-              color="inherit"
-              variant="subtitle1"
-              style={{ marginBottom: '32px' }}
-            >
-              {description}
-            </Typography>
-          </Container>
-        </Box>
+          <Typography
+            component="div"
+            color="inherit"
+            variant="subtitle1"
+            style={{ marginBottom: '32px' }}
+          >
+            {description}
+          </Typography>
+        </Container>
       </Box>
-    </div>
+
+      {withSocial && <Socials />}
+
+      {withScroll && <ScrollDown id={withScroll} />}
+    </Box>
   );
 }

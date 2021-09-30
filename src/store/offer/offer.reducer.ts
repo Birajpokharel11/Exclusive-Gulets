@@ -3,7 +3,7 @@ import { HYDRATE } from 'next-redux-wrapper';
 import * as DestinationType from './offer.types';
 
 const INITIAL_STATE = {
-  destinations: [],
+  offers: [],
   error: null,
   loading: false
 };
@@ -23,7 +23,7 @@ const destinationReducer = (state = INITIAL_STATE, action) => {
     case DestinationType.FETCH_OFFER_SUCCESS:
       return {
         ...state,
-        destinations: payload,
+        offers: payload,
         loading: false
       };
 

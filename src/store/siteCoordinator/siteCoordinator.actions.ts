@@ -5,3 +5,8 @@ export const languageChange = (language) => ({
   type: SiteCoordinatorType.LANGUAGE_CHANGE,
   payload: language
 });
+
+export const storeYacht = (data) => ({
+  type: SiteCoordinatorType.STORE_YACHT,
+  payload: data
+});

@@ -2,9 +2,15 @@ import React, { useEffect } from 'react';
 
 import { createStyles, makeStyles } from '@material-ui/core/styles';
 import { CircularProgress } from '@material-ui/core';
+import Box from '@material-ui/core/Box';
+import Container from '@material-ui/core/Container';
+
+import Typography from '@modules/components/Typography';
 
 import BannerSection from '@components/BannerSection';
+import BackgroundVectors from '@components/BackgroundVectors';
 import CardList from '@components/CardList';
+import FooterSlider from '@components/FooterSlider';
 
 import container from './Experiences.container';
 
@@ -17,7 +23,7 @@ const useStyles = makeStyles((theme) =>
   })
 );
 
-const BespokeExperiences = (props) => {
+const Experiences = (props) => {
   const classes = useStyles();
 
   const {
@@ -25,15 +31,25 @@ const BespokeExperiences = (props) => {
   } = props;
 
   return (
-    <div>
+    <Box>
       <BannerSection
-        {...props}
         title="EXCLUSIVE GULETS"
         description="Experience Exceptional Yachting"
+        {...props}
       />
-      {loading ? <CircularProgress /> : <CardList cardList={experiences} />}
-    </div>
+
+      <Box component="section">
+        <BackgroundVectors />
+        <Container>
+          <Box mb={4}>
+            {/*<Typography>{featured_destination.content}</Typography>*/}
+          </Box>
+          <CardList list={experiences} />
+        </Container>
+      </Box>
+      {/* <FooterSlider /> */}
+    </Box>
   );
 };
 
-export default container(BespokeExperiences);
+export default container(Experiences);

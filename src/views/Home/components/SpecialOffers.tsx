@@ -14,13 +14,15 @@ import CardWithSlider from '@components/CardWithSlider';
 const useStyles = makeStyles((theme) =>
   createStyles({
     root: {
-      padding: '4rem 0',
+      padding: '5rem 0 4rem',
       backgroundColor: '#F5F0E4'
     },
     buttonStyle: {
       backgroundColor: '#2A398D',
       color: '#FFFFFF',
-      marginBottom: '4rem'
+      '&:hover': {
+        backgroundColor: '#2A398D'
+      }
     },
     Yatch: {
       width: '100%',
@@ -57,14 +59,15 @@ const specialOffers = [
   }
 ];
 
-export default function Introduction() {
+export default function Introduction(props) {
+  const { offers } = props;
   const classes = useStyles();
   const theme = useTheme();
   const matchesSM = useMediaQuery(theme.breakpoints.up('sm'));
   return (
-    <Box className={classes.root}>
+    <Box component="section" className={classes.root}>
       <Container maxWidth="lg">
-        <Box textAlign="center" pt="3rem" pb="3rem">
+        <Box textAlign="center" pb="3rem">
           <Typography color="textPrimary" align="center" variant="h2" stripped>
             Special Offers
           </Typography>
@@ -75,7 +78,7 @@ export default function Introduction() {
           </Typography>
         </Box>
 
-        <CardWithSlider cardsData={specialOffers} />
+        <CardWithSlider cardsData={offers} />
 
         <Grid
           container

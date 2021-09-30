@@ -1,6 +1,6 @@
 /* eslint-disable jsx-a11y/alt-text */
 import React from 'react';
-import Image from 'next/image';
+import clsx from 'clsx';
 import {
   createStyles,
   makeStyles,
@@ -11,31 +11,46 @@ import useMediaQuery from '@material-ui/core/useMediaQuery';
 import { Container, Grid, Box, Button } from '@material-ui/core';
 
 import Typography from '@modules/components/Typography';
-import DestinationGallery from '@views/Home/components/Destinations/DestinationGallery';
+import DestinationGallery from './components/Gallery';
 
 const useStyles = makeStyles((theme) =>
   createStyles({
     root: {
-      paddingTop: '4rem'
+      padding: '4rem 0 2rem'
     },
     buttonStyle: {
       backgroundColor: '#2A398D',
       color: '#FFFFFF',
+      '&:hover': {
+        backgroundColor: '#2A398D'
+      },
       marginBottom: '4rem'
     }
   })
 );
 
-export default function Destinations(props) {
+interface Props {
+  className?: string;
+  title: string;
+  subtitle: string;
+  destinations: any[];
+}
+
+export default function Destinations({
+  className,
+  title,
+  subtitle,
+  destinations
+}: Props) {
   const classes = useStyles();
   const theme = useTheme();
   const matchesSM = useMediaQuery(theme.breakpoints.up('sm'));
   return (
-    <>
-      <Container maxWidth="md" className={classes.root}>
+    <Box component="section" className={clsx(classes.root, className)}>
+      <Container maxWidth="md">
         <Box textAlign="center">
           <Typography color="textPrimary" align="center" variant="h2" stripped>
-            Destinations
+            {title}
           </Typography>
 
           <Typography
@@ -43,11 +58,7 @@ export default function Destinations(props) {
             variant="subtitle1"
             style={{ marginTop: '32px' }}
           >
-            Perfect location and the perfect yacht for your ultimate charter
-            experience. There is no better way than chartering a luxury gulet or
-            yacht to see more of the world. With two third of the Earth covered
-            in water, there is always a new exciting destination to explore and
-            a different shoreline to discover.​
+            {subtitle}
           </Typography>
         </Box>
         <Grid
@@ -67,7 +78,7 @@ export default function Destinations(props) {
         </Grid>
       </Container>
 
-      <DestinationGallery {...props} />
-    </>
+      <DestinationGallery destinationList={destinations} />
+    </Box>
   );
 }

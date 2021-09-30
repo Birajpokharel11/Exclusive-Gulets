@@ -23,7 +23,10 @@ const useStyles = makeStyles((theme) =>
     },
     buttonStyle: {
       backgroundColor: '#2A398D',
-      color: '#FFFFFF'
+      color: '#FFFFFF',
+      '&:hover': {
+        backgroundColor: '#2A398D'
+      }
     }
   })
 );
@@ -53,12 +56,12 @@ const data = [
 ];
 
 export default function NewsAndBlogs(props) {
-  const { postsList } = props;
+  const { posts } = props;
   const classes = useStyles();
   const theme = useTheme();
   const matchesSM = useMediaQuery(theme.breakpoints.up('sm'));
   return (
-    <Box className={classes.root}>
+    <Box component="section" className={classes.root}>
       <Container maxWidth="xl">
         <Box textAlign="center">
           <Typography variant="h2" color="textPrimary" align="center" stripped>
@@ -71,7 +74,7 @@ export default function NewsAndBlogs(props) {
           </Typography>
         </Box>
 
-        <CardWithSlider cardsData={data} />
+        <CardWithSlider cardsData={posts} />
 
         <Grid container justifyContent="center">
           <Button

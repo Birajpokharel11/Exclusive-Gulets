@@ -27,7 +27,8 @@ const useStyles = makeStyles((theme) =>
   })
 );
 
-export default function Experiences() {
+export default function Experiences(props) {
+  const { experiences } = props;
   const classes = useStyles();
   return (
     <Box maxWidth="false" className={classes.root}>
@@ -59,54 +60,39 @@ export default function Experiences() {
           </Grid>
         </Grid>
         <Grid container spacing={3}>
-          <Grid item container md={6} xs={12} spacing={2}>
-            <Grid item container justifyContent="center">
-              <Image src={YatchParty} alt="guest" />
-            </Grid>
-            <Grid item container justifyContent="center">
-              <Typography
-                color="textPrimary"
-                align="center"
-                variant="subtitle1"
-                style={{ fontWeight: 'bold' }}
-              >
-                What to expect when chartering a gulet or yacht?{' '}
-              </Typography>
-            </Grid>
+          {experiences.length &&
+            experiences.map((item) => (
+              <Grid item container md={6} xs={12} spacing={2}>
+                <Grid item container justifyContent="center">
+                  <img
+                    src={item.featured_image?.url}
+                    alt="guest"
+                    style={{ width: '100%', height: '100%' }}
+                  />
+                </Grid>
+                <Grid item container justifyContent="center">
+                  <Typography
+                    color="textPrimary"
+                    align="center"
+                    variant="subtitle1"
+                    style={{ fontWeight: 'bold' }}
+                  >
+                    {item?.title}
+                  </Typography>
+                </Grid>
 
-            <Grid item>
-              <Typography
-                align="center"
-                color="textPrimary"
-                variant="subtitle2"
-              >
-                Chartering a yacht or gulet for a vacation is pure bliss on
-                water. What more can you ask for with a trained crew to take
-                care of your every need, a world-class chef to...
-              </Typography>
-            </Grid>
-          </Grid>
-          <Grid item container md={6} xs={12} spacing={2}>
-            <Grid item container justifyContent="center">
-              <Image src={YatchYoga} alt="guest" />
-            </Grid>
-            <Grid item container justifyContent="center">
-              <Typography
-                align="center"
-                variant="subtitle1"
-                style={{ fontWeight: 'bold' }}
-              >
-                The Art of Dining Onboard a Private Yacht{' '}
-              </Typography>
-            </Grid>
+                <Grid item>
+                  <Typography
+                    align="center"
+                    color="textPrimary"
+                    variant="subtitle2"
+                  >
+                    {item?.meta_description}
+                  </Typography>
+                </Grid>
+              </Grid>
+            ))}
 
-            <Grid item>
-              <Typography align="center" variant="subtitle2">
-                Among the many pleasures of chartering a private yacht, one that
-                stands out for most is the divine, mouth-watering cuisine!
-              </Typography>
-            </Grid>
-          </Grid>
           <Grid item container justifyContent="center">
             <Button
               variant="contained"

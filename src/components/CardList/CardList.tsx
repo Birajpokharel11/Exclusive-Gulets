@@ -1,18 +1,18 @@
 import { createStyles, makeStyles } from '@material-ui/core/styles';
+import Router from 'next/router';
 
 import {
-  Box,
   Button,
   Typography,
-  Container,
   Card,
   CardActionArea,
-  CardActions,
   CardContent,
   CardMedia,
   Divider,
   Grid
 } from '@material-ui/core';
+
+import DiscoverMore from '@components/DiscoverMore';
 
 const useStyles = makeStyles((theme) =>
   createStyles({
@@ -60,72 +60,79 @@ const cardContent = [
   }
 ];
 
-export default function CardList(props) {
+interface Props {
+  list?: any[];
+  next_page?: any;
+  route?: string;
+}
+
+export default function CardList({ list, next_page, route }: Props) {
   const classes = useStyles();
 
-  const { cardList, newsBlog } = props;
+  const redirectDetailsPage = (data) => {
+    if (route === 'destinations') {
+      Router.push({
+        pathname: `/destinations/${data.title}`,
+        query: {
+          id: data.id
+        }
+      });
+    }
+  };
 
   return (
-    <Container maxWidth="lg">
-      <Grid container>
-        {cardList.length ? (
-          cardList.map((card, index) => (
-            <Card
-              className={classes.root}
-              classes={{ root: classes.cardStyle }}
-              elevation={0}
-              key={index}
-            >
-              <CardActionArea>
-                <CardMedia
-                  component="img"
-                  alt="image"
-                  height="290"
-                  width="352"
-                  image={card.featured_image.url}
-                  title="title"
-                />
-                <CardContent>
-                  <Typography
-                    gutterBottom
-                    variant="h2"
-                    component="h2"
-                    align="center"
-                  >
-                    {card?.title}
-                  </Typography>
+    <Grid container>
+      {list.length &&
+        list.map((item, index) => (
+          <Card
+            className={classes.root}
+            classes={{ root: classes.cardStyle }}
+            elevation={0}
+            key={index}
+            onClick={() => redirectDetailsPage(item)}
+          >
+            <CardActionArea>
+              <CardMedia
+                component="img"
+                alt="image"
+                height="290"
+                width="352"
+                image={item.featured_image.url}
+                title="title"
+              />
+              <CardContent>
+                <Typography
+                  gutterBottom
+                  variant="h2"
+                  component="h2"
+                  align="center"
+                >
+                  {item?.title}
+                </Typography>
+                {route === 'destinations' && (
                   <Divider className={classes.dividerColor} variant="middle" />
-                  {newsBlog ? (
-                    <Typography
-                      variant="subtitle1"
-                      color="textSecondary"
-                      component="p"
-                      align="center"
-                    >
-                      {card?.meta_description}
-                    </Typography>
-                  ) : (
-                    <Typography
-                      variant="subtitle1"
-                      color="textSecondary"
-                      component="p"
-                      align="center"
-                    >
-                      {card?.description}
-                    </Typography>
-                  )}
-                </CardContent>
-              </CardActionArea>
-            </Card>
-          ))
-        ) : (
-          <Grid item container justifyContent="center">
-            <Typography variant="h2" align="center">
-              Data Not Found!
-            </Typography>
-          </Grid>
-        )}
-      </Grid>
-    </Container>
+                )}
+                <Typography
+                  variant="subtitle1"
+                  color="textSecondary"
+                  component="p"
+                  align="center"
+                >
+                  {item?.meta_description}
+                </Typography>
+
+                {route !== 'destinations' && (
+                  <p className="date">
+                    {new Date(item.created_at).getDate()} /{' '}
+                    {new Date(item.created_at).getMonth() + 1} /{' '}
+                    {new Date(item.created_at).getFullYear()}
+                  </p>
+                )}
+              </CardContent>
+            </CardActionArea>
+          </Card>
+        ))}
+      {next_page && <DiscoverMore />}
+    </Grid>
   );
 }

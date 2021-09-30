@@ -2,17 +2,21 @@ import { useEffect } from 'react';
 import { createStyles, makeStyles } from '@material-ui/core/styles';
 
 import { Box, CircularProgress } from '@material-ui/core';
+
+import { Images } from '@mocks/_destinationMocks';
+
+import YachtSlider from '@components/YachtSlider';
+import DestinationsGallerySection from '@components/DestinationsGallerySection';
 import {
   Introduction,
   SpecialOffers,
   CharterYatch,
-  Destinations,
-  YatchSlider,
   Experience,
   NewsAndBlogs,
   EnquiryForm
 } from './components';
 import HeroSection from './components/HeroSection1';
+
 import container from './Home.container';
 
 const useStyles = makeStyles((theme) =>
@@ -27,18 +31,11 @@ const useStyles = makeStyles((theme) =>
 const Home = (props) => {
   const classes = useStyles();
   const {
-    onFetchOfferStart,
-    onFetchRandomDestinationStart,
-    onFetchPostsStart,
     destination: { randomDestination },
-    posts: { postsList }
+    experience: { experiences },
+    posts: { postsList },
+    offer: { offers }
   } = props;
-
-  useEffect(() => {
-    onFetchOfferStart();
-    onFetchRandomDestinationStart();
-    onFetchPostsStart();
-  }, []);
 
   return (
     <div>
@@ -46,12 +43,19 @@ const Home = (props) => {
         <HeroSection {...props} />
       </Box>
       <Introduction />
-      <SpecialOffers />
+      <SpecialOffers offers={offers} />
       <CharterYatch />
-      <YatchSlider />
-      <Destinations destinationList={randomDestination} />
-      <Experience />
-      <NewsAndBlogs postsList={postsList} />
+      <YachtSlider
+        title="Loved by our Guests"
+        subtitle="Recently Confirmed Charters"
+      />
+      <DestinationsGallerySection
+        title="Destinations"
+        subtitle="Perfect location and the perfect yacht for your ultimate charter experience. There is no better way than chartering a luxury gulet or yacht to see more of the world. With two third of the Earth covered in water, there is always a new exciting destination to explore and a different shoreline to discover.​"
+        destinations={randomDestination}
+      />
+      <Experience experiences={experiences} />
+      <NewsAndBlogs posts={postsList} />
       <EnquiryForm />
     </div>
   );

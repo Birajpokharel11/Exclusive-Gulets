@@ -11,7 +11,7 @@ import { Screenfull } from 'screenfull';
 
 const screenfull = _screenfull as Screenfull;
 
-import Spinner from '@components/Spinner';
+import Spinner from '@components/Spinner/Spinner';
 import PlayIcon from '@modules/icons/PlayIcon';
 import SoundVolumeIcon from '@modules/icons/SoundVolumeIcon';
 import SoundMutedIcon from '@modules/icons/SoundMutedIcon';
@@ -141,7 +141,7 @@ export const HomeVideo = ({ isIOS }) => {
     smoothScroll.scrollToElementById('home-intro');
 
   return (
-    <Box className={classes.videoWrapper}>
+    <Box component="section" className={classes.videoWrapper}>
       {isLoading ? (
         <div className={classes.loaderWrapper}>
           <Spinner width="100%" height="50%" />

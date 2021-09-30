@@ -7,7 +7,8 @@ import ArrowForwardIosIcon from '@material-ui/icons/ArrowForwardIos';
 
 const useStyles = makeStyles(() => ({
   root: {
-    backgroundColor: '#ffffff'
+    backgroundColor: '#ffffff',
+    boxShadow: '0 1px 3px rgb(0 0 0 / 12%), 0 1px 2px rgb(0 0 0 / 24%)'
   },
   label: {
     color: '#2a398d'
@@ -26,8 +27,6 @@ interface Props {
 
 const ButtonChevron = ({ className, onClick, type }: Props) => {
   const classes = useStyles();
-
-  console.log({ className });
 
   const renderButton = () => {
     if (type === 'icon') {

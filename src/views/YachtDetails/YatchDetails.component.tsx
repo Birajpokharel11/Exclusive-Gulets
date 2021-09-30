@@ -1,4 +1,6 @@
 import React from 'react';
+import { useRouter } from 'next/router';
+
 import Container from '@material-ui/core/Container';
 
 import {
@@ -13,16 +15,22 @@ import {
   Enquiry,
   SpecialOffer
 } from './components';
+import container from './YatchDetails.container';
 
-const YatchDetails = () => {
+const YatchDetails = (props) => {
+  const {
+    siteCoordinator: { yachtStore }
+  } = props;
+  const { query } = useRouter();
+
   return (
     <Container maxWidth={false} style={{ padding: '0%' }}>
       <SpecialOffer />
-      <HeroSection />
-      <AboutSection />
+      <HeroSection data={yachtStore} />
+      <AboutSection data={yachtStore} />
       <GallerySection />
       <AccomodationSection />
-      <GallerySilder />
+      <GallerySilder data={yachtStore} />
       <OptionalFeatures />
       <DestinationSection />
       <Reviews />
@@ -31,4 +39,4 @@ const YatchDetails = () => {
   );
 };
 
-export default YatchDetails;
+export default container(YatchDetails);

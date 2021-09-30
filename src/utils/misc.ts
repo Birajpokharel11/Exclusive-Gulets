@@ -124,3 +124,7 @@ export const smoothScroll: SmoothScrollProps = {
     this.timer = setTimeout(step, 5);
   }
 };
+
+export const createMarkup = (encodedHtml) => ({
+  __html: _.unescape(encodedHtml)
+});

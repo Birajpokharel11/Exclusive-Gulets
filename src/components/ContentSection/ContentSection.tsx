@@ -1,11 +1,13 @@
+import Router from 'next/router';
+import Image from 'next/image';
 import _ from 'lodash';
 
 import { createStyles, makeStyles } from '@material-ui/core/styles';
-import Router from 'next/router';
-import Image from 'next/image';
-import testimonial from '../../assets/images/testimonial.png';
-
 import { Box, Button, Typography, Container, Grid } from '@material-ui/core';
+
+import { createMarkup } from '@utils/misc';
+
+import testimonial from '../../assets/images/testimonial.png';
 
 const useStyles = makeStyles((theme) =>
   createStyles({
@@ -42,10 +44,6 @@ export default function ContentSection(props) {
   const classes = useStyles();
 
   const { contentData } = props;
-
-  const createMarkup = (encodedHtml) => ({
-    __html: _.unescape(encodedHtml)
-  });
 
   return (
     <Box component="section" maxWidth="false" mt={5}>

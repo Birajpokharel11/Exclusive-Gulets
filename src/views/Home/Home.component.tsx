@@ -34,10 +34,10 @@ const Home = (props) => {
     destination: { randomDestination },
     experience: { experiences },
     posts: { postsList },
-    offer: { offers },
-    home: {
-      home: { yachts }
-    }
+    offer: { offers }
+    // home: {
+    //   home: { yachts }
+    // }
   } = props;
 
   return (
@@ -48,11 +48,11 @@ const Home = (props) => {
       <Introduction />
       <SpecialOffers offers={offers} />
       <CharterYatch />
-      <YachtSlider
+      {/* <YachtSlider
         title="Loved by our Guests"
         subtitle="Recently Confirmed Charters"
         contentData={yachts}
-      />
+      /> */}
       <DestinationsGallerySection
         title="Destinations"
         subtitle="Perfect location and the perfect yacht for your ultimate charter experience. There is no better way than chartering a luxury gulet or yacht to see more of the world. With two third of the Earth covered in water, there is always a new exciting destination to explore and a different shoreline to discover.​"

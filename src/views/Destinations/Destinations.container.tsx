@@ -7,8 +7,7 @@ const mapStateToProps = (state, props) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  fetchDestinationStart: (page, amount_per_page) =>
-    dispatch(fetchDestinationStart(page, amount_per_page))
+  fetchDestinationStart: (page) => dispatch(fetchDestinationStart(page))
 });
 const container = connect(mapStateToProps, mapDispatchToProps);
 

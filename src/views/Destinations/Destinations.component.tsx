@@ -22,37 +22,44 @@ const useStyles = makeStyles((theme) =>
   })
 );
 
-const Destinations = (props) => {
-  const {
-    destination: { loading, destinations, fetchDestinationStart }
-  } = props;
-
+interface Props {
+  destination?: any[];
+  loading?: any;
+  route?: string;
+  fetchDestinationStart?: any;
+}
+const Destinations = ({
+  destination: { loading, destinations },
+  fetchDestinationStart
+}: Props) => {
   const classes = useStyles();
+  const [page, setpage] = React.useState(1);
+  const [amount_per_page, setAmount_per_page] = React.useState(5);
 
-  const [number, setNumber] = React.useState(10);
-  const route = 'destinations';
   const showMore = () => {
-    console.log('helloworld', number);
-    fetchDestinationStart(5);
+    console.log('helloworld', page, amount_per_page);
+    setpage((prev) => prev + 1);
+    fetchDestinationStart({ page, amount_per_page });
   };
-  // const redirectDetailsPage = (data) => {
-  //   if (route === 'destinations') {
-  //     console.log('routse', route);
-  //     Router.push({
-  //       pathname: `/destinations/${data.title}`,
-  //       query: {
-  //         id: data.id
-  //       }
-  //     });
-  //   }
-  // };
+  const route = 'destinations';
+  const redirectDetailsPage = (data) => {
+    if (route === 'destinations') {
+      console.log('routse', route);
+
+      Router.push({
+        pathname: `/destinations/${data.title}`,
+        query: {
+          id: data.id
+        }
+      });
+    }
+  };
 
   return (
     <Box>
       <BannerSection
         title="Destinations"
         description="Perfect location and the perfect yacht for your ultimate charter experience. There is no better way than chartering a luxury gulet or yacht to see more of the world. With two third of the Earth covered in water, there is always a new exciting destination to explore and a different shoreline to discover. "
-        {...props}
       />
 
       <Box component="section">
@@ -64,7 +71,8 @@ const Destinations = (props) => {
           <CardList
             list={destinations}
             showMore={showMore}
-            // redirectDetailsPage={redirectDetailsPage}
+            redirectDetailsPage={redirectDetailsPage}
+            route={route}
           />
         </Container>
       </Box>

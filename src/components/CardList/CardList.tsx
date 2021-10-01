@@ -64,10 +64,17 @@ interface Props {
   list?: any[];
   next_page?: any;
   showMore?: () => any;
+  route?: string;
   redirectDetailsPage?: any;
 }
 
-export default function CardList({ list, next_page, showMore }: Props) {
+export default function CardList({
+  list,
+  next_page,
+  showMore,
+  route,
+  redirectDetailsPage
+}: Props) {
   const classes = useStyles();
 
   return (
@@ -79,7 +86,7 @@ export default function CardList({ list, next_page, showMore }: Props) {
             classes={{ root: classes.cardStyle }}
             elevation={0}
             key={index}
-            // onClick={() => redirectDetailsPage(item)}
+            onClick={() => redirectDetailsPage(item)}
           >
             <CardActionArea>
               <CardMedia
@@ -99,9 +106,9 @@ export default function CardList({ list, next_page, showMore }: Props) {
                 >
                   {item?.title}
                 </Typography>
-                {/* {route === 'destinations' && ( */}
-                <Divider className={classes.dividerColor} variant="middle" />
-                {/* )} */}
+                {route === 'destinations' && (
+                  <Divider className={classes.dividerColor} variant="middle" />
+                )}
                 <Typography
                   variant="subtitle1"
                   color="textSecondary"
@@ -111,13 +118,13 @@ export default function CardList({ list, next_page, showMore }: Props) {
                   {item?.meta_description}
                 </Typography>
 
-                {/* {route !== 'destinations' && (
+                {route !== 'destinations' && (
                   <p className="date">
                     {new Date(item.created_at).getDate()} /{' '}
                     {new Date(item.created_at).getMonth() + 1} /{' '}
                     {new Date(item.created_at).getFullYear()}
                   </p>
-                )} */}
+                )}
               </CardContent>
             </CardActionArea>
           </Card>

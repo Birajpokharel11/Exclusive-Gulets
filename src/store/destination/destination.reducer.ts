@@ -26,7 +26,7 @@ const destinationReducer = (state = INITIAL_STATE, action) => {
     case DestinationType.FETCH_DESTINATION_SUCCESS:
       return {
         ...state,
-        destinations: payload,
+        destinations: [...state.destinations, ...payload],
         loading: false
       };
 

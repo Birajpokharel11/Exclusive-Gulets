@@ -1,14 +1,13 @@
 import React from 'react';
-
 import { createStyles, makeStyles } from '@material-ui/core/styles';
 import { Box, Container, Typography } from '@material-ui/core';
-
 import BannerSection from '@components/BannerSection';
 import CardList from '@components/CardList';
-
 import container from './Blogs.container';
 import BackgroundVectors from '@components/BackgroundVectors';
 import { CircularProgress } from '@material-ui/core';
+import Router from 'next/router';
+
 const useStyles = makeStyles((theme) =>
   createStyles({
     root: {
@@ -26,12 +25,13 @@ const useStyles = makeStyles((theme) =>
 interface Props {
   posts?: any[];
   loading?: any;
+  route?: string;
   fetchPostsStart?: (page) => any;
 }
 
 function Destinations({ posts, loading, fetchPostsStart }: Props) {
   const classes = useStyles();
-  const [page, setpage] = React.useState(1);
+  const [page, setpage] = React.useState(0);
   const [amount_per_page, setAmount_per_page] = React.useState(5);
 
   const showMore = () => {
@@ -41,25 +41,25 @@ function Destinations({ posts, loading, fetchPostsStart }: Props) {
     fetchPostsStart({ page, amount_per_page });
   };
   const route = 'blogs';
-  // const redirectDetailsPage = (data) => {
-  //   if (route === 'blogs') {
-  //     Router.push({
-  //       pathname: `/destinations/${data.title}`,
-  //       query: {
-  //         id: data.id
-  //       }
-  //     });
-  //   }
-  // };
+  const redirectDetailsPage = (data) => {
+    if (route === 'blogs') {
+      Router.push({
+        pathname: `/blogs/${data.title}`,
+        query: {
+          id: data.id
+        }
+      });
+    }
+  };
   return (
     <Box>
       <BannerSection
         title="NEWS & BLOGS"
         description="Keep up to date with our latest yachting news, charter destinations, special offers and more…"
       />
+      <BackgroundVectors />
       <Container>
         <Box mb={4} mt={6}>
-          <BackgroundVectors />
           <Typography align="center" className={classes.heading}>
             There is more to yachting than just spending a week or so sailing.
             We share our experiences on the best itineraries to suit you,
@@ -74,7 +74,8 @@ function Destinations({ posts, loading, fetchPostsStart }: Props) {
             <CardList
               list={posts.postsList}
               showMore={showMore}
-              // redirectDetailsPage={redirectDetailsPage}
+              redirectDetailsPage={redirectDetailsPage}
+              route={route}
             />
           )}
         </Box>

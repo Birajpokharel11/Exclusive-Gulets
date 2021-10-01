@@ -6,16 +6,12 @@ import axios from 'axios';
 import * as DestinationType from './destination.types';
 import * as destinationAction from './destination.actions';
 
-export function* fetchDestinationAsync({
-  payload: { page = 1, amount_per_page = 5 }
-}) {
+export function* fetchDestinationAsync({ payload: { page, amount_per_page } }) {
   try {
     const { data } = yield axios.get(
-      `https://app.exclusivegulets.com/api/v1/destinations.json`,
-      {
-        page: page,
-        amount_per_page: amount_per_page
-      }
+      `https://app.exclusivegulets.com/api/v1/destinations.json?${queryString.stringify(
+        { page, amount_per_page }
+      )}`
     );
     console.log('value of response>>>', data.destinations);
     yield put(destinationAction.fetchDestinationSuccess(data.destinations));

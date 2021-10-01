@@ -64,7 +64,7 @@ interface Props {
   list?: any[];
   next_page?: any;
   route?: string;
-  routeRedirect: any;
+  routeRedirect?: any;
   showMore?: () => void;
 }
 

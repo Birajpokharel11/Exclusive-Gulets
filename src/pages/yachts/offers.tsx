@@ -17,8 +17,18 @@ export default function Yatch() {
       <Head>
         <title>Exclusive Gulets | Yachts</title>
         <meta
+          property="og:title"
+          content="Exclusive Gulets | Yachts"
+          key="title"
+        />
+        <meta
           name="description"
           content="LUXURY GULET & YACHT CHARTER EXPERTS"
+        />
+        <meta
+          property="og:description"
+          content="LUXURY GULET & YACHT CHARTER EXPERTS"
+          key="description"
         />
       </Head>
       <WithLayout component={YachtPage} layout={Main} />
@@ -38,7 +48,11 @@ export const getServerSideProps = wrapper.getServerSideProps(
     const yacht = myStore.yacht;
 
     return {
-      props: { yacht }
+      props: { yacht },
+      // Next.js will attempt to re-generate the page:
+      // - When a request comes in
+      // - At most once every 30 minutes
+      revalidate: 3600 // In seconds
     };
   }
 );

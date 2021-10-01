@@ -24,22 +24,24 @@ export default function BlogsPage() {
   );
 }
 
-export const getServerSideProps = wrapper.getServerSideProps(
-  (store) => async () => {
-    if (store.getState()) {
-      store.dispatch(
-        fetchPostsStart({
-          ...BlogSort,
-          page: 1,
-          amount_per_page: Limits.BLOGS_PER_PAGE
-        })
-      );
-      store.dispatch(END);
+export const getStaticProps = wrapper.getStaticProps((store) => async () => {
+  if (store.getState()) {
+    store.dispatch(
+      fetchPostsStart({
+        ...BlogSort,
+        page: 1,
+        amount_per_page: Limits.BLOGS_PER_PAGE
+      })
+    );
+    store.dispatch(END);
 
-      await store.sagaTask?.toPromise();
-      return {
-        props: {}
-      };
-    }
+    await store.sagaTask?.toPromise();
+    return {
+      props: {},
+      // Next.js will attempt to re-generate the page:
+      // - When a request comes in
+      // - At most once every 30 minutes
+      revalidate: 3600 // In seconds
+    };
   }
-);
+});

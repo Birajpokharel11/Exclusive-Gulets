@@ -15,6 +15,11 @@ const Destinations = () => {
     <>
       <Head>
         <title>Exclusive Gulets | Destinations</title>
+        <meta
+          property="og:title"
+          content="Exclusive Gulets | Destinations"
+          key="title"
+        />
       </Head>
       <WithLayout component={DestinationPage} layout={Main} />
     </>
@@ -37,7 +42,11 @@ export const getServerSideProps = wrapper.getServerSideProps(
     const destination = myStore.destination;
 
     return {
-      props: { destination }
+      props: { destination },
+      // Next.js will attempt to re-generate the page:
+      // - When a request comes in
+      // - At most once every 30 minutes
+      revalidate: 3600 // In seconds
     };
   }
 );

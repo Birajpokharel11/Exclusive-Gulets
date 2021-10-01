@@ -1,5 +1,5 @@
 import React from 'react';
-import { NextPageContext } from 'next';
+import Head from 'next/head';
 
 import WithLayout from '@components/WithLayout';
 import Main from '@layouts/Main';
@@ -14,7 +14,24 @@ import { fetchOfferStart } from '@store/offer/offer.actions';
 import { fetchHomeStart } from '@store/home/home.actions';
 
 export default function Home({ isIOS }) {
-  return <WithLayout component={HomePage} layout={Main} isIOS={isIOS} />;
+  return (
+    <>
+      <Head>
+        <title>Exclusive Gulets</title>
+        <meta property="og:title" content="Exclusive Gulets" key="title" />
+        <meta
+          name="description"
+          content="Exclusive Gulets is an experienced UK-based gulet and yacht charter company, specialists in offering exclusive gulet and yacht charters in Turkey, Croatia, Greece, and the Mediterranean."
+        />
+        <meta
+          property="og:description"
+          content="Exclusive Gulets is an experienced UK-based gulet and yacht charter company, specialists in offering exclusive gulet and yacht charters in Turkey, Croatia, Greece, and the Mediterranean."
+          key="description"
+        />
+      </Head>
+      <WithLayout component={HomePage} layout={Main} isIOS={isIOS} />
+    </>
+  );
 }
 
 export const getStaticProps = wrapper.getStaticProps((store) => async () => {

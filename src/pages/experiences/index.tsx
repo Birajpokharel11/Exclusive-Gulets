@@ -13,6 +13,11 @@ export default function Experiences() {
     <>
       <Head>
         <title>Exclusive Gulets | Experiences</title>
+        <meta
+          property="og:title"
+          content="Exclusive Gulets | Experiences"
+          key="title"
+        />
       </Head>
       <WithLayout component={BespokeExperiencesPage} layout={Main} />
     </>
@@ -29,7 +34,11 @@ export const getServerSideProps = wrapper.getServerSideProps(
     const experience = myStore.experience;
 
     return {
-      props: { experience }
+      props: { experience },
+      // Next.js will attempt to re-generate the page:
+      // - When a request comes in
+      // - At most once every 30 minutes
+      revalidate: 3600 // In seconds
     };
   }
 );

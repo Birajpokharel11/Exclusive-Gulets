@@ -1,6 +1,4 @@
-import React, { useEffect } from 'react';
 import Head from 'next/head';
-import { Limits, Sort } from '@utils/enums';
 
 import { END } from 'redux-saga';
 import { wrapper } from '@store/index';
@@ -44,8 +42,7 @@ export const getStaticProps = wrapper.getStaticProps((store) => async () => {
     // Next.js will attempt to re-generate the page:
     // - When a request comes in
     // - At most once every 30 minutes
-    revalidate: 3600, // In seconds
-    fallback: false
+    revalidate: 3600 // In seconds
   };
 });
 

@@ -16,12 +16,10 @@ export const getServerSideProps = wrapper.getServerSideProps(
   (store) => async (context) => {
     let user_id = 0;
     let user_data = null;
-    console.log('slug data entered>>>', user_data);
-    if (typeof window !== 'undefined') {
-      JSON.parse(window.sessionStorage.getItem('user'));
-    }
 
-    console.log('slug data>>>', user_data);
+    if (typeof window !== 'undefined') {
+      user_data = JSON.parse(window.sessionStorage.getItem('user'));
+    }
 
     if (user_data) {
       user_id = user_data.id;

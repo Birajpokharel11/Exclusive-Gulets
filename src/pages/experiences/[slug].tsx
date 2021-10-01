@@ -1,12 +1,13 @@
 import React from 'react';
 
-import WithLayout from '@components/WithLayout';
-import Main from '@layouts/Main';
 import { END } from 'redux-saga';
 import { wrapper } from '@store/index';
-import ExperiencesDetails from '@views/Experiences/Details';
 import { fetchExperienceByIdStart } from '@store/experiences/experiences.actions';
 import { fetchRandomDestinationStart } from '@store/destination/destination.actions';
+
+import WithLayout from '@components/WithLayout';
+import Main from '@layouts/Main';
+import ExperiencesDetails from '@views/Experiences/Details';
 
 export default function Experiences() {
   return <WithLayout component={ExperiencesDetails} layout={Main} />;

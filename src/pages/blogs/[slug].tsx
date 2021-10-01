@@ -21,7 +21,7 @@ export async function getStaticPaths() {
     {
       params: {
         page: 1,
-        amount_per_page: Limits.BLOGS_PER_PAGE,
+        amount_per_page: 100,
         sort_by: Sort.SORT_BY,
         sort_order: Sort.SORT_ORDER
       }
@@ -39,7 +39,7 @@ export async function getStaticPaths() {
   };
 }
 
-export const getServerSideProps = wrapper.getServerSideProps(
+export const getStaticProps = wrapper.getStaticProps(
   (store) => async (context) => {
     store.dispatch(fetchPostsByIdStart(context.params.slug as string));
     store.dispatch(END);
@@ -55,7 +55,11 @@ export const getServerSideProps = wrapper.getServerSideProps(
     }
 
     return {
-      props: { posts }
+      props: { posts },
+      // Next.js will attempt to re-generate the page:
+      // - When a request comes in
+      // - At most once every 30 minutes
+      revalidate: 3600 // In seconds
     };
   }
 );

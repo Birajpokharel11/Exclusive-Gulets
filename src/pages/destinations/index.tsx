@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import Head from 'next/head';
 import { Limits, DestinationSort } from '@utils/enums';
 
 import { END } from 'redux-saga';
@@ -10,7 +11,14 @@ import Main from '@layouts/Main';
 import DestinationPage from '@views/Destinations';
 
 const Destinations = () => {
-  return <WithLayout component={DestinationPage} layout={Main} />;
+  return (
+    <>
+      <Head>
+        <title>Exclusive Gulets | Destinations</title>
+      </Head>
+      <WithLayout component={DestinationPage} layout={Main} />
+    </>
+  );
 };
 
 export const getServerSideProps = wrapper.getServerSideProps(

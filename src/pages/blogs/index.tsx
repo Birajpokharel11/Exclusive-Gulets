@@ -1,4 +1,5 @@
 import React from 'react';
+import Head from 'next/head';
 import { Limits, BlogSort } from '@utils/enums';
 import WithLayout from '@components/WithLayout';
 import Main from '@layouts/Main';
@@ -7,8 +8,20 @@ import { END } from 'redux-saga';
 import { wrapper } from '@store/index';
 import { fetchPostsStart } from '@store/posts/posts.actions';
 
-export default function Experiences() {
-  return <WithLayout component={Blogs} layout={Main} />;
+export default function BlogsPage() {
+  return (
+    <>
+      <Head>
+        <title>Exclusive Gulets | Blogs</title>
+        <meta
+          name="description"
+          content="Keep up to date with our latest yachting news, charter destinations, special offers, gulet rentals and read new updates about current travel situation."
+        />
+      </Head>
+
+      <WithLayout component={Blogs} layout={Main} />
+    </>
+  );
 }
 
 export const getServerSideProps = wrapper.getServerSideProps(

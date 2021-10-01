@@ -9,11 +9,10 @@ import * as destinationAction from './offer.actions';
 
 export function* fetchOfferAsync() {
   try {
-    console.log('fetchOfferAsync>>>');
     const { data } = yield axios.get(
       `${process.env.REACT_APP_PROD_URL}/special_offers`
     );
-    console.log('value of response fetchOfferAsync>>>', data);
+
     yield put(destinationAction.fetchOfferSuccess(data.offers));
   } catch (err) {
     console.error('error received>>>', err);

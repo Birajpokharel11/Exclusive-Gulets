@@ -23,10 +23,14 @@ const App = (props) => {
   return (
     <React.Fragment>
       <Head>
-        <title>My page</title>
+        <title>Exclusive Gulets</title>
         <meta
           name="viewport"
           content="minimum-scale=1, initial-scale=1, width=device-width"
+        />
+        <meta
+          name="description"
+          content="Exclusive Gulets is an experienced UK-based gulet and yacht charter company, specialists in offering exclusive gulet and yacht charters in Turkey, Croatia, Greece, and the Mediterranean."
         />
       </Head>
       <ThemeProvider theme={theme}>

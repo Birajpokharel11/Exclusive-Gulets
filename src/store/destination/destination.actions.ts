@@ -9,7 +9,7 @@ interface IFetchDestination {
 
 export const fetchDestinationStart = (data?: IFetchDestination) => ({
   type: DestinationType.FETCH_DESTINATION_START,
-  payload: data
+  payload: { ...data }
 });
 
 export const fetchDestinationSuccess = (result) => ({

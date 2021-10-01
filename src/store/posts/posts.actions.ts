@@ -9,7 +9,7 @@ interface IFetchPost {
 
 export const fetchPostsStart = (data?: IFetchPost) => ({
   type: PostsType.FETCH_POSTS_START,
-  payload: data
+  payload: { ...data }
 });
 
 export const fetchPostsSuccess = (result) => ({

@@ -1,13 +1,15 @@
 import React from 'react';
 import Box from '@material-ui/core/Box';
 
+import { Images } from '@mocks/_destinationMocks';
+
 import Banner from '@components/BannerSection';
 import ContentSection from '@components/ContentSection';
 import DestinationsGallerySection from '@components/DestinationsGallerySection';
 import YahtsSlider from '@components/YachtSlider';
-import Container from './BlogsDetails.container';
-import { Images } from '@mocks/_destinationMocks';
 import BlogContnetSection from '@components/BlogContnetSection';
+
+import Container from './BlogsDetails.container';
 
 const Blogs = (props) => {
   const { individual } = props;

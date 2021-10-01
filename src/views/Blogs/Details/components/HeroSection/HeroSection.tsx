@@ -51,32 +51,32 @@ const useStyles = makeStyles((theme) =>
 );
 
 export default function HeroSection() {
+  const classes = useStyles();
+
   function handleClick(event) {
     event.preventDefault();
     console.info('You clicked a breadcrumb.');
   }
-  const classes = useStyles();
+
   return (
-    <>
-      <Container maxWidth={false} className={classes.Container}>
-        <img
-          src="/assets/images/blogs/blogs.png"
-          alt="HeroYatch"
-          className={classes.Yatch}
-        />
-        <Box pt={14} className={classes.imageTextShadows}>
-          <Container maxWidth="md">
-            <Typography variant="h1" align="center" className={classes.Heading}>
-              The ideal summer vacation getaway is available NOW!
-            </Typography>
-            <Typography variant="subtitle1" className={classes.SubHeading}>
-              The Caribbean is calling and there is a luxury charter yacht with
-              your name on it.
-              <br />
-            </Typography>
-          </Container>
-        </Box>
-      </Container>
-    </>
+    <Container maxWidth={false} className={classes.Container}>
+      <img
+        src="/assets/images/blogs/blogs.png"
+        alt="HeroYatch"
+        className={classes.Yatch}
+      />
+      <Box pt={14} className={classes.imageTextShadows}>
+        <Container maxWidth="md">
+          <Typography variant="h1" align="center" className={classes.Heading}>
+            The ideal summer vacation getaway is available NOW!
+          </Typography>
+          <Typography variant="subtitle1" className={classes.SubHeading}>
+            The Caribbean is calling and there is a luxury charter yacht with
+            your name on it.
+            <br />
+          </Typography>
+        </Container>
+      </Box>
+    </Container>
   );
 }

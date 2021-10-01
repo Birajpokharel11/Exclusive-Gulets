@@ -2,7 +2,9 @@ import { HYDRATE } from 'next-redux-wrapper';
 
 import * as DestinationType from './destination.types';
 
-const INITIAL_STATE = {
+import { IDestinationState } from '../interfaces';
+
+const INITIAL_STATE: IDestinationState = {
   destinations: [],
   next_page: 0,
   current_page: 0,

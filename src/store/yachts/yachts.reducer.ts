@@ -2,7 +2,9 @@ import { HYDRATE } from 'next-redux-wrapper';
 
 import * as YachtsType from './yachts.types';
 
-const INITIAL_STATE = {
+import { IYachtState } from '../interfaces';
+
+const INITIAL_STATE: IYachtState = {
   yachtsList: [],
   yacht: {},
   error: null,

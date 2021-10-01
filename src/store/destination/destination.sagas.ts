@@ -3,15 +3,34 @@ import queryString from 'query-string';
 
 import axios from 'axios';
 
+import { Limits, Sort } from '@utils/enums';
+
 import * as DestinationType from './destination.types';
 import * as destinationAction from './destination.actions';
+import {
+  fetchDestinationStart,
+  fetchDestinationByIdStart
+} from './destination.actions';
 
-export function* fetchDestinationAsync({ payload: { page, amount_per_page } }) {
+export function* fetchDestinationAsync({
+  payload: {
+    page = 1,
+    amount_per_page = Limits.BLOGS_PER_PAGE,
+    sort_by = Sort.SORT_BY,
+    sort_order = Sort.SORT_ORDER
+  }
+}: ReturnType<typeof fetchDestinationStart>) {
   try {
     const { data } = yield axios.get(
-      `https://app.exclusivegulets.com/api/v1/destinations.json?${queryString.stringify(
-        { page, amount_per_page }
-      )}`
+      `https://app.exclusivegulets.com/api/v1/destinations.json`,
+      {
+        params: {
+          page,
+          amount_per_page,
+          sort_by,
+          sort_order
+        }
+      }
     );
 
     yield put(destinationAction.fetchDestinationSuccess(data.destinations));
@@ -36,7 +55,9 @@ export function* fetchRandomDestinationAsync() {
   }
 }
 
-export function* fetchDestinationByIdAsync({ payload: { id } }) {
+export function* fetchDestinationByIdAsync({
+  payload: { id }
+}: ReturnType<typeof fetchDestinationByIdStart>) {
   try {
     const { data } = yield axios.get(
       `${process.env.REACT_APP_PROD_URL}/destinations/${id}.json`

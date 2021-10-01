@@ -77,20 +77,6 @@ export default function CardList({
 }: Props) {
   const classes = useStyles();
 
-  const redirectDetailsPage = (data) => {
-    if (route === 'destinations') {
-      console.log('routse', route);
-      Router.push({
-        pathname: `/destinations/${data.title}`,
-        query: {
-          id: data.id
-        }
-      });
-    } else if (route === 'experiences') {
-      routeRedirect(data);
-    }
-  };
-
   return (
     <Grid container>
       {list.length &&
@@ -100,7 +86,7 @@ export default function CardList({
             classes={{ root: classes.cardStyle }}
             elevation={0}
             key={index}
-            onClick={() => redirectDetailsPage(item)}
+            onClick={() => routeRedirect(item)}
           >
             <CardActionArea>
               <CardMedia

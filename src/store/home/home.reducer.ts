@@ -2,7 +2,9 @@ import { HYDRATE } from 'next-redux-wrapper';
 
 import * as HomeType from './home.types';
 
-const INITIAL_STATE = {
+import { IHomeState } from '../interfaces';
+
+const INITIAL_STATE: IHomeState = {
   home: [],
   error: null,
   loading: false

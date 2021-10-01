@@ -14,12 +14,20 @@ export default function Experiences() {
 
 export const getServerSideProps = wrapper.getServerSideProps(
   (store) => async (context) => {
-    store.dispatch(fetchExperienceByIdStart(context.query.id));
+    store.dispatch(fetchExperienceByIdStart(context.params.slug as string));
     store.dispatch(fetchRandomDestinationStart());
     store.dispatch(END);
+
     await store.sagaTask?.toPromise();
     const myStore = store.getState();
     const experience = myStore.experience;
+
+    if (!experience) {
+      return {
+        notFound: true
+      };
+    }
+
     return {
       props: { experience }
     };

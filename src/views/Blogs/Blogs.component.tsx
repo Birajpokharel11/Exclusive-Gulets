@@ -1,12 +1,16 @@
 import React from 'react';
+import Router from 'next/router';
 import { createStyles, makeStyles } from '@material-ui/core/styles';
 import { Box, Container, Typography } from '@material-ui/core';
+import { CircularProgress } from '@material-ui/core';
+
 import BannerSection from '@components/BannerSection';
 import CardList from '@components/CardList';
-import container from './Blogs.container';
 import BackgroundVectors from '@components/BackgroundVectors';
-import { CircularProgress } from '@material-ui/core';
-import Router from 'next/router';
+
+import { IPostState } from '@store/interfaces';
+
+import container from './Blogs.container';
 
 const useStyles = makeStyles((theme) =>
   createStyles({
@@ -23,31 +27,29 @@ const useStyles = makeStyles((theme) =>
   })
 );
 interface Props {
-  posts?: any[];
+  posts?: IPostState;
   loading?: any;
   route?: string;
   fetchPostsStart?: (page) => any;
 }
 
-function Destinations({ posts, loading, fetchPostsStart }: Props) {
+function Destinations({
+  posts: { postsList, next_page },
+  loading,
+  fetchPostsStart
+}: Props) {
   const classes = useStyles();
-  const [page, setpage] = React.useState(0);
-  const [amount_per_page, setAmount_per_page] = React.useState(5);
 
   const showMore = () => {
-    setpage((prev) => prev + 1);
-    console.log('helloworld', page, amount_per_page);
+    fetchPostsStart({ page: next_page });
+  };
 
-    fetchPostsStart({ page, amount_per_page });
-  };
-  const route = 'blogs';
   const redirectDetailsPage = (data) => {
-    if (route === 'blogs') {
-      Router.push({
-        pathname: `/blogs/${data.slug}`
-      });
-    }
+    Router.push({
+      pathname: `/blogs/${data.slug}`
+    });
   };
+
   return (
     <Box>
       <BannerSection
@@ -69,10 +71,10 @@ function Destinations({ posts, loading, fetchPostsStart }: Props) {
             <CircularProgress />
           ) : (
             <CardList
-              list={posts.postsList}
+              list={postsList}
               showMore={showMore}
-              redirectDetailsPage={redirectDetailsPage}
-              route={route}
+              routeRedirect={redirectDetailsPage}
+              route="blogs"
             />
           )}
         </Box>

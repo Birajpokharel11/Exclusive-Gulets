@@ -2,7 +2,9 @@ import { HYDRATE } from 'next-redux-wrapper';
 
 import * as DestinationType from './offer.types';
 
-const INITIAL_STATE = {
+import { IOfferState } from '../interfaces';
+
+const INITIAL_STATE: IOfferState = {
   offers: [],
   error: null,
   loading: false

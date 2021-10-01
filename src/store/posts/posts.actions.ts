@@ -1,8 +1,15 @@
 import * as PostsType from './posts.types';
 
-export const fetchPostsStart = ({ page = 1, amount_per_page = 1 }) => ({
+interface IFetchPost {
+  page?: number;
+  amount_per_page?: number;
+  sort_by?: string;
+  sort_order?: string;
+}
+
+export const fetchPostsStart = (data?: IFetchPost) => ({
   type: PostsType.FETCH_POSTS_START,
-  payload: { page, amount_per_page }
+  payload: data
 });
 
 export const fetchPostsSuccess = (result) => ({
@@ -37,7 +44,7 @@ export const fetchRandomPostsFailure = (error) => ({
 //////////////////////////////////////////////////////
 /////////////////////////////////////////////////////
 
-export const fetchPostsByIdStart = (id) => ({
+export const fetchPostsByIdStart = (id?: string) => ({
   type: PostsType.FETCH_POSTS_BY_ID_START,
   payload: { id }
 });

@@ -2,7 +2,9 @@ import { HYDRATE } from 'next-redux-wrapper';
 
 import * as ExperiencesType from './experiences.types';
 
-const INITIAL_STATE = {
+import { IExperienceState } from '../interfaces';
+
+const INITIAL_STATE: IExperienceState = {
   experiences: [],
   soleExperience: {},
   error: null,

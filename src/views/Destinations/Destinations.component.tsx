@@ -12,6 +12,8 @@ import BannerSection from '@components/BannerSection';
 import BackgroundVectors from '@components/BackgroundVectors';
 import CardList from '@components/CardList';
 import FooterSlider from '@components/FooterSlider';
+import { IDestinationState } from '@store/interfaces';
+
 import vectorblog1 from '../../assets/images/Blog_single/wheel-vector.svg';
 
 import container from './Destinations.container';
@@ -39,33 +41,26 @@ const useStyles = makeStyles((theme) =>
 );
 
 interface Props {
-  destination?: any[];
+  destination?: IDestinationState;
   loading?: any;
   route?: string;
-  fetchDestinationStart?: any;
+  fetchDestinationStart?: (page) => void;
 }
+
 const Destinations = ({
-  destination: { loading, destinations },
+  destination: { loading, destinations, next_page },
   fetchDestinationStart
 }: Props) => {
   const classes = useStyles();
-  const [page, setpage] = React.useState(1);
-  const [amount_per_page, setAmount_per_page] = React.useState(5);
 
   const showMore = () => {
-    console.log('helloworld', page, amount_per_page);
-    setpage((prev) => prev + 1);
-    fetchDestinationStart({ page, amount_per_page });
+    fetchDestinationStart({ page: next_page });
   };
-  const route = 'destinations';
-  const redirectDetailsPage = (data) => {
-    if (route === 'destinations') {
-      console.log('routse', route);
 
-      Router.push({
-        pathname: `/destinations/${data.slug}`
-      });
-    }
+  const redirectDetailsPage = (data) => {
+    Router.push({
+      pathname: `/destinations/${data.slug}`
+    });
   };
 
   return (
@@ -84,7 +79,12 @@ const Destinations = ({
           <Box mb={4}>
             {/*<Typography>{featured_destination.content}</Typography>*/}
           </Box>
-          <CardList list={destinations} showMore={showMore} route={route} />
+          <CardList
+            list={destinations}
+            showMore={showMore}
+            route="destinations"
+            routeRedirect={redirectDetailsPage}
+          />
         </Container>
         <BackgroundVectors />
 

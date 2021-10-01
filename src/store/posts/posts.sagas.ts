@@ -3,11 +3,17 @@ import { AnyAction } from 'redux';
 import axios from 'axios';
 import * as postsType from './posts.types';
 import * as postsAction from './posts.actions';
-import { fetchPostsStart } from './posts.actions';
-import queryString from 'query-string';
+import { fetchPostsStart, fetchPostsByIdStart } from './posts.actions';
+
+import { Limits, Sort } from '@utils/enums';
 
 export function* fetchPostsAsync({
-  payload: { page, amount_per_page }
+  payload: {
+    page = 1,
+    amount_per_page = Limits.BLOGS_PER_PAGE,
+    sort_by = Sort.SORT_BY,
+    sort_order = Sort.SORT_ORDER
+  }
 }: ReturnType<typeof fetchPostsStart>) {
   try {
     console.log('fetchPostsAsync>>>', { page, amount_per_page });
@@ -18,12 +24,13 @@ export function* fetchPostsAsync({
     // );
 
     const { data } = yield axios.get(
-      `https://app.exclusivegulets.com/api/v1/posts.json?${queryString.stringify(
-        { page, amount_per_page }
-      )}`
+      `https://app.exclusivegulets.com/api/v1/posts.json`,
+      {
+        params: { page, amount_per_page, sort_by, sort_order }
+      }
     );
     console.log('value of response fetchOfferAsync>>>', data);
-    yield put(postsAction.fetchPostsSuccess(data.posts));
+    yield put(postsAction.fetchPostsSuccess(data));
   } catch (err) {
     console.error('error received>>>', err);
     yield put(postsAction.fetchPostsFailure(err));
@@ -51,7 +58,9 @@ export function* fetchRandomPostsAsync() {
 
 /////////////////////////////////////////////////////////////////////////////////////
 
-export function* fetchPostsaByIdAsync({ payload: { id } }) {
+export function* fetchPostsaByIdAsync({
+  payload: { id }
+}: ReturnType<typeof fetchPostsByIdStart>) {
   try {
     console.log('fetchDestinationByIdAsync>>', id);
     const { data } = yield axios.get(

@@ -13,16 +13,21 @@ export default function DestinationDetails() {
 
 export const getServerSideProps = wrapper.getServerSideProps(
   (store) => async (context) => {
-    console.log('asasasfasfasfasfasfsf0', context.query);
-    store.dispatch(fetchDestinationByIdStart(context.params.slug));
+    store.dispatch(fetchDestinationByIdStart(context.params.slug as string));
     store.dispatch(END);
 
     await store.sagaTask?.toPromise();
     const myStore = store.getState();
-    const posts = myStore.posts;
+    const { destination } = myStore.destination;
+
+    if (!destination) {
+      return {
+        notFound: true
+      };
+    }
 
     return {
-      props: { posts }
+      props: { destination }
     };
   }
 );

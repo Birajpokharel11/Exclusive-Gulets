@@ -1,4 +1,6 @@
 import React from 'react';
+import Link from 'next/link';
+
 import { createStyles, makeStyles, useTheme } from '@material-ui/core/styles';
 import {
   Button,
@@ -10,10 +12,10 @@ import {
   useMediaQuery
 } from '@material-ui/core';
 import Breadcrumbs from '@material-ui/core/Breadcrumbs';
-import Link from 'next/link';
 import NavigateNextIcon from '@material-ui/icons/NavigateNext';
+
+import ExperiencesFrom from '@components/EnquiryForm';
 import Gallery from './Gallery';
-import ExperiencesFrom from './ExperiencesForm';
 
 const useStyles = makeStyles((theme) =>
   createStyles({
@@ -96,16 +98,16 @@ export default function Offers() {
             <Box pb={8}>
               <Typography variant="body1">
                 With Covid-19 vaccinations in full swing in the United States,
-                the UK, and other countries across the world, we're excited that
-                international travel is taking off again.
+                the UK, and other countries across the world, {"we're"} excited
+                that international travel is taking off again.
               </Typography>
 
               <p>&nbsp;</p>
 
               <Typography variant="body1">
                 The Caribbean, of course, is one of the most sought-after
-                destinations on travellers' lists for the{' '}
-                <Link href="https://www.forbes.com/sites/suzannerowankelleher/2021/05/15/summer-travel-guide-2021-vacations-are-selling-out-fast-heres-how-to-outsmart-the-crowds-plan-b/amp/">
+                destinations on {"travellers'"} lists for the{' '}
+                <a href="https://www.forbes.com/sites/suzannerowankelleher/2021/05/15/summer-travel-guide-2021-vacations-are-selling-out-fast-heres-how-to-outsmart-the-crowds-plan-b/amp/">
                   <span
                     style={{
                       textDecoration: 'none',
@@ -114,7 +116,7 @@ export default function Offers() {
                   >
                     summer
                   </span>
-                </Link>
+                </a>
                 <a></a>. It is also the perfect yacht charter destination with
                 endless possibilities.
               </Typography>
@@ -128,14 +130,12 @@ export default function Offers() {
               <p>&nbsp;</p>
 
               <Typography variant="body1">
-                If you're in search of sugar-white, sun-kissed beaches, a warm,
-                balmy climate, hospitable people, and beautiful scenery, the
+                If {"you're"} in search of sugar-white, sun-kissed beaches, a
+                warm, balmy climate, hospitable people, and beautiful scenery,
+                the
                 {'  '}
                 <Link href="/destinations/caribbean">
-                  <span className={classes.Underline}>
-                    {' '}
-                    {'  '}Caribbean {'  '}
-                  </span>
+                  <span className={classes.Underline}>Caribbean</span>
                 </Link>
                 has it all!
               </Typography>
@@ -143,12 +143,9 @@ export default function Offers() {
               <Typography variant="body1">
                 This acclaimed beach vacation destination is embroidered with
                 dozens of{' '}
-                <Link href="https://www.tripadvisor.co.za/Attractions-g147237-Activities-Caribbean.html">
-                  <span className={classes.Underline}>
-                    {' '}
-                    picturesque islands
-                  </span>
-                </Link>
+                <a href="https://www.tripadvisor.co.za/Attractions-g147237-Activities-Caribbean.html">
+                  <span className={classes.Underline}>picturesque islands</span>
+                </a>
                 , each unique in character and appeal.
               </Typography>
 
@@ -156,9 +153,9 @@ export default function Offers() {
 
               <Typography variant="body1">
                 Of course, chartering a yacht for a vacation is pure bliss on
-                water. If the word 'boring' pops up in your mind, think again.
-                The Caribbean is brimming with aquatic life and boasts some of
-                the world's best dives.
+                water. If the word {"'boring'"} pops up in your mind, think
+                again. The Caribbean is brimming with aquatic life and boasts
+                some of the{" world's"} best dives.
               </Typography>
 
               <p>&nbsp;</p>
@@ -239,7 +236,8 @@ export default function Offers() {
 
               <Typography variant="body1">
                 Exclusive Gulets are luxury gulet and yacht charter experts that
-                deliver exceptional cruising experiences on some of the world's
+                deliver exceptional cruising experiences on some of the{' '}
+                {"world's"}
                 finest motor sailers.
               </Typography>
 
@@ -295,13 +293,11 @@ export default function Offers() {
           <Grid item xs>
             <Box>
               <Typography variant="h2" align="center">
-                {' '}
                 Create your own experience!
               </Typography>
             </Box>
           </Grid>
           <Grid item xs>
-            {' '}
             <Box alignItems="center">
               <Button className={classes.ButtonTM}>Enquite</Button>
             </Box>

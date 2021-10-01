@@ -2,7 +2,9 @@ import { HYDRATE } from 'next-redux-wrapper';
 
 import * as AuthType from './auth.types';
 
-const INITIAL_STATE = {
+import { IAuthState } from '../interfaces';
+
+const INITIAL_STATE: IAuthState = {
   isAuthenticated: null,
   currentUser: {},
   newUser: {},

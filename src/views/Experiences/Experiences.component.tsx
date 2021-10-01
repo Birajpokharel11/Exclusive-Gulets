@@ -13,6 +13,8 @@ import BackgroundVectors from '@components/BackgroundVectors';
 import CardList from '@components/CardList';
 import FooterSlider from '@components/FooterSlider';
 
+import { IExperienceState } from '@store/interfaces';
+
 import container from './Experiences.container';
 
 const useStyles = makeStyles((theme) =>
@@ -23,8 +25,13 @@ const useStyles = makeStyles((theme) =>
     }
   })
 );
+interface Props {
+  experience?: IExperienceState;
+  loading?: any;
+  route?: string;
+}
 
-const Experiences = (props) => {
+const Experiences = (props: Props) => {
   const classes = useStyles();
 
   const {
@@ -32,9 +39,8 @@ const Experiences = (props) => {
   } = props;
 
   const routeRedirect = (data) => {
-    console.log('route redirect experience===>', data);
     Router.push({
-      pathname: `/experiences/${data.title}`,
+      pathname: `/experiences/${data.slug}`,
       query: {
         id: data.id
       }

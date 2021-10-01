@@ -57,6 +57,7 @@ export const getStaticProps = wrapper.getStaticProps((store) => async (ctx) => {
     // Next.js will attempt to re-generate the page:
     // - When a request comes in
     // - At most once every 10 seconds
-    revalidate: 3600 // In seconds
+    revalidate: 3600, // In seconds
+    fallback: false
   };
 });

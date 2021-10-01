@@ -2,7 +2,9 @@ import { HYDRATE } from 'next-redux-wrapper';
 
 import * as PostsType from './posts.types';
 
-const INITIAL_STATE = {
+import { IPostState } from '../interfaces';
+
+const INITIAL_STATE: IPostState = {
   blogIds: [],
   blogs: {},
   next_page: 1,
@@ -28,7 +30,8 @@ const PostsReducer = (state = INITIAL_STATE, action) => {
     case PostsType.FETCH_POSTS_SUCCESS:
       return {
         ...state,
-        postsList: [...state.postsList, ...payload],
+        postsList: [...state.postsList, ...payload.posts],
+        next_page: payload.next_page,
         loading: false
       };
 
@@ -38,6 +41,7 @@ const PostsReducer = (state = INITIAL_STATE, action) => {
         loading: false,
         error: payload
       };
+
     case PostsType.FETCH_RANDOM_POSTS_START:
       return {
         ...state,

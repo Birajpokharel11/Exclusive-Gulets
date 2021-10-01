@@ -1,10 +1,10 @@
 import React, { useEffect } from 'react';
 import Head from 'next/head';
-import { wrapper } from '../store';
 
 import { ThemeProvider } from '@material-ui/core/styles';
-
 import theme from '../theme';
+
+import { wrapper } from '../store';
 
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
@@ -31,6 +31,13 @@ const App = (props) => {
         <meta
           name="description"
           content="Exclusive Gulets is an experienced UK-based gulet and yacht charter company, specialists in offering exclusive gulet and yacht charters in Turkey, Croatia, Greece, and the Mediterranean."
+        />
+
+        <meta property="og:title" content="Exclusive Gulets" key="title" />
+        <meta
+          property="og:description"
+          content="Exclusive Gulets is an experienced UK-based gulet and yacht charter company, specialists in offering exclusive gulet and yacht charters in Turkey, Croatia, Greece, and the Mediterranean."
+          key="description"
         />
       </Head>
       <ThemeProvider theme={theme}>

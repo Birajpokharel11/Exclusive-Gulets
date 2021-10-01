@@ -13,7 +13,9 @@ import { fetchPostsStart } from '@store/posts/posts.actions';
 import { fetchOfferStart } from '@store/offer/offer.actions';
 import { fetchHomeStart } from '@store/home/home.actions';
 
-export default function Home({ isIOS }) {
+export default function Home({ isIOS, fullUrl }) {
+  console.log({ fullUrl });
+
   return (
     <>
       <Head>
@@ -30,7 +32,7 @@ export default function Home({ isIOS }) {
         />
         <meta
           property="og:image"
-          content="/assets/images/heroYatch.png"
+          content={`${process.env.BASE_URL}/assets/images/heroYatch.png`}
           key="image"
         />
       </Head>
@@ -39,7 +41,7 @@ export default function Home({ isIOS }) {
   );
 }
 
-export const getStaticProps = wrapper.getStaticProps((store) => async () => {
+export const getStaticProps = wrapper.getStaticProps((store) => async (ctx) => {
   store.dispatch(fetchYachtsStart());
   store.dispatch(fetchRandomDestinationStart());
   store.dispatch(fetchExperiencesStart());
@@ -61,18 +63,3 @@ export const getStaticProps = wrapper.getStaticProps((store) => async () => {
     revalidate: 3600 // In seconds
   };
 });
-
-// Home.getInitialProps = ({ req }: NextPageContext) => {
-//   let isIOS = false;
-//   let userAgent;
-//   if (req) {
-//     // if you are on the server and you get a 'req' property from your context
-//     userAgent = req.headers['user-agent']; // get the user-agent from the headers
-//   } else {
-//     userAgent = navigator.userAgent; // if you are on the client you can access the navigator from the window object
-//     isIOS = /(iPad|iPhone|iPod)/g.test(navigator.userAgent);
-//   }
-//   return {
-//     isIOS
-//   };
-// };

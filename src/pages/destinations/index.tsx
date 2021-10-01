@@ -22,7 +22,7 @@ const Destinations = () => {
         />
         <meta
           property="og:image"
-          content="/assets/images/Destination/Hero-bg.jpg"
+          content={`${process.env.BASE_URL}/assets/images/Destination/Hero-bg.jpg`}
           key="title"
         />
       </Head>

@@ -17,7 +17,10 @@ export default function BlogsPage() {
           name="description"
           content="Keep up to date with our latest yachting news, charter destinations, special offers, gulet rentals and read new updates about current travel situation."
         />
-        <meta name="og:image" content="/assets/images/Blog/Hero-bg.jpg" />
+        <meta
+          name="og:image"
+          content={`${process.env.BASE_URL}/assets/images/Blog/Hero-bg.jpg`}
+        />
       </Head>
 
       <WithLayout component={Blogs} layout={Main} />

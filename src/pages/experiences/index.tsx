@@ -20,7 +20,7 @@ export default function Experiences() {
         />
         <meta
           property="og:image"
-          content="/assets/images/yachts/image-38.png"
+          content={`${process.env.BASE_URL}/assets/images/yachts/image-38.png`}
           key="title"
         />
       </Head>

@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import Image from 'next/image';
 
 import { createStyles, makeStyles } from '@material-ui/core/styles';
 import Box from '@material-ui/core/Box';
@@ -10,6 +11,7 @@ import BannerSection from '@components/BannerSection';
 import BackgroundVectors from '@components/BackgroundVectors';
 import CardList from '@components/CardList';
 import FooterSlider from '@components/FooterSlider';
+import vectorblog1 from '../../assets/images/Blog_single/wheel-vector.svg';
 
 import container from './Destinations.container';
 
@@ -18,6 +20,19 @@ const useStyles = makeStyles((theme) =>
     root: {
       height: 'calc(100vh - 64px)',
       padding: 0
+    },
+    Container6: {
+      maxWidth: '50%',
+      top: 0,
+      transform: 'rotate(90deg)',
+      position: 'absolute'
+    },
+    Container7: {
+      maxWidth: '50%',
+      top: 0,
+      right: 0,
+      transform: 'rotate(90deg)',
+      position: 'absolute'
     }
   })
 );
@@ -37,14 +52,22 @@ const Destinations = (props) => {
         {...props}
       />
 
-      <Box component="section">
-        <BackgroundVectors />
+      <Box
+        component="section"
+        maxWidth="false"
+        style={{ position: 'relative' }}
+      >
         <Container>
-          <Box mb={4}>
-            {/*<Typography>{featured_destination.content}</Typography>*/}
-          </Box>
           <CardList list={destinations} route="destinations" />
         </Container>
+        <BackgroundVectors />
+
+        {/* <div className={classes.Container6}>
+          <Image width={250} src={vectorblog1} alt="vector blog1" />
+        </div>
+        <div className={classes.Container7}>
+          <Image width={250} src={vectorblog1} alt="vector blog1" />
+        </div> */}
       </Box>
       {/* <FooterSlider /> */}
     </Box>

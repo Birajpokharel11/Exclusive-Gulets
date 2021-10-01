@@ -19,27 +19,30 @@ const useStyles = makeStyles((theme) =>
     },
     Container4: {
       width: '100%',
-      transform: 'rotate(-180deg)'
+      transform: 'rotate(-180deg)',
+      position: 'absolute',
+      bottom: 30
     },
     Container5: {
       maxWidth: '100%',
-      marginLeft: '75%'
+      marginLeft: '75%',
+      position: 'absolute',
+      top: 0,
+      right: 0
     },
     Container6: {
       maxWidth: '50%',
-      position: 'relative',
-      top: 280,
-      transform: 'rotate(90deg)'
-    },
-
-    vetor: {}
+      top: 0,
+      transform: 'rotate(90deg)',
+      position: 'absolute'
+    }
   })
 );
 
 export const BackgroundVectors = () => {
   const classes = useStyles();
   return (
-    <Box style={{ zIndex: 1 }}>
+    <>
       <div className={classes.Container6}>
         <Image width={250} src={vectorblog1} alt="vector blog1" />
       </div>
@@ -48,15 +51,13 @@ export const BackgroundVectors = () => {
         <Image width={280} src={vector4} alt="vector blog1" />
       </div>
       <div style={{ marginTop: '180px' }} />
-      <Box display="flex">
-        <div className={classes.Container3}>
-          <Image width={250} height={350} src={vector2} alt="vector blog1" />
-        </div>
-        <div className={classes.Container4}>
-          <Image width={250} src={vectorblog1} alt="vector blog1" />
-        </div>
-      </Box>
-    </Box>
+      <div className={classes.Container3}>
+        <Image width={250} height={350} src={vector2} alt="vector blog1" />
+      </div>
+      <div className={classes.Container4}>
+        <Image width={250} src={vectorblog1} alt="vector blog1" />
+      </div>
+    </>
   );
 };
 

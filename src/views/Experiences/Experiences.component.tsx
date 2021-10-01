@@ -49,18 +49,15 @@ const Experiences = (props) => {
         {...props}
       />
 
-      <Box component="section">
-        <BackgroundVectors />
+      <Box component="section" style={{ position: 'relative' }}>
         <Container>
-          <Box mb={4}>
-            {/*<Typography>{featured_destination.content}</Typography>*/}
-          </Box>
           <CardList
             list={experiences}
             route="experiences"
             routeRedirect={routeRedirect}
           />
         </Container>
+        <BackgroundVectors />
       </Box>
       {/* <FooterSlider /> */}
     </Box>

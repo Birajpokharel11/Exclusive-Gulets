@@ -1,4 +1,6 @@
 import React from 'react';
+import Head from 'next/head';
+
 import { END } from 'redux-saga';
 import { wrapper } from '@store/index';
 import { fetchYachtsStart } from '@store/yachts/yachts.actions';
@@ -10,7 +12,18 @@ import Main from '@layouts/Main';
 import YachtPage from '@views/Yachts';
 
 export default function Yatch() {
-  return <WithLayout component={YachtPage} layout={Main} />;
+  return (
+    <>
+      <Head>
+        <title>Exclusive Gulets | Yachts</title>
+        <meta
+          name="description"
+          content="LUXURY GULET & YACHT CHARTER EXPERTS"
+        />
+      </Head>
+      <WithLayout component={YachtPage} layout={Main} />
+    </>
+  );
 }
 
 export const getServerSideProps = wrapper.getServerSideProps(

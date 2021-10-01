@@ -17,26 +17,28 @@ export default function Home({ isIOS }) {
   return <WithLayout component={HomePage} layout={Main} isIOS={isIOS} />;
 }
 
-export const getServerSideProps = wrapper.getServerSideProps(
-  (store) => async () => {
-    store.dispatch(fetchYachtsStart());
-    store.dispatch(fetchRandomDestinationStart());
-    store.dispatch(fetchExperiencesStart());
-    store.dispatch(fetchPostsStart());
-    store.dispatch(fetchOfferStart());
-    store.dispatch(fetchHomeStart());
-    store.dispatch(END);
+export const getStaticProps = wrapper.getStaticProps((store) => async () => {
+  store.dispatch(fetchYachtsStart());
+  store.dispatch(fetchRandomDestinationStart());
+  store.dispatch(fetchExperiencesStart());
+  store.dispatch(fetchPostsStart());
+  store.dispatch(fetchOfferStart());
+  store.dispatch(fetchHomeStart());
+  store.dispatch(END);
 
-    await store.sagaTask?.toPromise();
-    const myStore = store.getState();
-    const posts = myStore.posts;
-    console.log({ posts });
+  await store.sagaTask?.toPromise();
+  const myStore = store.getState();
+  const posts = myStore.posts;
+  console.log({ posts });
 
-    return {
-      props: { posts }
-    };
-  }
-);
+  return {
+    props: { posts },
+    // Next.js will attempt to re-generate the page:
+    // - When a request comes in
+    // - At most once every 10 seconds
+    revalidate: 3600 // In seconds
+  };
+});
 
 // Home.getInitialProps = ({ req }: NextPageContext) => {
 //   let isIOS = false;

@@ -60,9 +60,14 @@ export default function NewsAndBlogs(props) {
   const classes = useStyles();
   const theme = useTheme();
   const matchesSM = useMediaQuery(theme.breakpoints.up('sm'));
+
+  const getSlice = () => {
+    return posts.slice(0, 3);
+  };
+
   return (
     <Box component="section" className={classes.root}>
-      <Container maxWidth="xl">
+      <Container maxWidth="lg">
         <Box textAlign="center">
           <Typography variant="h2" color="textPrimary" align="center" stripped>
             News & Blogs
@@ -74,7 +79,7 @@ export default function NewsAndBlogs(props) {
           </Typography>
         </Box>
 
-        <CardWithSlider cardsData={posts} />
+        <CardWithSlider cardsData={getSlice()} />
 
         <Grid container justifyContent="center">
           <Button

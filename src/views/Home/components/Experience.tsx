@@ -54,6 +54,11 @@ export default function Experience(props) {
   const classes = useStyles();
   const theme = useTheme();
   const matchesSM = useMediaQuery(theme.breakpoints.up('sm'));
+
+  const getSlice = () => {
+    return experiences.slice(0, 3);
+  };
+
   return (
     <Box component="section" className={classes.root}>
       <Container>
@@ -70,7 +75,7 @@ export default function Experience(props) {
           </Typography>
         </Box>
 
-        <CardWithSlider cardsData={experiences} />
+        <CardWithSlider cardsData={getSlice()} />
 
         <Grid container justifyContent="center">
           <Button

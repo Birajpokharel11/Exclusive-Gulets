@@ -6,6 +6,7 @@ import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
+import { createMarkup } from '@utils/misc';
 
 const useStyles = makeStyles((theme) =>
   createStyles({
@@ -173,34 +174,77 @@ const list = [
   }
 ];
 
-export default function Accomodation() {
+export default function Accomodation(props) {
+  const { data } = props;
   const classes = useStyles();
   const length = list.length;
   console.log(length);
+
+  const dynamicItemData = [
+    {
+      img: '/assets/images/Cabins.svg',
+      title: 'Guests',
+      Number: `${data?.number_of_passengers}`
+    },
+
+    {
+      img: '/assets/images/Crew.svg',
+      title: 'Cabin',
+      Number: `${data?.number_of_cabins}`
+    },
+    {
+      img: '/assets/images/Guest.svg',
+      title: 'Crew',
+      Number: 0
+    }
+  ];
+
+  const dynamicList = [
+    {
+      title: 'LENGTH',
+      Number: `${data?.length}`
+    },
+
+    {
+      title: 'BEAM',
+      Number: `${data?.beam || ''}`
+    },
+    {
+      title: 'DRAFT',
+      Number: `${data?.draft || ''}`
+    },
+    {
+      title: 'GROSS ONNAGE',
+      Number: `${data?.gross || ''}`
+    },
+    {
+      title: 'CRUISING SPEED',
+      Number: `${data?.speed || ''}`
+    },
+    {
+      title: 'BUILDER',
+      Number: `${data?.builder || ''}`
+    },
+    {
+      title: 'MODEL',
+      Number: `${data?.name || ''}`
+    },
+    {
+      title: 'BUILT',
+      Number: `${data?.build_year || ''}`
+    }
+  ];
   return (
     <Box maxWidth="false" className={classes.Box}>
       <div className={classes.TextPosition}>
         <Typography className={classes.FirstTitle}>ACCOMODATION</Typography>
-        <Typography className={classes.Typography}>
-          Corsario{`'`}sinterior layout sleeps up to 12 guests in 6 rooms,
-          including a master suite, 1 VIP stateroom, 2 double cabins and 2 twin
-          cabins. She is also capable of carrying up to 8 crew onboard to ensure
-          a relaxed luxury yacht experience. Timeless styling, beautiful
-          furnishings and sumptuous seating feature throughout to create an
-          elegant and comfortable atmosphere.
-          <br />
-          <br />
-          Corsario{`'`}s impressive leisure and entertainment facilities make
-          her the ideal charter yacht for socialising and entertaining with
-          family and friends.
-          <br />
-          <br />
-          Sauna, Air Conditioning, Deck Jacuzzi, WiFi connection on board.
-          Luxury Charter yacht Corsario is a gulet yacht, read our online guide
-          for more information on gulet Yacht Charter.
-        </Typography>
+        <Typography
+          className={classes.Typography}
+          dangerouslySetInnerHTML={createMarkup(data?.accommodation)}
+        />
+
         <Grid container spacing={3} className={classes.Grid}>
-          {itemData.map((item, i) => (
+          {dynamicItemData.map((item, i) => (
             <Grid
               item
               key={i}
@@ -227,7 +271,7 @@ export default function Accomodation() {
         <Paper square className={classes.Paper} elevation={0}>
           <Typography className={classes.ListTitle}>SPECIFICATION</Typography>
           <List style={{ padding: '0, 100px' }}>
-            {list.map((list, index) => {
+            {dynamicList.map((list, index) => {
               return (
                 <>
                   <ListItem>

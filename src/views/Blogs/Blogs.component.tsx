@@ -47,7 +47,7 @@ const Destinations = (props) => {
       />
       <Container>
         <Box mb={4} mt={6}>
-          <BackgroundVectors />
+          {/* <BackgroundVectors /> */}
           <Typography align="center" className={classes.heading}>
             There is more to yachting than just spending a week or so sailing.
             We share our experiences on the best itineraries to suit you,

@@ -19,21 +19,22 @@ import container from './YatchDetails.container';
 
 const YatchDetails = (props) => {
   const {
-    siteCoordinator: { yachtStore }
+    yatch: { soleYacht },
+    destination: { randomDestination }
   } = props;
   const { query } = useRouter();
 
   return (
     <Container maxWidth={false} style={{ padding: '0%' }}>
-      <SpecialOffer />
-      <HeroSection data={yachtStore} />
-      <AboutSection data={yachtStore} />
-      <GallerySection />
-      <AccomodationSection />
-      <GallerySilder data={yachtStore} />
+      {/* <SpecialOffer /> */}
+      <HeroSection data={soleYacht} />
+      <AboutSection data={soleYacht} />
+      {/* <GallerySection /> */}
+      <AccomodationSection data={soleYacht} />
+      <GallerySilder data={soleYacht} />
       <OptionalFeatures />
-      <DestinationSection />
-      <Reviews />
+      <DestinationSection data={randomDestination} />
+      {/* <Reviews /> */}
       <Enquiry />
     </Container>
   );

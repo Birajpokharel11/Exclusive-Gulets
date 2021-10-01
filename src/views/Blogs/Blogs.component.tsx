@@ -44,10 +44,7 @@ function Destinations({ posts, loading, fetchPostsStart }: Props) {
   const redirectDetailsPage = (data) => {
     if (route === 'blogs') {
       Router.push({
-        pathname: `/blogs/${data.title}`,
-        query: {
-          id: data.id
-        }
+        pathname: `/blogs/${data.slug}`
       });
     }
   };

@@ -67,7 +67,7 @@ const PostsReducer = (state = INITIAL_STATE, action) => {
     case PostsType.FETCH_POSTS_BY_ID_SUCCESS:
       return {
         ...state,
-        destination: payload,
+        posts: payload,
         loading: false
       };
 

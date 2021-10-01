@@ -1,4 +1,5 @@
 import React from 'react';
+import Head from 'next/head';
 
 import WithLayout from '@components/WithLayout';
 import Main from '@layouts/Main';
@@ -8,20 +9,39 @@ import { wrapper } from '@store/index';
 import { fetchExperiencesStart } from '@store/experiences/experiences.actions';
 
 export default function Experiences() {
-  return <WithLayout component={BespokeExperiencesPage} layout={Main} />;
+  return (
+    <>
+      <Head>
+        <title>Exclusive Gulets | Experiences</title>
+        <meta
+          property="og:title"
+          content="Exclusive Gulets | Experiences"
+          key="title"
+        />
+        <meta
+          property="og:image"
+          content={`${process.env.BASE_URL}/assets/images/yachts/image-38.png`}
+          key="title"
+        />
+      </Head>
+      <WithLayout component={BespokeExperiencesPage} layout={Main} />
+    </>
+  );
 }
 
-export const getServerSideProps = wrapper.getServerSideProps(
-  (store) => async () => {
-    store.dispatch(fetchExperiencesStart());
-    store.dispatch(END);
+export const getStaticProps = wrapper.getStaticProps((store) => async () => {
+  store.dispatch(fetchExperiencesStart());
+  store.dispatch(END);
 
-    await store.sagaTask?.toPromise();
-    const myStore = store.getState();
-    const experience = myStore.experience;
+  await store.sagaTask?.toPromise();
+  const myStore = store.getState();
+  const experience = myStore.experience;
 
-    return {
-      props: { experience }
-    };
-  }
-);
+  return {
+    props: { experience },
+    // Next.js will attempt to re-generate the page:
+    // - When a request comes in
+    // - At most once every 30 minutes
+    revalidate: 3600 // In seconds
+  };
+});

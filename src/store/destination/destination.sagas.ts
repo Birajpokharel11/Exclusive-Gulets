@@ -13,7 +13,7 @@ export function* fetchDestinationAsync({ payload: { page, amount_per_page } }) {
         { page, amount_per_page }
       )}`
     );
-    console.log('value of response>>>', data.destinations);
+
     yield put(destinationAction.fetchDestinationSuccess(data.destinations));
   } catch (err) {
     console.error('error received>>>', err);
@@ -23,14 +23,10 @@ export function* fetchDestinationAsync({ payload: { page, amount_per_page } }) {
 
 export function* fetchRandomDestinationAsync() {
   try {
-    console.log('inside of random destination saga');
     const { data } = yield axios.get(
       `${process.env.REACT_APP_PROD_URL}/destinations/random_destinations`
     );
-    console.log(
-      'value of response fetchRandomDestinationAsync>>>',
-      data.destinations
-    );
+
     yield put(
       destinationAction.fetchRandomDestinationSuccess(data.destinations)
     );
@@ -42,11 +38,10 @@ export function* fetchRandomDestinationAsync() {
 
 export function* fetchDestinationByIdAsync({ payload: { id } }) {
   try {
-    console.log('fetchDestinationByIdAsync>>', id);
     const { data } = yield axios.get(
       `${process.env.REACT_APP_PROD_URL}/destinations/${id}.json`
     );
-    console.log('data fetchDestinationByIdAsync ', data);
+
     yield put(destinationAction.fetchDestinationByIdSuccess(data));
   } catch (err) {
     console.error('error received>>>', err);

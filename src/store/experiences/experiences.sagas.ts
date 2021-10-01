@@ -9,11 +9,10 @@ import * as experiencesAction from './experiences.actions';
 
 export function* fetchExperiencesAsync() {
   try {
-    console.log('fetchExperiencesAsync>>>');
     const { data } = yield axios.get(
       `${process.env.REACT_APP_PROD_URL}/experiences.json`
     );
-    console.log('value of response fetchOfferAsync>>>', data);
+
     yield put(experiencesAction.fetchExperiencesSuccess(data.experiences));
   } catch (err) {
     console.error('error received>>>', err);
@@ -23,12 +22,10 @@ export function* fetchExperiencesAsync() {
 
 export function* fetchExperienceByIdAsync({ payload: { id } }: AnyAction) {
   try {
-    console.log('fetchExperienceByIdAsync>>>');
     const { data } = yield axios.get(
       `${process.env.REACT_APP_PROD_URL}/experiences/${id}`
     );
-    console.log('value of response fetchOfferAsync>>>', data);
-    yield put(experiencesAction.fetchExperienceByIdSuccess(data.experience));
+    yield put(experiencesAction.fetchExperienceByIdSuccess(data));
   } catch (err) {
     console.error('error received>>>', err);
     yield put(experiencesAction.fetchExperienceByIdFailure(err));

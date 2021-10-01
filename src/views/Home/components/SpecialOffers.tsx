@@ -64,6 +64,11 @@ export default function Introduction(props) {
   const classes = useStyles();
   const theme = useTheme();
   const matchesSM = useMediaQuery(theme.breakpoints.up('sm'));
+
+  const getSlice = () => {
+    return offers.slice(0, 3);
+  };
+
   return (
     <Box component="section" className={classes.root}>
       <Container maxWidth="lg">
@@ -78,7 +83,7 @@ export default function Introduction(props) {
           </Typography>
         </Box>
 
-        <CardWithSlider cardsData={offers} />
+        <CardWithSlider cardsData={getSlice()} />
 
         <Grid
           container

@@ -4,6 +4,7 @@ import useMediaQuery from '@material-ui/core/useMediaQuery';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
+import { createMarkup } from '@utils/misc';
 
 import Location from '@modules/icons/Location';
 
@@ -80,7 +81,7 @@ const SildeItem = (props) => {
       >
         <Grid item xs={matchesSM ? undefined : 6}>
           <Typography variant="h3" className={classes.title}>
-            {props.place}
+            {props?.name}
           </Typography>
         </Grid>
         <Grid
@@ -95,14 +96,31 @@ const SildeItem = (props) => {
             className={classes.wrapIcon}
           >
             <Location style={{ marginRight: '8px' }} />
-            {props.country}
+            {props.sailing_countries.length &&
+              props.sailing_countries.map((country, i) => (
+                <>
+                  {i > 0 && ', '}
+
+                  <Typography
+                    gutterBottom
+                    variant="subtitle1"
+                    component="p"
+                    align="center"
+                    style={{ display: ' inline-block' }}
+                  >
+                    {country?.name}
+                  </Typography>
+                </>
+              ))}
           </Typography>
         </Grid>
 
         <Grid item>
-          <Typography variant="h4" className={classes.description}>
-            {props.description}
-          </Typography>
+          <Typography
+            variant="h4"
+            className={classes.description}
+            dangerouslySetInnerHTML={createMarkup(props?.about)}
+          />
         </Grid>
 
         <Grid item container>
@@ -117,7 +135,7 @@ const SildeItem = (props) => {
         </Grid>
       </Grid>
       <Grid item lg={5} md={6} sm={6} xs={12} className={classes.grid2}>
-        <img src="/assets/images/heroYatch.png" className={classes.img} />
+        <img src={props?.featured_image_1?.url} className={classes.img} />
       </Grid>
     </Grid>
   );

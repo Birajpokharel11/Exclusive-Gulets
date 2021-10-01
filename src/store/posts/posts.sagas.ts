@@ -3,9 +3,12 @@ import { AnyAction } from 'redux';
 import axios from 'axios';
 import * as postsType from './posts.types';
 import * as postsAction from './posts.actions';
+import { fetchPostsStart } from './posts.actions';
 import queryString from 'query-string';
 
-export function* fetchPostsAsync({ payload: { page, amount_per_page } }) {
+export function* fetchPostsAsync({
+  payload: { page, amount_per_page }
+}: ReturnType<typeof fetchPostsStart>) {
   try {
     console.log('fetchPostsAsync>>>', { page, amount_per_page });
     // const { data } = yield axios.get(

@@ -65,7 +65,7 @@ interface Props {
   next_page?: any;
   showMore?: () => any;
   route?: string;
-  redirectDetailsPage?: any;
+  routeRedirect?: any;
 }
 
 export default function CardList({
@@ -73,9 +73,23 @@ export default function CardList({
   next_page,
   showMore,
   route,
-  redirectDetailsPage
+  routeRedirect
 }: Props) {
   const classes = useStyles();
+
+  const redirectDetailsPage = (data) => {
+    if (route === 'destinations') {
+      console.log('routse', route);
+      Router.push({
+        pathname: `/destinations/${data.title}`,
+        query: {
+          id: data.id
+        }
+      });
+    } else if (route === 'experiences') {
+      routeRedirect(data);
+    }
+  };
 
   return (
     <Grid container>
@@ -129,9 +143,7 @@ export default function CardList({
             </CardActionArea>
           </Card>
         ))}
-      {/* {next_page &&  */}
-      <DiscoverMore showMore={showMore} />
-      {/* } */}
+      {next_page && <DiscoverMore onClick={showMore} />}
     </Grid>
   );
 }

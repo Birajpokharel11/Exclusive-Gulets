@@ -120,12 +120,27 @@ const CustomStepper: React.FC<Props> = ({
       <Box className={classes.itemBar} />
       <Box className={classes.content}>
         <Typography variant="h4" className={classes.title}>
-          {item.place}
+          {item?.name}
         </Typography>
 
         <Box className={classes.location}>
           <Location style={{ width: 15, height: 20 }} />
-          <Typography component="span">{item.country}</Typography>
+          {item.sailing_countries.length &&
+            item.sailing_countries.map((country, i) => (
+              <>
+                {i > 0 && ', '}
+
+                <Typography
+                  gutterBottom
+                  variant="subtitle1"
+                  component="p"
+                  align="center"
+                  style={{ display: ' inline-block' }}
+                >
+                  {country?.name}
+                </Typography>
+              </>
+            ))}
         </Box>
       </Box>
     </Box>

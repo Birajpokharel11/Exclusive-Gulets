@@ -63,7 +63,13 @@ const useStyles = makeStyles((theme) =>
   })
 );
 
-export default function YatchSlider({ title, subtitle }) {
+interface Props {
+  title: string;
+  subtitle: string;
+  contentData?: any[];
+}
+
+export default function YatchSlider({ title, subtitle, contentData }: Props) {
   const classes = useStyles();
   return (
     <Box component="section" className={classes.root}>
@@ -76,9 +82,11 @@ export default function YatchSlider({ title, subtitle }) {
           {subtitle}
         </Typography>
       </Box>
-      <Container maxWidth="lg">
-        <CustomSlider sliderData={slider} />
-      </Container>
+      {contentData && (
+        <Container maxWidth="lg">
+          <CustomSlider sliderData={contentData ? contentData : slider} />
+        </Container>
+      )}
     </Box>
   );
 }

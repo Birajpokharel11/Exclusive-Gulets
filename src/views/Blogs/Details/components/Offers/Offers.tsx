@@ -131,7 +131,7 @@ export default function Offers() {
                 If you're in search of sugar-white, sun-kissed beaches, a warm,
                 balmy climate, hospitable people, and beautiful scenery, the
                 {'  '}
-                <Link href="https://www.exclusivegulets.com/destinations/caribbean">
+                <Link href="/destinations/caribbean">
                   <span className={classes.Underline}>
                     {' '}
                     {'  '}Caribbean {'  '}
@@ -220,7 +220,7 @@ export default function Offers() {
                 In addition, you will also have your own professional crew to
                 take care of your every need, and a world-class chef to whip up
                 mouth-watering{' '}
-                <Link href="https://www.exclusivegulets.com/blogs/the-art-of-dining-onboard-a-private-yacht">
+                <Link href="/blogs/the-art-of-dining-onboard-a-private-yacht">
                   <span className={classes.Underline}> cuisine</span>
                 </Link>{' '}
                 for breakfast, lunch, and dinner… and a few scrumptious snacks
@@ -245,7 +245,7 @@ export default function Offers() {
 
               <Typography variant="body1">
                 Browse through our phenomenal selection of{' '}
-                <Link href="https://www.exclusivegulets.com/yachts">
+                <Link href="/yachts">
                   <span className={classes.Underline}> yachts</span>
                 </Link>{' '}
                 in the Caribbean.

@@ -28,6 +28,11 @@ export default function Home({ isIOS }) {
           content="Exclusive Gulets is an experienced UK-based gulet and yacht charter company, specialists in offering exclusive gulet and yacht charters in Turkey, Croatia, Greece, and the Mediterranean."
           key="description"
         />
+        <meta
+          property="og:image"
+          content="/assets/images/heroYatch.png"
+          key="image"
+        />
       </Head>
       <WithLayout component={HomePage} layout={Main} isIOS={isIOS} />
     </>

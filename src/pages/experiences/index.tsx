@@ -18,6 +18,11 @@ export default function Experiences() {
           content="Exclusive Gulets | Experiences"
           key="title"
         />
+        <meta
+          property="og:image"
+          content="/assets/images/yachts/image-38.png"
+          key="title"
+        />
       </Head>
       <WithLayout component={BespokeExperiencesPage} layout={Main} />
     </>

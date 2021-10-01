@@ -20,6 +20,11 @@ const Destinations = () => {
           content="Exclusive Gulets | Destinations"
           key="title"
         />
+        <meta
+          property="og:image"
+          content="/assets/images/Destination/Hero-bg.jpg"
+          key="title"
+        />
       </Head>
       <WithLayout component={DestinationPage} layout={Main} />
     </>

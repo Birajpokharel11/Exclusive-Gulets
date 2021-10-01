@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 
 import { createStyles, makeStyles } from '@material-ui/core/styles';
-import { CircularProgress, Grid, Box } from '@material-ui/core';
+import { CircularProgress, Grid, Box, Container } from '@material-ui/core';
 
 import BannerSection from '@components/BannerSection';
 import CardList from '@components/CardList';
@@ -84,25 +84,30 @@ const DestinationsDetails = (props) => {
       {loading ? (
         <CircularProgress />
       ) : (
-        <Box component="section" maxWidth="md" mt={9}>
-          <Grid
-            container
-            justifyContent="center"
-            alignItems="center"
-            direction="column"
-          >
-            <Grid item>
-              <Typography variant="h2" className={classes.selectionYachtHeader}>
-                DESTINATIONS
-              </Typography>
+        <Box component="section" maxWidth="false" mt={9}>
+          <Container maxWidth="lg">
+            <Grid
+              container
+              justifyContent="center"
+              alignItems="center"
+              direction="column"
+            >
+              <Grid item>
+                <Typography
+                  variant="h2"
+                  className={classes.selectionYachtHeader}
+                >
+                  DESTINATIONS
+                </Typography>
+              </Grid>
+              <Grid item>
+                <Typography variant="h2">
+                  Discover secret locations around the world
+                </Typography>
+              </Grid>
             </Grid>
-            <Grid item>
-              <Typography variant="h2">
-                Discover secret locations around the world
-              </Typography>
-            </Grid>
-          </Grid>
-          <CardList list={otherDestinations} />
+            <CardList list={otherDestinations} />
+          </Container>
         </Box>
       )}
     </div>

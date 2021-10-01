@@ -26,29 +26,27 @@ const Destinations = () => {
   );
 };
 
-export const getServerSideProps = wrapper.getServerSideProps(
-  (store) => async () => {
-    store.dispatch(
-      fetchDestinationStart({
-        ...DestinationSort,
-        page: 1,
-        amount_per_page: Limits.DESTINATIONS_PER_PAGE
-      })
-    );
-    store.dispatch(END);
+export const getStaticProps = wrapper.getStaticProps((store) => async () => {
+  store.dispatch(
+    fetchDestinationStart({
+      ...DestinationSort,
+      page: 1,
+      amount_per_page: Limits.DESTINATIONS_PER_PAGE
+    })
+  );
+  store.dispatch(END);
 
-    await store.sagaTask?.toPromise();
-    const myStore = store.getState();
-    const destination = myStore.destination;
+  await store.sagaTask?.toPromise();
+  const myStore = store.getState();
+  const destination = myStore.destination;
 
-    return {
-      props: { destination },
-      // Next.js will attempt to re-generate the page:
-      // - When a request comes in
-      // - At most once every 30 minutes
-      revalidate: 3600 // In seconds
-    };
-  }
-);
+  return {
+    props: { destination },
+    // Next.js will attempt to re-generate the page:
+    // - When a request comes in
+    // - At most once every 30 minutes
+    revalidate: 3600 // In seconds
+  };
+});
 
 export default Destinations;

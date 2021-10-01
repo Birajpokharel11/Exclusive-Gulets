@@ -36,23 +36,21 @@ export default function Yatch() {
   );
 }
 
-export const getServerSideProps = wrapper.getServerSideProps(
-  (store) => async () => {
-    store.dispatch(fetchYachtsStart());
-    store.dispatch(fetchRandomDestinationStart());
-    store.dispatch(fetchExperiencesStart());
-    store.dispatch(END);
+export const getStaticProps = wrapper.getStaticProps((store) => async () => {
+  store.dispatch(fetchYachtsStart());
+  store.dispatch(fetchRandomDestinationStart());
+  store.dispatch(fetchExperiencesStart());
+  store.dispatch(END);
 
-    await store.sagaTask?.toPromise();
-    const myStore = store.getState();
-    const yacht = myStore.yacht;
+  await store.sagaTask?.toPromise();
+  const myStore = store.getState();
+  const yacht = myStore.yacht;
 
-    return {
-      props: { yacht },
-      // Next.js will attempt to re-generate the page:
-      // - When a request comes in
-      // - At most once every 30 minutes
-      revalidate: 3600 // In seconds
-    };
-  }
-);
+  return {
+    props: { yacht },
+    // Next.js will attempt to re-generate the page:
+    // - When a request comes in
+    // - At most once every 30 minutes
+    revalidate: 3600 // In seconds
+  };
+});

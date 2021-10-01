@@ -13,9 +13,7 @@ import { fetchPostsStart } from '@store/posts/posts.actions';
 import { fetchOfferStart } from '@store/offer/offer.actions';
 import { fetchHomeStart } from '@store/home/home.actions';
 
-export default function Home({ isIOS, fullUrl }) {
-  console.log({ fullUrl });
-
+export default function Home({ isIOS }) {
   return (
     <>
       <Head>
@@ -53,7 +51,6 @@ export const getStaticProps = wrapper.getStaticProps((store) => async (ctx) => {
   await store.sagaTask?.toPromise();
   const myStore = store.getState();
   const posts = myStore.posts;
-  console.log({ posts });
 
   return {
     props: { posts },

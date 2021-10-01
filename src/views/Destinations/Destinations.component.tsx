@@ -63,10 +63,7 @@ const Destinations = ({
       console.log('routse', route);
 
       Router.push({
-        pathname: `/destinations/${data.title}`,
-        query: {
-          id: data.id
-        }
+        pathname: `/destinations/${data.slug}`
       });
     }
   };

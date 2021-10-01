@@ -5,16 +5,19 @@ import Banner from '@components/BannerSection';
 import ContentSection from '@components/ContentSection';
 import DestinationsGallerySection from '@components/DestinationsGallerySection';
 import YahtsSlider from '@components/YachtSlider';
-
+import Container from './BlogsDetails.container';
 import { Images } from '@mocks/_destinationMocks';
+import BlogContnetSection from '@components/BlogContnetSection';
 
-const Blogs = () => {
+const Blogs = (props) => {
+  const { individual } = props;
+  console.log('individual', individual);
   return (
     <Box>
       <Banner />
 
       {/* Second section  */}
-      <ContentSection />
+      <BlogContnetSection individual={individual} />
 
       {/* Third Section  */}
       <YahtsSlider
@@ -34,4 +37,4 @@ const Blogs = () => {
   );
 };
 
-export default Blogs;
+export default Container(Blogs);

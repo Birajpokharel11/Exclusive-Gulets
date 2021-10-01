@@ -11,7 +11,8 @@ export default function NewsBlogs() {
 }
 export const getServerSideProps = wrapper.getServerSideProps(
   (store) => async (context) => {
-    store.dispatch(fetchPostsByIdStart(context.query.id));
+    console.log('asasasfasfasfasfasfsf0', context.params);
+    store.dispatch(fetchPostsByIdStart(context.params.slug));
     store.dispatch(END);
 
     await store.sagaTask?.toPromise();

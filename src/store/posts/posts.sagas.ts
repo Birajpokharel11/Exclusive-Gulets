@@ -55,7 +55,7 @@ export function* fetchPostsaByIdAsync({ payload: { id } }) {
   try {
     console.log('fetchDestinationByIdAsync>>', id);
     const { data } = yield axios.get(
-      `${process.env.REACT_APP_PROD_URL}/destinations/${id}.json`
+      `${process.env.REACT_APP_PROD_URL}/posts/${id}`
     );
     console.log('data fetchDestinationByIdAsync ', data);
     yield put(postsAction.fetchPostsByIdSuccess(data));

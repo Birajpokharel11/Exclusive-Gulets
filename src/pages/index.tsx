@@ -11,6 +11,7 @@ import { fetchRandomDestinationStart } from '@store/destination/destination.acti
 import { fetchExperiencesStart } from '@store/experiences/experiences.actions';
 import { fetchPostsStart } from '@store/posts/posts.actions';
 import { fetchOfferStart } from '@store/offer/offer.actions';
+import { fetchHomeStart } from '@store/home/home.actions';
 
 export default function Home({ isIOS }) {
   return <WithLayout component={HomePage} layout={Main} isIOS={isIOS} />;
@@ -23,6 +24,7 @@ export const getServerSideProps = wrapper.getServerSideProps(
     store.dispatch(fetchExperiencesStart());
     store.dispatch(fetchPostsStart());
     store.dispatch(fetchOfferStart());
+    store.dispatch(fetchHomeStart());
     store.dispatch(END);
 
     await store.sagaTask?.toPromise();

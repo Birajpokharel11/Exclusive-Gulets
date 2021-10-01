@@ -96,8 +96,8 @@ const SildeItem = (props) => {
             className={classes.wrapIcon}
           >
             <Location style={{ marginRight: '8px' }} />
-            {props.sailing_countries.length &&
-              props.sailing_countries.map((country, i) => (
+            {props.ailing_countries.length &&
+              props.ailing_countries.map((country, i) => (
                 <>
                   {i > 0 && ', '}
 

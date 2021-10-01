@@ -7,6 +7,7 @@ import offerReducer from './offer/offer.reducer';
 import postsReducer from './posts/posts.reducer';
 import experiencesReducer from './experiences/experiences.reducer';
 import YachtsReducer from './yachts/yachts.reducer';
+import HomeReducer from './home/home.reducer';
 
 const rootReducer = combineReducers({
   auth: authReducer,
@@ -15,6 +16,7 @@ const rootReducer = combineReducers({
   posts: postsReducer,
   siteCoordinator: siteCoordinatorReducer,
   experience: experiencesReducer,
-  yacht: YachtsReducer
+  yacht: YachtsReducer,
+  home: HomeReducer
 });
 export default rootReducer;

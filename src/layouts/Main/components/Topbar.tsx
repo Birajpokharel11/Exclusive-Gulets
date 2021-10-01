@@ -99,7 +99,6 @@ export default function Header() {
   const [open, setOpen] = useState(false);
 
   const handleChange = (e, value) => {
-    console.log('value after handleChange>>>', value);
     setValue(value);
   };
 

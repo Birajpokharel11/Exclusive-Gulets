@@ -38,8 +38,6 @@ const CustomSlider = ({ sliderData }: Props) => {
     }
   };
 
-  console.log('sliderData>>', sliderData);
-
   const [activeSlideIndex, setActiveSlideIndex] = useState(INITAL_SLIDE);
   const sliderRef = useRef<Slider>(null);
 

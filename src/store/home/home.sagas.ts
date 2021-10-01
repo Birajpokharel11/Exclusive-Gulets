@@ -7,11 +7,10 @@ import * as homeAction from './home.actions';
 
 export function* fetchHomeAsync() {
   try {
-    console.log('fetchHomeAsync>>>');
     const { data } = yield axios.get(
       `${process.env.REACT_APP_PROD_URL}/content/home.json`
     );
-    console.log('value of response fetchHomeAsync>>>', data);
+
     yield put(homeAction.fetchHomeSuccess(data));
   } catch (err) {
     console.error('error received>>>', err);

@@ -128,7 +128,6 @@ export default function PreviewDrawer(props) {
   ];
 
   const storeYachtDetails = (selectedYacht) => {
-    console.log('storeYachtDetails>>', selectedYacht);
     dispatch(storeYacht(selectedYacht));
   };
 

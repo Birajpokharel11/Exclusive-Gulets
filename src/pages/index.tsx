@@ -1,9 +1,6 @@
 import React from 'react';
 import Head from 'next/head';
 
-import WithLayout from '@components/WithLayout';
-import Main from '@layouts/Main';
-import HomePage from '@views/Home';
 import { END } from 'redux-saga';
 import { wrapper } from '@store/index';
 import { fetchYachtsStart } from '@store/yachts/yachts.actions';
@@ -12,6 +9,10 @@ import { fetchExperiencesStart } from '@store/experiences/experiences.actions';
 import { fetchPostsStart } from '@store/posts/posts.actions';
 import { fetchOfferStart } from '@store/offer/offer.actions';
 import { fetchHomeStart } from '@store/home/home.actions';
+
+import WithLayout from '@components/WithLayout';
+import Main from '@layouts/Main';
+import HomePage from '@views/Home';
 
 export default function Home({ isIOS }) {
   return (
@@ -57,7 +58,6 @@ export const getStaticProps = wrapper.getStaticProps((store) => async (ctx) => {
     // Next.js will attempt to re-generate the page:
     // - When a request comes in
     // - At most once every 10 seconds
-    revalidate: 3600, // In seconds
-    fallback: false
+    revalidate: 3600 // In seconds
   };
 });

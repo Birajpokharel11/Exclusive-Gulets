@@ -9,11 +9,10 @@ import * as postsAction from './yachts.actions';
 
 export function* fetchYachtsAsync() {
   try {
-    console.log('fetchYachtsAsync>>>');
     const { data } = yield axios.post(
       `${process.env.REACT_APP_PROD_URL}/search/filter_yachts.json`
     );
-    console.log('value of response fetchYachtsAsync>>>', data.yachts);
+
     yield put(postsAction.fetchYachtsSuccess(data.yachts));
   } catch (err) {
     console.error('error received>>>', err);
@@ -24,11 +23,10 @@ export function* fetchYachtsAsync() {
 export function* fetchYachtByIdAsync({ payload }: AnyAction) {
   const { id: yacht_id, user_id } = payload;
   try {
-    console.log('fetchYachtsAsync>>>');
     const { data } = yield axios.get(
       `${process.env.REACT_APP_PROD_URL}/yachts/${yacht_id}?user_id=${user_id}`
     );
-    console.log('value of response fetchYachtsAsync>>>', data.yachts);
+
     yield put(postsAction.fetchYachtsSuccess(data.yachts));
   } catch (err) {
     console.error('error received>>>', err);

@@ -16,20 +16,13 @@ export function* fetchPostsAsync({
   }
 }: ReturnType<typeof fetchPostsStart>) {
   try {
-    console.log('fetchPostsAsync>>>', { page, amount_per_page });
-    // const { data } = yield axios.get(
-    //   `${process.env.REACT_APP_PROD_URL}/posts.json?${queryString.stringify(
-    //     payload
-    //   )}`
-    // );
-
     const { data } = yield axios.get(
       `https://app.exclusivegulets.com/api/v1/posts.json`,
       {
         params: { page, amount_per_page, sort_by, sort_order }
       }
     );
-    console.log('value of response fetchOfferAsync>>>', data);
+
     yield put(postsAction.fetchPostsSuccess(data));
   } catch (err) {
     console.error('error received>>>', err);
@@ -41,14 +34,10 @@ export function* fetchPostsAsync({
 
 export function* fetchRandomPostsAsync() {
   try {
-    console.log('inside of random destination saga');
     const { data } = yield axios.get(
       `${process.env.REACT_APP_PROD_URL}/destinations/random_destinations`
     );
-    console.log(
-      'value of response fetchRandomDestinationAsync>>>',
-      data.destinations
-    );
+
     yield put(postsAction.fetchRandomPostsSuccess(data.destinations));
   } catch (err) {
     console.error('error received>>>', err);
@@ -62,11 +51,9 @@ export function* fetchPostsaByIdAsync({
   payload: { id }
 }: ReturnType<typeof fetchPostsByIdStart>) {
   try {
-    console.log('fetchDestinationByIdAsync>>', id);
     const { data } = yield axios.get(
       `${process.env.REACT_APP_PROD_URL}/posts/${id}`
     );
-    console.log('data fetchDestinationByIdAsync ', data);
     yield put(postsAction.fetchPostsByIdSuccess(data));
   } catch (err) {
     console.error('error received>>>', err);

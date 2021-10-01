@@ -21,9 +21,9 @@ const YatchDetails = (props) => {
 
   const [open, setOpen] = useState(false);
   const [selectedYacht, setSelectedYacht] = useState({});
+
   const handleDrawerToggle = (id) => {
     const filteredYatch = yachtsList.find((x) => x.id === id);
-    console.log('filteredYatch>>', filteredYatch);
     setSelectedYacht(filteredYatch);
     setOpen(!open);
   };

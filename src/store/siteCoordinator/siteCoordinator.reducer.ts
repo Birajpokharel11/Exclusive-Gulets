@@ -13,13 +13,11 @@ const siteCoordinatorReducer = (state = INITIAL_STATE, action) => {
 
   switch (type) {
     case SiteCoordinatorType.LANGUAGE_CHANGE:
-      console.log('changed language>>', payload);
       updatedState = {
         ...state,
         language: payload
       };
     case SiteCoordinatorType.STORE_YACHT:
-      console.log('STORE_YACHT reducer>>', payload);
       updatedState = {
         ...state,
         yachtStore: payload

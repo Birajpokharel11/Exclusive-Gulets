@@ -181,7 +181,7 @@ export default function Gallery() {
           </ImageListItem>
         ))}
       </ImageList>
-      {console.log('Before update: ', itemData[0])}
+
       <Grid container spacing={2}>
         {MobileData.map((item, i) => (
           <Grid item key={i}>

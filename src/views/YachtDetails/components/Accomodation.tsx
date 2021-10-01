@@ -176,7 +176,7 @@ const list = [
 export default function Accomodation() {
   const classes = useStyles();
   const length = list.length;
-  console.log(length);
+
   return (
     <Box maxWidth="false" className={classes.Box}>
       <div className={classes.TextPosition}>

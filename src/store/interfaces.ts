@@ -48,7 +48,7 @@ export interface IOfferState {
 
 export interface IYachtState {
   yachtsList: any[];
-  yacht: object | any;
+  soleYacht: object | any;
   error: any | null;
   loading: boolean;
 }

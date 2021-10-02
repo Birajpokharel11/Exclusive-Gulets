@@ -26,11 +26,10 @@ export function* fetchYachtByIdAsync({ payload }: AnyAction) {
     const { data } = yield axios.get(
       `${process.env.REACT_APP_PROD_URL}/yachts/${yacht_id}?user_id=${user_id}`
     );
-
-    yield put(postsAction.fetchYachtsSuccess(data.yachts));
+    yield put(postsAction.fetchYachtByIdSuccess(data.yacht));
   } catch (err) {
     console.error('error received>>>', err);
-    yield put(postsAction.fetchYachtsFailure(err));
+    yield put(postsAction.fetchYachtByIdFailure(err));
   }
 }
 

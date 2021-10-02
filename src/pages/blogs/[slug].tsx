@@ -1,8 +1,8 @@
 import React from 'react';
 import axios from 'axios';
 
-import { wrapper } from '@store/index';
 import { END } from 'redux-saga';
+import { wrapper } from '@store/index';
 import { fetchPostsByIdStart } from '@store/posts/posts.actions';
 
 import WithLayout from '@components/WithLayout';
@@ -14,6 +14,7 @@ import { Limits, Sort } from '@utils/enums';
 export default function NewsBlogs() {
   return <WithLayout component={BlogsDetails} layout={Main} />;
 }
+
 
 export async function getStaticPaths() {
   const { data } = await axios.get(

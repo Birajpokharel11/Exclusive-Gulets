@@ -7,6 +7,7 @@ import { useRouter } from 'next/router';
 import { END } from 'redux-saga';
 import { wrapper } from '../../store';
 import { fetchYachtByIdStart } from '@store/yachts/yachts.actions';
+import { fetchRandomDestinationStart } from '@store/destination/destination.actions';
 
 export default function Slug() {
   return <WithLayout component={YatchDetailsPage} layout={Main} />;
@@ -25,6 +26,7 @@ export const getServerSideProps = wrapper.getServerSideProps(
       user_id = user_data.id;
     }
     store.dispatch(fetchYachtByIdStart(context.query.id, user_id));
+    store.dispatch(fetchRandomDestinationStart());
 
     store.dispatch(END);
 

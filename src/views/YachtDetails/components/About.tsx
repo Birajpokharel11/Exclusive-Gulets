@@ -5,6 +5,7 @@ import { Box, Grid, Typography } from '@material-ui/core';
 import Breadcrumbs from '@material-ui/core/Breadcrumbs';
 import Link from '@material-ui/core/Link';
 import NavigateNextIcon from '@material-ui/icons/NavigateNext';
+import { createMarkup } from '@utils/misc';
 
 const useStyles = makeStyles((theme) =>
   createStyles({
@@ -205,9 +206,10 @@ export default function Description(props) {
           >
             ABOUT {data?.name}
           </Typography>
-          <Typography className={clsx(classes.Typography)}>
-            {data?.about}
-          </Typography>{' '}
+          <Typography
+            className={clsx(classes.Typography)}
+            dangerouslySetInnerHTML={createMarkup(data?.about)}
+          />
           <div>
             <img
               src="/assets/images/Aresteas.svg"
@@ -221,11 +223,9 @@ export default function Description(props) {
           <Typography
             className={classes.Typography}
             style={{ paddingBottom: '61px' }}
-          >
-            Sauna, Air Conditioning, Deck Jacuzzi, WiFi connection on board.
-            Luxury Charter yacht Corsario is a gulet yacht, read our online
-            guide for more information on gulet Yacht Charter.
-          </Typography>
+            dangerouslySetInnerHTML={createMarkup(data?.entertainment)}
+          />
+
           <Grid container className={classes.Grid}>
             {itemData.map((item, i) => (
               <Grid

@@ -6,7 +6,7 @@ import { IYachtState } from '../interfaces';
 
 const INITIAL_STATE: IYachtState = {
   yachtsList: [],
-  yacht: {},
+  soleYacht: {},
   error: null,
   loading: false
 };
@@ -46,7 +46,7 @@ const YachtsReducer = (state = INITIAL_STATE, action) => {
     case YachtsType.FETCH_YACHT_BY_ID_SUCCESS:
       return {
         ...state,
-        yacht: payload,
+        soleYacht: payload,
         loading: false
       };
 

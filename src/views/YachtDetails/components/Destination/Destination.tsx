@@ -54,7 +54,7 @@ const useStyles = makeStyles((theme) =>
   })
 );
 
-function Destinations() {
+function Destinations({ data }) {
   const classes = useStyles();
   const theme = useTheme();
   const matches = useMediaQuery(theme.breakpoints.down(500));
@@ -94,80 +94,46 @@ function Destinations() {
           new exciting destination to explore.
         </Typography>
       </Container>
-      <Container maxWidth="md" className={classes.Destinations}>
+      <Container maxWidth="lg" className={classes.Destinations}>
         {!matches ? (
           <Grid container justifyContent="space-around">
-            <Grid item xs>
-              <Card className={classes.root}>
-                <CardActionArea>
-                  <CardMedia
-                    component="img"
-                    alt="Contemplative Reptile"
-                    height="140"
-                    image="/assets/images/Amat.svg"
-                    style={{
-                      width: '400px',
-                      height: '400px',
-                      objectFit: 'contain'
-                    }}
-                    title="Contemplative Reptile"
-                  />
-                  <CardContent style={{ backgroundColor: '#F5F0E4' }}>
-                    <Typography
-                      gutterBottom
-                      style={{ textAlign: 'center' }}
-                      className={classes.listitemText}
-                    >
-                      Cyclades Islands Greece
-                    </Typography>
-                    <Typography
-                      variant="body2"
-                      color="textSecondary"
-                      component="p"
-                      className={classes.listitemText2}
-                    >
-                      A perfect yacht charter getaway in probably one of the
-                      most romantic, beautiful, and charming place on earth.
-                    </Typography>
-                  </CardContent>
-                </CardActionArea>
-              </Card>
-            </Grid>
-            <Grid item xs>
-              <Card className={classes.root}>
-                <CardActionArea>
-                  <CardMedia
-                    style={{
-                      width: '400px',
-                      height: '400px',
-                      objectFit: 'contain'
-                    }}
-                    component="img"
-                    alt="Contemplative Reptile"
-                    height="140"
-                    image="/assets/images/Tube.svg"
-                    title="Contemplative Reptile"
-                  />
-                  <CardContent
-                    style={{ backgroundColor: '#F5F0E4' }}
-                    className={classes.listitemText}
-                  >
-                    <Typography gutterBottom style={{ textAlign: 'center' }}>
-                      Dalmatian Islands Croatia
-                    </Typography>
-                    <Typography
-                      variant="body2"
-                      color="textSecondary"
-                      component="p"
-                      className={classes.listitemText2}
-                    >
-                      The Cyclades are a group of Greek Islands, best known for
-                      the islands of Santorini and Mykonos.
-                    </Typography>
-                  </CardContent>
-                </CardActionArea>
-              </Card>
-            </Grid>
+            {data.map((destination) => (
+              <Grid item xs>
+                <Card className={classes.root}>
+                  <CardActionArea>
+                    <CardMedia
+                      component="img"
+                      alt="Contemplative Reptile"
+                      height="140"
+                      image={destination.featured_image?.url}
+                      style={{
+                        width: '400px',
+                        height: '400px',
+                        objectFit: 'cover'
+                      }}
+                      title="title"
+                    />
+                    <CardContent style={{ backgroundColor: '#F5F0E4' }}>
+                      <Typography
+                        gutterBottom
+                        style={{ textAlign: 'center' }}
+                        className={classes.listitemText}
+                      >
+                        {destination?.title}
+                      </Typography>
+                      <Typography
+                        variant="body2"
+                        color="textSecondary"
+                        component="p"
+                        className={classes.listitemText2}
+                      >
+                        {destination?.meta_description}
+                      </Typography>
+                    </CardContent>
+                  </CardActionArea>
+                </Card>
+              </Grid>
+            ))}
           </Grid>
         ) : (
           <MobileSlider />

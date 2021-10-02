@@ -154,11 +154,11 @@ const SignIn = (props) => {
                 {"Don't have an account. Create one here."}
               </Typography>
             </RouterLink>
-            <a href="https://app.exclusivegulets.com/users/password/new">
+            <RouterLink href="/forgot-password">
               <Typography className={classes.link} style={{ marginTop: 20 }}>
                 {'Forgot your password.'}
               </Typography>
-            </a>
+            </RouterLink>
           </div>
         </Grid>
         <Grid className={classes.imgContainer} item lg={5}>

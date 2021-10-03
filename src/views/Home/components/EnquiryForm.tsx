@@ -69,17 +69,21 @@ export default function EnquiryForm() {
         <Grid container spacing={3}>
           <Grid item container md={6} sm={12} xs={12} spacing={2}>
             <Grid item xs={3}>
-              <Select
-                id="select"
-                value="title"
+              <TextField
+                id="filled-select-currency"
+                select
+                label="Select"
                 variant="outlined"
                 className={classes.textWidth}
-                MenuProps={menuProps}
+                SelectProps={{
+                  MenuProps: menuProps
+                }}
+                InputProps={{ notched: false }}
               >
                 <MenuItem value="title">Title</MenuItem>
                 <MenuItem value="ten">Ten</MenuItem>
                 <MenuItem value="twenty">Twenty</MenuItem>
-              </Select>
+              </TextField>
             </Grid>
             <Grid item xs={9}>
               <TextField
@@ -87,6 +91,7 @@ export default function EnquiryForm() {
                 label="Full Name"
                 variant="outlined"
                 className={classes.textWidth}
+                InputProps={{ notched: false }}
               />
             </Grid>
             <Grid item xs={12}>
@@ -95,19 +100,25 @@ export default function EnquiryForm() {
                 label="Email"
                 variant="outlined"
                 className={classes.textWidth}
+                InputProps={{ notched: false }}
               />
             </Grid>
             <Grid item xs={3}>
-              <Select
-                value="country"
+              <TextField
+                id="filled-select-currency"
+                select
+                label="Select"
                 variant="outlined"
                 className={classes.textWidth}
-                MenuProps={menuProps}
+                SelectProps={{
+                  MenuProps: menuProps
+                }}
+                InputProps={{ notched: false }}
               >
-                <MenuItem value="country">Country</MenuItem>
+                <MenuItem value="title">Title</MenuItem>
                 <MenuItem value="ten">Ten</MenuItem>
                 <MenuItem value="twenty">Twenty</MenuItem>
-              </Select>
+              </TextField>
             </Grid>
             <Grid item xs={9}>
               <TextField
@@ -115,6 +126,7 @@ export default function EnquiryForm() {
                 label="Mobile Phone"
                 variant="outlined"
                 className={classes.textWidth}
+                InputProps={{ notched: false }}
               />
             </Grid>
           </Grid>
@@ -126,6 +138,7 @@ export default function EnquiryForm() {
               rows={9}
               variant="outlined"
               className={classes.textWidth}
+              InputProps={{ notched: false }}
             />
           </Grid>
           <Grid item container justifyContent="center">

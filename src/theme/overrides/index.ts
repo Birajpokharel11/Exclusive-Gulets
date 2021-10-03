@@ -4,6 +4,7 @@ import MuiPaper from './MuiPaper';
 import MuiTableCell from './MuiTableCell';
 import MuiTableHead from './MuiTableHead';
 import MuiTypography from './MuiTypography';
+import MuiInputLabel from './MuiInputLabel';
 import MuiTextField from './MuiTextField';
 import MuiSelect from './MuiSelect';
 
@@ -14,6 +15,7 @@ export default {
   MuiTableCell,
   MuiTableHead,
   MuiTypography,
+  MuiInputLabel,
   MuiTextField,
   MuiSelect
 };

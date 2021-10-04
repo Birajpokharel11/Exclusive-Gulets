@@ -130,7 +130,7 @@ export default function EnquiryForm() {
               />
             </Grid>
           </Grid>
-          <Grid item md={6} sm={12} xs={12} spacing={2}>
+          <Grid item md={6} sm={12} xs={12}>
             <TextField
               id="standard-multiline-static"
               label="Your Comments"

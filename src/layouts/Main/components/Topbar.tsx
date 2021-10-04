@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
+import { useRouter } from 'next/router';
+////////////////////////////////////////////////////////////
 import clsx from 'clsx';
 import { makeStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
@@ -158,17 +160,18 @@ export default function Header() {
       setValue(6);
     }
   }, [value]);
+  const router = useRouter();
   return (
     <>
       <AppBar position="fixed" elevation={0} className={classes.AppBar}>
         <Toolbar>
-          <Link href="/">
+          <div onClick={() => router.push('/', undefined, { shallow: true })}>
             <img
               src="/assets/images/logo.svg"
               alt="me"
               className={classes.logo}
             />
-          </Link>
+          </div>
           <div style={{ flexGrow: 1 }} />
           <Hidden mdDown>
             <Tabs
@@ -184,31 +187,41 @@ export default function Header() {
                 className={classes.tab}
                 label="YATCHS"
                 data-cy="YATCHS"
-                href="/yachts"
+                onClick={() =>
+                  router.push('/yachts', undefined, { shallow: true })
+                }
               />
               <Tab
                 className={classes.tab}
                 label="OFFERS"
                 data-cy="OFFERS"
-                href="/yachts/offers"
+                onClick={() =>
+                  router.push('/yachts/offers', undefined, { shallow: true })
+                }
               />
               <Tab
                 className={classes.tab}
                 label="DESTINATIONS"
                 data-cy="DESTINATIONS"
-                href="/destinations"
+                onClick={() =>
+                  router.push('/destinations', undefined, { shallow: true })
+                }
               />
               <Tab
                 className={classes.tab}
                 label="BESPOKE EXPERIENCES"
                 data-cy="BESPOKEEXPERIENCES"
-                href="/experiences"
+                onClick={() =>
+                  router.push('/experiences', undefined, { shallow: true })
+                }
               />
               <Tab
                 className={classes.tab}
                 label="NEWS & BLOGS"
                 data-cy="NEWSBLOGS"
-                href="/blogs"
+                onClick={() =>
+                  router.push('/blogs', undefined, { shallow: true })
+                }
               />
               <Tab
                 className={classes.tab}

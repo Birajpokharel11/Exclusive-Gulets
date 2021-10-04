@@ -24,7 +24,6 @@ const useStyles = makeStyles((theme) =>
 );
 interface Props {
   posts?: { postList: any[]; next_page: boolean };
-  postsList?: any[];
   loading?: any;
   route?: string;
   next_page?: number;

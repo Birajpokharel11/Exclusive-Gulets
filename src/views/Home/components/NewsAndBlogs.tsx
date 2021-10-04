@@ -55,14 +55,18 @@ const data = [
     imgPath: '/assets/images/yatchYoga.png'
   }
 ];
+interface Props {
+  posts: any[];
+  redirectDetailsPage?: any;
+}
 
-export default function NewsAndBlogs(props) {
-  const { posts } = props;
+export default function NewsAndBlogs({ posts, redirectDetailsPage }: Props) {
   const classes = useStyles();
   const theme = useTheme();
   const matchesSM = useMediaQuery(theme.breakpoints.up('sm'));
 
   const getSlice = () => {
+    console.log('Posssrts', posts);
     return posts.slice(0, 3);
   };
   const router = useRouter();
@@ -80,7 +84,10 @@ export default function NewsAndBlogs(props) {
           </Typography>
         </Box>
 
-        <CardWithSlider cardsData={getSlice()} />
+        <CardWithSlider
+          redirectDetailsPage={redirectDetailsPage}
+          cardsData={getSlice()}
+        />
 
         <Grid container justifyContent="center">
           <Button

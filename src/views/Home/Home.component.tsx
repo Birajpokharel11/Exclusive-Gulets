@@ -4,7 +4,7 @@ import { createStyles, makeStyles } from '@material-ui/core/styles';
 import { Box, CircularProgress } from '@material-ui/core';
 
 import { Images } from '@mocks/_destinationMocks';
-
+import { useRouter } from 'next/router';
 import YachtSlider from './components/YachtSlider';
 import DestinationsGallerySection from '@components/DestinationsGallerySection';
 import {
@@ -30,6 +30,9 @@ const useStyles = makeStyles((theme) =>
 
 const Home = (props) => {
   const classes = useStyles();
+
+  ///////////////////////////////////////
+
   const {
     destination: { randomDestination },
     experience: { experiences },
@@ -39,6 +42,15 @@ const Home = (props) => {
     //   home: { yachts }
     // }
   } = props;
+
+  /////////////////////////////////////////
+
+  const router = useRouter();
+  const redirectDetailsPage = (data) => {
+    router.push(`/blogs/${data.slug}`, undefined, { shallow: true });
+  };
+
+  ///////////////////////////////////////////////
 
   return (
     <div>
@@ -59,7 +71,10 @@ const Home = (props) => {
         destinations={randomDestination}
       />
       <Experience experiences={experiences} />
-      <NewsAndBlogs posts={postsList} />
+      <NewsAndBlogs
+        redirectDetailsPage={redirectDetailsPage}
+        posts={postsList}
+      />
       <EnquiryForm />
     </div>
   );

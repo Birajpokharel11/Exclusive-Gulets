@@ -203,7 +203,7 @@ export default function PreviewDrawer(props) {
           <Grid container justifyContent="center">
             <Link
               href={{
-                pathname: `yachts/[slug]`,
+                pathname: `/yachts/[slug]`,
                 query: {
                   slug: selectedYacht.slug,
                   id: selectedYacht.id

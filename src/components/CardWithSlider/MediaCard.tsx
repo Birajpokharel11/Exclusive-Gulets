@@ -49,7 +49,6 @@ export default function MediaCard(props) {
         <CardMedia
           className={classes.media}
           image={(props.image?.url || props.featured_image?.url) ?? ''}
-          title="Contemplative Reptile"
         />
       </CardActionArea>
       <CardContent>

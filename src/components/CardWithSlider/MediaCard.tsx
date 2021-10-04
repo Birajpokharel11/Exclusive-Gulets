@@ -9,6 +9,7 @@ import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
+import { useRouter } from 'next/router';
 
 const useStyles = makeStyles((theme) =>
   createStyles({
@@ -32,7 +33,7 @@ const useStyles = makeStyles((theme) =>
 
 export default function MediaCard(props) {
   const classes = useStyles();
-
+  const router = useRouter();
   const createMarkup = (encodedHtml) => ({
     __html: _.unescape(encodedHtml)
   });
@@ -41,6 +42,9 @@ export default function MediaCard(props) {
     <Card className={classes.root} elevation={0}>
       <CardActionArea>
         <CardMedia
+          onClick={() =>
+            router.push('/experiences', undefined, { shallow: true })
+          }
           className={classes.media}
           image={(props.image?.url || props.featured_image?.url) ?? ''}
           title="Contemplative Reptile"

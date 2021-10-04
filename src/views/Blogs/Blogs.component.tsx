@@ -6,7 +6,7 @@ import CardList from '@components/CardList';
 import container from './Blogs.container';
 import BackgroundVectors from '@components/BackgroundVectors';
 import { CircularProgress } from '@material-ui/core';
-import Router from 'next/router';
+import { useRouter } from 'next/router';
 
 const useStyles = makeStyles((theme) =>
   createStyles({
@@ -38,7 +38,7 @@ function Destinations({
   const classes = useStyles();
   const [page, setpage] = React.useState(0);
   const [amount_per_page, setAmount_per_page] = React.useState(5);
-
+  const router = useRouter();
   const showMore = () => {
     setpage((prev) => prev + 1);
     console.log('helloworld', page, next_page);
@@ -48,9 +48,7 @@ function Destinations({
   const route = 'blogs';
   const redirectDetailsPage = (data) => {
     if (route === 'blogs') {
-      Router.push({
-        pathname: `/blogs/${data.slug}`
-      });
+      router.push(`/blogs/${data.slug}`, undefined, { shallow: true });
     }
   };
   return (

@@ -11,6 +11,7 @@ import { Container, Grid, Box, Button } from '@material-ui/core';
 
 import Typography from '@modules/components/Typography';
 import CardWithSlider from '@components/CardWithSlider';
+import { useRouter } from 'next/router';
 
 const useStyles = makeStyles((theme) =>
   createStyles({
@@ -64,7 +65,7 @@ export default function NewsAndBlogs(props) {
   const getSlice = () => {
     return posts.slice(0, 3);
   };
-
+  const router = useRouter();
   return (
     <Box component="section" className={classes.root}>
       <Container maxWidth="lg">
@@ -87,6 +88,7 @@ export default function NewsAndBlogs(props) {
             variant="contained"
             size="large"
             className={classes.buttonStyle}
+            onClick={() => router.push('/blogs', undefined, { shallow: true })}
           >
             View All News & Blogs
           </Button>

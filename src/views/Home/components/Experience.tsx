@@ -11,6 +11,7 @@ import { Container, Grid, Box, Button } from '@material-ui/core';
 
 import Typography from '@modules/components/Typography';
 import CardWithSlider from '@components/CardWithSlider';
+import { useRouter } from 'next/router';
 
 const useStyles = makeStyles((theme) =>
   createStyles({
@@ -54,7 +55,7 @@ export default function Experience(props) {
   const classes = useStyles();
   const theme = useTheme();
   const matchesSM = useMediaQuery(theme.breakpoints.up('sm'));
-
+  const router = useRouter();
   const getSlice = () => {
     return experiences.slice(0, 3);
   };
@@ -83,6 +84,9 @@ export default function Experience(props) {
             variant="contained"
             size="large"
             className={classes.buttonStyle}
+            onClick={() =>
+              router.push('/experiences', undefined, { shallow: true })
+            }
           >
             View All Experiences
           </Button>

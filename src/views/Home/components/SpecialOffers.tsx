@@ -7,7 +7,7 @@ import {
 } from '@material-ui/core/styles';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 import { Container, Grid, Box, Button } from '@material-ui/core';
-
+import { useRouter } from 'next/router';
 import Typography from '@modules/components/Typography';
 import CardWithSlider from '@components/CardWithSlider';
 
@@ -64,7 +64,7 @@ export default function Introduction(props) {
   const classes = useStyles();
   const theme = useTheme();
   const matchesSM = useMediaQuery(theme.breakpoints.up('sm'));
-
+  const router = useRouter();
   const getSlice = () => {
     return offers.slice(0, 3);
   };
@@ -83,7 +83,13 @@ export default function Introduction(props) {
           </Typography>
         </Box>
 
-        <CardWithSlider cardsData={getSlice()} />
+        <Box
+          onClick={() =>
+            router.push('/yachts/offers', undefined, { shallow: true })
+          }
+        >
+          <CardWithSlider cardsData={getSlice()} />
+        </Box>
 
         <Grid
           container
@@ -96,6 +102,9 @@ export default function Introduction(props) {
             variant="contained"
             size="large"
             className={classes.buttonStyle}
+            onClick={() =>
+              router.push('/yachts/offers', undefined, { shallow: true })
+            }
           >
             View All Offers
           </Button>

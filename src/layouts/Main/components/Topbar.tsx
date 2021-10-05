@@ -29,6 +29,8 @@ import PersonIcon from '@material-ui/icons/Person';
 import MenuIcon from '@material-ui/icons/Menu';
 import Drawer from '@material-ui/core/Drawer';
 import CloseIcon from '@material-ui/icons/Close';
+import PreviewDrawer from '@views/Yachts/components/PreviewDrawer';
+import SearchDialouge from '@components/SearchDialouge';
 
 const drawerWidth = 400;
 const useStyles = makeStyles((theme) => ({
@@ -161,6 +163,14 @@ export default function Header() {
     }
   }, [value]);
   const router = useRouter();
+
+  // /Search///////////////////////////////////////
+  const [search, setSearch] = useState(false);
+  const handleSearch = () => {
+    console.log(search, 'search');
+    setSearch(!search);
+  };
+
   return (
     <>
       <AppBar position="fixed" elevation={0} className={classes.AppBar}>
@@ -267,7 +277,11 @@ export default function Header() {
             </Tabs>
           </Hidden>
           <Hidden xsDown>
-            <IconButton color="inherit" data-cy="SearchIcon">
+            <IconButton
+              onClick={handleSearch}
+              color="inherit"
+              data-cy="SearchIcon"
+            >
               <SearchIcon />
             </IconButton>
             <IconButton color="inherit" data-cy="PhoneEnabledIcon">
@@ -447,6 +461,7 @@ export default function Header() {
           </List>
         </div>
       </Drawer>
+      <SearchDialouge search={search} setSearch={setSearch} />
     </>
   );
 }

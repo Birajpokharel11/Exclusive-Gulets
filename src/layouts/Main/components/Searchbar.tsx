@@ -50,7 +50,7 @@ export default function Searchbar() {
       </Paper>
       <div style={{ flexGrow: 0.3 }} />
       <Button className={classes.Button} disableElevation>
-        Search
+        Submit
       </Button>
     </div>
   );

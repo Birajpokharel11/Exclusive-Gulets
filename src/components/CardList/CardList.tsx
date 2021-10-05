@@ -65,7 +65,7 @@ interface Props {
   next_page?: any;
   showMore?: () => any;
   route?: string;
-  redirectDetailsPage?: any;
+  routeRedirect?: (data?: any) => void;
 }
 
 export default function CardList({
@@ -73,7 +73,7 @@ export default function CardList({
   next_page,
   showMore,
   route,
-  redirectDetailsPage
+  routeRedirect
 }: Props) {
   const classes = useStyles();
 
@@ -86,7 +86,7 @@ export default function CardList({
             classes={{ root: classes.cardStyle }}
             elevation={0}
             key={index}
-            onClick={() => redirectDetailsPage(item)}
+            onClick={() => routeRedirect(item)}
           >
             <CardActionArea>
               <CardMedia

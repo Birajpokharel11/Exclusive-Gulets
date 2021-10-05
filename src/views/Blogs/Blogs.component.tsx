@@ -74,7 +74,7 @@ function Destinations({
             <CardList
               list={postsList}
               showMore={showMore}
-              redirectDetailsPage={redirectDetailsPage}
+              routeRedirect={redirectDetailsPage}
               route={route}
             />
           )}

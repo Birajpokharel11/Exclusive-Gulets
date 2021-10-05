@@ -7,13 +7,15 @@ import {
   Typography,
   IconButton,
   Box,
-  useMediaQuery
+  useMediaQuery,
+  Drawer
 } from '@material-ui/core';
 import Breadcrumbs from '@material-ui/core/Breadcrumbs';
 import Link from 'next/link';
 import NavigateNextIcon from '@material-ui/icons/NavigateNext';
 import ExperiencesFrom from './components/ExperiencesForm';
 import { createMarkup } from '@utils/misc';
+import EnquiryDrawer from '@components/EnquiryDrawer';
 
 const useStyles = makeStyles((theme) =>
   createStyles({
@@ -61,6 +63,7 @@ const useStyles = makeStyles((theme) =>
       bottom: 0,
       height: '116px',
       display: 'none',
+      zIndex: 2,
       [theme.breakpoints.down('sm')]: {
         display: 'block'
       }
@@ -82,12 +85,11 @@ export default function BlogContentSection(props) {
   const classes = useStyles();
   const theme = useTheme();
   const matches = useMediaQuery(theme.breakpoints.down('lg'));
+  const [open, setOpen] = React.useState(false);
 
-  function handleClick(event) {
-    event.preventDefault();
-    console.info('You clicked a breadcrumb.');
-  }
-
+  const handleclick = () => {
+    setOpen((prev) => !prev);
+  };
   return (
     <>
       <Box>
@@ -124,11 +126,14 @@ export default function BlogContentSection(props) {
           <Grid item xs>
             {' '}
             <Box alignItems="center">
-              <Button className={classes.ButtonTM}>Enquite</Button>
+              <Button className={classes.ButtonTM} onClick={handleclick}>
+                Enquite
+              </Button>
             </Box>
           </Grid>
         </Grid>
       </Box>
+      <EnquiryDrawer open={open} setOpen={setOpen} />
     </>
   );
 }

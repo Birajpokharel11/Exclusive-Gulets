@@ -65,7 +65,7 @@ interface Props {
   next_page?: any;
   showMore?: () => any;
   route?: string;
-  routeRedirect?: any;
+  routeRedirect?: (data?: any) => void;
 }
 
 export default function CardList({

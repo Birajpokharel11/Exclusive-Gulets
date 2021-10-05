@@ -9,6 +9,8 @@ import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
+import { redirect } from 'next/dist/server/api-utils';
+import { PausePresentationSharp } from '@material-ui/icons';
 
 const useStyles = makeStyles((theme) =>
   createStyles({
@@ -36,14 +38,17 @@ export default function MediaCard(props) {
   const createMarkup = (encodedHtml) => ({
     __html: _.unescape(encodedHtml)
   });
-
+  console.log('console', props);
   return (
-    <Card className={classes.root} elevation={0}>
+    <Card
+      className={classes.root}
+      elevation={0}
+      onClick={() => props.redirectDetailsPage(props)}
+    >
       <CardActionArea>
         <CardMedia
           className={classes.media}
           image={(props.image?.url || props.featured_image?.url) ?? ''}
-          title="Contemplative Reptile"
         />
       </CardActionArea>
       <CardContent>

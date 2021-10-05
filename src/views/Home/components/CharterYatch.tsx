@@ -1,4 +1,5 @@
 import React from 'react';
+import { useRouter } from 'next/router';
 
 import { createStyles, makeStyles } from '@material-ui/core/styles';
 import { Container, Grid, Box, Button } from '@material-ui/core';
@@ -43,6 +44,7 @@ const useStyles = makeStyles((theme) =>
 
 export default function CharterYatch() {
   const classes = useStyles();
+  const router = useRouter();
   return (
     <Box component="section" style={{ position: 'relative' }}>
       <Box className={classes.bgImage} />
@@ -60,7 +62,12 @@ export default function CharterYatch() {
           perfect family getaway.
         </Typography>
         <Grid container justifyContent="center">
-          <Button color="secondary" variant="contained" size="large">
+          <Button
+            color="secondary"
+            variant="contained"
+            size="large"
+            onClick={() => router.push('/yachts', undefined, { shallow: true })}
+          >
             View All Yachts
           </Button>
         </Grid>

@@ -12,6 +12,7 @@ import { Container, Grid, Box, Button } from '@material-ui/core';
 
 import Typography from '@modules/components/Typography';
 import DestinationGallery from './components/Gallery';
+import { useRouter } from 'next/router';
 
 const useStyles = makeStyles((theme) =>
   createStyles({
@@ -45,6 +46,8 @@ export default function Destinations({
   const classes = useStyles();
   const theme = useTheme();
   const matchesSM = useMediaQuery(theme.breakpoints.up('sm'));
+  const router = useRouter();
+
   return (
     <Box component="section" className={clsx(classes.root, className)}>
       <Container maxWidth="md">
@@ -72,6 +75,9 @@ export default function Destinations({
             variant="contained"
             size="large"
             className={classes.buttonStyle}
+            onClick={() =>
+              router.push('/destinations', undefined, { shallow: true })
+            }
           >
             View All Destinations​
           </Button>

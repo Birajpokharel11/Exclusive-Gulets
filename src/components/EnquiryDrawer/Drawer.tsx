@@ -25,7 +25,8 @@ export default function Drawer({ open, setOpen }: Props) {
         style={{ height: '90%' }}
         anchor="bottom"
         open={open}
-        onClose={() => console.log('closed')}
+        onOpen={() => setOpen((prev) => !prev)}
+        onClose={() => setOpen((prev) => !prev)}
       >
         <EnquiryForm setOpen={setOpen} />
       </SwipeableDrawer>

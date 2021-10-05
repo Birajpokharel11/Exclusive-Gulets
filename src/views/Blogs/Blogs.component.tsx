@@ -7,6 +7,7 @@ import container from './Blogs.container';
 import BackgroundVectors from '@components/BackgroundVectors';
 import { CircularProgress } from '@material-ui/core';
 import { useRouter } from 'next/router';
+import { IPostState } from '@store/interfaces';
 
 const useStyles = makeStyles((theme) =>
   createStyles({
@@ -23,7 +24,7 @@ const useStyles = makeStyles((theme) =>
   })
 );
 interface Props {
-  posts?: { postList: any[]; next_page: boolean };
+  posts?: IPostState;
   loading?: any;
   route?: string;
   next_page?: number;

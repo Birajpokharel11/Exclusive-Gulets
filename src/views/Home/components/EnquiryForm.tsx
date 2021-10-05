@@ -135,7 +135,7 @@ export default function EnquiryForm() {
               id="standard-multiline-static"
               label="Your Comments"
               multiline
-              rows={9}
+              rows={10}
               variant="outlined"
               className={classes.textWidth}
               InputProps={{ notched: false }}

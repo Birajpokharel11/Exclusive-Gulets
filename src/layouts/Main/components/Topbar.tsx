@@ -27,6 +27,10 @@ import PersonIcon from '@material-ui/icons/Person';
 import MenuIcon from '@material-ui/icons/Menu';
 import Drawer from '@material-ui/core/Drawer';
 import CloseIcon from '@material-ui/icons/Close';
+import Search from '@assets/images/svg/topbarSearch.svg';
+import Call from '@assets/images/svg/call.svg';
+import Mail from '@assets/images/svg/mail.svg';
+import User from '@assets/images/svg/user.svg';
 
 const drawerWidth = 400;
 const useStyles = makeStyles((theme) => ({
@@ -254,14 +258,14 @@ export default function Header() {
           </Hidden>
           <Hidden xsDown>
             <IconButton color="inherit" data-cy="SearchIcon">
-              <SearchIcon />
+              <Image src={Search} width={18} height={18} alt="logo" />
             </IconButton>
             <IconButton color="inherit" data-cy="PhoneEnabledIcon">
-              <PhoneEnabledIcon />
+              <Image src={Call} width={18} height={18} alt="logo" />
             </IconButton>{' '}
           </Hidden>
           <IconButton color="inherit" data-cy="EmailIcon">
-            <EmailIcon />
+            <Image src={Mail} width={18} height={18} alt="logo" />
           </IconButton>{' '}
           <Hidden smDown>
             <Divider
@@ -273,8 +277,13 @@ export default function Header() {
               }}
             />
             <IconButton color="inherit" data-cy="PersonIcon">
-              <PersonIcon />
-              <Typography className={classes.tab}>Members</Typography>
+              <Image src={User} width={18} height={18} alt="logo" />
+              <Typography
+                className={classes.tab}
+                style={{ paddingLeft: '8px' }}
+              >
+                Members
+              </Typography>
             </IconButton>{' '}
           </Hidden>
           <Hidden xsDown>

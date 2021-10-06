@@ -31,7 +31,7 @@ import Drawer from '@material-ui/core/Drawer';
 import CloseIcon from '@material-ui/icons/Close';
 import PreviewDrawer from '@views/Yachts/components/PreviewDrawer';
 import SearchDialouge from '@components/SearchDialouge';
-
+import Tooltip from '@material-ui/core/Tooltip';
 const drawerWidth = 400;
 const useStyles = makeStyles((theme) => ({
   toolbarMargin: {
@@ -277,18 +277,21 @@ export default function Header() {
             </Tabs>
           </Hidden>
           <Hidden xsDown>
-            <IconButton
-              onClick={handleSearch}
-              color="inherit"
-              data-cy="SearchIcon"
-            >
-              <Image
-                src="/assets/images/Search.svg"
-                height={18}
-                width={18}
-                alt="Search"
-              />
-            </IconButton>
+            <Tooltip title="Search For Yachts">
+              <IconButton
+                onClick={handleSearch}
+                color="inherit"
+                data-cy="SearchIcon"
+              >
+                <Image
+                  src="/assets/images/Search.svg"
+                  height={18}
+                  width={18}
+                  alt="Search"
+                />
+              </IconButton>
+            </Tooltip>
+            {/* <Tooltip> */}
             <IconButton
               href="tel:+44 2081445834"
               color="inherit"
@@ -296,6 +299,7 @@ export default function Header() {
             >
               <PhoneEnabledIcon />
             </IconButton>{' '}
+            {/* </Tooltip> */}
           </Hidden>
           <IconButton
             href="mailto:info@exclusivegulets.com"

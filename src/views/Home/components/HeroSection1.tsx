@@ -45,7 +45,7 @@ const useStyles = makeStyles((theme) =>
       left: 0,
       top: 0,
       padding: 0,
-      zIndex: 1,
+      zIndex: 0,
       [theme.breakpoints.up('md')]: {
         transform: 'scale(1.3)'
       },
@@ -63,7 +63,7 @@ const useStyles = makeStyles((theme) =>
       textAlign: 'center',
       color: '#f5f0e4',
       fontWeight: 300,
-      zIndex: 1
+      zIndex: 0
     },
     controls: {
       display: 'flex',

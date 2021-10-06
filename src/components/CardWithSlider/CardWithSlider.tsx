@@ -26,6 +26,7 @@ interface Card {
 interface Props {
   cardsData: Card[];
   redirectDetailsPage?: any;
+  viewOffer?: string;
 }
 
 const useStyles = makeStyles((theme) =>
@@ -52,7 +53,11 @@ const useStyles = makeStyles((theme) =>
   })
 );
 
-const CardWithSlider = ({ cardsData, redirectDetailsPage }: Props) => {
+const CardWithSlider = ({
+  cardsData,
+  redirectDetailsPage,
+  viewOffer
+}: Props) => {
   const classes = useStyles();
 
   const theme = useTheme();
@@ -103,7 +108,11 @@ const CardWithSlider = ({ cardsData, redirectDetailsPage }: Props) => {
     const md = getColsSize();
     return cardsData.map((card) => (
       <Grid item style={{ padding: '1rem' }} md={md} key={card.id}>
-        <MediaCard redirectDetailsPage={redirectDetailsPage} {...card} />
+        <MediaCard
+          redirectDetailsPage={redirectDetailsPage}
+          viewOffer={viewOffer}
+          {...card}
+        />
       </Grid>
     ));
   };

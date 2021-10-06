@@ -61,9 +61,9 @@ const useStyles = makeStyles((theme) => ({
     minWidth: '50px'
   },
   Menu: {
-    backgroundColor: '#1b4077',
-
-    color: '#FFFFFF'
+    backgroundColor: 'white',
+    zIndex: 2,
+    color: '#2A398D'
   },
   logoContainer: {
     padding: 0

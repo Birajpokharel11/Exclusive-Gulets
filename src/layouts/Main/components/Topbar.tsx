@@ -282,13 +282,22 @@ export default function Header() {
               color="inherit"
               data-cy="SearchIcon"
             >
-              <SearchIcon />
+              <Image
+                src="/assets/images/Search.svg"
+                height={20}
+                width={20}
+                alt="Search"
+              />
             </IconButton>
             <IconButton color="inherit" data-cy="PhoneEnabledIcon">
               <PhoneEnabledIcon />
             </IconButton>{' '}
           </Hidden>
-          <IconButton color="inherit" data-cy="EmailIcon">
+          <IconButton
+            href="mailto:info@exclusivegulets.com"
+            color="inherit"
+            data-cy="EmailIcon"
+          >
             <EmailIcon />
           </IconButton>{' '}
           <Hidden smDown>

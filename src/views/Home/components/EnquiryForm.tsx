@@ -68,7 +68,7 @@ export default function EnquiryForm() {
       <Container>
         <Grid container spacing={3}>
           <Grid item container md={6} sm={12} xs={12} spacing={2}>
-            <Grid item xs={3}>
+            <Grid item sm={3} xs={4}>
               <TextField
                 id="filled-select-currency"
                 select
@@ -85,7 +85,7 @@ export default function EnquiryForm() {
                 <MenuItem value="twenty">Twenty</MenuItem>
               </TextField>
             </Grid>
-            <Grid item xs={9}>
+            <Grid item sm={9} xs={8}>
               <TextField
                 id="outlined-basic"
                 label="Full Name"
@@ -103,7 +103,7 @@ export default function EnquiryForm() {
                 InputProps={{ notched: false }}
               />
             </Grid>
-            <Grid item xs={3}>
+            <Grid item sm={3} xs={4}>
               <TextField
                 id="filled-select-currency"
                 select
@@ -120,7 +120,7 @@ export default function EnquiryForm() {
                 <MenuItem value="twenty">Twenty</MenuItem>
               </TextField>
             </Grid>
-            <Grid item xs={9}>
+            <Grid item sm={9} xs={8}>
               <TextField
                 id="outlined-basic"
                 label="Mobile Phone"

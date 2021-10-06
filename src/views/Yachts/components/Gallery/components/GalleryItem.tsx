@@ -147,7 +147,7 @@ export default function GalleryItem({
               className={classes.InstantOffer}
             >
               <Typography color="secondary" variant="overline">
-                Instant Offer
+                Instant Booking
               </Typography>
             </Button>
           )}

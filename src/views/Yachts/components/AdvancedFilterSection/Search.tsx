@@ -27,6 +27,7 @@ const useStyles = makeStyles((theme: Theme) =>
       alignItems: 'center',
       width: 400,
       background: ' rgba(12, 22, 37, 0.6)',
+      border: '1px solid rgba(255, 255, 255, 0.5)',
 
       [theme.breakpoints.down('xs')]: {
         border: 'none'
@@ -35,7 +36,7 @@ const useStyles = makeStyles((theme: Theme) =>
     input: {
       marginLeft: theme.spacing(1),
       flex: 1,
-      color: 'white'
+      color: '#ffffff'
     },
     Container: {
       padding: '40px 0'
@@ -58,7 +59,7 @@ export default function Search() {
             <IconButton className={classes.iconButton} aria-label="menu">
               <img src="/assets/images/Search.svg" />
             </IconButton>
-            <InputBase className={classes.input} placeholder="Search By Name" />
+            <InputBase className={classes.input} placeholder="Search by name" />
           </Paper>
         </Grid>
         <Grid item md={4} container justifyContent="flex-end">

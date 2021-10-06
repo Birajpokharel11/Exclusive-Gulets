@@ -3,6 +3,8 @@ import Image from 'next/image';
 import Link from 'next/link';
 import clsx from 'clsx';
 import { makeStyles } from '@material-ui/core/styles';
+import { useScrollTrigger } from '@material-ui/core';
+
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Tabs from '@material-ui/core/Tabs';
@@ -61,9 +63,9 @@ const useStyles = makeStyles((theme) => ({
     minWidth: '50px'
   },
   Menu: {
-    backgroundColor: '#1b4077',
+    backgroundColor: '#FFFFFF',
 
-    color: '#FFFFFF'
+    color: '#2A398D'
   },
   logoContainer: {
     padding: 0
@@ -74,7 +76,7 @@ const useStyles = makeStyles((theme) => ({
     }
   },
   drawer: {
-    backgroundColor: '#091527'
+    backgroundColor: 'rgba(9, 21, 39, 0.8)'
   },
   drawerPaper: {
     width: drawerWidth,
@@ -92,10 +94,15 @@ const useStyles = makeStyles((theme) => ({
   },
   hide: {
     display: 'none'
+  },
+  transparentBackground: {
+    backgroundColor: ' rgba(9, 21, 39, 0.8);'
   }
 }));
 
 export default function Header() {
+  const trigger = useScrollTrigger();
+
   const classes = useStyles();
 
   const [value, setValue] = useState(0);
@@ -162,9 +169,17 @@ export default function Header() {
       setValue(6);
     }
   }, [value]);
+
   return (
     <>
-      <AppBar position="fixed" elevation={0} className={classes.AppBar}>
+      <AppBar
+        position="fixed"
+        elevation={0}
+        className={classes.AppBar}
+        style={{
+          backgroundColor: trigger ? '#091527' : 'rgba(9, 21, 39, 0.8)'
+        }}
+      >
         <Toolbar>
           <Link href="/">
             <img

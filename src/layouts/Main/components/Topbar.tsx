@@ -229,7 +229,6 @@ export default function Header() {
                 className={classes.tab}
                 label="NEWS & BLOGS"
                 data-cy="NEWSBLOGS"
-                href="/blogs"
                 onClick={() =>
                   router.push('/blogs', undefined, { shallow: true })
                 }

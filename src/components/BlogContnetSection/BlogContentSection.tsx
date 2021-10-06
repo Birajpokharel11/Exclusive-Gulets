@@ -7,16 +7,23 @@ import {
   Typography,
   IconButton,
   Box,
+  Paper,
   useMediaQuery,
-  Drawer
+  Drawer,
+  Divider
 } from '@material-ui/core';
+import InstagramIcon from '@material-ui/icons/Instagram';
 import Breadcrumbs from '@material-ui/core/Breadcrumbs';
-import Link from 'next/link';
+import Image from 'next/image';
 import NavigateNextIcon from '@material-ui/icons/NavigateNext';
 import ExperiencesFrom from './components/ExperiencesForm';
 import { createMarkup } from '@utils/misc';
 import EnquiryDrawer from '@components/EnquiryDrawer';
-
+import clsx from 'clsx';
+import LinkedInIcon from '@material-ui/icons/LinkedIn';
+import TwitterIcon from '@material-ui/icons/Twitter';
+import YouTubeIcon from '@material-ui/icons/YouTube';
+import FacebookIcon from '@material-ui/icons/Facebook';
 const useStyles = makeStyles((theme) =>
   createStyles({
     Container: {
@@ -25,7 +32,9 @@ const useStyles = makeStyles((theme) =>
       [theme.breakpoints.down('md')]: { padding: '8% 5% 5% 5%' }
     },
     Flex1: {
-      flex: 0.4
+      flex: 0.4,
+      height: 1500,
+      overflow: 'hidden'
     },
     Flex2: {
       flex: 0.7,
@@ -76,6 +85,19 @@ const useStyles = makeStyles((theme) =>
       '&:hover': {
         backgroundColor: '#2A398D'
       }
+    },
+    Readmore: { color: ' #ab3996', '&:hover': { background: 'transparent' } },
+
+    BoxShadow: {
+      height: '190px',
+      position: 'relative',
+      bottom: 40,
+      background:
+        'linear-gradient(0deg,#fff,#fff,hsla(0,0%,80%,.4),hsla(0,0%,100%,.4))'
+    },
+    icons: { color: '#2A398D' },
+    paper: {
+      padding: '60px 0'
     }
   })
 );
@@ -86,7 +108,8 @@ export default function BlogContentSection(props) {
   const theme = useTheme();
   const matches = useMediaQuery(theme.breakpoints.down('lg'));
   const [open, setOpen] = React.useState(false);
-
+  const [readmore, setReadmore] = React.useState(false);
+  console.log('hello', individual.content.length);
   const handleclick = () => {
     setOpen((prev) => !prev);
   };
@@ -97,13 +120,58 @@ export default function BlogContentSection(props) {
           <Box>
             <Container
               maxWidth={matches ? 'md' : 'lg'}
-              className={classes.Flex1}
+              className={clsx(!readmore && classes.Flex1)}
             >
               <Typography
                 variant="subtitle2"
                 dangerouslySetInnerHTML={createMarkup(individual?.content)}
               />
             </Container>
+            {!readmore && (
+              <Box
+                className={classes.BoxShadow}
+                display="flex"
+                justifyContent="center"
+              >
+                <Button
+                  className={classes.Readmore}
+                  onClick={() => setReadmore((prev) => !prev)}
+                >
+                  Read More
+                </Button>
+              </Box>
+            )}
+            <Divider />
+            <Paper elevation={0} className={classes.paper}>
+              <Box
+                display="flex"
+                alignItems="center"
+                justifyContent="space-between"
+              >
+                <Box>
+                  {new Date(individual.created_at).getDate()} /{' '}
+                  {new Date(individual.created_at).getMonth() + 1} /{' '}
+                  {new Date(individual.created_at).getFullYear()}
+                </Box>
+                <Box style={{ display: 'flex', gap: '0.1rem' }}>
+                  <IconButton>
+                    <FacebookIcon className={classes.icons} />
+                  </IconButton>
+                  <IconButton>
+                    <InstagramIcon className={classes.icons} />
+                  </IconButton>
+                  <IconButton>
+                    <LinkedInIcon className={classes.icons} />
+                  </IconButton>
+                  <IconButton>
+                    <TwitterIcon className={classes.icons} />
+                  </IconButton>
+                  <IconButton>
+                    <YouTubeIcon className={classes.icons} />
+                  </IconButton>
+                </Box>
+              </Box>
+            </Paper>
           </Box>
 
           <Container className={classes.Flex2}>

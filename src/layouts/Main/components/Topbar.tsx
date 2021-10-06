@@ -284,12 +284,16 @@ export default function Header() {
             >
               <Image
                 src="/assets/images/Search.svg"
-                height={20}
-                width={20}
+                height={18}
+                width={18}
                 alt="Search"
               />
             </IconButton>
-            <IconButton color="inherit" data-cy="PhoneEnabledIcon">
+            <IconButton
+              href="tel:+44 2081445834"
+              color="inherit"
+              data-cy="PhoneEnabledIcon"
+            >
               <PhoneEnabledIcon />
             </IconButton>{' '}
           </Hidden>
@@ -298,7 +302,12 @@ export default function Header() {
             color="inherit"
             data-cy="EmailIcon"
           >
-            <EmailIcon />
+            <Image
+              src="/assets/images/Mail.png"
+              height={14}
+              width={20}
+              alt="Search"
+            />
           </IconButton>{' '}
           <Hidden smDown>
             <Divider
@@ -368,7 +377,12 @@ export default function Header() {
             <Hidden smUp>
               <div>
                 <IconButton color="inherit" data-cy="TMB-SearchIcon">
-                  <SearchIcon />
+                  <Image
+                    src="/assets/images/Search.svg"
+                    height={20}
+                    width={20}
+                    alt="Search"
+                  />
                 </IconButton>
                 <IconButton color="inherit" data-cy="TMB-PhoneEnabledIcon">
                   <PhoneEnabledIcon />

@@ -48,7 +48,7 @@ export default function FullScreenDialog({ search, setSearch }: Porps) {
     <div>
       <Dialog
         fullScreen
-        style={{ height: '40vh' }}
+        style={{ height: '15vh' }}
         PaperProps={{
           style: {
             background: '#091527',

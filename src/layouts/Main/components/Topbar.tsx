@@ -92,6 +92,9 @@ const useStyles = makeStyles((theme) => ({
   listStyle: {
     marginTop: '24px'
   },
+  textColor: {
+    color: 'red'
+  },
   hide: {
     display: 'none'
   },
@@ -385,7 +388,13 @@ export default function Header() {
               data-cy="TMB-YATCHS"
             >
               <ListItem className={classes.listStyle}>
-                <ListItemText primary="YATCHS" />
+                <ListItemText
+                  primary={
+                    <Typography variant="h4" style={{ color: 'white' }}>
+                      YACTHS
+                    </Typography>
+                  }
+                />
               </ListItem>
             </Button>
             <Divider variant="middle" style={{ backgroundColor: 'white' }} />
@@ -396,7 +405,13 @@ export default function Header() {
               onClick={handleDrawerClose}
             >
               <ListItem className={classes.listStyle}>
-                <ListItemText primary="OFFERS" />
+                <ListItemText
+                  primary={
+                    <Typography variant="h4" style={{ color: 'white' }}>
+                      OFFERS
+                    </Typography>
+                  }
+                />
               </ListItem>{' '}
             </Button>
             <Divider variant="middle" style={{ backgroundColor: 'white' }} />
@@ -407,7 +422,13 @@ export default function Header() {
               onClick={handleDrawerClose}
             >
               <ListItem className={classes.listStyle}>
-                <ListItemText primary="DESTINATIONS" />
+                <ListItemText
+                  primary={
+                    <Typography variant="h4" style={{ color: 'white' }}>
+                      DESTINATIONS
+                    </Typography>
+                  }
+                />
               </ListItem>{' '}
             </Button>
             <Divider variant="middle" style={{ backgroundColor: 'white' }} />
@@ -418,7 +439,13 @@ export default function Header() {
               onClick={handleDrawerClose}
             >
               <ListItem className={classes.listStyle}>
-                <ListItemText primary="BESPOKE EXPERIENCES" />
+                <ListItemText
+                  primary={
+                    <Typography variant="h4" style={{ color: 'white' }}>
+                      BESPOKE EXPERIENCES
+                    </Typography>
+                  }
+                />
               </ListItem>{' '}
             </Button>
             <Divider variant="middle" style={{ backgroundColor: 'white' }} />
@@ -429,7 +456,13 @@ export default function Header() {
               onClick={handleDrawerClose}
             >
               <ListItem className={classes.listStyle}>
-                <ListItemText primary="NEWS & BLOGS" />
+                <ListItemText
+                  primary={
+                    <Typography variant="h4" style={{ color: 'white' }}>
+                      NEWS & BLOGS
+                    </Typography>
+                  }
+                />
               </ListItem>{' '}
             </Button>
             <Divider variant="middle" style={{ backgroundColor: 'white' }} />
@@ -440,7 +473,13 @@ export default function Header() {
               onClick={handleDrawerClose}
             >
               <ListItem className={classes.listStyle}>
-                <ListItemText primary="ABOUTYOU" />
+                <ListItemText
+                  primary={
+                    <Typography variant="h4" style={{ color: 'white' }}>
+                      ABOUTYOU
+                    </Typography>
+                  }
+                />
               </ListItem>{' '}
             </Button>
             <Divider variant="middle" style={{ backgroundColor: 'white' }} />
@@ -450,7 +489,13 @@ export default function Header() {
               onClick={handleDrawerClose}
             >
               <ListItem className={classes.listStyle}>
-                <ListItemText primary="Dinning" />
+                <ListItemText
+                  primary={
+                    <Typography variant="h4" style={{ color: 'white' }}>
+                      DINNING
+                    </Typography>
+                  }
+                />
               </ListItem>{' '}
             </Button>
             <Divider variant="middle" style={{ backgroundColor: 'white' }} />

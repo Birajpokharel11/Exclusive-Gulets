@@ -10,6 +10,7 @@ import {
   MenuItem,
   TextField
 } from '@material-ui/core';
+import { useTheme } from '@material-ui/core/styles';
 
 import { menuProps } from '@utils/utils';
 
@@ -28,7 +29,10 @@ const useStyles = makeStyles((theme) =>
       '&:hover': {
         backgroundColor: '#2A398D'
       },
-      color: '#FFFFFF'
+      color: '#FFFFFF',
+      [theme.breakpoints.down('xs')]: {
+        width: '100%'
+      }
     },
     textWidth: {
       width: '100%'
@@ -38,6 +42,8 @@ const useStyles = makeStyles((theme) =>
 
 export default function EnquiryForm() {
   const classes = useStyles();
+  const theme = useTheme();
+
   return (
     <Box component="section" className={classes.root}>
       <Container maxWidth="md">
@@ -67,12 +73,12 @@ export default function EnquiryForm() {
       </Container>
       <Container>
         <Grid container spacing={3}>
-          <Grid item container md={6} sm={12} xs={12} spacing={2}>
+          <Grid item container md={6} sm={12} xs={12} spacing={1}>
             <Grid item sm={3} xs={4}>
               <TextField
                 id="filled-select-currency"
                 select
-                label="Select"
+                label="Title"
                 variant="outlined"
                 className={classes.textWidth}
                 SelectProps={{
@@ -107,7 +113,7 @@ export default function EnquiryForm() {
               <TextField
                 id="filled-select-currency"
                 select
-                label="Select"
+                label="Country"
                 variant="outlined"
                 className={classes.textWidth}
                 SelectProps={{

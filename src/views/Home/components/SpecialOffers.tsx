@@ -88,7 +88,7 @@ export default function Introduction(props) {
             router.push('/yachts/offers', undefined, { shallow: true })
           }
         >
-          <CardWithSlider cardsData={getSlice()} viewOffer="Read More" />
+          <CardWithSlider cardsData={getSlice()} viewOffer="View Offer" />
         </Box>
 
         <Grid

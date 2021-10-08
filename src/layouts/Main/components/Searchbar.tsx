@@ -12,6 +12,7 @@ const useStyles = makeStyles((theme) => ({
   },
   Button: {
     backgroundColor: 'white',
+    '&:hover': { background: 'white' },
     marginLeft: '10%',
     width: '104px',
     fontFamily: ' Lato',

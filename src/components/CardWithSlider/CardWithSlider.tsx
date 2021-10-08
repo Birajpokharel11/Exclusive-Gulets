@@ -56,7 +56,7 @@ const useStyles = makeStyles((theme) =>
 const CardWithSlider = ({
   cardsData,
   redirectDetailsPage,
-  viewOffer
+  viewOffer = 'Read More'
 }: Props) => {
   const classes = useStyles();
 

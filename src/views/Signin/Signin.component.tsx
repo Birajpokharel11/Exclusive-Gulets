@@ -1,13 +1,11 @@
 import React from 'react';
 import RouterLink from 'next/link';
 import { makeStyles } from '@material-ui/core/styles';
-import {
-  Grid,
-  Button,
-  IconButton,
-  TextField,
-  Typography
-} from '@material-ui/core';
+import { Grid, Button, IconButton, Typography } from '@material-ui/core';
+import { Formik, Field, Form } from 'formik';
+import { TextField } from 'formik-material-ui';
+import * as Yup from 'yup';
+import container from './Signin.container';
 
 import BackArrow from '@modules/icons/BackArrow';
 
@@ -84,7 +82,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const SignIn = (props) => {
-  const { history } = props;
+  const { history, onSigninStart } = props;
 
   const classes = useStyles();
 
@@ -120,35 +118,60 @@ const SignIn = (props) => {
             >
               Please log in to manage your account
             </Typography>
-            <form className={classes.form} onSubmit={handleSignIn}>
-              <TextField
-                className={classes.textField}
-                fullWidth
-                label="Email address"
-                name="email"
-                onChange={handleChange}
-                type="text"
-                variant="outlined"
-              />
-              <TextField
-                className={classes.textField}
-                fullWidth
-                label="Password"
-                name="password"
-                onChange={handleChange}
-                type="password"
-                variant="outlined"
-              />
-              <Button
-                className={classes.signInButton}
-                color="primary"
-                size="large"
-                type="submit"
-                variant="contained"
-              >
-                Sign in
-              </Button>
-            </form>
+            <Formik
+              initialValues={{ email: '', password: '' }}
+              validationSchema={Yup.object({
+                email: Yup.string()
+                  .email('Invalid email address')
+                  .required('Required'),
+                password: Yup.string()
+                  .required('Password Required')
+                  .min(6, 'password must be minimum of 6 character')
+                  .max(32, 'password must not exceed maximum of 32 characters')
+              })}
+              onSubmit={(values, { setSubmitting }) => {
+                onSigninStart({
+                  ...values,
+                  grant_type: 'password'
+                });
+                setSubmitting(false);
+              }}
+            >
+              <Form className={classes.form}>
+                <Field
+                  variant="outlined"
+                  margin="normal"
+                  name="email"
+                  id="email"
+                  label="Email Address"
+                  fullWidth
+                  component={TextField}
+                  className={classes.textField}
+                />
+
+                <Field
+                  component={TextField}
+                  variant="outlined"
+                  margin="normal"
+                  type="password"
+                  id="password"
+                  name="password"
+                  label="Password"
+                  fullWidth
+                  className={classes.textField}
+                />
+
+                <Button
+                  className={classes.signInButton}
+                  color="primary"
+                  size="large"
+                  type="submit"
+                  variant="contained"
+                >
+                  Sign in
+                </Button>
+              </Form>
+            </Formik>
             <RouterLink href="/signup">
               <Typography className={classes.link} style={{ marginTop: 40 }}>
                 {"Don't have an account. Create one here."}
@@ -172,4 +195,4 @@ const SignIn = (props) => {
   );
 };
 
-export default SignIn;
+export default container(SignIn);

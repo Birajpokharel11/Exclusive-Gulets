@@ -3,7 +3,7 @@ import axios from 'axios';
 
 import * as AuthType from './auth.types';
 import * as authActions from './auth.actions';
-import { signupStart } from './auth.actions';
+import { signupStart, signinStart } from './auth.actions';
 
 export function* loadUserAsync() {
   try {
@@ -12,10 +12,19 @@ export function* loadUserAsync() {
   }
 }
 
-export function* onSigninAsync() {
+export function* onSigninAsync({
+  payload: { formData }
+}: ReturnType<typeof signinStart>) {
   try {
+    console.log('data in signIn>>>', formData);
+    const { data } = yield axios.post(
+      `https://app.exclusivegulets.com/api/v1/users/signin`,
+      formData
+    );
+    console.log('value fo data after success>>>', data);
   } catch (err) {
-    console.error(err);
+    console.error('error received onSigninAsync>>>', err);
+    yield put(authActions.signinFail(err));
   }
 }
 

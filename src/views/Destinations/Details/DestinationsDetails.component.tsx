@@ -100,7 +100,7 @@ const DestinationsDetails = (props) => {
                   DESTINATIONS
                 </Typography>
               </Grid>
-              <Grid item>
+              <Grid item> 
                 <Typography variant="h2">
                   Discover secret locations around the world
                 </Typography>

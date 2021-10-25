@@ -72,24 +72,13 @@ export default function BannerSection({
             {title}
           </Typography>
 
-          {route === 'soleExperience' ? (
-            <Typography
-              component="div"
-              color="inherit"
-              variant="subtitle1"
-              style={{ marginBottom: '32px' }}
-              dangerouslySetInnerHTML={createMarkup(description)}
-            />
-          ) : (
-            <Typography
-              component="div"
-              color="inherit"
-              variant="subtitle1"
-              style={{ marginBottom: '32px' }}
-            >
-              {description}
-            </Typography>
-          )}
+          <Typography
+            component="div"
+            color="inherit"
+            variant="subtitle1"
+            style={{ marginBottom: '32px' }}
+            dangerouslySetInnerHTML={createMarkup(description)}
+          />
         </Container>
       </Box>
 

@@ -59,7 +59,7 @@ function Dining({ Dining, loading }) {
           <Description
             content={Dining?.content}
             SideImage={Dining?.side_image?.url}
-            individual={Dining.created_at}
+            individual={Dining}
           />
         </Box>
       </Box>

@@ -74,6 +74,7 @@ export default function Description({ content, SideImage, individual }: Props) {
             component="div"
             color="inherit"
             variant="subtitle1"
+            align="justify"
             dangerouslySetInnerHTML={createMarkup(content)}
           />
         </Box>

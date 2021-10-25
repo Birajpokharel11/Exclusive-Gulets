@@ -34,6 +34,11 @@ export interface IExperienceState {
   loading: boolean;
 }
 
+export interface IDinningState {
+  dinning: any[];
+  error: any | null;
+  loading: boolean;
+}
 export interface IHomeState {
   home: any[];
   error: any | null;

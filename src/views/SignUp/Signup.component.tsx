@@ -5,9 +5,17 @@ import {
   Grid,
   Button,
   IconButton,
-  TextField,
-  Typography
+  Typography,
+  Select,
+  MenuItem,
+  InputLabel,
+  FormControl,
+  Container
 } from '@material-ui/core';
+import { Formik, Field, Form } from 'formik';
+import { TextField } from 'formik-material-ui';
+import * as Yup from 'yup';
+import container from './Signup.container';
 
 import BackArrow from '@modules/icons/BackArrow';
 
@@ -63,6 +71,11 @@ const useStyles = makeStyles((theme) => ({
     color: '#00204e',
     marginBottom: 0
   },
+  subHeader: {
+    fontSize: '20px',
+    color: '#00204e',
+    marginTop: '17px'
+  },
   form: {
     marginTop: '51px'
   },
@@ -83,8 +96,8 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-const SignIn = (props) => {
-  const { history } = props;
+const SignUp = (props) => {
+  const { history, onSignupStart } = props;
 
   const classes = useStyles();
 
@@ -111,62 +124,145 @@ const SignIn = (props) => {
           </div>
           <div className={classes.contentBody}>
             <Typography className={classes.title} variant="h2">
-              Sign in
+              Sign up
             </Typography>
             <Typography
               component="h2"
               className={classes.sugestion}
               gutterBottom
             >
-              Please log in to manage your account
+              Manage your account and more...
             </Typography>
-            <form className={classes.form} onSubmit={handleSignIn}>
-              <TextField
-                className={classes.textField}
-                fullWidth
-                label="Email address"
-                name="email"
-                onChange={handleChange}
-                type="text"
-                variant="outlined"
-              />
-              <TextField
-                className={classes.textField}
-                fullWidth
-                label="Password"
-                name="password"
-                onChange={handleChange}
-                type="password"
-                variant="outlined"
-              />
-              <Button
-                className={classes.signInButton}
-                color="primary"
-                size="large"
-                type="submit"
-                variant="contained"
-              >
-                Sign in
-              </Button>
-            </form>
-            <RouterLink href="/signup">
+            <Typography
+              variant="body2"
+              className={classes.subHeader}
+              gutterBottom
+            >
+              Sign up below to create your account.
+            </Typography>
+            <Formik
+              initialValues={{
+                title: 'Mr',
+                email: '',
+                password: '',
+                fullName: '',
+                role: 'client',
+                phoneNumber: ''
+              }}
+              validationSchema={Yup.object({
+                title: Yup.string().required('Title is Required'),
+                fullName: Yup.string()
+                  .max(15, 'Must be 15 characters or less')
+                  .required('FullName is Required'),
+                role: Yup.string().required('Role is Required'),
+                phoneNumber: Yup.string().required('PhoneNumber is Required'),
+                email: Yup.string()
+                  .email('Invalid email address')
+                  .required('Required'),
+                password: Yup.string()
+                  .required('Password Required')
+                  .min(6, 'password must be minimum of 6 character')
+                  .max(32, 'password must not exceed maximum of 32 characters')
+              })}
+              onSubmit={(values, { setSubmitting }) => {
+                console.log('submit clicked!!!', values);
+                onSignupStart({
+                  ...values
+                });
+                setSubmitting(false);
+              }}
+            >
+              <Form>
+                <Field
+                  component={Select}
+                  fullWidth
+                  variant="outlined"
+                  name="title"
+                  id="title"
+                >
+                  <MenuItem value="Mrs">Mrs</MenuItem>
+                  <MenuItem value="Mr">Mr</MenuItem>
+                  <MenuItem value="Ms">Ms</MenuItem>
+                  <MenuItem value="Miss">Miss</MenuItem>
+                  <MenuItem value="Mx">Mx</MenuItem>
+                </Field>
+                <Field
+                  className={classes.textField}
+                  fullWidth
+                  label="Full Name"
+                  name="fullName"
+                  variant="outlined"
+                  component={TextField}
+                />
+
+                <Field
+                  component={Select}
+                  fullWidth
+                  variant="outlined"
+                  name="role"
+                  id="role"
+                >
+                  <MenuItem value="client">Client</MenuItem>
+                  <MenuItem value="YachtOwner/Manager">
+                    Yacht Owner/Manager
+                  </MenuItem>
+                </Field>
+
+                <Field
+                  className={classes.textField}
+                  fullWidth
+                  label="Phone Number"
+                  name="phoneNumber"
+                  type="text"
+                  variant="outlined"
+                  component={TextField}
+                />
+
+                <Field
+                  className={classes.textField}
+                  fullWidth
+                  label="Email"
+                  name="email"
+                  variant="outlined"
+                  component={TextField}
+                />
+
+                <Field
+                  className={classes.textField}
+                  fullWidth
+                  label="Password"
+                  name="password"
+                  type="password"
+                  variant="outlined"
+                  component={TextField}
+                />
+                <Button
+                  className={classes.signInButton}
+                  color="primary"
+                  size="large"
+                  type="submit"
+                  variant="contained"
+                >
+                  Sign up
+                </Button>
+              </Form>
+            </Formik>
+            <RouterLink href="/signin">
               <Typography className={classes.link} style={{ marginTop: 40 }}>
-                {"Don't have an account. Create one here."}
-              </Typography>
-            </RouterLink>
-            <RouterLink href="/forgot-password">
-              <Typography className={classes.link} style={{ marginTop: 20 }}>
-                {'Forgot your password.'}
+                {'Already have an account? sign in.'}
               </Typography>
             </RouterLink>
           </div>
         </Grid>
         <Grid className={classes.imgContainer} item lg={5}>
-          <img src="/assets/images/SignIn/Hero-bg.jpg" />
+          <img
+            src="/assets/images/SignIn/Hero-bg.jpg"
+            style={{ width: '100%', height: '100%' }}
+          />
         </Grid>
       </Grid>
     </div>
   );
 };
 
-export default SignIn;
+export default container(SignUp);

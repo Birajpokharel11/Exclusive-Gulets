@@ -162,7 +162,10 @@ const SignIn = (props) => {
           </div>
         </Grid>
         <Grid className={classes.imgContainer} item lg={5}>
-          <img src="/assets/images/SignIn/Hero-bg.jpg" />
+          <img
+            src="/assets/images/SignIn/Hero-bg.jpg"
+            style={{ width: '100%', height: '100%' }}
+          />
         </Grid>
       </Grid>
     </div>

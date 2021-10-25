@@ -29,9 +29,9 @@ export const signinFail = (error) => ({
   payload: error
 });
 
-export const signupStart = (formData, found, history) => ({
+export const signupStart = (formData) => ({
   type: AuthType.SIGN_UP_START,
-  payload: { formData, found, history }
+  payload: { formData }
 });
 
 export const signupSuccess = (user) => ({

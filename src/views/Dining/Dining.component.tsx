@@ -28,7 +28,13 @@ const useStyles = makeStyles((theme) =>
       position: 'relative'
     },
     Box: {
-      margin: '0% 21%'
+      margin: '0% 21%',
+      [theme.breakpoints.down('lg')]: {
+        margin: '0% 12%'
+      },
+      [theme.breakpoints.down('md')]: {
+        margin: '0% 3%'
+      }
     }
   })
 );
@@ -53,6 +59,7 @@ function Dining({ Dining, loading }) {
           <Description
             content={Dining?.content}
             SideImage={Dining?.side_image?.url}
+            individual={Dining.created_at}
           />
         </Box>
       </Box>

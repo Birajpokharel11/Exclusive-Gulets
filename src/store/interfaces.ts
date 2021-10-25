@@ -35,7 +35,7 @@ export interface IExperienceState {
 }
 
 export interface IDinningState {
-  dinning: any[];
+  dining: any[];
   error: any | null;
   loading: boolean;
 }

@@ -40,6 +40,13 @@ export interface IDinningState {
   slider_image: any[];
   loading: boolean;
 }
+export interface ICharterState {
+  why_charter: any[];
+  why_charter_images: object;
+  error: any | null;
+  general: object;
+  loading: boolean;
+}
 export interface IHomeState {
   home: any[];
   error: any | null;

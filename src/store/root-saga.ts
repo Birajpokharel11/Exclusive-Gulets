@@ -8,6 +8,7 @@ import { yachtsSagas } from './yachts/yachts.sagas';
 import { postsSagas } from './posts/posts.sagas';
 import { homeSagas } from './home/home.sagas';
 import { dinningSagas } from './dining/dinning.sagas';
+import { charterSagas } from './whyCharter/charter.sagas';
 
 export default function* rootSaga() {
   yield all([
@@ -18,6 +19,7 @@ export default function* rootSaga() {
     call(yachtsSagas),
     call(postsSagas),
     call(homeSagas),
-    call(dinningSagas)
+    call(dinningSagas),
+    call(charterSagas)
   ]);
 }

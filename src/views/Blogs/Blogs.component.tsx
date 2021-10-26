@@ -57,9 +57,9 @@ function Destinations({
         title="NEWS & BLOGS"
         description="Keep up to date with our latest yachting news, charter destinations, special offers and more…"
       />
-      <BackgroundVectors />
-      <Container>
-        <Box mb={4} mt={6}>
+
+      <Box mb={4} mt={6} style={{ position: 'relative' }}>
+        <Container>
           <Typography align="center" className={classes.heading}>
             There is more to yachting than just spending a week or so sailing.
             We share our experiences on the best itineraries to suit you,
@@ -78,8 +78,9 @@ function Destinations({
               route={route}
             />
           )}
-        </Box>
-      </Container>
+        </Container>
+        <BackgroundVectors />
+      </Box>
       {/* <FooterSlider /> */}
     </Box>
   );

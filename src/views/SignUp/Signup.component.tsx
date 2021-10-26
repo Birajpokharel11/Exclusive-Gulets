@@ -47,13 +47,20 @@ const useStyles = makeStyles((theme) => ({
   contentHeader: {
     position: 'absolute',
     left: '100px',
-    top: '40px'
+    top: '40px',
+    [theme.breakpoints.down('xs')]: {
+      left: '30px',
+      top: '40px'
+    }
   },
   logoImage: {
     marginLeft: theme.spacing(4)
   },
   contentBody: {
-    padding: '0 200px 135px 280px'
+    padding: '0 200px 135px 280px',
+    [theme.breakpoints.down('xs')]: {
+      padding: '0 20px 13px 28px'
+    }
   },
   title: {
     height: '18px',

@@ -47,9 +47,12 @@ function Destinations({
   };
   const route = 'blogs';
   const redirectDetailsPage = (data) => {
-    if (route === 'blogs') {
-      router.push(`/blogs/${data.slug}`, undefined, { shallow: true });
-    }
+    router.push({
+      pathname: `/blogs/${data.slug}`,
+      query: {
+        id: data.id
+      }
+    });
   };
   return (
     <Box>

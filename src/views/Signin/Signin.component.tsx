@@ -1,11 +1,18 @@
 import React from 'react';
 import RouterLink from 'next/link';
 import { makeStyles } from '@material-ui/core/styles';
-import { Grid, Button, IconButton, Typography } from '@material-ui/core';
+import {
+  Grid,
+  Button,
+  IconButton,
+  Typography,
+  CircularProgress
+} from '@material-ui/core';
 import { Formik, Field, Form } from 'formik';
 import { TextField } from 'formik-material-ui';
 import * as Yup from 'yup';
 import container from './Signin.container';
+import { useRouter } from 'next/router';
 
 import BackArrow from '@modules/icons/BackArrow';
 
@@ -82,12 +89,16 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const SignIn = (props) => {
-  const { history, onSigninStart } = props;
-
+  const {
+    history,
+    onSigninStart,
+    auth: { loading }
+  } = props;
+  const router = useRouter();
   const classes = useStyles();
 
   const handleBack = () => {
-    history.goBack();
+    router.push('/');
   };
 
   const handleChange = (event) => {
@@ -167,8 +178,15 @@ const SignIn = (props) => {
                   size="large"
                   type="submit"
                   variant="contained"
+                  disabled={loading}
                 >
-                  Sign in
+                  {loading ? (
+                    <CircularProgress size={20} />
+                  ) : (
+                    <Typography variant="body1" color="secondary">
+                      Sign in
+                    </Typography>
+                  )}
                 </Button>
               </Form>
             </Formik>

@@ -22,6 +22,8 @@ export function* onSigninAsync({
       formData
     );
     console.log('value fo data after success>>>', data);
+
+    yield put(authActions.signinSuccess(data));
   } catch (err) {
     console.error('error received onSigninAsync>>>', err);
     yield put(authActions.signinFail(err));
@@ -31,14 +33,14 @@ export function* onSigninAsync({
 export function* onSignupAsync({
   payload: { formData }
 }: ReturnType<typeof signupStart>) {
-  console.log('inside of saga>>>', formData);
   try {
-    console.log('value of formdata>>>', formData);
     const { data } = yield axios.post(
-      `https://app.exclusivegulets.com/api/v1/users.json`,
+      `http://yatchcloud-dev.fghire.com/api/public/createManager`,
       formData
     );
+
     console.log('value fo data after success>>>', data);
+    yield put(authActions.signupSuccess());
   } catch (err) {
     console.error('error received onSignupAsync>>>', err);
     yield put(authActions.signupFail(err));

@@ -38,7 +38,6 @@ const authReducer = (state = INITIAL_STATE, action) => {
     case AuthType.SIGN_UP_SUCCESS:
       return {
         ...state,
-        newUser: payload,
         loading: false
       };
 

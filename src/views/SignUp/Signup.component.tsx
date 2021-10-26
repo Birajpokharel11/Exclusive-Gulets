@@ -10,12 +10,16 @@ import {
   MenuItem,
   InputLabel,
   FormControl,
-  Container
+  Container,
+  Divider,
+  InputAdornment,
+  CircularProgress
 } from '@material-ui/core';
 import { Formik, Field, Form } from 'formik';
 import { TextField } from 'formik-material-ui';
 import * as Yup from 'yup';
 import container from './Signup.container';
+import { useRouter } from 'next/router';
 
 import BackArrow from '@modules/icons/BackArrow';
 
@@ -93,16 +97,31 @@ const useStyles = makeStyles((theme) => ({
     lineHeight: '150%',
     textDecoration: 'underline',
     color: '#808fa7'
+  },
+  formSeparator: {
+    marginTop: '4rem'
+  },
+  divider: {
+    height: 41,
+    margin: 4,
+    width: 1,
+    backgroundColor: 'rgb(204, 204, 204)'
   }
 }));
 
 const SignUp = (props) => {
-  const { history, onSignupStart } = props;
+  const {
+    history,
+    onSignupStart,
+    auth: { loading }
+  } = props;
+
+  const router = useRouter();
 
   const classes = useStyles();
 
   const handleBack = () => {
-    history.goBack();
+    router.push('/');
   };
 
   const handleChange = (event) => {
@@ -116,7 +135,7 @@ const SignUp = (props) => {
   return (
     <div className={classes.root}>
       <Grid className={classes.grid} container>
-        <Grid className={classes.content} item lg={7} xs={12}>
+        <Grid className={classes.content} item lg={6} xs={12}>
           <div className={classes.contentHeader}>
             <IconButton onClick={handleBack} style={{ padding: 0 }}>
               <BackArrow />
@@ -146,7 +165,7 @@ const SignUp = (props) => {
                 email: '',
                 password: '',
                 fullName: '',
-                role: 'client',
+                role: 1,
                 phoneNumber: ''
               }}
               validationSchema={Yup.object({
@@ -158,9 +177,9 @@ const SignUp = (props) => {
                 phoneNumber: Yup.string().required('PhoneNumber is Required'),
                 email: Yup.string()
                   .email('Invalid email address')
-                  .required('Required'),
+                  .required('Email is Required'),
                 password: Yup.string()
-                  .required('Password Required')
+                  .required('Password is Required')
                   .min(6, 'password must be minimum of 6 character')
                   .max(32, 'password must not exceed maximum of 32 characters')
               })}
@@ -172,79 +191,121 @@ const SignUp = (props) => {
                 setSubmitting(false);
               }}
             >
-              <Form>
-                <Field
-                  component={Select}
-                  fullWidth
-                  variant="outlined"
-                  name="title"
-                  id="title"
-                >
-                  <MenuItem value="Mrs">Mrs</MenuItem>
-                  <MenuItem value="Mr">Mr</MenuItem>
-                  <MenuItem value="Ms">Ms</MenuItem>
-                  <MenuItem value="Miss">Miss</MenuItem>
-                  <MenuItem value="Mx">Mx</MenuItem>
-                </Field>
-                <Field
-                  className={classes.textField}
-                  fullWidth
-                  label="Full Name"
-                  name="fullName"
-                  variant="outlined"
-                  component={TextField}
-                />
+              <Form className={classes.formSeparator}>
+                <Grid container spacing={3}>
+                  <Grid item xs={12}>
+                    <Field
+                      component={Select}
+                      fullWidth
+                      variant="outlined"
+                      name="title"
+                      id="title"
+                      endAdornment={
+                        <InputAdornment
+                          position="start"
+                          style={{ paddingRight: '20px' }}
+                        >
+                          <Divider
+                            className={classes.divider}
+                            orientation="vertical"
+                          />
+                        </InputAdornment>
+                      }
+                    >
+                      <MenuItem value="Mrs">Mrs</MenuItem>
+                      <MenuItem value="Mr">Mr</MenuItem>
+                      <MenuItem value="Ms">Ms</MenuItem>
+                      <MenuItem value="Miss">Miss</MenuItem>
+                      <MenuItem value="Mx">Mx</MenuItem>
+                    </Field>
+                  </Grid>
+                  <Grid item xs={12}>
+                    <Field
+                      className={classes.textField}
+                      fullWidth
+                      label="Full Name"
+                      name="fullName"
+                      variant="outlined"
+                      component={TextField}
+                    />
+                  </Grid>
+                  <Grid item xs={12}>
+                    <Field
+                      component={Select}
+                      fullWidth
+                      variant="outlined"
+                      name="role"
+                      id="role"
+                      endAdornment={
+                        <InputAdornment
+                          position="start"
+                          style={{ paddingRight: '20px' }}
+                        >
+                          <Divider
+                            className={classes.divider}
+                            orientation="vertical"
+                          />
+                        </InputAdornment>
+                      }
+                    >
+                      <MenuItem value={1}>Client</MenuItem>
+                      <MenuItem value={1}>Yacht Owner/Manager</MenuItem>
+                    </Field>
+                  </Grid>
 
-                <Field
-                  component={Select}
-                  fullWidth
-                  variant="outlined"
-                  name="role"
-                  id="role"
-                >
-                  <MenuItem value="client">Client</MenuItem>
-                  <MenuItem value="YachtOwner/Manager">
-                    Yacht Owner/Manager
-                  </MenuItem>
-                </Field>
+                  <Grid item xs={12}>
+                    <Field
+                      className={classes.textField}
+                      fullWidth
+                      label="Phone Number"
+                      name="phoneNumber"
+                      type="text"
+                      variant="outlined"
+                      component={TextField}
+                    />
+                  </Grid>
 
-                <Field
-                  className={classes.textField}
-                  fullWidth
-                  label="Phone Number"
-                  name="phoneNumber"
-                  type="text"
-                  variant="outlined"
-                  component={TextField}
-                />
+                  <Grid item xs={12}>
+                    <Field
+                      className={classes.textField}
+                      fullWidth
+                      label="Email"
+                      name="email"
+                      variant="outlined"
+                      component={TextField}
+                    />
+                  </Grid>
 
-                <Field
-                  className={classes.textField}
-                  fullWidth
-                  label="Email"
-                  name="email"
-                  variant="outlined"
-                  component={TextField}
-                />
-
-                <Field
-                  className={classes.textField}
-                  fullWidth
-                  label="Password"
-                  name="password"
-                  type="password"
-                  variant="outlined"
-                  component={TextField}
-                />
-                <Button
-                  className={classes.signInButton}
-                  color="primary"
-                  size="large"
-                  type="submit"
-                  variant="contained"
-                >
-                  Sign up
-                </Button>
+                  <Grid item xs={12}>
+                    <Field
+                      className={classes.textField}
+                      fullWidth
+                      label="Password"
+                      name="password"
+                      type="password"
+                      variant="outlined"
+                      component={TextField}
+                    />
+                  </Grid>
+                  <Grid item xs={12}>
+                    <Button
+                      className={classes.signInButton}
+                      color="primary"
+                      size="large"
+                      type="submit"
+                      variant="contained"
+                      disabled={loading}
+                    >
+                      {loading ? (
+                        <CircularProgress size={20} />
+                      ) : (
+                        <Typography variant="body1" color="secondary">
+                          Sign up
+                        </Typography>
+                      )}
+                    </Button>
+                  </Grid>
+                </Grid>
               </Form>
             </Formik>
             <RouterLink href="/signin">
@@ -254,7 +315,7 @@ const SignUp = (props) => {
             </RouterLink>
           </div>
         </Grid>
-        <Grid className={classes.imgContainer} item lg={5}>
+        <Grid className={classes.imgContainer} item lg={6}>
           <img
             src="/assets/images/SignIn/Hero-bg.jpg"
             style={{ width: '100%', height: '100%' }}

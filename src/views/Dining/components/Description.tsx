@@ -127,19 +127,34 @@ export default function Description({ content, SideImage, individual }: Props) {
             {new Date(individual.created_at).getFullYear()}
           </Box>
           <Box className={classes.Icons}>
-            <IconButton>
+            <IconButton
+              target="_blank"
+              href="https://www.facebook.com/exclusiveguletsandyachts"
+            >
               <FacebookIcon className={classes.icons} />
             </IconButton>
-            <IconButton>
+            <IconButton
+              target="_blank"
+              href="https://www.instagram.com/exclusive_gulets/"
+            >
               <InstagramIcon className={classes.icons} />
             </IconButton>
-            <IconButton>
+            <IconButton
+              target="_blank"
+              href="https://www.linkedin.com/company/exclusive-gulets-ltd/?viewAsMember=true"
+            >
               <LinkedInIcon className={classes.icons} />
             </IconButton>
-            <IconButton>
+            <IconButton
+              target="_blank"
+              href="https://twitter.com/exclusivegulets"
+            >
               <TwitterIcon className={classes.icons} />
             </IconButton>
-            <IconButton>
+            <IconButton
+              target="_blank"
+              href="https://www.youtube.com/channel/UCRupGbMd1sUrXiYgRE9pePw/featured"
+            >
               <YouTubeIcon className={classes.icons} />
             </IconButton>
           </Box>

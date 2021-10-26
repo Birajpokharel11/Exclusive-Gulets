@@ -16,6 +16,7 @@ interface Props {
   content?: any;
   SideImage?: URL;
   individual?: Dates;
+  withSocials?: Boolean;
 }
 
 const useStyles = makeStyles((theme) =>
@@ -28,20 +29,32 @@ const useStyles = makeStyles((theme) =>
       width: '100%',
       height: 'auto'
     },
+    Image1: {
+      width: '50%',
+      height: '1000px',
+      objectFit: 'fill',
+      maxHeight: '1000px',
+      float: 'right',
+      marginTop: '105px',
+      [theme.breakpoints.down(1050)]: {
+        height: 'auto'
+      },
+      [theme.breakpoints.down(1000)]: {
+        display: 'none'
+      },
+      paddingLeft: '10px',
+      marginLeft: '10px',
+      paddingBottom: '40px'
+    },
     Divider: {
-      display: 'flex',
       gap: '1rem',
-      padding: '0px 15px',
+      padding: '0px 20px',
+      margin: '0px 10px',
       [theme.breakpoints.down(1000)]: {
         display: 'block'
       }
     },
-    Text: {
-      flex: '0.5',
-      [theme.breakpoints.down(1000)]: {
-        flex: '1'
-      }
-    },
+    Text: {},
     ImageBox: {
       flex: '0.5',
       marginTop: '110px',
@@ -56,7 +69,33 @@ const useStyles = makeStyles((theme) =>
         display: 'block'
       }
     },
-    icons: { color: '#2A398D' }
+    icons: { color: '#2A398D' },
+    Icons: {
+      display: 'flex',
+      gap: '0.1rem',
+      [theme.breakpoints.down('xs')]: {
+        justifyContent: 'center'
+      }
+    },
+    DateIcons: {
+      display: 'flex',
+      padding: '24px 15px',
+      alignItems: 'center',
+      justifyContent: 'space-between',
+      [theme.breakpoints.down('xs')]: {
+        display: 'block'
+      }
+    },
+    Date: {
+      color: '#2A398D',
+      fontFamily: 'lato',
+      fontSize: '18px',
+      fontWeight: 300,
+      display: 'flex',
+      [theme.breakpoints.down('xs')]: {
+        justifyContent: 'center'
+      }
+    }
   })
 );
 
@@ -64,47 +103,30 @@ export default function Description({ content, SideImage, individual }: Props) {
   const classes = useStyles();
   return (
     <>
-      <Box className={classes.Divider}>
-        {' '}
+      <Box id="#Box" className={classes.Divider}>
+        <img className={classes.Image1} src={SideImage} alt="sideImage" />
         <Box className={classes.ImageBox2}>
           <img className={classes.Image} src={SideImage} alt="sideImage" />
         </Box>
         <Box className={classes.Text}>
           <Typography
             component="div"
-            color="inherit"
             variant="subtitle1"
-            align="justify"
+            style={{ lineHeight: '150%', color: '#00204e' }}
             dangerouslySetInnerHTML={createMarkup(content)}
           />
         </Box>
-        <Box className={classes.ImageBox}>
-          <img className={classes.Image} src={SideImage} alt="sideImage" />
-        </Box>
+        <Box className={classes.ImageBox}></Box>
       </Box>
       <Box style={{ margin: '64px 0' }}>
         <Divider style={{ padding: '0px 15px' }} />
-        <Box
-          style={{
-            display: 'flex',
-            padding: '24px 15px',
-            alignItems: 'center',
-            justifyContent: 'space-between'
-          }}
-        >
-          <Box
-            style={{
-              color: '#2A398D',
-              fontFamily: 'lato',
-              fontSize: '18px',
-              fontWeight: 300
-            }}
-          >
+        <Box className={classes.DateIcons}>
+          <Box className={classes.Date}>
             {new Date(individual.created_at).getDate()} /{' '}
             {new Date(individual.created_at).getMonth() + 1} /{' '}
             {new Date(individual.created_at).getFullYear()}
           </Box>
-          <Box style={{ display: 'flex', gap: '0.1rem' }}>
+          <Box className={classes.Icons}>
             <IconButton>
               <FacebookIcon className={classes.icons} />
             </IconButton>

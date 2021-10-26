@@ -65,9 +65,9 @@ export default function BannerSection({
       <Box className={classes.overlay}>
         <Container>
           <Typography
-            variant="h2"
+            variant="h1"
             color="inherit"
-            style={{ marginBottom: '15px' }}
+            style={{ marginBottom: '15px', fontSize: '26px', fontWeight: 400 }}
           >
             {title}
           </Typography>

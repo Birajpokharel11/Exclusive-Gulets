@@ -37,6 +37,7 @@ export interface IExperienceState {
 export interface IDinningState {
   dining: any[];
   error: any | null;
+  slider_image: any[];
   loading: boolean;
 }
 export interface IHomeState {

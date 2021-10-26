@@ -9,6 +9,7 @@ import { CircularProgress } from '@material-ui/core';
 import { useRouter } from 'next/router';
 import { IPostState } from '@store/interfaces';
 import Description from './components/Description';
+import YachtsSlider from '@views/Yachts/components/PreviewDrawer/components/YachtsSlider';
 const useStyles = makeStyles((theme) =>
   createStyles({
     root: {
@@ -33,28 +34,49 @@ const useStyles = makeStyles((theme) =>
         margin: '0% 12%'
       },
       [theme.breakpoints.down('md')]: {
-        margin: '0% 3%'
+        margin: '0% 8%'
+      }
+    },
+    Vctors: {
+      [theme.breakpoints.down(700)]: {
+        display: 'none'
       }
     }
   })
 );
-
+interface Files {
+  url?: URL;
+}
+interface Slider {
+  id?: number;
+  file?: Files;
+}
 interface Props {
   Dining?: any[];
   loading?: any;
+  slider_image?: Slider;
 }
-function Dining({ Dining, loading }) {
+function Dining({ Dining, loading, slider_image }) {
   const classes = useStyles();
-  console.log('Dinnisng', Dining);
+  const slider = [];
+  slider_image.map((image, index) => {
+    slider.push(image);
+  });
+
+  console.log('Dinnisng', slider);
   return (
     <>
       <BannerSection
         backgroundImage={Dining?.featured_image?.url}
         title={Dining?.title}
         description={Dining?.description}
+        withSocial={true}
       />
       <Box component="section" className={classes.sectionGem}>
-        <BackgroundVectors />
+        <div className={classes.Vctors}>
+          <BackgroundVectors />
+        </div>
+
         <Box className={classes.Box}>
           <Description
             content={Dining?.content}
@@ -62,6 +84,9 @@ function Dining({ Dining, loading }) {
             individual={Dining}
           />
         </Box>
+      </Box>
+      <Box style={{ paddingBottom: '100px' }}>
+        <YachtsSlider imageList={slider} />
       </Box>
       {/* <FooterSlider /> */}
     </>

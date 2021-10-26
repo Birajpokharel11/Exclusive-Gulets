@@ -7,6 +7,7 @@ import { IDinningState } from '../interfaces';
 const INITIAL_STATE: IDinningState = {
   dining: [],
   error: null,
+  slider_image: [],
   loading: false
 };
 
@@ -26,6 +27,7 @@ const dinningReducer = (state = INITIAL_STATE, action) => {
       return {
         ...state,
         dining: payload,
+        slider_image: payload.dining_images,
         loading: false
       };
 

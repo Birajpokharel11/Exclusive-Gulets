@@ -13,9 +13,7 @@ import {
   Divider
 } from '@material-ui/core';
 import InstagramIcon from '@material-ui/icons/Instagram';
-import Breadcrumbs from '@material-ui/core/Breadcrumbs';
-import Image from 'next/image';
-import NavigateNextIcon from '@material-ui/icons/NavigateNext';
+
 import ExperiencesFrom from './components/ExperiencesForm';
 import { createMarkup } from '@utils/misc';
 import EnquiryDrawer from '@components/EnquiryDrawer';

@@ -103,7 +103,8 @@ const useStyles = makeStyles((theme) => ({
     fontSize: '14px',
     lineHeight: '150%',
     textDecoration: 'underline',
-    color: '#808fa7'
+    color: '#808fa7',
+    cursor: 'pointer'
   },
   formSeparator: {
     marginTop: '4rem'

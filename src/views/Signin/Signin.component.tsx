@@ -91,7 +91,8 @@ const useStyles = makeStyles((theme) => ({
     fontSize: '14px',
     lineHeight: '150%',
     textDecoration: 'underline',
-    color: '#808fa7'
+    color: '#808fa7',
+    cursor: 'pointer'
   }
 }));
 
@@ -150,7 +151,10 @@ const SignIn = (props) => {
               onSubmit={(values, { setSubmitting }) => {
                 onSigninStart({
                   ...values,
-                  grant_type: 'password'
+                  grant_type: 'password',
+                  client_id: 'yatch',
+                  client_secret: 132435468,
+                  scope: 'read'
                 });
                 setSubmitting(false);
               }}

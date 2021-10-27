@@ -21,7 +21,7 @@ export function* onSigninAsync({
   try {
     console.log('data in signIn>>>', formData);
     const { data } = yield axios.post(
-      `https://app.exclusivegulets.com/api/v1/users/signin`,
+      `http://yatchcloud-dev.fghire.com/api/public/oauth/token`,
       formData
     );
     console.log('value fo data after success>>>', data);

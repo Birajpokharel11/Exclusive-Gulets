@@ -1,7 +1,9 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
+import CustomAlert from '@components/CustomAlert';
 
 import { Topbar, Footer } from './components';
+import container from './Main.container';
 
 const useStyles = makeStyles(() => ({
   root: {
@@ -13,7 +15,7 @@ const useStyles = makeStyles(() => ({
 }));
 
 const Main = (props) => {
-  const { children, ...rest } = props;
+  const { children, alert, ...rest } = props;
 
   const classes = useStyles();
 
@@ -21,9 +23,10 @@ const Main = (props) => {
     <div className={classes.root}>
       <Topbar {...rest} />
       <main className={classes.content}>{children}</main>
+      <CustomAlert {...alert} />
       <Footer />
     </div>
   );
 };
 
-export default Main;
+export default container(Main);

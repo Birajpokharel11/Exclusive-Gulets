@@ -1,9 +1,9 @@
 /* eslint-disable object-curly-newline */
 import { useState, useEffect } from 'react';
-import PropTypes from 'prop-types';
 import { Collapse } from '@material-ui/core';
 import MuiAlert from '@material-ui/lab/Alert';
 import { makeStyles } from '@material-ui/core/styles';
+import Image from 'next/image';
 
 import error from 'src/assets/img/icons/AlertIcons/error.svg';
 import info from 'src/assets/img/icons/AlertIcons/info.svg';
@@ -67,20 +67,13 @@ const CustomAlert = ({ openAlert, severity, message, onCloseAlert }) => {
         <MuiAlert
           severity={severity}
           classes={{ root: classes.alert }}
-          icon={<img src={logo} alt="logo" />}
+          icon={<Image src={logo} alt="logo" />}
         >
           {message}
         </MuiAlert>
       </Collapse>
     </div>
   );
-};
-
-CustomAlert.propTypes = {
-  openAlert: PropTypes.bool,
-  severity: PropTypes.string,
-  message: PropTypes.string,
-  onCloseAlert: PropTypes.func
 };
 
 export default container(CustomAlert);

@@ -37,17 +37,17 @@ export function* onSignupAsync({
   payload: { formData }
 }: ReturnType<typeof signupStart>) {
   try {
-    const { data } = yield axios.post(
-      `http://yatchcloud-dev.fghire.com/api/public/createManager`,
-      formData
-    );
+    // const { data } = yield axios.post(
+    //   `http://yatchcloud-dev.fghire.com/api/public/createManager`,
+    //   formData
+    // );
 
-    console.log('value fo data after success>>>', data);
+    // console.log('value fo data after success>>>', data);
 
     yield put(authActions.signupSuccess());
     yield put(openAlert('User signed Up successfully!!', 'success'));
 
-    Router.push('/signin');
+    // Router.push('/signin');
   } catch (err) {
     console.error('error received onSignupAsync>>>', err);
     yield put(authActions.signupFail(err));

@@ -22,8 +22,8 @@ const Main = (props) => {
   return (
     <div className={classes.root}>
       <Topbar {...rest} />
-      <main className={classes.content}>{children}</main>
       <CustomAlert {...alert} />
+      <main className={classes.content}>{children}</main>
       <Footer />
     </div>
   );

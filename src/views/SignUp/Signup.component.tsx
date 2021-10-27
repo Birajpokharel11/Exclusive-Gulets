@@ -172,7 +172,7 @@ const SignUp = (props) => {
                 email: '',
                 password: '',
                 fullName: '',
-                role: 1,
+                roleGroupId: 1,
                 phoneNumber: ''
               }}
               validationSchema={Yup.object({
@@ -180,7 +180,7 @@ const SignUp = (props) => {
                 fullName: Yup.string()
                   .max(15, 'Must be 15 characters or less')
                   .required('FullName is Required'),
-                role: Yup.string().required('Role is Required'),
+                roleGroupId: Yup.string().required('Role is Required'),
                 phoneNumber: Yup.string().required('PhoneNumber is Required'),
                 email: Yup.string()
                   .email('Invalid email address')
@@ -241,7 +241,7 @@ const SignUp = (props) => {
                       component={Select}
                       fullWidth
                       variant="outlined"
-                      name="role"
+                      name="roleGroupId"
                       id="role"
                       endAdornment={
                         <InputAdornment

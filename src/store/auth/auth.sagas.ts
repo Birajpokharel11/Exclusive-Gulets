@@ -1,9 +1,12 @@
 import { takeLatest, call, all, put } from 'redux-saga/effects';
 import axios from 'axios';
 
+import { openAlert } from '../alert/alert.actions';
+
 import * as AuthType from './auth.types';
 import * as authActions from './auth.actions';
 import { signupStart, signinStart } from './auth.actions';
+import Router from 'next/router';
 
 export function* loadUserAsync() {
   try {
@@ -40,7 +43,11 @@ export function* onSignupAsync({
     );
 
     console.log('value fo data after success>>>', data);
+
     yield put(authActions.signupSuccess());
+    yield put(openAlert('User signed Up successfully!!', 'success'));
+
+    Router.push('/signin');
   } catch (err) {
     console.error('error received onSignupAsync>>>', err);
     yield put(authActions.signupFail(err));

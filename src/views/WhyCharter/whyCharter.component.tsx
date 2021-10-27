@@ -9,7 +9,6 @@ import { CircularProgress } from '@material-ui/core';
 import { useRouter } from 'next/router';
 import { IPostState } from '@store/interfaces';
 import Description from './components/Description';
-
 import YachtsSlider from '@views/Yachts/components/PreviewDrawer/components/YachtsSlider';
 const useStyles = makeStyles((theme) =>
   createStyles({

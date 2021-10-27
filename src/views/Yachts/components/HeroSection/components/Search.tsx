@@ -73,7 +73,6 @@ export default function Destinations() {
           </Button>
         </Grid>
       </Grid>
-
     </Container>
   );
 }

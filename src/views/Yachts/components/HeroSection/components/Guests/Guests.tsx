@@ -10,6 +10,8 @@ import Paper from '@material-ui/core/Paper';
 import Popper from '@material-ui/core/Popper';
 import IconButton from '@material-ui/core/IconButton';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+import RangeSlider from './components/RangeSlider';
+import { Slider, Typography } from '@material-ui/core';
 
 const useStyles = makeStyles((theme) =>
   createStyles({
@@ -49,7 +51,11 @@ const useStyles = makeStyles((theme) =>
     },
     expandOpen: {
       transform: 'rotate(180deg)'
-    }
+    },
+    root: {
+      width: 300
+    },
+    Paper: { padding: '43px 20px 20px 20px' }
   })
 );
 
@@ -57,12 +63,17 @@ export default function Filter() {
   const classes = useStyles();
 
   const [open, setOpen] = useState(false);
+
   const anchorRef = React.useRef<HTMLDivElement>(null);
+
+  ////////////////////////////////////////////////////////////////Range slider
+  const [value, setValue] = React.useState<number[]>([0, 100]);
 
   const handleToggle = () => {
     setOpen((prevOpen) => !prevOpen);
   };
 
+  ////////////////////////////////////////////////////////////////////////////
   const handleClose = (event: React.MouseEvent<EventTarget>) => {
     if (
       anchorRef.current &&
@@ -131,7 +142,10 @@ export default function Filter() {
             }}
           >
             <ClickAwayListener onClickAway={handleClose}>
-              <Paper></Paper>
+              <Paper className={classes.Paper}>
+                {' '}
+                <RangeSlider />
+              </Paper>
             </ClickAwayListener>
           </Grow>
         )}

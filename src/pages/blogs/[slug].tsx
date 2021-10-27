@@ -4,6 +4,7 @@ import axios from 'axios';
 import { END } from 'redux-saga';
 import { wrapper } from '@store/index';
 import { fetchPostsByIdStart } from '@store/posts/posts.actions';
+import { fetchRandomDestinationStart } from '@store/destination/destination.actions';
 
 import WithLayout from '@components/WithLayout';
 import Main from '@layouts/Main';
@@ -14,7 +15,6 @@ import { Limits, Sort } from '@utils/enums';
 export default function NewsBlogs() {
   return <WithLayout component={BlogsDetails} layout={Main} />;
 }
-
 
 export async function getStaticPaths() {
   const { data } = await axios.get(
@@ -43,6 +43,8 @@ export async function getStaticPaths() {
 export const getStaticProps = wrapper.getStaticProps(
   (store) => async (context) => {
     store.dispatch(fetchPostsByIdStart(context.params.slug as string));
+    store.dispatch(fetchRandomDestinationStart());
+
     store.dispatch(END);
 
     await store.sagaTask?.toPromise();

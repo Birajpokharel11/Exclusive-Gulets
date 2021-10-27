@@ -12,11 +12,18 @@ import BlogContnetSection from '@components/BlogContnetSection';
 import Container from './BlogsDetails.container';
 
 const Blogs = (props) => {
-  const { individual } = props;
+  const {
+    individual,
+    destination: { randomDestination }
+  } = props;
   console.log('individual', individual);
   return (
     <Box>
-      <Banner />
+      <Banner
+        title={individual?.title}
+        description={individual?.description}
+        backgroundImage={individual.featured_image?.url}
+      />
 
       {/* Second section  */}
       <BlogContnetSection individual={individual} />
@@ -33,7 +40,7 @@ const Blogs = (props) => {
            There is no better way than chartering a luxury gulet or yacht to see more of the world.
             With two third of the Earth covered in water,
            there is always a new exciting destination to explore and a different shoreline to discover.​"
-        destinations={Images}
+        destinations={randomDestination}
       />
     </Box>
   );

@@ -12,9 +12,6 @@ import {
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 import { Container, Grid, Box, Button } from '@material-ui/core';
 
-import vector4 from '@assets/images/icons/vector4.png';
-import vector2 from '@assets/images/Blog/blog-vector2.svg';
-
 import Typography from '@modules/components/Typography';
 import DestinationGallery from './components/Gallery';
 import { useRouter } from 'next/router';
@@ -96,7 +93,11 @@ export default function Destinations({
         </Grid>
       </Container>
       <div className={classes.wheelImage}>
-        <Image src={vector2} className="img-responsive" alt="vector" />
+        <img
+          src="/assets/images/Blog/blog-vector2.svg"
+          className="img-responsive"
+          alt="vector"
+        />
       </div>
 
       <DestinationGallery destinationList={destinations} />

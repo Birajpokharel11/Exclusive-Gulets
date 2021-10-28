@@ -70,7 +70,7 @@ export default function Destinations() {
             className={classes.Button}
             data-cy="View-Yatchs"
           >
-            View Yatchs
+            View Yachts
           </Button>
         </Grid>
       </Grid>

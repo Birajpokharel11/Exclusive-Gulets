@@ -9,6 +9,7 @@ interface Props {
   general_content?: any | object;
   charter_images?: any | object;
 }
+
 const useStyles = makeStyles((theme) =>
   createStyles({
     root: {
@@ -40,10 +41,6 @@ const useStyles = makeStyles((theme) =>
 );
 
 function About({ charter_content, general_content, charter_images }: Props) {
-  const classes = useStyles();
-  const slider = [];
-
-  console.log('About', charter_content?.name);
   return (
     <>
       <BannerSection

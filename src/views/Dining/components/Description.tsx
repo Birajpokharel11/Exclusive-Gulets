@@ -104,9 +104,9 @@ export default function Description({ content, SideImage, individual }: Props) {
   return (
     <>
       <Box id="#Box" className={classes.Divider}>
-        <img className={classes.Image1} src={SideImage} alt="sideImage" />
+        <img className={classes.Image1} src={`${SideImage}`} alt="sideImage" />
         <Box className={classes.ImageBox2}>
-          <img className={classes.Image} src={SideImage} alt="sideImage" />
+          <img className={classes.Image} src={`${SideImage}`} alt="sideImage" />
         </Box>
         <Box className={classes.Text}>
           <Typography

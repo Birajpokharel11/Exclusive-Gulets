@@ -6,10 +6,17 @@ import {
   Box,
   Typography,
   Button,
-  Select,
-  MenuItem,
-  TextField
+  MenuItem
 } from '@material-ui/core';
+import { useTheme } from '@material-ui/core/styles';
+
+import { Formik, Field, Form } from 'formik';
+import { TextField, Select } from 'formik-material-ui';
+import * as Yup from 'yup';
+
+import countryList from '@mocks/country_code.json';
+
+import Placeholder from '@modules/components/Placeholder';
 
 import { menuProps } from '@utils/utils';
 
@@ -28,7 +35,10 @@ const useStyles = makeStyles((theme) =>
       '&:hover': {
         backgroundColor: '#2A398D'
       },
-      color: '#FFFFFF'
+      color: '#FFFFFF',
+      [theme.breakpoints.down('xs')]: {
+        width: '100%'
+      }
     },
     textWidth: {
       width: '100%'
@@ -38,6 +48,12 @@ const useStyles = makeStyles((theme) =>
 
 export default function EnquiryForm() {
   const classes = useStyles();
+
+  const handleSubmit = (values) => {
+    console.log('values', values);
+  };
+  const theme = useTheme();
+
   return (
     <Box component="section" className={classes.root}>
       <Container maxWidth="md">
@@ -66,91 +82,130 @@ export default function EnquiryForm() {
         </Grid>
       </Container>
       <Container>
-        <Grid container spacing={3}>
-          <Grid item container md={6} sm={12} xs={12} spacing={2}>
-            <Grid item xs={3}>
-              <TextField
-                id="filled-select-currency"
-                select
-                label="Select"
-                variant="outlined"
-                className={classes.textWidth}
-                SelectProps={{
-                  MenuProps: menuProps
-                }}
-                InputProps={{ notched: false }}
-              >
-                <MenuItem value="title">Title</MenuItem>
-                <MenuItem value="ten">Ten</MenuItem>
-                <MenuItem value="twenty">Twenty</MenuItem>
-              </TextField>
+        <Formik
+          initialValues={{
+            title: '',
+            name: '',
+            email: '',
+            country: '',
+            phonenumber: '',
+            comments: ''
+          }}
+          validationSchema={Yup.object({
+            title: Yup.string().required('This field is required'),
+            name: Yup.string().required('This field is required'),
+            email: Yup.string().required('This field is required'),
+            country: Yup.string().required('This field is required'),
+            phonenumber: Yup.string().required('This field is required'),
+            comments: Yup.string().required('This field is required')
+          })}
+          onSubmit={handleSubmit}
+        >
+          <Form>
+            <Grid container spacing={3}>
+              <Grid item container md={6} sm={12} xs={12} spacing={2}>
+                <Grid item xs={3}>
+                  <Field
+                    component={TextField}
+                    name="title"
+                    id="title"
+                    label="Title"
+                    variant="outlined"
+                    fullWidth
+                    SelectProps={{
+                      MenuProps: menuProps
+                    }}
+                    InputProps={{ notched: false }}
+                  >
+                    <MenuItem value="Mr.">Mr.</MenuItem>
+                    <MenuItem value="Mrs.">Mrs.</MenuItem>
+                    <MenuItem value="Ms.">Ms.</MenuItem>
+                    <MenuItem value="Miss.">Miss.</MenuItem>
+                    <MenuItem value="Mx.">Mx.</MenuItem>
+                  </Field>
+                </Grid>
+                <Grid item xs={9}>
+                  <Field
+                    component={TextField}
+                    id="name"
+                    name="name"
+                    label="Full Name"
+                    variant="outlined"
+                    fullWidth
+                    InputProps={{ notched: false }}
+                    placeholder="Write your name"
+                  />
+                </Grid>
+                <Grid item xs={12}>
+                  <Field
+                    component={TextField}
+                    id="email"
+                    name="email"
+                    label="Email"
+                    variant="outlined"
+                    fullWidth
+                    InputProps={{ notched: false }}
+                  />
+                </Grid>
+                <Grid item xs={3}>
+                  <Field
+                    component={TextField}
+                    id="country"
+                    name="country"
+                    select
+                    label="Select"
+                    variant="outlined"
+                    fullWidth
+                    SelectProps={{
+                      MenuProps: menuProps
+                    }}
+                    InputProps={{ notched: false }}
+                  >
+                    {countryList.map((country) => (
+                      <MenuItem key={country.label} value={country.value}>
+                        {country.label}
+                      </MenuItem>
+                    ))}
+                  </Field>
+                </Grid>
+                <Grid item xs={9}>
+                  <Field
+                    component={TextField}
+                    id="phonenumber"
+                    name="phonenumber"
+                    label="Mobile Phone"
+                    variant="outlined"
+                    fullWidth
+                    InputProps={{ notched: false }}
+                  />
+                </Grid>
+              </Grid>
+              <Grid item md={6} sm={12} xs={12}>
+                <Field
+                  component={TextField}
+                  id="comments"
+                  name="comments"
+                  label="Your Comments"
+                  multiline
+                  rows={9}
+                  variant="outlined"
+                  fullWidth
+                  InputProps={{ notched: false }}
+                />
+              </Grid>
+              <Grid item container justifyContent="center">
+                <Button
+                  variant="contained"
+                  size="large"
+                  type="submit"
+                  className={classes.buttonStyle}
+                >
+                  Enquire
+                </Button>
+              </Grid>
             </Grid>
-            <Grid item xs={9}>
-              <TextField
-                id="outlined-basic"
-                label="Full Name"
-                variant="outlined"
-                className={classes.textWidth}
-                InputProps={{ notched: false }}
-              />
-            </Grid>
-            <Grid item xs={12}>
-              <TextField
-                id="outlined-basic"
-                label="Email"
-                variant="outlined"
-                className={classes.textWidth}
-                InputProps={{ notched: false }}
-              />
-            </Grid>
-            <Grid item xs={3}>
-              <TextField
-                id="filled-select-currency"
-                select
-                label="Select"
-                variant="outlined"
-                className={classes.textWidth}
-                SelectProps={{
-                  MenuProps: menuProps
-                }}
-                InputProps={{ notched: false }}
-              >
-                <MenuItem value="title">Title</MenuItem>
-                <MenuItem value="ten">Ten</MenuItem>
-                <MenuItem value="twenty">Twenty</MenuItem>
-              </TextField>
-            </Grid>
-            <Grid item xs={9}>
-              <TextField
-                id="outlined-basic"
-                label="Mobile Phone"
-                variant="outlined"
-                className={classes.textWidth}
-                InputProps={{ notched: false }}
-              />
-            </Grid>
-          </Grid>
-          <Grid item md={6} sm={12} xs={12}>
-            <TextField
-              id="standard-multiline-static"
-              label="Your Comments"
-              multiline
-              rows={9}
-              variant="outlined"
-              className={classes.textWidth}
-              InputProps={{ notched: false }}
-            />
-          </Grid>
-          <Grid item container justifyContent="center">
-            <Button
-              variant="contained"
-              size="large"
-              className={classes.buttonStyle}
-            >
-              Enquire
-            </Button>
-          </Grid>
-        </Grid>
+          </Form>
+        </Formik>
       </Container>
     </Box>
   );

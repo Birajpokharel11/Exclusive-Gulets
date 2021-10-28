@@ -5,6 +5,7 @@ import Box from '@material-ui/core/Box';
 import Container from '@material-ui/core/Container';
 import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
+import Hidden from '@material-ui/core/Hidden';
 import ReactPlayer from 'react-player/lazy';
 import * as _screenfull from 'screenfull';
 import { Screenfull } from 'screenfull';
@@ -165,35 +166,37 @@ export const HomeVideo = ({ isIOS }) => {
       />
       <Box className={classes.overlay} style={{ paddingBottom: '3.5rem' }}>
         <Container>
-          <div
-            className={classes.controls}
-            style={{ display: isLoading ? 'none' : 'flex' }}
-          >
-            <IconButton
-              className={classes.controlBtn}
-              id="button-play-fullscreen"
-              onClick={() => {
-                setMuted(false);
-                if (screenfull.isEnabled) {
-                  screenfull.request(playerRef.current.wrapper);
-                }
-              }}
-              hidden={isIOS}
+          <Hidden xsDown>
+            <div
+              className={classes.controls}
+              style={{ display: isLoading ? 'none' : 'flex' }}
             >
-              <PlayIcon className={classes.playIcon} />
-            </IconButton>
-            <IconButton
-              className={classes.controlBtn}
-              id="button-sound-toggle"
-              onClick={() => setMuted(!muted)}
-            >
-              {muted ? (
-                <SoundVolumeIcon className={classes.volumeIcon} />
-              ) : (
-                <SoundMutedIcon className={classes.volumeIcon} />
-              )}
-            </IconButton>
-          </div>
+              <IconButton
+                className={classes.controlBtn}
+                id="button-play-fullscreen"
+                onClick={() => {
+                  setMuted(false);
+                  if (screenfull.isEnabled) {
+                    screenfull.request(playerRef.current.wrapper);
+                  }
+                }}
+                hidden={isIOS}
+              >
+                <PlayIcon className={classes.playIcon} />
+              </IconButton>
+              <IconButton
+                className={classes.controlBtn}
+                id="button-sound-toggle"
+                onClick={() => setMuted(!muted)}
+              >
+                {muted ? (
+                  <SoundVolumeIcon className={classes.volumeIcon} />
+                ) : (
+                  <SoundMutedIcon className={classes.volumeIcon} />
+                )}
+              </IconButton>
+            </div>
+          </Hidden>
 
           <Typography
             variant="h1"
@@ -211,30 +214,32 @@ export const HomeVideo = ({ isIOS }) => {
             Experience Exceptional Yachting
           </Typography>
 
-          <Box className="scrollDown">
-            <IconButton onClick={scrollDownHandler}>
-              <svg
-                width="16"
-                height="21"
-                viewBox="0 0 16 21"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  d="M15 1L8 9L1 1"
-                  stroke="white"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                />
-                <path
-                  d="M15 11L8 19L1 11"
-                  stroke="white"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                />
-              </svg>
-            </IconButton>
-          </Box>
+          <Hidden xsDown>
+            <Box className="scrollDown">
+              <IconButton onClick={scrollDownHandler}>
+                <svg
+                  width="16"
+                  height="21"
+                  viewBox="0 0 16 21"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M15 1L8 9L1 1"
+                    stroke="white"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                  />
+                  <path
+                    d="M15 11L8 19L1 11"
+                    stroke="white"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                  />
+                </svg>
+              </IconButton>
+            </Box>
+          </Hidden>
         </Container>
       </Box>
     </Box>

@@ -6,7 +6,7 @@ import Minimal from '@layouts/Minimal';
 
 import Signin from '@views/Signin';
 
-export default function NewsBlogs() {
+export default function SignIn() {
   return (
     <>
       <Head>

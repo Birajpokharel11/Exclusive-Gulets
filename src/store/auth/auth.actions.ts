@@ -14,9 +14,9 @@ export const loadUserFail = (error) => ({
   payload: error
 });
 
-export const signinStart = (formData, history) => ({
+export const signinStart = (formData) => ({
   type: AuthType.SIGN_IN_START,
-  payload: { formData, history }
+  payload: { formData }
 });
 
 export const signinSuccess = (currentUser) => ({
@@ -29,14 +29,13 @@ export const signinFail = (error) => ({
   payload: error
 });
 
-export const signupStart = (formData, found, history) => ({
+export const signupStart = (formData) => ({
   type: AuthType.SIGN_UP_START,
-  payload: { formData, found, history }
+  payload: { formData }
 });
 
-export const signupSuccess = (user) => ({
-  type: AuthType.SIGN_UP_SUCCESS,
-  payload: user
+export const signupSuccess = () => ({
+  type: AuthType.SIGN_UP_SUCCESS
 });
 
 export const signupFail = (error) => ({

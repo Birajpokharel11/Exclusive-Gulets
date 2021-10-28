@@ -53,7 +53,8 @@ const useStyles = makeStyles((theme) =>
     SubHeading: {
       textAlign: 'center',
       color: '#F5F0E4',
-      fontWeight: 300
+      fontWeight: 300,
+      marginTop: '16px'
     }
   })
 );

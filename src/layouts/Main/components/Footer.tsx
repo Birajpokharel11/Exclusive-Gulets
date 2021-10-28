@@ -6,7 +6,8 @@ import {
   Grid,
   Typography,
   Box,
-  useMediaQuery
+  useMediaQuery,
+  Hidden
 } from '@material-ui/core';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
@@ -35,7 +36,7 @@ const useStyles = makeStyles((theme: Theme) => ({
   },
   YatchStyle: {
     marginBottom: '13%',
-    [theme.breakpoints.down('md')]: {
+    [theme.breakpoints.down('sm')]: {
       marginTop: '69px'
     }
   },
@@ -78,6 +79,11 @@ const useStyles = makeStyles((theme: Theme) => ({
   },
   TypographyBody: {
     color: 'white'
+  },
+  privacyContainer: {
+    [theme.breakpoints.down('xs')]: {
+      marginTop: '68px'
+    }
   }
 }));
 
@@ -85,12 +91,13 @@ const Footer = () => {
   const classes = useStyles();
   const theme = useTheme();
   const matches = useMediaQuery(theme.breakpoints.down(800));
+  const matchesXS = useMediaQuery(theme.breakpoints.down('xs'));
 
   return (
     <Box className={classes.root}>
       <Container>
         <Grid container justifyContent="space-between">
-          <Grid item md={4} style={{ color: 'white', fontFamily: 'lato' }}>
+          <Grid item sm={4} xs={12}>
             <Typography className={classes.TypographyHeading}>
               EXCLUSIVE GULETS
             </Typography>
@@ -105,7 +112,7 @@ const Footer = () => {
               t. +44 208 144 58 34
             </Typography>
           </Grid>
-          <Grid item md={4}>
+          <Grid item sm={4} xs={12}>
             <List className={classes.ListItems}>
               <div>
                 <ListItem>
@@ -148,19 +155,30 @@ const Footer = () => {
               </div>
             </List>
           </Grid>
-          <Grid item md={4}>
-            <div className={classes.YatchStyle}>
-              <Typography className={classes.TypographyHeading}>
-                Yacht-Style Newsletter
-              </Typography>
-              <Typography
-                className={clsx(classes.ListItems, classes.ListitemsMargin)}
-              >
-                If you like yachts you need this newsletter in your life.
-              </Typography>
-            </div>
-            <Searchbar />
-            {!matches && (
+          <Grid item container md={4} sm={12}>
+            <Grid item sm={7} md={12} xs={12}>
+              <div className={classes.YatchStyle}>
+                <Typography className={classes.TypographyHeading}>
+                  Yacht-Style Newsletter
+                </Typography>
+                <Typography
+                  className={clsx(classes.ListItems, classes.ListitemsMargin)}
+                >
+                  If you like yachts you need this newsletter in your life.
+                </Typography>
+              </div>
+              <Searchbar />
+            </Grid>
+            <Grid
+              item
+              container
+              lg={12}
+              md={12}
+              sm={5}
+              xs={12}
+              justifyContent={matchesXS ? 'center' : undefined}
+              alignItems={matchesXS ? 'center' : undefined}
+            >
               <div
                 style={{
                   color: 'white',
@@ -168,7 +186,10 @@ const Footer = () => {
                   marginBottom: '11%'
                 }}
               >
-                <Typography className={classes.TypographyHeading}>
+                <Typography
+                  className={classes.TypographyHeading}
+                  align={matchesXS ? 'center' : undefined}
+                >
                   Contact Us
                 </Typography>
                 <div>
@@ -189,13 +210,12 @@ const Footer = () => {
                   </IconButton>
                 </div>
               </div>
-            )}
+            </Grid>
           </Grid>
-          <Grid>
+          {/* <Grid>
             {matches && (
               <div
                 style={{
-                  color: 'white',
                   marginTop: '16%',
                   marginBottom: '11%'
                 }}
@@ -222,22 +242,21 @@ const Footer = () => {
                 </div>
               </div>
             )}
-          </Grid>
+          </Grid> */}
         </Grid>
         <Grid
           container
           justifyContent="center"
           alignItems="center"
-          style={{
-            color: 'white',
-            width: '100%'
-          }}
+          className={classes.privacyContainer}
         >
-          <Grid item md={7}>
-            <Typography className={classes.ListItems}>
-              Copyright 2019 - EXCLUSIVE GULETS
-            </Typography>
-          </Grid>
+          <Hidden xsDown>
+            <Grid item md={7} style={{ marginTop: '20px' }}>
+              <Typography className={classes.ListItems}>
+                Copyright 2019 - EXCLUSIVE GULETS
+              </Typography>
+            </Grid>
+          </Hidden>
           <Grid item container justifyContent="space-between" md={5}>
             <Grid item>
               <Typography className={classes.ListItems}>Privacy</Typography>
@@ -248,6 +267,13 @@ const Footer = () => {
               </Typography>
             </Grid>
           </Grid>
+          <Hidden smUp>
+            <Grid item container xs={12} style={{ marginTop: '20px' }}>
+              <Typography className={classes.ListItems}>
+                Copyright 2019 - EXCLUSIVE GULETS
+              </Typography>
+            </Grid>
+          </Hidden>
         </Grid>
       </Container>
     </Box>

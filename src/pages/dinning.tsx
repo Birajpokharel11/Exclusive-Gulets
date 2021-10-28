@@ -2,7 +2,7 @@ import React from 'react';
 import Head from 'next/head';
 import WithLayout from '@components/WithLayout';
 import Main from '@layouts/Main';
-import Dining from '@views/Dining';
+import DiningView from '@views/Dining';
 
 import { END } from 'redux-saga';
 import { wrapper } from '@store/index';
@@ -19,7 +19,7 @@ export default function Dinning() {
           key="title"
         />
       </Head>
-      <WithLayout component={Dining} layout={Main} />
+      <WithLayout component={DiningView} layout={Main} />
     </>
   );
 }

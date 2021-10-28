@@ -5,6 +5,8 @@ import { useRouter } from 'next/router';
 ////////////////////////////////////////////////////////////
 import clsx from 'clsx';
 import { makeStyles } from '@material-ui/core/styles';
+import { useScrollTrigger } from '@material-ui/core';
+
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Tabs from '@material-ui/core/Tabs';
@@ -32,6 +34,7 @@ import CloseIcon from '@material-ui/icons/Close';
 import PreviewDrawer from '@views/Yachts/components/PreviewDrawer';
 import SearchDialouge from '@components/SearchDialouge';
 import Tooltip from '@material-ui/core/Tooltip';
+
 const drawerWidth = 400;
 const useStyles = makeStyles((theme) => ({
   toolbarMargin: {
@@ -74,7 +77,7 @@ const useStyles = makeStyles((theme) => ({
     }
   },
   drawer: {
-    backgroundColor: '#091527'
+    backgroundColor: 'rgba(9, 21, 39, 0.8)'
   },
   drawerPaper: {
     width: drawerWidth,
@@ -90,12 +93,20 @@ const useStyles = makeStyles((theme) => ({
   listStyle: {
     marginTop: '24px'
   },
+  textColor: {
+    color: 'red'
+  },
   hide: {
     display: 'none'
   }
+  // transparentBackground: {
+  //   backgroundColor: ' rgba(9, 21, 39, 0.8);'
+  // }
 }));
 
 export default function Header() {
+  const trigger = useScrollTrigger();
+
   const classes = useStyles();
 
   const [value, setValue] = useState(0);
@@ -173,7 +184,14 @@ export default function Header() {
 
   return (
     <>
-      <AppBar position="fixed" elevation={0} className={classes.AppBar}>
+      <AppBar
+        position="fixed"
+        elevation={0}
+        className={classes.AppBar}
+        style={{
+          backgroundColor: '#091527'
+        }}
+      >
         <Toolbar>
           <div onClick={() => router.push('/', undefined, { shallow: true })}>
             <img
@@ -195,8 +213,8 @@ export default function Header() {
               />
               <Tab
                 className={classes.tab}
-                label="YATCHS"
-                data-cy="YATCHS"
+                label="YACHTS"
+                data-cy="YACHTS"
                 onClick={() =>
                   router.push('/yachts', undefined, { shallow: true })
                 }
@@ -323,7 +341,12 @@ export default function Header() {
             />
             <IconButton color="inherit" data-cy="PersonIcon">
               <PersonIcon />
-              <Typography className={classes.tab}>Members</Typography>
+              <Typography
+                className={classes.tab}
+                onClick={() => router.push('/signin')}
+              >
+                Members
+              </Typography>
             </IconButton>{' '}
           </Hidden>
           <Hidden xsDown>
@@ -415,7 +438,7 @@ export default function Header() {
               data-cy="TMB-YATCHS"
             >
               <ListItem className={classes.listStyle}>
-                <ListItemText primary="YATCHS" />
+                <ListItemText primary="YACHTS" />
               </ListItem>
             </Button>
             <Divider variant="middle" style={{ backgroundColor: 'white' }} />
@@ -426,7 +449,13 @@ export default function Header() {
               onClick={handleDrawerClose}
             >
               <ListItem className={classes.listStyle}>
-                <ListItemText primary="OFFERS" />
+                <ListItemText
+                  primary={
+                    <Typography variant="h4" style={{ color: 'white' }}>
+                      OFFERS
+                    </Typography>
+                  }
+                />
               </ListItem>{' '}
             </Button>
             <Divider variant="middle" style={{ backgroundColor: 'white' }} />
@@ -437,7 +466,13 @@ export default function Header() {
               onClick={handleDrawerClose}
             >
               <ListItem className={classes.listStyle}>
-                <ListItemText primary="DESTINATIONS" />
+                <ListItemText
+                  primary={
+                    <Typography variant="h4" style={{ color: 'white' }}>
+                      DESTINATIONS
+                    </Typography>
+                  }
+                />
               </ListItem>{' '}
             </Button>
             <Divider variant="middle" style={{ backgroundColor: 'white' }} />
@@ -448,7 +483,13 @@ export default function Header() {
               onClick={handleDrawerClose}
             >
               <ListItem className={classes.listStyle}>
-                <ListItemText primary="BESPOKE EXPERIENCES" />
+                <ListItemText
+                  primary={
+                    <Typography variant="h4" style={{ color: 'white' }}>
+                      BESPOKE EXPERIENCES
+                    </Typography>
+                  }
+                />
               </ListItem>{' '}
             </Button>
             <Divider variant="middle" style={{ backgroundColor: 'white' }} />
@@ -459,7 +500,13 @@ export default function Header() {
               onClick={handleDrawerClose}
             >
               <ListItem className={classes.listStyle}>
-                <ListItemText primary="NEWS & BLOGS" />
+                <ListItemText
+                  primary={
+                    <Typography variant="h4" style={{ color: 'white' }}>
+                      NEWS & BLOGS
+                    </Typography>
+                  }
+                />
               </ListItem>{' '}
             </Button>
             <Divider variant="middle" style={{ backgroundColor: 'white' }} />
@@ -470,7 +517,13 @@ export default function Header() {
               onClick={handleDrawerClose}
             >
               <ListItem className={classes.listStyle}>
-                <ListItemText primary="ABOUTYOU" />
+                <ListItemText
+                  primary={
+                    <Typography variant="h4" style={{ color: 'white' }}>
+                      ABOUTYOU
+                    </Typography>
+                  }
+                />
               </ListItem>{' '}
             </Button>
             <Divider variant="middle" style={{ backgroundColor: 'white' }} />
@@ -480,7 +533,13 @@ export default function Header() {
               onClick={handleDrawerClose}
             >
               <ListItem className={classes.listStyle}>
-                <ListItemText primary="Dinning" />
+                <ListItemText
+                  primary={
+                    <Typography variant="h4" style={{ color: 'white' }}>
+                      DINNING
+                    </Typography>
+                  }
+                />
               </ListItem>{' '}
             </Button>
             <Divider variant="middle" style={{ backgroundColor: 'white' }} />

@@ -53,24 +53,22 @@ interface Slider {
   file?: Files;
 }
 interface Props {
-  Dining?: any[];
+  dining?: any;
   loading?: any;
-  slider_image?: Slider;
+  slider_image?: any[];
 }
-function Dining({ Dining, loading, slider_image }) {
-  const classes = useStyles();
-  const slider = [];
-  slider_image.map((image, index) => {
-    slider.push(image);
-  });
 
-  console.log('Dinnisng', slider);
+function Dining(props) {
+  const classes = useStyles();
+
+  const { dining, loading, slider_image }: Props = props;
+
   return (
     <>
       <BannerSection
-        backgroundImage={Dining?.featured_image?.url}
-        title={Dining?.title}
-        description={Dining?.description}
+        backgroundImage={dining?.featured_image?.url}
+        title={dining?.title}
+        description={dining?.description}
         withSocial={true}
       />
       <Box component="section" className={classes.sectionGem}>
@@ -80,14 +78,14 @@ function Dining({ Dining, loading, slider_image }) {
 
         <Box className={classes.Box}>
           <Description
-            content={Dining?.content}
-            SideImage={Dining?.side_image?.url}
-            individual={Dining}
+            content={dining?.content}
+            SideImage={dining?.side_image?.url}
+            individual={dining}
           />
         </Box>
       </Box>
       <Box style={{ paddingBottom: '100px' }}>
-        <YachtsSlider imageList={slider} />
+        <YachtsSlider imageList={slider_image} />
       </Box>
       {/* <FooterSlider /> */}
     </>

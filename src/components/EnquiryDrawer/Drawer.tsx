@@ -4,6 +4,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import SwipeableDrawer from '@material-ui/core/SwipeableDrawer';
 import EnquiryForm from '@components/Enquiry';
 import { useSwipeable } from 'react-swipeable';
+
 const useStyles = makeStyles({
   list: {
     width: 250

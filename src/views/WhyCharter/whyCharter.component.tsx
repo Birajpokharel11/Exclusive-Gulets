@@ -2,14 +2,14 @@ import React from 'react';
 import { createStyles, makeStyles } from '@material-ui/core/styles';
 import { Box, Container, Typography } from '@material-ui/core';
 import BannerSection from '@components/BannerSection';
-import CardList from '@components/CardList';
-import container from './Dinning.container';
+
 import BackgroundVectors from '@components/BackgroundVectors';
-import { CircularProgress } from '@material-ui/core';
-import { useRouter } from 'next/router';
-import { IPostState } from '@store/interfaces';
-import Description from './components/Description';
+
+import Description from '@views/Dining/components/Description';
 import YachtsSlider from '@views/Yachts/components/PreviewDrawer/components/YachtsSlider';
+
+import container from './WhyCharter.container';
+
 const useStyles = makeStyles((theme) =>
   createStyles({
     root: {

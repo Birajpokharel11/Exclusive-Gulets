@@ -30,9 +30,7 @@ const CustomAlert = ({ openAlert, severity, message, onCloseAlert }) => {
   const classes = useStyles();
 
   const [color, setColor] = useState('#FFA9A9');
-  const [logo, setLogo] = useState({});
-
-  console.log('open alert component>>>', openAlert);
+  const [logo, setLogo] = useState(null);
 
   useEffect(() => {
     if (severity === 'error') {

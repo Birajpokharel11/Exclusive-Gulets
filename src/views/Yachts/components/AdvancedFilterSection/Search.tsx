@@ -36,8 +36,14 @@ const useStyles = makeStyles((theme: Theme) =>
     input: {
       marginLeft: theme.spacing(1),
       flex: 1,
-      color: '#ffffff'
+      color: '#ffffff',
+      background: ' rgba(12, 22, 37, 0.6)',
+      '&.Mui-focused': {
+        background: 'transparent',
+        color: 'red'
+      }
     },
+
     Container: {
       padding: '40px 0'
     },
@@ -59,7 +65,10 @@ export default function Search() {
             <IconButton className={classes.iconButton} aria-label="menu">
               <img src="/assets/images/Search.svg" />
             </IconButton>
-            <InputBase className={classes.input} placeholder="Search by name" />
+            <InputBase
+              classes={{ root: classes.input }}
+              placeholder="Search By Name"
+            />
           </Paper>
         </Grid>
         <Grid item md={4} container justifyContent="flex-end">

@@ -33,7 +33,8 @@ const useStyles = makeStyles((theme) =>
       flex: 1
     },
     input: {
-      padding: '14.5px 14px'
+      padding: '14.5px 14px',
+      background: 'none'
     },
     label: {
       fontStyle: 'normal',
@@ -108,12 +109,7 @@ export default function Filter() {
       <div ref={anchorRef} className={classes.ButtonGroup}>
         <Grid container justifyContent="center">
           <Grid item xs style={{ display: 'flex' }}>
-            <InputBase
-              classes={{
-                input: classes.input
-              }}
-              placeholder="Check in"
-            />
+            <input className={classes.input} placeholder="Check in" />
             <IconButton
               className={clsx(classes.expand, {
                 [classes.expandOpen]: open
@@ -131,7 +127,6 @@ export default function Filter() {
         anchorEl={anchorRef.current}
         role={undefined}
         transition
-        style={{ zIndex: 2 }}
         disablePortal
       >
         {({ TransitionProps, placement }) => (

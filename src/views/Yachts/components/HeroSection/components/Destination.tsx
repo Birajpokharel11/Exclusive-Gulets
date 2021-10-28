@@ -20,6 +20,7 @@ const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     root: {
       background: 'rgba(12, 22, 37, 0.6)',
+      color: 'white',
       border: '1px solid rgba(255, 255, 255, 0.5)',
       boxSizing: 'border-box',
       borderRadius: '4px',
@@ -82,7 +83,7 @@ export default function MultipleSelect() {
     <>
       <FormLabel className={classes.label}>Destination</FormLabel>
       <Select
-        variant="outlined"
+        variant="filled"
         fullWidth
         multiple
         classes={{

@@ -136,6 +136,7 @@ export default function Header() {
   };
 
   const handleCloseTab = (event) => {
+    router.push('/about', undefined, { shallow: true });
     if (anchorRef.current && anchorRef.current.contains(event.target)) {
       return;
     }
@@ -274,7 +275,9 @@ export default function Header() {
                     >
                       <MenuItem
                         className={clsx(classes.tab, classes.Menu)}
-                        onClick={handleCloseTab}
+                        onClick={() =>
+                          router.push('/about', undefined, { shallow: true })
+                        }
                         data-cy="ABOUTYOU"
                         href="/about"
                       >
@@ -282,7 +285,9 @@ export default function Header() {
                       </MenuItem>
                       <MenuItem
                         className={clsx(classes.tab, classes.Menu)}
-                        onClick={handleCloseTab}
+                        onClick={() =>
+                          router.push('/dinning', undefined, { shallow: true })
+                        }
                         data-cy="DINNING"
                       >
                         DINNING

@@ -55,7 +55,7 @@ const useStyles = makeStyles((theme) =>
     root: {
       width: 300
     },
-    Paper: { padding: '43px 20px 20px 20px', width: '440px' }
+    Paper: { padding: '43px 20px 20px 20px', zIndex: 2, width: '440px' }
   })
 );
 
@@ -131,6 +131,7 @@ export default function Filter() {
         anchorEl={anchorRef.current}
         role={undefined}
         transition
+        style={{ zIndex: 2 }}
         disablePortal
       >
         {({ TransitionProps, placement }) => (

@@ -31,6 +31,7 @@ const useStyles = makeStyles((theme: Theme) =>
       width: '190px',
       height: '52px',
       background: '#F5F0E4',
+      zIndex: 0,
       color: '#2A398D',
       '&:hover': { background: '#F5F0E4' },
       [theme.breakpoints.down(780)]: {

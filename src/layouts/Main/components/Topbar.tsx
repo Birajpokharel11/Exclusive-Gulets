@@ -274,7 +274,9 @@ export default function Header() {
                     >
                       <MenuItem
                         className={clsx(classes.tab, classes.Menu)}
-                        onClick={handleCloseTab}
+                        onClick={() => {
+                          router.push('/about');
+                        }}
                         data-cy="ABOUTYOU"
                         href="/about"
                       >
@@ -282,8 +284,11 @@ export default function Header() {
                       </MenuItem>
                       <MenuItem
                         className={clsx(classes.tab, classes.Menu)}
-                        onClick={handleCloseTab}
+                        onClick={() => {
+                          router.push('/dinning');
+                        }}
                         data-cy="DINNING"
+                        href="/dinning"
                       >
                         DINNING
                       </MenuItem>

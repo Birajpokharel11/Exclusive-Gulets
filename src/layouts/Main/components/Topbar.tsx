@@ -97,10 +97,10 @@ const useStyles = makeStyles((theme) => ({
   },
   hide: {
     display: 'none'
-  },
-  transparentBackground: {
-    backgroundColor: ' rgba(9, 21, 39, 0.8);'
   }
+  // transparentBackground: {
+  //   backgroundColor: ' rgba(9, 21, 39, 0.8);'
+  // }
 }));
 
 export default function Header() {
@@ -180,7 +180,7 @@ export default function Header() {
         elevation={0}
         className={classes.AppBar}
         style={{
-          backgroundColor: trigger ? '#091527' : 'rgba(9, 21, 39, 0.8)'
+          backgroundColor: '#091527'
         }}
       >
         <Toolbar>

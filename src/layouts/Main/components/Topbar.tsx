@@ -264,6 +264,7 @@ export default function Header() {
                 open={tabopen}
                 anchorEl={anchorRef.current}
                 role={undefined}
+                style={{ zIndex: 2 }}
               >
                 <Paper style={{ marginTop: '0.5rem' }}>
                   <ClickAwayListener onClickAway={handleCloseTab}>

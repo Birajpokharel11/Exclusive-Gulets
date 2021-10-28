@@ -105,6 +105,7 @@ export default function EnquiryForm() {
                     name="title"
                     id="title"
                     label="Title"
+                    variant="outlined"
                     fullWidth
                     SelectProps={{
                       MenuProps: menuProps

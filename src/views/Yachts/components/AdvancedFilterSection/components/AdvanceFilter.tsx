@@ -8,6 +8,8 @@ import Paper from '@material-ui/core/Paper';
 import Popper from '@material-ui/core/Popper';
 import MenuItem from '@material-ui/core/MenuItem';
 import MenuList from '@material-ui/core/MenuList';
+import AdvancedFilterSection from './components/AdvanceFiltersSection';
+import Filters from './Filters';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -26,6 +28,12 @@ const useStyles = makeStyles((theme: Theme) =>
     FilterTypo: {
       paddingLeft: theme.spacing(2),
       textTransform: 'capitalize'
+    },
+    Paper: {
+      padding: '32px 24px 16px 16px',
+      zIndex: 2,
+      width: '432px',
+      minHeight: '432px'
     }
   })
 );
@@ -98,19 +106,11 @@ export default function MenuListComposition() {
                 placement === 'bottom' ? 'center top' : 'center bottom'
             }}
           >
-            <Paper>
-              <ClickAwayListener onClickAway={handleClose}>
-                <MenuList
-                  autoFocusItem={open}
-                  id="menu-list-grow"
-                  onKeyDown={handleListKeyDown}
-                >
-                  <MenuItem onClick={handleClose}>Profile</MenuItem>
-                  <MenuItem onClick={handleClose}>My account</MenuItem>
-                  <MenuItem onClick={handleClose}>Logout</MenuItem>
-                </MenuList>
-              </ClickAwayListener>
-            </Paper>
+            <ClickAwayListener onClickAway={handleClose}>
+              <Paper square className={classes.Paper}>
+                <Filters />
+              </Paper>
+            </ClickAwayListener>
           </Grow>
         )}
       </Popper>

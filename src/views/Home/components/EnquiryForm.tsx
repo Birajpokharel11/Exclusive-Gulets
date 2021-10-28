@@ -8,6 +8,7 @@ import {
   Button,
   MenuItem
 } from '@material-ui/core';
+import { useTheme } from '@material-ui/core/styles';
 
 import { Formik, Field, Form } from 'formik';
 import { TextField, Select } from 'formik-material-ui';
@@ -34,7 +35,10 @@ const useStyles = makeStyles((theme) =>
       '&:hover': {
         backgroundColor: '#2A398D'
       },
-      color: '#FFFFFF'
+      color: '#FFFFFF',
+      [theme.breakpoints.down('xs')]: {
+        width: '100%'
+      }
     },
     textWidth: {
       width: '100%'
@@ -48,6 +52,7 @@ export default function EnquiryForm() {
   const handleSubmit = (values) => {
     console.log('values', values);
   };
+  const theme = useTheme();
 
   return (
     <Box component="section" className={classes.root}>

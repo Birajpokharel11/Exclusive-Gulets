@@ -1,5 +1,7 @@
 /* eslint-disable jsx-a11y/alt-text */
 import React from 'react';
+import Image from 'next/image';
+
 import clsx from 'clsx';
 import {
   createStyles,
@@ -9,6 +11,9 @@ import {
 } from '@material-ui/core/styles';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 import { Container, Grid, Box, Button } from '@material-ui/core';
+
+import vector4 from '@assets/images/icons/vector4.png';
+import vector2 from '@assets/images/Blog/blog-vector2.svg';
 
 import Typography from '@modules/components/Typography';
 import DestinationGallery from './components/Gallery';
@@ -20,12 +25,15 @@ const useStyles = makeStyles((theme) =>
       padding: '4rem 0 2rem'
     },
     buttonStyle: {
-      backgroundColor: '#2A398D',
-      color: '#FFFFFF',
-      '&:hover': {
-        backgroundColor: '#2A398D'
-      },
+      backgroundColor: '#F5F0E4',
+      color: '#2A398D',
       marginBottom: '4rem'
+    },
+    wheelImage: {
+      position: 'absolute',
+      top: 230,
+      left: -20,
+      transform: 'rotate(230deg)'
     }
   })
 );
@@ -49,7 +57,11 @@ export default function Destinations({
   const router = useRouter();
 
   return (
-    <Box component="section" className={clsx(classes.root, className)}>
+    <Box
+      component="section"
+      className={clsx(classes.root, className)}
+      style={{ position: 'relative' }}
+    >
       <Container maxWidth="md">
         <Box textAlign="center">
           <Typography color="textPrimary" align="center" variant="h2" stripped>
@@ -83,6 +95,9 @@ export default function Destinations({
           </Button>
         </Grid>
       </Container>
+      <div className={classes.wheelImage}>
+        <Image src={vector2} className="img-responsive" alt="vector" />
+      </div>
 
       <DestinationGallery destinationList={destinations} />
     </Box>

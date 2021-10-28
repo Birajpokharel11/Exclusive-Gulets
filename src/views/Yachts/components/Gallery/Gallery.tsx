@@ -17,8 +17,8 @@ export default function Gallery({ handleDrawerOpen, yachtsList }) {
             <GalleryItem
               i={i}
               handleDrawerOpen={() => handleDrawerOpen(item.id)}
-              SpecialOffers="specialoffers"
-              InstantBooking="instantbooking"
+              // SpecialOffers="specialoffers"
+              // InstantBooking="instantbooking"
               {...item}
             />
           </Grid>

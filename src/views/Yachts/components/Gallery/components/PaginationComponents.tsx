@@ -13,7 +13,9 @@ import {
   Typography,
   useMediaQuery
 } from '@material-ui/core';
-import Pagination from './Pagination';
+import Pagination from '@material-ui/lab/Pagination';
+
+// import Pagination from './Pagination';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -28,6 +30,18 @@ const useStyles = makeStyles((theme: Theme) =>
       [theme.breakpoints.down('xs')]: {
         display: 'flex',
         flexDirection: 'column'
+      }
+    },
+    paginationStyle: {
+      '& .MuiPaginationItem-root': {
+        color: 'white'
+      },
+      '& .MuiPaginationItem-outlined': {
+        border: '1px solid white'
+      },
+      '& .Mui-selected': {
+        color: theme.palette.primary.main,
+        backgroundColor: 'white'
       }
     }
   })
@@ -45,7 +59,13 @@ export default function PaginationSection() {
         <Typography align={matches ? 'center' : undefined} color="secondary">
           120 yachts are listed
         </Typography>
-        <Pagination />
+        <Pagination
+          className={classes.paginationStyle}
+          count={10}
+          variant="outlined"
+          shape="rounded"
+          color="secondary"
+        />
       </Container>
     </Box>
   );

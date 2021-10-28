@@ -88,7 +88,7 @@ export default function CardList({
             key={index}
             onClick={() => routeRedirect(item)}
           >
-            <CardActionArea>
+            <CardActionArea disableRipple>
               <CardMedia
                 component="img"
                 alt="image"
@@ -119,11 +119,17 @@ export default function CardList({
                 </Typography>
 
                 {route !== 'destinations' && (
-                  <p className="date">
+                  <Typography
+                    className="date"
+                    variant="subtitle2"
+                    component="p"
+                    align="center"
+                    style={{ marginTop: '1rem' }}
+                  >
                     {new Date(item.created_at).getDate()} /{' '}
                     {new Date(item.created_at).getMonth() + 1} /{' '}
                     {new Date(item.created_at).getFullYear()}
-                  </p>
+                  </Typography>
                 )}
               </CardContent>
             </CardActionArea>

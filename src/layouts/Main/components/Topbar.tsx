@@ -195,8 +195,8 @@ export default function Header() {
               />
               <Tab
                 className={classes.tab}
-                label="YATCHS"
-                data-cy="YATCHS"
+                label="YACHTS"
+                data-cy="YACHTS"
                 onClick={() =>
                   router.push('/yachts', undefined, { shallow: true })
                 }
@@ -323,7 +323,12 @@ export default function Header() {
             />
             <IconButton color="inherit" data-cy="PersonIcon">
               <PersonIcon />
-              <Typography className={classes.tab}>Members</Typography>
+              <Typography
+                className={classes.tab}
+                onClick={() => router.push('/signin')}
+              >
+                Members
+              </Typography>
             </IconButton>{' '}
           </Hidden>
           <Hidden xsDown>
@@ -415,7 +420,7 @@ export default function Header() {
               data-cy="TMB-YATCHS"
             >
               <ListItem className={classes.listStyle}>
-                <ListItemText primary="YATCHS" />
+                <ListItemText primary="YACHTS" />
               </ListItem>
             </Button>
             <Divider variant="middle" style={{ backgroundColor: 'white' }} />

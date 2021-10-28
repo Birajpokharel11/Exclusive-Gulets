@@ -1,6 +1,12 @@
-import { takeLatest, call, all } from 'redux-saga/effects';
+import { takeLatest, call, all, put } from 'redux-saga/effects';
+import axios from 'axios';
+
+import { openAlert } from '../alert/alert.actions';
 
 import * as AuthType from './auth.types';
+import * as authActions from './auth.actions';
+import { signupStart, signinStart } from './auth.actions';
+import Router from 'next/router';
 
 export function* loadUserAsync() {
   try {
@@ -9,16 +15,43 @@ export function* loadUserAsync() {
   }
 }
 
-export function* onSigninAsync() {
+export function* onSigninAsync({
+  payload: { formData }
+}: ReturnType<typeof signinStart>) {
   try {
+    console.log('data in signIn>>>', formData);
+    const { data } = yield axios.post(
+      `http://yatchcloud-dev.fghire.com/api/public/oauth/token`,
+      formData
+    );
+    console.log('value fo data after success>>>', data);
+
+    yield put(authActions.signinSuccess(data));
   } catch (err) {
-    console.error(err);
+    console.error('error received onSigninAsync>>>', err);
+    yield put(authActions.signinFail(err));
   }
 }
 
-export function* onSignupAsync() {
+export function* onSignupAsync({
+  payload: { formData }
+}: ReturnType<typeof signupStart>) {
   try {
-  } catch (err) {}
+    const { data } = yield axios.post(
+      `http://yatchcloud-dev.fghire.com/api/public/createManager`,
+      formData
+    );
+
+    console.log('value fo data after success>>>', data);
+
+    yield put(authActions.signupSuccess());
+    yield put(openAlert('User signed Up successfully!!', 'success'));
+
+    Router.push('/signin');
+  } catch (err) {
+    console.error('error received onSignupAsync>>>', err);
+    yield put(authActions.signupFail(err));
+  }
 }
 
 export function* signOutAsync() {

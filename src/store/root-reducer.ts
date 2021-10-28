@@ -10,6 +10,7 @@ import YachtsReducer from './yachts/yachts.reducer';
 import HomeReducer from './home/home.reducer';
 import dinningReducer from './dining/dinning.reducers';
 import charterReducer from './whyCharter/charter.reducer';
+import alertReducer from './alert/alert.reducer';
 
 const rootReducer = combineReducers({
   auth: authReducer,
@@ -21,6 +22,7 @@ const rootReducer = combineReducers({
   yacht: YachtsReducer,
   home: HomeReducer,
   dining: dinningReducer,
-  about: charterReducer
+  about: charterReducer,
+  alert: alertReducer
 });
 export default rootReducer;

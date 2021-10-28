@@ -5,9 +5,14 @@ import {
   Grid,
   Button,
   IconButton,
-  TextField,
-  Typography
+  Typography,
+  CircularProgress
 } from '@material-ui/core';
+import { Formik, Field, Form } from 'formik';
+import { TextField } from 'formik-material-ui';
+import * as Yup from 'yup';
+import container from './Signin.container';
+import { useRouter } from 'next/router';
 
 import BackArrow from '@modules/icons/BackArrow';
 
@@ -35,13 +40,20 @@ const useStyles = makeStyles((theme) => ({
   contentHeader: {
     position: 'absolute',
     left: '100px',
-    top: '40px'
+    top: '40px',
+    [theme.breakpoints.down('xs')]: {
+      left: '30px',
+      top: '40px'
+    }
   },
   logoImage: {
     marginLeft: theme.spacing(4)
   },
   contentBody: {
-    padding: '0 200px 135px 280px'
+    padding: '0 200px 135px 280px',
+    [theme.breakpoints.down('xs')]: {
+      padding: '0 20px 13px 28px'
+    }
   },
   title: {
     height: '18px',
@@ -79,17 +91,22 @@ const useStyles = makeStyles((theme) => ({
     fontSize: '14px',
     lineHeight: '150%',
     textDecoration: 'underline',
-    color: '#808fa7'
+    color: '#808fa7',
+    cursor: 'pointer'
   }
 }));
 
 const SignIn = (props) => {
-  const { history } = props;
-
+  const {
+    history,
+    onSigninStart,
+    auth: { loading }
+  } = props;
+  const router = useRouter();
   const classes = useStyles();
 
   const handleBack = () => {
-    history.goBack();
+    router.push('/');
   };
 
   const handleChange = (event) => {
@@ -120,35 +137,70 @@ const SignIn = (props) => {
             >
               Please log in to manage your account
             </Typography>
-            <form className={classes.form} onSubmit={handleSignIn}>
-              <TextField
-                className={classes.textField}
-                fullWidth
-                label="Email address"
-                name="email"
-                onChange={handleChange}
-                type="text"
-                variant="outlined"
-              />
-              <TextField
-                className={classes.textField}
-                fullWidth
-                label="Password"
-                name="password"
-                onChange={handleChange}
-                type="password"
-                variant="outlined"
-              />
-              <Button
-                className={classes.signInButton}
-                color="primary"
-                size="large"
-                type="submit"
-                variant="contained"
-              >
-                Sign in
-              </Button>
-            </form>
+            <Formik
+              initialValues={{ email: '', password: '' }}
+              validationSchema={Yup.object({
+                email: Yup.string()
+                  .email('Invalid email address')
+                  .required('Required'),
+                password: Yup.string()
+                  .required('Password Required')
+                  .min(6, 'password must be minimum of 6 character')
+                  .max(32, 'password must not exceed maximum of 32 characters')
+              })}
+              onSubmit={(values, { setSubmitting }) => {
+                onSigninStart({
+                  ...values,
+                  grant_type: 'password',
+                  client_id: 'yatch',
+                  client_secret: 132435468,
+                  scope: 'read'
+                });
+                setSubmitting(false);
+              }}
+            >
+              <Form className={classes.form}>
+                <Field
+                  variant="outlined"
+                  margin="normal"
+                  name="email"
+                  id="email"
+                  label="Email Address"
+                  fullWidth
+                  component={TextField}
+                  className={classes.textField}
+                />
+
+                <Field
+                  component={TextField}
+                  variant="outlined"
+                  margin="normal"
+                  type="password"
+                  id="password"
+                  name="password"
+                  label="Password"
+                  fullWidth
+                  className={classes.textField}
+                />
+
+                <Button
+                  className={classes.signInButton}
+                  color="primary"
+                  size="large"
+                  type="submit"
+                  variant="contained"
+                  disabled={loading}
+                >
+                  {loading ? (
+                    <CircularProgress size={20} />
+                  ) : (
+                    <Typography variant="body1" color="secondary">
+                      Sign in
+                    </Typography>
+                  )}
+                </Button>
+              </Form>
+            </Formik>
             <RouterLink href="/signup">
               <Typography className={classes.link} style={{ marginTop: 40 }}>
                 {"Don't have an account. Create one here."}
@@ -162,11 +214,14 @@ const SignIn = (props) => {
           </div>
         </Grid>
         <Grid className={classes.imgContainer} item lg={5}>
-          <img src="/assets/images/SignIn/Hero-bg.jpg" />
+          <img
+            src="/assets/images/SignIn/Hero-bg.jpg"
+            style={{ width: '100%', height: '100%' }}
+          />
         </Grid>
       </Grid>
     </div>
   );
 };
 
-export default SignIn;
+export default container(SignIn);

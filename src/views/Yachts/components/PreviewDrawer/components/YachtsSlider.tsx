@@ -39,7 +39,7 @@ function SampleNextArrow(props) {
       className={className}
       style={{
         ...style,
-        right: '-10px',
+        right: '12px',
         display: 'block'
       }}
       onClick={onClick}
@@ -54,7 +54,7 @@ function SamplePrevArrow(props) {
       className={className}
       style={{
         ...style,
-        left: '-10px',
+        left: '12px',
         zIndex: '3',
         display: 'block'
       }}
@@ -111,10 +111,8 @@ export default function YachtsSlider(props) {
               src={item.file?.url}
               data-cy={`images-slider-pic-${index}`}
               style={{
-                width: '100%',
-                maxHeight: '308px',
-                display: 'flex',
-                gap: '4rem'
+                width: '98%',
+                height: '408px'
               }}
             />
           </div>

@@ -22,6 +22,12 @@ const useStyles = makeStyles((theme) =>
     root: {
       height: 'calc(100vh - 64px)',
       padding: 0
+    },
+    sectionGem: {
+      minHeight: '40vh',
+      paddingTop: '40px',
+      marginBottom: '20px',
+      position: 'relative'
     }
   })
 );
@@ -55,7 +61,9 @@ const Experiences = (props: Props) => {
         {...props}
       />
 
-      <Box component="section" style={{ position: 'relative' }}>
+      <Box component="section" className={classes.sectionGem}>
+        <BackgroundVectors />
+
         <Container>
           <CardList
             list={experiences}
@@ -63,7 +71,6 @@ const Experiences = (props: Props) => {
             routeRedirect={routeRedirect}
           />
         </Container>
-        <BackgroundVectors />
       </Box>
       {/* <FooterSlider /> */}
     </Box>

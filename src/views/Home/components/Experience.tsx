@@ -76,7 +76,7 @@ export default function Experience(props) {
           </Typography>
         </Box>
 
-        <CardWithSlider cardsData={getSlice()} />
+        <CardWithSlider cardsData={getSlice()} viewOffer="Read More" />
 
         <Grid container justifyContent="center">
           <Button

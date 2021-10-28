@@ -20,6 +20,12 @@ const useStyles = makeStyles((theme) =>
       fontSize: '20px',
       fontWeight: 300,
       lineHeight: '28px'
+    },
+    sectionGem: {
+      minHeight: '40vh',
+      paddingTop: '40px',
+      marginBottom: '20px',
+      position: 'relative'
     }
   })
 );
@@ -52,36 +58,39 @@ function Destinations({
     }
   };
   return (
-    <Box>
+    <>
       <BannerSection
         title="NEWS & BLOGS"
         description="Keep up to date with our latest yachting news, charter destinations, special offers and more…"
       />
-      <BackgroundVectors />
-      <Container>
-        <Box mb={4} mt={6}>
-          <Typography align="center" className={classes.heading}>
-            There is more to yachting than just spending a week or so sailing.
-            We share our experiences on the best itineraries to suit you,
-            organise on board celebrations, exciting excursions, restaurant
-            bookings, spa treatments, fitness instruction and more. Read our
-            news and blogs below for some insight and get in touch for your own
-            tailor-made escape on water.
-          </Typography>
-          {loading ? (
-            <CircularProgress />
-          ) : (
-            <CardList
-              list={postsList}
-              showMore={showMore}
-              routeRedirect={redirectDetailsPage}
-              route={route}
-            />
-          )}
-        </Box>
-      </Container>
+      <Box component="section" className={classes.sectionGem}>
+        <BackgroundVectors />
+
+        <Container>
+          <Box mb={4} mt={6}>
+            <Typography align="center" className={classes.heading}>
+              There is more to yachting than just spending a week or so sailing.
+              We share our experiences on the best itineraries to suit you,
+              organise on board celebrations, exciting excursions, restaurant
+              bookings, spa treatments, fitness instruction and more. Read our
+              news and blogs below for some insight and get in touch for your
+              own tailor-made escape on water.
+            </Typography>
+            {loading ? (
+              <CircularProgress />
+            ) : (
+              <CardList
+                list={postsList}
+                showMore={showMore}
+                routeRedirect={redirectDetailsPage}
+                route={route}
+              />
+            )}
+          </Box>
+        </Container>
+      </Box>
       {/* <FooterSlider /> */}
-    </Box>
+    </>
   );
 }
 

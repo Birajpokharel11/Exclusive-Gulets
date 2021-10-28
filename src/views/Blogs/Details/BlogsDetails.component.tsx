@@ -16,7 +16,11 @@ const Blogs = (props) => {
   console.log('individual', individual);
   return (
     <Box>
-      <Banner />
+      <Banner
+        title={individual?.title}
+        description={individual?.description}
+        backgroundImage={individual?.featured_image?.url}
+      />
 
       {/* Second section  */}
       <BlogContnetSection individual={individual} />

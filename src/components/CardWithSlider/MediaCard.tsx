@@ -69,7 +69,7 @@ export default function MediaCard(props) {
       </CardContent>
       <CardActions style={{ justifyContent: 'center' }}>
         <Button size="small" classes={{ label: classes.btnLabel }}>
-          Read More
+          {props.viewOffer}
         </Button>
       </CardActions>
     </Card>

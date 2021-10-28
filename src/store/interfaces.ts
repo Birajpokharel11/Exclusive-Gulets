@@ -34,6 +34,19 @@ export interface IExperienceState {
   loading: boolean;
 }
 
+export interface IDinningState {
+  dining: any[];
+  error: any | null;
+  slider_image: any[];
+  loading: boolean;
+}
+export interface ICharterState {
+  why_charter: any[];
+  why_charter_images: object;
+  error: any | null;
+  general: object;
+  loading: boolean;
+}
 export interface IHomeState {
   home: any[];
   error: any | null;

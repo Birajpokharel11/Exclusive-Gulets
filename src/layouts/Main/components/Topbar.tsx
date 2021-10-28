@@ -29,7 +29,9 @@ import PersonIcon from '@material-ui/icons/Person';
 import MenuIcon from '@material-ui/icons/Menu';
 import Drawer from '@material-ui/core/Drawer';
 import CloseIcon from '@material-ui/icons/Close';
-
+import PreviewDrawer from '@views/Yachts/components/PreviewDrawer';
+import SearchDialouge from '@components/SearchDialouge';
+import Tooltip from '@material-ui/core/Tooltip';
 const drawerWidth = 400;
 const useStyles = makeStyles((theme) => ({
   toolbarMargin: {
@@ -59,9 +61,9 @@ const useStyles = makeStyles((theme) => ({
     minWidth: '50px'
   },
   Menu: {
-    backgroundColor: '#1b4077',
-
-    color: '#FFFFFF'
+    backgroundColor: 'white',
+    zIndex: 2,
+    color: '#2A398D'
   },
   logoContainer: {
     padding: 0
@@ -161,6 +163,14 @@ export default function Header() {
     }
   }, [value]);
   const router = useRouter();
+
+  // /Search///////////////////////////////////////
+  const [search, setSearch] = useState(false);
+  const handleSearch = () => {
+    console.log(search, 'search');
+    setSearch(!search);
+  };
+
   return (
     <>
       <AppBar position="fixed" elevation={0} className={classes.AppBar}>
@@ -219,7 +229,6 @@ export default function Header() {
                 className={classes.tab}
                 label="NEWS & BLOGS"
                 data-cy="NEWSBLOGS"
-                href="/blogs"
                 onClick={() =>
                   router.push('/blogs', undefined, { shallow: true })
                 }
@@ -267,15 +276,41 @@ export default function Header() {
             </Tabs>
           </Hidden>
           <Hidden xsDown>
-            <IconButton color="inherit" data-cy="SearchIcon">
-              <SearchIcon />
-            </IconButton>
-            <IconButton color="inherit" data-cy="PhoneEnabledIcon">
+            <Tooltip title="Search For Yachts">
+              <IconButton
+                onClick={handleSearch}
+                color="inherit"
+                data-cy="SearchIcon"
+              >
+                <Image
+                  src="/assets/images/Search.svg"
+                  height={18}
+                  width={18}
+                  alt="Search"
+                />
+              </IconButton>
+            </Tooltip>
+            {/* <Tooltip> */}
+            <IconButton
+              href="tel:+44 2081445834"
+              color="inherit"
+              data-cy="PhoneEnabledIcon"
+            >
               <PhoneEnabledIcon />
             </IconButton>{' '}
+            {/* </Tooltip> */}
           </Hidden>
-          <IconButton color="inherit" data-cy="EmailIcon">
-            <EmailIcon />
+          <IconButton
+            href="mailto:info@exclusivegulets.com"
+            color="inherit"
+            data-cy="EmailIcon"
+          >
+            <Image
+              src="/assets/images/Mail.png"
+              height={14}
+              width={20}
+              alt="Search"
+            />
           </IconButton>{' '}
           <Hidden smDown>
             <Divider
@@ -345,7 +380,12 @@ export default function Header() {
             <Hidden smUp>
               <div>
                 <IconButton color="inherit" data-cy="TMB-SearchIcon">
-                  <SearchIcon />
+                  <Image
+                    src="/assets/images/Search.svg"
+                    height={20}
+                    width={20}
+                    alt="Search"
+                  />
                 </IconButton>
                 <IconButton color="inherit" data-cy="TMB-PhoneEnabledIcon">
                   <PhoneEnabledIcon />
@@ -447,6 +487,7 @@ export default function Header() {
           </List>
         </div>
       </Drawer>
+      <SearchDialouge search={search} setSearch={setSearch} />
     </>
   );
 }

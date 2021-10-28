@@ -55,7 +55,7 @@ const useStyles = makeStyles((theme) =>
     root: {
       width: 300
     },
-    Paper: { padding: '43px 20px 20px 20px' }
+    Paper: { padding: '43px 20px 20px 20px', width: '440px' }
   })
 );
 

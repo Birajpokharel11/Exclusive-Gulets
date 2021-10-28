@@ -75,7 +75,9 @@ export default function HeroSection() {
           <Typography variant="h6" className={classes.SubHeading}>
             Filter as your needs and find your dream yacht.
           </Typography>
-          <Box pt={12}></Box>
+          <Box pt={12}>
+            <Search />
+          </Box>
         </Container>
       </Box>
       <div className={classes.Box2} />

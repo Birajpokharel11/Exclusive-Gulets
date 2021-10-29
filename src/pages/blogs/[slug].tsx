@@ -17,29 +17,29 @@ export default function NewsBlogs() {
   return <WithLayout component={BlogsDetails} layout={Main} />;
 }
 
-export async function getStaticPaths() {
-  const { data } = await axios.get(
-    `https://app.exclusivegulets.com/api/v1/posts.json`,
-    {
-      params: {
-        page: 1,
-        amount_per_page: 100,
-        sort_by: Sort.SORT_BY,
-        sort_order: Sort.SORT_ORDER
-      }
-    }
-  );
+// export async function getStaticPaths() {
+//   const { data } = await axios.get(
+//     `https://app.exclusivegulets.com/api/v1/posts.json`,
+//     {
+//       params: {
+//         page: 1,
+//         amount_per_page: 100,
+//         sort_by: Sort.SORT_BY,
+//         sort_order: Sort.SORT_ORDER
+//       }
+//     }
+//   );
 
-  // Get the paths we want to pre-render based on posts
-  const paths = data.posts.map((post) => ({
-    params: { slug: post.slug }
-  }));
+//   // Get the paths we want to pre-render based on posts
+//   const paths = data.posts.map((post) => ({
+//     params: { slug: post.slug }
+//   }));
 
-  return {
-    paths,
-    fallback: false // fallback is set to false because we already know the slugs ahead of time
-  };
-}
+//   return {
+//     paths,
+//     fallback: false // fallback is set to false because we already know the slugs ahead of time
+//   };
+// }
 
 export const getServerSideProps = wrapper.getServerSideProps(
   (store) =>

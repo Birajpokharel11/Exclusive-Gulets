@@ -15,7 +15,11 @@ import AdvancedFilterSection from './components/AdvanceFiltersSection';
 import { classNames } from 'react-select/dist/declarations/src/utils';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import CheckBox from './components/CheckBox';
-
+import CabinSlider from './components/CabinSlider';
+import CheckBoxCabin from './components/CheckBoxCabin';
+import CheckBoxKeyFeatures from './components/CheckBoxKeyFeatures';
+import ChackBoxWaterToys from './components/CheckBoxWaterToys';
+import CheckBoxTags from './components/CheckBoxTags';
 const useStyles = makeStyles((theme) =>
   createStyles({
     Heading: { paddingBottom: '10px' },
@@ -163,10 +167,7 @@ export default function Filters() {
         </Grid>
       </Grid>
       <Collapse in={cabins}>
-        <AdvancedFilterSection
-          Range={[0, 100]}
-          RangeText={['Min Guest', 'Max Guest']}
-        />
+        <CheckBoxCabin />
         <div style={{ paddingBottom: '32px' }} />
       </Collapse>
       <Divider />{' '}
@@ -196,10 +197,7 @@ export default function Filters() {
         </Grid>
       </Grid>
       <Collapse in={keyFeatures}>
-        <AdvancedFilterSection
-          Range={[0, 100]}
-          RangeText={['Min Guest', 'Max Guest']}
-        />
+        <CheckBoxKeyFeatures />
         <div style={{ paddingBottom: '32px' }} />
       </Collapse>
       <Divider />{' '}
@@ -229,10 +227,7 @@ export default function Filters() {
         </Grid>
       </Grid>
       <Collapse in={waterToys}>
-        <AdvancedFilterSection
-          Range={[0, 100]}
-          RangeText={['Min Guest', 'Max Guest']}
-        />
+        <ChackBoxWaterToys />
         <div style={{ paddingBottom: '32px' }} />
       </Collapse>
       <Divider />{' '}
@@ -262,10 +257,7 @@ export default function Filters() {
         </Grid>
       </Grid>
       <Collapse in={tags}>
-        <AdvancedFilterSection
-          Range={[0, 100]}
-          RangeText={['Min Guest', 'Max Guest']}
-        />
+        <CheckBoxTags />
         <div style={{ paddingBottom: '32px' }} />
       </Collapse>
     </Box>

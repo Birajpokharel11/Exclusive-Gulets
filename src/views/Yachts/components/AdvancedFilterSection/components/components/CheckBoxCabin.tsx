@@ -5,9 +5,11 @@ import {
   Grid,
   Checkbox,
   FormGroup,
-  FormControlLabel
+  FormControlLabel,
+  Collapse
 } from '@material-ui/core';
-
+import Slider from './CabinSlider';
+import CabinSlider from './CabinSlider';
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     root: {
@@ -18,22 +20,24 @@ const useStyles = makeStyles((theme: Theme) =>
     }
   })
 );
-
-export default function CheckBox() {
+export default function CheckBoxCabin() {
   const classes = useStyles();
   const [state, setState] = React.useState({
-    gilad: true,
-    motor: false,
-    sailer: false,
-    catamaran: false
+    master: true,
+    double: false,
+    twin: false,
+    triple: false,
+    single: false,
+    extra: false
   });
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setState({ ...state, [event.target.name]: event.target.checked });
   };
 
-  const { gilad, motor, sailer, catamaran } = state;
-  const error = [gilad, motor, sailer, catamaran].filter((v) => v).length !== 2;
+  const { master, double, twin, triple, single, extra } = state;
+  const error =
+    [master, double, twin, triple, single, extra].filter((v) => v).length !== 2;
 
   return (
     <div className={classes.root}>
@@ -45,13 +49,16 @@ export default function CheckBox() {
                 control={
                   <Checkbox
                     color="primary"
-                    checked={gilad}
+                    checked={master}
                     onChange={handleChange}
-                    name="gilad"
+                    name="master"
                   />
                 }
-                label="Gulet"
+                label="Master Cabin"
               />
+              <Collapse in={master}>
+                <CabinSlider />
+              </Collapse>
             </Grid>
             <Grid item xs={6}>
               {' '}
@@ -59,12 +66,12 @@ export default function CheckBox() {
                 control={
                   <Checkbox
                     color="primary"
-                    checked={motor}
+                    checked={double}
                     onChange={handleChange}
-                    name="motor"
+                    name="double"
                   />
                 }
-                label="Motor Yacht"
+                label="Double Cabin"
               />
             </Grid>
             <Grid item xs={6}>
@@ -72,12 +79,12 @@ export default function CheckBox() {
                 control={
                   <Checkbox
                     color="primary"
-                    checked={sailer}
+                    checked={twin}
                     onChange={handleChange}
-                    name="sailer"
+                    name="twin"
                   />
                 }
-                label="Motor Sailer"
+                label="Twin Cabin"
               />
             </Grid>
             <Grid item xs={6}>
@@ -85,12 +92,38 @@ export default function CheckBox() {
                 control={
                   <Checkbox
                     color="primary"
-                    checked={catamaran}
+                    checked={triple}
                     onChange={handleChange}
-                    name="Catamaran"
+                    name="triple"
                   />
                 }
-                label="Sailer Llorca"
+                label="Triple Cabin"
+              />
+            </Grid>
+            <Grid item xs={6}>
+              <FormControlLabel
+                control={
+                  <Checkbox
+                    color="primary"
+                    checked={single}
+                    onChange={handleChange}
+                    name="single"
+                  />
+                }
+                label="Single Cabin"
+              />
+            </Grid>{' '}
+            <Grid item xs={6}>
+              <FormControlLabel
+                control={
+                  <Checkbox
+                    color="primary"
+                    checked={extra}
+                    onChange={handleChange}
+                    name="extra"
+                  />
+                }
+                label="Extra Bunk Cabin"
               />
             </Grid>
           </Grid>

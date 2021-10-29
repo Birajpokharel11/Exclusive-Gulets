@@ -6,7 +6,8 @@ import {
   Checkbox,
   FormGroup,
   FormControlLabel,
-  Collapse
+  Collapse,
+  Button
 } from '@material-ui/core';
 import Slider from './CabinSlider';
 const useStyles = makeStyles((theme: Theme) =>
@@ -21,6 +22,8 @@ const useStyles = makeStyles((theme: Theme) =>
 );
 export default function CheckBoxTags() {
   const classes = useStyles();
+  const [showMore, setShowMore] = useState(false);
+
   const [state, setState] = useState({
     instant: true,
     special: false,
@@ -137,19 +140,26 @@ export default function CheckBoxTags() {
                 label="2x SUP"
               />
             </Grid>
-            <Grid item xs={6}>
-              <FormControlLabel
-                control={
-                  <Checkbox
-                    color="primary"
-                    checked={gourmet}
-                    onChange={handleChange}
-                    name="gourmet"
+            {showMore && (
+              <>
+                <Grid item xs={6}>
+                  <FormControlLabel
+                    control={
+                      <Checkbox
+                        color="primary"
+                        checked={gourmet}
+                        onChange={handleChange}
+                        name="gourmet"
+                      />
+                    }
+                    label="Gourmet Dining"
                   />
-                }
-                label="Gourmet Dining"
-              />
-            </Grid>{' '}
+                </Grid>{' '}
+              </>
+            )}
+            <Button onClick={() => setShowMore((prev) => !prev)}>
+              Show {!showMore ? 'More' : 'less'} Tags
+            </Button>
           </Grid>
         </FormGroup>
       </FormControl>

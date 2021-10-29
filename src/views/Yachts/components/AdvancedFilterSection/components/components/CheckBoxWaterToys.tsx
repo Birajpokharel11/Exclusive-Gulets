@@ -6,7 +6,8 @@ import {
   Checkbox,
   FormGroup,
   FormControlLabel,
-  Collapse
+  Collapse,
+  Button
 } from '@material-ui/core';
 import Slider from './CabinSlider';
 const useStyles = makeStyles((theme: Theme) =>
@@ -39,6 +40,7 @@ export default function CheckBoxKeyFeatures() {
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setState({ ...state, [event.target.name]: event.target.checked });
   };
+  const [showMore, setShowMore] = useState(false);
 
   const {
     jet,
@@ -155,84 +157,91 @@ export default function CheckBoxKeyFeatures() {
                 label="2x SUP"
               />
             </Grid>
-            <Grid item xs={6}>
-              <FormControlLabel
-                control={
-                  <Checkbox
-                    color="primary"
-                    checked={jetski1}
-                    onChange={handleChange}
-                    name="jetski1"
+            {showMore && (
+              <>
+                <Grid item xs={6}>
+                  <FormControlLabel
+                    control={
+                      <Checkbox
+                        color="primary"
+                        checked={jetski1}
+                        onChange={handleChange}
+                        name="jetski1"
+                      />
+                    }
+                    label="jetski1ming Platform"
                   />
-                }
-                label="jetski1ming Platform"
-              />
-            </Grid>{' '}
-            <Grid item xs={6}>
-              <FormControlLabel
-                control={
-                  <Checkbox
-                    color="primary"
-                    checked={mini}
-                    onChange={handleChange}
-                    name="mini"
+                </Grid>{' '}
+                <Grid item xs={6}>
+                  <FormControlLabel
+                    control={
+                      <Checkbox
+                        color="primary"
+                        checked={mini}
+                        onChange={handleChange}
+                        name="mini"
+                      />
+                    }
+                    label="Mini Bar"
                   />
-                }
-                label="Mini Bar"
-              />
-            </Grid>{' '}
-            <Grid item xs={6}>
-              <FormControlLabel
-                control={
-                  <Checkbox
-                    color="primary"
-                    checked={wide}
-                    onChange={handleChange}
-                    name="wide"
+                </Grid>{' '}
+                <Grid item xs={6}>
+                  <FormControlLabel
+                    control={
+                      <Checkbox
+                        color="primary"
+                        checked={wide}
+                        onChange={handleChange}
+                        name="wide"
+                      />
+                    }
+                    label="Wide Range of water spoerts"
                   />
-                }
-                label="Wide Range of water spoerts"
-              />
-            </Grid>{' '}
-            <Grid item xs={6}>
-              <FormControlLabel
-                control={
-                  <Checkbox
-                    color="primary"
-                    checked={gym}
-                    onChange={handleChange}
-                    name="gym"
+                </Grid>{' '}
+                <Grid item xs={6}>
+                  <FormControlLabel
+                    control={
+                      <Checkbox
+                        color="primary"
+                        checked={gym}
+                        onChange={handleChange}
+                        name="gym"
+                      />
+                    }
+                    label="Gym"
                   />
-                }
-                label="Gym"
-              />
-            </Grid>{' '}
-            <Grid item xs={6}>
-              <FormControlLabel
-                control={
-                  <Checkbox
-                    color="primary"
-                    checked={sauna}
-                    onChange={handleChange}
-                    name="sauna"
+                </Grid>{' '}
+                <Grid item xs={6}>
+                  <FormControlLabel
+                    control={
+                      <Checkbox
+                        color="primary"
+                        checked={sauna}
+                        onChange={handleChange}
+                        name="sauna"
+                      />
+                    }
+                    label="Sauna & Welness"
                   />
-                }
-                label="Sauna & Welness"
-              />
-            </Grid>{' '}
-            <Grid item xs={6}>
-              <FormControlLabel
-                control={
-                  <Checkbox
-                    color="primary"
-                    checked={cockpit}
-                    onChange={handleChange}
-                    name="cockpit"
+                </Grid>{' '}
+                <Grid item xs={6}>
+                  <FormControlLabel
+                    control={
+                      <Checkbox
+                        color="primary"
+                        checked={cockpit}
+                        onChange={handleChange}
+                        name="cockpit"
+                      />
+                    }
+                    label="Very Spacious Cockpit"
                   />
-                }
-                label="Very Spacious Cockpit"
-              />
-            </Grid>
+                </Grid>
+              </>
+            )}
+            <Button onClick={() => setShowMore((prev) => !prev)}>
+              Show {!showMore ? 'More' : 'less'} Tags
+            </Button>
           </Grid>
         </FormGroup>
       </FormControl>

@@ -41,6 +41,11 @@ const useStyles = makeStyles((theme: Theme) =>
       fontSize: '12px',
       lineHeight: '14px',
       color: '#FFFFFF'
+    },
+    Button: {
+      fontWeight: 'normal',
+      fontSize: '16px',
+      fontStyle: 'normal'
     }
   })
 );

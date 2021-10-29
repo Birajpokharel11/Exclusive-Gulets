@@ -28,6 +28,14 @@ const useStyles = makeStyles((theme) =>
     },
     Rotate: {
       transform: 'rotate(180deg)'
+    },
+    Typography: {
+      color: '#091527'
+    },
+    Increase: {
+      fontWeight: 500,
+      fontSize: '18px',
+      fontStyle: 'normal'
     }
   })
 );
@@ -52,7 +60,14 @@ export default function Filters() {
       >
         <Grid item>
           <Box display="flex">
-            <Typography>Price</Typography>
+            <Typography
+              variant="subtitle1"
+              className={clsx(classes.Typography, {
+                [classes.Increase]: true
+              })}
+            >
+              Price
+            </Typography>
             <div style={{ paddingRight: '5px' }} />
             <Typography>€4.000 & €100.000</Typography>
           </Box>
@@ -85,7 +100,13 @@ export default function Filters() {
       >
         <Grid item>
           <Box display="flex">
-            <Typography>Length</Typography>
+            <Typography
+              className={clsx(classes.Typography, {
+                [classes.Increase]: true
+              })}
+            >
+              Length
+            </Typography>
             <div style={{ paddingRight: '5px' }} />
             <Typography>€4.000 & €100.000</Typography>
           </Box>
@@ -118,7 +139,13 @@ export default function Filters() {
       >
         <Grid item>
           <Box display="flex">
-            <Typography>Type</Typography>
+            <Typography
+              className={clsx(classes.Typography, {
+                [classes.Increase]: true
+              })}
+            >
+              Type
+            </Typography>
             <div style={{ paddingRight: '5px' }} />
             <Typography>€4.000 & €100.000</Typography>
           </Box>
@@ -149,7 +176,13 @@ export default function Filters() {
       >
         <Grid item>
           <Box display="flex">
-            <Typography>Cabins</Typography>
+            <Typography
+              className={clsx(classes.Typography, {
+                [classes.Increase]: true
+              })}
+            >
+              Cabins
+            </Typography>
             <div style={{ paddingRight: '5px' }} />
             <Typography>€4.000 & €100.000</Typography>
           </Box>
@@ -179,7 +212,13 @@ export default function Filters() {
       >
         <Grid item>
           <Box display="flex">
-            <Typography>Key Features</Typography>
+            <Typography
+              className={clsx(classes.Typography, {
+                [classes.Increase]: true
+              })}
+            >
+              Key Features
+            </Typography>
             <div style={{ paddingRight: '5px' }} />
             <Typography>€4.000 & €100.000</Typography>
           </Box>
@@ -209,7 +248,13 @@ export default function Filters() {
       >
         <Grid item>
           <Box display="flex">
-            <Typography>Water Toys</Typography>
+            <Typography
+              className={clsx(classes.Typography, {
+                [classes.Increase]: true
+              })}
+            >
+              Water Toys
+            </Typography>
             <div style={{ paddingRight: '5px' }} />
             <Typography>€4.000 & €100.000</Typography>
           </Box>
@@ -239,7 +284,13 @@ export default function Filters() {
       >
         <Grid item>
           <Box display="flex">
-            <Typography>Tags</Typography>
+            <Typography
+              className={clsx(classes.Typography, {
+                [classes.Increase]: true
+              })}
+            >
+              Tags
+            </Typography>
             <div style={{ paddingRight: '5px' }} />
             <Typography>€4.000 & €100.000</Typography>
           </Box>

@@ -17,7 +17,8 @@ const useStyles = makeStyles((theme: Theme) =>
     },
     formControl: {
       margin: theme.spacing(3)
-    }
+    },
+    Button: { color: '#AB3996' }
   })
 );
 export default function CheckBoxTags() {
@@ -157,7 +158,10 @@ export default function CheckBoxTags() {
                 </Grid>{' '}
               </>
             )}
-            <Button onClick={() => setShowMore((prev) => !prev)}>
+            <Button
+              className={classes.Button}
+              onClick={() => setShowMore((prev) => !prev)}
+            >
               Show {!showMore ? 'More' : 'less'} Tags
             </Button>
           </Grid>

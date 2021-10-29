@@ -17,6 +17,12 @@ const useStyles = makeStyles((theme: Theme) =>
     },
     formControl: {
       margin: theme.spacing(3)
+    },
+    Button: {
+      fontWeight: 'normal',
+      fontSize: '16px',
+      color: '#AB3996',
+      fontStyle: 'normal'
     }
   })
 );
@@ -241,7 +247,10 @@ export default function CheckBoxKeyFeatures() {
                 </Grid>
               </>
             )}
-            <Button onClick={() => setShowMore((prev) => !prev)}>
+            <Button
+              className={classes.Button}
+              onClick={() => setShowMore((prev) => !prev)}
+            >
               Show {!showMore ? 'More' : 'less'} Tags
             </Button>
           </Grid>

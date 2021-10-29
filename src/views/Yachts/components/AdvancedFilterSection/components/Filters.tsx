@@ -20,6 +20,7 @@ import CheckBoxCabin from './components/CheckBoxCabin';
 import CheckBoxKeyFeatures from './components/CheckBoxKeyFeatures';
 import ChackBoxWaterToys from './components/CheckBoxWaterToys';
 import CheckBoxTags from './components/CheckBoxTags';
+import { words } from 'lodash';
 const useStyles = makeStyles((theme) =>
   createStyles({
     Heading: { paddingBottom: '10px' },
@@ -50,19 +51,21 @@ export default function Filters() {
   const [waterToys, setWatertoys] = React.useState(false);
   const [tags, setTags] = React.useState(false);
 
-  const [state, setState] = React.useState({
+  const [top, setTop] = React.useState({
     gilad: true,
     motor: false,
     sailer: false,
-    catamaran: false,
-    //////////////////////////////
+    catamaran: false
+  });
+  const [cab, setCab] = React.useState({
     master: true,
     double: false,
     twin: false,
     triple: false,
     single: false,
-    extra: false,
-    ////////////////////////////
+    extra: false
+  });
+  const [key, setKey] = React.useState({
     hot: false,
     satellite: false,
     large: false,
@@ -74,16 +77,20 @@ export default function Filters() {
     wide: false,
     gym: false,
     sauna: false,
-    cockpit: false,
-    ///////////////////////////////////
+    cockpit: false
+    ////////////////
+  });
+  const [water, setWater] = React.useState({
     jet: false,
     scuba: false,
     inflatable: false,
     waterski: false,
     fishing: false,
     sup1: false,
-    jetski1: false,
-    /////////////////////////////////////////// TagsCheckbox
+    jetski1: false
+    ////////////////
+  });
+  const [taggy, setTaggy] = React.useState({
     instant: false,
     special: false,
     finest: false,
@@ -92,19 +99,11 @@ export default function Filters() {
     SUP: false,
     gourmet: false
   });
+
+  const { gilad, motor, sailer, catamaran } = top;
+  const { master, double, twin, triple, single, extra } = cab;
+
   const {
-    gilad,
-    motor,
-    sailer,
-    catamaran,
-    ///////////////////////////////// Type CheckBOx
-    master,
-    double,
-    twin,
-    triple,
-    single,
-    extra,
-    ///////////////////////////// Cabins CheckBox
     hot,
     satellite,
     large,
@@ -116,27 +115,27 @@ export default function Filters() {
     wide,
     gym,
     sauna,
-    cockpit,
-    //////////////////////////////// WaterToys checkbox
-    jet,
-    scuba,
-    inflatable,
-    waterski,
-    fishing,
-    sup1,
-    jetski1,
-    ///////////////////////////////// Tags Checkbox
-    instant,
-    special,
-    finest,
-    family,
-    loved,
-    SUP,
-    gourmet
-  } = state;
+    cockpit
+  } = key;
 
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setState({ ...state, [event.target.name]: event.target.checked });
+  const { jet, scuba, inflatable, waterski, fishing, sup1, jetski1 } = water;
+
+  const { instant, special, finest, family, loved, SUP, gourmet } = taggy;
+
+  const handleChangeTop = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setTop({ ...top, [event.target.name]: event.target.checked });
+  };
+  const handleChangeCab = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setCab({ ...cab, [event.target.name]: event.target.checked });
+  };
+  const handleChangeKey = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setKey({ ...key, [event.target.name]: event.target.checked });
+  };
+  const handleChangeWater = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setWater({ ...water, [event.target.name]: event.target.checked });
+  };
+  const handleChangeTaggy = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setTaggy({ ...taggy, [event.target.name]: event.target.checked });
   };
   return (
     <Box>
@@ -196,7 +195,7 @@ export default function Filters() {
               Length
             </Typography>
             <div style={{ paddingRight: '5px' }} />
-            <Typography>€4.000 & €100.000</Typography>
+            <Typography>()</Typography>
           </Box>
         </Grid>
         <Grid item>
@@ -256,7 +255,7 @@ export default function Filters() {
           gilad={gilad}
           sailer={sailer}
           catamaran={catamaran}
-          handleChange={handleChange}
+          handleChange={handleChangeTop}
         />
         <div style={{ paddingBottom: '32px' }} />
       </Collapse>
@@ -300,7 +299,7 @@ export default function Filters() {
           triple={triple}
           single={single}
           extra={extra}
-          handleChange={handleChange}
+          handleChange={handleChangeCab}
         />
         <div style={{ paddingBottom: '32px' }} />
       </Collapse>
@@ -350,7 +349,7 @@ export default function Filters() {
           gym={gym}
           sauna={sauna}
           cockpit={cockpit}
-          handleChange={handleChange}
+          handleChange={handleChangeKey}
         />
         <div style={{ paddingBottom: '32px' }} />
       </Collapse>
@@ -395,7 +394,7 @@ export default function Filters() {
           fishing={fishing}
           sup1={sup1}
           jetski1={jetski1}
-          handleChange={handleChange}
+          handleChange={handleChangeWater}
         />
         <div style={{ paddingBottom: '32px' }} />
       </Collapse>
@@ -434,7 +433,7 @@ export default function Filters() {
       <Collapse in={tags}>
         <CheckBoxTags
           instant={instant}
-          handleChange={handleChange}
+          handleChange={handleChangeTaggy}
           special={special}
           finest={finest}
           family={family}

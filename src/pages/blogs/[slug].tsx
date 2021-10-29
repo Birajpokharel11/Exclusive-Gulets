@@ -10,6 +10,7 @@ import WithLayout from '@components/WithLayout';
 import Main from '@layouts/Main';
 import BlogsDetails from '@views/Blogs/Details';
 
+import { getTenantDomain } from '@utils/data';
 import { Limits, Sort } from '@utils/enums';
 
 export default function NewsBlogs() {
@@ -40,29 +41,43 @@ export async function getStaticPaths() {
   };
 }
 
-export const getStaticProps = wrapper.getStaticProps(
-  (store) => async (context) => {
-    store.dispatch(fetchPostsByIdStart(context.params.slug as string));
-    store.dispatch(fetchRandomDestinationStart());
+export const getServerSideProps = wrapper.getServerSideProps(
+  (store) =>
+    async ({ req, res, ...context }) => {
+      const subdomain = getTenantDomain(req.headers.host);
 
-    store.dispatch(END);
+      if (!subdomain) {
+        return {
+          notFound: true
+        };
+      }
 
-    await store.sagaTask?.toPromise();
-    const state = store.getState();
-    const posts = state.posts;
+      res.setHeader(
+        'Cache-Control',
+        'public, s-maxage=1, stale-while-revalidate=59'
+      );
 
-    if (!posts) {
+      store.dispatch(fetchPostsByIdStart(context.params.slug as string));
+      store.dispatch(fetchRandomDestinationStart());
+
+      store.dispatch(END);
+
+      await store.sagaTask?.toPromise();
+      const state = store.getState();
+      const posts = state.posts;
+
+      if (!posts) {
+        return {
+          notFound: true
+        };
+      }
+
       return {
-        notFound: true
+        props: { posts },
+        // Next.js will attempt to re-generate the page:
+        // - When a request comes in
+        // - At most once every 30 minutes
+        revalidate: 3600 // In seconds
       };
     }
-
-    return {
-      props: { posts },
-      // Next.js will attempt to re-generate the page:
-      // - When a request comes in
-      // - At most once every 30 minutes
-      revalidate: 3600 // In seconds
-    };
-  }
 );

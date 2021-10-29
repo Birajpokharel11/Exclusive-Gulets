@@ -9,6 +9,8 @@ import WithLayout from '@components/WithLayout';
 import Main from '@layouts/Main';
 import Blogs from '@views/Blogs';
 
+import { getTenantDomain } from '@utils/data';
+
 export default function BlogsPage() {
   return (
     <>
@@ -26,18 +28,30 @@ export default function BlogsPage() {
   );
 }
 
-export const getStaticProps = wrapper.getStaticProps((store) => async () => {
-  if (store.getState()) {
-    store.dispatch(fetchPostsStart());
-    store.dispatch(END);
+export const getServerSideProps = wrapper.getServerSideProps(
+  (store) =>
+    async ({ req, res }) => {
+      const subdomain = getTenantDomain(req.headers.host);
 
-    await store.sagaTask?.toPromise();
-    return {
-      props: {},
-      // Next.js will attempt to re-generate the page:
-      // - When a request comes in
-      // - At most once every 30 minutes
-      revalidate: 3600 // In seconds
-    };
-  }
-});
+      if (!subdomain) {
+        return {
+          notFound: true
+        };
+      }
+
+      res.setHeader(
+        'Cache-Control',
+        'public, s-maxage=1, stale-while-revalidate=59'
+      );
+
+      if (store.getState()) {
+        store.dispatch(fetchPostsStart());
+        store.dispatch(END);
+
+        await store.sagaTask?.toPromise();
+        return {
+          props: { host: req.headers.host, subdomain }
+        };
+      }
+    }
+);

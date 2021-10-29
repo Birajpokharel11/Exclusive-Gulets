@@ -8,27 +8,43 @@ import WithLayout from '@components/WithLayout';
 import Main from '@layouts/Main';
 import DestinationsDetails from '@views/Destinations/Details';
 
+import { getTenantDomain } from '@utils/data';
+
 export default function DestinationDetails() {
   return <WithLayout component={DestinationsDetails} layout={Main} />;
 }
 
 export const getServerSideProps = wrapper.getServerSideProps(
-  (store) => async (context) => {
-    store.dispatch(fetchDestinationByIdStart(context.params.slug as string));
-    store.dispatch(END);
+  (store) =>
+    async ({ req, res, ...context }) => {
+      const subdomain = getTenantDomain(req.headers.host);
 
-    await store.sagaTask?.toPromise();
-    const myStore = store.getState();
-    const { destination } = myStore.destination;
+      if (!subdomain) {
+        return {
+          notFound: true
+        };
+      }
 
-    if (!destination) {
+      res.setHeader(
+        'Cache-Control',
+        'public, s-maxage=1, stale-while-revalidate=59'
+      );
+
+      store.dispatch(fetchDestinationByIdStart(context.params.slug as string));
+      store.dispatch(END);
+
+      await store.sagaTask?.toPromise();
+      const myStore = store.getState();
+      const { destination } = myStore.destination;
+
+      if (!destination) {
+        return {
+          notFound: true
+        };
+      }
+
       return {
-        notFound: true
+        props: { host: req.headers.host, subdomain }
       };
     }
-
-    return {
-      props: { destination }
-    };
-  }
 );

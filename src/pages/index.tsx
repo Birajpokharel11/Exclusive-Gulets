@@ -12,52 +12,79 @@ import { fetchHomeStart } from '@store/home/home.actions';
 
 import WithLayout from '@components/WithLayout';
 import Main from '@layouts/Main';
+import Main1 from '@layouts/Main1';
 import HomePage from '@views/Home';
 
-export default function Home({ isIOS }) {
+import { getTenantDomain } from '@utils/data';
+
+export default function Index({ isIOS, subdomain }) {
+  if (subdomain) {
+    return (
+      <>
+        <Head>
+          <title>Exclusive Gulets</title>
+          <meta property="og:title" content="Exclusive Gulets" key="title" />
+          <meta
+            name="description"
+            content="Exclusive Gulets is an experienced UK-based gulet and yacht charter company, specialists in offering exclusive gulet and yacht charters in Turkey, Croatia, Greece, and the Mediterranean."
+          />
+          <meta
+            property="og:description"
+            content="Exclusive Gulets is an experienced UK-based gulet and yacht charter company, specialists in offering exclusive gulet and yacht charters in Turkey, Croatia, Greece, and the Mediterranean."
+            key="description"
+          />
+          <meta
+            property="og:image"
+            content={`${process.env.BASE_URL}/assets/images/heroYatch.png`}
+            key="image"
+          />
+        </Head>
+        <WithLayout component={HomePage} layout={Main} isIOS={isIOS} />
+      </>
+    );
+  }
+
   return (
     <>
       <Head>
-        <title>Exclusive Gulets</title>
-        <meta property="og:title" content="Exclusive Gulets" key="title" />
-        <meta
-          name="description"
-          content="Exclusive Gulets is an experienced UK-based gulet and yacht charter company, specialists in offering exclusive gulet and yacht charters in Turkey, Croatia, Greece, and the Mediterranean."
-        />
-        <meta
-          property="og:description"
-          content="Exclusive Gulets is an experienced UK-based gulet and yacht charter company, specialists in offering exclusive gulet and yacht charters in Turkey, Croatia, Greece, and the Mediterranean."
-          key="description"
-        />
-        <meta
-          property="og:image"
-          content={`${process.env.BASE_URL}/assets/images/heroYatch.png`}
-          key="image"
-        />
+        <title>YATCH CLOUD</title>
       </Head>
-      <WithLayout component={HomePage} layout={Main} isIOS={isIOS} />
+      <WithLayout component={() => <div>Home Page</div>} layout={Main1} />
     </>
   );
 }
 
-export const getStaticProps = wrapper.getStaticProps((store) => async (ctx) => {
-  store.dispatch(fetchYachtsStart());
-  store.dispatch(fetchRandomDestinationStart());
-  store.dispatch(fetchExperiencesStart());
-  store.dispatch(fetchPostsStart());
-  store.dispatch(fetchOfferStart());
-  store.dispatch(fetchHomeStart());
-  store.dispatch(END);
+export const getServerSideProps = wrapper.getServerSideProps(
+  (store) =>
+    async ({ req, res }) => {
+      res.setHeader(
+        'Cache-Control',
+        'public, s-maxage=1, stale-while-revalidate=59'
+      );
 
-  await store.sagaTask?.toPromise();
-  const myStore = store.getState();
-  const posts = myStore.posts;
+      const subdomain = getTenantDomain(req.headers.host);
 
-  return {
-    props: { posts },
-    // Next.js will attempt to re-generate the page:
-    // - When a request comes in
-    // - At most once every 10 seconds
-    revalidate: 3600 // In seconds
-  };
-});
+      let posts;
+
+      if (subdomain) {
+        store.dispatch(fetchYachtsStart());
+        store.dispatch(fetchRandomDestinationStart());
+        store.dispatch(fetchExperiencesStart());
+        store.dispatch(fetchPostsStart());
+        store.dispatch(fetchOfferStart());
+        store.dispatch(fetchHomeStart());
+        store.dispatch(END);
+
+        await store.sagaTask?.toPromise();
+        const myStore = store.getState();
+        posts = myStore.posts;
+      }
+
+      return {
+        props: {
+          host: req.headers.host,
+          subdomain
+        }
+      };
+    }
+);

@@ -21,41 +21,28 @@ const useStyles = makeStyles((theme: Theme) =>
     Button: { color: '#AB3996' }
   })
 );
-export default function CheckBoxTags() {
+interface Props {
+  instant: boolean;
+  special: boolean;
+  finest: boolean;
+  loved: boolean;
+  family: boolean;
+  SUP: boolean;
+  gourmet: boolean;
+  handleChange: any;
+}
+export default function CheckBoxTags({
+  instant,
+  special,
+  finest,
+  loved,
+  family,
+  SUP,
+  gourmet,
+  handleChange
+}: Props) {
   const classes = useStyles();
   const [showMore, setShowMore] = useState(false);
-
-  const [state, setState] = useState({
-    instant: true,
-    special: false,
-    finest: false,
-    waterski: false,
-    loved: false,
-    yachts: false,
-    gourmet: false
-  });
-
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setState({ ...state, [event.target.name]: event.target.checked });
-  };
-
-  const { instant, special, finest, waterski, loved, yachts, gourmet } = state;
-
-  // const error =
-  //   [
-  //     instant,
-  //     special,
-  //     finest,
-  //     dwaterski,
-  //     loved,
-  //     yachts,
-  //     gourmet,
-  //     mini,
-  //     wide,
-  //     gym,
-  //     sauna,
-  //     cockpit
-  //   ].filter((v) => v).length !== 2;
 
   return (
     <div className={classes.root}>
@@ -107,9 +94,9 @@ export default function CheckBoxTags() {
                 control={
                   <Checkbox
                     color="primary"
-                    checked={waterski}
+                    checked={loved}
                     onChange={handleChange}
-                    name="dwaterski"
+                    name="loved"
                   />
                 }
                 label="Loved By Our Guests"
@@ -120,9 +107,9 @@ export default function CheckBoxTags() {
                 control={
                   <Checkbox
                     color="primary"
-                    checked={loved}
+                    checked={family}
                     onChange={handleChange}
-                    name="loved"
+                    name="family"
                   />
                 }
                 label="Yachts For Family Adventures"
@@ -133,9 +120,9 @@ export default function CheckBoxTags() {
                 control={
                   <Checkbox
                     color="primary"
-                    checked={yachts}
+                    checked={SUP}
                     onChange={handleChange}
-                    name="yachts"
+                    name="SUP"
                   />
                 }
                 label="2x SUP"

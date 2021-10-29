@@ -26,58 +26,30 @@ const useStyles = makeStyles((theme: Theme) =>
     }
   })
 );
-export default function CheckBoxKeyFeatures() {
+interface Props {
+  jet: boolean;
+  scuba: boolean;
+  inflatable: boolean;
+  waterski: boolean;
+  fishing: boolean;
+  sup1: boolean;
+  jetski1: boolean;
+  handleChange: any;
+}
+export default function CheckBoxKeyFeatures({
+  jet,
+  scuba,
+  inflatable,
+  waterski,
+  fishing,
+  sup1,
+  jetski1,
+
+  handleChange
+}: Props) {
   const classes = useStyles();
-  const [state, setState] = useState({
-    jet: true,
-    scuba: false,
-    inflatable: false,
-    waterski: false,
-    fishing: false,
-    sup1: false,
-    jetski1: false,
-    mini: false,
-    wide: false,
-    gym: false,
-    sauna: false,
-    cockpit: false
-  });
 
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setState({ ...state, [event.target.name]: event.target.checked });
-  };
   const [showMore, setShowMore] = useState(false);
-
-  const {
-    jet,
-    scuba,
-    inflatable,
-    waterski,
-    fishing,
-    sup1,
-    jetski1,
-    mini,
-    wide,
-    gym,
-    sauna,
-    cockpit
-  } = state;
-
-  // const error =
-  //   [
-  //     jet,
-  //     scuba,
-  //     inflatable,
-  //     dwaterski,
-  //     fishing,
-  //     sup1,
-  //     jetski1,
-  //     mini,
-  //     wide,
-  //     gym,
-  //     sauna,
-  //     cockpit
-  //   ].filter((v) => v).length !== 2;
 
   return (
     <div className={classes.root}>
@@ -131,7 +103,7 @@ export default function CheckBoxKeyFeatures() {
                     color="primary"
                     checked={waterski}
                     onChange={handleChange}
-                    name="dwaterski"
+                    name="waterski"
                   />
                 }
                 label="Waterski(For Kids)"
@@ -178,71 +150,6 @@ export default function CheckBoxKeyFeatures() {
                     label="jetski1ming Platform"
                   />
                 </Grid>{' '}
-                <Grid item xs={6}>
-                  <FormControlLabel
-                    control={
-                      <Checkbox
-                        color="primary"
-                        checked={mini}
-                        onChange={handleChange}
-                        name="mini"
-                      />
-                    }
-                    label="Mini Bar"
-                  />
-                </Grid>{' '}
-                <Grid item xs={6}>
-                  <FormControlLabel
-                    control={
-                      <Checkbox
-                        color="primary"
-                        checked={wide}
-                        onChange={handleChange}
-                        name="wide"
-                      />
-                    }
-                    label="Wide Range of water spoerts"
-                  />
-                </Grid>{' '}
-                <Grid item xs={6}>
-                  <FormControlLabel
-                    control={
-                      <Checkbox
-                        color="primary"
-                        checked={gym}
-                        onChange={handleChange}
-                        name="gym"
-                      />
-                    }
-                    label="Gym"
-                  />
-                </Grid>{' '}
-                <Grid item xs={6}>
-                  <FormControlLabel
-                    control={
-                      <Checkbox
-                        color="primary"
-                        checked={sauna}
-                        onChange={handleChange}
-                        name="sauna"
-                      />
-                    }
-                    label="Sauna & Welness"
-                  />
-                </Grid>{' '}
-                <Grid item xs={6}>
-                  <FormControlLabel
-                    control={
-                      <Checkbox
-                        color="primary"
-                        checked={cockpit}
-                        onChange={handleChange}
-                        name="cockpit"
-                      />
-                    }
-                    label="Very Spacious Cockpit"
-                  />
-                </Grid>
               </>
             )}
             <Button

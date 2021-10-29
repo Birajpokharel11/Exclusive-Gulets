@@ -20,24 +20,26 @@ const useStyles = makeStyles((theme: Theme) =>
     }
   })
 );
-export default function CheckBoxCabin() {
+
+interface Props {
+  master: boolean;
+  double: boolean;
+  twin: boolean;
+  triple: boolean;
+  single: boolean;
+  extra: boolean;
+  handleChange: any;
+}
+export default function CheckBoxCabin({
+  master,
+  double,
+  twin,
+  triple,
+  single,
+  extra,
+  handleChange
+}: Props) {
   const classes = useStyles();
-  const [state, setState] = React.useState({
-    master: true,
-    double: false,
-    twin: false,
-    triple: false,
-    single: false,
-    extra: false
-  });
-
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setState({ ...state, [event.target.name]: event.target.checked });
-  };
-
-  const { master, double, twin, triple, single, extra } = state;
-  const error =
-    [master, double, twin, triple, single, extra].filter((v) => v).length !== 2;
 
   return (
     <div className={classes.root}>

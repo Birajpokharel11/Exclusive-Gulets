@@ -50,6 +50,94 @@ export default function Filters() {
   const [waterToys, setWatertoys] = React.useState(false);
   const [tags, setTags] = React.useState(false);
 
+  const [state, setState] = React.useState({
+    gilad: true,
+    motor: false,
+    sailer: false,
+    catamaran: false,
+    //////////////////////////////
+    master: true,
+    double: false,
+    twin: false,
+    triple: false,
+    single: false,
+    extra: false,
+    ////////////////////////////
+    hot: false,
+    satellite: false,
+    large: false,
+    safe: false,
+    newly: false,
+    fly: false,
+    swim: false,
+    mini: false,
+    wide: false,
+    gym: false,
+    sauna: false,
+    cockpit: false,
+    ///////////////////////////////////
+    jet: false,
+    scuba: false,
+    inflatable: false,
+    waterski: false,
+    fishing: false,
+    sup1: false,
+    jetski1: false,
+    /////////////////////////////////////////// TagsCheckbox
+    instant: false,
+    special: false,
+    finest: false,
+    loved: false,
+    family: false,
+    SUP: false,
+    gourmet: false
+  });
+  const {
+    gilad,
+    motor,
+    sailer,
+    catamaran,
+    ///////////////////////////////// Type CheckBOx
+    master,
+    double,
+    twin,
+    triple,
+    single,
+    extra,
+    ///////////////////////////// Cabins CheckBox
+    hot,
+    satellite,
+    large,
+    safe,
+    newly,
+    fly,
+    swim,
+    mini,
+    wide,
+    gym,
+    sauna,
+    cockpit,
+    //////////////////////////////// WaterToys checkbox
+    jet,
+    scuba,
+    inflatable,
+    waterski,
+    fishing,
+    sup1,
+    jetski1,
+    ///////////////////////////////// Tags Checkbox
+    instant,
+    special,
+    finest,
+    family,
+    loved,
+    SUP,
+    gourmet
+  } = state;
+
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setState({ ...state, [event.target.name]: event.target.checked });
+  };
   return (
     <Box>
       <Grid
@@ -163,8 +251,13 @@ export default function Filters() {
         </Grid>
       </Grid>
       <Collapse in={type}>
-        <CheckBox />
-
+        <CheckBox
+          motor={motor}
+          gilad={gilad}
+          sailer={sailer}
+          catamaran={catamaran}
+          handleChange={handleChange}
+        />
         <div style={{ paddingBottom: '32px' }} />
       </Collapse>
       <Divider />{' '}
@@ -200,7 +293,15 @@ export default function Filters() {
         </Grid>
       </Grid>
       <Collapse in={cabins}>
-        <CheckBoxCabin />
+        <CheckBoxCabin
+          master={master}
+          double={double}
+          twin={twin}
+          triple={triple}
+          single={single}
+          extra={extra}
+          handleChange={handleChange}
+        />
         <div style={{ paddingBottom: '32px' }} />
       </Collapse>
       <Divider />{' '}
@@ -236,7 +337,21 @@ export default function Filters() {
         </Grid>
       </Grid>
       <Collapse in={keyFeatures}>
-        <CheckBoxKeyFeatures />
+        <CheckBoxKeyFeatures
+          hot={hot}
+          satellite={satellite}
+          large={large}
+          safe={safe}
+          newly={newly}
+          fly={fly}
+          swim={swim}
+          mini={mini}
+          wide={wide}
+          gym={gym}
+          sauna={sauna}
+          cockpit={cockpit}
+          handleChange={handleChange}
+        />
         <div style={{ paddingBottom: '32px' }} />
       </Collapse>
       <Divider />{' '}
@@ -272,7 +387,16 @@ export default function Filters() {
         </Grid>
       </Grid>
       <Collapse in={waterToys}>
-        <ChackBoxWaterToys />
+        <ChackBoxWaterToys
+          jet={jet}
+          scuba={scuba}
+          inflatable={inflatable}
+          waterski={waterski}
+          fishing={fishing}
+          sup1={sup1}
+          jetski1={jetski1}
+          handleChange={handleChange}
+        />
         <div style={{ paddingBottom: '32px' }} />
       </Collapse>
       <Divider />{' '}
@@ -308,7 +432,16 @@ export default function Filters() {
         </Grid>
       </Grid>
       <Collapse in={tags}>
-        <CheckBoxTags />
+        <CheckBoxTags
+          instant={instant}
+          handleChange={handleChange}
+          special={special}
+          finest={finest}
+          family={family}
+          loved={loved}
+          SUP={SUP}
+          gourmet={gourmet}
+        />
         <div style={{ paddingBottom: '32px' }} />
       </Collapse>
     </Box>

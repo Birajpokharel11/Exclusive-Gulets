@@ -18,22 +18,23 @@ const useStyles = makeStyles((theme: Theme) =>
     }
   })
 );
-
-export default function CheckBox() {
+interface Props {
+  gilad?: boolean;
+  motor?: boolean;
+  sailer?: boolean;
+  catamaran?: boolean;
+  handleChange?: any;
+}
+export default function CheckBox({
+  gilad,
+  motor,
+  sailer,
+  catamaran,
+  handleChange
+}: Props) {
   const classes = useStyles();
-  const [state, setState] = React.useState({
-    gilad: true,
-    motor: false,
-    sailer: false,
-    catamaran: false
-  });
 
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setState({ ...state, [event.target.name]: event.target.checked });
-  };
-
-  const { gilad, motor, sailer, catamaran } = state;
-  const error = [gilad, motor, sailer, catamaran].filter((v) => v).length !== 2;
+  // const error = [gilad, motor, sailer, catamaran].filter((v) => v).length !== 2;
 
   return (
     <div className={classes.root}>
@@ -87,10 +88,10 @@ export default function CheckBox() {
                     color="primary"
                     checked={catamaran}
                     onChange={handleChange}
-                    name="Catamaran"
+                    name="catamaran"
                   />
                 }
-                label="Sailer Llorca"
+                label="Caterman"
               />
             </Grid>
           </Grid>

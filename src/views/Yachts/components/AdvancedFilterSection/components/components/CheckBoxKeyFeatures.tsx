@@ -26,43 +26,39 @@ const useStyles = makeStyles((theme: Theme) =>
     }
   })
 );
-export default function CheckBoxKeyFeatures() {
+interface Props {
+  hot: boolean;
+  satellite: boolean;
+  large: boolean;
+  safe: boolean;
+  newly: boolean;
+  fly: boolean;
+  swim: boolean;
+  mini: boolean;
+  wide: boolean;
+  gym: boolean;
+  sauna: boolean;
+  cockpit: boolean;
+  handleChange: any;
+}
+export default function CheckBoxKeyFeatures({
+  hot,
+  satellite,
+  large,
+  safe,
+  newly,
+  fly,
+  swim,
+  mini,
+  wide,
+  gym,
+  sauna,
+  cockpit,
+  handleChange
+}: Props) {
   const classes = useStyles();
-  const [state, setState] = useState({
-    hot: true,
-    satellite: false,
-    large: false,
-    safe: false,
-    newly: false,
-    fly: false,
-    swim: false,
-    mini: false,
-    wide: false,
-    gym: false,
-    sauna: false,
-    cockpit: false
-  });
 
   const [showMore, setShowMore] = useState(false);
-
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setState({ ...state, [event.target.name]: event.target.checked });
-  };
-
-  const {
-    hot,
-    satellite,
-    large,
-    safe,
-    newly,
-    fly,
-    swim,
-    mini,
-    wide,
-    gym,
-    sauna,
-    cockpit
-  } = state;
 
   // const error =
   //   [

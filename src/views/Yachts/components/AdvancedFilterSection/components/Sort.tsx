@@ -8,11 +8,14 @@ import Paper from '@material-ui/core/Paper';
 import Popper from '@material-ui/core/Popper';
 import MenuItem from '@material-ui/core/MenuItem';
 import MenuList from '@material-ui/core/MenuList';
+import { FlashOnTwoTone } from '@material-ui/icons';
+import clsx from 'clsx';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
-    paper: {
-      marginRight: theme.spacing(2)
+    Paper: {
+      minWidth: '200px',
+      height: '168px'
     },
     Sort: {
       maxWidth: '121px',
@@ -25,6 +28,16 @@ const useStyles = makeStyles((theme: Theme) =>
     FilterTypo: {
       paddingLeft: theme.spacing(2),
       textTransform: 'capitalize'
+    },
+    MenuItem: {
+      fontWeight: 300,
+      fontStyle: 'normal',
+      fontSize: '18px',
+      color: '#091527',
+      lineHeight: '21px'
+    },
+    Selected1: {
+      fontWeight: 500
     }
   })
 );
@@ -33,7 +46,10 @@ export default function MenuListComposition() {
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
   const anchorRef = React.useRef<HTMLButtonElement>(null);
-
+  const [price_LowToHigh, setprice_LowToHigh] = React.useState(false);
+  const [price_HighToLow, setprice_HighToLow] = React.useState(false);
+  const [Length_LowToHigh, setLength_LowToHigh] = React.useState(false);
+  const [Length_HighToLow, setLength_HighToLow] = React.useState(false);
   const handleToggle = () => {
     setOpen((prevOpen) => !prevOpen);
   };
@@ -48,7 +64,18 @@ export default function MenuListComposition() {
 
     setOpen(false);
   };
-
+  const handlePrice1 = (event: React.MouseEvent<EventTarget>) => {
+    setprice_LowToHigh((prev) => !prev);
+  };
+  const handlePrice2 = (event: React.MouseEvent<EventTarget>) => {
+    setprice_HighToLow((prev) => !prev);
+  };
+  const handleLength1 = (event: React.MouseEvent<EventTarget>) => {
+    setLength_LowToHigh((prev) => !prev);
+  };
+  const handleLength2 = (event: React.MouseEvent<EventTarget>) => {
+    setLength_HighToLow((prev) => !prev);
+  };
   function handleListKeyDown(event: React.KeyboardEvent) {
     if (event.key === 'Tab') {
       event.preventDefault();
@@ -97,19 +124,49 @@ export default function MenuListComposition() {
                 placement === 'bottom' ? 'center top' : 'center bottom'
             }}
           >
-            <Paper>
-              <ClickAwayListener onClickAway={handleClose}>
+            <ClickAwayListener onClickAway={handleClose}>
+              <Paper className={classes.Paper}>
                 <MenuList
                   autoFocusItem={open}
                   id="menu-list-grow"
                   onKeyDown={handleListKeyDown}
+                  style={{ paddingTop: '16px' }}
                 >
-                  <MenuItem onClick={handleClose}>Profile</MenuItem>
-                  <MenuItem onClick={handleClose}>My account</MenuItem>
-                  <MenuItem onClick={handleClose}>Logout</MenuItem>
+                  <MenuItem
+                    className={clsx(classes.MenuItem, {
+                      [classes.Selected1]: price_LowToHigh
+                    })}
+                    onClick={handlePrice1}
+                  >
+                    Price - Low to High
+                  </MenuItem>
+                  <MenuItem
+                    className={clsx(classes.MenuItem, {
+                      [classes.Selected1]: price_HighToLow
+                    })}
+                    onClick={handlePrice2}
+                  >
+                    Price - High to Low
+                  </MenuItem>
+                  <MenuItem
+                    className={clsx(classes.MenuItem, {
+                      [classes.Selected1]: Length_LowToHigh
+                    })}
+                    onClick={handleLength1}
+                  >
+                    Lenght - Low to High
+                  </MenuItem>
+                  <MenuItem
+                    className={clsx(classes.MenuItem, {
+                      [classes.Selected1]: Length_HighToLow
+                    })}
+                    onClick={handleLength2}
+                  >
+                    Lenght - High to Low
+                  </MenuItem>
                 </MenuList>
-              </ClickAwayListener>
-            </Paper>
+              </Paper>
+            </ClickAwayListener>
           </Grow>
         )}
       </Popper>

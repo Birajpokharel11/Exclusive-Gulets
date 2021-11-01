@@ -31,6 +31,9 @@ const useStyles = makeStyles((theme: Theme) =>
 
       [theme.breakpoints.down('xs')]: {
         border: 'none'
+      },
+      [theme.breakpoints.down('sm')]: {
+        width: 353
       }
     },
     input: {
@@ -45,7 +48,11 @@ const useStyles = makeStyles((theme: Theme) =>
     },
 
     Container: {
-      padding: '40px 0'
+      padding: '40px 0',
+      [theme.breakpoints.down('sm')]: {
+        paddingRight: '10px',
+        paddingLeft: '35px'
+      }
     },
     iconButton: {
       color: 'white'
@@ -60,7 +67,7 @@ export default function Search() {
   return (
     <Container maxWidth="lg" className={classes.Container}>
       <Grid container>
-        <Grid item md={8}>
+        <Grid item md={8} sm={6}>
           <Paper component="form" className={classes.root}>
             <IconButton className={classes.iconButton} aria-label="menu">
               <img src="/assets/images/Search.svg" />
@@ -71,7 +78,7 @@ export default function Search() {
             />
           </Paper>
         </Grid>
-        <Grid item md={4} container justifyContent="flex-end">
+        <Grid item md={4} sm container justifyContent="flex-end">
           <AdvanceFilter />
           <Sort />
         </Grid>

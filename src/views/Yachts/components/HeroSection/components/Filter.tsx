@@ -33,6 +33,9 @@ const useStyles = makeStyles((theme) =>
       [theme.breakpoints.down('md')]: {
         width: '350px'
       },
+      [theme.breakpoints.down('sm')]: {
+        width: '351px'
+      },
       maxHeight: '50px',
       borderRadius: '4px',
       [theme.breakpoints.down(530)]: {

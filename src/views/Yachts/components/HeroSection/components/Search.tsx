@@ -54,7 +54,7 @@ export default function Destinations() {
 
   return (
     <Container>
-      <Grid container spacing={2}>
+      <Grid container spacing={1}>
         <Grid item md>
           <Destination />
         </Grid>

@@ -13,9 +13,10 @@ import FormLabel from '@material-ui/core/FormLabel';
 import ListItemText from '@material-ui/core/ListItemText';
 import Select from '@material-ui/core/Select';
 import Checkbox from '@material-ui/core/Checkbox';
-
+import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import { menuProps } from '@utils/utils';
 import { Form } from 'formik';
+import { Person } from '@material-ui/icons';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -34,6 +35,12 @@ const useStyles = makeStyles((theme: Theme) =>
       '&.MuiOutlinedInput-inputMarginDense': {
         paddingTop: '14.5px',
         paddingBottom: '15px'
+      }
+    },
+    Destinations: {
+      width: '400px',
+      [theme.breakpoints.down('sm')]: {
+        width: '167px'
       }
     },
     label: {
@@ -84,16 +91,10 @@ export default function MultipleSelect() {
   const handleChange = (event: React.ChangeEvent<{ value: unknown }>) => {
     setPersonName(event.target.value as string[]);
   };
-
   return (
     <>
-      <FormControl variant="outlined" style={{ width: '400px' }}>
-        <InputLabel
-          style={{ color: 'white' }}
-          id="demo-simple-select-outlined-label"
-        >
-          Destination
-        </InputLabel>
+      <FormControl variant="outlined" className={classes.Destinations}>
+        <InputLabel style={{ color: 'white' }}>Destination</InputLabel>
         <Select
           variant="filled"
           fullWidth
@@ -107,6 +108,9 @@ export default function MultipleSelect() {
           renderValue={(selected) => (selected as string[]).join(', ')}
           placeholder="Select Destination"
           margin="dense"
+          // IconComponent={() => (
+          //   <ExpandMoreIcon style={{ color: 'white', cursor: 'pointer' }} />
+          // )}
         >
           {names.map((name) => (
             <MenuItem key={name} value={name}>

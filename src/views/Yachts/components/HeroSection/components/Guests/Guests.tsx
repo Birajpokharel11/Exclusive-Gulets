@@ -11,7 +11,13 @@ import Popper from '@material-ui/core/Popper';
 import IconButton from '@material-ui/core/IconButton';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import RangeSlider from './components/RangeSlider';
-import { Slider, Typography } from '@material-ui/core';
+import {
+  FormControl,
+  InputLabel,
+  Select,
+  Slider,
+  Typography
+} from '@material-ui/core';
 
 const useStyles = makeStyles((theme) =>
   createStyles({
@@ -19,9 +25,13 @@ const useStyles = makeStyles((theme) =>
       border: ' 1px solid rgba(255, 255, 255, 0.5)',
       background: 'rgba(12, 22, 37, 0.6)',
       maxHeight: '50px',
-      borderRadius: '4px',
-      [theme.breakpoints.down(530)]: {
-        fontSize: '14px'
+      borderRadius: '4px'
+    },
+    formControl: {
+      width: '400px',
+      background: 'rgba(12, 22, 37, 0.6)',
+      [theme.breakpoints.down('sm')]: {
+        width: '164px'
       }
     },
     Button: { '&:hover': { baackground: 'red' } },
@@ -56,7 +66,11 @@ const useStyles = makeStyles((theme) =>
     root: {
       width: 300
     },
-    Paper: { padding: '43px 20px 20px 20px', zIndex: 2, width: '440px' }
+    Paper: {
+      padding: '43px 20px 20px 20px',
+      zIndex: 2,
+      width: '440px'
+    }
   })
 );
 
@@ -105,9 +119,28 @@ export default function Filter() {
 
   return (
     <>
-      <FormLabel className={classes.label}>Guests</FormLabel>
-      <div ref={anchorRef} className={classes.ButtonGroup}>
-        <Grid container justifyContent="center">
+      <FormControl variant="outlined" className={classes.formControl}>
+        <InputLabel style={{ color: 'white' }}>Guests</InputLabel>
+        <Select
+          style={{ border: '1px solid rgba(255, 255, 255, 0.5)' }}
+          variant="filled"
+          fullWidth
+          ref={anchorRef}
+          IconComponent={() => (
+            <ExpandMoreIcon
+              onClick={() => setOpen((prev) => !prev)}
+              style={{ color: 'white', cursor: 'pointer' }}
+            />
+          )}
+        >
+          <ClickAwayListener onClickAway={handleClose}>
+            <Paper className={classes.Paper}>
+              <RangeSlider />
+            </Paper>
+          </ClickAwayListener>
+        </Select>
+
+        {/* <Grid container justifyContent="center" ref={anchorRef}>
           <Grid item xs style={{ display: 'flex' }}>
             <input className={classes.input} placeholder="Check in" />
             <IconButton
@@ -120,9 +153,10 @@ export default function Filter() {
               <ExpandMoreIcon />
             </IconButton>
           </Grid>
-        </Grid>
-      </div>
-      <Popper
+        </Grid> */}
+      </FormControl>
+
+      {/* <Popper
         open={open}
         anchorEl={anchorRef.current}
         role={undefined}
@@ -139,13 +173,12 @@ export default function Filter() {
           >
             <ClickAwayListener onClickAway={handleClose}>
               <Paper className={classes.Paper}>
-                {' '}
                 <RangeSlider />
               </Paper>
             </ClickAwayListener>
           </Grow>
         )}
-      </Popper>
+      </Popper> */}
     </>
   );
 }

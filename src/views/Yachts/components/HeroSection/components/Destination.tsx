@@ -15,6 +15,7 @@ import Select from '@material-ui/core/Select';
 import Checkbox from '@material-ui/core/Checkbox';
 
 import { menuProps } from '@utils/utils';
+import { Form } from 'formik';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -86,28 +87,35 @@ export default function MultipleSelect() {
 
   return (
     <>
-      <FormLabel className={classes.label}>Destination</FormLabel>
-      <Select
-        variant="filled"
-        fullWidth
-        multiple
-        classes={{
-          root: classes.root
-        }}
-        MenuProps={MenuProps}
-        onChange={handleChange}
-        value={personName}
-        renderValue={(selected) => (selected as string[]).join(', ')}
-        placeholder="Select Destination"
-        margin="dense"
-      >
-        {names.map((name) => (
-          <MenuItem key={name} value={name}>
-            <Checkbox checked={personName.indexOf(name) > -1} />
-            <ListItemText primary={name} />
-          </MenuItem>
-        ))}
-      </Select>
+      <FormControl variant="outlined" style={{ width: '400px' }}>
+        <InputLabel
+          style={{ color: 'white' }}
+          id="demo-simple-select-outlined-label"
+        >
+          Destination
+        </InputLabel>
+        <Select
+          variant="filled"
+          fullWidth
+          multiple
+          classes={{
+            root: classes.root
+          }}
+          MenuProps={MenuProps}
+          onChange={handleChange}
+          value={personName}
+          renderValue={(selected) => (selected as string[]).join(', ')}
+          placeholder="Select Destination"
+          margin="dense"
+        >
+          {names.map((name) => (
+            <MenuItem key={name} value={name}>
+              <Checkbox checked={personName.indexOf(name) > -1} />
+              <ListItemText primary={name} />
+            </MenuItem>
+          ))}
+        </Select>
+      </FormControl>
     </>
   );
 }

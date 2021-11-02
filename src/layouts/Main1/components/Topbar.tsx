@@ -1,8 +1,9 @@
+import React, { useState, useEffect } from 'react';
+
 import { useRouter } from 'next/router';
 
 import { makeStyles } from '@material-ui/core/styles';
-import AppBar from '@material-ui/core/AppBar';
-import Toolbar from '@material-ui/core/Toolbar';
+import { AppBar, Toolbar, Tabs, Tab } from '@material-ui/core';
 
 const useStyles = makeStyles((theme) => ({
   logo: {
@@ -17,12 +18,32 @@ const useStyles = makeStyles((theme) => ({
     height: '72px',
     maxWidth: '100%',
     zIndex: theme.zIndex.modal + 1
+  },
+  tab: {
+    fontFamily: 'Lato',
+    fontStyle: 'normal',
+    fontWeight: 'normal',
+    fontSize: '14px',
+    textTransform: 'uppercase',
+    color: ' #FFFFFF',
+    minWidth: '50px'
+  },
+  tabContainer: {
+    [theme.breakpoints.down('lg')]: {
+      padding: '0px,0px,0px,32px'
+    }
   }
 }));
 
 export default function Header() {
   const classes = useStyles();
   const router = useRouter();
+
+  const [value, setValue] = useState(0);
+
+  const handleChange = (e, value) => {
+    setValue(value);
+  };
 
   return (
     <AppBar
@@ -42,6 +63,24 @@ export default function Header() {
           />
         </div>
         <div style={{ flexGrow: 1 }} />
+        <Tabs
+          value={value}
+          className={classes.tabContainer}
+          onChange={handleChange}
+        >
+          <Tab
+            className={classes.tab}
+            label="Create your own website"
+            onClick={() =>
+              router.push('/createYourWebsite', undefined, { shallow: true })
+            }
+          />
+          <Tab
+            className={classes.tab}
+            label="Login"
+            onClick={() => router.push('/signin', undefined, { shallow: true })}
+          />
+        </Tabs>
       </Toolbar>
     </AppBar>
   );

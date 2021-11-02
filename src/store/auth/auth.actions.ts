@@ -43,6 +43,20 @@ export const signupFail = (error) => ({
   payload: error
 });
 
+export const signupBrokerStart = (formData) => ({
+  type: AuthType.SIGN_UP_BROKER_START,
+  payload: { formData }
+});
+
+export const signupBrokerSuccess = () => ({
+  type: AuthType.SIGN_UP_BROKER_SUCCESS
+});
+
+export const signupBrokerFail = (error) => ({
+  type: AuthType.SIGN_UP_BROKER_FAILURE,
+  payload: error
+});
+
 export const signoutStart = (history) => ({
   type: AuthType.SIGN_OUT_START,
   payload: { history }
@@ -54,6 +68,21 @@ export const signoutSuccess = () => ({
 
 export const signoutFail = (error) => ({
   type: AuthType.SIGN_OUT_FAILURE,
+  payload: error
+});
+
+export const validateUserEmailStart = (formData) => ({
+  type: AuthType.VALIDATE_USER_EMAIL_START,
+  payload: { formData }
+});
+
+export const validateUserEmailSuccess = (data) => ({
+  type: AuthType.VALIDATE_USER_EMAIL_SUCCESS,
+  payload: data
+});
+
+export const validateUserEmailFail = (error) => ({
+  type: AuthType.VALIDATE_USER_EMAIL_FAILURE,
   payload: error
 });
 

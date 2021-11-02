@@ -20,7 +20,9 @@ const authReducer = (state = INITIAL_STATE, action) => {
 
     case AuthType.SIGN_IN_START:
     case AuthType.SIGN_UP_START:
+    case AuthType.SIGN_UP_BROKER_START:
     case AuthType.LOAD_USER_START:
+    case AuthType.VALIDATE_USER_EMAIL_START:
       return {
         ...state,
         loading: true
@@ -41,6 +43,14 @@ const authReducer = (state = INITIAL_STATE, action) => {
         loading: false
       };
 
+    case AuthType.SIGN_UP_BROKER_SUCCESS:
+    case AuthType.VALIDATE_USER_EMAIL_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+        validateUserData: payload
+      };
+
     case AuthType.SIGN_OUT_SUCCESS:
       return {
         ...state,
@@ -52,7 +62,9 @@ const authReducer = (state = INITIAL_STATE, action) => {
     case AuthType.LOAD_USER_FAILURE:
     case AuthType.SIGN_IN_FAILURE:
     case AuthType.SIGN_UP_FAILURE:
+    case AuthType.SIGN_UP_BROKER_FAILURE:
     case AuthType.SIGN_OUT_FAILURE:
+    case AuthType.VALIDATE_USER_EMAIL_FAILURE:
       return {
         ...state,
         loading: false,

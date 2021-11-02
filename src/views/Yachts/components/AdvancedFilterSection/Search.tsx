@@ -15,10 +15,8 @@ import InputBase from '@material-ui/core/InputBase';
 import Typography from '@material-ui/core/Typography';
 import IconButton from '@material-ui/core/IconButton';
 import Divider from '@material-ui/core/Divider';
-
 import AdvanceFilter from './components/AdvanceFilter';
 import Sort from './components/Sort';
-
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     root: {
@@ -34,6 +32,16 @@ const useStyles = makeStyles((theme: Theme) =>
       },
       [theme.breakpoints.down('sm')]: {
         width: 353
+      }
+    },
+    MobilePaper: {
+      padding: '2px 4px',
+      display: 'flex',
+      maxWidth: 400,
+      background: ' rgba(12, 22, 37, 0.6)',
+
+      [theme.breakpoints.down('xs')]: {
+        width: '60px'
       }
     },
     input: {
@@ -56,6 +64,10 @@ const useStyles = makeStyles((theme: Theme) =>
     },
     iconButton: {
       color: 'white'
+    },
+    Divider: {
+      height: '24px',
+      marginTop: '15px'
     }
   })
 );
@@ -63,12 +75,38 @@ const useStyles = makeStyles((theme: Theme) =>
 export default function Search() {
   const classes = useStyles();
   const theme = useTheme();
+  const matches = useMediaQuery(theme.breakpoints.down('xs'));
 
   return (
     <Container maxWidth="lg" className={classes.Container}>
-      <Grid container>
-        <Grid item md={8} sm={6}>
-          <Paper component="form" className={classes.root}>
+      {!matches ? (
+        <>
+          <Grid container>
+            <Grid item md={8} sm={6}>
+              <Paper component="form" className={classes.root}>
+                <IconButton className={classes.iconButton} aria-label="menu">
+                  <img src="/assets/images/Search.svg" />
+                </IconButton>
+                <InputBase
+                  classes={{ root: classes.input }}
+                  placeholder="Search By Name"
+                />
+              </Paper>
+            </Grid>
+            <Grid item md={4} sm container justifyContent="flex-end">
+              <AdvanceFilter />
+              <Sort />
+            </Grid>
+          </Grid>
+        </>
+      ) : (
+        <Box
+          style={{
+            display: 'flex',
+            border: '1px solid rgba(255, 255, 255, 0.5)'
+          }}
+        >
+          <Paper component="form" className={classes.MobilePaper}>
             <IconButton className={classes.iconButton} aria-label="menu">
               <img src="/assets/images/Search.svg" />
             </IconButton>
@@ -77,12 +115,20 @@ export default function Search() {
               placeholder="Search By Name"
             />
           </Paper>
-        </Grid>
-        <Grid item md={4} sm container justifyContent="flex-end">
+          <Divider
+            orientation="vertical"
+            flexItem
+            className={classes.Divider}
+          />
           <AdvanceFilter />
+          <Divider
+            orientation="vertical"
+            flexItem
+            className={classes.Divider}
+          />
           <Sort />
-        </Grid>
-      </Grid>
+        </Box>
+      )}
     </Container>
   );
 }

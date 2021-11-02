@@ -1,5 +1,10 @@
 import React from 'react';
-import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
+import {
+  makeStyles,
+  createStyles,
+  Theme,
+  useTheme
+} from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import ClickAwayListener from '@material-ui/core/ClickAwayListener';
@@ -10,6 +15,7 @@ import MenuItem from '@material-ui/core/MenuItem';
 import MenuList from '@material-ui/core/MenuList';
 import { FlashOnTwoTone } from '@material-ui/icons';
 import clsx from 'clsx';
+import { useMediaQuery } from '@material-ui/core';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -17,12 +23,18 @@ const useStyles = makeStyles((theme: Theme) =>
       minWidth: '200px',
       height: '168px'
     },
+    MobileSort: {
+      '&.MuiButton-outlined': {
+        border: 'none'
+      }
+    },
     Sort: {
       maxWidth: '121px',
       height: '53px',
       color: 'white',
       '&.MuiButton-outlined': {
-        border: '1px solid rgba(255, 255, 255, 0.5)'
+        border: '1px solid rgba(255, 255, 255, 0.5)',
+        [theme.breakpoints.down('xs')]: { border: 'none' }
       }
     },
     FilterTypo: {
@@ -93,10 +105,13 @@ export default function MenuListComposition() {
     prevOpen.current = open;
   }, [open]);
 
+  //////////////////////////// Mobile view view
+  const theme = useTheme();
+  const matches = useMediaQuery(theme.breakpoints.down('xs'));
   return (
     <>
       <Button
-        className={classes.Sort}
+        className={clsx(classes.Sort, { [classes.MobileSort]: matches })}
         variant="outlined"
         ref={anchorRef}
         aria-controls={open ? 'menu-list-grow' : undefined}

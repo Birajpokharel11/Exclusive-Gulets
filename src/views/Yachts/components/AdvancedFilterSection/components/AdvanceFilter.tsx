@@ -1,5 +1,10 @@
 import React from 'react';
-import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
+import {
+  makeStyles,
+  createStyles,
+  Theme,
+  useTheme
+} from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import ClickAwayListener from '@material-ui/core/ClickAwayListener';
@@ -11,6 +16,8 @@ import MenuList from '@material-ui/core/MenuList';
 import AdvancedFilterSection from './components/AdvanceFiltersSection';
 import Filters from './Filters';
 
+import { useMediaQuery } from '@material-ui/core';
+import clsx from 'clsx';
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     paper: {
@@ -23,6 +30,11 @@ const useStyles = makeStyles((theme: Theme) =>
       marginRight: theme.spacing(2),
       '&.MuiButton-outlined': {
         border: '1px solid rgba(255, 255, 255, 0.5)'
+      }
+    },
+    MobileFilters: {
+      '&.MuiButton-outlined': {
+        border: 'none'
       }
     },
     FilterTypo: {
@@ -42,7 +54,8 @@ export default function MenuListComposition() {
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
   const anchorRef = React.useRef<HTMLButtonElement>(null);
-
+  const theme = useTheme();
+  const matches = useMediaQuery(theme.breakpoints.down('xs'));
   const handleToggle = () => {
     setOpen((prevOpen) => !prevOpen);
   };
@@ -78,7 +91,7 @@ export default function MenuListComposition() {
   return (
     <>
       <Button
-        className={classes.Filters}
+        className={clsx(classes.Filters, { [classes.MobileFilters]: matches })}
         variant="outlined"
         ref={anchorRef}
         aria-controls={open ? 'menu-list-grow' : undefined}
@@ -87,7 +100,7 @@ export default function MenuListComposition() {
       >
         <img src="/assets/images/AFilter.svg" />
         <Typography color="inherit" variant="h5" className={classes.FilterTypo}>
-          Advanced Filters
+          {!matches ? 'Advanced Filters' : 'Filters'}
         </Typography>
       </Button>
       <Popper

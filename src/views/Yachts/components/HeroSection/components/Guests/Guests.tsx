@@ -18,6 +18,7 @@ import {
   Slider,
   Typography
 } from '@material-ui/core';
+import { menuProps } from '@utils/utils';
 
 const useStyles = makeStyles((theme) =>
   createStyles({
@@ -73,6 +74,18 @@ const useStyles = makeStyles((theme) =>
   })
 );
 
+const ITEM_HEIGHT = 179;
+const ITEM_PADDING_TOP = 8;
+const MenuProps = {
+  ...menuProps,
+  PaperProps: {
+    style: {
+      maxHeight: ITEM_HEIGHT * 4.5 + ITEM_PADDING_TOP,
+      width: '500px'
+    }
+  }
+};
+
 export default function Filter() {
   const classes = useStyles();
 
@@ -125,18 +138,16 @@ export default function Filter() {
             border: '1px solid rgba(255, 255, 255, 0.5)',
             height: '52px'
           }}
+          IconComponent={() => (
+            <ExpandMoreIcon style={{ color: 'white', cursor: 'pointer' }} />
+          )}
           variant="filled"
+          MenuProps={MenuProps}
           fullWidth
           ref={anchorRef}
-          IconComponent={() => (
-            <ExpandMoreIcon
-              onClick={() => setOpen((prev) => !prev)}
-              style={{ color: 'white', cursor: 'pointer' }}
-            />
-          )}
         >
           <ClickAwayListener onClickAway={handleClose}>
-            <Paper className={classes.Paper}>
+            <Paper elevation={0} className={classes.Paper}>
               <RangeSlider />
             </Paper>
           </ClickAwayListener>

@@ -67,16 +67,16 @@ export default function Destinations() {
   return (
     <Container maxWidth="false" className={classes.Container}>
       <Grid container spacing={2} alignItems="center">
-        <Grid item auto>
+        <Grid item>
           <Destination />
         </Grid>
-        <Grid item auto>
+        <Grid item>
           <Filter />
         </Grid>
-        <Grid item auto>
+        <Grid item>
           <Guests />
         </Grid>
-        <Grid item auto className={classes.ButtonGrid}>
+        <Grid item className={classes.ButtonGrid}>
           <Button
             variant="contained"
             className={classes.Button}

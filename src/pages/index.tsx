@@ -12,7 +12,7 @@ import { fetchHomeStart } from '@store/home/home.actions';
 
 import WithLayout from '@components/WithLayout';
 import Main from '@layouts/App';
-import Main1 from '@layouts/Main1';
+import Main1 from '@layouts/Main';
 import HomePage from '@views/Home';
 
 import { getTenantDomain } from '@utils/data';

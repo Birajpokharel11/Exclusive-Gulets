@@ -17,7 +17,6 @@ import { Formik, Field, Form } from 'formik';
 import { TextField } from 'formik-material-ui';
 import * as Yup from 'yup';
 
-import WebsiteDetails from 'src/views/WebsiteDetails';
 import container from './CreateWebsite.container';
 
 const useStyles = makeStyles((theme) => ({

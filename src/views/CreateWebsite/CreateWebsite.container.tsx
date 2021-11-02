@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 
 import {
   validateUserEmailStart,
-  signupStart
+  signupBrokerStart
 } from 'src/store/auth/auth.actions';
 
 const mapStateToProps = (state) => ({
@@ -13,7 +13,7 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch) => ({
   onValidateUserEmailStart: (formData) =>
     dispatch(validateUserEmailStart(formData)),
-  onSignupStart: (formData) => dispatch(signupStart(formData))
+  onSignupStart: (formData) => dispatch(signupBrokerStart(formData))
 });
 
 const container = connect(mapStateToProps, mapDispatchToProps);

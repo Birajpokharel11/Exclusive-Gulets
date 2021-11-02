@@ -72,7 +72,7 @@ export default function Header() {
             className={classes.tab}
             label="Create your own website"
             onClick={() =>
-              router.push('/createYourWebsite', undefined, { shallow: true })
+              router.push('/create-your-website', undefined, { shallow: true })
             }
           />
           <Tab

@@ -27,6 +27,9 @@ const useStyles = makeStyles((theme: Theme) =>
       color: 'white',
       width: '214px',
       height: '53px',
+      [theme.breakpoints.down('xs')]: { width: '200px' },
+      [theme.breakpoints.down(325)]: { width: '140px' },
+
       marginRight: theme.spacing(2),
       '&.MuiButton-outlined': {
         border: '1px solid rgba(255, 255, 255, 0.5)'
@@ -36,6 +39,9 @@ const useStyles = makeStyles((theme: Theme) =>
       '&.MuiButton-outlined': {
         border: 'none'
       }
+    },
+    mobilesearch: {
+      width: '400px'
     },
     FilterTypo: {
       paddingLeft: theme.spacing(2),
@@ -49,8 +55,10 @@ const useStyles = makeStyles((theme: Theme) =>
     }
   })
 );
-
-export default function MenuListComposition() {
+interface Props {
+  mobilesearch?: boolean;
+}
+export default function MenuListComposition({ mobilesearch }: Props) {
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
   const anchorRef = React.useRef<HTMLButtonElement>(null);
@@ -91,7 +99,10 @@ export default function MenuListComposition() {
   return (
     <>
       <Button
-        className={clsx(classes.Filters, { [classes.MobileFilters]: matches })}
+        className={clsx(classes.Filters, {
+          [classes.MobileFilters]: matches,
+          [classes.mobilesearch]: mobilesearch
+        })}
         variant="outlined"
         ref={anchorRef}
         aria-controls={open ? 'menu-list-grow' : undefined}

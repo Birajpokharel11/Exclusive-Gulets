@@ -17,6 +17,9 @@ import IconButton from '@material-ui/core/IconButton';
 import Divider from '@material-ui/core/Divider';
 import AdvanceFilter from './components/AdvanceFilter';
 import Sort from './components/Sort';
+import CloseIcon from '@material-ui/icons/Close';
+import clsx from 'clsx';
+
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     root: {
@@ -37,11 +40,20 @@ const useStyles = makeStyles((theme: Theme) =>
     MobilePaper: {
       padding: '2px 4px',
       display: 'flex',
-      maxWidth: 400,
+      alignItems: 'center',
       background: ' rgba(12, 22, 37, 0.6)',
+      border: '1px solid rgba(255, 255, 255, 0.5)',
 
       [theme.breakpoints.down('xs')]: {
-        width: '60px'
+        border: 'none'
+      },
+      [theme.breakpoints.down('sm')]: {
+        width: 100
+      }
+    },
+    MobilePaperSelected: {
+      [theme.breakpoints.down('sm')]: {
+        width: '100%'
       }
     },
     input: {
@@ -60,6 +72,10 @@ const useStyles = makeStyles((theme: Theme) =>
       [theme.breakpoints.down('sm')]: {
         paddingRight: '25px',
         paddingLeft: '19px'
+      },
+      [theme.breakpoints.down('md')]: {
+        paddingRight: '25px',
+        paddingLeft: '19px'
       }
     },
     iconButton: {
@@ -76,13 +92,13 @@ export default function Search() {
   const classes = useStyles();
   const theme = useTheme();
   const matches = useMediaQuery(theme.breakpoints.down('xs'));
-
+  const [mobileSearch, setMobileSearch] = React.useState(false);
   return (
     <Container maxWidth="lg" className={classes.Container}>
       {!matches ? (
         <>
           <Grid container>
-            <Grid item md={8} sm={6}>
+            <Grid item md={6} sm>
               <Paper component="form" className={classes.root}>
                 <IconButton className={classes.iconButton} aria-label="menu">
                   <img src="/assets/images/Search.svg" />
@@ -93,7 +109,7 @@ export default function Search() {
                 />
               </Paper>
             </Grid>
-            <Grid item md={4} sm container justifyContent="flex-end">
+            <Grid item md={6} sm container justifyContent="flex-end">
               <AdvanceFilter />
               <Sort />
             </Grid>
@@ -106,27 +122,47 @@ export default function Search() {
             border: '1px solid rgba(255, 255, 255, 0.5)'
           }}
         >
-          <Paper component="form" className={classes.MobilePaper}>
-            <IconButton className={classes.iconButton} aria-label="menu">
+          <Paper
+            component="form"
+            className={clsx(classes.MobilePaper, {
+              [classes.MobilePaperSelected]: mobileSearch
+            })}
+          >
+            <IconButton
+              className={classes.iconButton}
+              onClick={() => setMobileSearch((prev) => !prev)}
+              aria-label="menu"
+            >
               <img src="/assets/images/Search.svg" />
             </IconButton>
-            <InputBase
-              classes={{ root: classes.input }}
-              placeholder="Search By Name"
-            />
+            {mobileSearch && (
+              <InputBase
+                classes={{ root: classes.input }}
+                placeholder="Search By Name"
+              />
+            )}
+            {mobileSearch && (
+              <IconButton className={classes.iconButton} aria-label="menu">
+                <CloseIcon />
+              </IconButton>
+            )}
           </Paper>
-          <Divider
-            orientation="vertical"
-            flexItem
-            className={classes.Divider}
-          />
-          <AdvanceFilter />
-          <Divider
-            orientation="vertical"
-            flexItem
-            className={classes.Divider}
-          />
-          <Sort />
+          {!mobileSearch && (
+            <>
+              <Divider
+                orientation="vertical"
+                flexItem
+                className={classes.Divider}
+              />
+              <AdvanceFilter />
+              <Divider
+                orientation="vertical"
+                flexItem
+                className={classes.Divider}
+              />
+              <Sort />
+            </>
+          )}
         </Box>
       )}
     </Container>

@@ -50,8 +50,8 @@ const useStyles = makeStyles((theme: Theme) =>
     Container: {
       padding: '40px 0',
       [theme.breakpoints.down('sm')]: {
-        paddingRight: '10px',
-        paddingLeft: '35px'
+        paddingRight: '25px',
+        paddingLeft: '19px'
       }
     },
     iconButton: {

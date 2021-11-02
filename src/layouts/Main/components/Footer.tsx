@@ -84,6 +84,11 @@ const useStyles = makeStyles((theme: Theme) => ({
     [theme.breakpoints.down('xs')]: {
       marginTop: '68px'
     }
+  },
+  GridAbout: {
+    [theme.breakpoints.down(800)]: {
+      marginRight: '50px'
+    }
   }
 }));
 
@@ -112,7 +117,7 @@ const Footer = () => {
               t. +44 208 144 58 34
             </Typography>
           </Grid>
-          <Grid item sm={4} xs={12}>
+          <Grid item sm={4} xs={12} className={classes.GridAbout}>
             <List className={classes.ListItems}>
               <div>
                 <ListItem>

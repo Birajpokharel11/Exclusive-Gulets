@@ -23,6 +23,7 @@ const useStyles = makeStyles((theme: Theme) =>
     root: {
       background: 'rgba(12, 22, 37, 0.6)',
       color: 'white',
+
       border: '1px solid rgba(255, 255, 255, 0.5)',
       boxSizing: 'border-box',
       borderRadius: '4px',
@@ -39,6 +40,9 @@ const useStyles = makeStyles((theme: Theme) =>
     },
     Destinations: {
       width: '400px',
+      [theme.breakpoints.down(1100)]: {
+        width: '300px'
+      },
       [theme.breakpoints.down('sm')]: {
         width: '167px'
       }

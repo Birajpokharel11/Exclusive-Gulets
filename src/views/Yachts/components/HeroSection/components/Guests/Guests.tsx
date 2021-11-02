@@ -24,14 +24,13 @@ const useStyles = makeStyles((theme) =>
     ButtonGroup: {
       border: ' 1px solid rgba(255, 255, 255, 0.5)',
       background: 'rgba(12, 22, 37, 0.6)',
-      maxHeight: '50px',
       borderRadius: '4px'
     },
     formControl: {
-      width: '400px',
+      width: '190px',
       background: 'rgba(12, 22, 37, 0.6)',
       [theme.breakpoints.down('sm')]: {
-        width: '164px'
+        width: '114px'
       }
     },
     Button: { '&:hover': { baackground: 'red' } },
@@ -122,7 +121,10 @@ export default function Filter() {
       <FormControl variant="outlined" className={classes.formControl}>
         <InputLabel style={{ color: 'white' }}>Guests</InputLabel>
         <Select
-          style={{ border: '1px solid rgba(255, 255, 255, 0.5)' }}
+          style={{
+            border: '1px solid rgba(255, 255, 255, 0.5)',
+            height: '52px'
+          }}
           variant="filled"
           fullWidth
           ref={anchorRef}

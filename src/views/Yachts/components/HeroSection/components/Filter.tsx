@@ -114,7 +114,7 @@ export default function Filter() {
   }, [open]);
 
   return (
-    <>
+    <div style={{ position: 'relative', bottom: 10 }}>
       <FormLabel className={classes.label}>
         {calender === 'calendar' ? 'Checkin' : 'Flexible Dates'}
       </FormLabel>
@@ -261,6 +261,6 @@ export default function Filter() {
           </Grow>
         )}
       </Popper>
-    </>
+    </div>
   );
 }

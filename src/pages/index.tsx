@@ -13,6 +13,7 @@ import { fetchHomeStart } from '@store/home/home.actions';
 import WithLayout from '@components/WithLayout';
 import Main from '@layouts/App';
 import Main1 from '@layouts/Main';
+import LandingPage from '@views/Landing';
 import HomePage from '@views/Home';
 
 import { getTenantDomain } from '@utils/data';
@@ -49,7 +50,7 @@ export default function Index({ isIOS, subdomain }) {
       <Head>
         <title>YATCH CLOUD</title>
       </Head>
-      <WithLayout component={() => <div>Home Page</div>} layout={Main1} />
+      <WithLayout component={LandingPage} layout={Main1} />
     </>
   );
 }

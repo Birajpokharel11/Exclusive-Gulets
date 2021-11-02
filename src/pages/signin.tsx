@@ -8,7 +8,7 @@ import Signin from '@views/Signin';
 import YachtManagerSignIn from '@views/YachtManagerSignIn';
 import { getTenantDomain } from '@utils/data';
 
-export default function SignIn({ subdomain }) {
+function SignIn({ subdomain }) {
   if (subdomain) {
     return (
       <>
@@ -36,8 +36,8 @@ export default function SignIn({ subdomain }) {
   );
 }
 
-SignIn.getInitialProps = async ({ req }) => {
-  const subdomain = await getTenantDomain(req.headers.host);
+SignIn.getInitialProps = async (ctx) => {
+  const subdomain = await getTenantDomain(ctx.req.headers.host);
 
   if (!subdomain) {
     return {
@@ -46,6 +46,9 @@ SignIn.getInitialProps = async ({ req }) => {
   }
 
   return {
-    props: { host: req.headers.host, subdomain }
+    host: ctx.req.headers.host,
+    subdomain
   };
 };
+
+export default SignIn;

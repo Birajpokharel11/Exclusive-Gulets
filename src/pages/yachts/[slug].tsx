@@ -19,7 +19,7 @@ export default function Slug() {
 export const getServerSideProps = wrapper.getServerSideProps(
   (store) =>
     async ({ req, res, ...context }) => {
-      const subdomain = getTenantDomain(req.headers.host);
+      const subdomain = await getTenantDomain(req.headers.host);
 
       if (!subdomain) {
         return {

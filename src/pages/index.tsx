@@ -63,7 +63,7 @@ export const getServerSideProps = wrapper.getServerSideProps(
         'public, s-maxage=1, stale-while-revalidate=59'
       );
 
-      const subdomain = getTenantDomain(req.headers.host);
+      const subdomain = await getTenantDomain(req.headers.host);
 
       let posts;
 

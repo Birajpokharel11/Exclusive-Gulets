@@ -6,7 +6,7 @@ import { wrapper } from '@store/index';
 import { fetchPostsStart } from '@store/posts/posts.actions';
 
 import WithLayout from '@components/WithLayout';
-import Main from '@layouts/Main';
+import Main from '@layouts/App';
 import Blogs from '@views/Blogs';
 
 import { getTenantDomain } from '@utils/data';

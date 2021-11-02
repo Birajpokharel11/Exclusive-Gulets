@@ -5,7 +5,7 @@ import { wrapper } from '@store/index';
 import { fetchDestinationStart } from '@store/destination/destination.actions';
 
 import WithLayout from '@components/WithLayout';
-import Main from '@layouts/Main';
+import Main from '@layouts/App';
 import DestinationPage from '@views/Destinations';
 
 import { getTenantDomain } from '@utils/data';

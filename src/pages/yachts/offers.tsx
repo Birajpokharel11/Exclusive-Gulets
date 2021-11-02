@@ -8,7 +8,7 @@ import { fetchRandomDestinationStart } from '@store/destination/destination.acti
 import { fetchExperiencesStart } from '@store/experiences/experiences.actions';
 
 import WithLayout from '@components/WithLayout';
-import Main from '@layouts/Main';
+import Main from '@layouts/App';
 import YachtPage from '@views/Yachts';
 
 import { getTenantDomain } from '@utils/data';

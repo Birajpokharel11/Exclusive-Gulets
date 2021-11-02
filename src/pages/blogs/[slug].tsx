@@ -7,7 +7,7 @@ import { fetchPostsByIdStart } from '@store/posts/posts.actions';
 import { fetchRandomDestinationStart } from '@store/destination/destination.actions';
 
 import WithLayout from '@components/WithLayout';
-import Main from '@layouts/Main';
+import Main from '@layouts/App';
 import BlogsDetails from '@views/Blogs/Details';
 
 import { getTenantDomain } from '@utils/data';

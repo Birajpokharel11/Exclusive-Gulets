@@ -2,7 +2,7 @@ import React from 'react';
 import Head from 'next/head';
 
 import WithLayout from '@components/WithLayout';
-import Main from '@layouts/Main';
+import Main from '@layouts/App';
 import DiningView from '@views/Dining';
 
 import { END } from 'redux-saga';

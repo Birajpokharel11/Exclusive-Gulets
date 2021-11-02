@@ -5,7 +5,7 @@ import { wrapper } from '@store/index';
 import { fetchExperiencesStart } from '@store/experiences/experiences.actions';
 
 import WithLayout from '@components/WithLayout';
-import Main from '@layouts/Main';
+import Main from '@layouts/App';
 import BespokeExperiencesPage from '@views/Experiences';
 
 import { getTenantDomain } from '@utils/data';

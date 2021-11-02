@@ -11,7 +11,7 @@ import { fetchOfferStart } from '@store/offer/offer.actions';
 import { fetchHomeStart } from '@store/home/home.actions';
 
 import WithLayout from '@components/WithLayout';
-import Main from '@layouts/Main';
+import Main from '@layouts/App';
 import Main1 from '@layouts/Main1';
 import HomePage from '@views/Home';
 

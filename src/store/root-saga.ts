@@ -9,6 +9,7 @@ import { postsSagas } from './posts/posts.sagas';
 import { homeSagas } from './home/home.sagas';
 import { dinningSagas } from './dining/dinning.sagas';
 import { charterSagas } from './whyCharter/charter.sagas';
+import { siteCoordinatorSagas } from './siteCoordinator/siteCoordinator.sagas';
 
 export default function* rootSaga() {
   yield all([
@@ -20,6 +21,7 @@ export default function* rootSaga() {
     call(postsSagas),
     call(homeSagas),
     call(dinningSagas),
-    call(charterSagas)
+    call(charterSagas),
+    call(siteCoordinatorSagas)
   ]);
 }

@@ -9,6 +9,7 @@ import { fetchExperiencesStart } from '@store/experiences/experiences.actions';
 import { fetchPostsStart } from '@store/posts/posts.actions';
 import { fetchOfferStart } from '@store/offer/offer.actions';
 import { fetchHomeStart } from '@store/home/home.actions';
+import { checkDomainStart } from '@store/siteCoordinator/siteCoordinator.actions';
 
 import WithLayout from '@components/WithLayout';
 import Main from '@layouts/App';
@@ -65,9 +66,8 @@ export const getServerSideProps = wrapper.getServerSideProps(
 
       const subdomain = await getTenantDomain(req.headers.host);
 
-      let posts;
-
       if (subdomain) {
+        store.dispatch(checkDomainStart(subdomain));
         store.dispatch(fetchYachtsStart());
         store.dispatch(fetchRandomDestinationStart());
         store.dispatch(fetchExperiencesStart());
@@ -78,13 +78,29 @@ export const getServerSideProps = wrapper.getServerSideProps(
 
         await store.sagaTask?.toPromise();
         const myStore = store.getState();
-        posts = myStore.posts;
+        const posts = myStore.posts;
+        const domain = myStore.siteCoordinator.domain;
+
+        if (!domain.isExists) {
+          return {
+            notFound: true
+          };
+        }
+
+        return {
+          props: {
+            host: req.headers.host,
+            subdomain,
+            domain: domain.data
+          }
+        };
       }
 
       return {
         props: {
           host: req.headers.host,
-          subdomain
+          subdomain,
+          domain: undefined
         }
       };
     }

@@ -3,8 +3,13 @@ import { HYDRATE } from 'next-redux-wrapper';
 import * as SiteCoordinatorType from './siteCoordinator.types';
 
 const INITIAL_STATE = {
-  language: 'nl',
-  yachtStore: {}
+  language: 'en',
+  yachtStore: {},
+  domain: {
+    isExists: false,
+    data: null
+  },
+  loading: true
 };
 
 const siteCoordinatorReducer = (state = INITIAL_STATE, action) => {
@@ -23,6 +28,26 @@ const siteCoordinatorReducer = (state = INITIAL_STATE, action) => {
         yachtStore: payload
       };
       return updatedState;
+
+    case SiteCoordinatorType.CHECK_DOMAIN_START:
+      return {
+        ...state,
+        loading: true
+      };
+
+    case SiteCoordinatorType.CHECK_DOMAIN_SUCCESS:
+      return {
+        ...state,
+        domain: payload,
+        loading: false
+      };
+
+    case SiteCoordinatorType.CHECK_DOMAIN_FAILURE:
+      return {
+        ...state,
+        loading: false,
+        error: payload
+      };
 
     default:
       return state;

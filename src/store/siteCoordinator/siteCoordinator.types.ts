@@ -1,3 +1,6 @@
-/* eslint-disable import/prefer-default-export */
 export const LANGUAGE_CHANGE = 'LANGUAGE_CHANGE';
 export const STORE_YACHT = 'STORE_YACHT';
+
+export const CHECK_DOMAIN_START = 'CHECK_DOMAIN_START';
+export const CHECK_DOMAIN_SUCCESS = 'CHECK_DOMAIN_SUCCESS';
+export const CHECK_DOMAIN_FAILURE = 'CHECK_DOMAIN_FAILURE';

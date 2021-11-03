@@ -129,10 +129,10 @@ export default function Filter() {
   const [open, setOpen] = React.useState(false);
   const anchorRef = React.useRef<HTMLDivElement>(null);
   //
-  const [week, setWeek] = React.useState(false);
+  const [week, setWeek] = React.useState(true);
   const [coupleofweeks, setCoupleofWeeks] = React.useState(false);
   const [amonth, setAmonth] = React.useState(false);
-  const [june, setJune] = React.useState(false);
+  const [june, setJune] = React.useState(true);
   const [july, setJuly] = React.useState(false);
   const [august, setAugust] = React.useState(false);
   const [september, setSeptember] = React.useState(false);
@@ -181,7 +181,72 @@ export default function Filter() {
 
     prevOpen.current = open;
   }, [open]);
+  ///////////////////////////////////////////////////////// weeks months
+  const handleweek = () => {
+    setWeek((prev) => !prev);
+    setCoupleofWeeks(false);
+    setAmonth(false);
+  };
+  const handleCoupleofWeeks = () => {
+    setCoupleofWeeks((prev) => !prev);
+    setWeek(false);
+    setAmonth(false);
+  };
+  const handleMonth = () => {
+    setAmonth((prev) => !prev);
+    setCoupleofWeeks(false);
+    setWeek(false);
+  };
+  ////////////////////////////////////////////////////// months
+  const handleJune = () => {
+    setJune((prev) => !prev);
+    setJuly(false);
+    setAugust(false);
+    setSeptember(false);
+    setOctober(false), setNovember(false);
+  };
+  const handleJuly = () => {
+    setJuly((prev) => !prev);
+    setJune(false);
+    setAugust(false);
+    setSeptember(false);
+    setOctober(false), setNovember(false);
+  };
+  const handleAugust = () => {
+    setAugust((prev) => !prev);
+    setJune(false);
+    setJuly(false);
+    setSeptember(false);
+    setOctober(false), setNovember(false);
+  };
+  const handleSeptember = () => {
+    setSeptember((prev) => !prev);
+    setJuly(false);
+    setJune(false);
+    setAugust(false);
+    setOctober(false), setNovember(false);
+  };
+  const handleOctober = () => {
+    setOctober((prev) => !prev);
+    setJuly(false);
+    setAugust(false);
+    setSeptember(false);
+    setJune(false), setNovember(false);
+  };
+  const handleNovember = () => {
+    setNovember((prev) => !prev);
+    setJuly(false);
+    setAugust(false);
+    setSeptember(false);
+    setOctober(false), setJune(false);
+  };
 
+  /////////////////////////////////////////////////////////////////
+  const values = () => {
+    {
+      ('Hello');
+    }
+  };
   return (
     <div style={{ position: 'relative', bottom: 10 }}>
       <FormLabel className={classes.label}>
@@ -197,7 +262,7 @@ export default function Filter() {
                     input: classes.input
                   }}
                   placeholder="Check in"
-                />
+                />{' '}
                 <IconButton
                   className={clsx(classes.expand, {
                     [classes.expandOpen]: open
@@ -308,7 +373,12 @@ export default function Filter() {
                       style={{ paddingTop: '24px', paddingBottom: '27px' }}
                     >
                       <Typography>
-                        Stay For<span> a week</span>
+                        Stay For
+                        <span>
+                          {week && 'A Week'}
+                          {coupleofweeks && 'A Couple of Weeks'}
+                          {amonth && 'A Months'}
+                        </span>
                       </Typography>
                     </Box>
                     <Container
@@ -321,7 +391,7 @@ export default function Filter() {
                     >
                       <Button
                         variant="contained"
-                        onClick={() => setWeek((prev) => !prev)}
+                        onClick={handleweek}
                         className={clsx(classes.ButtonHeight, {
                           [classes.Week]: week
                         })}
@@ -331,7 +401,7 @@ export default function Filter() {
                       </Button>
                       <Button
                         variant="contained"
-                        onClick={() => setCoupleofWeeks((prev) => !prev)}
+                        onClick={handleCoupleofWeeks}
                         className={clsx(classes.ButtonHeight, {
                           [classes.coupleofweeks]: coupleofweeks
                         })}
@@ -340,7 +410,7 @@ export default function Filter() {
                       </Button>
                       <Button
                         variant="contained"
-                        onClick={() => setAmonth((prev) => !prev)}
+                        onClick={handleMonth}
                         className={clsx(classes.ButtonHeight, {
                           [classes.amonth]: amonth
                         })}
@@ -354,7 +424,16 @@ export default function Filter() {
                       style={{ paddingBottom: '27px' }}
                     >
                       <Typography>
-                        Check in<span> June</span>
+                        Check in
+                        <span>
+                          {' '}
+                          {june && 'June'}
+                          {july && 'July'}
+                          {august && 'August'}
+                          {september && 'September'}
+                          {october && 'October'}
+                          {november && 'November'}
+                        </span>
                       </Typography>
                     </Box>
                     <Container
@@ -367,7 +446,7 @@ export default function Filter() {
                     >
                       <Button
                         variant="contained"
-                        onClick={() => setJune((prev) => !prev)}
+                        onClick={handleJune}
                         className={clsx(classes.ButtonHeight, {
                           [classes.june]: june
                         })}
@@ -377,7 +456,7 @@ export default function Filter() {
                       </Button>
                       <Button
                         variant="contained"
-                        onClick={() => setJuly((prev) => !prev)}
+                        onClick={handleJuly}
                         className={clsx(classes.ButtonHeight, {
                           [classes.july]: july
                         })}
@@ -386,7 +465,7 @@ export default function Filter() {
                       </Button>
                       <Button
                         variant="contained"
-                        onClick={() => setAugust((prev) => !prev)}
+                        onClick={handleAugust}
                         className={clsx(classes.ButtonHeight, {
                           [classes.august]: august
                         })}
@@ -395,7 +474,7 @@ export default function Filter() {
                       </Button>
                       <Button
                         variant="contained"
-                        onClick={() => setSeptember((prev) => !prev)}
+                        onClick={handleSeptember}
                         className={clsx(classes.ButtonHeight, {
                           [classes.september]: september
                         })}
@@ -404,7 +483,7 @@ export default function Filter() {
                       </Button>
                       <Button
                         variant="contained"
-                        onClick={() => setOctober((prev) => !prev)}
+                        onClick={handleOctober}
                         className={clsx(classes.ButtonHeight, {
                           [classes.october]: october
                         })}
@@ -413,7 +492,7 @@ export default function Filter() {
                       </Button>
                       <Button
                         variant="contained"
-                        onClick={() => setNovember((prev) => !prev)}
+                        onClick={handleNovember}
                         className={clsx(classes.ButtonHeight, {
                           [classes.november]: november
                         })}

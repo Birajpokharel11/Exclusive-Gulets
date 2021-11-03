@@ -37,18 +37,25 @@ function SignIn({ subdomain }) {
 }
 
 SignIn.getInitialProps = async (ctx) => {
-  const subdomain = await getTenantDomain(ctx.req.headers.host);
+  try {
+    if (ctx.req.headers.cookie) {
+      const subdomain = await getTenantDomain(ctx.req.headers.host);
 
-  if (!subdomain) {
-    return {
-      notFound: true
-    };
+      if (!subdomain) {
+        return {
+          notFound: true
+        };
+      }
+
+      return {
+        host: ctx.req.headers.host,
+        subdomain
+      };
+    }
+  } catch (e) {
+    console.log(e);
   }
-
-  return {
-    host: ctx.req.headers.host,
-    subdomain
-  };
+  return { subdomain: undefined };
 };
 
 export default SignIn;

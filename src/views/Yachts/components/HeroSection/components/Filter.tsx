@@ -23,6 +23,8 @@ import {
   DateRange
 } from '@material-ui/pickers';
 import MomentUtils from '@material-ui/pickers/adapter/moment';
+import container from '@components/CustomAlert/CustomAlert.container';
+import { Container } from '@material-ui/core';
 
 const useStyles = makeStyles((theme) =>
   createStyles({
@@ -69,6 +71,16 @@ const useStyles = makeStyles((theme) =>
     },
     expandOpen: {
       transform: 'rotate(180deg)'
+    },
+    ButtonHeight: {
+      minHeight: '52px',
+      background: 'white',
+      color: '#091527',
+      border: '1px solid #2A398D',
+      '&:hover': {
+        background: 'rgba(42, 57, 141, 0.1)',
+        color: '#2A398D'
+      }
     }
   })
 );
@@ -207,12 +219,11 @@ export default function Filter() {
             }}
           >
             <ClickAwayListener onClickAway={handleClose}>
-              <Paper>
+              <Paper elevation={2} style={{ minWidth: '720px' }}>
                 <Box
-                  p={2}
+                  style={{ paddingTop: '32px' }}
                   display="flex"
                   justifyContent="center"
-                  style={{ gap: '1rem' }}
                 >
                   <Button
                     className={classes.Button}
@@ -233,12 +244,99 @@ export default function Filter() {
                   </Button>
                 </Box>
                 {calender === 'flexible' ? (
-                  <Box>
-                    <Box p={2} display="flex" justifyContent="center">
+                  <Box justifyContent="center">
+                    <Box
+                      display="flex"
+                      justifyContent="center"
+                      style={{ paddingTop: '24px', paddingBottom: '27px' }}
+                    >
                       <Typography>
                         Stay For<span> a week</span>
                       </Typography>
                     </Box>
+                    <Container
+                      maxWidth="xs"
+                      style={{
+                        display: 'flex',
+                        gap: '1rem',
+                        paddingBottom: '40px'
+                      }}
+                    >
+                      <Button
+                        variant="contained"
+                        className={classes.ButtonHeight}
+                      >
+                        {' '}
+                        A week
+                      </Button>
+                      <Button
+                        variant="contained"
+                        className={classes.ButtonHeight}
+                      >
+                        A couple of weeks
+                      </Button>
+                      <Button
+                        variant="contained"
+                        className={classes.ButtonHeight}
+                      >
+                        A month
+                      </Button>
+                    </Container>
+                    <Box
+                      display="flex"
+                      justifyContent="center"
+                      style={{ paddingBottom: '27px' }}
+                    >
+                      <Typography>
+                        Check in<span> June</span>
+                      </Typography>
+                    </Box>
+                    <Container
+                      maxWidth="lg"
+                      style={{
+                        display: 'flex',
+                        justifyContent: 'space-around',
+                        paddingBottom: '48px'
+                      }}
+                    >
+                      <Button
+                        variant="contained"
+                        className={classes.ButtonHeight}
+                      >
+                        {' '}
+                        June
+                      </Button>
+                      <Button
+                        variant="contained"
+                        className={classes.ButtonHeight}
+                      >
+                        July
+                      </Button>
+                      <Button
+                        variant="contained"
+                        className={classes.ButtonHeight}
+                      >
+                        August
+                      </Button>
+                      <Button
+                        variant="contained"
+                        className={classes.ButtonHeight}
+                      >
+                        September
+                      </Button>
+                      <Button
+                        variant="contained"
+                        className={classes.ButtonHeight}
+                      >
+                        October
+                      </Button>
+                      <Button
+                        variant="contained"
+                        className={classes.ButtonHeight}
+                      >
+                        November
+                      </Button>
+                    </Container>
                   </Box>
                 ) : (
                   <LocalizationProvider dateAdapter={MomentUtils}>

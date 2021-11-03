@@ -100,7 +100,7 @@ export const getServerSideProps = wrapper.getServerSideProps(
         props: {
           host: req.headers.host,
           subdomain,
-          domain: undefined
+          domain: null
         }
       };
     }

@@ -116,12 +116,12 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const SignIn = ({ onSigninStart, onVerifyBrokerStart, auth: { loading } }) => {
-  const { router, query } = useRouter();
+  const { query } = useRouter();
   const classes = useStyles();
 
-  const handleBack = () => {
-    router.push('/');
-  };
+  // const handleBack = () => {
+  //   router.push('/');
+  // };
 
   const handleChange = (event) => {
     event.persist();
@@ -139,7 +139,7 @@ const SignIn = ({ onSigninStart, onVerifyBrokerStart, auth: { loading } }) => {
         <Grid className={classes.grid} container>
           <Grid className={classes.content} item xs={12}>
             <div className={classes.contentHeader}>
-              <IconButton onClick={handleBack} style={{ padding: 0 }}>
+              <IconButton style={{ padding: 0 }}>
                 <BackArrow />
               </IconButton>
             </div>
@@ -206,11 +206,16 @@ const SignIn = ({ onSigninStart, onVerifyBrokerStart, auth: { loading } }) => {
                     size="large"
                     type="submit"
                     variant="contained"
+                    disabled={loading}
                     endIcon={<ArrowForwardIcon style={{ color: '#ffffff' }} />}
                   >
-                    <Typography variant="body1" color="secondary">
-                      Sign up
-                    </Typography>
+                    {loading ? (
+                      <CircularProgress />
+                    ) : (
+                      <Typography variant="body1" color="secondary">
+                        Sign up
+                      </Typography>
+                    )}
                   </Button>
                 </Form>
               </Formik>

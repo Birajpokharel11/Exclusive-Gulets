@@ -81,6 +81,42 @@ const useStyles = makeStyles((theme) =>
         background: 'rgba(42, 57, 141, 0.1)',
         color: '#2A398D'
       }
+    },
+    Week: {
+      background: 'rgba(42, 57, 141, 0.1)',
+      color: '#2A398D'
+    },
+    coupleofweeks: {
+      background: 'rgba(42, 57, 141, 0.1)',
+      color: '#2A398D'
+    },
+    amonth: {
+      background: 'rgba(42, 57, 141, 0.1)',
+      color: '#2A398D'
+    },
+    june: {
+      background: 'rgba(42, 57, 141, 0.1)',
+      color: '#2A398D'
+    },
+    july: {
+      background: 'rgba(42, 57, 141, 0.1)',
+      color: '#2A398D'
+    },
+    august: {
+      background: 'rgba(42, 57, 141, 0.1)',
+      color: '#2A398D'
+    },
+    september: {
+      background: 'rgba(42, 57, 141, 0.1)',
+      color: '#2A398D'
+    },
+    october: {
+      background: 'rgba(42, 57, 141, 0.1)',
+      color: '#2A398D'
+    },
+    november: {
+      background: 'rgba(42, 57, 141, 0.1)',
+      color: '#2A398D'
     }
   })
 );
@@ -92,7 +128,28 @@ export default function Filter() {
   const [value, setValue] = React.useState<DateRange<Date>>([null, null]);
   const [open, setOpen] = React.useState(false);
   const anchorRef = React.useRef<HTMLDivElement>(null);
+  //
+  const [week, setWeek] = React.useState(false);
+  const [coupleofweeks, setCoupleofWeeks] = React.useState(false);
+  const [amonth, setAmonth] = React.useState(false);
+  const [june, setJune] = React.useState(false);
+  const [july, setJuly] = React.useState(false);
+  const [august, setAugust] = React.useState(false);
+  const [september, setSeptember] = React.useState(false);
+  const [october, setOctober] = React.useState(false);
+  const [november, setNovember] = React.useState(false);
 
+  // const [state, setState] = React.useState({
+  //   week: false,
+  //   coupleofweeks: false,
+  //   amonth: false,
+  //   june: false,
+  //   july: false,
+  //   august: false,
+  //   september: false,
+  //   october: false,
+  //   november: false
+  // });
   const handleToggle = () => {
     setOpen((prevOpen) => !prevOpen);
   };
@@ -264,20 +321,29 @@ export default function Filter() {
                     >
                       <Button
                         variant="contained"
-                        className={classes.ButtonHeight}
+                        onClick={() => setWeek((prev) => !prev)}
+                        className={clsx(classes.ButtonHeight, {
+                          [classes.Week]: week
+                        })}
                       >
                         {' '}
                         A week
                       </Button>
                       <Button
                         variant="contained"
-                        className={classes.ButtonHeight}
+                        onClick={() => setCoupleofWeeks((prev) => !prev)}
+                        className={clsx(classes.ButtonHeight, {
+                          [classes.coupleofweeks]: coupleofweeks
+                        })}
                       >
                         A couple of weeks
                       </Button>
                       <Button
                         variant="contained"
-                        className={classes.ButtonHeight}
+                        onClick={() => setAmonth((prev) => !prev)}
+                        className={clsx(classes.ButtonHeight, {
+                          [classes.amonth]: amonth
+                        })}
                       >
                         A month
                       </Button>
@@ -301,38 +367,56 @@ export default function Filter() {
                     >
                       <Button
                         variant="contained"
-                        className={classes.ButtonHeight}
+                        onClick={() => setJune((prev) => !prev)}
+                        className={clsx(classes.ButtonHeight, {
+                          [classes.june]: june
+                        })}
                       >
                         {' '}
                         June
                       </Button>
                       <Button
                         variant="contained"
-                        className={classes.ButtonHeight}
+                        onClick={() => setJuly((prev) => !prev)}
+                        className={clsx(classes.ButtonHeight, {
+                          [classes.july]: july
+                        })}
                       >
                         July
                       </Button>
                       <Button
                         variant="contained"
-                        className={classes.ButtonHeight}
+                        onClick={() => setAugust((prev) => !prev)}
+                        className={clsx(classes.ButtonHeight, {
+                          [classes.august]: august
+                        })}
                       >
                         August
                       </Button>
                       <Button
                         variant="contained"
-                        className={classes.ButtonHeight}
+                        onClick={() => setSeptember((prev) => !prev)}
+                        className={clsx(classes.ButtonHeight, {
+                          [classes.september]: september
+                        })}
                       >
                         September
                       </Button>
                       <Button
                         variant="contained"
-                        className={classes.ButtonHeight}
+                        onClick={() => setOctober((prev) => !prev)}
+                        className={clsx(classes.ButtonHeight, {
+                          [classes.october]: october
+                        })}
                       >
                         October
                       </Button>
                       <Button
                         variant="contained"
-                        className={classes.ButtonHeight}
+                        onClick={() => setNovember((prev) => !prev)}
+                        className={clsx(classes.ButtonHeight, {
+                          [classes.november]: november
+                        })}
                       >
                         November
                       </Button>

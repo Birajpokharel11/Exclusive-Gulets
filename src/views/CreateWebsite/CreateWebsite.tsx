@@ -25,7 +25,11 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-const CreateYourWebsite = ({ onValidateUserEmailStart, onSignupStart }) => {
+const CreateYourWebsite = ({
+  onValidateUserEmailStart,
+  onSignupStart,
+  auth: { loading }
+}) => {
   const classes = useStyles();
 
   return (
@@ -43,6 +47,7 @@ const CreateYourWebsite = ({ onValidateUserEmailStart, onSignupStart }) => {
         <FormikStepper
           onSubmit={onSignupStart} /// onSubmit Function
           onValidateUserEmailStart={onValidateUserEmailStart}
+          loading={loading}
           initialValues={{
             firstName: '',
             lastName: '',
@@ -148,6 +153,7 @@ export function FormikStep({ children, ...props }) {
 }
 
 export function FormikStepper({
+  loading,
   children,
   onSubmit,
   initialValues,
@@ -209,9 +215,11 @@ export function FormikStepper({
             <Grid item>
               <Button
                 startIcon={
-                  isSubmitting ? <CircularProgress size="1rem" /> : null
+                  isSubmitting || loading ? (
+                    <CircularProgress size="1rem" />
+                  ) : null
                 }
-                disabled={isSubmitting}
+                disabled={isSubmitting || loading}
                 variant="contained"
                 color="primary"
                 type="submit"

@@ -73,9 +73,9 @@ export function* onSignupBrokerAsync({
 
     yield put(authActions.signupBrokerSuccess());
     yield put(openAlert('User signed Up successfully!!', 'success'));
-    if (data.status !== 'validation_failure') {
-      Router.push('/signin');
-    }
+    // if (data.status !== 'validation_failure') {
+    //   Router.push('/signin');
+    // }
   } catch (err) {
     console.error('error received onSignupAsync>>>', err);
     yield put(authActions.signupBrokerFail(err));

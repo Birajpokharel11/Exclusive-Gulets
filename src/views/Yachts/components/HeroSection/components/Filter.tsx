@@ -243,11 +243,7 @@ export default function Filter() {
   };
 
   /////////////////////////////////////////////////////////////////
-  const values = () => {
-    {
-      ('Hello');
-    }
-  };
+
   return (
     <div style={{ position: 'relative', bottom: 10 }}>
       <FormLabel className={classes.label}>

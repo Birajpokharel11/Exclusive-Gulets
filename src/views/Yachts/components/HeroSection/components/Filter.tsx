@@ -77,6 +77,7 @@ const useStyles = makeStyles((theme) =>
       background: 'white',
       color: '#091527',
       border: '1px solid #2A398D',
+      boxShadow: 'none',
       '&:hover': {
         background: 'rgba(42, 57, 141, 0.1)',
         color: '#2A398D'

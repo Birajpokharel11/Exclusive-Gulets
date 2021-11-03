@@ -115,6 +115,7 @@ export default function GalleryItem({
           data-cy={`Gallery Images${i}`}
           alt=""
         />
+        {console.log('asdasdsads', SpecialOffers, InstantBooking)}
         <Box className={classes.BoxShadows} />
       </Box>
 

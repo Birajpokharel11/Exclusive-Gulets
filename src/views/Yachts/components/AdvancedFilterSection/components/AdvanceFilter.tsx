@@ -1,5 +1,10 @@
 import React from 'react';
-import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
+import {
+  makeStyles,
+  createStyles,
+  Theme,
+  useTheme
+} from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import ClickAwayListener from '@material-ui/core/ClickAwayListener';
@@ -8,7 +13,11 @@ import Paper from '@material-ui/core/Paper';
 import Popper from '@material-ui/core/Popper';
 import MenuItem from '@material-ui/core/MenuItem';
 import MenuList from '@material-ui/core/MenuList';
+import AdvancedFilterSection from './components/AdvanceFiltersSection';
+import Filters from './Filters';
 
+import { useMediaQuery } from '@material-ui/core';
+import clsx from 'clsx';
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     paper: {
@@ -18,23 +27,43 @@ const useStyles = makeStyles((theme: Theme) =>
       color: 'white',
       width: '214px',
       height: '53px',
+      [theme.breakpoints.down('xs')]: { width: '200px' },
+      [theme.breakpoints.down(325)]: { width: '140px' },
+
       marginRight: theme.spacing(2),
       '&.MuiButton-outlined': {
         border: '1px solid rgba(255, 255, 255, 0.5)'
       }
     },
+    MobileFilters: {
+      '&.MuiButton-outlined': {
+        border: 'none'
+      }
+    },
+    mobilesearch: {
+      width: '400px'
+    },
     FilterTypo: {
       paddingLeft: theme.spacing(2),
       textTransform: 'capitalize'
+    },
+    Paper: {
+      padding: '32px 24px 16px 16px',
+      zIndex: 2,
+      width: '432px',
+      minHeight: '432px'
     }
   })
 );
-
-export default function MenuListComposition() {
+interface Props {
+  mobilesearch?: boolean;
+}
+export default function MenuListComposition({ mobilesearch }: Props) {
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
   const anchorRef = React.useRef<HTMLButtonElement>(null);
-
+  const theme = useTheme();
+  const matches = useMediaQuery(theme.breakpoints.down('xs'));
   const handleToggle = () => {
     setOpen((prevOpen) => !prevOpen);
   };
@@ -70,7 +99,10 @@ export default function MenuListComposition() {
   return (
     <>
       <Button
-        className={classes.Filters}
+        className={clsx(classes.Filters, {
+          [classes.MobileFilters]: matches,
+          [classes.mobilesearch]: mobilesearch
+        })}
         variant="outlined"
         ref={anchorRef}
         aria-controls={open ? 'menu-list-grow' : undefined}
@@ -79,7 +111,7 @@ export default function MenuListComposition() {
       >
         <img src="/assets/images/AFilter.svg" />
         <Typography color="inherit" variant="h5" className={classes.FilterTypo}>
-          Advanced Filters
+          {!matches ? 'Advanced Filters' : 'Filters'}
         </Typography>
       </Button>
       <Popper
@@ -98,19 +130,11 @@ export default function MenuListComposition() {
                 placement === 'bottom' ? 'center top' : 'center bottom'
             }}
           >
-            <Paper>
-              <ClickAwayListener onClickAway={handleClose}>
-                <MenuList
-                  autoFocusItem={open}
-                  id="menu-list-grow"
-                  onKeyDown={handleListKeyDown}
-                >
-                  <MenuItem onClick={handleClose}>Profile</MenuItem>
-                  <MenuItem onClick={handleClose}>My account</MenuItem>
-                  <MenuItem onClick={handleClose}>Logout</MenuItem>
-                </MenuList>
-              </ClickAwayListener>
-            </Paper>
+            <ClickAwayListener onClickAway={handleClose}>
+              <Paper square className={classes.Paper}>
+                <Filters />
+              </Paper>
+            </ClickAwayListener>
           </Grow>
         )}
       </Popper>

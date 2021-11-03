@@ -31,6 +31,7 @@ const useStyles = makeStyles((theme: Theme) =>
       width: '190px',
       height: '52px',
       background: '#F5F0E4',
+      zIndex: 0,
       color: '#2A398D',
       '&:hover': { background: '#F5F0E4' },
       [theme.breakpoints.down(780)]: {
@@ -40,6 +41,18 @@ const useStyles = makeStyles((theme: Theme) =>
         left: '36%',
         right: '50%'
       }
+    },
+    Container: {
+      [theme.breakpoints.up('xl')]: {
+        paddingLeft: '170px',
+
+        [theme.breakpoints.down(800)]: { paddingLeft: '221px' }
+      }
+    },
+    ButtonGrid: {
+      position: 'relative',
+      bottom: 10,
+      [theme.breakpoints.down(1100)]: { left: '35%', right: '40%' }
     }
   })
 );
@@ -52,18 +65,18 @@ export default function Destinations() {
   const [personName, setPersonName] = React.useState(['Destinations:']);
 
   return (
-    <Container>
-      <Grid container spacing={2}>
-        <Grid item md>
+    <Container maxWidth="false" className={classes.Container}>
+      <Grid container spacing={2} alignItems="center">
+        <Grid item>
           <Destination />
         </Grid>
-        <Grid item md>
+        <Grid item>
           <Filter />
         </Grid>
-        <Grid item md>
+        <Grid item>
           <Guests />
         </Grid>
-        <Grid item md>
+        <Grid item className={classes.ButtonGrid}>
           <Button
             variant="contained"
             className={classes.Button}

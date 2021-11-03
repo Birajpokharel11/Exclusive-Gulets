@@ -13,13 +13,17 @@ import FormLabel from '@material-ui/core/FormLabel';
 import ListItemText from '@material-ui/core/ListItemText';
 import Select from '@material-ui/core/Select';
 import Checkbox from '@material-ui/core/Checkbox';
-
+import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import { menuProps } from '@utils/utils';
+import { Form } from 'formik';
+import { Person } from '@material-ui/icons';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     root: {
       background: 'rgba(12, 22, 37, 0.6)',
+      color: 'white',
+
       border: '1px solid rgba(255, 255, 255, 0.5)',
       boxSizing: 'border-box',
       borderRadius: '4px',
@@ -34,12 +38,26 @@ const useStyles = makeStyles((theme: Theme) =>
         paddingBottom: '15px'
       }
     },
+    Destinations: {
+      width: '400px',
+      [theme.breakpoints.down(1100)]: {
+        width: '300px'
+      },
+      [theme.breakpoints.down('sm')]: {
+        width: '167px'
+      }
+    },
     label: {
       fontStyle: 'normal',
       fontWeight: 'normal',
       fontSize: '12px',
       lineHeight: '14px',
       color: '#FFFFFF'
+    },
+    Button: {
+      fontWeight: 'normal',
+      fontSize: '16px',
+      fontStyle: 'normal'
     }
   })
 );
@@ -77,31 +95,35 @@ export default function MultipleSelect() {
   const handleChange = (event: React.ChangeEvent<{ value: unknown }>) => {
     setPersonName(event.target.value as string[]);
   };
-
   return (
     <>
-      <FormLabel className={classes.label}>Destination</FormLabel>
-      <Select
-        variant="outlined"
-        fullWidth
-        multiple
-        classes={{
-          root: classes.root
-        }}
-        MenuProps={MenuProps}
-        onChange={handleChange}
-        value={personName}
-        renderValue={(selected) => (selected as string[]).join(', ')}
-        placeholder="Select Destination"
-        margin="dense"
-      >
-        {names.map((name) => (
-          <MenuItem key={name} value={name}>
-            <Checkbox checked={personName.indexOf(name) > -1} />
-            <ListItemText primary={name} />
-          </MenuItem>
-        ))}
-      </Select>
+      <FormControl variant="outlined" className={classes.Destinations}>
+        <InputLabel style={{ color: 'white' }}>Destination</InputLabel>
+        <Select
+          variant="filled"
+          fullWidth
+          multiple
+          classes={{
+            root: classes.root
+          }}
+          MenuProps={MenuProps}
+          onChange={handleChange}
+          value={personName}
+          renderValue={(selected) => (selected as string[]).join(', ')}
+          placeholder="Select Destination"
+          margin="dense"
+          // IconComponent={() => (
+          //   <ExpandMoreIcon style={{ color: 'white', cursor: 'pointer' }} />
+          // )}
+        >
+          {names.map((name) => (
+            <MenuItem key={name} value={name}>
+              <Checkbox checked={personName.indexOf(name) > -1} />
+              <ListItemText primary={name} />
+            </MenuItem>
+          ))}
+        </Select>
+      </FormControl>
     </>
   );
 }

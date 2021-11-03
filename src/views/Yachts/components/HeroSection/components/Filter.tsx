@@ -23,6 +23,8 @@ import {
   DateRange
 } from '@material-ui/pickers';
 import MomentUtils from '@material-ui/pickers/adapter/moment';
+import container from '@components/CustomAlert/CustomAlert.container';
+import { Container } from '@material-ui/core';
 
 const useStyles = makeStyles((theme) =>
   createStyles({
@@ -32,6 +34,9 @@ const useStyles = makeStyles((theme) =>
       background: 'rgba(12, 22, 37, 0.6)',
       [theme.breakpoints.down('md')]: {
         width: '350px'
+      },
+      [theme.breakpoints.down('sm')]: {
+        width: '351px'
       },
       maxHeight: '50px',
       borderRadius: '4px',
@@ -66,6 +71,53 @@ const useStyles = makeStyles((theme) =>
     },
     expandOpen: {
       transform: 'rotate(180deg)'
+    },
+    ButtonHeight: {
+      minHeight: '52px',
+      background: 'white',
+      color: '#091527',
+      border: '1px solid #2A398D',
+      boxShadow: 'none',
+      '&:hover': {
+        background: 'rgba(42, 57, 141, 0.1)',
+        color: '#2A398D'
+      }
+    },
+    Week: {
+      background: 'rgba(42, 57, 141, 0.1)',
+      color: '#2A398D'
+    },
+    coupleofweeks: {
+      background: 'rgba(42, 57, 141, 0.1)',
+      color: '#2A398D'
+    },
+    amonth: {
+      background: 'rgba(42, 57, 141, 0.1)',
+      color: '#2A398D'
+    },
+    june: {
+      background: 'rgba(42, 57, 141, 0.1)',
+      color: '#2A398D'
+    },
+    july: {
+      background: 'rgba(42, 57, 141, 0.1)',
+      color: '#2A398D'
+    },
+    august: {
+      background: 'rgba(42, 57, 141, 0.1)',
+      color: '#2A398D'
+    },
+    september: {
+      background: 'rgba(42, 57, 141, 0.1)',
+      color: '#2A398D'
+    },
+    october: {
+      background: 'rgba(42, 57, 141, 0.1)',
+      color: '#2A398D'
+    },
+    november: {
+      background: 'rgba(42, 57, 141, 0.1)',
+      color: '#2A398D'
     }
   })
 );
@@ -77,7 +129,28 @@ export default function Filter() {
   const [value, setValue] = React.useState<DateRange<Date>>([null, null]);
   const [open, setOpen] = React.useState(false);
   const anchorRef = React.useRef<HTMLDivElement>(null);
+  //
+  const [week, setWeek] = React.useState(true);
+  const [coupleofweeks, setCoupleofWeeks] = React.useState(false);
+  const [amonth, setAmonth] = React.useState(false);
+  const [june, setJune] = React.useState(true);
+  const [july, setJuly] = React.useState(false);
+  const [august, setAugust] = React.useState(false);
+  const [september, setSeptember] = React.useState(false);
+  const [october, setOctober] = React.useState(false);
+  const [november, setNovember] = React.useState(false);
 
+  // const [state, setState] = React.useState({
+  //   week: false,
+  //   coupleofweeks: false,
+  //   amonth: false,
+  //   june: false,
+  //   july: false,
+  //   august: false,
+  //   september: false,
+  //   october: false,
+  //   november: false
+  // });
   const handleToggle = () => {
     setOpen((prevOpen) => !prevOpen);
   };
@@ -109,9 +182,70 @@ export default function Filter() {
 
     prevOpen.current = open;
   }, [open]);
+  ///////////////////////////////////////////////////////// weeks months
+  const handleweek = () => {
+    setWeek((prev) => !prev);
+    setCoupleofWeeks(false);
+    setAmonth(false);
+  };
+  const handleCoupleofWeeks = () => {
+    setCoupleofWeeks((prev) => !prev);
+    setWeek(false);
+    setAmonth(false);
+  };
+  const handleMonth = () => {
+    setAmonth((prev) => !prev);
+    setCoupleofWeeks(false);
+    setWeek(false);
+  };
+  ////////////////////////////////////////////////////// months
+  const handleJune = () => {
+    setJune((prev) => !prev);
+    setJuly(false);
+    setAugust(false);
+    setSeptember(false);
+    setOctober(false), setNovember(false);
+  };
+  const handleJuly = () => {
+    setJuly((prev) => !prev);
+    setJune(false);
+    setAugust(false);
+    setSeptember(false);
+    setOctober(false), setNovember(false);
+  };
+  const handleAugust = () => {
+    setAugust((prev) => !prev);
+    setJune(false);
+    setJuly(false);
+    setSeptember(false);
+    setOctober(false), setNovember(false);
+  };
+  const handleSeptember = () => {
+    setSeptember((prev) => !prev);
+    setJuly(false);
+    setJune(false);
+    setAugust(false);
+    setOctober(false), setNovember(false);
+  };
+  const handleOctober = () => {
+    setOctober((prev) => !prev);
+    setJuly(false);
+    setAugust(false);
+    setSeptember(false);
+    setJune(false), setNovember(false);
+  };
+  const handleNovember = () => {
+    setNovember((prev) => !prev);
+    setJuly(false);
+    setAugust(false);
+    setSeptember(false);
+    setOctober(false), setJune(false);
+  };
+
+  /////////////////////////////////////////////////////////////////
 
   return (
-    <>
+    <div style={{ position: 'relative', bottom: 10 }}>
       <FormLabel className={classes.label}>
         {calender === 'calendar' ? 'Checkin' : 'Flexible Dates'}
       </FormLabel>
@@ -125,7 +259,7 @@ export default function Filter() {
                     input: classes.input
                   }}
                   placeholder="Check in"
-                />
+                />{' '}
                 <IconButton
                   className={clsx(classes.expand, {
                     [classes.expandOpen]: open
@@ -192,7 +326,7 @@ export default function Filter() {
         anchorEl={anchorRef.current}
         role={undefined}
         transition
-        style={{zIndex:1}}
+        style={{ zIndex: 1 }}
         disablePortal
       >
         {({ TransitionProps, placement }) => (
@@ -204,12 +338,11 @@ export default function Filter() {
             }}
           >
             <ClickAwayListener onClickAway={handleClose}>
-              <Paper>
+              <Paper elevation={2} style={{ minWidth: '720px' }}>
                 <Box
-                  p={2}
+                  style={{ paddingTop: '32px' }}
                   display="flex"
                   justifyContent="center"
-                  style={{ gap: '1rem' }}
                 >
                   <Button
                     className={classes.Button}
@@ -230,12 +363,140 @@ export default function Filter() {
                   </Button>
                 </Box>
                 {calender === 'flexible' ? (
-                  <Box>
-                    <Box p={2} display="flex" justifyContent="center">
+                  <Box justifyContent="center">
+                    <Box
+                      display="flex"
+                      justifyContent="center"
+                      style={{ paddingTop: '24px', paddingBottom: '27px' }}
+                    >
                       <Typography>
-                        Stay For<span> a week</span>
+                        Stay For
+                        <span>
+                          {week && 'A Week'}
+                          {coupleofweeks && 'A Couple of Weeks'}
+                          {amonth && 'A Months'}
+                        </span>
                       </Typography>
                     </Box>
+                    <Container
+                      maxWidth="xs"
+                      style={{
+                        display: 'flex',
+                        gap: '1rem',
+                        paddingBottom: '40px'
+                      }}
+                    >
+                      <Button
+                        variant="contained"
+                        onClick={handleweek}
+                        className={clsx(classes.ButtonHeight, {
+                          [classes.Week]: week
+                        })}
+                      >
+                        {' '}
+                        A week
+                      </Button>
+                      <Button
+                        variant="contained"
+                        onClick={handleCoupleofWeeks}
+                        className={clsx(classes.ButtonHeight, {
+                          [classes.coupleofweeks]: coupleofweeks
+                        })}
+                      >
+                        A couple of weeks
+                      </Button>
+                      <Button
+                        variant="contained"
+                        onClick={handleMonth}
+                        className={clsx(classes.ButtonHeight, {
+                          [classes.amonth]: amonth
+                        })}
+                      >
+                        A month
+                      </Button>
+                    </Container>
+                    <Box
+                      display="flex"
+                      justifyContent="center"
+                      style={{ paddingBottom: '27px' }}
+                    >
+                      <Typography>
+                        Check in
+                        <span>
+                          {' '}
+                          {june && 'June'}
+                          {july && 'July'}
+                          {august && 'August'}
+                          {september && 'September'}
+                          {october && 'October'}
+                          {november && 'November'}
+                        </span>
+                      </Typography>
+                    </Box>
+                    <Container
+                      maxWidth="lg"
+                      style={{
+                        display: 'flex',
+                        justifyContent: 'space-around',
+                        paddingBottom: '48px'
+                      }}
+                    >
+                      <Button
+                        variant="contained"
+                        onClick={handleJune}
+                        className={clsx(classes.ButtonHeight, {
+                          [classes.june]: june
+                        })}
+                      >
+                        {' '}
+                        June
+                      </Button>
+                      <Button
+                        variant="contained"
+                        onClick={handleJuly}
+                        className={clsx(classes.ButtonHeight, {
+                          [classes.july]: july
+                        })}
+                      >
+                        July
+                      </Button>
+                      <Button
+                        variant="contained"
+                        onClick={handleAugust}
+                        className={clsx(classes.ButtonHeight, {
+                          [classes.august]: august
+                        })}
+                      >
+                        August
+                      </Button>
+                      <Button
+                        variant="contained"
+                        onClick={handleSeptember}
+                        className={clsx(classes.ButtonHeight, {
+                          [classes.september]: september
+                        })}
+                      >
+                        September
+                      </Button>
+                      <Button
+                        variant="contained"
+                        onClick={handleOctober}
+                        className={clsx(classes.ButtonHeight, {
+                          [classes.october]: october
+                        })}
+                      >
+                        October
+                      </Button>
+                      <Button
+                        variant="contained"
+                        onClick={handleNovember}
+                        className={clsx(classes.ButtonHeight, {
+                          [classes.november]: november
+                        })}
+                      >
+                        November
+                      </Button>
+                    </Container>
                   </Box>
                 ) : (
                   <LocalizationProvider dateAdapter={MomentUtils}>
@@ -258,6 +519,6 @@ export default function Filter() {
           </Grow>
         )}
       </Popper>
-    </>
+    </div>
   );
 }

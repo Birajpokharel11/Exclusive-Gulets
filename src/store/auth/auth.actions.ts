@@ -86,6 +86,21 @@ export const validateUserEmailFail = (error) => ({
   payload: error
 });
 
+export const verifyBrokerStart = (formData) => ({
+  type: AuthType.VERIFY_BROKER_START,
+  payload: { formData }
+});
+
+export const verifyBrokerSuccess = (data) => ({
+  type: AuthType.VERIFY_BROKER_SUCCESS,
+  payload: data
+});
+
+export const verifyBrokerFail = (error) => ({
+  type: AuthType.VERIFY_BROKER_FAILURE,
+  payload: error
+});
+
 export const clearErrorLog = () => ({
   type: AuthType.CLEAR_ERROR_LOG
 });

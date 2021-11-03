@@ -115,8 +115,8 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-const SignIn = ({ onSigninStart }) => {
-  const router = useRouter();
+const SignIn = ({ onSigninStart, onVerifyBrokerStart, auth: { loading } }) => {
+  const { router, query } = useRouter();
   const classes = useStyles();
 
   const handleBack = () => {
@@ -130,6 +130,8 @@ const SignIn = ({ onSigninStart }) => {
   const handleSignIn = (event) => {
     event.preventDefault();
   };
+
+  console.log('value query params>>>', query.token, query.domain);
 
   return (
     <div className={classes.root}>
@@ -167,12 +169,10 @@ const SignIn = ({ onSigninStart }) => {
                     )
                 })}
                 onSubmit={(values, { setSubmitting }) => {
-                  onSigninStart({
+                  onVerifyBrokerStart({
                     ...values,
-                    grant_type: 'password',
-                    client_id: 'yatch',
-                    client_secret: 132435468,
-                    scope: 'read'
+                    token: query.token ?? '',
+                    domain: query.domain ?? ''
                   });
                   setSubmitting(false);
                 }}

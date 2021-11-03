@@ -10,7 +10,8 @@ import {
   signupStart,
   signinStart,
   signupBrokerStart,
-  validateUserEmailStart
+  validateUserEmailStart,
+  verifyBrokerStart
 } from './auth.actions';
 
 export function* loadUserAsync() {
@@ -99,6 +100,27 @@ export function* validateUserAsync({
   }
 }
 
+export function* verifyBrokerAsync({
+  payload: { formData }
+}: ReturnType<typeof verifyBrokerStart>) {
+  try {
+    const { data } = yield axios.post(
+      `http://yatchcloud-dev.fghire.com/public/verifyBrokerAccount 
+      `,
+      formData
+    );
+
+    console.log('value fo data after success>>>', data);
+    if (data.status !== 'success') {
+      Router.push('/signin');
+    }
+
+    yield put(authActions.verifyBrokerSuccess(data.detail.data));
+  } catch (err) {
+    yield put(authActions.verifyBrokerFail(err));
+  }
+}
+
 export function* signOutAsync() {
   try {
   } catch (err) {}
@@ -128,6 +150,10 @@ export function* watchValidateUser() {
   yield takeLatest(AuthType.VALIDATE_USER_EMAIL_START, validateUserAsync);
 }
 
+export function* watchVerifyBroker() {
+  yield takeLatest(AuthType.VERIFY_BROKER_START, verifyBrokerAsync);
+}
+
 export function* authSagas() {
   yield all([
     call(watchLoadUser),
@@ -135,6 +161,7 @@ export function* authSagas() {
     call(watchSignup),
     call(watchSignupBroker),
     call(watchSignout),
-    call(watchValidateUser)
+    call(watchValidateUser),
+    call(watchVerifyBroker)
   ]);
 }

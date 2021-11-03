@@ -65,7 +65,7 @@ export default function Destinations() {
   const [personName, setPersonName] = React.useState(['Destinations:']);
 
   return (
-    <Container maxWidth="false" className={classes.Container}>
+    <Container maxWidth={false} className={classes.Container}>
       <Grid container spacing={2} alignItems="center">
         <Grid item>
           <Destination />

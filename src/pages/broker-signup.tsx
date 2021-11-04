@@ -3,7 +3,7 @@ import BrokerSignUpView from '@views/BrokerSignUp';
 import Main from '@layouts/Main';
 
 const BrokerSignUp = (props) => {
-  return <WithLayout component={BrokerSignUpView} layout={Main} />;
+  return <WithLayout component={() => <BrokerSignUpView />} layout={Main} />;
 };
 
 export default BrokerSignUp;

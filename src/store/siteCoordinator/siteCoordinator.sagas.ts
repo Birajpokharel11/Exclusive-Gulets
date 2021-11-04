@@ -9,7 +9,7 @@ import * as actions from './siteCoordinator.actions';
 export function* checkDomainAsync({ payload: { domainName } }: AnyAction) {
   console.log(domainName);
   try {
-    let result = yield axios.get(
+    const { data } = yield axios.get(
       'http://3.109.159.153:8080/public/checkDomain',
       {
         params: {
@@ -18,9 +18,8 @@ export function* checkDomainAsync({ payload: { domainName } }: AnyAction) {
       }
     );
 
-    console.log('result>>>', result);
-    const data = result?.detail?.data;
-    if (!data.isExists) {
+    const finalData = data?.detail?.data;
+    if (!finalData.isExists) {
       yield put(actions.checkDomainFail('Domain not found!!'));
       return;
     }
@@ -28,8 +27,8 @@ export function* checkDomainAsync({ payload: { domainName } }: AnyAction) {
     yield put(
       actions.checkDomainSuccess({
         name: domainName,
-        isExists: data.isExists,
-        data: data.broker
+        isExists: finalData.isExists,
+        data: finalData.broker
       })
     );
   } catch (err) {

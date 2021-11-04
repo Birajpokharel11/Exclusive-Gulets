@@ -105,19 +105,23 @@ export function* validateUserAsync({
 export function* verifyBrokerAsync({
   payload: { formData }
 }: ReturnType<typeof verifyBrokerStart>) {
+  console.log(formData);
+
   try {
-    const { data } = yield axios.post(
-      `http://yatchcloud-dev.fghire.com/public/verifyBrokerAccount 
+    let { data } = yield axios.post(
+      `http://yatchcloud-dev.fghire.com/public/verifyBrokerAccount
       `,
       formData
     );
 
     console.log('value fo data after success>>>', data);
-    if (data.status !== 'success') {
+    if (data.status === 'success') {
+      yield put(authActions.verifyBrokerSuccess(data.detail.data));
+      yield put(openAlert('User Account Verified!!', 'success'));
       router.push('/signin');
+    } else {
+      yield put(openAlert('Internal Server Error!!', 'error'));
     }
-
-    yield put(authActions.verifyBrokerSuccess(data.detail.data));
   } catch (err) {
     yield put(authActions.verifyBrokerFail(err));
   }

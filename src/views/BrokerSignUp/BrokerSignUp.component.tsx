@@ -1,6 +1,7 @@
 import React from 'react';
 import RouterLink from 'next/link';
 import { makeStyles } from '@material-ui/core/styles';
+import { useRouter } from 'next/router';
 import Image from 'next/image';
 import {
   Grid,
@@ -13,7 +14,6 @@ import {
 import { Formik, Field, Form } from 'formik';
 import { TextField } from 'formik-material-ui';
 import * as Yup from 'yup';
-import { useRouter } from 'next/router';
 import container from './BrokerSignUp.container';
 import ArrowForwardIcon from '@material-ui/icons/ArrowForward';
 import HeroImage from '/src/assets/images/Hero-bg.jpg';
@@ -116,7 +116,9 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const SignIn = ({ onSigninStart, onVerifyBrokerStart, auth: { loading } }) => {
-  const { query } = useRouter();
+  const router = useRouter();
+  const { query } = router;
+
   const classes = useStyles();
 
   // const handleBack = () => {
@@ -130,8 +132,6 @@ const SignIn = ({ onSigninStart, onVerifyBrokerStart, auth: { loading } }) => {
   const handleSignIn = (event) => {
     event.preventDefault();
   };
-
-  console.log('value query params>>>', query.token, query.domain);
 
   return (
     <div className={classes.root}>
@@ -171,8 +171,7 @@ const SignIn = ({ onSigninStart, onVerifyBrokerStart, auth: { loading } }) => {
                 onSubmit={(values, { setSubmitting }) => {
                   onVerifyBrokerStart({
                     ...values,
-                    token: query.token ?? '',
-                    domain: query.domain ?? ''
+                    token: query.token ?? ''
                   });
                   setSubmitting(false);
                 }}

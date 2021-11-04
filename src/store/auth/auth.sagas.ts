@@ -1,6 +1,6 @@
 import { takeLatest, call, all, put } from 'redux-saga/effects';
 import axios from 'axios';
-import Router from 'next/router';
+import router from 'next/router';
 
 import { openAlert } from '../alert/alert.actions';
 
@@ -53,7 +53,7 @@ export function* onSignupAsync({
     yield put(authActions.signupSuccess());
     yield put(openAlert('User signed Up successfully!!', 'success'));
 
-    Router.push('/signin');
+    router.push('/signin');
   } catch (err) {
     console.error('error received onSignupAsync>>>', err);
     yield put(authActions.signupFail(err));
@@ -72,11 +72,13 @@ export function* onSignupBrokerAsync({
 
     console.log('value fo data after success>>>', data);
 
-    yield put(authActions.signupBrokerSuccess());
-    yield put(openAlert('User signed Up successfully!!', 'success'));
-    // if (data.status !== 'validation_failure') {
-    //   Router.push('/signin');
-    // }
+    if (data.status === 'success') {
+      yield put(authActions.signupBrokerSuccess());
+      yield put(openAlert('User signed Up successfully!!', 'success'));
+      router.push('/signin');
+    } else {
+      yield put(openAlert('Internal Server Error!!', 'error'));
+    }
   } catch (err) {
     console.error('error received onSignupAsync>>>', err);
     yield put(authActions.signupBrokerFail(err));
@@ -112,7 +114,7 @@ export function* verifyBrokerAsync({
 
     console.log('value fo data after success>>>', data);
     if (data.status !== 'success') {
-      Router.push('/signin');
+      router.push('/signin');
     }
 
     yield put(authActions.verifyBrokerSuccess(data.detail.data));

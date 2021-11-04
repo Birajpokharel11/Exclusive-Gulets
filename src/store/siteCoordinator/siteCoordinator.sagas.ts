@@ -7,14 +7,19 @@ import * as types from './siteCoordinator.types';
 import * as actions from './siteCoordinator.actions';
 
 export function* checkDomainAsync({ payload: { domainName } }: AnyAction) {
+  console.log(domainName);
   try {
-    let result = yield axios('http://3.109.159.153:8080/public/checkDomain', {
-      params: {
-        site: domainName
+    let result = yield axios.get(
+      'http://3.109.159.153:8080/public/checkDomain',
+      {
+        params: {
+          site: domainName
+        }
       }
-    });
+    );
 
-    const data = result?.data;
+    console.log('result>>>', result);
+    const data = result?.detail?.data;
     if (!data.isExists) {
       yield put(actions.checkDomainFail('Domain not found!!'));
       return;

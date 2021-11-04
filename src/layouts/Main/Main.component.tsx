@@ -2,6 +2,8 @@ import { makeStyles } from '@material-ui/core/styles';
 
 import { Topbar, Footer } from './components';
 
+import CustomAlert from '@components/CustomAlert';
+
 const useStyles = makeStyles((theme) => ({
   root: {
     height: '100%'
@@ -23,6 +25,7 @@ const Main = (props) => {
   return (
     <div className={classes.root}>
       <Topbar {...rest} />
+      <CustomAlert />
       <div className={classes.toolbarMargin} />
       <main className={classes.content}>{children}</main>
       <Footer />

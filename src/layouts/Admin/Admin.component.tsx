@@ -3,6 +3,8 @@ import clsx from 'clsx';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import { useMediaQuery } from '@material-ui/core';
 
+import CustomAlert from '@components/CustomAlert';
+
 import { Sidebar, Topbar, Footer } from './components';
 
 const useStyles = makeStyles((theme) => ({
@@ -50,6 +52,7 @@ const Main = (props) => {
         [classes.shiftContent]: isDesktop
       })}
     >
+      <CustomAlert />
       <Topbar onSidebarOpen={handleSidebarOpen} />
       <Sidebar
         onClose={handleSidebarClose}

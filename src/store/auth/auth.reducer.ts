@@ -16,7 +16,7 @@ const authReducer = (state = INITIAL_STATE, action) => {
   const { type, payload } = action;
   switch (type) {
     case HYDRATE:
-      return { ...state, ...payload.auth };
+      return { ...state, ...payload };
 
     case AuthType.SIGN_IN_START:
     case AuthType.SIGN_UP_START:

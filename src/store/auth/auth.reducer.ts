@@ -5,7 +5,7 @@ import * as AuthType from './auth.types';
 import { IAuthState } from '../interfaces';
 
 const INITIAL_STATE: IAuthState = {
-  token: localStorage.getItem('token'),
+  token: typeof window !== 'undefined' ? localStorage.getItem('token') : null,
   isAuthenticated: null,
   currentUser: {},
   newUser: {},

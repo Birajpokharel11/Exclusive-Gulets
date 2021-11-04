@@ -5,6 +5,7 @@ import * as AuthType from './auth.types';
 import { IAuthState } from '../interfaces';
 
 const INITIAL_STATE: IAuthState = {
+  token: localStorage.getItem('token'),
   isAuthenticated: null,
   currentUser: {},
   newUser: {},
@@ -30,12 +31,22 @@ const authReducer = (state = INITIAL_STATE, action) => {
       };
 
     case AuthType.SIGN_IN_SUCCESS:
+      localStorage.setItem('token', payload.token);
+      localStorage.setItem('refresh_token', payload.refresh_token);
+      localStorage.setItem('expires_in', payload.expires_in);
+      return {
+        ...state,
+        ...payload,
+        isAuthenticated: true,
+        loading: false
+      };
+
     case AuthType.LOAD_USER_SUCCESS:
       return {
         ...state,
         isAuthenticated: true,
-        currentUser: payload,
-        loading: false
+        loading: false,
+        currentUser: payload
       };
 
     case AuthType.SIGN_UP_SUCCESS:

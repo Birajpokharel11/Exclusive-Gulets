@@ -14,10 +14,22 @@ import {
   verifyBrokerStart
 } from './auth.actions';
 
+import setAuthToken from '@utils/setAuthToken';
+
 export function* loadUserAsync() {
+  if (localStorage.token) {
+    setAuthToken(localStorage.token);
+  }
+
   try {
+    const { data } = yield axios.get(
+      `http://yatchcloud-dev.fghire.com/api/getUserSession`
+    );
+
+    yield put(authActions.loadUserSuccess(data));
   } catch (err) {
     console.error(err);
+    yield put(authActions.loadUserFail(err));
   }
 }
 
@@ -38,6 +50,7 @@ export function* onSigninAsync({
     console.log('value fo data after success>>>', data);
     yield put(openAlert('Signin Success!!', 'success'));
     yield put(authActions.signinSuccess(data));
+    yield put(authActions.loadUserStart());
   } catch (err) {
     console.error('error received onSigninAsync>>>', err);
     yield put(openAlert('Internal Server Error!!', 'error'));

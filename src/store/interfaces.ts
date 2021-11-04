@@ -1,4 +1,5 @@
 export interface IAuthState {
+  token: string | null;
   isAuthenticated: boolean | null;
   currentUser: object | any;
   newUser: object | any;

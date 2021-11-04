@@ -4,18 +4,24 @@ import Head from 'next/head';
 import { ThemeProvider } from '@material-ui/core/styles';
 import theme from '../theme';
 
+import { useDispatch } from 'react-redux';
 import { wrapper } from '../store';
+import { loadUserStart } from '@store/auth/auth.actions';
 
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 
 const App = (props) => {
+  const dispatch = useDispatch();
+
   useEffect(() => {
     // Remove the server-side injected CSS.
     const jssStyles = document.querySelector('#jss-server-side');
     if (jssStyles) {
       jssStyles.parentElement!.removeChild(jssStyles);
     }
+
+    dispatch(loadUserStart());
   }, []);
 
   const { Component, pageProps } = props;

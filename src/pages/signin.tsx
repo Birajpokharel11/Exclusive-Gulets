@@ -6,6 +6,7 @@ import Minimal from '@layouts/Minimal';
 
 import Signin from '@views/Signin';
 import YachtManagerSignIn from '@views/YachtManagerSignIn';
+import WithPublic from '@components/WithPublic';
 import { getTenantDomain } from '@utils/data';
 
 function SignIn({ subdomain }) {
@@ -58,4 +59,4 @@ SignIn.getInitialProps = async (ctx) => {
   return { subdomain: undefined };
 };
 
-export default SignIn;
+export default WithPublic(SignIn);

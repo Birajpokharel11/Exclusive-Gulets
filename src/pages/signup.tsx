@@ -3,10 +3,11 @@ import Head from 'next/head';
 
 import WithLayout from '@components/WithLayout';
 import Minimal from '@layouts/Minimal';
+import WithPublic from '@components/WithPublic';
 
 import Signup from '@views/SignUp';
 
-export default function SignUp() {
+function SignUp() {
   return (
     <>
       <Head>
@@ -21,3 +22,5 @@ export default function SignUp() {
     </>
   );
 }
+
+export default WithPublic(SignUp);

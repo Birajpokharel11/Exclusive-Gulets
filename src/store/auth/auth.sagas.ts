@@ -27,7 +27,7 @@ export function* onSigninAsync({
   try {
     console.log('data in signIn>>>', formData);
     const { data } = yield axios.post(
-      `http://yatchcloud-dev.fghire.com/api/public/oauth/token`,
+      `http://yatchcloud-dev.fghire.com/oauth/token`,
       formData
     );
     console.log('value fo data after success>>>', data);
@@ -44,7 +44,7 @@ export function* onSignupAsync({
 }: ReturnType<typeof signupStart>) {
   try {
     const { data } = yield axios.post(
-      `http://yatchcloud-dev.fghire.com/api/public/createManager`,
+      `http://yatchcloud-dev.fghire.com/api/createManager`,
       formData
     );
 
@@ -66,7 +66,7 @@ export function* onSignupBrokerAsync({
   console.log('onsignup async>>>', formData);
   try {
     const { data } = yield axios.post(
-      `http://yatchcloud-dev.fghire.com/public/createBroker`,
+      `http://yatchcloud-dev.fghire.com/api/createBroker`,
       formData
     );
 
@@ -90,7 +90,7 @@ export function* validateUserAsync({
 }: ReturnType<typeof validateUserEmailStart>) {
   try {
     const { data } = yield axios.post(
-      `http://yatchcloud-dev.fghire.com/public/validateUserEmailAndBrokerSite`,
+      `http://yatchcloud-dev.fghire.com/api/validateUserEmailAndBrokerSite`,
       formData
     );
 
@@ -109,7 +109,7 @@ export function* verifyBrokerAsync({
 
   try {
     let { data } = yield axios.post(
-      `http://yatchcloud-dev.fghire.com/public/verifyBrokerAccount
+      `http://yatchcloud-dev.fghire.com/api/verifyBrokerAccount
       `,
       formData
     );

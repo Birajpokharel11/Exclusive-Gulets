@@ -115,7 +115,7 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-const SignIn = ({ onSigninStart, onVerifyBrokerStart, auth: { loading } }) => {
+const SignIn = ({ onVerifyBrokerStart, auth: { loading } }) => {
   const router = useRouter();
   const { query } = router;
 

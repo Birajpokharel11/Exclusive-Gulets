@@ -8,7 +8,6 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  onSigninStart: (formData) => dispatch(signinStart(formData)),
   onVerifyBrokerStart: (formData) => dispatch(verifyBrokerStart(formData))
 });
 

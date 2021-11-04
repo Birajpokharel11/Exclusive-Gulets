@@ -138,9 +138,9 @@ const SignIn = (props) => {
               Please log in to manage your account
             </Typography>
             <Formik
-              initialValues={{ email: '', password: '' }}
+              initialValues={{ username: '', password: '' }}
               validationSchema={Yup.object({
-                email: Yup.string()
+                username: Yup.string()
                   .email('Invalid email address')
                   .required('Required'),
                 password: Yup.string()
@@ -163,8 +163,8 @@ const SignIn = (props) => {
                 <Field
                   variant="outlined"
                   margin="normal"
-                  name="email"
-                  id="email"
+                  name="username"
+                  id="username"
                   label="Email Address"
                   fullWidth
                   component={TextField}

@@ -10,7 +10,7 @@ export function* checkDomainAsync({ payload: { domainName } }: AnyAction) {
   console.log(domainName);
   try {
     const { data } = yield axios.get(
-      'http://3.109.159.153:8080/api/checkDomain',
+      'https://yatchcloud-dev.fghire.com/api/checkDomain',
       {
         params: {
           site: domainName

@@ -49,11 +49,19 @@ export default function Header() {
   const classes = useStyles();
   const router = useRouter();
 
-  const [value, setValue] = useState(0);
+  const [value, setValue] = useState(null);
 
   const handleChange = (e, value) => {
     setValue(value);
   };
+
+  useEffect(() => {
+    if (window.location.pathname === '/create-your-website' && value !== 0) {
+      setValue(0);
+    } else if (window.location.pathname === '/signin' && value !== 1) {
+      setValue(1);
+    }
+  }, [value]);
 
   return (
     <AppBar
@@ -66,11 +74,7 @@ export default function Header() {
     >
       <Toolbar>
         <div onClick={() => router.push('/', undefined, { shallow: true })}>
-          <img
-            src="/assets/images/logo.svg"
-            alt="me"
-            className={classes.logo}
-          />
+          YACHT CLOUD
         </div>
         <div style={{ flexGrow: 1 }} />
         <Tabs

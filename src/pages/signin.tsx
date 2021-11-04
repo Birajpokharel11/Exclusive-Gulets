@@ -3,6 +3,7 @@ import Head from 'next/head';
 
 import WithLayout from '@components/WithLayout';
 import Minimal from '@layouts/Minimal';
+import Main1 from '@layouts/Main';
 
 import Signin from '@views/Signin';
 import YachtManagerSignIn from '@views/YachtManagerSignIn';
@@ -32,7 +33,7 @@ function SignIn({ subdomain }) {
         <title>YachtCloud | SignIn</title>
         <meta property="og:title" content="YachtCloud | SignIn" key="title" />
       </Head>
-      <WithLayout component={YachtManagerSignIn} layout={Minimal} />
+      <WithLayout component={YachtManagerSignIn} layout={Main1} />
     </>
   );
 }

@@ -4,6 +4,8 @@ import { Topbar, Footer } from './components';
 
 import CustomAlert from '@components/CustomAlert';
 
+import container from './Main.container';
+
 const useStyles = makeStyles((theme) => ({
   root: {
     height: '100%'
@@ -33,4 +35,4 @@ const Main = (props) => {
   );
 };
 
-export default Main;
+export default container(Main);

@@ -26,7 +26,14 @@ export function* loadUserAsync() {
       `http://yatchcloud-dev.fghire.com/api/getUserSession`
     );
 
-    yield put(authActions.loadUserSuccess(data));
+    const profile = {
+      ...data.detail.data.profile,
+      userType: data.detail.data.userType,
+      username: data.detail.data.username,
+      roles: data.detail.data.roleList
+    };
+
+    yield put(authActions.loadUserSuccess(profile));
   } catch (err) {
     console.error(err);
     yield put(authActions.loadUserFail(err));

@@ -31,12 +31,13 @@ const authReducer = (state = INITIAL_STATE, action) => {
       };
 
     case AuthType.SIGN_IN_SUCCESS:
-      localStorage.setItem('token', payload.token);
+      localStorage.setItem('token', payload.access_token);
       localStorage.setItem('refresh_token', payload.refresh_token);
       localStorage.setItem('expires_in', payload.expires_in);
       return {
         ...state,
         ...payload,
+        token: payload.access_token,
         isAuthenticated: true,
         loading: false
       };

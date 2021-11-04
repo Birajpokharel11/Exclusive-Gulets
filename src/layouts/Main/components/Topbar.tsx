@@ -45,7 +45,7 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-export default function Header() {
+export default function Header({ auth: { isAuthenticated, currentUser } }) {
   const classes = useStyles();
   const router = useRouter();
 
@@ -89,11 +89,21 @@ export default function Header() {
               router.push('/create-your-website', undefined, { shallow: true })
             }
           />
-          <Tab
-            className={classes.tab}
-            label="Login"
-            onClick={() => router.push('/signin', undefined, { shallow: true })}
-          />
+          {!isAuthenticated && (
+            <Tab
+              className={classes.tab}
+              label="Login"
+              onClick={() =>
+                router.push('/signin', undefined, { shallow: true })
+              }
+            />
+          )}
+          {isAuthenticated && (
+            <Tab
+              className={classes.tab}
+              label={`Hi! ${currentUser?.firstName}`}
+            />
+          )}
         </Tabs>
       </Toolbar>
     </AppBar>

@@ -74,6 +74,7 @@ const authReducer = (state = INITIAL_STATE, action) => {
       return {
         ...state,
         isAuthenticated: null,
+        token: null,
         currentUser: {},
         error: null
       };

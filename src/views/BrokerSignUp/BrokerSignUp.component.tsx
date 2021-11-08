@@ -159,14 +159,7 @@ const SignIn = ({ onVerifyBrokerStart, auth: { loading } }) => {
                 validationSchema={Yup.object({
                   email: Yup.string()
                     .email('Invalid email address')
-                    .required('Required'),
-                  password: Yup.string()
-                    .required('Password Required')
-                    .min(6, 'password must be minimum of 6 character')
-                    .max(
-                      32,
-                      'password must not exceed maximum of 32 characters'
-                    )
+                    .required('Required')
                 })}
                 onSubmit={(values, { setSubmitting }) => {
                   onVerifyBrokerStart({
@@ -188,18 +181,6 @@ const SignIn = ({ onVerifyBrokerStart, auth: { loading } }) => {
                     className={classes.textField}
                   />
 
-                  <Field
-                    component={TextField}
-                    variant="outlined"
-                    margin="normal"
-                    type="password"
-                    id="password"
-                    name="password"
-                    label="Password"
-                    fullWidth
-                    className={classes.textField}
-                  />
-
                   <Button
                     className={classes.signInButton}
                     size="large"
@@ -212,7 +193,7 @@ const SignIn = ({ onVerifyBrokerStart, auth: { loading } }) => {
                       <CircularProgress />
                     ) : (
                       <Typography variant="body1" color="secondary">
-                        Sign up
+                        Get Started
                       </Typography>
                     )}
                   </Button>

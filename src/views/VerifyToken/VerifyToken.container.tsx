@@ -1,13 +1,14 @@
+/* eslint-disable implicit-arrow-linebreak */
 import { connect } from 'react-redux';
 
-import { signoutStart } from '@store/auth/auth.actions';
+import { signinStart, verifyBrokerStart } from 'src/store/auth/auth.actions';
 
 const mapStateToProps = (state) => ({
   auth: state.auth
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  onSignoutStart: (token) => dispatch(signoutStart(token))
+  onVerifyBrokerStart: (formData) => dispatch(verifyBrokerStart(formData))
 });
 
 const container = connect(mapStateToProps, mapDispatchToProps);

@@ -11,7 +11,8 @@ import {
   signinStart,
   signupBrokerStart,
   validateUserEmailStart,
-  verifyBrokerStart
+  verifyBrokerStart,
+  signoutStart
 } from './auth.actions';
 
 import setAuthToken from '@utils/setAuthToken';
@@ -89,15 +90,14 @@ export function* onSignupAsync({
 export function* onSignupBrokerAsync({
   payload: { formData }
 }: ReturnType<typeof signupBrokerStart>) {
+  delete formData.password2;
   console.log('onsignup async>>>', formData);
   try {
     const { data } = yield axios.post(
-      `https://yatchcloud-dev.fghire.com/api/createBroker`,
+      `https://yatchcloud-dev.fghire.com/public/createBroker`,
       formData
     );
-
     console.log('value fo data after success>>>', data);
-
     if (data.status === 'success') {
       yield put(authActions.signupBrokerSuccess());
       yield put(openAlert('User signed Up successfully!!', 'success'));
@@ -116,7 +116,7 @@ export function* validateUserAsync({
 }: ReturnType<typeof validateUserEmailStart>) {
   try {
     const { data } = yield axios.post(
-      `https://yatchcloud-dev.fghire.com/api/validateUserEmailAndBrokerSite`,
+      `https://yatchcloud-dev.fghire.com/public/validateUserEmailAndBrokerSite`,
       formData
     );
 
@@ -135,7 +135,7 @@ export function* verifyBrokerAsync({
 
   try {
     let { data } = yield axios.post(
-      `https://yatchcloud-dev.fghire.com/api/verifyBrokerAccount
+      `https://yatchcloud-dev.fghire.com/public/verifyBrokerAccount
       `,
       formData
     );
@@ -144,7 +144,6 @@ export function* verifyBrokerAsync({
     if (data.status === 'success') {
       yield put(authActions.verifyBrokerSuccess(data.detail.data));
       yield put(openAlert('User Account Verified!!', 'success'));
-      router.push('/signin');
     } else {
       yield put(openAlert('Internal Server Error!!', 'error'));
     }
@@ -153,9 +152,26 @@ export function* verifyBrokerAsync({
   }
 }
 
-export function* signOutAsync() {
+export function* signOutAsync({
+  payload: { token }
+}: ReturnType<typeof signoutStart>) {
   try {
-  } catch (err) {}
+    console.log('inside of signout async???', token);
+    let { data } = yield axios.post(
+      `https://yatchcloud-dev.fghire.com/api/oauth/logout`,
+      token
+    );
+    console.log('data on signout>>>', data);
+    if (data.status === 'success') {
+      yield put(authActions.signoutSuccess());
+      yield put(openAlert('User Signed Out Successfully!!', 'success'));
+      router.push('/');
+    } else {
+      yield put(openAlert('Internal Server Error!!', 'error'));
+    }
+  } catch (err) {
+    yield put(authActions.signoutFail(err));
+  }
 }
 
 export function* watchLoadUser() {

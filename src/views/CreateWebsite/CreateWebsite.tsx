@@ -13,7 +13,7 @@ import {
   CircularProgress
 } from '@material-ui/core';
 
-import { Formik, Field, Form } from 'formik';
+import { Formik, Field, Form, FormikConfig, FormikValues } from 'formik';
 import { TextField } from 'formik-material-ui';
 import * as Yup from 'yup';
 
@@ -53,7 +53,9 @@ const CreateYourWebsite = ({
             lastName: '',
             email: '',
             phoneNumber: '',
-            domainName: ''
+            domainName: '',
+            password: '',
+            password2: ''
           }}
         >
           {/*  First Step */}
@@ -79,16 +81,29 @@ const CreateYourWebsite = ({
           <FormikStep
             label="Form"
             validationSchema={Yup.object({
-              firstname: Yup.string()
+              firstName: Yup.string()
                 .required('Please add your firstname')
                 .matches(/^[a-zA-Z ]+$/, 'Only letters')
                 .max(32, 'Should be 32 characters or less'),
-              lastname: Yup.string()
+              lastName: Yup.string()
                 .required('Please add your lastname')
                 .matches(/^[a-zA-Z ]+$/, 'Only letters')
                 .max(32, 'Should be 32 characters or less'),
               domainName: Yup.string().required('Please add your domain name'),
-              phoneNumber: Yup.string().required('Please add your phone number')
+              phoneNumber: Yup.string().required(
+                'Please add your phone number'
+              ),
+              password: Yup.lazy(() => {
+                return Yup.string()
+                  .required('Please add your password')
+                  .min(6, 'Too short')
+                  .max(32, 'Too long');
+              }),
+              password2: Yup.lazy(() => {
+                return Yup.string()
+                  .required('Please add your confirm password')
+                  .oneOf([Yup.ref('password'), null], 'Passwords must match');
+              })
             })}
           >
             <Grid item xs={12}>
@@ -141,14 +156,40 @@ const CreateYourWebsite = ({
                 fullWidth
               />
             </Grid>
+            <Grid item xs={12}>
+              <Field
+                component={TextField}
+                variant="outlined"
+                id="outlined-secondary"
+                label="Password"
+                type="password"
+                name="password"
+                fullWidth
+              />
+            </Grid>
+            <Grid item xs={12}>
+              <Field
+                component={TextField}
+                variant="outlined"
+                id="outlined-secondary"
+                label="Confirm Password"
+                name="password2"
+                type="password"
+                fullWidth
+              />
+            </Grid>
           </FormikStep>
         </FormikStepper>
       </Container>
     </div>
   );
 };
+export interface FormikStepProps
+  extends Pick<FormikConfig<FormikValues>, 'children' | 'validationSchema'> {
+  label: string;
+}
 
-export function FormikStep({ children, ...props }) {
+export function FormikStep({ children, ...props }: FormikStepProps) {
   return <>{children}</>;
 }
 
@@ -160,7 +201,9 @@ export function FormikStepper({
   onValidateUserEmailStart,
   ...props
 }) {
-  const childrenArray = React.Children.toArray(children);
+  const childrenArray = React.Children.toArray(
+    children
+  ) as React.ReactElement<FormikStepProps>[];
   const [step, setStep] = useState(0);
   const [completed, setCompleted] = useState(false);
 
@@ -192,7 +235,12 @@ export function FormikStepper({
   };
 
   return (
-    <Formik {...props} initialValues={initialValues} onSubmit={handleSubmit}>
+    <Formik
+      {...props}
+      initialValues={initialValues}
+      onSubmit={handleSubmit}
+      validationSchema={currentChild.props.validationSchema}
+    >
       {({ isSubmitting }) => (
         <Form autoComplete="off">
           {currentChild}

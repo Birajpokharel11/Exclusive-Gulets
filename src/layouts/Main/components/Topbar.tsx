@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 
 import { useRouter } from 'next/router';
 
@@ -12,7 +12,9 @@ import {
   Paper,
   MenuList,
   MenuItem,
-  ClickAwayListener
+  ClickAwayListener,
+  Grow,
+  Button
 } from '@material-ui/core';
 
 const useStyles = makeStyles((theme) => ({
@@ -42,17 +44,49 @@ const useStyles = makeStyles((theme) => ({
     [theme.breakpoints.down('lg')]: {
       padding: '0px,0px,0px,32px'
     }
+  },
+  buttonStyle: {
+    color: ' #FFFFFF'
   }
 }));
 
-export default function Header({ auth: { isAuthenticated, currentUser } }) {
+export default function Header({
+  auth: { isAuthenticated, currentUser, token },
+  onSignoutStart
+}) {
   const classes = useStyles();
   const router = useRouter();
 
   const [value, setValue] = useState(null);
+  const [open, setOpen] = useState(false);
+  const anchorRef = useRef(null);
 
   const handleChange = (e, value) => {
     setValue(value);
+  };
+
+  const handleToggle = () => {
+    setOpen((prevOpen) => !prevOpen);
+  };
+
+  const handleClose = (event) => {
+    if (anchorRef.current && anchorRef.current.contains(event.target)) {
+      return;
+    }
+
+    setOpen(false);
+  };
+
+  function handleListKeyDown(event) {
+    if (event.key === 'Tab') {
+      event.preventDefault();
+      setOpen(false);
+    }
+  }
+
+  const handleClickSignout = () => {
+    onSignoutStart(token);
+    setOpen(false);
   };
 
   useEffect(() => {
@@ -99,12 +133,46 @@ export default function Header({ auth: { isAuthenticated, currentUser } }) {
             />
           )}
           {isAuthenticated && (
-            <Tab
-              className={classes.tab}
-              label={`Hi! ${currentUser?.firstName}`}
-            />
+            <Button
+              className={classes.buttonStyle}
+              ref={anchorRef}
+              aria-controls={open ? 'menu-list-grow' : undefined}
+              aria-haspopup="true"
+              onClick={handleToggle}
+            >
+              {`Hi! ${currentUser?.firstName}`}
+            </Button>
           )}
         </Tabs>
+        <Popper
+          open={open}
+          anchorEl={anchorRef.current}
+          role={undefined}
+          transition
+          disablePortal
+        >
+          {({ TransitionProps, placement }) => (
+            <Grow
+              {...TransitionProps}
+              style={{
+                transformOrigin:
+                  placement === 'bottom' ? 'center top' : 'center bottom'
+              }}
+            >
+              <Paper>
+                <ClickAwayListener onClickAway={handleClose}>
+                  <MenuList
+                    autoFocusItem={open}
+                    id="menu-list-grow"
+                    onKeyDown={handleListKeyDown}
+                  >
+                    <MenuItem onClick={handleClickSignout}>Logout</MenuItem>
+                  </MenuList>
+                </ClickAwayListener>
+              </Paper>
+            </Grow>
+          )}
+        </Popper>
       </Toolbar>
     </AppBar>
   );

@@ -57,9 +57,9 @@ export const signupBrokerFail = (error) => ({
   payload: error
 });
 
-export const signoutStart = (history) => ({
+export const signoutStart = (token) => ({
   type: AuthType.SIGN_OUT_START,
-  payload: { history }
+  payload: { token }
 });
 
 export const signoutSuccess = () => ({

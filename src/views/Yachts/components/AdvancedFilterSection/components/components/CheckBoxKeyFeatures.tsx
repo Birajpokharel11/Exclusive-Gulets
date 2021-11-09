@@ -10,6 +10,7 @@ import {
   Collapse
 } from '@material-ui/core';
 import Slider from './CabinSlider';
+import clsx from 'clsx';
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     root: {
@@ -23,6 +24,11 @@ const useStyles = makeStyles((theme: Theme) =>
       fontSize: '16px',
       color: '#AB3996',
       fontStyle: 'normal'
+    },
+    heightIncrease: {
+      [theme.breakpoints.down('xs')]: {
+        height: '55vh'
+      }
     }
   })
 );
@@ -40,6 +46,7 @@ interface Props {
   sauna: boolean;
   cockpit: boolean;
   handleChange: any;
+  keyFeatures?: boolean;
 }
 export default function CheckBoxKeyFeatures({
   hot,
@@ -54,7 +61,8 @@ export default function CheckBoxKeyFeatures({
   gym,
   sauna,
   cockpit,
-  handleChange
+  handleChange,
+  keyFeatures
 }: Props) {
   const classes = useStyles();
 
@@ -77,11 +85,15 @@ export default function CheckBoxKeyFeatures({
   //   ].filter((v) => v).length !== 2;
 
   return (
-    <div className={classes.root}>
+    <div
+      className={clsx(classes.root, {
+        [classes.heightIncrease]: keyFeatures
+      })}
+    >
       <FormControl component="fieldset" className={classes.formControl}>
         <FormGroup>
           <Grid container>
-            <Grid item xs={6}>
+            <Grid item sm={6} xs={12}>
               <FormControlLabel
                 control={
                   <Checkbox
@@ -94,7 +106,7 @@ export default function CheckBoxKeyFeatures({
                 label="Hot Tub"
               />
             </Grid>
-            <Grid item xs={6}>
+            <Grid item sm={6} xs={12}>
               {' '}
               <FormControlLabel
                 control={
@@ -108,7 +120,7 @@ export default function CheckBoxKeyFeatures({
                 label="Satellite Antenna"
               />
             </Grid>
-            <Grid item xs={6}>
+            <Grid item sm={6} xs={12}>
               <FormControlLabel
                 control={
                   <Checkbox
@@ -121,7 +133,7 @@ export default function CheckBoxKeyFeatures({
                 label="Large Deck Space"
               />
             </Grid>
-            <Grid item xs={6}>
+            <Grid item sm={6} xs={12}>
               <FormControlLabel
                 control={
                   <Checkbox
@@ -134,7 +146,7 @@ export default function CheckBoxKeyFeatures({
                 label="Safe Box"
               />
             </Grid>
-            <Grid item xs={6}>
+            <Grid item sm={6} xs={12}>
               <FormControlLabel
                 control={
                   <Checkbox
@@ -147,7 +159,7 @@ export default function CheckBoxKeyFeatures({
                 label="Newly Built"
               />
             </Grid>{' '}
-            <Grid item xs={6}>
+            <Grid item sm={6} xs={12}>
               <FormControlLabel
                 control={
                   <Checkbox
@@ -163,7 +175,7 @@ export default function CheckBoxKeyFeatures({
             <br />
             {showMore && (
               <>
-                <Grid item xs={6}>
+                <Grid item sm={6} xs={12}>
                   <FormControlLabel
                     control={
                       <Checkbox
@@ -176,7 +188,7 @@ export default function CheckBoxKeyFeatures({
                     label="Swimming Platform"
                   />
                 </Grid>
-                <Grid item xs={6}>
+                <Grid item sm={6} xs={12}>
                   <FormControlLabel
                     control={
                       <Checkbox
@@ -189,7 +201,7 @@ export default function CheckBoxKeyFeatures({
                     label="Mini Bar"
                   />
                 </Grid>{' '}
-                <Grid item xs={6}>
+                <Grid item sm={6} xs={12}>
                   <FormControlLabel
                     control={
                       <Checkbox
@@ -202,7 +214,7 @@ export default function CheckBoxKeyFeatures({
                     label="Wide Range of water spoerts"
                   />
                 </Grid>{' '}
-                <Grid item xs={6}>
+                <Grid item sm={6} xs={12}>
                   <FormControlLabel
                     control={
                       <Checkbox
@@ -215,7 +227,7 @@ export default function CheckBoxKeyFeatures({
                     label="Gym"
                   />
                 </Grid>{' '}
-                <Grid item xs={6}>
+                <Grid item sm={6} xs={12}>
                   <FormControlLabel
                     control={
                       <Checkbox
@@ -228,7 +240,7 @@ export default function CheckBoxKeyFeatures({
                     label="Sauna & Welness"
                   />
                 </Grid>{' '}
-                <Grid item xs={6}>
+                <Grid item sm={6} xs={12}>
                   <FormControlLabel
                     control={
                       <Checkbox

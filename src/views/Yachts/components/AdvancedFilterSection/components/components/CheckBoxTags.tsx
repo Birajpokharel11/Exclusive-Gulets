@@ -10,6 +10,7 @@ import {
   Button
 } from '@material-ui/core';
 import Slider from './CabinSlider';
+import clsx from 'clsx';
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     root: {
@@ -18,7 +19,12 @@ const useStyles = makeStyles((theme: Theme) =>
     formControl: {
       margin: theme.spacing(3)
     },
-    Button: { color: '#AB3996' }
+    Button: { color: '#AB3996' },
+    heightIncrease: {
+      [theme.breakpoints.down('xs')]: {
+        height: '55vh'
+      }
+    }
   })
 );
 interface Props {
@@ -30,6 +36,7 @@ interface Props {
   SUP: boolean;
   gourmet: boolean;
   handleChange: any;
+  tags: boolean;
 }
 export default function CheckBoxTags({
   instant,
@@ -45,11 +52,15 @@ export default function CheckBoxTags({
   const [showMore, setShowMore] = useState(false);
 
   return (
-    <div className={classes.root}>
+    <div
+      className={clsx(classes.root, {
+        [classes.heightIncrease]: tags
+      })}
+    >
       <FormControl component="fieldset" className={classes.formControl}>
         <FormGroup>
           <Grid container>
-            <Grid item xs={6}>
+            <Grid item sm={6} xs={12}>
               <FormControlLabel
                 control={
                   <Checkbox
@@ -62,7 +73,7 @@ export default function CheckBoxTags({
                 label="Instant Booking"
               />
             </Grid>
-            <Grid item xs={6}>
+            <Grid item sm={6} xs={12}>
               {' '}
               <FormControlLabel
                 control={
@@ -76,7 +87,7 @@ export default function CheckBoxTags({
                 label="Special Offers"
               />
             </Grid>
-            <Grid item xs={6}>
+            <Grid item sm={6} xs={12}>
               <FormControlLabel
                 control={
                   <Checkbox
@@ -89,7 +100,7 @@ export default function CheckBoxTags({
                 label="Finest Gulet & Yachts "
               />
             </Grid>
-            <Grid item xs={6}>
+            <Grid item sm={6} xs={12}>
               <FormControlLabel
                 control={
                   <Checkbox
@@ -102,7 +113,7 @@ export default function CheckBoxTags({
                 label="Loved By Our Guests"
               />
             </Grid>
-            <Grid item xs={6}>
+            <Grid item sm={6} xs={12}>
               <FormControlLabel
                 control={
                   <Checkbox
@@ -115,7 +126,7 @@ export default function CheckBoxTags({
                 label="Yachts For Family Adventures"
               />
             </Grid>{' '}
-            <Grid item xs={6}>
+            <Grid item sm={6} xs={12}>
               <FormControlLabel
                 control={
                   <Checkbox
@@ -130,7 +141,7 @@ export default function CheckBoxTags({
             </Grid>
             {showMore && (
               <>
-                <Grid item xs={6}>
+                <Grid item sm={6} xs={12}>
                   <FormControlLabel
                     control={
                       <Checkbox

@@ -65,12 +65,14 @@ interface Props {
   RangeText?: any[];
   next_page?: number;
   price?: boolean;
+  length?: boolean;
   fetchPostsStart?: (page) => any;
 }
 export default function AdvancedFilterSection({
   Range,
   RangeText,
-  price
+  price,
+  length
 }: Props) {
   const classes = useStyles();
   const [value, setValue] = React.useState<number[]>(Range);
@@ -86,7 +88,7 @@ export default function AdvancedFilterSection({
   return (
     <div
       className={clsx(classes.root, {
-        [classes.heightIncrease]: price
+        [classes.heightIncrease]: price || length
       })}
     >
       <div style={{ width: '450px' }}>

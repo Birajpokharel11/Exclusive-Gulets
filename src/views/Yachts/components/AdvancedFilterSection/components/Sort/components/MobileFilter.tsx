@@ -45,7 +45,7 @@ const useStyles = makeStyles({
   },
   Paper: {
     background: '#F5F0E4',
-    minHeight: '20vh',
+    minHeight: '2vh',
     width: '100%'
   },
   Button1: {
@@ -94,7 +94,7 @@ export default function MobileFilter({
           </Box>
           <Box pb={2}>
             <Typography variant="h2" className={classes.Heading}>
-              {price ? 'Price' : 'Filter'}
+              Filter
             </Typography>
           </Box>
           <Filters />

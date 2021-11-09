@@ -54,8 +54,9 @@ const useStyles = makeStyles((theme) =>
     },
     MobileHeight: {
       [theme.breakpoints.down('xs')]: {
-        overflow: 'hidden',
-        height: '58vh'
+        overflow: 'scroll',
+
+        height: '60.4vh'
       }
     }
   })
@@ -235,6 +236,7 @@ export default function Filters() {
       </Grid>
       <Collapse in={length}>
         <AdvancedFilterSection
+          length={length}
           Range={[0, 100]}
           RangeText={['Min Guest', 'Max Guest']}
         />
@@ -279,6 +281,7 @@ export default function Filters() {
           gilad={gilad}
           sailer={sailer}
           catamaran={catamaran}
+          type={type}
           handleChange={handleChangeTop}
         />
         <div style={{ paddingBottom: '32px' }} />
@@ -324,6 +327,7 @@ export default function Filters() {
           triple={triple}
           single={single}
           extra={extra}
+          cabins={cabins}
           handleChange={handleChangeCab}
         />
         <div style={{ paddingBottom: '32px' }} />
@@ -375,6 +379,7 @@ export default function Filters() {
           gym={gym}
           sauna={sauna}
           cockpit={cockpit}
+          keyFeatures={keyFeatures}
           handleChange={handleChangeKey}
         />
         <div style={{ paddingBottom: '32px' }} />
@@ -421,6 +426,7 @@ export default function Filters() {
           fishing={fishing}
           sup1={sup1}
           jetski1={jetski1}
+          waterToys={waterToys}
           handleChange={handleChangeWater}
         />
         <div style={{ paddingBottom: '32px' }} />
@@ -468,6 +474,7 @@ export default function Filters() {
           loved={loved}
           SUP={SUP}
           gourmet={gourmet}
+          tags={tags}
         />
         <div style={{ paddingBottom: '32px' }} />
       </Collapse>

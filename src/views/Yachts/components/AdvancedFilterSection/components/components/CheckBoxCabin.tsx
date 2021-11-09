@@ -1,19 +1,31 @@
 import React from 'react';
-import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
+import {
+  makeStyles,
+  Theme,
+  createStyles,
+  useTheme
+} from '@material-ui/core/styles';
 import {
   FormControl,
   Grid,
   Checkbox,
   FormGroup,
   FormControlLabel,
-  Collapse
+  Collapse,
+  useMediaQuery
 } from '@material-ui/core';
 import Slider from './CabinSlider';
 import CabinSlider from './CabinSlider';
+import clsx from 'clsx';
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     root: {
       display: 'flex'
+    },
+    heightIncrease: {
+      [theme.breakpoints.down('xs')]: {
+        height: '55vh'
+      }
     },
     formControl: {
       margin: theme.spacing(3)
@@ -29,6 +41,7 @@ interface Props {
   single: boolean;
   extra: boolean;
   handleChange: any;
+  cabins?: boolean;
 }
 export default function CheckBoxCabin({
   master,
@@ -37,16 +50,22 @@ export default function CheckBoxCabin({
   triple,
   single,
   extra,
-  handleChange
+  handleChange,
+  cabins
 }: Props) {
   const classes = useStyles();
-
+  const theme = useTheme();
+  const matches = useMediaQuery(theme.breakpoints.up('xs'));
   return (
-    <div className={classes.root}>
+    <div
+      className={clsx(classes.root, {
+        [classes.heightIncrease]: cabins
+      })}
+    >
       <FormControl component="fieldset" className={classes.formControl}>
         <FormGroup>
           <Grid container>
-            <Grid item xs={6}>
+            <Grid item sm={6} xs={12}>
               <FormControlLabel
                 control={
                   <Checkbox
@@ -59,10 +78,14 @@ export default function CheckBoxCabin({
                 label="Master Cabin"
               />
               <Collapse in={master}>
-                <CabinSlider />
+                <Grid container justifyContent="center">
+                  <Grid item>
+                    <CabinSlider />
+                  </Grid>
+                </Grid>
               </Collapse>
             </Grid>
-            <Grid item xs={6}>
+            <Grid item sm={6} xs={12}>
               {' '}
               <FormControlLabel
                 control={
@@ -76,7 +99,7 @@ export default function CheckBoxCabin({
                 label="Double Cabin"
               />
             </Grid>
-            <Grid item xs={6}>
+            <Grid item sm={6} xs={12}>
               <FormControlLabel
                 control={
                   <Checkbox
@@ -89,7 +112,7 @@ export default function CheckBoxCabin({
                 label="Twin Cabin"
               />
             </Grid>
-            <Grid item xs={6}>
+            <Grid item sm={6} xs={12}>
               <FormControlLabel
                 control={
                   <Checkbox
@@ -102,7 +125,7 @@ export default function CheckBoxCabin({
                 label="Triple Cabin"
               />
             </Grid>
-            <Grid item xs={6}>
+            <Grid item sm={6} xs={12}>
               <FormControlLabel
                 control={
                   <Checkbox
@@ -115,7 +138,7 @@ export default function CheckBoxCabin({
                 label="Single Cabin"
               />
             </Grid>{' '}
-            <Grid item xs={6}>
+            <Grid item sm={6} xs={12}>
               <FormControlLabel
                 control={
                   <Checkbox

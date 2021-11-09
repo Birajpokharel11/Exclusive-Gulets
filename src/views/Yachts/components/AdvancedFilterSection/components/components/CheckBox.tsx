@@ -7,6 +7,7 @@ import {
   FormGroup,
   FormControlLabel
 } from '@material-ui/core';
+import clsx from 'clsx';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -15,6 +16,11 @@ const useStyles = makeStyles((theme: Theme) =>
     },
     formControl: {
       margin: theme.spacing(3)
+    },
+    heightIncrease: {
+      [theme.breakpoints.down('xs')]: {
+        height: '55vh'
+      }
     }
   })
 );
@@ -24,24 +30,30 @@ interface Props {
   sailer?: boolean;
   catamaran?: boolean;
   handleChange?: any;
+  type?: boolean;
 }
 export default function CheckBox({
   gilad,
   motor,
   sailer,
   catamaran,
-  handleChange
+  handleChange,
+  type
 }: Props) {
   const classes = useStyles();
 
   // const error = [gilad, motor, sailer, catamaran].filter((v) => v).length !== 2;
 
   return (
-    <div className={classes.root}>
+    <div
+      className={clsx(classes.root, {
+        [classes.heightIncrease]: type
+      })}
+    >
       <FormControl component="fieldset" className={classes.formControl}>
         <FormGroup>
           <Grid container>
-            <Grid item xs={6}>
+            <Grid item sm={6} xs={12}>
               <FormControlLabel
                 control={
                   <Checkbox
@@ -54,7 +66,7 @@ export default function CheckBox({
                 label="Gulet"
               />
             </Grid>
-            <Grid item xs={6}>
+            <Grid item sm={6} xs={12}>
               {' '}
               <FormControlLabel
                 control={
@@ -68,7 +80,7 @@ export default function CheckBox({
                 label="Motor Yacht"
               />
             </Grid>
-            <Grid item xs={6}>
+            <Grid item sm={6} xs={12}>
               <FormControlLabel
                 control={
                   <Checkbox
@@ -81,7 +93,7 @@ export default function CheckBox({
                 label="Motor Sailer"
               />
             </Grid>
-            <Grid item xs={6}>
+            <Grid item sm={6} xs={12}>
               <FormControlLabel
                 control={
                   <Checkbox

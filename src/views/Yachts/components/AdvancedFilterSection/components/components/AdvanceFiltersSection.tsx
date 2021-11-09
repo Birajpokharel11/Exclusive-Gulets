@@ -1,5 +1,5 @@
 import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
+import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
 import {
   Typography,
   Box,
@@ -9,40 +9,69 @@ import {
   Divider
 } from '@material-ui/core';
 import Slider from '@material-ui/core/Slider';
+import clsx from 'clsx';
 
-const useStyles = makeStyles({
-  root: {
-    width: 300
-  },
-  multilineColor: {
-    color: '#091527',
-    fontSize: '18px',
-    fontWeight: 500,
-    lineHeight: '22px'
-  },
-  Border: {
-    border: '1px solid rgba(42, 57, 141, 0.5)',
-    color: 'white',
-    width: '400px',
-    height: '52px',
-    padding: '5px 20px 5px 20px',
-    borderRadius: '4px'
-  },
-  Divider: {
-    marginRight: '20px',
-    marginLeft: '20px',
+const useStyles = makeStyles((theme) =>
+  createStyles({
+    root: {
+      width: 300
+    },
+    multilineColor: {
+      color: '#091527',
+      fontSize: '18px',
+      fontWeight: 500,
+      lineHeight: '22px'
+    },
+    Border: {
+      border: '1px solid rgba(42, 57, 141, 0.5)',
+      color: 'white',
+      width: '400px',
+      [theme.breakpoints.down('xs')]: {
+        width: '343px'
+      },
+      height: '52px',
+      padding: '5px 20px 5px 20px',
+      borderRadius: '4px'
+    },
+    Divider: {
+      marginRight: '20px',
+      marginLeft: '20px',
 
-    background: 'rgba(42, 57, 141, 0.5)'
-  },
-  Typography: { fontWeight: 'normal' }
-});
+      background: 'rgba(42, 57, 141, 0.5)'
+    },
+    Typography: { fontWeight: 'normal' },
+    sliders: {
+      color: '#2A398D',
+      width: '440px',
+      [theme.breakpoints.down('xs')]: {
+        width: '382px'
+      }
+    },
+    Values: {
+      width: '440px',
+      [theme.breakpoints.down('xs')]: {
+        width: '382px'
+      }
+    },
+    heightIncrease: {
+      [theme.breakpoints.down('xs')]: {
+        height: '55vh'
+      }
+    }
+  })
+);
 interface Props {
   Range?: any[];
   RangeText?: any[];
   next_page?: number;
+  price?: boolean;
   fetchPostsStart?: (page) => any;
 }
-export default function AdvancedFilterSection({ Range, RangeText }: Props) {
+export default function AdvancedFilterSection({
+  Range,
+  RangeText,
+  price
+}: Props) {
   const classes = useStyles();
   const [value, setValue] = React.useState<number[]>(Range);
 
@@ -55,15 +84,19 @@ export default function AdvancedFilterSection({ Range, RangeText }: Props) {
   }
 
   return (
-    <div className={classes.root}>
+    <div
+      className={clsx(classes.root, {
+        [classes.heightIncrease]: price
+      })}
+    >
       <div style={{ width: '450px' }}>
         <Grid container>
-          <Grid item md={6}>
+          <Grid item md={6} xs={5}>
             <Typography className={classes.Typography} variant="body1">
               {RangeText[0]}
             </Typography>
           </Grid>
-          <Grid item md={6}>
+          <Grid item md={6} xs>
             <Typography className={classes.Typography} variant="body1">
               {RangeText[1]}
             </Typography>
@@ -108,11 +141,11 @@ export default function AdvancedFilterSection({ Range, RangeText }: Props) {
         value={value}
         onChange={handleChange}
         aria-labelledby="range-slider"
-        style={{ color: '#2A398D', width: '440px' }}
+        className={classes.sliders}
         getAriaValueText={valuetext}
       />
       <Box
-        style={{ width: '440px' }}
+        className={classes.Values}
         display="flex"
         alignItems="center"
         justifyContent="space-between"

@@ -23,12 +23,20 @@ import CheckBoxTags from './components/CheckBoxTags';
 import { words } from 'lodash';
 const useStyles = makeStyles((theme) =>
   createStyles({
-    Heading: { paddingBottom: '10px' },
+    Heading: { paddingBottom: '10px', cursor: 'pointer' },
     Icon: {
       color: ' #2A398D'
     },
     Rotate: {
-      transform: 'rotate(180deg)'
+      transform: 'rotate(180deg)',
+      [theme.breakpoints.down('xs')]: {
+        display: 'none'
+      }
+    },
+    Button: {
+      [theme.breakpoints.down('xs')]: {
+        display: 'none'
+      }
     },
     Typography: {
       color: '#091527'
@@ -37,6 +45,18 @@ const useStyles = makeStyles((theme) =>
       fontWeight: 500,
       fontSize: '18px',
       fontStyle: 'normal'
+    },
+    Dividers: {
+      [theme.breakpoints.down('xs')]: {
+        marginTop: '16px',
+        marginBottom: '16px'
+      }
+    },
+    MobileHeight: {
+      [theme.breakpoints.down('xs')]: {
+        overflow: 'hidden',
+        height: '58vh'
+      }
     }
   })
 );
@@ -138,12 +158,13 @@ export default function Filters() {
     setTaggy({ ...taggy, [event.target.name]: event.target.checked });
   };
   return (
-    <Box>
+    <Box className={classes.MobileHeight}>
       <Grid
         container
         justifyContent="space-between"
         alignItems="center"
         className={classes.Heading}
+        onClick={() => setPrice((prev) => !prev)}
       >
         <Grid item>
           <Box display="flex">
@@ -163,7 +184,7 @@ export default function Filters() {
           {' '}
           <IconButton
             onClick={() => setPrice((prev) => !prev)}
-            className={clsx({
+            className={clsx(classes.Button, {
               [classes.Rotate]: price
             })}
           >
@@ -173,17 +194,19 @@ export default function Filters() {
       </Grid>
       <Collapse in={price}>
         <AdvancedFilterSection
+          price={price}
           Range={[0, 100]}
           RangeText={['Min Guest', 'Max Guest']}
         />
         <div style={{ paddingBottom: '32px' }} />
       </Collapse>
-      <Divider />
+      <Divider className={classes.Dividers} />
       <Grid
         container
         justifyContent="space-between"
         alignItems="center"
         className={classes.Heading}
+        onClick={() => setLength((prev) => !prev)}
       >
         <Grid item>
           <Box display="flex">
@@ -202,8 +225,8 @@ export default function Filters() {
           {' '}
           <IconButton
             onClick={() => setLength((prev) => !prev)}
-            className={clsx({
-              [classes.Rotate]: length
+            className={clsx(classes.Button, {
+              [classes.Rotate]: price
             })}
           >
             <ExpandMoreIcon className={classes.Icon} />
@@ -217,11 +240,12 @@ export default function Filters() {
         />
         <div style={{ paddingBottom: '32px' }} />
       </Collapse>
-      <Divider />{' '}
+      <Divider className={classes.Dividers} />
       <Grid
         container
         justifyContent="space-between"
         alignItems="center"
+        onClick={() => setType((prev) => !prev)}
         className={classes.Heading}
       >
         <Grid item>
@@ -241,8 +265,8 @@ export default function Filters() {
           {' '}
           <IconButton
             onClick={() => setType((prev) => !prev)}
-            className={clsx({
-              [classes.Rotate]: type
+            className={clsx(classes.Button, {
+              [classes.Rotate]: price
             })}
           >
             <ExpandMoreIcon className={classes.Icon} />
@@ -259,12 +283,13 @@ export default function Filters() {
         />
         <div style={{ paddingBottom: '32px' }} />
       </Collapse>
-      <Divider />{' '}
+      <Divider className={classes.Dividers} />{' '}
       <Grid
         container
         justifyContent="space-between"
         alignItems="center"
         className={classes.Heading}
+        onClick={() => setCabins((prev) => !prev)}
       >
         <Grid item>
           <Box display="flex">
@@ -283,8 +308,8 @@ export default function Filters() {
           {' '}
           <IconButton
             onClick={() => setCabins((prev) => !prev)}
-            className={clsx({
-              [classes.Rotate]: cabins
+            className={clsx(classes.Button, {
+              [classes.Rotate]: price
             })}
           >
             <ExpandMoreIcon className={classes.Icon} />
@@ -303,12 +328,13 @@ export default function Filters() {
         />
         <div style={{ paddingBottom: '32px' }} />
       </Collapse>
-      <Divider />{' '}
+      <Divider className={classes.Dividers} />{' '}
       <Grid
         container
         justifyContent="space-between"
         alignItems="center"
         className={classes.Heading}
+        onClick={() => setKeyfeatures((prev) => !prev)}
       >
         <Grid item>
           <Box display="flex">
@@ -327,8 +353,8 @@ export default function Filters() {
           {' '}
           <IconButton
             onClick={() => setKeyfeatures((prev) => !prev)}
-            className={clsx({
-              [classes.Rotate]: keyFeatures
+            className={clsx(classes.Button, {
+              [classes.Rotate]: price
             })}
           >
             <ExpandMoreIcon className={classes.Icon} />
@@ -353,12 +379,13 @@ export default function Filters() {
         />
         <div style={{ paddingBottom: '32px' }} />
       </Collapse>
-      <Divider />{' '}
+      <Divider className={classes.Dividers} />{' '}
       <Grid
         container
         justifyContent="space-between"
         alignItems="center"
         className={classes.Heading}
+        onClick={() => setWatertoys((prev) => !prev)}
       >
         <Grid item>
           <Box display="flex">
@@ -377,8 +404,8 @@ export default function Filters() {
           {' '}
           <IconButton
             onClick={() => setWatertoys((prev) => !prev)}
-            className={clsx({
-              [classes.Rotate]: waterToys
+            className={clsx(classes.Button, {
+              [classes.Rotate]: price
             })}
           >
             <ExpandMoreIcon className={classes.Icon} />
@@ -398,12 +425,13 @@ export default function Filters() {
         />
         <div style={{ paddingBottom: '32px' }} />
       </Collapse>
-      <Divider />{' '}
+      <Divider className={classes.Dividers} />{' '}
       <Grid
         container
         justifyContent="space-between"
         alignItems="center"
         className={classes.Heading}
+        onClick={() => setTags((prev) => !prev)}
       >
         <Grid item>
           <Box display="flex">
@@ -422,8 +450,8 @@ export default function Filters() {
           {' '}
           <IconButton
             onClick={() => setTags((prev) => !prev)}
-            className={clsx({
-              [classes.Rotate]: tags
+            className={clsx(classes.Button, {
+              [classes.Rotate]: price
             })}
           >
             <ExpandMoreIcon className={classes.Icon} />

@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 
+import Link from 'next/link';
 import { useRouter } from 'next/router';
 
 import { makeStyles } from '@material-ui/core/styles';
@@ -116,21 +117,14 @@ export default function Header({
           className={classes.tabContainer}
           onChange={handleChange}
         >
-          <Tab
-            className={classes.tab}
-            label="Create your own website"
-            onClick={() =>
-              router.push('/create-your-website', undefined, { shallow: true })
-            }
-          />
+          <Link href="/create-your-website" passHref>
+            <Tab component="a" label="Create your own website" />
+          </Link>
+
           {!isAuthenticated && (
-            <Tab
-              className={classes.tab}
-              label="Login"
-              onClick={() =>
-                router.push('/signin', undefined, { shallow: true })
-              }
-            />
+            <Link href="/signin" passHref>
+              <Tab component="a" label="Login" />
+            </Link>
           )}
           {isAuthenticated && (
             <Button

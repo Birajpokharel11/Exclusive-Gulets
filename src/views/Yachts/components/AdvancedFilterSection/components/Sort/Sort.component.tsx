@@ -17,7 +17,7 @@ import { FlashOnTwoTone } from '@material-ui/icons';
 import clsx from 'clsx';
 import { useMediaQuery } from '@material-ui/core';
 import MobileSort from './components/MobileSort';
-
+import Divider from './Divider.png';
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     Paper: {

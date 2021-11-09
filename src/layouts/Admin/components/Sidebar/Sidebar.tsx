@@ -50,39 +50,14 @@ const Sidebar = (props) => {
       icon: <DashboardIcon />
     },
     {
-      title: 'Users',
-      href: '/users',
+      title: 'News and Blogs',
+      href: '/manage/blogs',
       icon: <PeopleIcon />
     },
     {
-      title: 'Products',
-      href: '/products',
+      title: 'Experiences',
+      href: '/manage/experiences',
       icon: <ShoppingBasketIcon />
-    },
-    {
-      title: 'Authentication',
-      href: '/sign-in',
-      icon: <LockOpenIcon />
-    },
-    {
-      title: 'Typography',
-      href: '/typography',
-      icon: <TextFieldsIcon />
-    },
-    {
-      title: 'Icons',
-      href: '/icons',
-      icon: <ImageIcon />
-    },
-    {
-      title: 'Account',
-      href: '/account',
-      icon: <AccountBoxIcon />
-    },
-    {
-      title: 'Settings',
-      href: '/settings',
-      icon: <SettingsIcon />
     }
   ];
 
@@ -96,9 +71,9 @@ const Sidebar = (props) => {
     >
       <PerfectScrollbar>
         <div {...rest} className={clsx(classes.root, className)}>
-          <Profile />
+          <Profile {...rest} />
           <Divider className={classes.divider} />
-          <SidebarNav className={classes.nav} pages={pages} />
+          <SidebarNav className={classes.nav} pages={pages} {...rest} />
         </div>
       </PerfectScrollbar>
     </Drawer>

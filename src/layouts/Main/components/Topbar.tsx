@@ -166,6 +166,9 @@ export default function Header({
                     id="menu-list-grow"
                     onKeyDown={handleListKeyDown}
                   >
+                    <MenuItem onClick={() => router.push('/manage/dashboard')}>
+                      Dashboard
+                    </MenuItem>
                     <MenuItem onClick={handleClickSignout}>Logout</MenuItem>
                   </MenuList>
                 </ClickAwayListener>

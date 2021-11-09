@@ -26,6 +26,7 @@ export interface IPostState {
   postsList: any[];
   error: any | null;
   loading: boolean;
+  isCreating: boolean;
 }
 
 export interface IExperienceState {
@@ -33,6 +34,7 @@ export interface IExperienceState {
   soleExperience: object | any;
   error: any | null;
   loading: boolean;
+  isCreating: boolean;
 }
 
 export interface IDinningState {

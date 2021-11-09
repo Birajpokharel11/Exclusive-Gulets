@@ -8,7 +8,8 @@ const INITIAL_STATE: IExperienceState = {
   experiences: [],
   soleExperience: {},
   error: null,
-  loading: false
+  loading: false,
+  isCreating: false
 };
 
 const experiencesReducer = (state = INITIAL_STATE, action) => {
@@ -54,6 +55,25 @@ const experiencesReducer = (state = INITIAL_STATE, action) => {
       return {
         ...state,
         loading: false,
+        error: payload
+      };
+
+    case ExperiencesType.CREATE_EXPERIENCE_START:
+      return {
+        ...state,
+        isCreating: true
+      };
+
+    case ExperiencesType.CREATE_EXPERIENCE_SUCCESS:
+      return {
+        ...state,
+        isCreating: false
+      };
+
+    case ExperiencesType.CREATE_EXPERIENCE_FAILURE:
+      return {
+        ...state,
+        isCreating: false,
         error: payload
       };
 

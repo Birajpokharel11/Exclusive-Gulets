@@ -3,9 +3,15 @@ import { AnyAction } from 'redux';
 import axios from 'axios';
 import * as postsType from './posts.types';
 import * as postsAction from './posts.actions';
-import { fetchPostsStart, fetchPostsByIdStart } from './posts.actions';
+import {
+  fetchPostsStart,
+  fetchPostsByIdStart,
+  createPostStart
+} from './posts.actions';
+import { openAlert } from '../alert/alert.actions';
 
 import { Limits, Sort } from '@utils/enums';
+import router from 'next/router';
 
 export function* fetchPostsAsync({
   payload: {
@@ -63,6 +69,28 @@ export function* fetchPostsaByIdAsync({
 
 /////////////////////////////////////////////////////////////////////////////////////
 
+export function* createPostAsync({
+  payload: { formData }
+}: ReturnType<typeof createPostStart>) {
+  try {
+    console.log('entered createpost>>>', formData);
+    const { data } = yield axios.post(
+      `https://yatchcloud-dev.fghire.com/api/saveBlog`,
+      formData
+    );
+    console.log('createPostAsync on success>>>', data);
+    yield put(postsAction.createPostSuccess());
+    yield put(openAlert('Blog saved successfully!!!', 'success'));
+    router.push('/manage/dashboard');
+  } catch (err) {
+    console.error('error received>>>', err);
+    yield put(postsAction.createPostFailure(err));
+    yield put(openAlert('Failed to save blog', 'error'));
+  }
+}
+
+///////////////////////////////////////////////////////////////////////////////////
+
 export function* watchPostsOffer() {
   yield takeLatest(postsType.FETCH_POSTS_START, fetchPostsAsync);
 }
@@ -74,10 +102,16 @@ export function* watchFetchRandomDestination() {
 export function* watchPostsById() {
   yield takeLatest(postsType.FETCH_POSTS_BY_ID_START, fetchPostsaByIdAsync);
 }
+
+export function* watchCreatePost() {
+  yield takeLatest(postsType.CREATE_POST_START, createPostAsync);
+}
+
 export function* postsSagas() {
   yield all([
     call(watchPostsOffer),
     call(watchFetchRandomDestination),
-    call(watchPostsById)
+    call(watchPostsById),
+    call(watchCreatePost)
   ]);
 }

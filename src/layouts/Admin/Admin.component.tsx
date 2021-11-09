@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import clsx from 'clsx';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import { useMediaQuery } from '@material-ui/core';
+import container from './Admin.container';
 
 import CustomAlert from '@components/CustomAlert';
 
@@ -25,7 +26,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const Main = (props) => {
-  const { children } = props;
+  const { children, ...rest } = props;
 
   const classes = useStyles();
   const theme = useTheme();
@@ -58,6 +59,7 @@ const Main = (props) => {
         onClose={handleSidebarClose}
         open={shouldOpenSidebar}
         variant={isDesktop ? 'persistent' : 'temporary'}
+        {...rest}
       />
       <main className={classes.content}>{children}</main>
       <Footer />
@@ -65,4 +67,4 @@ const Main = (props) => {
   );
 };
 
-export default Main;
+export default container(Main);

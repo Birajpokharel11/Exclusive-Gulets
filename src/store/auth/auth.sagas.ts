@@ -1,6 +1,7 @@
 import { takeLatest, call, all, put } from 'redux-saga/effects';
 import axios from 'axios';
 import router from 'next/router';
+import _ from 'lodash';
 
 import { openAlert } from '../alert/alert.actions';
 
@@ -122,7 +123,21 @@ export function* validateUserAsync({
 
     console.log('value fo data after success>>>', data);
 
-    yield put(authActions.validateUserEmailSuccess(data.detail.data));
+    if (data.status === 'success') {
+      yield put(authActions.validateUserEmailSuccess(data.detail.data));
+
+      if (data.detail.data.isValidEmail === true) {
+        yield put(openAlert('The entered email is valid', 'success'));
+      } else if (data.detail.data.isValidEmail === false) {
+        yield put(openAlert('The entered email is invalid', 'error'));
+      } else if (data.detail.data.isValidSite === true) {
+        yield put(openAlert('The entered domain name is valid', 'success'));
+      } else {
+        yield put(openAlert('The entered domain name is invalid', 'error'));
+      }
+    } else {
+      yield put(openAlert('Internal Server Error!!', 'error'));
+    }
   } catch (err) {
     yield put(authActions.validateUserEmailFail(err));
   }
@@ -162,7 +177,7 @@ export function* signOutAsync({
       token
     );
     console.log('data on signout>>>', data);
-    if (data.status === 'success') {
+    if (data.status === 200) {
       yield put(authActions.signoutSuccess());
       yield put(openAlert('User Signed Out Successfully!!', 'success'));
       router.push('/');

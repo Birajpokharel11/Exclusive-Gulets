@@ -21,14 +21,17 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const Profile = (props) => {
-  const { className, ...rest } = props;
+  const {
+    className,
+    auth: { currentUser },
+    ...rest
+  } = props;
 
   const classes = useStyles();
 
   const user = {
-    name: 'Shen Zhi',
-    avatar: '/static/images/avatars/avatar_11.png',
-    bio: 'Brain Director'
+    name: currentUser.firstName ?? '',
+    avatar: '/static/images/avatars/avatar_11.png'
   };
 
   return (
@@ -43,7 +46,7 @@ const Profile = (props) => {
       <Typography className={classes.name} variant="h4">
         {user.name}
       </Typography>
-      <Typography variant="body2">{user.bio}</Typography>
+      {/* <Typography variant="body2">{user.bio}</Typography> */}
     </div>
   );
 };

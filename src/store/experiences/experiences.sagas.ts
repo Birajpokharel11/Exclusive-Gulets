@@ -2,7 +2,10 @@ import { takeLatest, call, all, put } from 'redux-saga/effects';
 import { AnyAction } from 'redux';
 import queryString from 'query-string';
 
+import { openAlert } from '../alert/alert.actions';
+
 import axios from 'axios';
+import router from 'next/router';
 
 import * as ExperiencesType from './experiences.types';
 import * as experiencesAction from './experiences.actions';
@@ -32,6 +35,24 @@ export function* fetchExperienceByIdAsync({ payload: { id } }: AnyAction) {
   }
 }
 
+export function* createExperienceAsync({ payload: { formData } }: AnyAction) {
+  try {
+    console.log('entered createExperienceAsync>>>', formData);
+    const { data } = yield axios.post(
+      `https://yatchcloud-dev.fghire.com/api/saveExperience`,
+      formData
+    );
+    console.log('createExperienceAsync on success>>>', data);
+    yield put(experiencesAction.createExperienceSuccess());
+    yield put(openAlert('Experience saved successfully!!!', 'success'));
+    router.push('/manage/dashboard');
+  } catch (err) {
+    console.error('error received>>>', err);
+    yield put(experiencesAction.createExperienceFailure(err));
+    yield put(openAlert('Failed to save experience', 'error'));
+  }
+}
+
 export function* watchExperiencesOffer() {
   yield takeLatest(
     ExperiencesType.FETCH_EXPERIENCES_START,
@@ -46,6 +67,17 @@ export function* watchExperienceById() {
   );
 }
 
+export function* watchCreateExperience() {
+  yield takeLatest(
+    ExperiencesType.CREATE_EXPERIENCE_START,
+    createExperienceAsync
+  );
+}
+
 export function* experiencesSagas() {
-  yield all([call(watchExperiencesOffer), call(watchExperienceById)]);
+  yield all([
+    call(watchExperiencesOffer),
+    call(watchExperienceById),
+    call(watchCreateExperience)
+  ]);
 }

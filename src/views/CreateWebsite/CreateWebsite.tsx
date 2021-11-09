@@ -22,6 +22,13 @@ import container from './CreateWebsite.container';
 const useStyles = makeStyles((theme) => ({
   root: {
     padding: theme.spacing(4)
+  },
+  link: {
+    fontWeight: 'bold',
+    fontSize: '18px',
+    lineHeight: '21px',
+    paddingBottom: '1.7rem',
+    paddingLeft: '1rem'
   }
 }));
 
@@ -89,7 +96,9 @@ const CreateYourWebsite = ({
                 .required('Please add your lastname')
                 .matches(/^[a-zA-Z ]+$/, 'Only letters')
                 .max(32, 'Should be 32 characters or less'),
-              domainName: Yup.string().required('Please add your domain name'),
+              domainName: Yup.string()
+                .matches(/^[a-z0-9]+$/, 'Only strings')
+                .required('Please add your domain name'),
               phoneNumber: Yup.string().required(
                 'Please add your phone number'
               ),
@@ -106,15 +115,22 @@ const CreateYourWebsite = ({
               })
             })}
           >
-            <Grid item xs={12}>
-              <Field
-                component={TextField}
-                variant="outlined"
-                id="outlined-secondary"
-                label="Domain Name"
-                name="domainName"
-                fullWidth
-              />
+            <Grid item container alignItems="flex-end">
+              <Grid item xs={9}>
+                <Field
+                  component={TextField}
+                  variant="outlined"
+                  id="outlined-secondary"
+                  label="Domain Name"
+                  name="domainName"
+                  fullWidth
+                />
+              </Grid>
+              <Grid item xs={3}>
+                <Typography className={classes.link}>
+                  .yachtcloud.com
+                </Typography>
+              </Grid>
             </Grid>
             <Grid item xs={12}>
               <Field
@@ -221,12 +237,17 @@ export function FormikStepper({
     console.log('is  entered');
     if (isLastStep()) {
       console.log('is last step function entered');
-      await onSubmit(values, helpers);
+      await onSubmit(
+        { ...values, email: values.email.trim().toLowerCase() },
+        helpers
+      );
       setCompleted(true);
       return;
     }
     if (step === 0) {
-      const valid = await onValidateUserEmailStart(values.email);
+      const valid = await onValidateUserEmailStart(
+        values.email.trim().toLowerCase()
+      );
       if (valid) handleNext();
     } else {
       setStep((s) => s + 1);

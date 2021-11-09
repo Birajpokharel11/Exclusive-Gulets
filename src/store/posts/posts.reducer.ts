@@ -12,7 +12,8 @@ const INITIAL_STATE: IPostState = {
   featured_blog: {},
   postsList: [],
   error: null,
-  loading: false
+  loading: false,
+  isCreating: false
 };
 
 const PostsReducer = (state = INITIAL_STATE, action) => {
@@ -79,6 +80,25 @@ const PostsReducer = (state = INITIAL_STATE, action) => {
       return {
         ...state,
         loading: false,
+        error: payload
+      };
+
+    case PostsType.CREATE_POST_START:
+      return {
+        ...state,
+        isCreating: true
+      };
+
+    case PostsType.CREATE_POST_SUCCESS:
+      return {
+        ...state,
+        isCreating: false
+      };
+
+    case PostsType.CREATE_POST_FAILURE:
+      return {
+        ...state,
+        isCreating: false,
         error: payload
       };
 

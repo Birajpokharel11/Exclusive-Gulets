@@ -28,3 +28,17 @@ export const fetchExperienceByIdFailure = (error) => ({
   type: ExperiencesType.FETCH_EXPERIENCES_FAILURE,
   payload: error
 });
+
+export const createExperienceStart = (formData) => ({
+  type: ExperiencesType.CREATE_EXPERIENCE_START,
+  payload: { formData }
+});
+
+export const createExperienceSuccess = () => ({
+  type: ExperiencesType.CREATE_EXPERIENCE_SUCCESS
+});
+
+export const createExperienceFailure = (error) => ({
+  type: ExperiencesType.CREATE_EXPERIENCE_FAILURE,
+  payload: error
+});

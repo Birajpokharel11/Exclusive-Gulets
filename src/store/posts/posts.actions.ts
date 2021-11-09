@@ -58,3 +58,17 @@ export const fetchPostsByIdFailure = (error) => ({
   type: PostsType.FETCH_POSTS_FAILURE,
   payload: error
 });
+
+export const createPostStart = (formData) => ({
+  type: PostsType.CREATE_POST_START,
+  payload: { formData }
+});
+
+export const createPostSuccess = () => ({
+  type: PostsType.CREATE_POST_SUCCESS
+});
+
+export const createPostFailure = (error) => ({
+  type: PostsType.CREATE_POST_FAILURE,
+  payload: error
+});

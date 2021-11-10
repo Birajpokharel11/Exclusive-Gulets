@@ -46,7 +46,8 @@ export default function CheckBoxTags({
   family,
   SUP,
   gourmet,
-  handleChange
+  handleChange,
+  tags
 }: Props) {
   const classes = useStyles();
   const [showMore, setShowMore] = useState(false);

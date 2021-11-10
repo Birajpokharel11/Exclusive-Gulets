@@ -1,6 +1,11 @@
 import React, { useState } from 'react';
 import clsx from 'clsx';
-import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
+import {
+  makeStyles,
+  createStyles,
+  Theme,
+  useTheme
+} from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import FormLabel from '@material-ui/core/FormLabel';
 import InputBase from '@material-ui/core/InputBase';
@@ -24,7 +29,9 @@ import {
 } from '@material-ui/pickers';
 import MomentUtils from '@material-ui/pickers/adapter/moment';
 import container from '@components/CustomAlert/CustomAlert.container';
-import { Container } from '@material-ui/core';
+import { Container, useMediaQuery } from '@material-ui/core';
+import filterMobilte from './filterMobilte';
+import FilterMobile from './filterMobilte';
 
 const useStyles = makeStyles((theme) =>
   createStyles({
@@ -243,6 +250,8 @@ export default function Filter() {
   };
 
   /////////////////////////////////////////////////////////////////
+  const theme = useTheme();
+  const matches = useMediaQuery(theme.breakpoints.down('xs'));
 
   return (
     <div style={{ position: 'relative', bottom: 10 }}>
@@ -321,204 +330,208 @@ export default function Filter() {
           )}
         </Grid>
       </div>
-      <Popper
-        open={open}
-        anchorEl={anchorRef.current}
-        role={undefined}
-        transition
-        style={{ zIndex: 1 }}
-        disablePortal
-      >
-        {({ TransitionProps, placement }) => (
-          <Grow
-            {...TransitionProps}
-            style={{
-              transformOrigin:
-                placement === 'bottom' ? 'center top' : 'center bottom'
-            }}
-          >
-            <ClickAwayListener onClickAway={handleClose}>
-              <Paper elevation={2} style={{ minWidth: '720px' }}>
-                <Box
-                  style={{ paddingTop: '32px' }}
-                  display="flex"
-                  justifyContent="center"
-                >
-                  <Button
-                    className={classes.Button}
-                    variant="contained"
-                    color="primary"
-                    size="large"
-                    onClick={() => setCalender('calendar')}
+      {!matches ? (
+        <Popper
+          open={open}
+          anchorEl={anchorRef.current}
+          role={undefined}
+          transition
+          style={{ zIndex: 1 }}
+          disablePortal
+        >
+          {({ TransitionProps, placement }) => (
+            <Grow
+              {...TransitionProps}
+              style={{
+                transformOrigin:
+                  placement === 'bottom' ? 'center top' : 'center bottom'
+              }}
+            >
+              <ClickAwayListener onClickAway={handleClose}>
+                <Paper elevation={2} style={{ minWidth: '720px' }}>
+                  <Box
+                    style={{ paddingTop: '32px' }}
+                    display="flex"
+                    justifyContent="center"
                   >
-                    Calendar
-                  </Button>
-                  <Button
-                    onClick={() => setCalender('flexible')}
-                    variant="contained"
-                    color="secondary"
-                    size="large"
-                  >
-                    I{`'`}m Fexible
-                  </Button>
-                </Box>
-                {calender === 'flexible' ? (
-                  <Box justifyContent="center">
-                    <Box
-                      display="flex"
-                      justifyContent="center"
-                      style={{ paddingTop: '24px', paddingBottom: '27px' }}
+                    <Button
+                      className={classes.Button}
+                      variant="contained"
+                      color="primary"
+                      size="large"
+                      onClick={() => setCalender('calendar')}
                     >
-                      <Typography>
-                        Stay For
-                        <span>
-                          {week && 'A Week'}
-                          {coupleofweeks && 'A Couple of Weeks'}
-                          {amonth && 'A Months'}
-                        </span>
-                      </Typography>
-                    </Box>
-                    <Container
-                      maxWidth="xs"
-                      style={{
-                        display: 'flex',
-                        gap: '1rem',
-                        paddingBottom: '40px'
-                      }}
+                      Calendar
+                    </Button>
+                    <Button
+                      onClick={() => setCalender('flexible')}
+                      variant="contained"
+                      color="secondary"
+                      size="large"
                     >
-                      <Button
-                        variant="contained"
-                        onClick={handleweek}
-                        className={clsx(classes.ButtonHeight, {
-                          [classes.Week]: week
-                        })}
-                      >
-                        {' '}
-                        A week
-                      </Button>
-                      <Button
-                        variant="contained"
-                        onClick={handleCoupleofWeeks}
-                        className={clsx(classes.ButtonHeight, {
-                          [classes.coupleofweeks]: coupleofweeks
-                        })}
-                      >
-                        A couple of weeks
-                      </Button>
-                      <Button
-                        variant="contained"
-                        onClick={handleMonth}
-                        className={clsx(classes.ButtonHeight, {
-                          [classes.amonth]: amonth
-                        })}
-                      >
-                        A month
-                      </Button>
-                    </Container>
-                    <Box
-                      display="flex"
-                      justifyContent="center"
-                      style={{ paddingBottom: '27px' }}
-                    >
-                      <Typography>
-                        Check in
-                        <span>
-                          {' '}
-                          {june && 'June'}
-                          {july && 'July'}
-                          {august && 'August'}
-                          {september && 'September'}
-                          {october && 'October'}
-                          {november && 'November'}
-                        </span>
-                      </Typography>
-                    </Box>
-                    <Container
-                      maxWidth="lg"
-                      style={{
-                        display: 'flex',
-                        justifyContent: 'space-around',
-                        paddingBottom: '48px'
-                      }}
-                    >
-                      <Button
-                        variant="contained"
-                        onClick={handleJune}
-                        className={clsx(classes.ButtonHeight, {
-                          [classes.june]: june
-                        })}
-                      >
-                        {' '}
-                        June
-                      </Button>
-                      <Button
-                        variant="contained"
-                        onClick={handleJuly}
-                        className={clsx(classes.ButtonHeight, {
-                          [classes.july]: july
-                        })}
-                      >
-                        July
-                      </Button>
-                      <Button
-                        variant="contained"
-                        onClick={handleAugust}
-                        className={clsx(classes.ButtonHeight, {
-                          [classes.august]: august
-                        })}
-                      >
-                        August
-                      </Button>
-                      <Button
-                        variant="contained"
-                        onClick={handleSeptember}
-                        className={clsx(classes.ButtonHeight, {
-                          [classes.september]: september
-                        })}
-                      >
-                        September
-                      </Button>
-                      <Button
-                        variant="contained"
-                        onClick={handleOctober}
-                        className={clsx(classes.ButtonHeight, {
-                          [classes.october]: october
-                        })}
-                      >
-                        October
-                      </Button>
-                      <Button
-                        variant="contained"
-                        onClick={handleNovember}
-                        className={clsx(classes.ButtonHeight, {
-                          [classes.november]: november
-                        })}
-                      >
-                        November
-                      </Button>
-                    </Container>
+                      I{`'`}m Fexible
+                    </Button>
                   </Box>
-                ) : (
-                  <LocalizationProvider dateAdapter={MomentUtils}>
-                    <StaticDateRangePicker
-                      displayStaticWrapperAs="desktop"
-                      value={value}
-                      onChange={(newValue) => setValue(newValue)}
-                      renderInput={(startProps, endProps) => (
-                        <React.Fragment>
-                          <TextField {...startProps} />
-                          <DateRangeDelimiter> to </DateRangeDelimiter>
-                          <TextField {...endProps} />
-                        </React.Fragment>
-                      )}
-                    />
-                  </LocalizationProvider>
-                )}
-              </Paper>
-            </ClickAwayListener>
-          </Grow>
-        )}
-      </Popper>
+                  {calender === 'flexible' ? (
+                    <Box justifyContent="center">
+                      <Box
+                        display="flex"
+                        justifyContent="center"
+                        style={{ paddingTop: '24px', paddingBottom: '27px' }}
+                      >
+                        <Typography>
+                          Stay For
+                          <span>
+                            {week && 'A Week'}
+                            {coupleofweeks && 'A Couple of Weeks'}
+                            {amonth && 'A Months'}
+                          </span>
+                        </Typography>
+                      </Box>
+                      <Container
+                        maxWidth="xs"
+                        style={{
+                          display: 'flex',
+                          gap: '1rem',
+                          paddingBottom: '40px'
+                        }}
+                      >
+                        <Button
+                          variant="contained"
+                          onClick={handleweek}
+                          className={clsx(classes.ButtonHeight, {
+                            [classes.Week]: week
+                          })}
+                        >
+                          {' '}
+                          A week
+                        </Button>
+                        <Button
+                          variant="contained"
+                          onClick={handleCoupleofWeeks}
+                          className={clsx(classes.ButtonHeight, {
+                            [classes.coupleofweeks]: coupleofweeks
+                          })}
+                        >
+                          A couple of weeks
+                        </Button>
+                        <Button
+                          variant="contained"
+                          onClick={handleMonth}
+                          className={clsx(classes.ButtonHeight, {
+                            [classes.amonth]: amonth
+                          })}
+                        >
+                          A month
+                        </Button>
+                      </Container>
+                      <Box
+                        display="flex"
+                        justifyContent="center"
+                        style={{ paddingBottom: '27px' }}
+                      >
+                        <Typography>
+                          Check in
+                          <span>
+                            {' '}
+                            {june && 'June'}
+                            {july && 'July'}
+                            {august && 'August'}
+                            {september && 'September'}
+                            {october && 'October'}
+                            {november && 'November'}
+                          </span>
+                        </Typography>
+                      </Box>
+                      <Container
+                        maxWidth="lg"
+                        style={{
+                          display: 'flex',
+                          justifyContent: 'space-around',
+                          paddingBottom: '48px'
+                        }}
+                      >
+                        <Button
+                          variant="contained"
+                          onClick={handleJune}
+                          className={clsx(classes.ButtonHeight, {
+                            [classes.june]: june
+                          })}
+                        >
+                          {' '}
+                          June
+                        </Button>
+                        <Button
+                          variant="contained"
+                          onClick={handleJuly}
+                          className={clsx(classes.ButtonHeight, {
+                            [classes.july]: july
+                          })}
+                        >
+                          July
+                        </Button>
+                        <Button
+                          variant="contained"
+                          onClick={handleAugust}
+                          className={clsx(classes.ButtonHeight, {
+                            [classes.august]: august
+                          })}
+                        >
+                          August
+                        </Button>
+                        <Button
+                          variant="contained"
+                          onClick={handleSeptember}
+                          className={clsx(classes.ButtonHeight, {
+                            [classes.september]: september
+                          })}
+                        >
+                          September
+                        </Button>
+                        <Button
+                          variant="contained"
+                          onClick={handleOctober}
+                          className={clsx(classes.ButtonHeight, {
+                            [classes.october]: october
+                          })}
+                        >
+                          October
+                        </Button>
+                        <Button
+                          variant="contained"
+                          onClick={handleNovember}
+                          className={clsx(classes.ButtonHeight, {
+                            [classes.november]: november
+                          })}
+                        >
+                          November
+                        </Button>
+                      </Container>
+                    </Box>
+                  ) : (
+                    <LocalizationProvider dateAdapter={MomentUtils}>
+                      <StaticDateRangePicker
+                        displayStaticWrapperAs="desktop"
+                        value={value}
+                        onChange={(newValue) => setValue(newValue)}
+                        renderInput={(startProps, endProps) => (
+                          <React.Fragment>
+                            <TextField {...startProps} />
+                            <DateRangeDelimiter> to </DateRangeDelimiter>
+                            <TextField {...endProps} />
+                          </React.Fragment>
+                        )}
+                      />
+                    </LocalizationProvider>
+                  )}
+                </Paper>
+              </ClickAwayListener>
+            </Grow>
+          )}
+        </Popper>
+      ) : (
+        <FilterMobile setOpen={setOpen} open={open} />
+      )}
     </div>
   );
 }

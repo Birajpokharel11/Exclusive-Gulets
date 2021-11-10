@@ -29,6 +29,9 @@ const useStyles = makeStyles((theme) =>
       [theme.breakpoints.down('xs')]: {
         width: '343px'
       },
+      [theme.breakpoints.down(390)]: {
+        width: '309px'
+      },
       height: '52px',
       padding: '5px 20px 5px 20px',
       borderRadius: '4px'
@@ -45,6 +48,9 @@ const useStyles = makeStyles((theme) =>
       width: '440px',
       [theme.breakpoints.down('xs')]: {
         width: '382px'
+      },
+      [theme.breakpoints.down(390)]: {
+        width: '328px'
       }
     },
     Values: {

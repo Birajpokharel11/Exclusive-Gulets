@@ -47,7 +47,13 @@ const user = {
 };
 
 const Topbar = (props) => {
-  const { className, onSidebarOpen, ...rest } = props;
+  const {
+    className,
+    onSidebarOpen,
+    onSignoutStart,
+    auth: { token },
+    ...rest
+  } = props;
 
   const classes = useStyles();
   const avatarClass = useStylesAvatar();
@@ -69,6 +75,11 @@ const Topbar = (props) => {
 
     setOpen(false);
   }
+
+  const handleClickSignout = () => {
+    onSignoutStart(token);
+    setOpen(false);
+  };
 
   return (
     <AppBar {...rest} className={clsx(classes.root, className)}>
@@ -116,9 +127,7 @@ const Topbar = (props) => {
             <Paper id="menu-list-grow">
               <ClickAwayListener onClickAway={handleClose}>
                 <MenuList>
-                  <MenuItem onClick={handleClose}>Profile</MenuItem>
-                  <MenuItem onClick={handleClose}>My account</MenuItem>
-                  <MenuItem onClick={handleClose}>Logout</MenuItem>
+                  <MenuItem onClick={handleClickSignout}>Logout</MenuItem>
                 </MenuList>
               </ClickAwayListener>
             </Paper>

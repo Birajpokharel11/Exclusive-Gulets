@@ -58,6 +58,11 @@ const Sidebar = (props) => {
       title: 'Experiences',
       href: '/manage/experiences',
       icon: <ShoppingBasketIcon />
+    },
+    {
+      title: 'Settings',
+      href: '/manage/settings',
+      icon: <SettingsIcon />
     }
   ];
 

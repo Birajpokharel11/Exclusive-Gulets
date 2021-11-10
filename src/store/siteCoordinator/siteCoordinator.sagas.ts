@@ -24,6 +24,8 @@ export function* checkDomainAsync({ payload: { domainName } }: AnyAction) {
       return;
     }
 
+    console.log({ finalData });
+
     yield put(
       actions.checkDomainSuccess({
         name: domainName,

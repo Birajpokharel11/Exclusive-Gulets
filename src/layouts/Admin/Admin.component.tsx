@@ -26,7 +26,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const Main = (props) => {
-  const { children, ...rest } = props;
+  const { children, onSignoutStart, ...rest } = props;
 
   const classes = useStyles();
   const theme = useTheme();
@@ -54,7 +54,7 @@ const Main = (props) => {
       })}
     >
       <CustomAlert />
-      <Topbar onSidebarOpen={handleSidebarOpen} />
+      <Topbar {...rest} onSidebarOpen={handleSidebarOpen} />
       <Sidebar
         onClose={handleSidebarClose}
         open={shouldOpenSidebar}

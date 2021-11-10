@@ -10,13 +10,16 @@ import router from 'next/router';
 import * as ExperiencesType from './experiences.types';
 import * as experiencesAction from './experiences.actions';
 
-export function* fetchExperiencesAsync() {
+export function* fetchExperiencesAsync({ payload: { id } }: AnyAction) {
   try {
+    console.log('fetchExperiencesAsync>>>', id);
     const { data } = yield axios.get(
-      `${process.env.REACT_APP_PROD_URL}/experiences.json`
+      `https://yatchcloud-dev.fghire.com/public/getExperiencesByBroker/${id}`
     );
 
-    yield put(experiencesAction.fetchExperiencesSuccess(data.experiences));
+    console.log('fetch experience value>>>', data);
+
+    yield put(experiencesAction.fetchExperiencesSuccess(data.detail.data));
   } catch (err) {
     console.error('error received>>>', err);
     yield put(experiencesAction.fetchExperiencesFailure(err));

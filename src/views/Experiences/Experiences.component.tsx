@@ -33,16 +33,26 @@ const useStyles = makeStyles((theme) =>
 );
 interface Props {
   experience?: IExperienceState;
+  siteCoordinator?: any;
   loading?: any;
   route?: string;
+  onFetchExperiencesStart?: (id) => any;
 }
 
 const Experiences = (props: Props) => {
   const classes = useStyles();
 
   const {
-    experience: { loading, experiences }
+    experience: { loading, experiences },
+    siteCoordinator: {
+      domain: { data }
+    },
+    onFetchExperiencesStart
   } = props;
+
+  useEffect(() => {
+    onFetchExperiencesStart(data.id);
+  }, [data]);
 
   const routeRedirect = (data) => {
     Router.push({
@@ -65,11 +75,17 @@ const Experiences = (props: Props) => {
         <BackgroundVectors />
 
         <Container>
-          <CardList
-            list={experiences}
-            route="experiences"
-            routeRedirect={routeRedirect}
-          />
+          {experiences.length ? (
+            <CardList
+              list={experiences}
+              route="experiences"
+              routeRedirect={routeRedirect}
+            />
+          ) : (
+            <Typography variant="h2" align="center">
+              Data Not Found!!
+            </Typography>
+          )}
         </Container>
       </Box>
       {/* <FooterSlider /> */}

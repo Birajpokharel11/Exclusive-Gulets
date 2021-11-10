@@ -7,9 +7,9 @@ interface IFetchPost {
   sort_order?: string;
 }
 
-export const fetchPostsStart = (data?: IFetchPost) => ({
+export const fetchPostsStart = (id) => ({
   type: PostsType.FETCH_POSTS_START,
-  payload: { ...data }
+  payload: { id }
 });
 
 export const fetchPostsSuccess = (result) => ({

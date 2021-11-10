@@ -36,6 +36,9 @@ export function* loadUserAsync() {
     };
 
     yield put(authActions.loadUserSuccess(profile));
+    yield put(
+      openAlert(`logged in with ${data.detail.data.userType} role`, 'success')
+    );
   } catch (err) {
     console.error(err);
     yield put(authActions.loadUserFail(err));

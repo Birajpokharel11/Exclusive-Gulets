@@ -1,5 +1,6 @@
 import { createStyles, makeStyles } from '@material-ui/core/styles';
 import Router from 'next/router';
+import moment from 'moment';
 
 import {
   Button,
@@ -94,7 +95,10 @@ export default function CardList({
                 alt="image"
                 height="290"
                 width="352"
-                image={item.featured_image.url}
+                image={
+                  item.featured_image?.url ||
+                  '/assets/images/Blog_single/Aresteas.jpg'
+                }
                 title="title"
               />
               <CardContent>
@@ -115,7 +119,7 @@ export default function CardList({
                   component="p"
                   align="center"
                 >
-                  {item?.meta_description}
+                  {item?.metaDescription}
                 </Typography>
 
                 {route !== 'destinations' && (
@@ -126,9 +130,7 @@ export default function CardList({
                     align="center"
                     style={{ marginTop: '1rem' }}
                   >
-                    {new Date(item.created_at).getDate()} /{' '}
-                    {new Date(item.created_at).getMonth() + 1} /{' '}
-                    {new Date(item.created_at).getFullYear()}
+                    {moment(item.createdDate).format('d / MM / YYYY')}
                   </Typography>
                 )}
               </CardContent>

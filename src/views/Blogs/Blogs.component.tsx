@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { createStyles, makeStyles } from '@material-ui/core/styles';
 import { Box, Container, Typography } from '@material-ui/core';
 import BannerSection from '@components/BannerSection';
@@ -31,13 +31,17 @@ const useStyles = makeStyles((theme) =>
 );
 interface Props {
   posts?: IPostState;
+  siteCoordinator?: any;
   loading?: any;
   route?: string;
   next_page?: number;
-  fetchPostsStart?: (page) => any;
+  fetchPostsStart?: (id) => any;
 }
 function Destinations({
   posts: { postsList, next_page },
+  siteCoordinator: {
+    domain: { data }
+  },
   loading,
   fetchPostsStart
 }: Props) {
@@ -45,6 +49,11 @@ function Destinations({
   const [page, setpage] = React.useState(0);
   const [amount_per_page, setAmount_per_page] = React.useState(5);
   const router = useRouter();
+
+  useEffect(() => {
+    fetchPostsStart(data.id);
+  }, [data]);
+
   const showMore = () => {
     setpage((prev) => prev + 1);
     console.log('helloworld', page, next_page);

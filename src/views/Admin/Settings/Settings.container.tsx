@@ -1,13 +1,12 @@
 import { connect } from 'react-redux';
-import { fetchPostsStart } from '@store/posts/posts.actions';
+import { createPostStart } from '@store/posts/posts.actions';
 const mapStateToProps = (state, props) => ({
   destination: state.destination,
-  posts: state.posts,
-  siteCoordinator: state.siteCoordinator
+  posts: state.posts
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  fetchPostsStart: (id) => dispatch(fetchPostsStart(id))
+  onCreatePostStart: (formData) => dispatch(createPostStart(formData))
 });
 
 const container = connect(mapStateToProps, mapDispatchToProps);

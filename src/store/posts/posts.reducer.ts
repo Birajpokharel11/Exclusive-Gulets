@@ -31,8 +31,7 @@ const PostsReducer = (state = INITIAL_STATE, action) => {
     case PostsType.FETCH_POSTS_SUCCESS:
       return {
         ...state,
-        postsList: [...state.postsList, ...payload.posts],
-        next_page: payload.next_page,
+        postsList: payload,
         loading: false
       };
 

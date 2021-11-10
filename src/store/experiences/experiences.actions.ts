@@ -1,7 +1,8 @@
 import * as ExperiencesType from './experiences.types';
 
-export const fetchExperiencesStart = () => ({
-  type: ExperiencesType.FETCH_EXPERIENCES_START
+export const fetchExperiencesStart = (id) => ({
+  type: ExperiencesType.FETCH_EXPERIENCES_START,
+  payload: { id }
 });
 
 export const fetchExperiencesSuccess = (result) => ({

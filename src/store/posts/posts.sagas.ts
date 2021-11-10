@@ -14,22 +14,16 @@ import { Limits, Sort } from '@utils/enums';
 import router from 'next/router';
 
 export function* fetchPostsAsync({
-  payload: {
-    page = 1,
-    amount_per_page = Limits.BLOGS_PER_PAGE,
-    sort_by = Sort.SORT_BY,
-    sort_order = Sort.SORT_ORDER
-  }
+  payload: { id }
 }: ReturnType<typeof fetchPostsStart>) {
   try {
     const { data } = yield axios.get(
-      `https://app.exclusivegulets.com/api/v1/posts.json`,
-      {
-        params: { page, amount_per_page, sort_by, sort_order }
-      }
+      `https://yatchcloud-dev.fghire.com/api/getBlogsByBroker/${id}`
     );
 
-    yield put(postsAction.fetchPostsSuccess(data));
+    console.log('result fetchPostsAsync>>>', data);
+
+    yield put(postsAction.fetchPostsSuccess(data.detail.data));
   } catch (err) {
     console.error('error received>>>', err);
     yield put(postsAction.fetchPostsFailure(err));

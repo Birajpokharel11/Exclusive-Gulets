@@ -23,6 +23,7 @@ import {
   DateRange,
   StaticDatePicker
 } from '@material-ui/pickers';
+import MobileFexible from './mobileFexible';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -76,6 +77,7 @@ export default function FilterMobile({ setOpen, open } = Props) {
   const [value, setValue] = React.useState<DateRange<Date>>([null, null]);
   const [back, setBack] = React.useState(false);
   const [next, setNext] = React.useState(false);
+  const [fexible, setFexible] = React.useState(false);
 
   return (
     <div>
@@ -106,12 +108,11 @@ export default function FilterMobile({ setOpen, open } = Props) {
             variant="contained"
             color="primary"
             size="large"
-            onClick={() => setCalender('calendar')}
           >
             Calendar
           </Button>
           <Button
-            onClick={() => setCalender('flexible')}
+            onClick={() => setFexible((prev) => !prev)}
             variant="contained"
             color="secondary"
             size="large"
@@ -119,31 +120,36 @@ export default function FilterMobile({ setOpen, open } = Props) {
             I{`'`}m Fexible
           </Button>
         </Box>
-        {!back && (
-          <LocalizationProvider dateAdapter={MomentUtils}>
-            <StaticDatePicker
-              orientation="landscape"
-              openTo="date"
-              value={value}
-              // @ts-expect-error Waiting for making all inner components generics
-              shouldDisableDate={false}
-              onChange={(newValue) => setValue(newValue)}
-              renderInput={(props) => <TextField {...props} />}
-            />
-          </LocalizationProvider>
-        )}
-        {!next && (
-          <LocalizationProvider dateAdapter={MomentUtils}>
-            <StaticDatePicker
-              orientation="landscape"
-              openTo="date"
-              value={value}
-              // @ts-expect-error Waiting for making all inner components generics
-              shouldDisableDate={false}
-              onChange={(newValue) => setValue(newValue)}
-              renderInput={(props) => <TextField {...props} />}
-            />
-          </LocalizationProvider>
+        {!fexible ? (
+          <>
+            <LocalizationProvider dateAdapter={MomentUtils}>
+              <StaticDatePicker
+                orientation="landscape"
+                openTo="date"
+                value={value}
+                // @ts-expect-error Waiting for making all inner components generics
+                shouldDisableDate={false}
+                onChange={(newValue) => setValue(newValue)}
+                renderInput={(props) => <TextField {...props} />}
+              />
+            </LocalizationProvider>
+
+            <LocalizationProvider dateAdapter={MomentUtils}>
+              <StaticDatePicker
+                orientation="landscape"
+                openTo="date"
+                value={value}
+                // @ts-expect-error Waiting for making all inner components generics
+                shouldDisableDate={false}
+                onChange={(newValue) => setValue(newValue)}
+                renderInput={(props) => <TextField {...props} />}
+              />
+            </LocalizationProvider>
+          </>
+        ) : (
+          <Box style={{ overflow: 'scroll', width: '100%' }}>
+            <MobileFexible />
+          </Box>
         )}
 
         <Paper

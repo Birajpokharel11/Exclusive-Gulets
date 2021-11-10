@@ -265,10 +265,10 @@ export default function MobileFexible() {
           justifyContent="center"
           style={{ paddingTop: '24px', paddingBottom: '27px' }}
         >
-          <Typography>
+          <Typography color="primary">
             Stay For
-            <span>
-              {week && 'A Week'}
+            <span style={{ fontWeight: 500 }}>
+              {week && ' A Week'}
               {coupleofweeks && 'A Couple of Weeks'}
               {amonth && 'A Months'}
             </span>
@@ -317,10 +317,9 @@ export default function MobileFexible() {
           justifyContent="center"
           style={{ paddingBottom: '27px' }}
         >
-          <Typography>
-            Check in
-            <span>
-              {' '}
+          <Typography color="primary">
+            Check in{' '}
+            <span style={{ fontWeight: 500 }}>
               {june && 'June'}
               {july && 'July'}
               {august && 'August'}

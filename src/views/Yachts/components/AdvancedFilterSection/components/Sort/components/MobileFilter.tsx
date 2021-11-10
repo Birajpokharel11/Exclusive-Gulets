@@ -66,12 +66,14 @@ interface Props {
   setOpen?: any;
   prevOpen?: any;
   setmobileSort?: any;
+  setMobileFilter?: any;
 }
 export default function MobileFilter({
   open,
   setOpen,
   prevOpen,
-  setmobileSort
+  setmobileSort,
+  setMobileFilter
 }: Props) {
   const classes = useStyles();
 
@@ -88,8 +90,8 @@ export default function MobileFilter({
       <Dialog fullScreen style={{ zIndex: 2 }} open={prevOpen}>
         <Box style={{ paddingTop: '65px' }} p={1.4}>
           <Box display="flex" justifyContent="flex-end" pt={0.5}>
-            <IconButton>
-              <CloseIcon style={{ color: 'red' }} />
+            <IconButton onClick={() => setMobileFilter((prev) => !prev)}>
+              <CloseIcon color="primary" />
             </IconButton>
           </Box>
           <Box pb={2}>

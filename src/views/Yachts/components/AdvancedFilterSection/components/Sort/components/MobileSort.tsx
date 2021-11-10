@@ -63,12 +63,11 @@ export default function MobileSort({
         anchor="bottom"
         open={prevOpen}
         onOpen={() => setmobileSort((prev) => !prev)}
-        onClose={() => setmobileSort((prev) => !prev)}
       >
         <Box pl="16px" pb="26px">
           <Box display="flex" justifyContent="flex-end" pt={2} pb={2} pr="10px">
             {' '}
-            <CloseIcon />
+            <CloseIcon onClick={() => setmobileSort((prev) => !prev)} />
           </Box>
           <Typography variant="h2" className={classes.Heading}>
             Sort

@@ -144,7 +144,10 @@ export default function MenuListComposition({ mobilesearch }: Props) {
           )}
         </Popper>
       ) : (
-        <MobileFilter prevOpen={mobileFilter} />
+        <MobileFilter
+          prevOpen={mobileFilter}
+          setMobileFilter={setMobileFilter}
+        />
       )}
     </>
   );

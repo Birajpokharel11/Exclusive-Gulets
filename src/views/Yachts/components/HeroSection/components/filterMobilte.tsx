@@ -61,6 +61,13 @@ const useStyles = makeStyles((theme: Theme) =>
     Fexible: {
       background: '#2A398D',
       color: 'white'
+    },
+    Next: {
+      background: '#2A398D',
+      color: 'white',
+      width: '200px',
+      height: '52px',
+      '&:hover': { background: '#2A398D', color: 'white' }
     }
   })
 );
@@ -181,8 +188,11 @@ export default function FilterMobile({ setOpen, open }: Props) {
 
             <Button
               onClick={() => setNext((prev) => !prev)}
-              className={classes.Button2}
-              variant="contained"
+              className={classes.Next}
+              color="primary"
+              //   className={clsx(classes.Calenderbefore, {
+              //     [classes.Calender]: fexible
+              //   })}
             >
               Next
             </Button>

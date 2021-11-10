@@ -24,6 +24,7 @@ import {
   StaticDatePicker
 } from '@material-ui/pickers';
 import MobileFexible from './mobileFexible';
+import clsx from 'clsx';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -50,6 +51,16 @@ const useStyles = makeStyles((theme: Theme) =>
       backgroundColor: '#F5F0E4',
       width: '125px',
       height: '52px'
+    },
+    Calender: {
+      background: '#F5F0E4',
+      color: 'black'
+    },
+    Calenderbefore: { '&:hover': { background: '#2A398D', color: 'white' } },
+    fexiblebefore: { '&:hover': { background: '#2A398D', color: 'white' } },
+    Fexible: {
+      background: '#2A398D',
+      color: 'white'
     }
   })
 );
@@ -61,19 +72,12 @@ const Transition = React.forwardRef(function Transition(
   return <Slide direction="up" ref={ref} {...props} />;
 });
 interface Props {
-  setOpen?: boolean;
-  oppen?: boolean;
+  setOpen?: any | boolean;
+  open?: any | boolean;
 }
-export default function FilterMobile({ setOpen, open } = Props) {
+export default function FilterMobile({ setOpen, open }: Props) {
   const classes = useStyles();
 
-  const handleClickOpen = () => {
-    setOpen(true);
-  };
-
-  const handleClose = () => {
-    setOpen(false);
-  };
   const [value, setValue] = React.useState<DateRange<Date>>([null, null]);
   const [back, setBack] = React.useState(false);
   const [next, setNext] = React.useState(false);
@@ -81,14 +85,9 @@ export default function FilterMobile({ setOpen, open } = Props) {
 
   return (
     <div>
-      <Dialog
-        fullScreen
-        open={open}
-        onClose={handleClose}
-        TransitionComponent={Transition}
-      >
+      <Dialog fullScreen open={open} TransitionComponent={Transition}>
         <Box display="flex" justifyContent="flex-end">
-          <IconButton>
+          <IconButton onClick={() => setOpen((prev) => !prev)}>
             <CloseIcon className={classes.Close} />
           </IconButton>
         </Box>
@@ -104,17 +103,23 @@ export default function FilterMobile({ setOpen, open } = Props) {
           justifyContent="center"
         >
           <Button
-            className={classes.Button}
+            onClick={() => setFexible(false)}
             variant="contained"
             color="primary"
             size="large"
+            className={clsx(classes.Calenderbefore, {
+              [classes.Calender]: fexible
+            })}
           >
             Calendar
           </Button>
           <Button
-            onClick={() => setFexible((prev) => !prev)}
+            onClick={() => setFexible(true)}
             variant="contained"
             color="secondary"
+            className={clsx(classes.fexiblebefore, {
+              [classes.Fexible]: fexible
+            })}
             size="large"
           >
             I{`'`}m Fexible

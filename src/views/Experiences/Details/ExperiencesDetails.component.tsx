@@ -13,10 +13,7 @@ import container from './ExperiencesDetails.container';
 
 const ExperiencesDetails = (props) => {
   const {
-    experience: {
-      loading,
-      soleExperience: { experience, yachts }
-    },
+    experience: { loading, soleExperience },
     destination: { randomDestination }
   } = props;
 
@@ -24,9 +21,12 @@ const ExperiencesDetails = (props) => {
     <>
       <BannerSection
         {...props}
-        title={experience?.title}
-        description={experience?.description}
-        backgroundImage={experience.featured_image?.url}
+        title={soleExperience?.title}
+        description={soleExperience?.description}
+        backgroundImage={
+          soleExperience?.featured_image?.url ||
+          '/assets/images/Destination/Hero-bg.jpg'
+        }
         route="soleExperience"
       />
       {/* Second section  */}
@@ -34,16 +34,19 @@ const ExperiencesDetails = (props) => {
       {loading ? (
         <CircularProgress />
       ) : (
-        <ContentSection contentData={experience} route="experienceDetails" />
+        <ContentSection
+          contentData={soleExperience}
+          route="experienceDetails"
+        />
       )}
 
       {/* Third Section  */}
-
+      {/* 
       <YahtsSlider
         title="Perfect Yachts for this Experience"
         subtitle="An unforgettable holiday of your life"
         contentData={yachts}
-      />
+      /> */}
 
       <DestinationsGallerySection
         title="Perfect Location Matches Perfect Experience"

@@ -18,6 +18,7 @@ export default function Experiences() {
 export const getServerSideProps = wrapper.getServerSideProps(
   (store) =>
     async ({ req, res, ...context }) => {
+      console.log('get serverside props>>>', context);
       const subdomain = await getTenantDomain(req.headers.host);
 
       if (!subdomain) {

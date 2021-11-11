@@ -29,9 +29,13 @@ export function* fetchExperiencesAsync({ payload: { id } }: AnyAction) {
 export function* fetchExperienceByIdAsync({ payload: { id } }: AnyAction) {
   try {
     const { data } = yield axios.get(
-      `${process.env.REACT_APP_PROD_URL}/experiences/${id}`
+      `https://yatchcloud-dev.fghire.com/public/getExperiencesById/${id}`
     );
-    yield put(experiencesAction.fetchExperienceByIdSuccess(data));
+
+    console.log('individual experience data>>', data);
+    yield put(
+      experiencesAction.fetchExperienceByIdSuccess(data.detail.data[0])
+    );
   } catch (err) {
     console.error('error received>>>', err);
     yield put(experiencesAction.fetchExperienceByIdFailure(err));

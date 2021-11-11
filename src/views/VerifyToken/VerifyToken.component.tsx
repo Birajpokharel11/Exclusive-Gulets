@@ -15,7 +15,7 @@ import {
 import DoneIcon from '@material-ui/icons/Done';
 import container from './VerifyToken.container';
 import ArrowForwardIcon from '@material-ui/icons/ArrowForward';
-import { getTenantDomain } from '@utils/data';
+import { getTenantDomain, createDomain } from '@utils/data';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -127,8 +127,9 @@ const SignIn = ({ onVerifyBrokerStart, auth: { loading } }) => {
     }
   }, []);
 
-  const attachDomain = async () => {
-    const subdomain = await getTenantDomain(query.domain);
+  const attachDomain = () => {
+    console.log('attach domain entered>>>');
+    const subdomain = createDomain(query.domain);
 
     if (!subdomain) {
       return {

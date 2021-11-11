@@ -20,8 +20,9 @@ const App = (props) => {
     if (jssStyles) {
       jssStyles.parentElement!.removeChild(jssStyles);
     }
+    const route = 'app';
 
-    dispatch(loadUserStart());
+    dispatch(loadUserStart(route));
   }, []);
 
   const { Component, pageProps } = props;

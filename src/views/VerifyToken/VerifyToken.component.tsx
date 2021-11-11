@@ -136,6 +136,7 @@ const SignIn = ({ onVerifyBrokerStart, auth: { loading } }) => {
         notFound: true
       };
     }
+    window.location.assign(subdomain);
   };
 
   return (

@@ -15,6 +15,7 @@ export async function getTenantDomain(host) {
 }
 
 export const createDomain = (domainName) => {
+  console.log('create domain>>>', domainName);
   const { host } = window.location;
   const { protocol } = window.location;
   const parts = host.split('.');

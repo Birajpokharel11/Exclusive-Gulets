@@ -48,7 +48,10 @@ export default function MediaCard(props) {
       <CardActionArea>
         <CardMedia
           className={classes.media}
-          image={(props.image?.url || props.featured_image?.url) ?? ''}
+          image={
+            (props.image?.url || props.featured_image?.url) ??
+            '/assets/images/Blog_single/Aresteas.jpg'
+          }
         />
       </CardActionArea>
       <CardContent>

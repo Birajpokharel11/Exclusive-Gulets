@@ -37,13 +37,23 @@ const Home = (props) => {
     destination: { randomDestination },
     experience: { experiences },
     posts: { postsList },
-    offer: { offers }
+    offer: { offers },
+    siteCoordinator: {
+      domain: { data }
+    },
+    onFetchExperiencesStart,
+    fetchPostsStart
     // home: {
     //   home: { yachts }
     // }
   } = props;
 
   /////////////////////////////////////////
+
+  useEffect(() => {
+    onFetchExperiencesStart(data.id);
+    fetchPostsStart(data.id);
+  }, [data]);
 
   const router = useRouter();
   const redirectDetailsPage = (data) => {

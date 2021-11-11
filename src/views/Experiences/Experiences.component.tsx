@@ -12,6 +12,7 @@ import BannerSection from '@components/BannerSection';
 import BackgroundVectors from '@components/BackgroundVectors';
 import CardList from '@components/CardList';
 import FooterSlider from '@components/FooterSlider';
+import { CardLoading } from '@components/SkeletonLoading';
 
 import { IExperienceState } from '@store/interfaces';
 
@@ -60,6 +61,26 @@ const Experiences = (props: Props) => {
     });
   };
 
+  const getExperiences = () => {
+    if (!experiences.length && !loading) {
+      return (
+        <Typography variant="h2" align="center">
+          Data Not Found!!
+        </Typography>
+      );
+    } else if (experiences.length && !loading) {
+      return (
+        <CardList
+          list={experiences}
+          route="experiences"
+          routeRedirect={routeRedirect}
+        />
+      );
+    } else {
+      return <CardLoading length={3} />;
+    }
+  };
+
   return (
     <Box>
       <BannerSection
@@ -71,19 +92,7 @@ const Experiences = (props: Props) => {
       <Box component="section" className={classes.sectionGem}>
         <BackgroundVectors />
 
-        <Container>
-          {experiences.length ? (
-            <CardList
-              list={experiences}
-              route="experiences"
-              routeRedirect={routeRedirect}
-            />
-          ) : (
-            <Typography variant="h2" align="center">
-              Data Not Found!!
-            </Typography>
-          )}
-        </Container>
+        <Container>{getExperiences()}</Container>
       </Box>
       {/* <FooterSlider /> */}
     </Box>

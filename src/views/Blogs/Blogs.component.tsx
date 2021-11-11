@@ -4,6 +4,8 @@ import { Box, Container, Typography } from '@material-ui/core';
 import BannerSection from '@components/BannerSection';
 import CardList from '@components/CardList';
 import container from './Blogs.container';
+import { CardLoading } from '@components/SkeletonLoading';
+
 import BackgroundVectors from '@components/BackgroundVectors';
 import { CircularProgress } from '@material-ui/core';
 import { useRouter } from 'next/router';
@@ -38,11 +40,10 @@ interface Props {
   fetchPostsStart?: (id) => any;
 }
 function Destinations({
-  posts: { postsList, next_page },
+  posts: { postsList, next_page, loading },
   siteCoordinator: {
     domain: { data }
   },
-  loading,
   fetchPostsStart
 }: Props) {
   const classes = useStyles();
@@ -66,6 +67,27 @@ function Destinations({
       pathname: `/blogs/${data.id}`
     });
   };
+
+  const getBlogs = () => {
+    if (!postsList.length && !loading) {
+      return (
+        <Typography variant="h2" align="center">
+          Data Not Found!!
+        </Typography>
+      );
+    } else if (postsList.length && !loading) {
+      return (
+        <CardList
+          list={postsList}
+          showMore={showMore}
+          routeRedirect={redirectDetailsPage}
+          route={route}
+        />
+      );
+    } else {
+      return <CardLoading length={3} />;
+    }
+  };
   return (
     <>
       <BannerSection
@@ -83,16 +105,7 @@ function Destinations({
             news and blogs below for some insight and get in touch for your own
             tailor-made escape on water.
           </Typography>
-          {loading ? (
-            <CircularProgress />
-          ) : (
-            <CardList
-              list={postsList}
-              showMore={showMore}
-              routeRedirect={redirectDetailsPage}
-              route={route}
-            />
-          )}
+          {getBlogs()}
         </Container>
         <BackgroundVectors />
       </Box>

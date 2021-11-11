@@ -111,7 +111,8 @@ export function* onSignupBrokerAsync({
       yield put(openAlert('User signed Up successfully!!', 'success'));
       router.push('/signin');
     } else {
-      yield put(openAlert('Internal Server Error!!', 'error'));
+      yield put(openAlert(data.status || 'Internal Server Error!!', 'error'));
+      yield put(authActions.signupBrokerFail(data.status));
     }
   } catch (err) {
     console.error('error received onSignupAsync>>>', err);

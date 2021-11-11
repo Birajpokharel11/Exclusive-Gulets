@@ -3,7 +3,8 @@ import {
   createStyles,
   makeStyles,
   withStyles,
-  Theme
+  Theme,
+  useTheme
 } from '@material-ui/core/styles';
 import FormControl from '@material-ui/core/FormControl';
 import {
@@ -14,7 +15,8 @@ import {
   InputLabel,
   MenuItem,
   Checkbox,
-  ListItemText
+  ListItemText,
+  useMediaQuery
 } from '@material-ui/core';
 import InputBase from '@material-ui/core/InputBase';
 import KeyboardArrowDownIcon from '@material-ui/icons/KeyboardArrowDown';
@@ -63,6 +65,8 @@ export default function Destinations() {
     setPersonName(event.target.value);
   };
   const [personName, setPersonName] = React.useState(['Destinations:']);
+  const theme = useTheme();
+  const matches = useMediaQuery(theme.breakpoints.down('xs'));
 
   return (
     <Container maxWidth="false" className={classes.Container}>
@@ -70,21 +74,25 @@ export default function Destinations() {
         <Grid item>
           <Destination />
         </Grid>
-        <Grid item>
-          <Filter />
-        </Grid>
-        <Grid item>
-          <Guests />
-        </Grid>
-        <Grid item className={classes.ButtonGrid}>
-          <Button
-            variant="contained"
-            className={classes.Button}
-            data-cy="View-Yatchs"
-          >
-            View Yachts
-          </Button>
-        </Grid>
+        {!matches && (
+          <>
+            <Grid item>
+              <Filter />
+            </Grid>
+            <Grid item>
+              <Guests />
+            </Grid>
+            <Grid item className={classes.ButtonGrid}>
+              <Button
+                variant="contained"
+                className={classes.Button}
+                data-cy="View-Yatchs"
+              >
+                View Yachts
+              </Button>
+            </Grid>
+          </>
+        )}
       </Grid>
     </Container>
   );

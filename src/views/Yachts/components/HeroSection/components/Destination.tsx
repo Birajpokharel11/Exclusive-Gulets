@@ -45,6 +45,9 @@ const useStyles = makeStyles((theme: Theme) =>
       },
       [theme.breakpoints.down('sm')]: {
         width: '167px'
+      },
+      [theme.breakpoints.down('xs')]: {
+        width: '373px'
       }
     },
     label: {

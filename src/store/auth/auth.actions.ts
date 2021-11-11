@@ -1,7 +1,8 @@
 import * as AuthType from './auth.types';
 
-export const loadUserStart = () => ({
-  type: AuthType.LOAD_USER_START
+export const loadUserStart = (route) => ({
+  type: AuthType.LOAD_USER_START,
+  payload: route
 });
 
 export const loadUserSuccess = (currentUser) => ({

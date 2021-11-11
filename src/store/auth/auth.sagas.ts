@@ -13,12 +13,13 @@ import {
   signupBrokerStart,
   validateUserEmailStart,
   verifyBrokerStart,
-  signoutStart
+  signoutStart,
+  loadUserStart
 } from './auth.actions';
 
 import setAuthToken from '@utils/setAuthToken';
 
-export function* loadUserAsync() {
+export function* loadUserAsync({ payload }: ReturnType<typeof loadUserStart>) {
   if (localStorage.token) {
     setAuthToken(localStorage.token);
   }
@@ -36,9 +37,11 @@ export function* loadUserAsync() {
     };
 
     yield put(authActions.loadUserSuccess(profile));
-    yield put(
-      openAlert(`logged in with ${data.detail.data.userType} role`, 'success')
-    );
+    if (payload === 'signIn') {
+      yield put(
+        openAlert(`logged in with ${data.detail.data.userType} role`, 'success')
+      );
+    }
   } catch (err) {
     console.error(err);
     yield put(authActions.loadUserFail(err));
@@ -59,10 +62,11 @@ export function* onSigninAsync({
         }
       }
     );
+    const route = 'signIn';
     console.log('value fo data after success>>>', data);
     yield put(openAlert('Signin Success!!', 'success'));
     yield put(authActions.signinSuccess(data));
-    yield put(authActions.loadUserStart());
+    yield put(authActions.loadUserStart(route));
   } catch (err) {
     console.error('error received onSigninAsync>>>', err);
     yield put(openAlert('Internal Server Error!!', 'error'));

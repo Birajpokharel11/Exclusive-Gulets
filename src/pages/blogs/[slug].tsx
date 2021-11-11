@@ -73,11 +73,7 @@ export const getServerSideProps = wrapper.getServerSideProps(
       }
 
       return {
-        props: { posts },
-        // Next.js will attempt to re-generate the page:
-        // - When a request comes in
-        // - At most once every 30 minutes
-        revalidate: 3600 // In seconds
+        props: { host: req.headers.host, subdomain }
       };
     }
 );

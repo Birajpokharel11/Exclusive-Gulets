@@ -6,6 +6,7 @@ import { IPostState } from '../interfaces';
 
 const INITIAL_STATE: IPostState = {
   blogIds: [],
+  soleBlog: {},
   blogs: {},
   next_page: 1,
   current_page: 0,
@@ -71,7 +72,7 @@ const PostsReducer = (state = INITIAL_STATE, action) => {
     case PostsType.FETCH_POSTS_BY_ID_SUCCESS:
       return {
         ...state,
-        posts: payload,
+        soleBlog: payload,
         loading: false
       };
 

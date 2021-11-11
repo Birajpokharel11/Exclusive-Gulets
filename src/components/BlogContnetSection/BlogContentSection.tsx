@@ -12,6 +12,8 @@ import {
   Drawer,
   Divider
 } from '@material-ui/core';
+import moment from 'moment';
+
 import InstagramIcon from '@material-ui/icons/Instagram';
 
 import ExperiencesFrom from './components/ExperiencesForm';
@@ -115,68 +117,84 @@ export default function BlogContentSection(props) {
     <>
       <Box>
         <Box display="flex" className={classes.Container}>
-          <Box>
-            <Container
-              maxWidth={matches ? 'md' : 'lg'}
-              className={clsx(!readmore && classes.Flex1)}
-            >
+          {/* <Grid container spacing={2}>
+            <Grid item sm={8} xs={12}>
               <Typography
                 variant="subtitle2"
-                dangerouslySetInnerHTML={createMarkup(individual?.content)}
+                className={classes.intro_content}
+                dangerouslySetInnerHTML={createMarkup(contentData?.content)}
               />
-            </Container>
-            {!readmore && (
-              <Box
-                className={classes.BoxShadow}
-                display="flex"
-                justifyContent="center"
-              >
-                <Button
-                  className={classes.Readmore}
-                  onClick={() => setReadmore((prev) => !prev)}
-                >
-                  Read More
-                </Button>
-              </Box>
-            )}
-            <Divider />
-            <Paper elevation={0} className={classes.paper}>
-              <Box
-                display="flex"
-                alignItems="center"
-                justifyContent="space-between"
-              >
-                <Box>
-                  {new Date(individual.created_at).getDate()} /{' '}
-                  {new Date(individual.created_at).getMonth() + 1} /{' '}
-                  {new Date(individual.created_at).getFullYear()}
-                </Box>
-                <Box style={{ display: 'flex', gap: '0.1rem' }}>
-                  <IconButton>
-                    <FacebookIcon className={classes.icons} />
-                  </IconButton>
-                  <IconButton>
-                    <InstagramIcon className={classes.icons} />
-                  </IconButton>
-                  <IconButton>
-                    <LinkedInIcon className={classes.icons} />
-                  </IconButton>
-                  <IconButton>
-                    <TwitterIcon className={classes.icons} />
-                  </IconButton>
-                  <IconButton>
-                    <YouTubeIcon className={classes.icons} />
-                  </IconButton>
-                </Box>
-              </Box>
-            </Paper>
-          </Box>
+            </Grid>
+            <Grid item sm={4} xs={12}>
+              <EnquiryForm />
+            </Grid>
+          </Grid> */}
 
-          <Container className={classes.Flex2}>
-            <Box className={classes.Enquery}>
-              <ExperiencesFrom />
-            </Box>
-          </Container>
+          <Grid container>
+            <Grid item sm={8} xs={12}>
+              <Box>
+                <Container
+                  maxWidth={matches ? 'md' : 'lg'}
+                  className={clsx(!readmore && classes.Flex1)}
+                >
+                  <Typography
+                    variant="subtitle2"
+                    dangerouslySetInnerHTML={createMarkup(individual?.content)}
+                  />
+                </Container>
+                {!readmore && (
+                  <Box
+                    className={classes.BoxShadow}
+                    display="flex"
+                    justifyContent="center"
+                  >
+                    <Button
+                      className={classes.Readmore}
+                      onClick={() => setReadmore((prev) => !prev)}
+                    >
+                      Read More
+                    </Button>
+                  </Box>
+                )}
+                <Divider />
+                <Paper elevation={0} className={classes.paper}>
+                  <Box
+                    display="flex"
+                    alignItems="center"
+                    justifyContent="space-between"
+                  >
+                    <Box>
+                      {moment(individual.createdDate).format('d / MM / YYYY')}
+                    </Box>
+                    <Box style={{ display: 'flex', gap: '0.1rem' }}>
+                      <IconButton>
+                        <FacebookIcon className={classes.icons} />
+                      </IconButton>
+                      <IconButton>
+                        <InstagramIcon className={classes.icons} />
+                      </IconButton>
+                      <IconButton>
+                        <LinkedInIcon className={classes.icons} />
+                      </IconButton>
+                      <IconButton>
+                        <TwitterIcon className={classes.icons} />
+                      </IconButton>
+                      <IconButton>
+                        <YouTubeIcon className={classes.icons} />
+                      </IconButton>
+                    </Box>
+                  </Box>
+                </Paper>
+              </Box>
+            </Grid>
+            <Grid item sm={4} xs={12}>
+              <Container className={classes.Flex2}>
+                <Box className={classes.Enquery}>
+                  <ExperiencesFrom />
+                </Box>
+              </Container>
+            </Grid>
+          </Grid>
         </Box>
       </Box>
       <Box className={classes.EnquireTM}>

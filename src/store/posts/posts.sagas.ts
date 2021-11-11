@@ -52,9 +52,11 @@ export function* fetchPostsaByIdAsync({
 }: ReturnType<typeof fetchPostsByIdStart>) {
   try {
     const { data } = yield axios.get(
-      `${process.env.REACT_APP_PROD_URL}/posts/${id}`
+      `https://yatchcloud-dev.fghire.com/public/getBlogsById/${id}`
     );
-    yield put(postsAction.fetchPostsByIdSuccess(data));
+
+    console.log('fetchPostsaByIdAsync data>>', data.detail.data[0]);
+    yield put(postsAction.fetchPostsByIdSuccess(data.detail.data[0]));
   } catch (err) {
     console.error('error received>>>', err);
     yield put(postsAction.fetchPostsByIdFailure(err));

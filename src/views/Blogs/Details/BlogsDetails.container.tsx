@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 
 const mapStateToProps = (state, props) => ({
-  individual: state.posts.posts.post,
+  individual: state.posts.soleBlog,
   destination: state.destination
 });
 

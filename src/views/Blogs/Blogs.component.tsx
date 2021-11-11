@@ -63,10 +63,7 @@ function Destinations({
   const route = 'blogs';
   const redirectDetailsPage = (data) => {
     router.push({
-      pathname: `/blogs/${data.slug}`,
-      query: {
-        id: data.id
-      }
+      pathname: `/blogs/${data.id}`
     });
   };
   return (

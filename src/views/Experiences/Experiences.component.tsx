@@ -55,7 +55,6 @@ const Experiences = (props: Props) => {
   }, [data]);
 
   const routeRedirect = (data) => {
-    console.log('route redirect>>>', data);
     Router.push({
       pathname: `/experiences/${data.id}`
     });

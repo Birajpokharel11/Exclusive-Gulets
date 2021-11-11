@@ -20,6 +20,7 @@ export interface IDestinationState {
 export interface IPostState {
   blogIds: string[];
   blogs: any;
+  soleBlog: object | any;
   next_page: number | null;
   current_page: number;
   featured_blog: object | any;

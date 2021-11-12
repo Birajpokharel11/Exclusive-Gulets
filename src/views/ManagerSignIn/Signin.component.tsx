@@ -215,16 +215,11 @@ const SignIn = ({ onSigninStart }) => {
                   </Button>
                 </Form>
               </Formik>
-              <RouterLink href="/broker-signup">
+              <RouterLink href="/signup">
                 <Typography className={classes.link} style={{ marginTop: 40 }}>
                   {"Don't have an account. Create one here."}
                 </Typography>
               </RouterLink>
-              <a href="https://app.exclusivegulets.com/users/password/new">
-                <Typography className={classes.link} style={{ marginTop: 20 }}>
-                  {'Forgot your password.'}
-                </Typography>
-              </a>
             </div>
           </Grid>
           {/* <Grid className={classes.imgContainer} item lg={5}>

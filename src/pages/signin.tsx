@@ -9,7 +9,7 @@ import { wrapper } from '@store/index';
 import { checkDomainStart } from '@store/siteCoordinator/siteCoordinator.actions';
 
 import Signin from '@views/Signin';
-import YachtManagerSignIn from '@views/YachtManagerSignIn';
+import ManagerSignIn from '@views/ManagerSignIn';
 import WithPublic from '@components/WithPublic';
 import { getTenantDomain } from '@utils/data';
 
@@ -36,7 +36,7 @@ function SignIn({ subdomain }) {
         <title>YachtCloud | SignIn</title>
         <meta property="og:title" content="YachtCloud | SignIn" key="title" />
       </Head>
-      <WithLayout component={YachtManagerSignIn} layout={Main1} />
+      <WithLayout component={ManagerSignIn} layout={Main1} />
     </>
   );
 }

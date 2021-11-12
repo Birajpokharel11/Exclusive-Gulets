@@ -1,5 +1,3 @@
-/* eslint-disable object-curly-newline */
-import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/core/styles';
 import { Grid, Paper, TableRow, TableCell, Box } from '@material-ui/core';
 import Skeleton from '@material-ui/lab/Skeleton';

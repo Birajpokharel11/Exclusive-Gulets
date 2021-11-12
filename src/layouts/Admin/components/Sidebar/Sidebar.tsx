@@ -57,24 +57,25 @@ const Sidebar = (props) => {
       title: 'News and Blogs',
       href: '/manage/blogs',
       icon: <PeopleIcon />,
-      visible: currentUser.roles.indexOf('ROLE_BROKER') === 1
+      visible: currentUser && currentUser.roles.indexOf('ROLE_BROKER') === 1
     },
     {
       title: 'Experiences',
       href: '/manage/experiences',
       icon: <ShoppingBasketIcon />,
-      visible: currentUser.roles.indexOf('ROLE_BROKER') === 1
+      visible: currentUser && currentUser.roles.indexOf('ROLE_BROKER') === 1
     },
     {
       title: 'Yachts',
       href: '/manage/yachts',
       icon: <DirectionsBoatIcon />,
-      visible: currentUser.roles.indexOf('ROLE_MANAGER') === 1
+      visible: currentUser && currentUser.roles.indexOf('ROLE_MANAGER') === 1
     },
     {
       title: 'Settings',
       href: '/manage/settings',
-      icon: <SettingsIcon />
+      icon: <SettingsIcon />,
+      visible: true
     }
   ];
 

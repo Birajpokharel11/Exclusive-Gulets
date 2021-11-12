@@ -17,6 +17,8 @@ import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import { menuProps } from '@utils/utils';
 import { Form } from 'formik';
 import { Person } from '@material-ui/icons';
+import { useMediaQuery } from '@material-ui/core';
+import DestinationDialouge from './DestinationDialouge';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -47,7 +49,7 @@ const useStyles = makeStyles((theme: Theme) =>
         width: '167px'
       },
       [theme.breakpoints.down('xs')]: {
-        width: '373px'
+        width: '333px'
       }
     },
     label: {
@@ -92,9 +94,12 @@ const names = [
 
 export default function MultipleSelect() {
   const classes = useStyles();
-  const theme = useTheme();
   const [personName, setPersonName] = React.useState<string[]>([]);
 
+  ///
+  const theme = useTheme();
+  const matches = useMediaQuery(theme.breakpoints.up('sm'));
+  //
   const handleChange = (event: React.ChangeEvent<{ value: unknown }>) => {
     setPersonName(event.target.value as string[]);
   };
@@ -119,12 +124,16 @@ export default function MultipleSelect() {
           //   <ExpandMoreIcon style={{ color: 'white', cursor: 'pointer' }} />
           // )}
         >
-          {names.map((name) => (
-            <MenuItem key={name} value={name}>
-              <Checkbox checked={personName.indexOf(name) > -1} />
-              <ListItemText primary={name} />
-            </MenuItem>
-          ))}
+          {matches ? (
+            names.map((name) => (
+              <MenuItem key={name} value={name}>
+                <Checkbox checked={personName.indexOf(name) > -1} />
+                <ListItemText primary={name} />
+              </MenuItem>
+            ))
+          ) : (
+            <DestinationDialouge />
+          )}
         </Select>
       </FormControl>
     </>

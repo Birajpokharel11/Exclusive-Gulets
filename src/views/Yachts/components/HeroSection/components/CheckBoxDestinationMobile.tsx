@@ -59,8 +59,8 @@ export default function CheckBoxDestinations() {
   return (
     <div className={classes.root}>
       <FormControl component="fieldset" className={classes.formControl}>
-        <Grid container>
-          <FormGroup style={{ height: '550px', overflow: 'scroll' }}>
+        <Grid container style={{ height: '60vh', overflow: 'scroll' }}>
+          <FormGroup>
             <Grid item>
               <FormControlLabel
                 control={

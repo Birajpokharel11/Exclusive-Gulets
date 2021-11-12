@@ -29,7 +29,7 @@ const useStyles = makeStyles((theme: Theme) =>
       marginLeft: theme.spacing(2),
       flex: 1
     },
-    Dialouge: { marginTop: '0px', height: '100vh' },
+    Dialouge: { marginTop: '0px' },
 
     Button1: {
       height: '52px',
@@ -89,35 +89,26 @@ export default function DestinationDialouge() {
   const [personName, setPersonName] = React.useState<string[]>([]);
   //////////////////////////////////////////////////
 
-  function getSteps() {
-    return [
-      'Select master blaster campaign settings',
-      'Create an ad group',
-      'Create an ad'
-    ];
-  }
   function getStepContent(stepIndex: number) {
     switch (stepIndex) {
-      case 0:
-        return <FilterMobile />;
       case 1:
         return <CheckBoxDestinations />;
       case 2:
+        return <FilterMobile />;
+      case 3:
         return <RangeSlider />;
       default:
         return <CheckBoxDestinations />;
     }
   }
-  const [activeStep, setActiveStep] = React.useState(0);
-  const steps = getSteps();
-
+  const [activeStep, setActiveStep] = React.useState(1);
   const handleNext = () => {
-    console.log('jasd0', activeStep);
     setActiveStep((prevActiveStep) => prevActiveStep + 1);
+    console.log('next', activeStep);
   };
 
   const handleBack = () => {
-    console.log('jasd0', activeStep);
+    console.log('back', activeStep);
     setActiveStep((prevActiveStep) => prevActiveStep - 1);
   };
 
@@ -125,6 +116,7 @@ export default function DestinationDialouge() {
     setActiveStep(0);
   };
   ////////////////////////////////////////////////////
+  console.log('Hero', activeStep);
   return (
     <div>
       <Dialog
@@ -146,15 +138,20 @@ export default function DestinationDialouge() {
           </Box>
           <Box pl={3}>
             {' '}
-            <Typography variant="h3">Select a destination</Typography>
+            <Typography variant="h3">
+              Select a{activeStep == 1 && ' Destination'}
+              {activeStep == 2 && ' check-in date'}
+              {activeStep == 3 && ' guest number'}
+              {console.log('Nwe', activeStep)}
+            </Typography>
           </Box>
         </Box>
 
         <Box> {getStepContent(activeStep)}</Box>
-        <div style={{ flexGrow: 1 }} />
+        <div style={{ flexGrow: 2 }} />
         <Paper
           style={{
-            height: '30vh',
+            height: '108px',
             width: '100%',
             background: '#F5F0E4'
           }}

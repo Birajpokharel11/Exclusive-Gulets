@@ -86,12 +86,10 @@ export default function FilterMobile({ setOpen, open }: Props) {
   const classes = useStyles();
 
   const [value, setValue] = React.useState<DateRange<Date>>([null, null]);
-  const [back, setBack] = React.useState(false);
-  const [next, setNext] = React.useState(false);
   const [fexible, setFexible] = React.useState(false);
 
   return (
-    <div>
+    <div style={{ height: '60vh', overflow: 'scroll' }}>
       <Box
         style={{ paddingTop: '24px' }}
         display="flex"

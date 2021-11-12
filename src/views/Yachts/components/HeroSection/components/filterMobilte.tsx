@@ -92,113 +92,76 @@ export default function FilterMobile({ setOpen, open }: Props) {
 
   return (
     <div>
-      <Dialog fullScreen open={open} TransitionComponent={Transition}>
-        <Box display="flex" justifyContent="flex-end">
-          <IconButton onClick={() => setOpen((prev) => !prev)}>
-            <CloseIcon className={classes.Close} />
-          </IconButton>
-        </Box>
-        <Box>
-          <Typography variant="h3" style={{ marginLeft: '35px' }}>
-            Select check-in date
-          </Typography>
-        </Box>
+      <Box display="flex" justifyContent="flex-end">
+        <IconButton onClick={() => setOpen((prev) => !prev)}>
+          <CloseIcon className={classes.Close} />
+        </IconButton>
+      </Box>
+      <Box>
+        <Typography variant="h3" style={{ marginLeft: '35px' }}>
+          Select check-in date
+        </Typography>
+      </Box>
 
-        <Box
-          style={{ paddingTop: '24px' }}
-          display="flex"
-          justifyContent="center"
+      <Box
+        style={{ paddingTop: '24px' }}
+        display="flex"
+        justifyContent="center"
+      >
+        <Button
+          onClick={() => setFexible(false)}
+          variant="contained"
+          color="primary"
+          size="large"
+          className={clsx(classes.Calenderbefore, {
+            [classes.Calender]: fexible
+          })}
         >
-          <Button
-            onClick={() => setFexible(false)}
-            variant="contained"
-            color="primary"
-            size="large"
-            className={clsx(classes.Calenderbefore, {
-              [classes.Calender]: fexible
-            })}
-          >
-            Calendar
-          </Button>
-          <Button
-            onClick={() => setFexible(true)}
-            variant="contained"
-            color="secondary"
-            className={clsx(classes.fexiblebefore, {
-              [classes.Fexible]: fexible
-            })}
-            size="large"
-          >
-            I{`'`}m Fexible
-          </Button>
-        </Box>
-        {!fexible ? (
-          <>
-            <LocalizationProvider dateAdapter={MomentUtils}>
-              <StaticDatePicker
-                orientation="landscape"
-                openTo="date"
-                value={value}
-                // @ts-expect-error Waiting for making all inner components generics
-                shouldDisableDate={false}
-                onChange={(newValue) => setValue(newValue)}
-                renderInput={(props) => <TextField {...props} />}
-              />
-            </LocalizationProvider>
-
-            <LocalizationProvider dateAdapter={MomentUtils}>
-              <StaticDatePicker
-                orientation="landscape"
-                openTo="date"
-                value={value}
-                // @ts-expect-error Waiting for making all inner components generics
-                shouldDisableDate={false}
-                onChange={(newValue) => setValue(newValue)}
-                renderInput={(props) => <TextField {...props} />}
-              />
-            </LocalizationProvider>
-          </>
-        ) : (
-          <Box style={{ overflow: 'scroll', width: '100%' }}>
-            <MobileFexible />
-          </Box>
-        )}
-
-        <Paper
-          style={{
-            position: 'relative',
-            top: '19vh',
-            height: '108px',
-            width: '100%',
-            background: '#F5F0E4'
-          }}
+          Calendar
+        </Button>
+        <Button
+          onClick={() => setFexible(true)}
+          variant="contained"
+          color="secondary"
+          className={clsx(classes.fexiblebefore, {
+            [classes.Fexible]: fexible
+          })}
+          size="large"
         >
-          <Box
-            style={{ width: '100%', gap: '1rem', paddingTop: '32px' }}
-            display="flex"
-            justifyContent="center"
-          >
-            <Button
-              onClick={() => setBack((prev) => !prev)}
-              className={classes.Button1}
-              variant="outlined"
-            >
-              Back
-            </Button>
+          I{`'`}m Fexible
+        </Button>
+      </Box>
+      {!fexible ? (
+        <>
+          <LocalizationProvider dateAdapter={MomentUtils}>
+            <StaticDatePicker
+              orientation="landscape"
+              openTo="date"
+              value={value}
+              // @ts-expect-error Waiting for making all inner components generics
+              shouldDisableDate={false}
+              onChange={(newValue) => setValue(newValue)}
+              renderInput={(props) => <TextField {...props} />}
+            />
+          </LocalizationProvider>
 
-            <Button
-              onClick={() => setNext((prev) => !prev)}
-              className={classes.Next}
-              color="primary"
-              //   className={clsx(classes.Calenderbefore, {
-              //     [classes.Calender]: fexible
-              //   })}
-            >
-              Next
-            </Button>
-          </Box>
-        </Paper>
-      </Dialog>
+          <LocalizationProvider dateAdapter={MomentUtils}>
+            <StaticDatePicker
+              orientation="landscape"
+              openTo="date"
+              value={value}
+              // @ts-expect-error Waiting for making all inner components generics
+              shouldDisableDate={false}
+              onChange={(newValue) => setValue(newValue)}
+              renderInput={(props) => <TextField {...props} />}
+            />
+          </LocalizationProvider>
+        </>
+      ) : (
+        <Box style={{ overflow: 'scroll', width: '100%' }}>
+          <MobileFexible />
+        </Box>
+      )}
     </div>
   );
 }

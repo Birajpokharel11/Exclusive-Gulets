@@ -12,8 +12,10 @@ import MenuItem from '@material-ui/core/MenuItem';
 import FormControl from '@material-ui/core/FormControl';
 import Slide from '@material-ui/core/Slide';
 import { TransitionProps } from '@material-ui/core/transitions';
-import { Box, Checkbox, Divider } from '@material-ui/core';
+import { Box, Checkbox, Divider, Paper } from '@material-ui/core';
 import Typography from '@modules/components/Typography';
+import CheckBoxDestinations from './CheckBoxDestinationMobile';
+import FilterMobile from './filterMobilte';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -24,7 +26,27 @@ const useStyles = makeStyles((theme: Theme) =>
       marginLeft: theme.spacing(2),
       flex: 1
     },
-    Dialouge: { marginTop: '100px', height: '70vh' }
+    Dialouge: { marginTop: '0px', height: '100vh' },
+
+    Button1: {
+      height: '52px',
+      width: '125px',
+      border: '1px solid #2A398D'
+    },
+    Button2: {
+      height: '52px',
+      width: '200px',
+      background: '#2A398D',
+      color: 'white',
+      '&:hover': { background: '#2A398D' }
+    },
+    Next: {
+      height: '52px',
+      width: '200px',
+      background: '#2A398D',
+      color: 'white',
+      '&:hover': { background: '#2A398D' }
+    }
   })
 );
 
@@ -62,7 +84,44 @@ export default function DestinationDialouge() {
   const length = names.length;
 
   const [personName, setPersonName] = React.useState<string[]>([]);
-  ///////////////////////////////
+  //////////////////////////////////////////////////
+
+  function getSteps() {
+    return [
+      'Select master blaster campaign settings',
+      'Create an ad group',
+      'Create an ad'
+    ];
+  }
+  function getStepContent(stepIndex: number) {
+    switch (stepIndex) {
+      case 0:
+        return <FilterMobile />;
+      case 1:
+        return <CheckBoxDestinations />;
+      case 2:
+        return 'This is the bit I really care about!';
+      default:
+        return 'Unknown stepIndex';
+    }
+  }
+  const [activeStep, setActiveStep] = React.useState(0);
+  const steps = getSteps();
+
+  const handleNext = () => {
+    console.log('jasd0', activeStep);
+    setActiveStep((prevActiveStep) => prevActiveStep + 1);
+  };
+
+  const handleBack = () => {
+    console.log('jasd0', activeStep);
+    setActiveStep((prevActiveStep) => prevActiveStep - 1);
+  };
+
+  const handleReset = () => {
+    setActiveStep(0);
+  };
+  ////////////////////////////////////////////////////
   return (
     <div>
       <Dialog
@@ -72,22 +131,42 @@ export default function DestinationDialouge() {
         onClose={handleClose}
         TransitionComponent={Transition}
       >
-        <Box pl={3} pb={1} pt={6}>
-          {' '}
-          <Typography variant="h3">Select a destination</Typography>
-        </Box>
-        {names.map((name, i) => (
-          <Box key={i}>
-            {' '}
-            <MenuItem style={{}} key={name} value={name}>
-              <Checkbox checked={personName.indexOf(name) > -1} />
-              <ListItemText primary={name} />
-            </MenuItem>
-            {length !== i + 1 && (
-              <Divider variant="middle" style={{ marginBottom: '15px' }} />
-            )}
+        <Typography className={classes.instructions}>
+          {getStepContent(activeStep)}
+        </Typography>
+        <div style={{ flexGrow: 1 }} />
+        <Paper
+          style={{
+            height: '30vh',
+            width: '100%',
+            background: '#F5F0E4'
+          }}
+        >
+          <Box
+            style={{ width: '100%', gap: '1rem', paddingTop: '32px' }}
+            display="flex"
+            justifyContent="center"
+          >
+            <Button
+              className={classes.Button1}
+              onClick={handleBack}
+              variant="outlined"
+            >
+              Back
+            </Button>
+
+            <Button
+              onClick={handleNext}
+              className={classes.Next}
+              color="primary"
+              //   className={clsx(classes.Calenderbefore, {
+              //     [classes.Calender]: fexible
+              //   })}
+            >
+              Next
+            </Button>
           </Box>
-        ))}
+        </Paper>
       </Dialog>
     </div>
   );

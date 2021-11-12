@@ -1,198 +1,114 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
+import { createStyles, Theme, makeStyles } from '@material-ui/core/styles';
+import Button from '@material-ui/core/Button';
+import Dialog, { DialogProps } from '@material-ui/core/Dialog';
+import DialogActions from '@material-ui/core/DialogActions';
+import DialogContent from '@material-ui/core/DialogContent';
+import DialogContentText from '@material-ui/core/DialogContentText';
+import DialogTitle from '@material-ui/core/DialogTitle';
+import FormControl from '@material-ui/core/FormControl';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
+import InputLabel from '@material-ui/core/InputLabel';
+import MenuItem from '@material-ui/core/MenuItem';
+import Select from '@material-ui/core/Select';
+import Switch from '@material-ui/core/Switch';
 
-import { makeStyles } from '@material-ui/core/styles';
-
-import {
-  Box,
-  Typography,
-  IconButton,
-  Drawer,
-  Grid,
-  Button,
-  Container
-} from '@material-ui/core';
-
-import CloseIcon from '@material-ui/icons/Close';
-import { FavoriteBorderOutlined } from '@material-ui/icons';
-import Filter from './Filter';
-import YachtsSlider from '../../PreviewDrawer/components/YachtsSlider';
-const drawerWidth = '835px';
-const useStyles = makeStyles((theme) => ({
-  toolbarMargin: {
-    ...theme.mixins.toolbar,
-    marginTop: '8px'
-  },
-  logo: {
-    maxWidth: ' 210px',
-    minHeight: '35.84px',
-    cursor: 'pointer',
-    [theme.breakpoints.down(340)]: {
-      width: '180px'
-    }
-  },
-  tab: {
-    fontFamily: 'Lato',
-    fontStyle: 'normal',
-    fontWeight: 'normal',
-    fontSize: '14px',
-    textTransform: 'uppercase',
-    color: ' #FFFFFF',
-    minWidth: '50px'
-  },
-  Menu: {
-    backgroundColor: '#1b4077',
-
-    color: '#FFFFFF'
-  },
-  logoBox: {
-    padding: 0
-  },
-  tabBox: {
-    [theme.breakpoints.down('lg')]: {
-      padding: '0px,0px,0px,32px'
-    }
-  },
-  SOfferBox: {
-    width: '100%',
-    position: 'relative',
-    height: '80px',
-    overflow: 'hidden',
-    minHeight: '80px',
-    background: '#F7F7F7'
-  },
-  Vector: {
-    position: 'absolute',
-    left: 0,
-    top: 5,
-    width: '107px'
-  },
-  drawer: {
-    backgroundColor: '#091527'
-  },
-  drawerPaper: {
-    width: drawerWidth,
-    backgroundColor: '#071529D9',
-    [theme.breakpoints.down(785)]: {
-      width: '80%'
+const useStyles = makeStyles((theme: Theme) =>
+  createStyles({
+    form: {
+      display: 'flex',
+      flexDirection: 'column',
+      margin: 'auto',
+      width: 'fit-content'
     },
-    [theme.breakpoints.down(700)]: {
-      width: '100%'
+    formControl: {
+      marginTop: theme.spacing(2),
+      minWidth: 120
+    },
+    formControlLabel: {
+      marginTop: theme.spacing(1)
     }
-  },
-  Span: {
-    fontWeight: 400,
-    fontSize: '26px'
-  },
-  button: { color: '#2A398D ', width: '200px', height: '52px' },
-  Typography2: { fontWeight: 'normal' }
-}));
-const MobileData = [
-  { Heading: 'yachtsType', yachtsType: 'Motor Yacht, 2009' },
-  { Heading: 'Guests', yachtsType: '14' },
-  { Heading: 'length', yachtsType: '42m' },
-  { Heading: 'Cabin', yachtsType: '7' },
-  { Heading: 'CruisingRegions', yachtsType: ' France, Italy' },
-  { Heading: 'Crew', yachtsType: '7' }
-];
-export default function YachtsPreviewDialouge(props) {
-  const classes = useStyles();
-  const { open, setOpen } = props;
-  return (
-    <>
-      <Drawer
-        className={classes.drawer}
-        variant="persistent"
-        anchor="right"
-        open={open}
-        classes={{
-          paper: classes.drawerPaper
-        }}
-      >
-        {true && (
-          <>
-            <div className={classes.toolbarMargin} />
-            <Box className={classes.SOfferBox}>
-              {' '}
-              <Grid item container justifyContent="center" lg={12}>
-                <img
-                  src="/assets/images/Vector.svg"
-                  className={classes.Vector}
-                  alt="vector"
-                />
-                <Box color="#2A398D">
-                  <Typography color="inherit" variant="h1" align="center">
-                    There wıll be a special offer text here!
-                  </Typography>
-                </Box>
-              </Grid>
-            </Box>
-          </>
-        )}
+  })
+);
 
-        <div className={classes.toolbarMargin} />
-        <Box display="flex" pt={1} justifyContent="space-between">
-          <Box display="flex" alignItems="center" pl={3}>
-            <Typography variant="h3" color="secondary">
-              ARESTEAS
-            </Typography>
-            <IconButton>
-              <FavoriteBorderOutlined />
-            </IconButton>
-          </Box>
-          <IconButton onClick={() => setOpen(!open)}>
-            <CloseIcon />
-          </IconButton>
-        </Box>
-        <Box
-          pl={3}
-          display="flex"
-          alignItems="center"
-          justifyContent="space-between"
-        >
-          <Filter />
-          <Typography variant="subtitle1" color="secondary">
-            from <span className={classes.Span}>135.000</span> to
-            <span className={classes.Span}>155.000</span>
-          </Typography>
-        </Box>
-        <br />
-        <Box pl={3}>
-          <YachtsSlider />
-        </Box>
-        <Box pt={1} pb={6}>
-          <Grid container justifyContent="center">
-            <Button className={classes.button} variant="contained">
-              View Details
-            </Button>
-          </Grid>
-        </Box>
-        <Box>
-          <Grid container>
-            {MobileData.map((item, i) => (
-              <Grid item key={i} xs={6}>
-                <Container
-                  maxWidth="md"
-                  style={{
-                    display: 'flex',
-                    width: '80%',
-                    padding: '19px',
-                    justifyContent: 'space-between'
-                  }}
-                >
-                  <Typography color="secondary">{item.Heading}</Typography>
-                  <Typography
-                    variant="h5"
-                    className={classes.Typography2}
-                    color="secondary"
-                  >
-                    {item.yachtsType}
-                  </Typography>
-                </Container>
-              </Grid>
-            ))}
-          </Grid>
-        </Box>
-      </Drawer>
-    </>
+export function DestinationDialouge() {
+  const classes = useStyles();
+  const [open, setOpen] = React.useState(false);
+  const [fullWidth, setFullWidth] = React.useState(true);
+  const [maxWidth, setMaxWidth] = React.useState<DialogProps['maxWidth']>('sm');
+
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
+
+  const handleMaxWidthChange = (
+    event: React.ChangeEvent<{ value: unknown }>
+  ) => {
+    setMaxWidth(event.target.value as DialogProps['maxWidth']);
+  };
+
+  const handleFullWidthChange = (
+    event: React.ChangeEvent<HTMLInputElement>
+  ) => {
+    setFullWidth(event.target.checked);
+  };
+
+  return (
+    <React.Fragment>
+      <Button variant="outlined" color="primary" onClick={handleClickOpen}>
+        Open max-width dialog
+      </Button>
+      <Dialog
+        fullWidth={fullWidth}
+        maxWidth={maxWidth}
+        open={open}
+        onClose={handleClose}
+        aria-labelledby="max-width-dialog-title"
+      >
+        <DialogTitle id="max-width-dialog-title">Optional sizes</DialogTitle>
+        <DialogContent>
+          <DialogContentText>
+            You can set my maximum width and whether to adapt or not.
+          </DialogContentText>
+          <form className={classes.form} noValidate>
+            <FormControl className={classes.formControl}>
+              <InputLabel htmlFor="max-width">maxWidth</InputLabel>
+              <Select
+                autoFocus
+                value={maxWidth}
+                onChange={handleMaxWidthChange}
+                inputProps={{
+                  name: 'max-width',
+                  id: 'max-width'
+                }}
+              >
+                <MenuItem value={false as any}>false</MenuItem>
+                <MenuItem value="xs">xs</MenuItem>
+                <MenuItem value="sm">sm</MenuItem>
+                <MenuItem value="md">md</MenuItem>
+                <MenuItem value="lg">lg</MenuItem>
+                <MenuItem value="xl">xl</MenuItem>
+              </Select>
+            </FormControl>
+            <FormControlLabel
+              className={classes.formControlLabel}
+              control={
+                <Switch checked={fullWidth} onChange={handleFullWidthChange} />
+              }
+              label="Full width"
+            />
+          </form>
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={handleClose} color="primary">
+            Close
+          </Button>
+        </DialogActions>
+      </Dialog>
+    </React.Fragment>
   );
 }

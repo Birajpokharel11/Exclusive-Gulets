@@ -92,17 +92,6 @@ export default function FilterMobile({ setOpen, open }: Props) {
 
   return (
     <div>
-      <Box display="flex" justifyContent="flex-end">
-        <IconButton onClick={() => setOpen((prev) => !prev)}>
-          <CloseIcon className={classes.Close} />
-        </IconButton>
-      </Box>
-      <Box>
-        <Typography variant="h3" style={{ marginLeft: '35px' }}>
-          Select check-in date
-        </Typography>
-      </Box>
-
       <Box
         style={{ paddingTop: '24px' }}
         display="flex"

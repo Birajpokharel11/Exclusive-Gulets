@@ -11,7 +11,7 @@ import { Box, Button, Divider, Grid, Paper } from '@material-ui/core';
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     root: {
-      width: '90%'
+      width: '100%'
     },
     formControl: {
       margin: theme.spacing(3),

@@ -12,10 +12,13 @@ import MenuItem from '@material-ui/core/MenuItem';
 import FormControl from '@material-ui/core/FormControl';
 import Slide from '@material-ui/core/Slide';
 import { TransitionProps } from '@material-ui/core/transitions';
-import { Box, Checkbox, Divider, Paper } from '@material-ui/core';
+import { Box, Checkbox, Divider, IconButton, Paper } from '@material-ui/core';
 import Typography from '@modules/components/Typography';
 import CheckBoxDestinations from './CheckBoxDestinationMobile';
 import FilterMobile from './filterMobilte';
+import Guests from './Guests';
+import RangeSlider from './Guests/components/RangeSlider';
+import CloseIcon from '@material-ui/icons/Close';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -100,9 +103,9 @@ export default function DestinationDialouge() {
       case 1:
         return <CheckBoxDestinations />;
       case 2:
-        return 'This is the bit I really care about!';
+        return <RangeSlider />;
       default:
-        return 'Unknown stepIndex';
+        return <CheckBoxDestinations />;
     }
   }
   const [activeStep, setActiveStep] = React.useState(0);
@@ -131,9 +134,23 @@ export default function DestinationDialouge() {
         onClose={handleClose}
         TransitionComponent={Transition}
       >
-        <Typography className={classes.instructions}>
-          {getStepContent(activeStep)}
-        </Typography>
+        <Box style={{ marginTop: '70px' }}>
+          <Box
+            display="flex"
+            justifyContent="flex-end"
+            style={{ paddingBottom: '28px' }}
+          >
+            <IconButton>
+              <CloseIcon color="primary" />
+            </IconButton>
+          </Box>
+          <Box pl={3}>
+            {' '}
+            <Typography variant="h3">Select a destination</Typography>
+          </Box>
+        </Box>
+
+        <Box> {getStepContent(activeStep)}</Box>
         <div style={{ flexGrow: 1 }} />
         <Paper
           style={{

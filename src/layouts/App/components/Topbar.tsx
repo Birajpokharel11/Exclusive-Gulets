@@ -104,7 +104,11 @@ const useStyles = makeStyles((theme) => ({
   // }
 }));
 
-export default function Header() {
+export default function Header({
+  siteCoordinator: {
+    domain: { name }
+  }
+}) {
   const trigger = useScrollTrigger();
 
   const classes = useStyles();
@@ -195,11 +199,13 @@ export default function Header() {
       >
         <Toolbar>
           <div onClick={() => router.push('/', undefined, { shallow: true })}>
-            <img
-              src="/assets/images/logo.svg"
-              alt="me"
-              className={classes.logo}
-            />
+            <Typography
+              variant="h3"
+              color="secondary"
+              style={{ textTransform: 'uppercase' }}
+            >
+              {name ?? ''}
+            </Typography>
           </div>
           <div style={{ flexGrow: 1 }} />
           <Hidden mdDown>

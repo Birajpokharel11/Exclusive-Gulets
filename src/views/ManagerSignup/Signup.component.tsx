@@ -164,7 +164,6 @@ const SignUp = (props) => {
             fullName: Yup.string()
               .max(15, 'Must be 15 characters or less')
               .required('FullName is Required'),
-            roleGroupId: Yup.string().required('Role is Required'),
             phoneNumber: Yup.string().required('PhoneNumber is Required'),
             email: Yup.string()
               .email('Invalid email address')
@@ -172,10 +171,14 @@ const SignUp = (props) => {
             password: Yup.string()
               .required('Password is Required')
               .min(6, 'password must be minimum of 6 character')
-              .max(32, 'password must not exceed maximum of 32 characters')
+              .max(32, 'password must not exceed maximum of 32 characters'),
+            password2: Yup.lazy(() => {
+              return Yup.string()
+                .required('Please add your confirm password')
+                .oneOf([Yup.ref('password'), null], 'Passwords must match');
+            })
           })}
           onSubmit={(values, { setSubmitting }) => {
-            console.log('submit clicked!!!', values);
             onSignupStart({
               ...values
             });
@@ -220,29 +223,6 @@ const SignUp = (props) => {
                   component={TextField}
                 />
               </Grid>
-              <Grid item xs={12}>
-                <Field
-                  component={Select}
-                  fullWidth
-                  variant="outlined"
-                  name="roleGroupId"
-                  id="role"
-                  endAdornment={
-                    <InputAdornment
-                      position="start"
-                      style={{ paddingRight: '20px' }}
-                    >
-                      <Divider
-                        className={classes.divider}
-                        orientation="vertical"
-                      />
-                    </InputAdornment>
-                  }
-                >
-                  <MenuItem value={1}>Client</MenuItem>
-                  <MenuItem value={1}>Yacht Owner/Manager</MenuItem>
-                </Field>
-              </Grid>
 
               <Grid item xs={12}>
                 <Field
@@ -276,6 +256,17 @@ const SignUp = (props) => {
                   type="password"
                   variant="outlined"
                   component={TextField}
+                />
+              </Grid>
+              <Grid item xs={12}>
+                <Field
+                  component={TextField}
+                  variant="outlined"
+                  id="outlined-secondary"
+                  label="Confirm Password"
+                  name="password2"
+                  type="password"
+                  fullWidth
                 />
               </Grid>
               <Grid item xs={12}>

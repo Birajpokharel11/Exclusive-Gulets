@@ -46,6 +46,10 @@ const Sidebar = (props) => {
 
   const { currentUser } = rest.auth;
 
+  const isVisible = (role) => {
+    return currentUser.roles && currentUser.roles.indexOf(role) === -1;
+  };
+
   const pages = [
     {
       title: 'Dashboard',
@@ -57,25 +61,19 @@ const Sidebar = (props) => {
       title: 'News and Blogs',
       href: '/manage/blogs',
       icon: <PeopleIcon />,
-      visible: currentUser.roles
-        ? currentUser.roles.indexOf('ROLE_BROKER') === 1
-        : false
+      visible: !isVisible('ROLE_BROKER')
     },
     {
       title: 'Experiences',
       href: '/manage/experiences',
       icon: <ShoppingBasketIcon />,
-      visible: currentUser.roles
-        ? currentUser.roles.indexOf('ROLE_BROKER') === 1
-        : false
+      visible: !isVisible('ROLE_BROKER')
     },
     {
       title: 'Yachts',
       href: '/manage/yachts',
       icon: <DirectionsBoatIcon />,
-      visible: currentUser.roles
-        ? currentUser.roles.indexOf('ROLE_MANAGER') === 1
-        : false
+      visible: !isVisible('ROLE_MANAGER')
     },
     {
       title: 'Settings',

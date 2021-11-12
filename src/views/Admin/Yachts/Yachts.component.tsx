@@ -17,7 +17,7 @@ const useStyles = makeStyles((theme) => ({
 const Yachts = (props) => {
   const {
     onCreateYachtStart,
-    yacht: { yachtsList, isCreating },
+    yacht: { adminYachtsList, isCreating },
     onFetchYachtsStart
   } = props;
   const classes = useStyles();
@@ -27,12 +27,14 @@ const Yachts = (props) => {
   }, []);
 
   const getYatchInfo = () => {
-    if (isCreating && !yachtsList.length) {
+    if (isCreating && !adminYachtsList.length) {
       return <CircularProgress />;
-    } else if (!isCreating && !yachtsList.length) {
+    } else if (!isCreating && !adminYachtsList.length) {
       return <Typography variant="h2">Data Not Found!!</Typography>;
     } else {
-      return yachtsList.map((item) => <YachtItem key={item.id} {...item} />);
+      return adminYachtsList.map((item) => (
+        <YachtItem key={item.id} {...item} />
+      ));
     }
   };
 

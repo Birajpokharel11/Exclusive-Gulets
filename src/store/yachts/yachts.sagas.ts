@@ -10,16 +10,31 @@ import * as postsAction from './yachts.actions';
 
 export function* fetchYachtsAsync() {
   try {
+    const { data } = yield axios.post(
+      `${process.env.REACT_APP_PROD_URL}/search/filter_yachts.json`
+    );
+
+    console.log('fetch yacht list>>>', data);
+
+    yield put(postsAction.fetchYachtsSuccess(data.yachts));
+  } catch (err) {
+    console.error('error received>>>', err);
+    yield put(postsAction.fetchYachtsFailure(err));
+  }
+}
+
+export function* fetchAdminYachtListAsync() {
+  try {
     const { data } = yield axios.get(
       `https://yatchcloud-dev.fghire.com/api/getAllYachtInfo`
     );
 
     console.log('fetch yacht list>>>', data);
 
-    yield put(postsAction.fetchYachtsSuccess(data.detail.data));
+    yield put(postsAction.fetchAdminYachtsSuccess(data.detail.data));
   } catch (err) {
     console.error('error received>>>', err);
-    yield put(postsAction.fetchYachtsFailure(err));
+    yield put(postsAction.fetchAdminYachtsFailure(err));
   }
 }
 
@@ -61,6 +76,12 @@ export function* createYachtAsync({ payload }: AnyAction) {
 export function* watchFetchYachts() {
   yield takeLatest(PostsType.FETCH_YACHTS_START, fetchYachtsAsync);
 }
+export function* watchAdminFetchYachts() {
+  yield takeLatest(
+    PostsType.FETCH_ADMIN_YACHTS_START,
+    fetchAdminYachtListAsync
+  );
+}
 
 export function* watchFetchYachtById() {
   yield takeLatest(PostsType.FETCH_YACHT_BY_ID_START, fetchYachtByIdAsync);
@@ -73,6 +94,7 @@ export function* yachtsSagas() {
   yield all([
     call(watchFetchYachts),
     call(watchFetchYachtById),
-    call(watchCreateYacht)
+    call(watchCreateYacht),
+    call(watchAdminFetchYachts)
   ]);
 }

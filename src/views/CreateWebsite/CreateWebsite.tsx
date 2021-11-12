@@ -12,6 +12,7 @@ import {
   StepLabel,
   CircularProgress
 } from '@material-ui/core';
+import axios from 'axios';
 
 import { Formik, Field, Form, FormikConfig, FormikValues } from 'formik';
 import { TextField } from 'formik-material-ui';
@@ -35,7 +36,8 @@ const useStyles = makeStyles((theme) => ({
 const CreateYourWebsite = ({
   onValidateUserEmailStart,
   onSignupStart,
-  auth: { loading }
+  auth: { loading },
+  onOpenAlert
 }) => {
   const classes = useStyles();
 
@@ -54,6 +56,7 @@ const CreateYourWebsite = ({
         <FormikStepper
           onSubmit={onSignupStart} /// onSubmit Function
           onValidateUserEmailStart={onValidateUserEmailStart}
+          onOpenAlert={onOpenAlert}
           loading={loading}
           initialValues={{
             firstName: '',
@@ -215,6 +218,7 @@ export function FormikStepper({
   onSubmit,
   initialValues,
   onValidateUserEmailStart,
+  onOpenAlert,
   ...props
 }) {
   const childrenArray = React.Children.toArray(
@@ -245,10 +249,20 @@ export function FormikStepper({
       return;
     }
     if (step === 0) {
-      const valid = await onValidateUserEmailStart(
-        values.email.trim().toLowerCase()
+      // const valid = await onValidateUserEmailStart(
+      //   values.email.trim().toLowerCase()
+      // );
+      const { data } = await axios.post(
+        `https://yatchcloud-dev.fghire.com/public/validateUserEmailAndBrokerSite`,
+        { email: values.email.trim().toLowerCase() }
       );
-      if (valid) handleNext();
+      console.log('data received>>>', data);
+      if (data.detail.data.isValidEmail) {
+        onOpenAlert('This email is valid', 'success');
+        handleNext();
+      } else {
+        onOpenAlert('This email is invalid', 'error');
+      }
     } else {
       setStep((s) => s + 1);
     }

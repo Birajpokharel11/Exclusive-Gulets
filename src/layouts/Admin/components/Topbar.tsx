@@ -48,10 +48,10 @@ const user = {
 
 const Topbar = (props) => {
   const {
-    className,
+    auth: { token },
     onSidebarOpen,
     onSignoutStart,
-    auth: { token },
+    className,
     ...rest
   } = props;
 
@@ -86,7 +86,6 @@ const Topbar = (props) => {
       <Toolbar>
         <Link href="/">
           <Typography variant="h4" color="secondary">
-            {' '}
             YATCH CLOUD
           </Typography>
         </Link>

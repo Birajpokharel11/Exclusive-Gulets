@@ -2,11 +2,12 @@ import React, { useState } from 'react';
 import clsx from 'clsx';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import { useMediaQuery } from '@material-ui/core';
-import container from './Admin.container';
 
 import CustomAlert from '@components/CustomAlert';
 
 import { Sidebar, Topbar, Footer } from './components';
+
+import container from './Admin.container';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -26,7 +27,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const Main = (props) => {
-  const { children, onSignoutStart, ...rest } = props;
+  const { children, ...rest } = props;
 
   const classes = useStyles();
   const theme = useTheme();

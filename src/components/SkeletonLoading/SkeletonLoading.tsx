@@ -39,8 +39,8 @@ const CourseLoading = ({ length }) => {
   return (
     <>
       {fakeArray.map((i) => (
-        <Grid item md={10}>
-          <Paper key={i} style={{ marginBottom: '1.7em' }}>
+        <Grid item md={10} key={i}>
+          <Paper style={{ marginBottom: '1.7em' }}>
             <Grid
               container
               direction="row"

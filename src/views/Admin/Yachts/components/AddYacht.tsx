@@ -59,6 +59,7 @@ const AddYacht = () => {
                 <Field
                   component={Select}
                   fullWidth
+                  label="Rating"
                   variant="outlined"
                   name="rating"
                   id="rating"
@@ -73,6 +74,7 @@ const AddYacht = () => {
                 <Field
                   component={Select}
                   fullWidth
+                  label="Yacht Type"
                   variant="outlined"
                   name="yachtType"
                   id="yachtType"

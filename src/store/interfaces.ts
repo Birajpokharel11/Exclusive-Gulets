@@ -68,4 +68,5 @@ export interface IYachtState {
   soleYacht: object | any;
   error: any | null;
   loading: boolean;
+  isCreating: boolean;
 }

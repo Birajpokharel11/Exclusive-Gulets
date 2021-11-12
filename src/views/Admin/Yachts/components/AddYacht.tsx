@@ -20,7 +20,7 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-const AddYacht = () => {
+const AddYacht = ({ onCreateYachtStart, isCreating }) => {
   const classes = useStyles();
 
   return (
@@ -29,15 +29,17 @@ const AddYacht = () => {
       <Formik
         initialValues={{
           name: '',
-          rating: 3,
-          yachtType: '',
-          yearBuilt: '',
-          yearRefit: 1,
-          length: '',
-          cabin: ''
+          ratingId: 1,
+          yachtTypeId: 1,
+          buildYear: '',
+          refitYear: '',
+          yachtLength: 100,
+          noOfCabins: 16
         }}
         onSubmit={(values, { setSubmitting }) => {
           console.log('submit clicked!!!', values);
+          onCreateYachtStart(values);
+          setSubmitting(false);
         }}
       >
         {({ isSubmitting }) => (
@@ -61,12 +63,12 @@ const AddYacht = () => {
                   fullWidth
                   label="Rating"
                   variant="outlined"
-                  name="rating"
+                  name="ratingId"
                   id="rating"
                 >
-                  <MenuItem value={3}>3.0</MenuItem>
-                  <MenuItem value={4}>4.0</MenuItem>
-                  <MenuItem value={5}>5.0</MenuItem>
+                  <MenuItem value={1}>3.0</MenuItem>
+                  <MenuItem value={1}>4.0</MenuItem>
+                  <MenuItem value={1}>5.0</MenuItem>
                 </Field>
               </Grid>
 
@@ -76,13 +78,13 @@ const AddYacht = () => {
                   fullWidth
                   label="Yacht Type"
                   variant="outlined"
-                  name="yachtType"
+                  name="yachtTypeId"
                   id="yachtType"
                 >
-                  <MenuItem value="Catamaran">Catamaran</MenuItem>
-                  <MenuItem value="Gulet">Gulet</MenuItem>
-                  <MenuItem value="Motor Sailer">Motor Sailer</MenuItem>
-                  <MenuItem value="Motor Yacht">Motor Yacht</MenuItem>
+                  <MenuItem value={1}>Catamaran</MenuItem>
+                  <MenuItem value={1}>Gulet</MenuItem>
+                  <MenuItem value={1}>Motor Sailer</MenuItem>
+                  <MenuItem value={1}>Motor Yacht</MenuItem>
                 </Field>
               </Grid>
 
@@ -91,7 +93,7 @@ const AddYacht = () => {
                   className={classes.textField}
                   fullWidth
                   label="Year Built"
-                  name="yearBuilt"
+                  name="buildYear"
                   type="text"
                   variant="outlined"
                   component={TextField}
@@ -103,7 +105,7 @@ const AddYacht = () => {
                   className={classes.textField}
                   fullWidth
                   label="Year Refit"
-                  name="yearRefit"
+                  name="refitYear"
                   type="text"
                   variant="outlined"
                   component={TextField}
@@ -115,8 +117,8 @@ const AddYacht = () => {
                   className={classes.textField}
                   fullWidth
                   label="Length"
-                  name="length"
-                  type="text"
+                  name="yachtLength"
+                  type="number"
                   variant="outlined"
                   component={TextField}
                 />
@@ -127,8 +129,8 @@ const AddYacht = () => {
                   className={classes.textField}
                   fullWidth
                   label="Cabin"
-                  name="cabin"
-                  type="text"
+                  name="noOfCabins"
+                  type="number"
                   variant="outlined"
                   component={TextField}
                 />
@@ -141,13 +143,13 @@ const AddYacht = () => {
                   size="large"
                   type="submit"
                   variant="contained"
-                  disabled={isSubmitting}
+                  disabled={isSubmitting || isCreating}
                 >
-                  {isSubmitting ? (
+                  {isSubmitting || isCreating ? (
                     <CircularProgress size={20} />
                   ) : (
                     <Typography variant="body1" color="secondary">
-                      Sign up
+                      Save
                     </Typography>
                   )}
                 </Button>

@@ -11,6 +11,7 @@ import ImageIcon from '@material-ui/icons/Image';
 import AccountBoxIcon from '@material-ui/icons/AccountBox';
 import SettingsIcon from '@material-ui/icons/Settings';
 import LockOpenIcon from '@material-ui/icons/LockOpen';
+import DirectionsBoatIcon from '@material-ui/icons/DirectionsBoat';
 import PerfectScrollbar from 'react-perfect-scrollbar';
 
 import { Profile, SidebarNav } from './components';
@@ -58,6 +59,11 @@ const Sidebar = (props) => {
       title: 'Experiences',
       href: '/manage/experiences',
       icon: <ShoppingBasketIcon />
+    },
+    {
+      title: 'Yachts',
+      href: '/manage/yachts',
+      icon: <DirectionsBoatIcon />
     },
     {
       title: 'Settings',

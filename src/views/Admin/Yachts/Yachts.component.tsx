@@ -1,11 +1,12 @@
+import { useEffect } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import Container from '@material-ui/core/Container';
-import Grid from '@material-ui/core/Grid';
+import { Container, CircularProgress, Grid } from '@material-ui/core';
 
 import YachtItem from './components/YachtItem';
 import AddYacht from './components/AddYacht';
 
 import container from './Yachts.container';
+import Typography from '@modules/components/Typography';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -13,20 +14,39 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-const Yachts = () => {
+const Yachts = (props) => {
+  const {
+    onCreateYachtStart,
+    yacht: { yachtsList, isCreating },
+    onFetchYachtsStart
+  } = props;
   const classes = useStyles();
+
+  useEffect(() => {
+    onFetchYachtsStart();
+  }, []);
+
+  const getYatchInfo = () => {
+    if (isCreating && !yachtsList.length) {
+      return <CircularProgress />;
+    } else if (!isCreating && !yachtsList.length) {
+      return <Typography variant="h2">Data Not Found!!</Typography>;
+    } else {
+      return yachtsList.map((item) => <YachtItem key={item.id} {...item} />);
+    }
+  };
 
   return (
     <Container maxWidth="lg" className={classes.root}>
       <Grid container spacing={3}>
         <Grid item md={8}>
-          <YachtItem />
-          <YachtItem />
-          <YachtItem />
-          <YachtItem />
+          {getYatchInfo()}
         </Grid>
         <Grid item md={4}>
-          <AddYacht />
+          <AddYacht
+            onCreateYachtStart={onCreateYachtStart}
+            isCreating={isCreating}
+          />
         </Grid>
       </Grid>
     </Container>

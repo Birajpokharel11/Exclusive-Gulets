@@ -28,3 +28,17 @@ export const fetchYachtByIdFailure = (error) => ({
   type: YachtsType.FETCH_YACHT_BY_ID_FAILURE,
   payload: error
 });
+
+export const createYachtStart = (formData) => ({
+  type: YachtsType.CREATE_YACHT_START,
+  payload: { formData }
+});
+
+export const createYachtSuccess = () => ({
+  type: YachtsType.CREATE_YACHT_SUCCESS
+});
+
+export const createYachtFailure = (error) => ({
+  type: YachtsType.CREATE_YACHT_FAILURE,
+  payload: error
+});

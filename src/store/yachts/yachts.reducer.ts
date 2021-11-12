@@ -8,7 +8,8 @@ const INITIAL_STATE: IYachtState = {
   yachtsList: [],
   soleYacht: {},
   error: null,
-  loading: false
+  loading: false,
+  isCreating: false
 };
 
 const YachtsReducer = (state = INITIAL_STATE, action) => {
@@ -54,6 +55,25 @@ const YachtsReducer = (state = INITIAL_STATE, action) => {
       return {
         ...state,
         loading: false,
+        error: payload
+      };
+
+    case YachtsType.CREATE_YACHT_START:
+      return {
+        ...state,
+        isCreating: true
+      };
+
+    case YachtsType.CREATE_YACHT_SUCCESS:
+      return {
+        ...state,
+        isCreating: false
+      };
+
+    case YachtsType.CREATE_YACHT_FAILURE:
+      return {
+        ...state,
+        isCreating: false,
         error: payload
       };
 

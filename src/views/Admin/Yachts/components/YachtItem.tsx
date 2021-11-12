@@ -30,7 +30,7 @@ const useStyles = makeStyles((theme: Theme) =>
   })
 );
 
-function YachtItem() {
+function YachtItem({ name, yachtType, ...rest }) {
   const classes = useStyles();
 
   return (
@@ -43,7 +43,7 @@ function YachtItem() {
                 width={128}
                 height={128}
                 alt="complex"
-                src="/images/Aresteas.png"
+                src="/assets/images/Aresteas.png"
               />
             </ButtonBase>
           </Grid>
@@ -51,10 +51,10 @@ function YachtItem() {
             <Grid item xs container direction="column" spacing={2}>
               <Grid item xs>
                 <Typography gutterBottom variant="subtitle1">
-                  Admiral
+                  {name}
                 </Typography>
                 <Typography variant="body2" color="textSecondary">
-                  Gulet
+                  {yachtType?.name ?? 'Gulet'}
                 </Typography>
               </Grid>
               <Grid item>

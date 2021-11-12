@@ -44,26 +44,32 @@ const Sidebar = (props) => {
 
   const classes = useStyles();
 
+  const { currentUser } = rest.auth;
+
   const pages = [
     {
       title: 'Dashboard',
       href: '/manage/dashboard',
-      icon: <DashboardIcon />
+      icon: <DashboardIcon />,
+      visible: true
     },
     {
       title: 'News and Blogs',
       href: '/manage/blogs',
-      icon: <PeopleIcon />
+      icon: <PeopleIcon />,
+      visible: currentUser.roles.indexOf('ROLE_BROKER') === 1
     },
     {
       title: 'Experiences',
       href: '/manage/experiences',
-      icon: <ShoppingBasketIcon />
+      icon: <ShoppingBasketIcon />,
+      visible: currentUser.roles.indexOf('ROLE_BROKER') === 1
     },
     {
       title: 'Yachts',
       href: '/manage/yachts',
-      icon: <DirectionsBoatIcon />
+      icon: <DirectionsBoatIcon />,
+      visible: currentUser.roles.indexOf('ROLE_MANAGER') === 1
     },
     {
       title: 'Settings',

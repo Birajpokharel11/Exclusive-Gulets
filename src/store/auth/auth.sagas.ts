@@ -33,7 +33,7 @@ export function* loadUserAsync({ payload }: ReturnType<typeof loadUserStart>) {
       ...data.detail.data.profile,
       userType: data.detail.data.userType,
       username: data.detail.data.username,
-      roles: data.detail.data.roleList
+      roles: data.detail.data.roleList.map((item) => item.authority)
     };
 
     yield put(authActions.loadUserSuccess(profile));

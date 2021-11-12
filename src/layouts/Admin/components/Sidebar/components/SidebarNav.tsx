@@ -57,25 +57,29 @@ const SidebarNav = (props) => {
 
   return (
     <List {...rest} className={clsx(classes.root, className)}>
-      {pages.map((page, i) => (
-        <ListItem
-          className={classes.item}
-          disableGutters
-          key={page.title}
-          selected={
-            process.browser ? Router.pathname.includes(page.href) : false
-          }
-        >
-          <Button
-            className={classes.button}
-            component={CustomLink}
-            href={page.href}
-          >
-            <div className={classes.icon}>{page.icon}</div>
-            {page.title}
-          </Button>
-        </ListItem>
-      ))}
+      {pages.map((page, i) => {
+        if (page.visible) {
+          return (
+            <ListItem
+              className={classes.item}
+              disableGutters
+              key={page.title}
+              selected={
+                process.browser ? Router.pathname.includes(page.href) : false
+              }
+            >
+              <Button
+                className={classes.button}
+                component={CustomLink}
+                href={page.href}
+              >
+                <div className={classes.icon}>{page.icon}</div>
+                {page.title}
+              </Button>
+            </ListItem>
+          );
+        }
+      })}
     </List>
   );
 };

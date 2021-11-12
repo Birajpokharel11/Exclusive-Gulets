@@ -23,6 +23,6 @@ function AdminYachts() {
   );
 }
 
-const WrappedPage = WithAuth(AdminYachts, ['ROLE_MANAGER']);
+// const WrappedPage = WithAuth(AdminYachts, ['ROLE_MANAGER']);
 
-export default WrappedPage;
+export default AdminYachts;

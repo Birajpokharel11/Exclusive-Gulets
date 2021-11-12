@@ -2,8 +2,6 @@ import React, { useRef } from 'react';
 import clsx from 'clsx';
 import { makeStyles } from '@material-ui/core/styles';
 import SwipeableDrawer from '@material-ui/core/SwipeableDrawer';
-import EnquiryForm from '@components/Enquiry';
-import { useSwipeable } from 'react-swipeable';
 import CircleChecked from '@material-ui/icons/CheckCircleOutline';
 import CircleCheckedFilled from '@material-ui/icons/CheckCircle';
 import CircleUnchecked from '@material-ui/icons/RadioButtonUnchecked';
@@ -20,6 +18,8 @@ import {
   Typography
 } from '@material-ui/core';
 import { Favorite, FavoriteBorder } from '@material-ui/icons';
+
+import EnquiryForm from '@components/Enquiry';
 
 const useStyles = makeStyles({
   list: {
@@ -57,12 +57,17 @@ export default function MobileSort({
 }: Props) {
   const classes = useStyles();
 
+  const toggleDrawer = (open: boolean) => () => {
+    setmobileSort(open);
+  };
+
   return (
     <div>
       <SwipeableDrawer
         anchor="bottom"
         open={prevOpen}
-        onOpen={() => setmobileSort((prev) => !prev)}
+        onOpen={toggleDrawer(true)}
+        onClose={toggleDrawer(false)}
       >
         <Box pl="16px" pb="26px">
           <Box display="flex" justifyContent="flex-end" pt={2} pb={2} pr="10px">

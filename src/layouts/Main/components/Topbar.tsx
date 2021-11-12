@@ -134,7 +134,7 @@ export default function Header({
               aria-haspopup="true"
               onClick={handleToggle}
             >
-              {`Hi! ${currentUser?.firstName}`}
+              {`Hi! ${currentUser?.firstName || currentUser?.fullName}`}
             </Button>
           )}
         </Tabs>

@@ -77,16 +77,18 @@ export function* onSigninAsync({
 export function* onSignupAsync({
   payload: { formData }
 }: ReturnType<typeof signupStart>) {
+  delete formData.password2;
+
   try {
     const { data } = yield axios.post(
-      `https://yatchcloud-dev.fghire.com/api/createManager`,
+      `https://yatchcloud-dev.fghire.com/public/createManager`,
       formData
     );
 
     console.log('value fo data after success>>>', data);
 
     yield put(authActions.signupSuccess());
-    yield put(openAlert('User signed Up successfully!!', 'success'));
+    yield put(openAlert('manager signed Up successfully!!', 'success'));
 
     router.push('/signin');
   } catch (err) {

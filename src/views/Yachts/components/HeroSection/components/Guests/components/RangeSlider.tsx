@@ -1,5 +1,5 @@
 import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
+import { makeStyles, createStyles } from '@material-ui/core/styles';
 import {
   Typography,
   Box,
@@ -10,32 +10,62 @@ import {
 } from '@material-ui/core';
 import Slider from '@material-ui/core/Slider';
 
-const useStyles = makeStyles({
-  root: {
-    width: 300
-  },
-  multilineColor: {
-    color: '#091527',
-    fontSize: '18px',
-    fontWeight: 500,
-    lineHeight: '22px'
-  },
-  Border: {
-    border: '1px solid rgba(42, 57, 141, 0.5)',
-    color: 'white',
-    width: '400px',
-    padding: '5px 20px 5px 20px',
-    borderRadius: '4px'
-  },
-  Divider: {
-    marginRight: '20px',
-    marginLeft: '20px',
+const useStyles = makeStyles((theme) =>
+  createStyles({
+    root: {
+      width: 300,
+      [theme.breakpoints.down('xs')]: { padding: '0 0 16px 16px' }
+    },
+    multilineColor: {
+      color: '#091527',
+      fontSize: '18px',
+      fontWeight: 500,
+      lineHeight: '22px'
+    },
+    Border: {
+      border: '1px solid rgba(42, 57, 141, 0.5)',
+      color: 'white',
+      width: '400px',
+      padding: '5px 20px 5px 20px',
+      borderRadius: '4px',
+      [theme.breakpoints.down('xs')]: {
+        width: '343px'
+      },
+      [theme.breakpoints.down(425)]: {
+        width: '300px'
+      }
+    },
+    Divider: {
+      marginRight: '20px',
+      marginLeft: '20px',
 
-    background: 'rgba(42, 57, 141, 0.5)'
-  },
-  Typography: { fontWeight: 'normal' }
-});
-
+      background: 'rgba(42, 57, 141, 0.5)'
+    },
+    Typography: { fontWeight: 'normal' },
+    RangeSlider: {
+      color: '#2A398D',
+      width: '440px',
+      [theme.breakpoints.down('xs')]: {
+        width: '382px'
+      },
+      [theme.breakpoints.down(425)]: {
+        width: '345px'
+      }
+    },
+    RangeText: {
+      width: '440px',
+      [theme.breakpoints.down('xs')]: {
+        width: '382px'
+      },
+      [theme.breakpoints.down(425)]: {
+        width: '350px'
+      }
+    },
+    GridText: {
+      [theme.breakpoints.down('xs')]: { marginTop: '60px' }
+    }
+  })
+);
 export default function RangeSlider() {
   const classes = useStyles();
   const [value, setValue] = React.useState<number[]>([0, 100]);
@@ -50,13 +80,13 @@ export default function RangeSlider() {
   return (
     <div className={classes.root}>
       <div style={{ width: '450px' }}>
-        <Grid container>
-          <Grid item md={6}>
+        <Grid container className={classes.GridText}>
+          <Grid item md={6} xs={5}>
             <Typography className={classes.Typography} variant="body1">
               Min Guests
             </Typography>
           </Grid>
-          <Grid item md={6}>
+          <Grid item md={6} xs>
             <Typography className={classes.Typography} variant="body1">
               Max Guests
             </Typography>
@@ -101,11 +131,11 @@ export default function RangeSlider() {
         value={value}
         onChange={handleChange}
         aria-labelledby="range-slider"
-        style={{ color: '#2A398D', width: '440px' }}
+        className={classes.RangeSlider}
         getAriaValueText={valuetext}
       />
       <Box
-        style={{ width: '440px' }}
+        className={classes.RangeText}
         display="flex"
         alignItems="center"
         justifyContent="space-between"

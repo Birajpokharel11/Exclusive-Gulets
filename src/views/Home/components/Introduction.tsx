@@ -21,7 +21,7 @@ const useStyles = makeStyles((theme) =>
     },
     wheelImage: {
       position: 'absolute',
-      right: -30,
+      right: 0,
       bottom: -80,
       zIndex: -10
     }

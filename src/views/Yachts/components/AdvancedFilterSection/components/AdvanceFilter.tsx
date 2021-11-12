@@ -18,6 +18,7 @@ import Filters from './Filters';
 
 import { useMediaQuery } from '@material-ui/core';
 import clsx from 'clsx';
+import MobileFilter from './Sort/components/MobileFilter';
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     paper: {
@@ -64,8 +65,11 @@ export default function MenuListComposition({ mobilesearch }: Props) {
   const anchorRef = React.useRef<HTMLButtonElement>(null);
   const theme = useTheme();
   const matches = useMediaQuery(theme.breakpoints.down('xs'));
+  const [mobileFilter, setMobileFilter] = React.useState(false);
+
   const handleToggle = () => {
     setOpen((prevOpen) => !prevOpen);
+    setMobileFilter((prev) => !prev);
   };
 
   const handleClose = (event: React.MouseEvent<EventTarget>) => {
@@ -114,30 +118,37 @@ export default function MenuListComposition({ mobilesearch }: Props) {
           {!matches ? 'Advanced Filters' : 'Filters'}
         </Typography>
       </Button>
-      <Popper
-        open={open}
-        anchorEl={anchorRef.current}
-        role={undefined}
-        transition
-        disablePortal
-        style={{ zIndex: 1 }}
-      >
-        {({ TransitionProps, placement }) => (
-          <Grow
-            {...TransitionProps}
-            style={{
-              transformOrigin:
-                placement === 'bottom' ? 'center top' : 'center bottom'
-            }}
-          >
-            <ClickAwayListener onClickAway={handleClose}>
-              <Paper square className={classes.Paper}>
-                <Filters />
-              </Paper>
-            </ClickAwayListener>
-          </Grow>
-        )}
-      </Popper>
+      {!matches ? (
+        <Popper
+          open={open}
+          anchorEl={anchorRef.current}
+          role={undefined}
+          transition
+          disablePortal
+          style={{ zIndex: 1 }}
+        >
+          {({ TransitionProps, placement }) => (
+            <Grow
+              {...TransitionProps}
+              style={{
+                transformOrigin:
+                  placement === 'bottom' ? 'center top' : 'center bottom'
+              }}
+            >
+              <ClickAwayListener onClickAway={handleClose}>
+                <Paper square className={classes.Paper}>
+                  <Filters />
+                </Paper>
+              </ClickAwayListener>
+            </Grow>
+          )}
+        </Popper>
+      ) : (
+        <MobileFilter
+          prevOpen={mobileFilter}
+          setMobileFilter={setMobileFilter}
+        />
+      )}
     </>
   );
 }

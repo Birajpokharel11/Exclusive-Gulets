@@ -112,7 +112,7 @@ export default function PreviewDrawer(props) {
   const storeYachtDetails = (selectedYacht) => {
     dispatch(storeYacht(selectedYacht));
   };
-
+  console.log('Hellobro', selectedYacht.id);
   return (
     <>
       <div className={classes.toolbarMargin} />
@@ -184,13 +184,12 @@ export default function PreviewDrawer(props) {
         <Box pt={1} pb={6}>
           <Grid container justifyContent="center">
             <Link
-              href={{
-                pathname: `/yachts/[slug]`,
-                query: {
-                  slug: selectedYacht.slug,
-                  id: selectedYacht.id
-                }
-              }}
+              // href={{
+              //   pathname: `/yachts/[slug]`,
+              //   query: {
+              //     id: selectedYacht.id
+              //   }
+              href={`/yachts/${selectedYacht?.id}`}
             >
               <Button
                 className={classes.button}

@@ -39,12 +39,15 @@ export function* fetchAdminYachtListAsync() {
 }
 
 export function* fetchYachtByIdAsync({ payload }: AnyAction) {
-  const { id: yacht_id, user_id } = payload;
+  const { id: yacht_id } = payload;
+  console.log('HERE IN SAGAs', yacht_id);
   try {
     const { data } = yield axios.get(
-      `${process.env.REACT_APP_PROD_URL}/yachts/${yacht_id}?user_id=${user_id}`
+      `https://yatchcloud-dev.fghire.com/api/getYachtById/${yacht_id}`
     );
-    yield put(postsAction.fetchYachtByIdSuccess(data.yacht));
+    console.log('DAtaId', data.detail.data);
+    yield put(postsAction.fetchYachtByIdSuccess(data.detail.data[0]));
+    console.log('IDSUCESSFULL');
   } catch (err) {
     console.error('error received>>>', err);
     yield put(postsAction.fetchYachtByIdFailure(err));

@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import { useRouter } from 'next/router';
 
 import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
@@ -30,8 +31,11 @@ const useStyles = makeStyles((theme: Theme) =>
   })
 );
 
-function YachtItem({ name, yachtType, ...rest }) {
+function YachtItem({ name, yachtType, id, ...rest }) {
+  const router = useRouter();
   const classes = useStyles();
+
+  console.log('yacht item rest>>>', rest);
 
   return (
     <div className={classes.root}>
@@ -58,7 +62,16 @@ function YachtItem({ name, yachtType, ...rest }) {
                 </Typography>
               </Grid>
               <Grid item>
-                <Button color="primary">View</Button>
+                <Button
+                  color="primary"
+                  onClick={() =>
+                    router.push({
+                      pathname: `/manage/yachts/${id}`
+                    })
+                  }
+                >
+                  View
+                </Button>
               </Grid>
             </Grid>
             <Grid item>

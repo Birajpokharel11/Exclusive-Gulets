@@ -10,7 +10,8 @@ const INITIAL_STATE: IYachtState = {
   soleYacht: {},
   error: null,
   loading: false,
-  isCreating: false
+  isCreating: false,
+  isEditing: false
 };
 
 const YachtsReducer = (state = INITIAL_STATE, action) => {
@@ -95,6 +96,25 @@ const YachtsReducer = (state = INITIAL_STATE, action) => {
       return {
         ...state,
         isCreating: false,
+        error: payload
+      };
+
+    case YachtsType.EDIT_YACHT_START:
+      return {
+        ...state,
+        isEditing: true
+      };
+
+    case YachtsType.EDIT_YACHT_SUCCESS:
+      return {
+        ...state,
+        isEditing: false
+      };
+
+    case YachtsType.EDIT_YACHT_FAILURE:
+      return {
+        ...state,
+        isEditing: false,
         error: payload
       };
 

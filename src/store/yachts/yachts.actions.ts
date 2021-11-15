@@ -28,9 +28,9 @@ export const fetchAdminYachtsFailure = (error) => ({
   payload: error
 });
 
-export const fetchYachtByIdStart = (id, user_id) => ({
+export const fetchYachtByIdStart = (id) => ({
   type: YachtsType.FETCH_YACHT_BY_ID_START,
-  payload: { id, user_id }
+  payload: { id }
 });
 
 export const fetchYachtByIdSuccess = (result) => ({
@@ -54,5 +54,19 @@ export const createYachtSuccess = () => ({
 
 export const createYachtFailure = (error) => ({
   type: YachtsType.CREATE_YACHT_FAILURE,
+  payload: error
+});
+
+export const editYachtStart = (formData) => ({
+  type: YachtsType.EDIT_YACHT_START,
+  payload: { formData }
+});
+
+export const editYachtSuccess = () => ({
+  type: YachtsType.EDIT_YACHT_SUCCESS
+});
+
+export const editYachtFailure = (error) => ({
+  type: YachtsType.EDIT_YACHT_FAILURE,
   payload: error
 });

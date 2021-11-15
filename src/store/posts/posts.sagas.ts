@@ -71,7 +71,7 @@ export function* createPostAsync({
   try {
     console.log('entered createpost>>>', formData);
     const { data } = yield axios.post(
-      `https://yatchcloud-dev.fghire.com/api/saveBlog`,
+      `https://yatchcloud-dev.fghire.com/api/blog/create`,
       formData
     );
     console.log('createPostAsync on success>>>', data);

@@ -70,4 +70,5 @@ export interface IYachtState {
   error: any | null;
   loading: boolean;
   isCreating: boolean;
+  isEditing: boolean;
 }

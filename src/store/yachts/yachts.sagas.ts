@@ -39,12 +39,14 @@ export function* fetchAdminYachtListAsync() {
 }
 
 export function* fetchYachtByIdAsync({ payload }: AnyAction) {
-  const { id: yacht_id, user_id } = payload;
+  const { id: yacht_id } = payload;
   try {
+    console.log('yacht_id >>>', yacht_id);
     const { data } = yield axios.get(
-      `${process.env.REACT_APP_PROD_URL}/yachts/${yacht_id}?user_id=${user_id}`
+      `https://yatchcloud-dev.fghire.com/api/getYachtById/${yacht_id}`
     );
-    yield put(postsAction.fetchYachtByIdSuccess(data.yacht));
+    console.log('data fetchYachtByIdAsync>>>', data.detail.data);
+    yield put(postsAction.fetchYachtByIdSuccess(data.detail.data[0]));
   } catch (err) {
     console.error('error received>>>', err);
     yield put(postsAction.fetchYachtByIdFailure(err));
@@ -73,9 +75,32 @@ export function* createYachtAsync({ payload }: AnyAction) {
   }
 }
 
+export function* editYachtAsync({ payload }: AnyAction) {
+  const { formData } = payload;
+  try {
+    console.log('editYachtAsync>>', formData);
+    const { data } = yield axios.post(
+      `https://yatchcloud-dev.fghire.com/api/updateYacht`,
+      formData
+    );
+    console.log('editYachtAsync data>>', data);
+    yield put(postsAction.editYachtSuccess());
+    if (data.status === 'success') {
+      yield put(openAlert('yacht updated successfully!!', 'success'));
+    } else {
+      yield put(openAlert(data.status, 'error'));
+    }
+  } catch (err) {
+    console.error('error received>>>', err);
+    yield put(postsAction.editYachtFailure(err));
+    yield put(openAlert('error while updating yacht!!', 'error'));
+  }
+}
+
 export function* watchFetchYachts() {
   yield takeLatest(PostsType.FETCH_YACHTS_START, fetchYachtsAsync);
 }
+
 export function* watchAdminFetchYachts() {
   yield takeLatest(
     PostsType.FETCH_ADMIN_YACHTS_START,
@@ -90,11 +115,16 @@ export function* watchCreateYacht() {
   yield takeLatest(PostsType.CREATE_YACHT_START, createYachtAsync);
 }
 
+export function* watchEditYacht() {
+  yield takeLatest(PostsType.EDIT_YACHT_START, editYachtAsync);
+}
+
 export function* yachtsSagas() {
   yield all([
     call(watchFetchYachts),
     call(watchFetchYachtById),
     call(watchCreateYacht),
-    call(watchAdminFetchYachts)
+    call(watchAdminFetchYachts),
+    call(watchEditYacht)
   ]);
 }

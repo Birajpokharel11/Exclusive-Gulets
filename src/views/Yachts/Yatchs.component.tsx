@@ -16,6 +16,7 @@ const YatchDetails = (props) => {
   const {
     destination: { randomDestination },
     yacht: { yachtsList },
+    adminList,
     experience: { experiences }
   } = props;
 
@@ -23,8 +24,9 @@ const YatchDetails = (props) => {
   const [selectedYacht, setSelectedYacht] = useState({});
 
   const handleDrawerToggle = (id) => {
-    const filteredYatch = yachtsList.find((x) => x.id === id);
+    const filteredYatch = adminList.find((x) => x.id === id);
     setSelectedYacht(filteredYatch);
+
     setOpen(!open);
   };
 
@@ -32,7 +34,7 @@ const YatchDetails = (props) => {
     <Box component="section">
       <HeroSection />
       <AdvancedFilterSection />
-      <Gallery handleDrawerOpen={handleDrawerToggle} yachtsList={yachtsList} />
+      <Gallery handleDrawerOpen={handleDrawerToggle} adminList={adminList} />
       <Destinations
         title="Destinations"
         subtitle="Perfect location and the perfect yacht for your ultimate charter experience. There is no better way than chartering a luxury gulet or yacht to see more of the world. With two third of the Earth covered in water, there is always a new exciting destination to explore and a different shoreline to discover.​"

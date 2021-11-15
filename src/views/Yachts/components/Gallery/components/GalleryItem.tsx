@@ -87,48 +87,37 @@ const useStyles = makeStyles((theme: Theme) =>
     }
   })
 );
-
-export default function GalleryItem({
-  i,
-  main_image: { url },
-  name,
-  subtitle,
-  SpecialOffers,
-  InstantBooking,
-  handleDrawerOpen,
-  charter_price,
-  number_of_passengers,
-  length,
-  charter_max_price,
-  sailing_countries
-}) {
+interface Props {
+  adminList?: any | [];
+  i?: any;
+  handleDrawerOpen?: any;
+}
+export default function GalleryItem({ adminList, handleDrawerOpen, i }: Props) {
   const classes = useStyles();
 
   const [offers, setOffers] = React.useState(true);
-
   return (
     <Box className={classes.root}>
       <Box className={classes.view} onClick={() => handleDrawerOpen()}>
         <img
-          src={url}
+          // src="assets/images/bg/destination_mobile.png"
+          src="/assets/images/Yatchss.png"
           className={classes.Img}
           data-cy={`Gallery Images${i}`}
           alt=""
         />
-        {console.log('asdasdsads', SpecialOffers, InstantBooking)}
         <Box className={classes.BoxShadows} />
       </Box>
 
       <Box className={classes.details}>
         <Typography variant="h4" color="inherit">
-          {name}
+          {adminList.name}
         </Typography>
         <Typography variant="h6" color="inherit">
-          From €{charter_price} to €{charter_max_price} | {length}m |
-          {number_of_passengers} Guests
+          From € 1134 to € 2243 | {adminList.length} m | 22224 Guests
         </Typography>
       </Box>
-      {(SpecialOffers || InstantBooking) && (
+      {/* {/* {(SpecialOffers || InstantBooking) && (
         <Box className={classes.Boxitems}>
           {InstantBooking && (
             <Button
@@ -152,22 +141,18 @@ export default function GalleryItem({
               </Typography>
             </Button>
           )}
+          {console.log('New', adminList)}
         </Box>
-      )}
-
+      )} */}
       <Box className={classes.location}>
         <IconButton>
           <img src="/assets/images/gallery/location.svg" />
         </IconButton>
 
         <Box style={{ color: 'white' }}>
-          {sailing_countries.length
-            ? sailing_countries.map((sail, index) => (
-                <Typography color="inherit" variant="body1" key={index}>
-                  {sail.name}
-                </Typography>
-              ))
-            : '-'}
+          <Typography color="inherit" variant="body1" key={i}>
+            {adminList?.flags?.countryName}
+          </Typography>
         </Box>
       </Box>
     </Box>

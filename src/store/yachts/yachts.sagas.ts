@@ -26,10 +26,10 @@ export function* fetchYachtsAsync() {
 export function* fetchAdminYachtListAsync() {
   try {
     const { data } = yield axios.get(
-      `https://yatchcloud-dev.fghire.com/api/getAllYachtInfo`
+      'https://yatchcloud-dev.fghire.com/api/getAllYachtInfo'
     );
 
-    console.log('fetch yacht list>>>', data);
+    console.log('fetch admin yacht list>>>', data);
 
     yield put(postsAction.fetchAdminYachtsSuccess(data.detail.data));
   } catch (err) {

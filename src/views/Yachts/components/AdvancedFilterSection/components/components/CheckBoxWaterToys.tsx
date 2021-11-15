@@ -10,6 +10,7 @@ import {
   Button
 } from '@material-ui/core';
 import Slider from './CabinSlider';
+import clsx from 'clsx';
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     root: {
@@ -23,6 +24,11 @@ const useStyles = makeStyles((theme: Theme) =>
       fontSize: '16px',
       color: '#AB3996',
       fontStyle: 'normal'
+    },
+    heightIncrease: {
+      [theme.breakpoints.down('xs')]: {
+        height: '55vh'
+      }
     }
   })
 );
@@ -35,6 +41,7 @@ interface Props {
   sup1: boolean;
   jetski1: boolean;
   handleChange: any;
+  waterToys?: boolean;
 }
 export default function CheckBoxKeyFeatures({
   jet,
@@ -44,6 +51,7 @@ export default function CheckBoxKeyFeatures({
   fishing,
   sup1,
   jetski1,
+  waterToys,
 
   handleChange
 }: Props) {
@@ -52,11 +60,15 @@ export default function CheckBoxKeyFeatures({
   const [showMore, setShowMore] = useState(false);
 
   return (
-    <div className={classes.root}>
+    <div
+      className={clsx(classes.root, {
+        [classes.heightIncrease]: waterToys
+      })}
+    >
       <FormControl component="fieldset" className={classes.formControl}>
         <FormGroup>
           <Grid container>
-            <Grid item xs={6}>
+            <Grid item sm={6} xs={12}>
               <FormControlLabel
                 control={
                   <Checkbox
@@ -69,7 +81,7 @@ export default function CheckBoxKeyFeatures({
                 label="Jet Ski"
               />
             </Grid>
-            <Grid item xs={6}>
+            <Grid item sm={6} xs={12}>
               {' '}
               <FormControlLabel
                 control={
@@ -83,7 +95,7 @@ export default function CheckBoxKeyFeatures({
                 label="Scuba Diving Gear"
               />
             </Grid>
-            <Grid item xs={6}>
+            <Grid item sm={6} xs={12}>
               <FormControlLabel
                 control={
                   <Checkbox
@@ -96,7 +108,7 @@ export default function CheckBoxKeyFeatures({
                 label="Inflatable Water Toys"
               />
             </Grid>
-            <Grid item xs={6}>
+            <Grid item sm={6} xs={12}>
               <FormControlLabel
                 control={
                   <Checkbox
@@ -109,7 +121,7 @@ export default function CheckBoxKeyFeatures({
                 label="Waterski(For Kids)"
               />
             </Grid>
-            <Grid item xs={6}>
+            <Grid item sm={6} xs={12}>
               <FormControlLabel
                 control={
                   <Checkbox
@@ -122,7 +134,7 @@ export default function CheckBoxKeyFeatures({
                 label="Fishing Tackles Basic"
               />
             </Grid>{' '}
-            <Grid item xs={6}>
+            <Grid item sm={6} xs={12}>
               <FormControlLabel
                 control={
                   <Checkbox
@@ -137,7 +149,7 @@ export default function CheckBoxKeyFeatures({
             </Grid>
             {showMore && (
               <>
-                <Grid item xs={6}>
+                <Grid item sm={6} xs={12}>
                   <FormControlLabel
                     control={
                       <Checkbox

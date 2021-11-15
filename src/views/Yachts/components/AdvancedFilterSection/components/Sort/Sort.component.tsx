@@ -16,7 +16,8 @@ import MenuList from '@material-ui/core/MenuList';
 import { FlashOnTwoTone } from '@material-ui/icons';
 import clsx from 'clsx';
 import { useMediaQuery } from '@material-ui/core';
-
+import MobileSort from './components/MobileSort';
+import Divider from './Divider.png';
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     Paper: {
@@ -62,8 +63,17 @@ export default function MenuListComposition() {
   const [price_HighToLow, setprice_HighToLow] = React.useState(false);
   const [Length_LowToHigh, setLength_LowToHigh] = React.useState(false);
   const [Length_HighToLow, setLength_HighToLow] = React.useState(false);
+  const [mobileSort, setmobileSort] = React.useState(false);
+
   const handleToggle = () => {
     setOpen((prevOpen) => !prevOpen);
+    console.log('lalalalalal', mobileSort);
+    setmobileSort((prev) => !prev);
+  };
+
+  const handleToggleMobile = () => {
+    console.log('lalalalalal', mobileSort);
+    setmobileSort((prev) => !prev);
   };
 
   const handleClose = (event: React.MouseEvent<EventTarget>) => {
@@ -73,7 +83,7 @@ export default function MenuListComposition() {
     ) {
       return;
     }
-
+    console.log('prev Open', prevOpen);
     setOpen(false);
   };
   const handlePrice1 = (event: React.MouseEvent<EventTarget>) => {
@@ -108,6 +118,7 @@ export default function MenuListComposition() {
   //////////////////////////// Mobile view view
   const theme = useTheme();
   const matches = useMediaQuery(theme.breakpoints.down('xs'));
+  const mobile = useMediaQuery(theme.breakpoints.down(455));
   return (
     <>
       <Button
@@ -116,75 +127,79 @@ export default function MenuListComposition() {
         ref={anchorRef}
         aria-controls={open ? 'menu-list-grow' : undefined}
         aria-haspopup="true"
-        onClick={handleToggle}
+        onClick={!mobile ? handleToggle : handleToggleMobile}
       >
         <img src="/assets/images/Sort.svg" />
         <Typography color="inherit" variant="h5" className={classes.FilterTypo}>
           Sort
         </Typography>
       </Button>
-      <Popper
-        open={open}
-        anchorEl={anchorRef.current}
-        role={undefined}
-        transition
-        disablePortal
-        style={{ zIndex: 1 }}
-      >
-        {({ TransitionProps, placement }) => (
-          <Grow
-            {...TransitionProps}
-            style={{
-              transformOrigin:
-                placement === 'bottom' ? 'center top' : 'center bottom'
-            }}
-          >
-            <ClickAwayListener onClickAway={handleClose}>
-              <Paper className={classes.Paper}>
-                <MenuList
-                  autoFocusItem={open}
-                  id="menu-list-grow"
-                  onKeyDown={handleListKeyDown}
-                  style={{ paddingTop: '16px' }}
-                >
-                  <MenuItem
-                    className={clsx(classes.MenuItem, {
-                      [classes.Selected1]: price_LowToHigh
-                    })}
-                    onClick={handlePrice1}
+      {!mobile ? (
+        <Popper
+          open={open}
+          anchorEl={anchorRef.current}
+          role={undefined}
+          transition
+          disablePortal
+          style={{ zIndex: 1 }}
+        >
+          {({ TransitionProps, placement }) => (
+            <Grow
+              {...TransitionProps}
+              style={{
+                transformOrigin:
+                  placement === 'bottom' ? 'center top' : 'center bottom'
+              }}
+            >
+              <ClickAwayListener onClickAway={handleClose}>
+                <Paper className={classes.Paper}>
+                  <MenuList
+                    autoFocusItem={open}
+                    id="menu-list-grow"
+                    onKeyDown={handleListKeyDown}
+                    style={{ paddingTop: '16px' }}
                   >
-                    Price - Low to High
-                  </MenuItem>
-                  <MenuItem
-                    className={clsx(classes.MenuItem, {
-                      [classes.Selected1]: price_HighToLow
-                    })}
-                    onClick={handlePrice2}
-                  >
-                    Price - High to Low
-                  </MenuItem>
-                  <MenuItem
-                    className={clsx(classes.MenuItem, {
-                      [classes.Selected1]: Length_LowToHigh
-                    })}
-                    onClick={handleLength1}
-                  >
-                    Lenght - Low to High
-                  </MenuItem>
-                  <MenuItem
-                    className={clsx(classes.MenuItem, {
-                      [classes.Selected1]: Length_HighToLow
-                    })}
-                    onClick={handleLength2}
-                  >
-                    Lenght - High to Low
-                  </MenuItem>
-                </MenuList>
-              </Paper>
-            </ClickAwayListener>
-          </Grow>
-        )}
-      </Popper>
+                    <MenuItem
+                      className={clsx(classes.MenuItem, {
+                        [classes.Selected1]: price_LowToHigh
+                      })}
+                      onClick={handlePrice1}
+                    >
+                      Price - Low to High
+                    </MenuItem>
+                    <MenuItem
+                      className={clsx(classes.MenuItem, {
+                        [classes.Selected1]: price_HighToLow
+                      })}
+                      onClick={handlePrice2}
+                    >
+                      Price - High to Low
+                    </MenuItem>
+                    <MenuItem
+                      className={clsx(classes.MenuItem, {
+                        [classes.Selected1]: Length_LowToHigh
+                      })}
+                      onClick={handleLength1}
+                    >
+                      Lenght - Low to High
+                    </MenuItem>
+                    <MenuItem
+                      className={clsx(classes.MenuItem, {
+                        [classes.Selected1]: Length_HighToLow
+                      })}
+                      onClick={handleLength2}
+                    >
+                      Lenght - High to Low
+                    </MenuItem>
+                  </MenuList>
+                </Paper>
+              </ClickAwayListener>
+            </Grow>
+          )}
+        </Popper>
+      ) : (
+        <MobileSort prevOpen={mobileSort} setmobileSort={setmobileSort} />
+      )}
     </>
   );
 }

@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 
 import { signupStart } from 'src/store/auth/auth.actions';
 import {
+  addPictureStart,
   createYachtStart,
   fetchAdminYachtsStart
 } from 'src/store/yachts/yachts.actions';
@@ -17,7 +18,8 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch) => ({
   onSignupStart: (formData) => dispatch(signupStart(formData)),
   onCreateYachtStart: (formData) => dispatch(createYachtStart(formData)),
-  onFetchYachtsStart: () => dispatch(fetchAdminYachtsStart())
+  onFetchYachtsStart: () => dispatch(fetchAdminYachtsStart()),
+  onPicAddStart: () => dispatch(addPictureStart())
 });
 
 const container = connect(mapStateToProps, mapDispatchToProps);

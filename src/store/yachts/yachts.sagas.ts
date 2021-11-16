@@ -76,6 +76,19 @@ export function* createYachtAsync({ payload }: AnyAction) {
   }
 }
 
+export function* createPictureAsync() {
+  try {
+    console.log('hereinpictures');
+    const { data } = yield axios.post(
+      `https://yatchcloud-dev.fghire.com/api/putSignedUrl`
+    );
+    console.log('createYachtAsync data>>', data);
+    yield put(postsAction.addPictureSuccess(data));
+  } catch (err) {
+    console.error('error received>>>', err);
+    yield put(postsAction.addPictureStop(err));
+  }
+}
 export function* watchFetchYachts() {
   yield takeLatest(PostsType.FETCH_YACHTS_START, fetchYachtsAsync);
 }
@@ -93,11 +106,16 @@ export function* watchCreateYacht() {
   yield takeLatest(PostsType.CREATE_YACHT_START, createYachtAsync);
 }
 
+export function* watchCreatePicture() {
+  yield takeLatest(PostsType.ADD_PIC_START, createPictureAsync);
+}
+
 export function* yachtsSagas() {
   yield all([
     call(watchFetchYachts),
     call(watchFetchYachtById),
     call(watchCreateYacht),
-    call(watchAdminFetchYachts)
+    call(watchAdminFetchYachts),
+    call(watchCreatePicture)
   ]);
 }

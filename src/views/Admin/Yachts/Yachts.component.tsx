@@ -18,7 +18,8 @@ const Yachts = (props) => {
   const {
     onCreateYachtStart,
     yacht: { adminYachtsList, isCreating },
-    onFetchYachtsStart
+    onFetchYachtsStart,
+    onPicAddStart
   } = props;
   const classes = useStyles();
 
@@ -47,6 +48,7 @@ const Yachts = (props) => {
         <Grid item md={4}>
           <AddYacht
             onCreateYachtStart={onCreateYachtStart}
+            onPicAddStart={onPicAddStart}
             isCreating={isCreating}
           />
         </Grid>

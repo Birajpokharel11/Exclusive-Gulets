@@ -10,7 +10,8 @@ const INITIAL_STATE: IYachtState = {
   soleYacht: {},
   error: null,
   loading: false,
-  isCreating: false
+  isCreating: false,
+  code: {}
 };
 
 const YachtsReducer = (state = INITIAL_STATE, action) => {
@@ -92,6 +93,23 @@ const YachtsReducer = (state = INITIAL_STATE, action) => {
       };
 
     case YachtsType.CREATE_YACHT_FAILURE:
+      return {
+        ...state,
+        isCreating: false,
+        error: payload
+      };
+    case YachtsType.ADD_PIC_START:
+      return {
+        ...state,
+        isCreating: true
+      };
+    case YachtsType.ADD_PIC_SUCCESS:
+      return {
+        ...state,
+        isCreating: false,
+        code: payload
+      };
+    case YachtsType.ADD_PIC_STOP:
       return {
         ...state,
         isCreating: false,

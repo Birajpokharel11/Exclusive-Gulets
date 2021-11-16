@@ -135,11 +135,7 @@ export default function HeroSection(props) {
   return (
     <>
       <Container maxWidth={false} className={classes.Container}>
-        <img
-          src="/assets/images/MobilePic2.svg"
-          alt="HeroYatch"
-          className={classes.Yatch}
-        />
+        <img src={data.sideImage} alt="HeroYatch" className={classes.Yatch} />
         <div className={classes.imageTextShadows}>
           <div
             style={{

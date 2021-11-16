@@ -56,3 +56,18 @@ export const createYachtFailure = (error) => ({
   type: YachtsType.CREATE_YACHT_FAILURE,
   payload: error
 });
+
+///////////////////////////////////////////////////////////////
+export const addPictureStart = () => ({
+  type: YachtsType.ADD_PIC_START
+});
+
+export const addPictureSuccess = (result) => ({
+  type: YachtsType.ADD_PIC_SUCCESS,
+  payload: result
+});
+
+export const addPictureStop = (error) => ({
+  type: YachtsType.CREATE_YACHT_FAILURE,
+  payload: error
+});

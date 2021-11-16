@@ -131,11 +131,12 @@ const useStyles = makeStyles((theme) =>
 export default function HeroSection(props) {
   const { data } = props;
   const classes = useStyles();
+  console.log('yachtsdetail', data);
   return (
     <>
       <Container maxWidth={false} className={classes.Container}>
         <img
-          src={data.main_image?.url}
+          src="/assets/images/MobilePic2.svg"
           alt="HeroYatch"
           className={classes.Yatch}
         />

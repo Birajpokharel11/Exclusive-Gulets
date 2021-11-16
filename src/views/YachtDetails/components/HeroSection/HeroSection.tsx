@@ -157,8 +157,7 @@ export default function HeroSection(props) {
                 classes.ImageText2Position
               )}
             >
-              {data?.length}m | {data?.category} | {data?.number_of_passengers}{' '}
-              Guests
+              {data?.length}m | {data?.category} | {data?.noOfPassengers} Guests
             </Typography>
           </div>
         </div>
@@ -188,7 +187,7 @@ export default function HeroSection(props) {
                   <span
                     className={clsx(classes.Typography, classes.MiddleText)}
                   >
-                    €{data?.charter_price}
+                    €{data?.charterPrice}
                   </span>
                   to
                   <span

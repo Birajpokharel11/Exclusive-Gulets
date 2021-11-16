@@ -23,7 +23,7 @@ const YatchDetails = (props) => {
     destination: { randomDestination }
   } = props;
   const { query } = useRouter();
-
+  console.log('yachtsdetails', soleYacht);
   return (
     <Container maxWidth={false} style={{ padding: '0%' }}>
       {/* <SpecialOffer /> */}
@@ -31,7 +31,7 @@ const YatchDetails = (props) => {
       <AboutSection data={soleYacht} />
       {/* <GallerySection /> */}
       <AccomodationSection data={soleYacht} />
-      <GallerySilder data={soleYacht} />
+      <GallerySilder />
       <OptionalFeatures />
       <DestinationSection data={randomDestination} />
       {/* <Reviews /> */}

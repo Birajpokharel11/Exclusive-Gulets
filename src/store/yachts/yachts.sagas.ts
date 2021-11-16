@@ -26,7 +26,7 @@ export function* fetchYachtsAsync() {
 export function* fetchAdminYachtListAsync() {
   try {
     const { data } = yield axios.get(
-      'https://yatchcloud-dev.fghire.com/api/getAllYachtInfo'
+      'https://yatchcloud-dev.fghire.com/api/yacht/list'
     );
 
     console.log('fetch admin yacht list>>>', data);
@@ -43,9 +43,9 @@ export function* fetchYachtByIdAsync({ payload }: AnyAction) {
   console.log('HERE IN SAGAs', yacht_id);
   try {
     const { data } = yield axios.get(
-      `https://yatchcloud-dev.fghire.com/api/getYachtById/${yacht_id}`
+      `https://yatchcloud-dev.fghire.com/api/yacht/get/${yacht_id}`
     );
-    console.log('DAtaId', data.detail.data);
+    console.log('DAtaIdsss', data.detail.data);
     yield put(postsAction.fetchYachtByIdSuccess(data.detail.data[0]));
     console.log('IDSUCESSFULL');
   } catch (err) {

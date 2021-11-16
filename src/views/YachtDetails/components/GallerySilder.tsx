@@ -108,7 +108,7 @@ export default function ImageSlider(props) {
   return (
     <div>
       <Slider {...settings}>
-        {data.attachments.map((item, index) => (
+        {/* {data.attachments.map((item, index) => (
           <div key={index}>
             <img
               src={item.file?.url}
@@ -121,7 +121,7 @@ export default function ImageSlider(props) {
               }}
             />
           </div>
-        ))}
+        ))} */}
       </Slider>
     </div>
   );

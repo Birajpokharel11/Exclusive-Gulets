@@ -26,7 +26,7 @@ export function* fetchYachtsAsync() {
 export function* fetchAdminYachtListAsync() {
   try {
     const { data } = yield axios.get(
-      `https://yatchcloud-dev.fghire.com/api/getAllYachtInfo`
+      `https://yatchcloud-dev.fghire.com/api/yacht/list`
     );
 
     console.log('fetch yacht list>>>', data);
@@ -43,7 +43,7 @@ export function* fetchYachtByIdAsync({ payload }: AnyAction) {
   try {
     console.log('yacht_id >>>', yacht_id);
     const { data } = yield axios.get(
-      `https://yatchcloud-dev.fghire.com/api/getYachtById/${yacht_id}`
+      `https://yatchcloud-dev.fghire.com/api/yacht/get/${yacht_id}`
     );
     console.log('data fetchYachtByIdAsync>>>', data.detail.data);
     yield put(postsAction.fetchYachtByIdSuccess(data.detail.data[0]));
@@ -58,7 +58,7 @@ export function* createYachtAsync({ payload }: AnyAction) {
   try {
     console.log('createYachtAsync>>', formData);
     const { data } = yield axios.post(
-      `https://yatchcloud-dev.fghire.com/api/createYacthInfo`,
+      `https://yatchcloud-dev.fghire.com/api/yacht/create`,
       formData
     );
     console.log('createYachtAsync data>>', data);
@@ -80,7 +80,7 @@ export function* editYachtAsync({ payload }: AnyAction) {
   try {
     console.log('editYachtAsync>>', formData);
     const { data } = yield axios.post(
-      `https://yatchcloud-dev.fghire.com/api/updateYacht`,
+      `https://yatchcloud-dev.fghire.com/api/yacht/edit`,
       formData
     );
     console.log('editYachtAsync data>>', data);

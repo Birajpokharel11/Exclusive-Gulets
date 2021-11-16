@@ -72,6 +72,7 @@ function Blogs({
     const reader = new FileReader();
     const file = e.target.files[0];
     const maxfilesize = 1024 * 1024 * 2; // 2 Mb
+    console.log(file);
     if (file) {
       if (file.size > maxfilesize) {
         openAlert('image size cannot be greater than 2MB', 'error');

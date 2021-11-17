@@ -66,9 +66,17 @@ export interface IOfferState {
 export interface IYachtState {
   yachtsList: any[];
   adminYachtsList: any[];
+  flagList: any[];
+  yachtFeaturesList: any[];
+  homePortList: any[];
+  extrasList: any[];
+  inclusiveTermList: any[];
+  waterToysList: any[];
+  countryList: any[];
   soleYacht: object | any;
   error: any | null;
   loading: boolean;
   isCreating: boolean;
   isEditing: boolean;
+  isFetching: boolean;
 }

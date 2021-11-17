@@ -12,7 +12,14 @@ import {
 import container from './EditYacht.container';
 import BackgroundVectors from '@components/BackgroundVectors';
 import { useRouter } from 'next/router';
-import { Formik, Field, Form, FormikConfig, FormikValues } from 'formik';
+import {
+  Formik,
+  Field,
+  Form,
+  FormikConfig,
+  FormikValues,
+  FieldArray
+} from 'formik';
 import { TextField, Select } from 'formik-material-ui';
 import * as Yup from 'yup';
 import { IYachtState } from '@store/interfaces';
@@ -34,6 +41,9 @@ const useStyles = makeStyles((theme) =>
       paddingTop: '40px',
       marginBottom: '20px',
       position: 'relative'
+    },
+    header: {
+      fontWeight: 500
     }
   })
 );
@@ -45,7 +55,17 @@ interface Props {
   onEditYachtStart?: (formData) => any;
 }
 function Blogs({
-  yacht: { soleYacht, isEditing },
+  yacht: {
+    soleYacht,
+    isEditing,
+    flagList,
+    countryList,
+    homePortList,
+    waterToysList,
+    inclusiveTermList,
+    extrasList,
+    yachtFeaturesList
+  },
   loading,
   onEditYachtStart
 }: Props) {
@@ -65,130 +85,508 @@ function Blogs({
               yachtTypeId: 1,
               buildYear: soleYacht.buildYear,
               refitYear: soleYacht.refitYear,
-              yachtLength: 100,
-              noOfCabins: 16
+              noOfCabins: soleYacht.noOfCabins ?? '',
+              flagsId: soleYacht.flagsId ?? 1,
+              homePortId: soleYacht.homePortId ?? 1,
+              masterCabins: soleYacht.masterCabins ?? '',
+              doubleCabins: soleYacht.doubleCabins ?? '',
+              twinCabins: soleYacht.twinCabins ?? '',
+              length: soleYacht.length ?? '',
+              tripleCabins: soleYacht.tripleCabins ?? '',
+              singleCabins: soleYacht.singleCabins ?? '',
+              extraBunkBeds: soleYacht.extraBunkBeds ?? '',
+              noOfPassengers: soleYacht.noOfPassengers ?? '',
+              registryPortId: soleYacht.registryPortId ?? 1,
+              instanceCheckout: soleYacht.instanceCheckout ?? false,
+              additionalCosts: soleYacht.additionalCosts ?? '',
+              toysId: soleYacht.toysId ?? [],
+              termsId: [],
+              extrasId: [],
+              countriesId: [],
+              featuresId: []
             }}
             onSubmit={(values, { setSubmitting }) => {
               console.log('submit clicked!!!', values);
               onEditYachtStart({ ...values, id: soleYacht.id });
               setSubmitting(false);
             }}
-          >
-            <Form>
-              <Grid container spacing={3}>
-                <Grid item container justify="space-between">
-                  <Grid item>
-                    <Typography variant="h3">
-                      <strong>Edit Yacht</strong>
+            render={({ values }) => (
+              <Form>
+                <Grid container spacing={3}>
+                  <Grid item container justify="space-between">
+                    <Grid item>
+                      <Typography variant="h3">
+                        <strong>Edit Yacht</strong>
+                      </Typography>
+                    </Grid>
+                  </Grid>
+                  <Grid item xs={12}>
+                    <Field
+                      fullWidth
+                      label="Yacht Name"
+                      name="name"
+                      type="text"
+                      variant="outlined"
+                      component={TextField}
+                    />
+                  </Grid>
+
+                  <Grid item xs={12}>
+                    <Field
+                      component={Select}
+                      fullWidth
+                      label="Rating"
+                      variant="outlined"
+                      name="ratingId"
+                      id="rating"
+                    >
+                      <MenuItem value={1}>3.0</MenuItem>
+                      <MenuItem value={1}>4.0</MenuItem>
+                      <MenuItem value={1}>5.0</MenuItem>
+                    </Field>
+                  </Grid>
+
+                  <Grid item xs={12}>
+                    <Field
+                      component={Select}
+                      fullWidth
+                      label="Yacht Type"
+                      variant="outlined"
+                      name="yachtTypeId"
+                      id="yachtType"
+                    >
+                      <MenuItem value={1}>Catamaran</MenuItem>
+                      <MenuItem value={1}>Gulet</MenuItem>
+                      <MenuItem value={1}>Motor Sailer</MenuItem>
+                      <MenuItem value={1}>Motor Yacht</MenuItem>
+                    </Field>
+                  </Grid>
+
+                  <Grid item xs={6}>
+                    <Field
+                      fullWidth
+                      label="Year Built"
+                      name="buildYear"
+                      type="text"
+                      variant="outlined"
+                      component={TextField}
+                    />
+                  </Grid>
+
+                  <Grid item xs={6}>
+                    <Field
+                      fullWidth
+                      label="Year Refit"
+                      name="refitYear"
+                      type="text"
+                      variant="outlined"
+                      component={TextField}
+                    />
+                  </Grid>
+
+                  <Grid item xs={6}>
+                    <Field
+                      fullWidth
+                      label="Length"
+                      name="length"
+                      type="number"
+                      variant="outlined"
+                      component={TextField}
+                    />
+                  </Grid>
+
+                  <Grid item xs={6}>
+                    <Field
+                      fullWidth
+                      label="Cabin"
+                      name="noOfCabins"
+                      type="number"
+                      variant="outlined"
+                      component={TextField}
+                    />
+                  </Grid>
+
+                  <Grid item container xs={12} spacing={2}>
+                    <Grid item xs={12}>
+                      <Typography variant="h4" className={classes.header}>
+                        Flags:
+                      </Typography>
+                    </Grid>
+
+                    <Field
+                      component={Select}
+                      fullWidth
+                      label="Flag"
+                      variant="outlined"
+                      name="flagsId"
+                      id="flagsId"
+                    >
+                      {flagList.map((flag) => (
+                        <MenuItem key={flag.id} value={flag.id}>
+                          {flag.countryName}
+                        </MenuItem>
+                      ))}
+                    </Field>
+                  </Grid>
+
+                  <Grid item container xs={12} spacing={2}>
+                    <Grid item xs={12}>
+                      <Typography variant="h4" className={classes.header}>
+                        SAILING REGION:
+                      </Typography>
+                    </Grid>
+
+                    <FieldArray
+                      name="countriesId"
+                      render={(arrayHelpers) => (
+                        <>
+                          {countryList.map((country) => (
+                            <Grid item xs={4} key={country.id}>
+                              <Typography variant="h4">
+                                {country.name}
+                              </Typography>
+
+                              <input
+                                name="countriesId"
+                                type="checkbox"
+                                value={country.id}
+                                checked={values.countriesId
+                                  .map((e) => e)
+                                  .includes(country.id)}
+                                onChange={(e) => {
+                                  if (e.target.checked)
+                                    arrayHelpers.push(country.id);
+                                  else {
+                                    const index = values.countriesId
+                                      .map(function (e) {
+                                        return e.id;
+                                      })
+                                      .indexOf(country.id);
+                                    arrayHelpers.remove(index);
+                                  }
+                                }}
+                              />
+                            </Grid>
+                          ))}
+                        </>
+                      )}
+                    />
+                  </Grid>
+
+                  <Grid item container xs={12} spacing={2}>
+                    <Grid item xs={12}>
+                      <Typography variant="h4" className={classes.header}>
+                        Home Port:
+                      </Typography>
+                    </Grid>
+
+                    <Field
+                      component={Select}
+                      fullWidth
+                      label="Home Port"
+                      variant="outlined"
+                      name="homePortId"
+                      id="homePortId"
+                    >
+                      {homePortList.map((home) => (
+                        <MenuItem key={home.id} value={home.id}>
+                          {home.name}
+                        </MenuItem>
+                      ))}
+                    </Field>
+                  </Grid>
+
+                  <Grid item xs={4}>
+                    <Field
+                      fullWidth
+                      label="Master Cabins"
+                      name="masterCabins"
+                      type="number"
+                      variant="outlined"
+                      component={TextField}
+                    />
+                  </Grid>
+
+                  <Grid item xs={4}>
+                    <Field
+                      fullWidth
+                      label="Double Cabins"
+                      name="doubleCabins"
+                      type="number"
+                      variant="outlined"
+                      component={TextField}
+                    />
+                  </Grid>
+
+                  <Grid item xs={4}>
+                    <Field
+                      fullWidth
+                      label="Twin Cabins"
+                      name="twinCabins"
+                      type="number"
+                      variant="outlined"
+                      component={TextField}
+                    />
+                  </Grid>
+
+                  <Grid item xs={4}>
+                    <Field
+                      fullWidth
+                      label="Triple Cabins"
+                      name="tripleCabins"
+                      type="number"
+                      variant="outlined"
+                      component={TextField}
+                    />
+                  </Grid>
+
+                  <Grid item xs={4}>
+                    <Field
+                      fullWidth
+                      label="Single Cabins"
+                      name="singleCabins"
+                      type="number"
+                      variant="outlined"
+                      component={TextField}
+                    />
+                  </Grid>
+
+                  <Grid item xs={4}>
+                    <Field
+                      fullWidth
+                      label="Extra Bunk Beds"
+                      name="extraBunkBeds"
+                      type="number"
+                      variant="outlined"
+                      component={TextField}
+                    />
+                  </Grid>
+
+                  <Grid item xs={4}>
+                    <Field
+                      fullWidth
+                      label="No Of Crew Members"
+                      name="noOfPassengers"
+                      type="number"
+                      variant="outlined"
+                      component={TextField}
+                    />
+                  </Grid>
+
+                  <Grid item container xs={12} spacing={2}>
+                    <Grid item xs={12}>
+                      <Typography variant="h4" className={classes.header}>
+                        KEY FEATURES:
+                      </Typography>
+                    </Grid>
+
+                    <FieldArray
+                      name="featuresId"
+                      render={(arrayHelpers) => (
+                        <>
+                          {yachtFeaturesList.map((feature) => (
+                            <Grid item xs={4} key={feature.id}>
+                              <Typography variant="h4">
+                                {feature.name}
+                              </Typography>
+
+                              <input
+                                name="featuresId"
+                                type="checkbox"
+                                value={feature.id}
+                                checked={values.featuresId
+                                  .map((e) => e)
+                                  .includes(feature.id)}
+                                onChange={(e) => {
+                                  if (e.target.checked)
+                                    arrayHelpers.push(feature.id);
+                                  else {
+                                    const index = values.featuresId
+                                      .map(function (e) {
+                                        return e.id;
+                                      })
+                                      .indexOf(feature.id);
+                                    arrayHelpers.remove(index);
+                                  }
+                                }}
+                              />
+                            </Grid>
+                          ))}
+                        </>
+                      )}
+                    />
+                  </Grid>
+
+                  <Grid item container xs={12} spacing={2}>
+                    <Grid item xs={12}>
+                      <Typography variant="h4" className={classes.header}>
+                        WATER TOYS:
+                      </Typography>
+                    </Grid>
+
+                    <FieldArray
+                      name="toysId"
+                      render={(arrayHelpers) => (
+                        <>
+                          {waterToysList.map((toy) => (
+                            <Grid item xs={4} key={toy.id}>
+                              <Typography variant="h4">{toy.name}</Typography>
+
+                              <input
+                                name="toysId"
+                                type="checkbox"
+                                value={toy.id}
+                                checked={values.toysId
+                                  .map((e) => e)
+                                  .includes(toy.id)}
+                                onChange={(e) => {
+                                  if (e.target.checked)
+                                    arrayHelpers.push(toy.id);
+                                  else {
+                                    const index = values.toysId
+                                      .map(function (e) {
+                                        return e.id;
+                                      })
+                                      .indexOf(toy.id);
+                                    arrayHelpers.remove(index);
+                                  }
+                                }}
+                              />
+                            </Grid>
+                          ))}
+                        </>
+                      )}
+                    />
+                  </Grid>
+
+                  <Grid item container xs={12} spacing={2}>
+                    <Grid item xs={12}>
+                      <Typography variant="h4" className={classes.header}>
+                        INCLUSIVE TERMS:
+                      </Typography>
+                    </Grid>
+
+                    <FieldArray
+                      name="termsId"
+                      render={(arrayHelpers) => (
+                        <>
+                          {inclusiveTermList.map((term) => (
+                            <Grid item xs={4} key={term.id}>
+                              <Typography variant="h4">{term.name}</Typography>
+
+                              <input
+                                name="termsId"
+                                type="checkbox"
+                                value={term.id}
+                                checked={values.termsId
+                                  .map((e) => e)
+                                  .includes(term.id)}
+                                onChange={(e) => {
+                                  if (e.target.checked)
+                                    arrayHelpers.push(term.id);
+                                  else {
+                                    const index = values.termsId
+                                      .map(function (e) {
+                                        return e.id;
+                                      })
+                                      .indexOf(term.id);
+                                    arrayHelpers.remove(index);
+                                  }
+                                }}
+                              />
+                            </Grid>
+                          ))}
+                        </>
+                      )}
+                    />
+                  </Grid>
+
+                  <Grid item container xs={12} spacing={2}>
+                    <Grid item xs={12}>
+                      <Typography variant="h4" className={classes.header}>
+                        OPTIONAL EXTRAS:
+                      </Typography>
+                    </Grid>
+
+                    <FieldArray
+                      name="extrasId"
+                      render={(arrayHelpers) => (
+                        <>
+                          {extrasList.map((extra) => (
+                            <Grid item xs={4} key={extra.id}>
+                              <Typography variant="h4">{extra.name}</Typography>
+
+                              <input
+                                name="extrasId"
+                                type="checkbox"
+                                value={extra.id}
+                                checked={values.extrasId
+                                  .map((e) => e)
+                                  .includes(extra.id)}
+                                onChange={(e) => {
+                                  if (e.target.checked)
+                                    arrayHelpers.push(extra.id);
+                                  else {
+                                    const index = values.extrasId
+                                      .map(function (e) {
+                                        return e.id;
+                                      })
+                                      .indexOf(extra.id);
+                                    arrayHelpers.remove(index);
+                                  }
+                                }}
+                              />
+                            </Grid>
+                          ))}
+                        </>
+                      )}
+                    />
+                  </Grid>
+
+                  <Grid item xs={12}>
+                    <Field
+                      fullWidth
+                      label="Additional Costs"
+                      name="additionalCosts"
+                      type="text"
+                      variant="outlined"
+                      component={TextField}
+                    />
+                  </Grid>
+
+                  <Grid item container sm={12}>
+                    <Typography variant="h4">
+                      AVAILABILITY FOR INSTANT CHECKOUT:
                     </Typography>
+
+                    <Field
+                      type="checkbox"
+                      name="instanceCheckout"
+                      style={{ margin: '6px 0 0 10px' }}
+                    />
+                  </Grid>
+
+                  <Grid item xs={12}>
+                    <Button
+                      color="primary"
+                      size="large"
+                      type="submit"
+                      variant="contained"
+                      disabled={isEditing}
+                    >
+                      {isEditing ? (
+                        <CircularProgress />
+                      ) : (
+                        <Typography variant="body1" color="secondary">
+                          Save
+                        </Typography>
+                      )}
+                    </Button>
                   </Grid>
                 </Grid>
-                <Grid item xs={12}>
-                  <Field
-                    fullWidth
-                    label="Yacht Name"
-                    name="name"
-                    type="text"
-                    variant="outlined"
-                    component={TextField}
-                  />
-                </Grid>
-
-                <Grid item xs={12}>
-                  <Field
-                    component={Select}
-                    fullWidth
-                    label="Rating"
-                    variant="outlined"
-                    name="ratingId"
-                    id="rating"
-                  >
-                    <MenuItem value={1}>3.0</MenuItem>
-                    <MenuItem value={1}>4.0</MenuItem>
-                    <MenuItem value={1}>5.0</MenuItem>
-                  </Field>
-                </Grid>
-
-                <Grid item xs={12}>
-                  <Field
-                    component={Select}
-                    fullWidth
-                    label="Yacht Type"
-                    variant="outlined"
-                    name="yachtTypeId"
-                    id="yachtType"
-                  >
-                    <MenuItem value={1}>Catamaran</MenuItem>
-                    <MenuItem value={1}>Gulet</MenuItem>
-                    <MenuItem value={1}>Motor Sailer</MenuItem>
-                    <MenuItem value={1}>Motor Yacht</MenuItem>
-                  </Field>
-                </Grid>
-
-                <Grid item xs={6}>
-                  <Field
-                    fullWidth
-                    label="Year Built"
-                    name="buildYear"
-                    type="text"
-                    variant="outlined"
-                    component={TextField}
-                  />
-                </Grid>
-
-                <Grid item xs={6}>
-                  <Field
-                    fullWidth
-                    label="Year Refit"
-                    name="refitYear"
-                    type="text"
-                    variant="outlined"
-                    component={TextField}
-                  />
-                </Grid>
-
-                <Grid item xs={6}>
-                  <Field
-                    fullWidth
-                    label="Length"
-                    name="yachtLength"
-                    type="number"
-                    variant="outlined"
-                    component={TextField}
-                  />
-                </Grid>
-
-                <Grid item xs={6}>
-                  <Field
-                    fullWidth
-                    label="Cabin"
-                    name="noOfCabins"
-                    type="number"
-                    variant="outlined"
-                    component={TextField}
-                  />
-                </Grid>
-
-                <Grid item xs={12}>
-                  <Button
-                    color="primary"
-                    size="large"
-                    type="submit"
-                    variant="contained"
-                    disabled={isEditing}
-                  >
-                    {isEditing ? (
-                      <CircularProgress />
-                    ) : (
-                      <Typography variant="body1" color="secondary">
-                        Save
-                      </Typography>
-                    )}
-                  </Button>
-                </Grid>
-              </Grid>
-            </Form>
-          </Formik>
+              </Form>
+            )}
+          />
         </Container>
       </Box>
     </>

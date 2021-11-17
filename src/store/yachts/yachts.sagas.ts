@@ -97,6 +97,104 @@ export function* editYachtAsync({ payload }: AnyAction) {
   }
 }
 
+export function* fetchFlagAsync() {
+  try {
+    const { data } = yield axios.get(
+      `https://yatchcloud-dev.fghire.com/api/getFlags`
+    );
+    console.log('fetchFlagAsync data>>', data);
+    yield put(postsAction.fetchFlagSuccess(data.detail.data));
+  } catch (err) {
+    console.error('error received>>>', err);
+    yield put(postsAction.fetchFlagFailure(err));
+    yield put(openAlert('error while updating yacht!!', 'error'));
+  }
+}
+
+export function* fetchCountryAsync() {
+  try {
+    const { data } = yield axios.get(
+      `https://yatchcloud-dev.fghire.com/api/getCountries`
+    );
+    console.log('fetchFlagAsync data>>', data);
+    yield put(postsAction.fetchCountrySuccess(data.detail.data));
+  } catch (err) {
+    console.error('error received>>>', err);
+    yield put(postsAction.fetchCountryFailure(err));
+    yield put(openAlert('error while updating yacht!!', 'error'));
+  }
+}
+
+export function* fetchHomePortAsync() {
+  try {
+    const { data } = yield axios.get(
+      `https://yatchcloud-dev.fghire.com/api/getHomePorts`
+    );
+    console.log('fetchHomePortAsync data>>', data);
+    yield put(postsAction.fetchHomePortSuccess(data.detail.data));
+  } catch (err) {
+    console.error('error received>>>', err);
+    yield put(postsAction.fetchHomePortFailure(err));
+    yield put(openAlert('error while updating yacht!!', 'error'));
+  }
+}
+
+export function* fetchWaterToysAsync() {
+  try {
+    const { data } = yield axios.get(
+      `https://yatchcloud-dev.fghire.com/api/getYachtToys`
+    );
+    console.log('fetchWaterToysAsync data>>', data);
+    yield put(postsAction.fetchWaterToysSuccess(data.detail.data));
+  } catch (err) {
+    console.error('error received>>>', err);
+    yield put(postsAction.fetchWaterToysFailure(err));
+    yield put(openAlert('error while updating yacht!!', 'error'));
+  }
+}
+
+export function* fetchInclusiveTermAsync() {
+  try {
+    const { data } = yield axios.get(
+      `https://yatchcloud-dev.fghire.com/api/getYachtTerms`
+    );
+    console.log('fetchInclusiveTermAsync data>>', data);
+    yield put(postsAction.fetchInclusiveTermSuccess(data.detail.data));
+  } catch (err) {
+    console.error('error received>>>', err);
+    yield put(postsAction.fetchInclusiveTermFailure(err));
+    yield put(openAlert('error while updating yacht!!', 'error'));
+  }
+}
+
+export function* fetchExtrasAsync() {
+  try {
+    const { data } = yield axios.get(
+      `https://yatchcloud-dev.fghire.com/api/getYachtExtras`
+    );
+    console.log('fetchExtrasAsync data>>', data);
+    yield put(postsAction.fetchExtrasSuccess(data.detail.data));
+  } catch (err) {
+    console.error('error received>>>', err);
+    yield put(postsAction.fetchExtrasFailure(err));
+    yield put(openAlert('error while updating yacht!!', 'error'));
+  }
+}
+
+export function* fetchYachtFeatureAsync() {
+  try {
+    const { data } = yield axios.get(
+      `https://yatchcloud-dev.fghire.com/api/getYachtFeatures`
+    );
+    console.log('fetchYachtFeatureAsync data>>', data);
+    yield put(postsAction.fetchYachtFeaturesSuccess(data.detail.data));
+  } catch (err) {
+    console.error('error received>>>', err);
+    yield put(postsAction.fetchYachtFeaturesFailure(err));
+    yield put(openAlert('error while updating yacht!!', 'error'));
+  }
+}
+
 export function* watchFetchYachts() {
   yield takeLatest(PostsType.FETCH_YACHTS_START, fetchYachtsAsync);
 }
@@ -119,12 +217,53 @@ export function* watchEditYacht() {
   yield takeLatest(PostsType.EDIT_YACHT_START, editYachtAsync);
 }
 
+export function* watchFetchFlag() {
+  yield takeLatest(PostsType.FETCH_FLAG_START, fetchFlagAsync);
+}
+
+export function* watchFetchCountry() {
+  yield takeLatest(PostsType.FETCH_COUNTRY_START, fetchCountryAsync);
+}
+
+export function* watchFetchHomePort() {
+  yield takeLatest(PostsType.FETCH_HOMEPORT_START, fetchHomePortAsync);
+}
+
+export function* watchFetchWaterToys() {
+  yield takeLatest(PostsType.FETCH_WATERTOYS_START, fetchWaterToysAsync);
+}
+
+export function* watchFetchInclusiveTerm() {
+  yield takeLatest(
+    PostsType.FETCH_INCLUSIVETERM_START,
+    fetchInclusiveTermAsync
+  );
+}
+
+export function* watchFetchExtras() {
+  yield takeLatest(PostsType.FETCH_EXTRAS_START, fetchExtrasAsync);
+}
+
+export function* watchFetchYachtFeature() {
+  yield takeLatest(
+    PostsType.FETCH_YACHT_FEATURES_START,
+    fetchYachtFeatureAsync
+  );
+}
+
 export function* yachtsSagas() {
   yield all([
     call(watchFetchYachts),
     call(watchFetchYachtById),
     call(watchCreateYacht),
     call(watchAdminFetchYachts),
-    call(watchEditYacht)
+    call(watchEditYacht),
+    call(watchFetchFlag),
+    call(watchFetchCountry),
+    call(watchFetchHomePort),
+    call(watchFetchWaterToys),
+    call(watchFetchInclusiveTerm),
+    call(watchFetchExtras),
+    call(watchFetchYachtFeature)
   ]);
 }

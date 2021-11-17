@@ -8,10 +8,18 @@ const INITIAL_STATE: IYachtState = {
   yachtsList: [],
   adminYachtsList: [],
   soleYacht: {},
+  flagList: [],
+  countryList: [],
+  yachtFeaturesList: [],
+  waterToysList: [],
+  extrasList: [],
+  inclusiveTermList: [],
+  homePortList: [],
   error: null,
   loading: false,
   isCreating: false,
-  isEditing: false
+  isEditing: false,
+  isFetching: false
 };
 
 const YachtsReducer = (state = INITIAL_STATE, action) => {
@@ -115,6 +123,146 @@ const YachtsReducer = (state = INITIAL_STATE, action) => {
       return {
         ...state,
         isEditing: false,
+        error: payload
+      };
+
+    case YachtsType.FETCH_FLAG_START:
+      return {
+        ...state,
+        isFetching: true
+      };
+
+    case YachtsType.FETCH_FLAG_SUCCESS:
+      return {
+        ...state,
+        isFetching: false,
+        flagList: payload
+      };
+
+    case YachtsType.FETCH_FLAG_FAILURE:
+      return {
+        ...state,
+        isFetching: false,
+        error: payload
+      };
+
+    case YachtsType.FETCH_COUNTRY_START:
+      return {
+        ...state,
+        isFetching: true
+      };
+
+    case YachtsType.FETCH_COUNTRY_SUCCESS:
+      return {
+        ...state,
+        isFetching: false,
+        countryList: payload
+      };
+
+    case YachtsType.FETCH_COUNTRY_FAILURE:
+      return {
+        ...state,
+        isFetching: false,
+        error: payload
+      };
+
+    case YachtsType.FETCH_HOMEPORT_START:
+      return {
+        ...state,
+        isFetching: true
+      };
+
+    case YachtsType.FETCH_HOMEPORT_SUCCESS:
+      return {
+        ...state,
+        isFetching: false,
+        homePortList: payload
+      };
+
+    case YachtsType.FETCH_HOMEPORT_FAILURE:
+      return {
+        ...state,
+        isFetching: false,
+        error: payload
+      };
+
+    case YachtsType.FETCH_WATERTOYS_START:
+      return {
+        ...state,
+        isFetching: true
+      };
+
+    case YachtsType.FETCH_WATERTOYS_SUCCESS:
+      return {
+        ...state,
+        isFetching: false,
+        waterToysList: payload
+      };
+
+    case YachtsType.FETCH_WATERTOYS_FAILURE:
+      return {
+        ...state,
+        isFetching: false,
+        error: payload
+      };
+
+    case YachtsType.FETCH_INCLUSIVETERM_START:
+      return {
+        ...state,
+        isFetching: true
+      };
+
+    case YachtsType.FETCH_INCLUSIVETERM_SUCCESS:
+      return {
+        ...state,
+        isFetching: false,
+        inclusiveTermList: payload
+      };
+
+    case YachtsType.FETCH_INCLUSIVETERM_FAILURE:
+      return {
+        ...state,
+        isFetching: false,
+        error: payload
+      };
+
+    case YachtsType.FETCH_EXTRAS_START:
+      return {
+        ...state,
+        isFetching: true
+      };
+
+    case YachtsType.FETCH_EXTRAS_SUCCESS:
+      return {
+        ...state,
+        isFetching: false,
+        extrasList: payload
+      };
+
+    case YachtsType.FETCH_EXTRAS_FAILURE:
+      return {
+        ...state,
+        isFetching: false,
+        error: payload
+      };
+
+    case YachtsType.FETCH_YACHT_FEATURES_START:
+      return {
+        ...state,
+        isFetching: true
+      };
+
+    case YachtsType.FETCH_YACHT_FEATURES_SUCCESS:
+      return {
+        ...state,
+        isFetching: false,
+        yachtFeaturesList: payload
+      };
+
+    case YachtsType.FETCH_YACHT_FEATURES_FAILURE:
+      return {
+        ...state,
+        isFetching: false,
         error: payload
       };
 

@@ -15,7 +15,7 @@ const useStyles = makeStyles((theme: Theme) =>
     },
     formControl: {
       margin: theme.spacing(3),
-      width: '100%'
+      width: '85%'
     },
     Divider: {
       marginTop: '16px',

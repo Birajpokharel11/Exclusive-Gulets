@@ -16,7 +16,7 @@ const useStyles = makeStyles((theme) =>
       width: 300,
       [theme.breakpoints.down('xs')]: { padding: '0 0 16px 16px' }
     },
-    NEw: { width: '450px' },
+    NEw: { width: '450px', [theme.breakpoints.down('xs')]: { width: '100vw' } },
     multilineColor: {
       color: '#091527',
       fontSize: '18px',

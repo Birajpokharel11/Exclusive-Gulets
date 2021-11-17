@@ -91,17 +91,17 @@ export default function DestinationDialouge() {
 
   function getStepContent(stepIndex: number) {
     switch (stepIndex) {
-      case 1:
+      case 0:
         return <CheckBoxDestinations />;
-      case 2:
+      case 1:
         return <FilterMobile />;
-      case 3:
+      case 2:
         return <RangeSlider />;
       default:
         return <CheckBoxDestinations />;
     }
   }
-  const [activeStep, setActiveStep] = React.useState(1);
+  const [activeStep, setActiveStep] = React.useState(0);
   const handleNext = () => {
     setActiveStep((prevActiveStep) => prevActiveStep + 1);
     console.log('next', activeStep);
@@ -139,9 +139,9 @@ export default function DestinationDialouge() {
           <Box pl={3}>
             {' '}
             <Typography variant="h3">
-              Select a{activeStep == 1 && ' Destination'}
-              {activeStep == 2 && ' check-in date'}
-              {activeStep == 3 && ' guest number'}
+              Select a{activeStep == 0 && ' Destination'}
+              {activeStep == 1 && ' check-in date'}
+              {activeStep == 2 && ' guest number'}
               {console.log('Nwe', activeStep)}
             </Typography>
           </Box>
@@ -165,20 +165,27 @@ export default function DestinationDialouge() {
               className={classes.Button1}
               onClick={handleBack}
               variant="outlined"
+              disabled={activeStep == 0 && true}
             >
               Back
             </Button>
 
-            <Button
-              onClick={handleNext}
-              className={classes.Next}
-              color="primary"
-              //   className={clsx(classes.Calenderbefore, {
-              //     [classes.Calender]: fexible
-              //   })}
-            >
-              Next
-            </Button>
+            {activeStep == 2 ? (
+              <Button className={classes.Next} color="primary">
+                See Yachts
+              </Button>
+            ) : (
+              <Button
+                onClick={handleNext}
+                className={classes.Next}
+                color="primary"
+                //   className={clsx(classes.Calenderbefore, {
+                //     [classes.Calender]: fexible
+                //   })}
+              >
+                Next
+              </Button>
+            )}
           </Box>
         </Paper>
       </Dialog>

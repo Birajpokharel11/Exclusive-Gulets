@@ -107,30 +107,12 @@ export default function PreviewDrawer(props) {
   const classes = useStyles();
   const { open, handleDrawerToggle, selectedYacht } = props;
 
-  const DynamicMobileData = [
-    {
-      Heading: 'yachtsType',
-      yachtsType: `${selectedYacht.category}, ${selectedYacht.build_year} `
-    },
-    {
-      Heading: 'Guests',
-      yachtsType: `${selectedYacht.number_of_passengers ?? ''}`
-    },
-    { Heading: 'length', yachtsType: `${selectedYacht.length ?? ''}` },
-    { Heading: 'Cabin', yachtsType: `${selectedYacht.length ?? ''}` },
-    {
-      Heading: 'CruisingRegions',
-      yachtsType: `${selectedYacht.sailing_countries.map((country) => {
-        return country.name;
-      })}`
-    },
-    { Heading: 'Crew', yachtsType: `${selectedYacht.number_of_members ?? ''}` }
-  ];
+  const DynamicMobileData = [];
 
   const storeYachtDetails = (selectedYacht) => {
     dispatch(storeYacht(selectedYacht));
   };
-
+  console.log('Hellobro', selectedYacht.id);
   return (
     <>
       <div className={classes.toolbarMargin} />
@@ -197,18 +179,17 @@ export default function PreviewDrawer(props) {
         </Box>
         <br />
         <Box pl={3}>
-          <YachtsSlider imageList={selectedYacht.attachments} />
+          {/* <YachtsSlider imageList={selectedYacht.attachments} /> */}
         </Box>
         <Box pt={1} pb={6}>
           <Grid container justifyContent="center">
             <Link
-              href={{
-                pathname: `/yachts/[slug]`,
-                query: {
-                  slug: selectedYacht.slug,
-                  id: selectedYacht.id
-                }
-              }}
+              // href={{
+              //   pathname: `/yachts/[slug]`,
+              //   query: {
+              //     id: selectedYacht.id
+              //   }
+              href={`/yachts/${selectedYacht?.id}`}
             >
               <Button
                 className={classes.button}
@@ -221,7 +202,7 @@ export default function PreviewDrawer(props) {
           </Grid>
         </Box>
         <Box>
-          <Grid container>
+          {/* <Grid container>
             {DynamicMobileData.map((item, i) => (
               <Grid item key={i} xs={6}>
                 <Container
@@ -244,7 +225,7 @@ export default function PreviewDrawer(props) {
                 </Container>
               </Grid>
             ))}
-          </Grid>
+          </Grid> */}
         </Box>
       </Drawer>
     </>

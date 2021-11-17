@@ -26,10 +26,14 @@ export function* fetchYachtsAsync() {
 export function* fetchAdminYachtListAsync() {
   try {
     const { data } = yield axios.get(
+<<<<<<< HEAD
       `https://yatchcloud-dev.fghire.com/api/yacht/list`
+=======
+      'https://yatchcloud-dev.fghire.com/api/yacht/list'
+>>>>>>> New-Api
     );
 
-    console.log('fetch yacht list>>>', data);
+    console.log('fetch admin yacht list>>>', data);
 
     yield put(postsAction.fetchAdminYachtsSuccess(data.detail.data));
   } catch (err) {
@@ -40,13 +44,23 @@ export function* fetchAdminYachtListAsync() {
 
 export function* fetchYachtByIdAsync({ payload }: AnyAction) {
   const { id: yacht_id } = payload;
+<<<<<<< HEAD
+=======
+  console.log('HERE IN SAGAs', yacht_id);
+>>>>>>> New-Api
   try {
     console.log('yacht_id >>>', yacht_id);
     const { data } = yield axios.get(
       `https://yatchcloud-dev.fghire.com/api/yacht/get/${yacht_id}`
     );
+<<<<<<< HEAD
     console.log('data fetchYachtByIdAsync>>>', data.detail.data);
     yield put(postsAction.fetchYachtByIdSuccess(data.detail.data[0]));
+=======
+    console.log('DAtaIdsss', data.detail.data);
+    yield put(postsAction.fetchYachtByIdSuccess(data.detail.data[0]));
+    console.log('IDSUCESSFULL');
+>>>>>>> New-Api
   } catch (err) {
     console.error('error received>>>', err);
     yield put(postsAction.fetchYachtByIdFailure(err));
@@ -75,6 +89,7 @@ export function* createYachtAsync({ payload }: AnyAction) {
   }
 }
 
+<<<<<<< HEAD
 export function* editYachtAsync({ payload }: AnyAction) {
   const { formData } = payload;
   try {
@@ -97,6 +112,21 @@ export function* editYachtAsync({ payload }: AnyAction) {
   }
 }
 
+=======
+export function* createPictureAsync() {
+  try {
+    console.log('hereinpictures');
+    const { data } = yield axios.post(
+      `https://yatchcloud-dev.fghire.com/api/putSignedUrl`
+    );
+    console.log('createYachtAsync data>>', data);
+    yield put(postsAction.addPictureSuccess(data));
+  } catch (err) {
+    console.error('error received>>>', err);
+    yield put(postsAction.addPictureStop(err));
+  }
+}
+>>>>>>> New-Api
 export function* watchFetchYachts() {
   yield takeLatest(PostsType.FETCH_YACHTS_START, fetchYachtsAsync);
 }
@@ -115,8 +145,13 @@ export function* watchCreateYacht() {
   yield takeLatest(PostsType.CREATE_YACHT_START, createYachtAsync);
 }
 
+<<<<<<< HEAD
 export function* watchEditYacht() {
   yield takeLatest(PostsType.EDIT_YACHT_START, editYachtAsync);
+=======
+export function* watchCreatePicture() {
+  yield takeLatest(PostsType.ADD_PIC_START, createPictureAsync);
+>>>>>>> New-Api
 }
 
 export function* yachtsSagas() {
@@ -125,6 +160,10 @@ export function* yachtsSagas() {
     call(watchFetchYachtById),
     call(watchCreateYacht),
     call(watchAdminFetchYachts),
+<<<<<<< HEAD
     call(watchEditYacht)
+=======
+    call(watchCreatePicture)
+>>>>>>> New-Api
   ]);
 }

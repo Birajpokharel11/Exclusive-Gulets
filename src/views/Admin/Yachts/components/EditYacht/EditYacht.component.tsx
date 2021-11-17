@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 import React, { useState } from 'react';
+=======
+import React from 'react';
+>>>>>>> New-Api
 import { createStyles, makeStyles } from '@material-ui/core/styles';
 import {
   Box,
@@ -7,11 +11,15 @@ import {
   Grid,
   MenuItem,
   CircularProgress,
+<<<<<<< HEAD
   Button,
   Card,
   CardContent,
   Avatar,
   CardActions
+=======
+  Button
+>>>>>>> New-Api
 } from '@material-ui/core';
 import container from './EditYacht.container';
 import BackgroundVectors from '@components/BackgroundVectors';
@@ -20,7 +28,10 @@ import { Formik, Field, Form, FormikConfig, FormikValues } from 'formik';
 import { TextField, Select } from 'formik-material-ui';
 import * as Yup from 'yup';
 import { IYachtState } from '@store/interfaces';
+<<<<<<< HEAD
 import clsx from 'clsx';
+=======
+>>>>>>> New-Api
 
 const useStyles = makeStyles((theme) =>
   createStyles({
@@ -48,19 +59,27 @@ interface Props {
   route?: string;
   next_page?: number;
   onEditYachtStart?: (formData) => any;
+<<<<<<< HEAD
   onPicAddStart?: () => any;
 
+=======
+>>>>>>> New-Api
 }
 function Blogs({
   yacht: { soleYacht, isEditing },
   loading,
+<<<<<<< HEAD
   onEditYachtStart,
   onPicAddStart
+=======
+  onEditYachtStart
+>>>>>>> New-Api
 }: Props) {
   const classes = useStyles();
   const [page, setpage] = React.useState(0);
 
   const onSubmit = () => {};
+<<<<<<< HEAD
 ///////////////////////////////////////////////////////////
 const [Photo, setPhoto] = React.useState('');
 const [preview, setPreview] = React.useState('');
@@ -78,6 +97,9 @@ const clickSubmits = (e) => {
   e.preventDefault();
   onPicAddStart();
   console.log(onPicAddStart(), 'PICCC');
+=======
+
+>>>>>>> New-Api
   return (
     <>
       <Box mb={4} mt={6}>
@@ -214,6 +236,7 @@ const clickSubmits = (e) => {
             </Form>
           </Formik>
         </Container>
+<<<<<<< HEAD
         <Card className={clsx(classes.root)}>
           <CardContent>
             <div className={classes.details}>
@@ -249,6 +272,8 @@ const clickSubmits = (e) => {
             </form>
           </CardActions>
         </Card>
+=======
+>>>>>>> New-Api
       </Box>
     </>
   );

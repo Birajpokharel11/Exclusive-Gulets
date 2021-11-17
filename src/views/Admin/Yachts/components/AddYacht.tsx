@@ -1,3 +1,4 @@
+import React, { useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import {
   Grid,
@@ -5,11 +6,19 @@ import {
   Typography,
   Select,
   MenuItem,
-  CircularProgress
+  CircularProgress,
+  Box,
+  Card,
+  CardContent,
+  Avatar,
+  LinearProgress,
+  CardActions
 } from '@material-ui/core';
 import { Formik, Field, Form } from 'formik';
 import { TextField } from 'formik-material-ui';
 import * as Yup from 'yup';
+import clsx from 'clsx';
+import { addPictureStart } from '@store/yachts/yachts.actions';
 
 const useStyles = makeStyles((theme) => ({
   textField: {
@@ -20,8 +29,26 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-const AddYacht = ({ onCreateYachtStart, isCreating }) => {
+const AddYacht = ({ onCreateYachtStart, isCreating, onPicAddStart }) => {
   const classes = useStyles();
+  //////////////////////////////////////////////
+  const [Photo, setPhoto] = useState('');
+  const [preview, setPreview] = useState('');
+
+  const handleChange = (e) => {
+    console.log(e.target.files[0]);
+    const data = e.target.files[0];
+    console.log('photwwwo', data);
+
+    setPreview(window.URL.createObjectURL(data));
+    setPhoto(data);
+  };
+
+  const clickSubmits = (e) => {
+    e.preventDefault();
+    onPicAddStart();
+    console.log(onPicAddStart(), 'PICCC');
+  };
 
   return (
     <>
@@ -158,6 +185,41 @@ const AddYacht = ({ onCreateYachtStart, isCreating }) => {
           </Form>
         )}
       </Formik>
+      <Card className={clsx(classes.root)}>
+        <CardContent>
+          <div className={classes.details}>
+            <Avatar className={classes.avatar} src={preview} />
+            {/* || `data:${user?.filename};base64,${user?.imageBase64}` */}
+          </div>
+        </CardContent>
+        <CardActions>
+          <form onSubmit={clickSubmits}>
+            <div className={classes.root}>
+              <input
+                accept="image/*"
+                className={classes.input}
+                id="contained-button-file"
+                onChange={(e) => handleChange(e)}
+                type="file"
+              />
+              <label htmlFor="contained-button-file">
+                {/* <Button
+                  accept="image/*"
+                  className={classes.input}
+                  id="contained-button-file"
+                  onChange={(e) => handleChange(e)}
+                  type="file"
+                >
+                  Choose Pic
+                </Button> */}
+              </label>
+            </div>
+            <Button type="submit" variant="text">
+              Upload Picture
+            </Button>
+          </form>
+        </CardActions>
+      </Card>
     </>
   );
 };

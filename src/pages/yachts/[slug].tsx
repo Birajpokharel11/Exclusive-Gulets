@@ -20,7 +20,7 @@ export const getServerSideProps = wrapper.getServerSideProps(
   (store) =>
     async ({ req, res, ...context }) => {
       const subdomain = await getTenantDomain(req.headers.host);
-
+      console.log('subDomain', subdomain);
       if (!subdomain) {
         return {
           notFound: true
@@ -42,7 +42,8 @@ export const getServerSideProps = wrapper.getServerSideProps(
       if (user_data) {
         user_id = user_data.id;
       }
-      store.dispatch(fetchYachtByIdStart(context.query.id, user_id));
+      console.log('context', context);
+      store.dispatch(fetchYachtByIdStart(context.query.slug));
       store.dispatch(fetchRandomDestinationStart());
 
       store.dispatch(END);

@@ -21,6 +21,10 @@ import clsx from 'clsx';
 import { addPictureStart } from '@store/yachts/yachts.actions';
 
 const useStyles = makeStyles((theme) => ({
+  root: {},
+  details: {},
+  avatar: {},
+  input: {},
   textField: {
     marginTop: theme.spacing(2)
   },
@@ -185,7 +189,7 @@ const AddYacht = ({ onCreateYachtStart, isCreating, onPicAddStart }) => {
           </Form>
         )}
       </Formik>
-      <Card className={clsx(classes.root)}>
+      <Card className={classes.root}>
         <CardContent>
           <div className={classes.details}>
             <Avatar className={classes.avatar} src={preview} />

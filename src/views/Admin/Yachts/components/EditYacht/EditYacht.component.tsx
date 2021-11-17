@@ -7,7 +7,11 @@ import {
   Grid,
   MenuItem,
   CircularProgress,
-  Button
+  Button,
+  Card,
+  CardContent,
+  Avatar,
+  CardActions
 } from '@material-ui/core';
 import container from './EditYacht.container';
 import BackgroundVectors from '@components/BackgroundVectors';
@@ -16,6 +20,7 @@ import { Formik, Field, Form, FormikConfig, FormikValues } from 'formik';
 import { TextField, Select } from 'formik-material-ui';
 import * as Yup from 'yup';
 import { IYachtState } from '@store/interfaces';
+import clsx from 'clsx';
 
 const useStyles = makeStyles((theme) =>
   createStyles({
@@ -190,6 +195,41 @@ function Blogs({
             </Form>
           </Formik>
         </Container>
+        <Card className={clsx(classes.root)}>
+          <CardContent>
+            <div className={classes.details}>
+              <Avatar className={classes.avatar} />
+              {/* || `data:${user?.filename};base64,${user?.imageBase64}` */}
+            </div>
+          </CardContent>
+          <CardActions>
+            <form>
+              <div className={classes.root}>
+                <input
+                  accept="image/*"
+                  className={classes.input}
+                  id="contained-button-file"
+                  onChange={(e) => handleChange(e)}
+                  type="file"
+                />
+                <label htmlFor="contained-button-file">
+                  {/* <Button
+                  accept="image/*"
+                  className={classes.input}
+                  id="contained-button-file"
+                  onChange={(e) => handleChange(e)}
+                  type="file"
+                >
+                  Choose Pic
+                </Button> */}
+                </label>
+              </div>
+              <Button type="submit" variant="text">
+                Upload Picture
+              </Button>
+            </form>
+          </CardActions>
+        </Card>
       </Box>
     </>
   );

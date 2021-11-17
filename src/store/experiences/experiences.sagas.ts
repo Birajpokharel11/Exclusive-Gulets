@@ -46,7 +46,7 @@ export function* createExperienceAsync({ payload: { formData } }: AnyAction) {
   try {
     console.log('entered createExperienceAsync>>>', formData);
     const { data } = yield axios.post(
-      `https://yatchcloud-dev.fghire.com/api/saveExperience`,
+      `https://yatchcloud-dev.fghire.com/api/experience/create`,
       formData
     );
     console.log('createExperienceAsync on success>>>', data);

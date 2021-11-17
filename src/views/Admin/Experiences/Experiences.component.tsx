@@ -61,7 +61,7 @@ function Experiences({
               metaDescription: '',
               description: '',
               content: '',
-              featurePost: true
+              featured: true
             }}
             validationSchema={Yup.object({
               title: Yup.string()
@@ -72,7 +72,7 @@ function Experiences({
                 .matches(/^[a-zA-Z ]+$/, 'Only letters')
                 .max(500, 'less than 500')
                 .required('title is required'),
-              featurePost: Yup.bool().oneOf([true], 'feature post is required'),
+              featured: Yup.bool().oneOf([true], 'feature post is required'),
 
               content: Yup.string()
                 .max(1100, 'less than 1100')
@@ -85,34 +85,12 @@ function Experiences({
             onSubmit={(values, { setSubmitting }) => {
               onCreateExperienceStart({
                 ...values,
-                featurePhoto: {
-                  bucketName: 'yachtCloud',
-                  filePath: 'at\testdrive',
-                  fileName: 'featurePhoto',
-                  fileType: 'jpg'
-                },
-                sideImage: {
-                  bucketName: 'yachtCloud',
-                  filePath: 'atDrive',
-                  fileName: 'sideImage',
-                  fileType: 'jpeg'
-                },
-                sliderPhoto: {
-                  '0': {
-                    bucketName: 'yachtCloud',
-                    filePath: 'atdrive',
-                    fileName: 'sliderPhoto1',
-                    fileType: 'jpeg'
-                  },
-                  '1': {
-                    bucketName: 'yachtCloud',
-                    filePath: 'atdrive',
-                    fileName: 'sliderPhoto2',
-                    fileType: 'png'
-                  }
-                },
+                featuredImage: 'featuredImage',
+                sideImage: 'sideImage',
+                slug: 'slug',
+                images: ['image1', 'image2'],
                 yachtList: ['1', '2'],
-                relatedBlogs: []
+                relatedExperiences: ['1', '2']
               });
               setSubmitting(false);
             }}
@@ -188,7 +166,7 @@ function Experiences({
 
                     <Field
                       type="checkbox"
-                      name="featurePost"
+                      name="featured"
                       style={{ margin: '6px 0 0 10px' }}
                     />
                   </Grid>

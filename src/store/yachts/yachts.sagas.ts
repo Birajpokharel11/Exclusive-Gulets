@@ -99,9 +99,9 @@ export function* editYachtAsync({ payload }: AnyAction) {
   }
 }
 
-export function* createPictureAsync() {
+export function* createPictureAsync({ payload }: AnyAction) {
   try {
-    console.log('hereinpictures');
+    console.log('hereinpictures', payload);
     const token = localStorage.getItem('token');
     console.log('TOken', token);
     const config = {
@@ -112,6 +112,9 @@ export function* createPictureAsync() {
       `https://yatchcloud-dev.fghire.com/api/putSignedUrl`
     );
     console.log('createYachtAsync data>>', data);
+    const red = yield axios.put(data.url, payload);
+    console.log('Updated', red);
+
     yield put(postsAction.addPictureSuccess(data));
   } catch (err) {
     console.error('error received>>>', err);

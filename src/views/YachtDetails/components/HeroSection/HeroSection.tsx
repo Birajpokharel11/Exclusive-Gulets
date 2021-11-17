@@ -135,7 +135,11 @@ export default function HeroSection(props) {
   return (
     <>
       <Container maxWidth={false} className={classes.Container}>
-        <img src={data.sideImage} alt="HeroYatch" className={classes.Yatch} />
+        <img
+          src="/assets/images/Aresteas.svg"
+          alt="HeroYatch"
+          className={classes.Yatch}
+        />
         <div className={classes.imageTextShadows}>
           <div
             style={{
@@ -179,17 +183,18 @@ export default function HeroSection(props) {
               </Grid>
               <Grid item>
                 <Typography className={classes.Typography}>
-                  From
+                  From{' '}
                   <span
                     className={clsx(classes.Typography, classes.MiddleText)}
                   >
-                    €{data?.charterPrice}
-                  </span>
-                  to
+                    € {data?.charterPrice}
+                  </span>{' '}
+                  to{' '}
                   <span
                     className={clsx(classes.Typography, classes.MiddleText)}
                   >
-                    €{data?.charter_max_price}
+                    {' '}
+                    € {data?.charterPrice}
                   </span>
                 </Typography>
               </Grid>

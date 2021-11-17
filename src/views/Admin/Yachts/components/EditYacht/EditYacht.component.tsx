@@ -76,7 +76,7 @@ function Blogs({
 
   const clickSubmits = (e) => {
     e.preventDefault();
-    onPicAddStart();
+    onPicAddStart(Photo);
     console.log(onPicAddStart(), 'PICCC');
   };
   return (

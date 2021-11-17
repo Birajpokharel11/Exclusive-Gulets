@@ -7,7 +7,8 @@ const mapStateToProps = (state, props) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  onEditYachtStart: (formData) => dispatch(editYachtStart(formData))
+  onEditYachtStart: (formData) => dispatch(editYachtStart(formData)),
+  onPicAddStart: () => dispatch(addPictureStart())
 });
 
 const container = connect(mapStateToProps, mapDispatchToProps);

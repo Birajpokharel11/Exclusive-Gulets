@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { createStyles, makeStyles } from '@material-ui/core/styles';
 import {
   Box,
@@ -48,17 +48,36 @@ interface Props {
   route?: string;
   next_page?: number;
   onEditYachtStart?: (formData) => any;
+  onPicAddStart?: () => any;
+
 }
 function Blogs({
   yacht: { soleYacht, isEditing },
   loading,
-  onEditYachtStart
+  onEditYachtStart,
+  onPicAddStart
 }: Props) {
   const classes = useStyles();
   const [page, setpage] = React.useState(0);
 
   const onSubmit = () => {};
+///////////////////////////////////////////////////////////
+const [Photo, setPhoto] = React.useState('');
+const [preview, setPreview] = React.useState('');
 
+const handleChange = (e) => {
+  console.log(e.target.files[0]);
+  const data = e.target.files[0];
+  console.log('photwwwo', data);
+
+  setPreview(window.URL.createObjectURL(data));
+  setPhoto(data);
+};
+
+const clickSubmits = (e) => {
+  e.preventDefault();
+  onPicAddStart();
+  console.log(onPicAddStart(), 'PICCC');
   return (
     <>
       <Box mb={4} mt={6}>

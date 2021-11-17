@@ -14,12 +14,10 @@ export const CREATE_YACHT_START = 'CREATE_YACHT_START';
 export const CREATE_YACHT_SUCCESS = 'CREATE_YACHT_SUCCESS';
 export const CREATE_YACHT_FAILURE = 'CREATE_YACHT_FAILURE';
 
-<<<<<<< HEAD
 export const EDIT_YACHT_START = 'EDIT_YACHT_START';
 export const EDIT_YACHT_SUCCESS = 'EDIT_YACHT_SUCCESS';
 export const EDIT_YACHT_FAILURE = 'EDIT_YACHT_FAILURE';
-=======
+//////////////////////////////////////////////////////////
 export const ADD_PIC_START = 'ADD_PIC_START';
 export const ADD_PIC_SUCCESS = 'ADD_PIC_SUCCESS';
 export const ADD_PIC_STOP = 'ADD_PIC_STOP';
->>>>>>> New-Api

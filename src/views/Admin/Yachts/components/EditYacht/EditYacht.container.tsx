@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import { editYachtStart } from '@store/yachts/yachts.actions';
+import { addPictureStart, editYachtStart } from '@store/yachts/yachts.actions';
 const mapStateToProps = (state, props) => ({
   destination: state.destination,
   posts: state.posts,

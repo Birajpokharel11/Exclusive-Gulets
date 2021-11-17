@@ -28,15 +28,9 @@ export const fetchAdminYachtsFailure = (error) => ({
   payload: error
 });
 
-<<<<<<< HEAD
-export const fetchYachtByIdStart = (id, userid?: any) => ({
-  type: YachtsType.FETCH_YACHT_BY_ID_START,
-  payload: { id, userid }
-=======
 export const fetchYachtByIdStart = (id) => ({
   type: YachtsType.FETCH_YACHT_BY_ID_START,
   payload: { id }
->>>>>>> New-Api
 });
 
 export const fetchYachtByIdSuccess = (result) => ({
@@ -63,7 +57,6 @@ export const createYachtFailure = (error) => ({
   payload: error
 });
 
-<<<<<<< HEAD
 export const editYachtStart = (formData) => ({
   type: YachtsType.EDIT_YACHT_START,
   payload: { formData }
@@ -74,8 +67,8 @@ export const editYachtSuccess = () => ({
 });
 
 export const editYachtFailure = (error) => ({
-  type: YachtsType.EDIT_YACHT_FAILURE,
-=======
+  type: YachtsType.EDIT_YACHT_FAILURE
+});
 ///////////////////////////////////////////////////////////////
 export const addPictureStart = () => ({
   type: YachtsType.ADD_PIC_START
@@ -88,6 +81,5 @@ export const addPictureSuccess = (result) => ({
 
 export const addPictureStop = (error) => ({
   type: YachtsType.CREATE_YACHT_FAILURE,
->>>>>>> New-Api
   payload: error
 });

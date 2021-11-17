@@ -70,9 +70,6 @@ export interface IYachtState {
   error: any | null;
   loading: boolean;
   isCreating: boolean;
-<<<<<<< HEAD
   isEditing: boolean;
-=======
   code: any;
->>>>>>> New-Api
 }

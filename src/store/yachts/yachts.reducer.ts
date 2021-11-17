@@ -11,11 +11,8 @@ const INITIAL_STATE: IYachtState = {
   error: null,
   loading: false,
   isCreating: false,
-<<<<<<< HEAD
-  isEditing: false
-=======
+  isEditing: false,
   code: {}
->>>>>>> New-Api
 };
 
 const YachtsReducer = (state = INITIAL_STATE, action) => {

@@ -1,9 +1,9 @@
 import { takeLatest, call, all, put } from 'redux-saga/effects';
 import { AnyAction } from 'redux';
-import queryString from 'query-string';
+import axios from 'axios';
+
 import { openAlert } from '../alert/alert.actions';
 
-import axios from 'axios';
 
 import * as PostsType from './yachts.types';
 import * as postsAction from './yachts.actions';
@@ -26,10 +26,10 @@ export function* fetchYachtsAsync() {
 export function* fetchAdminYachtListAsync() {
   try {
     const { data } = yield axios.get(
-      `https://yatchcloud-dev.fghire.com/api/yacht/list`
+      'https://yatchcloud-dev.fghire.com/api/yacht/list'
     );
 
-    console.log('fetch yacht list>>>', data);
+    console.log('fetch admin yacht list>>>', data);
 
     yield put(postsAction.fetchAdminYachtsSuccess(data.detail.data));
   } catch (err) {
@@ -40,13 +40,15 @@ export function* fetchAdminYachtListAsync() {
 
 export function* fetchYachtByIdAsync({ payload }: AnyAction) {
   const { id: yacht_id } = payload;
+  console.log('HERE IN SAGAs', yacht_id);
   try {
     console.log('yacht_id >>>', yacht_id);
     const { data } = yield axios.get(
       `https://yatchcloud-dev.fghire.com/api/yacht/get/${yacht_id}`
     );
-    console.log('data fetchYachtByIdAsync>>>', data.detail.data);
+    console.log('DAtaIdsss', data.detail.data);
     yield put(postsAction.fetchYachtByIdSuccess(data.detail.data[0]));
+    console.log('IDSUCESSFULL');
   } catch (err) {
     console.error('error received>>>', err);
     yield put(postsAction.fetchYachtByIdFailure(err));
@@ -195,6 +197,19 @@ export function* fetchYachtFeatureAsync() {
   }
 }
 
+export function* createPictureAsync() {
+  try {
+    console.log('hereinpictures');
+    const { data } = yield axios.post(
+      `https://yatchcloud-dev.fghire.com/api/putSignedUrl`
+    );
+    console.log('createYachtAsync data>>', data);
+    yield put(postsAction.addPictureSuccess(data));
+  } catch (err) {
+    console.error('error received>>>', err);
+    yield put(postsAction.addPictureStop(err));
+  }
+}
 export function* watchFetchYachts() {
   yield takeLatest(PostsType.FETCH_YACHTS_START, fetchYachtsAsync);
 }
@@ -249,6 +264,8 @@ export function* watchFetchYachtFeature() {
     PostsType.FETCH_YACHT_FEATURES_START,
     fetchYachtFeatureAsync
   );
+export function* watchCreatePicture() {
+  yield takeLatest(PostsType.ADD_PIC_START, createPictureAsync);
 }
 
 export function* yachtsSagas() {
@@ -264,6 +281,7 @@ export function* yachtsSagas() {
     call(watchFetchWaterToys),
     call(watchFetchInclusiveTerm),
     call(watchFetchExtras),
-    call(watchFetchYachtFeature)
+    call(watchFetchYachtFeature),
+    call(watchCreatePicture)
   ]);
 }

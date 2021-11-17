@@ -79,4 +79,5 @@ export interface IYachtState {
   isCreating: boolean;
   isEditing: boolean;
   isFetching: boolean;
+  code: any;
 }

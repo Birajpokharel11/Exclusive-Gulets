@@ -185,13 +185,13 @@ export default function Accomodation(props) {
     {
       img: '/assets/images/Cabins.svg',
       title: 'Guests',
-      Number: `${data?.number_of_passengers}`
+      Number: `${data?.noOfPassengers}`
     },
 
     {
       img: '/assets/images/Crew.svg',
       title: 'Cabin',
-      Number: `${data?.number_of_cabins}`
+      Number: `${data?.noOfCabins}`
     },
     {
       img: '/assets/images/Guest.svg',
@@ -232,7 +232,7 @@ export default function Accomodation(props) {
     },
     {
       title: 'BUILT',
-      Number: `${data?.build_year || ''}`
+      Number: `${data?.buildYear || ''}`
     }
   ];
   return (
@@ -261,7 +261,7 @@ export default function Accomodation(props) {
               <div>
                 <Typography className={classes.ship}>{item.title}</Typography>
                 <Typography className={classes.shipnumber}>
-                  {item.Number}
+                  {item?.Number}
                 </Typography>
               </div>
             </Grid>

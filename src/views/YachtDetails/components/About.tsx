@@ -247,7 +247,7 @@ export default function Description(props) {
           </Grid>
         </div>
         <div>
-          <img src={data.main_image?.url} className={classes.Images} />
+          <img src="/assets/images/MobilePic2.svg" className={classes.Images} />
         </div>
       </Box>
     </div>

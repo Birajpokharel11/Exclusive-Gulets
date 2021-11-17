@@ -131,14 +131,11 @@ const useStyles = makeStyles((theme) =>
 export default function HeroSection(props) {
   const { data } = props;
   const classes = useStyles();
+  console.log('yachtsdetail', data);
   return (
     <>
       <Container maxWidth={false} className={classes.Container}>
-        <img
-          src={data.main_image?.url}
-          alt="HeroYatch"
-          className={classes.Yatch}
-        />
+        <img src={data.sideImage} alt="HeroYatch" className={classes.Yatch} />
         <div className={classes.imageTextShadows}>
           <div
             style={{
@@ -156,8 +153,7 @@ export default function HeroSection(props) {
                 classes.ImageText2Position
               )}
             >
-              {data?.length}m | {data?.category} | {data?.number_of_passengers}{' '}
-              Guests
+              {data?.length}m | {data?.category} | {data?.noOfPassengers} Guests
             </Typography>
           </div>
         </div>
@@ -187,7 +183,7 @@ export default function HeroSection(props) {
                   <span
                     className={clsx(classes.Typography, classes.MiddleText)}
                   >
-                    €{data?.charter_price}
+                    €{data?.charterPrice}
                   </span>
                   to
                   <span

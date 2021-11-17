@@ -19,7 +19,7 @@ const INITIAL_STATE: IYachtState = {
   loading: false,
   isCreating: false,
   isEditing: false,
-  isFetching: false
+  isFetching: false,
   code: {}
 };
 

@@ -4,7 +4,6 @@ import axios from 'axios';
 
 import { openAlert } from '../alert/alert.actions';
 
-
 import * as PostsType from './yachts.types';
 import * as postsAction from './yachts.actions';
 
@@ -264,6 +263,8 @@ export function* watchFetchYachtFeature() {
     PostsType.FETCH_YACHT_FEATURES_START,
     fetchYachtFeatureAsync
   );
+}
+
 export function* watchCreatePicture() {
   yield takeLatest(PostsType.ADD_PIC_START, createPictureAsync);
 }

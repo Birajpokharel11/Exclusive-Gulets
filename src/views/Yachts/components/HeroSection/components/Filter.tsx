@@ -59,6 +59,10 @@ const useStyles = makeStyles((theme) =>
     inputRoot: {
       flex: 1
     },
+    inputBaseRoot: {
+      background: 'rgba(0, 0, 0, 0.12)',
+      '&.Mui-focused': { background: 'rgba(0, 0, 0, 0.12)' }
+    },
     input: {
       padding: '14.5px 14px'
     },
@@ -265,6 +269,7 @@ export default function Filter() {
               <Grid item xs style={{ display: 'flex' }}>
                 <InputBase
                   classes={{
+                    root: classes.inputBaseRoot,
                     input: classes.input
                   }}
                   placeholder="Check in"
@@ -293,6 +298,7 @@ export default function Filter() {
               <Grid item xs style={{ display: 'flex' }}>
                 <InputBase
                   classes={{
+                    root: classes.inputBaseRoot,
                     input: classes.input
                   }}
                   placeholder="Check in"
@@ -312,7 +318,7 @@ export default function Filter() {
             <Grid item xs style={{ display: 'flex' }}>
               <InputBase
                 classes={{
-                  root: classes.inputRoot,
+                  root: classes.inputBaseRoot,
                   input: classes.input
                 }}
                 placeholder="Check in"

@@ -62,8 +62,8 @@ const useStyles = makeStyles((theme: Theme) =>
       color: '#ffffff',
       background: ' rgba(12, 22, 37, 0.6)',
       '&.Mui-focused': {
-        background: 'transparent',
-        color: 'red'
+        backgroundColor: 'none',
+        color: 'green'
       }
     },
 

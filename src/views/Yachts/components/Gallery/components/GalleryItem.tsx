@@ -94,14 +94,14 @@ interface Props {
 }
 export default function GalleryItem({ adminList, handleDrawerOpen, i }: Props) {
   const classes = useStyles();
-
+  console.log('AdminList', adminList);
   const [offers, setOffers] = React.useState(true);
   return (
     <Box className={classes.root}>
       <Box className={classes.view} onClick={() => handleDrawerOpen()}>
         <img
           // src="assets/images/bg/destination_mobile.png"
-          src="/assets/images/Yatchss.png"
+          src={adminList.mainImage}
           className={classes.Img}
           data-cy={`Gallery Images${i}`}
           alt=""

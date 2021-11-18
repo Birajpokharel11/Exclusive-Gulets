@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { useRouter } from 'next/router';
-import Image from 'next/image';
 import clsx from 'clsx';
 import { createStyles, makeStyles } from '@material-ui/core/styles';
 import {
@@ -112,7 +111,7 @@ function Blogs({
       id: id,
       type: 'yacht'
     });
-    console.log(id, 'PICCC');
+    console.log(params, 'PICCC');
   };
 
   return (
@@ -641,7 +640,6 @@ function Blogs({
                 {/* || `data:${user?.filename};base64,${user?.imageBase64}` */}
               </div>
             </CardContent>
-<<<<<<< HEAD
             <CardActions>
               <div className={classes.root}>
                 <input
@@ -673,8 +671,6 @@ function Blogs({
                 </label>
               </div>
             </CardActions>
-=======
->>>>>>> fa7d4bb98ed032bdba0030b70aa7b368defb80fa
           </Card>
         </Container>
       </Box>

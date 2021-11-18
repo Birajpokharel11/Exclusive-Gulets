@@ -31,11 +31,11 @@ const useStyles = makeStyles((theme: Theme) =>
   })
 );
 
-function YachtItem({ name, yachtType, id, ...rest }) {
+function YachtItem({ name, yachtType, id, mainImage, ...rest }) {
   const router = useRouter();
   const classes = useStyles();
 
-  console.log('yacht item rest>>>', rest);
+  console.log('yacht item rest>>>', mainImage);
 
   return (
     <div className={classes.root}>
@@ -43,12 +43,7 @@ function YachtItem({ name, yachtType, id, ...rest }) {
         <Grid container spacing={2}>
           <Grid item>
             <ButtonBase className={classes.image}>
-              <Image
-                width={128}
-                height={128}
-                alt="complex"
-                src="/assets/images/Aresteas.png"
-              />
+              <img width={128} height={128} alt="complex" src={mainImage} />
             </ButtonBase>
           </Grid>
           <Grid item xs={12} sm container>

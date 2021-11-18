@@ -111,6 +111,28 @@ export function* editPostAsync({
   }
 }
 
+export function* deletePostAsync({ payload: { id, handleClose } }: AnyAction) {
+  try {
+    console.log('entered deletePostAsync>>>', id);
+    const { data } = yield axios.post(
+      `https://yatchcloud-dev.fghire.com/api/blog/delete/${id}`
+    );
+    console.log('deletePostAsync on success>>>', data);
+    if (data.status === 'success') {
+      yield put(postsAction.deletePostSuccess());
+      yield put(openAlert('Post deleted successfully!!!', 'success'));
+      yield handleClose();
+      router.push('/manage/experiences');
+    } else {
+      yield put(openAlert('Failed to delete post', 'error'));
+    }
+  } catch (err) {
+    console.error('error received>>>', err);
+    yield put(postsAction.deletePostFailure(err));
+    yield put(openAlert('Failed to delete post', 'error'));
+  }
+}
+
 ///////////////////////////////////////////////////////////////////////////////////
 
 export function* watchPostsOffer() {
@@ -133,12 +155,17 @@ export function* watchEditPost() {
   yield takeLatest(postsType.EDIT_POST_START, editPostAsync);
 }
 
+export function* watchDeletePost() {
+  yield takeLatest(postsType.DELETE_POST_START, deletePostAsync);
+}
+
 export function* postsSagas() {
   yield all([
     call(watchPostsOffer),
     call(watchFetchRandomDestination),
     call(watchPostsById),
     call(watchCreatePost),
-    call(watchEditPost)
+    call(watchEditPost),
+    call(watchDeletePost)
   ]);
 }

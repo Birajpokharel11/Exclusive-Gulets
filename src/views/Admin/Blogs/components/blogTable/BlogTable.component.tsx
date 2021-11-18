@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { createStyles, makeStyles } from '@material-ui/core/styles';
 import {
   Box,
@@ -27,6 +27,7 @@ import * as Yup from 'yup';
 import EditIcon from '@material-ui/icons/Edit';
 import DeleteIcon from '@material-ui/icons/Delete';
 import { IPostState } from '@store/interfaces';
+import ConfirmDeleteModal from '@components/ConfirmDeleteModal';
 
 const useStyles = makeStyles((theme) =>
   createStyles({
@@ -67,12 +68,13 @@ interface Props {
   next_page?: number;
   onCreatePostStart?: (formData) => any;
   onFetchPostsStart?: (formData) => any;
+  onDeleteExperienceStart?: (id, handleClose) => any;
 }
 
 const TableList = (props) => {
   const classes = useStyles();
 
-  const { experience, index } = props;
+  const { experience, index, handleClickOpen } = props;
 
   return (
     <TableRow hover>
@@ -102,7 +104,12 @@ const TableList = (props) => {
         >
           <EditIcon color="primary" />
         </IconButton>
-        <IconButton aria-label="delete" edge="end" size="small">
+        <IconButton
+          aria-label="delete"
+          edge="end"
+          size="small"
+          onClick={() => handleClickOpen(experience.id)}
+        >
           <DeleteIcon color="primary" />
         </IconButton>
       </TableCell>
@@ -111,10 +118,28 @@ const TableList = (props) => {
 };
 
 function ExperiencesTable({
-  posts: { postsList, next_page, isCreating }
+  posts: { postsList, next_page, isCreating, isDeleting },
+  onDeleteExperienceStart
 }: Props) {
   const classes = useStyles();
   const [page, setpage] = React.useState(0);
+
+  const [open, setOpen] = useState(false);
+
+  const [toDeleteId, setToDeleteId] = useState('');
+
+  const handleClose = () => {
+    setOpen(false);
+  };
+
+  const handleClickOpen = (id) => {
+    setToDeleteId(id);
+    setOpen(true);
+  };
+
+  const deleteDataHandler = () => {
+    onDeleteExperienceStart(toDeleteId, handleClose);
+  };
 
   return (
     <TableContainer component={Paper}>
@@ -134,9 +159,16 @@ function ExperiencesTable({
               key={experience.id}
               experience={experience}
               index={index}
+              handleClickOpen={handleClickOpen}
             />
           ))}
         </TableBody>
+        <ConfirmDeleteModal
+          handleClose={handleClose}
+          open={open}
+          deleteDataHandler={deleteDataHandler}
+          isDeleting={isDeleting}
+        />
       </Table>
     </TableContainer>
   );

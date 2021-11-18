@@ -86,3 +86,17 @@ export const editPostFailure = (error) => ({
   type: PostsType.EDIT_POST_FAILURE,
   payload: error
 });
+
+export const deletePostStart = (id, handleClose) => ({
+  type: PostsType.DELETE_POST_START,
+  payload: { id, handleClose }
+});
+
+export const deletePostSuccess = () => ({
+  type: PostsType.DELETE_POST_SUCCESS
+});
+
+export const deletePostFailure = (error) => ({
+  type: PostsType.DELETE_POST_FAILURE,
+  payload: error
+});

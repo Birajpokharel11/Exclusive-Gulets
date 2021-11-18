@@ -29,6 +29,7 @@ export interface IPostState {
   loading: boolean;
   isCreating: boolean;
   isEditing: boolean;
+  isDeleting: boolean;
 }
 
 export interface IExperienceState {
@@ -38,6 +39,7 @@ export interface IExperienceState {
   loading: boolean;
   isCreating: boolean;
   isEditing: boolean;
+  isDeleting: boolean;
 }
 
 export interface IDinningState {

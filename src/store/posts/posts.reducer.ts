@@ -15,7 +15,8 @@ const INITIAL_STATE: IPostState = {
   error: null,
   loading: false,
   isCreating: false,
-  isEditing: false
+  isEditing: false,
+  isDeleting: false
 };
 
 const PostsReducer = (state = INITIAL_STATE, action) => {
@@ -119,6 +120,25 @@ const PostsReducer = (state = INITIAL_STATE, action) => {
       return {
         ...state,
         isEditing: false,
+        error: payload
+      };
+
+    case PostsType.DELETE_POST_START:
+      return {
+        ...state,
+        isDeleting: true
+      };
+
+    case PostsType.DELETE_POST_SUCCESS:
+      return {
+        ...state,
+        isDeleting: false
+      };
+
+    case PostsType.DELETE_POST_FAILURE:
+      return {
+        ...state,
+        isDeleting: false,
         error: payload
       };
 

@@ -10,7 +10,8 @@ const INITIAL_STATE: IExperienceState = {
   error: null,
   loading: false,
   isCreating: false,
-  isEditing: false
+  isEditing: false,
+  isDeleting: false
 };
 
 const experiencesReducer = (state = INITIAL_STATE, action) => {
@@ -94,6 +95,25 @@ const experiencesReducer = (state = INITIAL_STATE, action) => {
       return {
         ...state,
         isEditing: false,
+        error: payload
+      };
+
+    case ExperiencesType.DELETE_EXPERIENCE_START:
+      return {
+        ...state,
+        isDeleting: true
+      };
+
+    case ExperiencesType.DELETE_EXPERIENCE_SUCCESS:
+      return {
+        ...state,
+        isDeleting: false
+      };
+
+    case ExperiencesType.DELETE_EXPERIENCE_FAILURE:
+      return {
+        ...state,
+        isDeleting: false,
         error: payload
       };
 

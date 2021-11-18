@@ -60,6 +60,28 @@ export function* createExperienceAsync({ payload: { formData } }: AnyAction) {
   }
 }
 
+export function* editExperienceAsync({ payload: { formData } }: AnyAction) {
+  try {
+    console.log('entered editExperienceAsync>>>', formData);
+    const { data } = yield axios.post(
+      `https://yatchcloud-dev.fghire.com/api/experience/edit`,
+      formData
+    );
+    console.log('editExperienceAsync on success>>>', data);
+    if (data.status === 'success') {
+      yield put(experiencesAction.editExperienceSuccess());
+      yield put(openAlert('Experience edited successfully!!!', 'success'));
+      router.push('/manage/experiences');
+    } else {
+      yield put(openAlert('Failed to edit experience', 'error'));
+    }
+  } catch (err) {
+    console.error('error received>>>', err);
+    yield put(experiencesAction.editExperienceFailure(err));
+    yield put(openAlert('Failed to save experience', 'error'));
+  }
+}
+
 export function* watchExperiencesOffer() {
   yield takeLatest(
     ExperiencesType.FETCH_EXPERIENCES_START,
@@ -81,10 +103,15 @@ export function* watchCreateExperience() {
   );
 }
 
+export function* watchEditExperience() {
+  yield takeLatest(ExperiencesType.EDIT_EXPERIENCE_START, editExperienceAsync);
+}
+
 export function* experiencesSagas() {
   yield all([
     call(watchExperiencesOffer),
     call(watchExperienceById),
-    call(watchCreateExperience)
+    call(watchCreateExperience),
+    call(watchEditExperience)
   ]);
 }

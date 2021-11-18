@@ -6,7 +6,8 @@ import * as postsAction from './posts.actions';
 import {
   fetchPostsStart,
   fetchPostsByIdStart,
-  createPostStart
+  createPostStart,
+  editPostStart
 } from './posts.actions';
 import { openAlert } from '../alert/alert.actions';
 
@@ -85,6 +86,31 @@ export function* createPostAsync({
   }
 }
 
+export function* editPostAsync({
+  payload: { formData }
+}: ReturnType<typeof editPostStart>) {
+  try {
+    console.log('entered editPostStart>>>', formData);
+    const { data } = yield axios.post(
+      `https://yatchcloud-dev.fghire.com/api/blog/edit`,
+      formData
+    );
+    console.log('editPostAsync on success>>>', data);
+
+    if (data.status === 'success') {
+      yield put(postsAction.editPostSuccess());
+      yield put(openAlert('Blog edited successfully!!!', 'success'));
+      router.push('/manage/blogs');
+    } else {
+      yield put(openAlert('Failed to edit blog', 'error'));
+    }
+  } catch (err) {
+    console.error('error received>>>', err);
+    yield put(postsAction.editPostFailure(err));
+    yield put(openAlert('Failed to save blog', 'error'));
+  }
+}
+
 ///////////////////////////////////////////////////////////////////////////////////
 
 export function* watchPostsOffer() {
@@ -103,11 +129,16 @@ export function* watchCreatePost() {
   yield takeLatest(postsType.CREATE_POST_START, createPostAsync);
 }
 
+export function* watchEditPost() {
+  yield takeLatest(postsType.EDIT_POST_START, editPostAsync);
+}
+
 export function* postsSagas() {
   yield all([
     call(watchPostsOffer),
     call(watchFetchRandomDestination),
     call(watchPostsById),
-    call(watchCreatePost)
+    call(watchCreatePost),
+    call(watchEditPost)
   ]);
 }

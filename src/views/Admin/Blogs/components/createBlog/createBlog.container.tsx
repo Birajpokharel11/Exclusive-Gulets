@@ -1,6 +1,5 @@
 import { connect } from 'react-redux';
-import { createExperienceStart } from '@store/experiences/experiences.actions';
-import { fetchExperiencesStart } from '@store/experiences/experiences.actions';
+import { createPostStart, fetchPostsStart } from '@store/posts/posts.actions';
 
 const mapStateToProps = (state, props) => ({
   destination: state.destination,
@@ -10,9 +9,7 @@ const mapStateToProps = (state, props) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  onCreateExperienceStart: (formData) =>
-    dispatch(createExperienceStart(formData)),
-  onFetchExperiencesStart: (id) => dispatch(fetchExperiencesStart(id))
+  onCreatePostStart: (formData) => dispatch(createPostStart(formData))
 });
 
 const container = connect(mapStateToProps, mapDispatchToProps);

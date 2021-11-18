@@ -9,7 +9,8 @@ const INITIAL_STATE: IExperienceState = {
   soleExperience: {},
   error: null,
   loading: false,
-  isCreating: false
+  isCreating: false,
+  isEditing: false
 };
 
 const experiencesReducer = (state = INITIAL_STATE, action) => {
@@ -74,6 +75,25 @@ const experiencesReducer = (state = INITIAL_STATE, action) => {
       return {
         ...state,
         isCreating: false,
+        error: payload
+      };
+
+    case ExperiencesType.EDIT_EXPERIENCE_START:
+      return {
+        ...state,
+        isEditing: true
+      };
+
+    case ExperiencesType.EDIT_EXPERIENCE_SUCCESS:
+      return {
+        ...state,
+        isEditing: false
+      };
+
+    case ExperiencesType.EDIT_EXPERIENCE_FAILURE:
+      return {
+        ...state,
+        isEditing: false,
         error: payload
       };
 

@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import _ from 'lodash';
 import { createStyles, makeStyles } from '@material-ui/core/styles';
 import {
   Box,
@@ -11,11 +12,12 @@ import {
 } from '@material-ui/core';
 import container from './Blogs.container';
 import BackgroundVectors from '@components/BackgroundVectors';
-import { useRouter } from 'next/router';
+import router, { useRouter } from 'next/router';
 import { Formik, Field, Form, FormikConfig, FormikValues } from 'formik';
 import { TextField, Select } from 'formik-material-ui';
 import * as Yup from 'yup';
 import { IPostState } from '@store/interfaces';
+import { BlogTable, CreateBlog } from './components';
 
 const useStyles = makeStyles((theme) =>
   createStyles({
@@ -40,150 +42,65 @@ const useStyles = makeStyles((theme) =>
 interface Props {
   posts?: IPostState;
   loading?: any;
+  auth?: any;
   route?: string;
   next_page?: number;
   onCreatePostStart?: (formData) => any;
+  onFetchPostsStart?: (formData) => any;
 }
 function Blogs({
   posts: { postsList, next_page, isCreating },
+  auth: { currentUser },
   loading,
-  onCreatePostStart
+  onCreatePostStart,
+  onFetchPostsStart,
+  ...rest
 }: Props) {
   const classes = useStyles();
-  const [page, setpage] = React.useState(0);
 
-  const onSubmit = () => {};
+  useEffect(() => {
+    if (!_.isEmpty(currentUser)) {
+      onFetchPostsStart(currentUser.id);
+    }
+  }, [currentUser, onFetchPostsStart]);
 
   return (
     <>
       <Box mb={4} mt={6}>
         <Container>
-          <Formik
-            initialValues={{
-              title: '',
-              metaDescription: '',
-              description: '',
-              content: '',
-              featured: true
-            }}
-            validationSchema={Yup.object({
-              title: Yup.string().required('title is required'),
-              metaDescription: Yup.string().required(
-                'metaDescription is required'
-              ),
-              featured: Yup.bool().oneOf([true], 'feature post is required'),
-
-              content: Yup.string().required('content is required'),
-
-              description: Yup.string().required('description is required')
-            })}
-            onSubmit={(values, { setSubmitting }) => {
-              onCreatePostStart({
-                ...values,
-                sideImage: 'sideimage',
-                featuredImage: 'featuredImage',
-                slug: 'slug',
-                yachtList: ['1', '2'],
-                images: ['image1', 'image2'],
-                relatedBlogs: ['1']
-              });
-              setSubmitting(false);
-            }}
-          >
-            <Form>
-              <Grid container spacing={3}>
-                <Grid item container justify="space-between">
+          <Grid container justify="space-between" spacing={3}>
+            <Grid
+              item
+              container
+              justify="space-between"
+              alignItems="flex-start"
+            >
+              <Grid item>
+                <Typography variant="h5">Blogs</Typography>
+              </Grid>
+              <Grid item>
+                <Grid
+                  container
+                  justify="space-between"
+                  alignItems="center"
+                  spacing={3}
+                >
                   <Grid item>
-                    <Typography variant="h3">
-                      <strong>Create News and Blogs</strong>
-                    </Typography>
-                  </Grid>
-                </Grid>
-
-                <Grid item container justify="space-between" spacing={3}>
-                  <Grid item sm={12}>
-                    <Typography variant="h4">Title</Typography>
-
-                    <Field
-                      component={TextField}
-                      fullWidth
-                      variant="outlined"
-                      placeholder="Title"
-                      name="title"
-                      id="title"
-                    />
-                  </Grid>
-
-                  <Grid item sm={12}>
-                    <Typography variant="h4">Meta Description</Typography>
-
-                    <Field
-                      component={TextField}
-                      placeholder="Meta Description"
-                      variant="outlined"
-                      fullWidth
-                      name="metaDescription"
-                      id="metaDescription"
-                    />
-                  </Grid>
-                  <Grid item sm={12}>
-                    <Typography variant="h4">Description</Typography>
-
-                    <Field
-                      component={TextField}
-                      placeholder="Description"
-                      variant="outlined"
-                      multiline
-                      rows={4}
-                      rowsMax={4}
-                      fullWidth
-                      name="description"
-                      id="description"
-                    />
-                  </Grid>
-                  <Grid item sm={12}>
-                    <Typography variant="h4">Content</Typography>
-
-                    <Field
-                      component={TextField}
-                      placeholder="Content"
-                      variant="outlined"
-                      multiline
-                      rows={4}
-                      rowsMax={4}
-                      fullWidth
-                      name="content"
-                      id="content"
-                    />
-                  </Grid>
-                  <Grid item container sm={12}>
-                    <Typography variant="h4">Feature Post?</Typography>
-
-                    <Field
-                      type="checkbox"
-                      name="featured"
-                      style={{ margin: '6px 0 0 10px' }}
-                    />
-                  </Grid>
-                  <Grid item container sm={12}>
                     <Button
-                      type="submit"
                       variant="contained"
                       color="primary"
-                      size="large"
-                      disabled={isCreating}
+                      onClick={() => router.push('/manage/blogs/create-blog')}
                     >
-                      {isCreating ? (
-                        <CircularProgress size="1rem" />
-                      ) : (
-                        <Typography color="secondary">Save</Typography>
-                      )}
+                      Create Blog
                     </Button>
                   </Grid>
                 </Grid>
               </Grid>
-            </Form>
-          </Formik>
+            </Grid>
+            <Grid item container>
+              <BlogTable {...rest} />
+            </Grid>
+          </Grid>
         </Container>
       </Box>
     </>

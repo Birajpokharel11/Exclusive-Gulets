@@ -72,3 +72,17 @@ export const createPostFailure = (error) => ({
   type: PostsType.CREATE_POST_FAILURE,
   payload: error
 });
+
+export const editPostStart = (formData) => ({
+  type: PostsType.EDIT_POST_START,
+  payload: { formData }
+});
+
+export const editPostSuccess = () => ({
+  type: PostsType.EDIT_POST_SUCCESS
+});
+
+export const editPostFailure = (error) => ({
+  type: PostsType.EDIT_POST_FAILURE,
+  payload: error
+});

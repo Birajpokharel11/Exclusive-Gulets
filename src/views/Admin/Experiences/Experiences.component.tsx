@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import _ from 'lodash';
 import { createStyles, makeStyles } from '@material-ui/core/styles';
 import {
   Box,
@@ -11,10 +12,11 @@ import {
 } from '@material-ui/core';
 import container from './Experiences.container';
 import BackgroundVectors from '@components/BackgroundVectors';
-import { useRouter } from 'next/router';
+import router, { useRouter } from 'next/router';
 import { Formik, Field, Form, FormikConfig, FormikValues } from 'formik';
 import { TextField, Select } from 'formik-material-ui';
 import * as Yup from 'yup';
+import { ExperienceTable, CreateExperience } from './components';
 import { IExperienceState } from '@store/interfaces';
 
 const useStyles = makeStyles((theme) =>
@@ -40,149 +42,67 @@ const useStyles = makeStyles((theme) =>
 interface Props {
   experience?: IExperienceState;
   loading?: any;
+  auth?: any;
   route?: string;
   next_page?: number;
   onCreateExperienceStart?: (formData) => any;
+  onFetchExperiencesStart?: (formData) => any;
 }
 function Experiences({
-  experience: { isCreating },
-  onCreateExperienceStart
+  experience: { isCreating, experiences, loading },
+  auth: { currentUser },
+  onCreateExperienceStart,
+  onFetchExperiencesStart,
+  ...rest
 }: Props) {
   const classes = useStyles();
   const [page, setpage] = React.useState(0);
+
+  useEffect(() => {
+    if (!_.isEmpty(currentUser)) {
+      onFetchExperiencesStart(currentUser.id);
+    }
+  }, [currentUser, onFetchExperiencesStart]);
 
   return (
     <>
       <Box mb={4} mt={6}>
         <Container>
-          <Formik
-            initialValues={{
-              title: '',
-              metaDescription: '',
-              description: '',
-              content: '',
-              featured: true
-            }}
-            validationSchema={Yup.object({
-              title:
-                Yup.string()
-                .required('title is required'),
-              metaDescription: Yup.string().required(
-                'metaDescription is required'
-              ),
-              featured: Yup.bool().oneOf([true], 'feature post is required'),
-
-              content: Yup.string().required('content is required'),
-
-              description: Yup.string().required('description is required')
-            })}
-            onSubmit={(values, { setSubmitting }) => {
-              onCreateExperienceStart({
-                ...values,
-                featuredImage: 'featuredImage',
-                sideImage: 'sideImage',
-                slug: 'slug',
-                images: ['image1', 'image2'],
-                yachtList: ['1', '2'],
-                relatedExperiences: ['1', '2']
-              });
-              setSubmitting(false);
-            }}
-          >
-            <Form>
-              <Grid container spacing={3}>
-                <Grid item container justify="space-between">
+          <Grid container justify="space-between" spacing={3}>
+            <Grid
+              item
+              container
+              justify="space-between"
+              alignItems="flex-start"
+            >
+              <Grid item>
+                <Typography variant="h5">Experiences</Typography>
+              </Grid>
+              <Grid item>
+                <Grid
+                  container
+                  justify="space-between"
+                  alignItems="center"
+                  spacing={3}
+                >
                   <Grid item>
-                    <Typography variant="h3">
-                      <strong>Create Experiences</strong>
-                    </Typography>
-                  </Grid>
-                </Grid>
-
-                <Grid item container justify="space-between" spacing={3}>
-                  <Grid item sm={12}>
-                    <Typography variant="h4">Title</Typography>
-
-                    <Field
-                      component={TextField}
-                      fullWidth
-                      variant="outlined"
-                      placeholder="Title"
-                      name="title"
-                      id="title"
-                    />
-                  </Grid>
-
-                  <Grid item sm={12}>
-                    <Typography variant="h4">Meta Description</Typography>
-
-                    <Field
-                      component={TextField}
-                      placeholder="Meta Description"
-                      variant="outlined"
-                      fullWidth
-                      name="metaDescription"
-                      id="metaDescription"
-                    />
-                  </Grid>
-                  <Grid item sm={12}>
-                    <Typography variant="h4">Description</Typography>
-
-                    <Field
-                      component={TextField}
-                      placeholder="Description"
-                      variant="outlined"
-                      multiline
-                      rows={4}
-                      rowsMax={4}
-                      fullWidth
-                      name="description"
-                      id="description"
-                    />
-                  </Grid>
-                  <Grid item sm={12}>
-                    <Typography variant="h4">Content</Typography>
-
-                    <Field
-                      component={TextField}
-                      placeholder="Content"
-                      variant="outlined"
-                      multiline
-                      rows={4}
-                      rowsMax={4}
-                      fullWidth
-                      name="content"
-                      id="content"
-                    />
-                  </Grid>
-                  <Grid item container sm={12}>
-                    <Typography variant="h4">Feature Post?</Typography>
-
-                    <Field
-                      type="checkbox"
-                      name="featured"
-                      style={{ margin: '6px 0 0 10px' }}
-                    />
-                  </Grid>
-                  <Grid item container sm={12}>
                     <Button
-                      type="submit"
                       variant="contained"
                       color="primary"
-                      size="large"
-                      disabled={isCreating}
+                      onClick={() =>
+                        router.push('/manage/experiences/create-experience')
+                      }
                     >
-                      {isCreating ? (
-                        <CircularProgress size="1rem" />
-                      ) : (
-                        <Typography color="secondary">Save</Typography>
-                      )}
+                      Create Experience
                     </Button>
                   </Grid>
                 </Grid>
               </Grid>
-            </Form>
-          </Formik>
+            </Grid>
+            <Grid item container>
+              <ExperienceTable {...rest} />
+            </Grid>
+          </Grid>
         </Container>
       </Box>
     </>

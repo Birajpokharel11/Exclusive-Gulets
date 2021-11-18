@@ -88,7 +88,7 @@ function Blogs({
 
   ///////////////////////////////////////////////////////////
   const [Photo, setPhoto] = React.useState('');
-  const [preview, setPreview] = React.useState('');
+  const [preview, setPreview] = React.useState(soleYacht?.mainImage);
 
   const handleChange = (e) => {
     console.log(e.target.files[0]);

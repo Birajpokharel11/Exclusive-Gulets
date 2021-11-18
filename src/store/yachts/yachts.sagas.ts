@@ -200,6 +200,12 @@ export function* createPictureAsync({ payload }: AnyAction) {
       id: payload.id,
       mainImage: data.objectKey
     });
+    yield put(
+      openAlert(
+        `Picture Updated successfully for id no ${payload.id}`,
+        'success'
+      )
+    );
     // console.log('Updated', red);
 
     // yield put(postsAction.addPictureSuccess(data));

@@ -111,7 +111,7 @@ function Blogs({
       id: id,
       type: 'yacht'
     });
-    console.log(params, 'PICCC');
+    console.log(id, 'PICCC');
   };
 
   return (
@@ -660,7 +660,13 @@ function Blogs({
                   >
                     Upload
                   </Button>
-                  <Button onClick={clickSubmits}>Submit</Button>
+                  <Button
+                    disabled={!Photo && true}
+                    variant="contained"
+                    onClick={clickSubmits}
+                  >
+                    Submit
+                  </Button>
                 </label>
               </div>
             </CardActions>

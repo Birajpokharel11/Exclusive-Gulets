@@ -198,7 +198,7 @@ export function* fetchYachtFeatureAsync() {
 
 export function* createPictureAsync({ payload }: AnyAction) {
   try {
-    console.log('hereinpictures', payload);
+    console.log('hereinpictures', payload, payload.selectedFile.type);
     const token = localStorage.getItem('token');
     console.log('TOken', token);
     const config = {

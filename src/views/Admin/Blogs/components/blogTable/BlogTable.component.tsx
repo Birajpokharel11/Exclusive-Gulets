@@ -157,7 +157,7 @@ function ExperiencesTable({
             <TableCell>Title</TableCell>
             <TableCell>Description</TableCell>
             <TableCell>Meta Description</TableCell>
-            <TableCell align="center">Actions</TableCell>
+            <TableCell>Actions</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>

@@ -16,13 +16,12 @@ import {
 } from '@material-ui/core';
 import container from './EditYacht.container';
 import BackgroundVectors from '@components/BackgroundVectors';
-import { useRouter } from 'next/router';
 import { Formik, Field, Form, FormikConfig, FormikValues } from 'formik';
 import { TextField, Select } from 'formik-material-ui';
 import * as Yup from 'yup';
 import { IYachtState } from '@store/interfaces';
 import clsx from 'clsx';
-
+import { useRouter } from 'next/router';
 const useStyles = makeStyles((theme) =>
   createStyles({
     root: {
@@ -60,7 +59,6 @@ function Blogs({
   const classes = useStyles();
   const [page, setpage] = React.useState(0);
 
-  const onSubmit = () => {};
   ///////////////////////////////////////////////////////////
   const [Photo, setPhoto] = React.useState('');
   const [preview, setPreview] = React.useState('');
@@ -74,11 +72,17 @@ function Blogs({
     setPhoto(data);
   };
 
+  ////////
+  const router = useRouter();
+  const id = router.query.slug;
+  const params = [Photo, { id: id, type: 'yacht' }];
+
   const clickSubmits = (e) => {
     e.preventDefault();
-    onPicAddStart(Photo);
-    console.log(onPicAddStart(), 'PICCC');
+    onPicAddStart(Photo, params);
+    console.log(params, 'PICCC');
   };
+
   return (
     <>
       <Box mb={4} mt={6}>
@@ -217,7 +221,12 @@ function Blogs({
           <Card className={classes.root}>
             <CardContent>
               <div className={classes.details}>
-                <Avatar className={classes.avatar} src={preview} />
+                <img
+                  className={classes.avatar}
+                  src={preview}
+                  alt="picture"
+                  style={{ width: '100%' }}
+                />
                 {/* || `data:${user?.filename};base64,${user?.imageBase64}` */}
               </div>
             </CardContent>

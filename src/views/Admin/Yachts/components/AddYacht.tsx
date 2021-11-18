@@ -185,41 +185,6 @@ const AddYacht = ({ onCreateYachtStart, isCreating, onPicAddStart }) => {
           </Form>
         )}
       </Formik>
-      <Card className={clsx(classes.root)}>
-        <CardContent>
-          <div className={classes.details}>
-            <Avatar className={classes.avatar} src={preview} />
-            {/* || `data:${user?.filename};base64,${user?.imageBase64}` */}
-          </div>
-        </CardContent>
-        <CardActions>
-          <form onSubmit={clickSubmits}>
-            <div className={classes.root}>
-              <input
-                accept="image/*"
-                className={classes.input}
-                id="contained-button-file"
-                onChange={(e) => handleChange(e)}
-                type="file"
-              />
-              <label htmlFor="contained-button-file">
-                {/* <Button
-                  accept="image/*"
-                  className={classes.input}
-                  id="contained-button-file"
-                  onChange={(e) => handleChange(e)}
-                  type="file"
-                >
-                  Choose Pic
-                </Button> */}
-              </label>
-            </div>
-            <Button type="submit" variant="text">
-              Upload Picture
-            </Button>
-          </form>
-        </CardActions>
-      </Card>
     </>
   );
 };

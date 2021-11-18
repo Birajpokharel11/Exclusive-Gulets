@@ -67,23 +67,15 @@ function Blogs({
               featured: true
             }}
             validationSchema={Yup.object({
-              title: Yup.string()
-                .matches(/^[a-zA-Z ]+$/, 'Only letters')
-                .max(100, 'less than 100')
-                .required('title is required'),
-              metaDescription: Yup.string()
-                .matches(/^[a-zA-Z ]+$/, 'Only letters')
-                .max(500, 'less than 500')
-                .required('title is required'),
+              title: Yup.string().required('title is required'),
+              metaDescription: Yup.string().required(
+                'metaDescription is required'
+              ),
               featured: Yup.bool().oneOf([true], 'feature post is required'),
 
-              content: Yup.string()
-                .max(1100, 'less than 1100')
-                .required('validation.noDescription'),
+              content: Yup.string().required('content is required'),
 
-              description: Yup.string()
-                .max(1100, 'less than 1100')
-                .required('validation.noDescription')
+              description: Yup.string().required('description is required')
             })}
             onSubmit={(values, { setSubmitting }) => {
               onCreatePostStart({

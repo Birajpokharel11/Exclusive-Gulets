@@ -19,7 +19,7 @@ import { TextField, Select } from 'formik-material-ui';
 import * as Yup from 'yup';
 import InsertPhotoIcon from '@material-ui/icons/InsertPhoto';
 
-import { IPostState } from '@store/interfaces';
+import { IAuthState } from '@store/interfaces';
 import { openAlert } from '@store/alert/alert.actions';
 
 const useStyles = makeStyles((theme) =>
@@ -53,17 +53,13 @@ const useStyles = makeStyles((theme) =>
   })
 );
 interface Props {
-  posts?: IPostState;
+  auth?: IAuthState;
   loading?: any;
   route?: string;
   next_page?: number;
   onCreatePostStart?: (formData) => any;
 }
-function Blogs({
-  posts: { postsList, next_page, isCreating },
-  loading,
-  onCreatePostStart
-}: Props) {
+function Blogs({ auth: { currentUser, loading } }: Props) {
   const classes = useStyles();
   const [page, setpage] = React.useState(0);
   const [selectedFile, setSelectedFile] = useState({ preview: '', raw: '' });
@@ -93,12 +89,12 @@ function Blogs({
       <Box mb={4} mt={6}>
         <Container>
           <Formik
+            enableReinitialize
             initialValues={{
-              title: '',
-              metaDescription: '',
-              description: '',
-              content: '',
-              featurePost: true
+              firstName: currentUser.firstName ?? '',
+              lastName: currentUser.lastName ?? '',
+              email: currentUser.email ?? '',
+              phoneNumber: currentUser.phoneNumber ?? ''
             }}
             validationSchema={Yup.object({
               title: Yup.string()
@@ -120,37 +116,6 @@ function Blogs({
                 .required('validation.noDescription')
             })}
             onSubmit={(values, { setSubmitting }) => {
-              onCreatePostStart({
-                ...values,
-                featurePhoto: {
-                  bucketName: 'yachtCloud',
-                  filePath: 'at\testdrive',
-                  fileName: 'featurePhoto',
-                  fileType: 'jpg'
-                },
-                sideImage: {
-                  bucketName: 'yachtCloud',
-                  filePath: 'atDrive',
-                  fileName: 'sideImage',
-                  fileType: 'jpeg'
-                },
-                sliderPhoto: {
-                  '0': {
-                    bucketName: 'yachtCloud',
-                    filePath: 'atdrive',
-                    fileName: 'sliderPhoto1',
-                    fileType: 'jpeg'
-                  },
-                  '1': {
-                    bucketName: 'yachtCloud',
-                    filePath: 'atdrive',
-                    fileName: 'sliderPhoto2',
-                    fileType: 'png'
-                  }
-                },
-                yachtList: ['1', '2'],
-                relatedBlogs: []
-              });
               setSubmitting(false);
             }}
           >
@@ -191,7 +156,7 @@ function Blogs({
                             />
                           ) : (
                             <Avatar
-                              src={selectedFile.raw}
+                              src={currentUser.imageURL}
                               alt="course"
                               className={classes.avatar}
                             >
@@ -244,6 +209,7 @@ function Blogs({
                       fullWidth
                       name="email"
                       id="email"
+                      disabled
                     />
                   </Grid>
 
@@ -266,9 +232,9 @@ function Blogs({
                       variant="contained"
                       color="primary"
                       size="large"
-                      disabled={isCreating}
+                      disabled={loading}
                     >
-                      {isCreating ? (
+                      {loading ? (
                         <CircularProgress size="1rem" />
                       ) : (
                         <Typography color="secondary">Save</Typography>

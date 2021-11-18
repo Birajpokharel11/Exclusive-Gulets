@@ -4,6 +4,8 @@ import {
   deleteExperienceStart
 } from '@store/experiences/experiences.actions';
 
+import { deletePostStart } from '@store/posts/posts.actions';
+
 const mapStateToProps = (state, props) => ({
   destination: state.destination,
   posts: state.posts,
@@ -14,7 +16,7 @@ const mapDispatchToProps = (dispatch) => ({
   onCreateExperienceStart: (formData) =>
     dispatch(createExperienceStart(formData)),
   onDeleteExperienceStart: (id, handleClose) =>
-    dispatch(deleteExperienceStart(id, handleClose))
+    dispatch(deletePostStart(id, handleClose))
 });
 
 const container = connect(mapStateToProps, mapDispatchToProps);

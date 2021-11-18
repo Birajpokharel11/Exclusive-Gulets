@@ -115,7 +115,8 @@ export function* deletePostAsync({ payload: { id, handleClose } }: AnyAction) {
   try {
     console.log('entered deletePostAsync>>>', id);
     const { data } = yield axios.post(
-      `https://yatchcloud-dev.fghire.com/api/blog/delete/${id}`
+      `https://yatchcloud-dev.fghire.com/api/blog/delete`,
+      { id }
     );
     console.log('deletePostAsync on success>>>', data);
     if (data.status === 'success') {

@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import Image from 'next/image';
 import { createStyles, makeStyles } from '@material-ui/core/styles';
 import {
   Box,
@@ -28,6 +29,7 @@ import EditIcon from '@material-ui/icons/Edit';
 import DeleteIcon from '@material-ui/icons/Delete';
 import { IPostState } from '@store/interfaces';
 import ConfirmDeleteModal from '@components/ConfirmDeleteModal';
+import DefaultImage from '@assets/images/not_found_image.png';
 
 const useStyles = makeStyles((theme) =>
   createStyles({
@@ -84,6 +86,10 @@ const TableList = (props) => {
             <Grid item>{index + 1}</Grid>
           </Grid>
         </Grid>
+      </TableCell>
+
+      <TableCell>
+        <Image src={DefaultImage} alt="image" width={50} height={50} />
       </TableCell>
 
       <TableCell>{experience.title ?? ''}</TableCell>
@@ -147,6 +153,7 @@ function ExperiencesTable({
         <TableHead>
           <TableRow>
             <TableCell>S.No</TableCell>
+            <TableCell>Image</TableCell>
             <TableCell>Title</TableCell>
             <TableCell>Description</TableCell>
             <TableCell>Meta Description</TableCell>

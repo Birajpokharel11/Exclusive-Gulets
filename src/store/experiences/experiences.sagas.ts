@@ -88,7 +88,8 @@ export function* deleteExperienceAsync({
   try {
     console.log('entered deleteExperienceAsync>>>', id);
     const { data } = yield axios.post(
-      `https://yatchcloud-dev.fghire.com/api/experience/delete/${id}`
+      `https://yatchcloud-dev.fghire.com/api/experience/delete`,
+      { id }
     );
     console.log('deleteExperienceAsync on success>>>', data);
     if (data.status === 'success') {
@@ -97,6 +98,8 @@ export function* deleteExperienceAsync({
       yield handleClose();
       router.push('/manage/experiences');
     } else {
+      const err = 'error on deleting experience';
+      yield put(experiencesAction.deleteExperienceFailure(err));
       yield put(openAlert('Failed to delete experience', 'error'));
     }
   } catch (err) {

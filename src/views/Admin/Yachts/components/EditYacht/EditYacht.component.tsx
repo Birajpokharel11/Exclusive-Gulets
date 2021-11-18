@@ -647,15 +647,22 @@ function Blogs({
                   id="contained-button-file"
                   onChange={(e) => handleChange(e)}
                   type="file"
+                  style={{ display: 'none' }}
                 />
                 <label htmlFor="contained-button-file">
-                  <Button variant="contained" color="primary" component="span">
+                  <Button
+                    className={classes.input}
+                    id="contained-button-file"
+                    onChange={(e) => handleChange(e)}
+                    variant="contained"
+                    color="primary"
+                    component="span"
+                  >
                     Upload
                   </Button>
+                  <Button onClick={clickSubmits}>Submit</Button>
                 </label>
               </div>
-
-              <Button onClick={clickSubmits}>Submit</Button>
             </CardActions>
           </Card>
         </Container>

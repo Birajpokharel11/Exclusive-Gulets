@@ -1,7 +1,8 @@
 import { takeLatest, call, all, put } from 'redux-saga/effects';
 import { AnyAction } from 'redux';
-
 import axios from 'axios';
+
+import axiosConfig from '@config/axios.config';
 
 import * as types from './siteCoordinator.types';
 import * as actions from './siteCoordinator.actions';
@@ -9,14 +10,11 @@ import * as actions from './siteCoordinator.actions';
 export function* checkDomainAsync({ payload: { domainName } }: AnyAction) {
   console.log(domainName);
   try {
-    const { data } = yield axios.get(
-      'https://yatchcloud-dev.fghire.com/api/checkDomain',
-      {
-        params: {
-          site: domainName
-        }
+    const { data } = yield axiosConfig.get('api/checkDomain', {
+      params: {
+        site: domainName
       }
-    );
+    });
 
     const finalData = data?.detail?.data;
     if (!finalData.isExists) {

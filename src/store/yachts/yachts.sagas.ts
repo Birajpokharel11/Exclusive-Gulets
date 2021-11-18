@@ -2,6 +2,8 @@ import { takeLatest, call, all, put } from 'redux-saga/effects';
 import { AnyAction } from 'redux';
 import axios from 'axios';
 
+import axiosConfig from '@config/axios.config';
+
 import { openAlert } from '../alert/alert.actions';
 
 import * as PostsType from './yachts.types';
@@ -24,9 +26,7 @@ export function* fetchYachtsAsync() {
 
 export function* fetchAdminYachtListAsync() {
   try {
-    const { data } = yield axios.get(
-      'https://yatchcloud-dev.fghire.com/api/yacht/list'
-    );
+    const { data } = yield axiosConfig.get('api/yacht/list');
 
     console.log('fetch admin yacht list>>>', data);
 
@@ -42,9 +42,7 @@ export function* fetchYachtByIdAsync({ payload }: AnyAction) {
   console.log('HERE IN SAGAs', yacht_id);
   try {
     console.log('yacht_id >>>', yacht_id);
-    const { data } = yield axios.get(
-      `https://yatchcloud-dev.fghire.com/api/yacht/get/${yacht_id}`
-    );
+    const { data } = yield axiosConfig.get(`api/yacht/get/${yacht_id}`);
     console.log('DAtaIdsss', data.detail.data);
     yield put(postsAction.fetchYachtByIdSuccess(data.detail.data[0]));
     console.log('IDSUCESSFULL');
@@ -58,10 +56,7 @@ export function* createYachtAsync({ payload }: AnyAction) {
   const { formData } = payload;
   try {
     console.log('createYachtAsync>>', formData);
-    const { data } = yield axios.post(
-      `https://yatchcloud-dev.fghire.com/api/yacht/create`,
-      formData
-    );
+    const { data } = yield axiosConfig.post(`api/yacht/create`, formData);
     console.log('createYachtAsync data>>', data);
     yield put(postsAction.createYachtSuccess());
     if (data.status === 'success') {
@@ -80,10 +75,7 @@ export function* editYachtAsync({ payload }: AnyAction) {
   const { formData } = payload;
   try {
     console.log('editYachtAsync>>', formData);
-    const { data } = yield axios.post(
-      `https://yatchcloud-dev.fghire.com/api/yacht/edit`,
-      formData
-    );
+    const { data } = yield axiosConfig.post(`api/yacht/edit`, formData);
     console.log('editYachtAsync data>>', data);
     yield put(postsAction.editYachtSuccess());
     if (data.status === 'success') {
@@ -100,9 +92,7 @@ export function* editYachtAsync({ payload }: AnyAction) {
 
 export function* fetchFlagAsync() {
   try {
-    const { data } = yield axios.get(
-      `https://yatchcloud-dev.fghire.com/api/getFlags`
-    );
+    const { data } = yield axiosConfig.get(`api/getFlags`);
     console.log('fetchFlagAsync data>>', data);
     yield put(postsAction.fetchFlagSuccess(data.detail.data));
   } catch (err) {
@@ -114,9 +104,7 @@ export function* fetchFlagAsync() {
 
 export function* fetchCountryAsync() {
   try {
-    const { data } = yield axios.get(
-      `https://yatchcloud-dev.fghire.com/api/getCountries`
-    );
+    const { data } = yield axiosConfig.get(`api/getCountries`);
     console.log('fetchFlagAsync data>>', data);
     yield put(postsAction.fetchCountrySuccess(data.detail.data));
   } catch (err) {
@@ -128,9 +116,7 @@ export function* fetchCountryAsync() {
 
 export function* fetchHomePortAsync() {
   try {
-    const { data } = yield axios.get(
-      `https://yatchcloud-dev.fghire.com/api/getHomePorts`
-    );
+    const { data } = yield axiosConfig.get(`api/getHomePorts`);
     console.log('fetchHomePortAsync data>>', data);
     yield put(postsAction.fetchHomePortSuccess(data.detail.data));
   } catch (err) {
@@ -142,9 +128,7 @@ export function* fetchHomePortAsync() {
 
 export function* fetchWaterToysAsync() {
   try {
-    const { data } = yield axios.get(
-      `https://yatchcloud-dev.fghire.com/api/getYachtToys`
-    );
+    const { data } = yield axiosConfig.get(`api/getYachtToys`);
     console.log('fetchWaterToysAsync data>>', data);
     yield put(postsAction.fetchWaterToysSuccess(data.detail.data));
   } catch (err) {
@@ -156,9 +140,7 @@ export function* fetchWaterToysAsync() {
 
 export function* fetchInclusiveTermAsync() {
   try {
-    const { data } = yield axios.get(
-      `https://yatchcloud-dev.fghire.com/api/getYachtTerms`
-    );
+    const { data } = yield axiosConfig.get(`api/getYachtTerms`);
     console.log('fetchInclusiveTermAsync data>>', data);
     yield put(postsAction.fetchInclusiveTermSuccess(data.detail.data));
   } catch (err) {
@@ -170,9 +152,7 @@ export function* fetchInclusiveTermAsync() {
 
 export function* fetchExtrasAsync() {
   try {
-    const { data } = yield axios.get(
-      `https://yatchcloud-dev.fghire.com/api/getYachtExtras`
-    );
+    const { data } = yield axiosConfig.get(`api/getYachtExtras`);
     console.log('fetchExtrasAsync data>>', data);
     yield put(postsAction.fetchExtrasSuccess(data.detail.data));
   } catch (err) {
@@ -184,9 +164,7 @@ export function* fetchExtrasAsync() {
 
 export function* fetchYachtFeatureAsync() {
   try {
-    const { data } = yield axios.get(
-      `https://yatchcloud-dev.fghire.com/api/getYachtFeatures`
-    );
+    const { data } = yield axiosConfig.get(`api/getYachtFeatures`);
     console.log('fetchYachtFeatureAsync data>>', data);
     yield put(postsAction.fetchYachtFeaturesSuccess(data.detail.data));
   } catch (err) {
@@ -205,13 +183,10 @@ export function* createPictureAsync({ payload }: AnyAction) {
       headers: { Authorization: `Bearer ${token}` }
     };
     console.log('config,', config);
-    const { data } = yield axios.post(
-      `https://yatchcloud-dev.fghire.com/api/putSignedUrl`,
-      {
-        id: payload.id,
-        type: payload.type
-      }
-    );
+    const { data } = yield axiosConfig.post(`api/putSignedUrl`, {
+      id: payload.id,
+      type: payload.type
+    });
     console.log('createYachtAsync data>>', data);
     // const yellow = data.url;
     yield axios.put(data.url, payload.selectedFile, {

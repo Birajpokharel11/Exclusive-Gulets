@@ -650,40 +650,6 @@ function Blogs({
 
               <Button onClick={clickSubmits}>Submit</Button>
             </CardContent>
-<<<<<<< HEAD
-            <CardActions>
-              <div className={classes.root}>
-                <input
-                  accept="image/*"
-                  className={classes.input}
-                  id="contained-button-file"
-                  onChange={(e) => handleChange(e)}
-                  type="file"
-                  style={{ display: 'none' }}
-                />
-                <label htmlFor="contained-button-file">
-                  <Button
-                    className={classes.input}
-                    id="contained-button-file"
-                    onChange={(e) => handleChange(e)}
-                    variant="contained"
-                    color="primary"
-                    component="span"
-                  >
-                    Upload
-                  </Button>
-                  <Button
-                    disabled={!Photo && true}
-                    variant="contained"
-                    onClick={clickSubmits}
-                  >
-                    Submit
-                  </Button>
-                </label>
-              </div>
-            </CardActions>
-=======
->>>>>>> db3dd13c9ec20798b37ce048564f244dbcae682f
           </Card>
         </Container>
       </Box>

@@ -7,6 +7,8 @@ import {
   fetchAdminYachtsStart,
   fetchYachtsStart
 } from '@store/yachts/yachts.actions';
+import { checkDomainStart } from '@store/siteCoordinator/siteCoordinator.actions';
+
 import { fetchRandomDestinationStart } from '@store/destination/destination.actions';
 
 import WithLayout from '@components/WithLayout';
@@ -55,6 +57,8 @@ export const getServerSideProps = wrapper.getServerSideProps(
         'Cache-Control',
         'public, s-maxage=1, stale-while-revalidate=59'
       );
+      store.dispatch(checkDomainStart(subdomain));
+
       store.dispatch(fetchAdminYachtsStart());
       store.dispatch(fetchRandomDestinationStart());
       store.dispatch(END);

@@ -640,17 +640,7 @@ function Blogs({
                 />
                 {/* || `data:${user?.filename};base64,${user?.imageBase64}` */}
               </div>
-              <input
-                accept="image/*"
-                className={classes.input}
-                id="contained-button-file"
-                onChange={(e) => handleChange(e)}
-                type="file"
-              />
-
-              <Button onClick={clickSubmits}>Submit</Button>
             </CardContent>
-<<<<<<< HEAD
             <CardActions>
               <div className={classes.root}>
                 <input
@@ -682,8 +672,6 @@ function Blogs({
                 </label>
               </div>
             </CardActions>
-=======
->>>>>>> db3dd13c9ec20798b37ce048564f244dbcae682f
           </Card>
         </Container>
       </Box>

@@ -1,6 +1,9 @@
 import { takeLatest, call, all, put } from 'redux-saga/effects';
 import { AnyAction } from 'redux';
 import axios from 'axios';
+
+import axiosConfig from '@config/axios.config';
+
 import * as postsType from './posts.types';
 import * as postsAction from './posts.actions';
 import {
@@ -17,9 +20,7 @@ export function* fetchPostsAsync({
   payload: { id }
 }: ReturnType<typeof fetchPostsStart>) {
   try {
-    const { data } = yield axios.get(
-      `https://yatchcloud-dev.fghire.com/api/getBlogsByBroker/${id}`
-    );
+    const { data } = yield axiosConfig.get(`api/getBlogsByBroker/${id}`);
 
     console.log('result fetchPostsAsync>>>', data);
 
@@ -51,9 +52,7 @@ export function* fetchPostsaByIdAsync({
   payload: { id }
 }: ReturnType<typeof fetchPostsByIdStart>) {
   try {
-    const { data } = yield axios.get(
-      `https://yatchcloud-dev.fghire.com/public/getBlogsById/${id}`
-    );
+    const { data } = yield axiosConfig.get(`public/getBlogsById/${id}`);
 
     console.log('fetchPostsaByIdAsync data>>', data.detail.data[0]);
     yield put(postsAction.fetchPostsByIdSuccess(data.detail.data[0]));
@@ -70,10 +69,7 @@ export function* createPostAsync({
 }: ReturnType<typeof createPostStart>) {
   try {
     console.log('entered createpost>>>', formData);
-    const { data } = yield axios.post(
-      `https://yatchcloud-dev.fghire.com/api/blog/create`,
-      formData
-    );
+    const { data } = yield axiosConfig.post(`api/blog/create`, formData);
     console.log('createPostAsync on success>>>', data);
     yield put(postsAction.createPostSuccess());
     yield put(openAlert('Blog saved successfully!!!', 'success'));

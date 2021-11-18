@@ -641,6 +641,7 @@ function Blogs({
                 {/* || `data:${user?.filename};base64,${user?.imageBase64}` */}
               </div>
             </CardContent>
+<<<<<<< HEAD
             <CardActions>
               <div className={classes.root}>
                 <input
@@ -672,6 +673,8 @@ function Blogs({
                 </label>
               </div>
             </CardActions>
+=======
+>>>>>>> fa7d4bb98ed032bdba0030b70aa7b368defb80fa
           </Card>
         </Container>
       </Box>

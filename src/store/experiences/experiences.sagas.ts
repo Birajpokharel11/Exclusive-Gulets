@@ -1,11 +1,12 @@
 import { takeLatest, call, all, put } from 'redux-saga/effects';
 import { AnyAction } from 'redux';
 import queryString from 'query-string';
+import router from 'next/router';
+import axios from 'axios';
+
+import axiosConfig from '@config/axios.config';
 
 import { openAlert } from '../alert/alert.actions';
-
-import axios from 'axios';
-import router from 'next/router';
 
 import * as ExperiencesType from './experiences.types';
 import * as experiencesAction from './experiences.actions';
@@ -13,8 +14,8 @@ import * as experiencesAction from './experiences.actions';
 export function* fetchExperiencesAsync({ payload: { id } }: AnyAction) {
   try {
     console.log('fetchExperiencesAsync>>>', id);
-    const { data } = yield axios.get(
-      `https://yatchcloud-dev.fghire.com/public/getExperiencesByBroker/${id}`
+    const { data } = yield axiosConfig.get(
+      `public/getExperiencesByBroker/${id}`
     );
 
     console.log('fetch experience value>>>', data);
@@ -28,9 +29,7 @@ export function* fetchExperiencesAsync({ payload: { id } }: AnyAction) {
 
 export function* fetchExperienceByIdAsync({ payload: { id } }: AnyAction) {
   try {
-    const { data } = yield axios.get(
-      `https://yatchcloud-dev.fghire.com/public/getExperiencesById/${id}`
-    );
+    const { data } = yield axiosConfig.get(`public/getExperiencesById/${id}`);
 
     console.log('individual experience data>>', data);
     yield put(
@@ -45,10 +44,7 @@ export function* fetchExperienceByIdAsync({ payload: { id } }: AnyAction) {
 export function* createExperienceAsync({ payload: { formData } }: AnyAction) {
   try {
     console.log('entered createExperienceAsync>>>', formData);
-    const { data } = yield axios.post(
-      `https://yatchcloud-dev.fghire.com/api/experience/create`,
-      formData
-    );
+    const { data } = yield axiosConfig.post(`api/experience/create`, formData);
     console.log('createExperienceAsync on success>>>', data);
     yield put(experiencesAction.createExperienceSuccess());
     yield put(openAlert('Experience saved successfully!!!', 'success'));

@@ -3,6 +3,8 @@ import axios from 'axios';
 import router from 'next/router';
 import _ from 'lodash';
 
+import axiosConfig, { setAuthToken } from '@config/axios.config';
+
 import { openAlert } from '../alert/alert.actions';
 
 import * as AuthType from './auth.types';
@@ -17,17 +19,13 @@ import {
   loadUserStart
 } from './auth.actions';
 
-import setAuthToken from '@utils/setAuthToken';
-
 export function* loadUserAsync({ payload }: ReturnType<typeof loadUserStart>) {
   if (localStorage.token) {
     setAuthToken(localStorage.token);
   }
 
   try {
-    const { data } = yield axios.get(
-      `https://yatchcloud-dev.fghire.com/api/getUserSession`
-    );
+    const { data } = yield axiosConfig.get(`api/getUserSession`);
 
     const profile = {
       ...data.detail.data.profile,
@@ -53,15 +51,11 @@ export function* onSigninAsync({
 }: ReturnType<typeof signinStart>) {
   try {
     console.log('data in signIn>>>', formData);
-    const { data } = yield axios.post(
-      `https://yatchcloud-dev.fghire.com/oauth/token`,
-      null,
-      {
-        params: {
-          ...formData
-        }
+    const { data } = yield axiosConfig.post(`oauth/token`, null, {
+      params: {
+        ...formData
       }
-    );
+    });
     const route = 'signIn';
     console.log('value fo data after success>>>', data);
     yield put(openAlert('Signin Success!!', 'success'));
@@ -80,10 +74,7 @@ export function* onSignupAsync({
   delete formData.password2;
 
   try {
-    const { data } = yield axios.post(
-      `https://yatchcloud-dev.fghire.com/public/createManager`,
-      formData
-    );
+    const { data } = yield axiosConfig.post(`public/createManager`, formData);
 
     console.log('value fo data after success>>>', data);
 
@@ -103,10 +94,7 @@ export function* onSignupBrokerAsync({
   delete formData.password2;
   console.log('onsignup async>>>', formData);
   try {
-    const { data } = yield axios.post(
-      `https://yatchcloud-dev.fghire.com/public/createBroker`,
-      formData
-    );
+    const { data } = yield axiosConfig.post(`public/createBroker`, formData);
     console.log('value fo data after success>>>', data);
     if (data.status === 'success') {
       yield put(authActions.signupBrokerSuccess());
@@ -126,8 +114,8 @@ export function* validateUserAsync({
   payload: { formData }
 }: ReturnType<typeof validateUserEmailStart>) {
   try {
-    const { data } = yield axios.post(
-      `https://yatchcloud-dev.fghire.com/public/validateUserEmailAndBrokerSite`,
+    const { data } = yield axiosConfig.post(
+      `public/validateUserEmailAndBrokerSite`,
       formData
     );
 
@@ -159,8 +147,8 @@ export function* verifyBrokerAsync({
   console.log(formData);
 
   try {
-    let { data } = yield axios.post(
-      `https://yatchcloud-dev.fghire.com/public/verifyBrokerAccount
+    let { data } = yield axiosConfig.post(
+      `public/verifyBrokerAccount
       `,
       formData
     );
@@ -182,10 +170,7 @@ export function* signOutAsync({
 }: ReturnType<typeof signoutStart>) {
   try {
     console.log('inside of signout async???', token);
-    let { data } = yield axios.post(
-      `https://yatchcloud-dev.fghire.com/api/oauth/logout`,
-      token
-    );
+    let { data } = yield axiosConfig.post(`api/oauth/logout`, token);
     console.log('data on signout>>>', data);
     if (data.status === 200) {
       yield put(authActions.signoutSuccess());

@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useRouter } from 'next/router';
+import Image from 'next/image';
 import clsx from 'clsx';
 import { createStyles, makeStyles } from '@material-ui/core/styles';
 import {
@@ -627,18 +628,29 @@ function Blogs({
               </Form>
             )}
           />
-          <Card className={classes.root}>
+          <Card>
             <CardContent>
               <div className={classes.details}>
                 <img
                   className={classes.avatar}
                   src={preview}
                   alt="picture"
-                  style={{ width: '100%' }}
+                  width={400}
+                  height={400}
                 />
                 {/* || `data:${user?.filename};base64,${user?.imageBase64}` */}
               </div>
+              <input
+                accept="image/*"
+                className={classes.input}
+                id="contained-button-file"
+                onChange={(e) => handleChange(e)}
+                type="file"
+              />
+
+              <Button onClick={clickSubmits}>Submit</Button>
             </CardContent>
+<<<<<<< HEAD
             <CardActions>
               <div className={classes.root}>
                 <input
@@ -670,6 +682,8 @@ function Blogs({
                 </label>
               </div>
             </CardActions>
+=======
+>>>>>>> db3dd13c9ec20798b37ce048564f244dbcae682f
           </Card>
         </Container>
       </Box>

@@ -28,6 +28,9 @@ const useStyles = makeStyles((theme) =>
       height: 'calc(100vh - 64px)',
       padding: 0
     },
+    details: {},
+    input: {},
+    avatar: {},
     heading: {
       color: '#00204e',
       fontSize: '20px',
@@ -48,7 +51,7 @@ interface Props {
   route?: string;
   next_page?: number;
   onEditYachtStart?: (formData) => any;
-  onPicAddStart?: () => any;
+  onPicAddStart?: (formData) => any;
 }
 function Blogs({
   yacht: { soleYacht, isEditing },
@@ -79,7 +82,11 @@ function Blogs({
 
   const clickSubmits = (e) => {
     e.preventDefault();
-    onPicAddStart(Photo, params);
+    onPicAddStart({
+      selectedFile: Photo,
+      id: id,
+      type: 'yacht'
+    });
     console.log(params, 'PICCC');
   };
 
@@ -231,27 +238,21 @@ function Blogs({
               </div>
             </CardContent>
             <CardActions>
-              <form>
-                <div className={classes.root}>
-                  <input
-                    accept="image/*"
-                    className={classes.input}
-                    id="contained-button-file"
-                    onChange={(e) => handleChange(e)}
-                    type="file"
-                  />
-                  <label htmlFor="contained-button-file"></label>
-                </div>
-                <Button
+              <div className={classes.root}>
+                <input
                   accept="image/*"
                   className={classes.input}
                   id="contained-button-file"
                   onChange={(e) => handleChange(e)}
                   type="file"
-                >
-                  Choose Pic
-                </Button>
-              </form>
+                />
+                <label htmlFor="contained-button-file">
+                  <Button variant="contained" color="primary" component="span">
+                    Upload
+                  </Button>
+                </label>
+              </div>
+
               <Button onClick={clickSubmits}>Submit</Button>
             </CardActions>
           </Card>

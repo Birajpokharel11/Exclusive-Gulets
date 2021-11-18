@@ -70,9 +70,9 @@ export const editYachtFailure = (error) => ({
   type: YachtsType.EDIT_YACHT_FAILURE
 });
 ///////////////////////////////////////////////////////////////
-export const addPictureStart = (data, data2) => ({
+export const addPictureStart = (formData) => ({
   type: YachtsType.ADD_PIC_START,
-  payload: { data, data2 }
+  payload: formData
 });
 
 export const addPictureSuccess = (result) => ({

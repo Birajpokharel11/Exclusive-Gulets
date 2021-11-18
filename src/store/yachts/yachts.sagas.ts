@@ -108,18 +108,23 @@ export function* createPictureAsync({ payload }: AnyAction) {
       headers: { Authorization: `Bearer ${token}` }
     };
     console.log('config,', config);
-    const { data } = yield axios.get(
-      `https://yatchcloud-dev.fghire.com/api/putSignedUrl`
+    const { data } = yield axios.post(
+      `https://yatchcloud-dev.fghire.com/api/putSignedUrl`,
+      {
+        id: payload.id,
+        type: payload.type
+      }
     );
     console.log('createYachtAsync data>>', data);
     // const yellow = data.url;
-    const red = yield axios.put(
-      'https://yacht-prod.s3.us-east-2.amazonaws.com/6b1b15f1-2ccc-4a16-83cf-fa64aef76186?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20211117T104707Z&X-Amz-SignedHeaders=host&X-Amz-Expires=3599&X-Amz-Credential=AKIATSWZCGZ7QWEHFMOH%2F20211117%2Fus-east-2%2Fs3%2Faws4_request&X-Amz-Signature=007a013372942fb90dbb950ff4d8c7c845b8414df6ff52aa34f7922a8a308682',
-      payload
-    );
-    console.log('Updated', red);
+    yield axios.put(data.url, payload.selectedFile, {
+      headers: {
+        'Content-Type': payload.selectedFile.type
+      }
+    });
+    // console.log('Updated', red);
 
-    yield put(postsAction.addPictureSuccess(data));
+    // yield put(postsAction.addPictureSuccess(data));
   } catch (err) {
     console.error('error received>>>', err);
     yield put(postsAction.addPictureStop(err));

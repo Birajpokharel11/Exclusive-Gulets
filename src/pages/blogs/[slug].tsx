@@ -14,7 +14,7 @@ import { getTenantDomain } from '@utils/data';
 import { Limits, Sort } from '@utils/enums';
 
 export default function NewsBlogs() {
-  return <WithLayout component={BlogsDetails} layout={Main} />;
+  return <WithLayout component={BlogsDetails} layout={Main} context />;
 }
 
 // export async function getStaticPaths() {

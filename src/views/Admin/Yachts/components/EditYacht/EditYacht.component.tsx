@@ -1,4 +1,6 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { useRouter } from 'next/router';
+import clsx from 'clsx';
 import { createStyles, makeStyles } from '@material-ui/core/styles';
 import {
   Box,
@@ -7,11 +9,13 @@ import {
   Grid,
   MenuItem,
   CircularProgress,
-  Button
+  Button,
+  Card,
+  CardContent,
+  Avatar,
+  CardActions,
+  ButtonGroup
 } from '@material-ui/core';
-import container from './EditYacht.container';
-import BackgroundVectors from '@components/BackgroundVectors';
-import { useRouter } from 'next/router';
 import {
   Formik,
   Field,
@@ -22,7 +26,12 @@ import {
 } from 'formik';
 import { TextField, Select } from 'formik-material-ui';
 import * as Yup from 'yup';
+
+import BackgroundVectors from '@components/BackgroundVectors';
+
 import { IYachtState } from '@store/interfaces';
+
+import container from './EditYacht.container';
 
 const useStyles = makeStyles((theme) =>
   createStyles({
@@ -30,6 +39,9 @@ const useStyles = makeStyles((theme) =>
       height: 'calc(100vh - 64px)',
       padding: 0
     },
+    details: {},
+    input: {},
+    avatar: {},
     heading: {
       color: '#00204e',
       fontSize: '20px',
@@ -53,6 +65,7 @@ interface Props {
   route?: string;
   next_page?: number;
   onEditYachtStart?: (formData) => any;
+  onPicAddStart?: (formData) => any;
 }
 function Blogs({
   yacht: {
@@ -67,12 +80,39 @@ function Blogs({
     yachtFeaturesList
   },
   loading,
-  onEditYachtStart
+  onEditYachtStart,
+  onPicAddStart
 }: Props) {
   const classes = useStyles();
   const [page, setpage] = React.useState(0);
 
-  const onSubmit = () => {};
+  ///////////////////////////////////////////////////////////
+  const [Photo, setPhoto] = React.useState('');
+  const [preview, setPreview] = React.useState('');
+
+  const handleChange = (e) => {
+    console.log(e.target.files[0]);
+    const data = e.target.files[0];
+    console.log('photwwwo', data);
+
+    setPreview(window.URL.createObjectURL(data));
+    setPhoto(data);
+  };
+
+  ////////
+  const router = useRouter();
+  const id = router.query.slug;
+  const params = [Photo, { id: id, type: 'yacht' }];
+
+  const clickSubmits = (e) => {
+    e.preventDefault();
+    onPicAddStart({
+      selectedFile: Photo,
+      id: id,
+      type: 'yacht'
+    });
+    console.log(params, 'PICCC');
+  };
 
   return (
     <>
@@ -587,6 +627,37 @@ function Blogs({
               </Form>
             )}
           />
+          <Card className={classes.root}>
+            <CardContent>
+              <div className={classes.details}>
+                <img
+                  className={classes.avatar}
+                  src={preview}
+                  alt="picture"
+                  style={{ width: '100%' }}
+                />
+                {/* || `data:${user?.filename};base64,${user?.imageBase64}` */}
+              </div>
+            </CardContent>
+            <CardActions>
+              <div className={classes.root}>
+                <input
+                  accept="image/*"
+                  className={classes.input}
+                  id="contained-button-file"
+                  onChange={(e) => handleChange(e)}
+                  type="file"
+                />
+                <label htmlFor="contained-button-file">
+                  <Button variant="contained" color="primary" component="span">
+                    Upload
+                  </Button>
+                </label>
+              </div>
+
+              <Button onClick={clickSubmits}>Submit</Button>
+            </CardActions>
+          </Card>
         </Container>
       </Box>
     </>

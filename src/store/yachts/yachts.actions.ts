@@ -169,8 +169,9 @@ export const fetchYachtFeaturesFailure = (error) => ({
   payload: error
 });
 
-export const addPictureStart = () => ({
-  type: YachtsType.ADD_PIC_START
+export const addPictureStart = (formData) => ({
+  type: YachtsType.ADD_PIC_START,
+  payload: formData
 });
 
 export const addPictureSuccess = (result) => ({

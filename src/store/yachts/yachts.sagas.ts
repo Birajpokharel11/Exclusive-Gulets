@@ -196,14 +196,32 @@ export function* fetchYachtFeatureAsync() {
   }
 }
 
-export function* createPictureAsync() {
+export function* createPictureAsync({ payload }: AnyAction) {
   try {
-    console.log('hereinpictures');
+    console.log('hereinpictures', payload);
+    const token = localStorage.getItem('token');
+    console.log('TOken', token);
+    const config = {
+      headers: { Authorization: `Bearer ${token}` }
+    };
+    console.log('config,', config);
     const { data } = yield axios.post(
-      `https://yatchcloud-dev.fghire.com/api/putSignedUrl`
+      `https://yatchcloud-dev.fghire.com/api/putSignedUrl`,
+      {
+        id: payload.id,
+        type: payload.type
+      }
     );
     console.log('createYachtAsync data>>', data);
-    yield put(postsAction.addPictureSuccess(data));
+    // const yellow = data.url;
+    yield axios.put(data.url, payload.selectedFile, {
+      headers: {
+        'Content-Type': payload.selectedFile.type
+      }
+    });
+    // console.log('Updated', red);
+
+    // yield put(postsAction.addPictureSuccess(data));
   } catch (err) {
     console.error('error received>>>', err);
     yield put(postsAction.addPictureStop(err));

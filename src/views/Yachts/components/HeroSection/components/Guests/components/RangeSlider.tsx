@@ -16,6 +16,7 @@ const useStyles = makeStyles((theme) =>
       width: 300,
       [theme.breakpoints.down('xs')]: { padding: '0 0 16px 16px' }
     },
+    NEw: { width: '450px', [theme.breakpoints.down('xs')]: { width: '100vw' } },
     multilineColor: {
       color: '#091527',
       fontSize: '18px',
@@ -33,6 +34,9 @@ const useStyles = makeStyles((theme) =>
       },
       [theme.breakpoints.down(425)]: {
         width: '300px'
+      },
+      [theme.breakpoints.down(375)]: {
+        width: '250px'
       }
     },
     Divider: {
@@ -50,6 +54,9 @@ const useStyles = makeStyles((theme) =>
       },
       [theme.breakpoints.down(425)]: {
         width: '345px'
+      },
+      [theme.breakpoints.down(375)]: {
+        width: '285px'
       }
     },
     RangeText: {
@@ -59,6 +66,9 @@ const useStyles = makeStyles((theme) =>
       },
       [theme.breakpoints.down(425)]: {
         width: '350px'
+      },
+      [theme.breakpoints.down(375)]: {
+        width: '290px'
       }
     },
     GridText: {
@@ -79,7 +89,7 @@ export default function RangeSlider() {
   }
   return (
     <div className={classes.root}>
-      <div style={{ width: '450px' }}>
+      <div className={classes.NEw}>
         <Grid container className={classes.GridText}>
           <Grid item md={6} xs={5}>
             <Typography className={classes.Typography} variant="body1">

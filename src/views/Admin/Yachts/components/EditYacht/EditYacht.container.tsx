@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import { editYachtStart } from '@store/yachts/yachts.actions';
+import { addPictureStart, editYachtStart } from '@store/yachts/yachts.actions';
 const mapStateToProps = (state, props) => ({
   destination: state.destination,
   posts: state.posts,
@@ -7,7 +7,8 @@ const mapStateToProps = (state, props) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  onEditYachtStart: (formData) => dispatch(editYachtStart(formData))
+  onEditYachtStart: (formData) => dispatch(editYachtStart(formData)),
+  onPicAddStart: (formdata) => dispatch(addPictureStart(formdata))
 });
 
 const container = connect(mapStateToProps, mapDispatchToProps);

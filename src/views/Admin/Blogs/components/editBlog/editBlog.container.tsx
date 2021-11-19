@@ -10,7 +10,10 @@ const mapStateToProps = (state, props) => ({
 
 const mapDispatchToProps = (dispatch) => ({
   onFetchPostsByIdStart: (id) => dispatch(fetchPostsByIdStart(id)),
-  onEditPostStart: (formData) => dispatch(editPostStart(formData))
+  onEditPostStart: (formData, mainSelectedFile, sideSelectedFile, domainName) =>
+    dispatch(
+      editPostStart(formData, mainSelectedFile, sideSelectedFile, domainName)
+    )
 });
 
 const container = connect(mapStateToProps, mapDispatchToProps);

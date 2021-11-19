@@ -66,15 +66,51 @@ export function* fetchPostsaByIdAsync({
 /////////////////////////////////////////////////////////////////////////////////////
 
 export function* createPostAsync({
-  payload: { formData }
+  payload: { formData, mainSelectedFile, sideSelectedFile, domainName }
 }: ReturnType<typeof createPostStart>) {
   try {
-    console.log('entered createpost>>>', formData);
-    const { data } = yield axiosConfig.post(`api/blog/create`, formData);
-    console.log('createPostAsync on success>>>', data);
-    yield put(postsAction.createPostSuccess());
-    yield put(openAlert('Blog saved successfully!!!', 'success'));
-    router.push('/manage/dashboard');
+    if (mainSelectedFile) {
+      // saving image to s3 bucket
+      try {
+        const imageData = {
+          id: 1,
+          type: 'blog',
+          domain: domainName
+        };
+
+        console.log('image data>>>', imageData);
+
+        const { data } = yield axiosConfig.post(`api/putSignedUrl`, imageData);
+
+        console.log('image response on saga>>>', data);
+
+        yield axios.put(data.url, mainSelectedFile, {
+          headers: {
+            'Content-Type': mainSelectedFile.type
+          }
+        });
+
+        yield axiosConfig.post(
+          `https://yatchcloud-dev.fghire.com/api/blog/create`,
+          formData
+        );
+
+        yield put(openAlert('Blog saved successfully!!!', 'success'));
+        yield put(postsAction.createPostSuccess());
+        router.push('/manage/blogs');
+      } catch (error) {
+        console.error('error received>>>', error);
+        yield put(postsAction.createPostFailure(error));
+        yield put(openAlert('Failed to save blog', 'error'));
+      }
+    } else {
+      const { data } = yield axiosConfig.post(`api/blog/create`, formData);
+      if (data.status === 'success') {
+        yield put(postsAction.createPostSuccess());
+        yield put(openAlert('Blog saved successfully!!!', 'success'));
+        router.push('/manage/dashboard');
+      }
+    }
   } catch (err) {
     console.error('error received>>>', err);
     yield put(postsAction.createPostFailure(err));
@@ -83,22 +119,59 @@ export function* createPostAsync({
 }
 
 export function* editPostAsync({
-  payload: { formData }
+  payload: { formData, mainSelectedFile, sideSelectedFile, domainName }
 }: ReturnType<typeof editPostStart>) {
   try {
-    console.log('entered editPostStart>>>', formData);
-    const { data } = yield axios.post(
-      `https://yatchcloud-dev.fghire.com/api/blog/edit`,
-      formData
-    );
-    console.log('editPostAsync on success>>>', data);
+    // console.log('entered editPostStart>>>', formData);
+    // const { data } = yield axiosConfig.post(`api/blog/edit`, formData);
+    // console.log('editPostAsync on success>>>', data);
 
-    if (data.status === 'success') {
-      yield put(postsAction.editPostSuccess());
-      yield put(openAlert('Blog edited successfully!!!', 'success'));
-      router.push('/manage/blogs');
+    // if (data.status === 'success') {
+    //   yield put(postsAction.editPostSuccess());
+    //   yield put(openAlert('Blog edited successfully!!!', 'success'));
+    //   router.push('/manage/blogs');
+    // } else {
+    //   yield put(openAlert('Failed to edit blog', 'error'));
+    // }
+
+    if (mainSelectedFile) {
+      // saving image to s3 bucket
+      try {
+        const imageData = {
+          id: 1,
+          type: 'blog',
+          domain: domainName
+        };
+
+        console.log('image data>>>', imageData);
+
+        const { data } = yield axiosConfig.post(`api/putSignedUrl`, imageData);
+
+        console.log('image response on saga>>>', data);
+
+        yield axios.put(data.url, mainSelectedFile, {
+          headers: {
+            'Content-Type': mainSelectedFile.type
+          }
+        });
+
+        yield axiosConfig.post(`api/blog/edit`, formData);
+
+        yield put(openAlert('Blog edited successfully!!!', 'success'));
+        yield put(postsAction.editPostSuccess());
+        router.push('/manage/blogs');
+      } catch (error) {
+        console.error('error received>>>', error);
+        yield put(postsAction.createPostFailure(error));
+        yield put(openAlert('Failed to save blog', 'error'));
+      }
     } else {
-      yield put(openAlert('Failed to edit blog', 'error'));
+      const { data } = yield axiosConfig.post(`api/blog/edit`, formData);
+      if (data.status === 'success') {
+        yield put(postsAction.editPostSuccess());
+        yield put(openAlert('Blog edited successfully!!!', 'success'));
+        router.push('/manage/dashboard');
+      }
     }
   } catch (err) {
     console.error('error received>>>', err);
@@ -110,10 +183,7 @@ export function* editPostAsync({
 export function* deletePostAsync({ payload: { id, handleClose } }: AnyAction) {
   try {
     console.log('entered deletePostAsync>>>', id);
-    const { data } = yield axios.post(
-      `https://yatchcloud-dev.fghire.com/api/blog/delete`,
-      { id }
-    );
+    const { data } = yield axiosConfig.post(`api/blog/delete`, { id });
     console.log('deletePostAsync on success>>>', data);
     if (data.status === 'success') {
       yield put(postsAction.deletePostSuccess());

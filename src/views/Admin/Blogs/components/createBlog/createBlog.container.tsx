@@ -9,7 +9,15 @@ const mapStateToProps = (state, props) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  onCreatePostStart: (formData) => dispatch(createPostStart(formData))
+  onCreatePostStart: (
+    formData,
+    mainSelectedFile,
+    sideSelectedFile,
+    domainName
+  ) =>
+    dispatch(
+      createPostStart(formData, mainSelectedFile, sideSelectedFile, domainName)
+    )
 });
 
 const container = connect(mapStateToProps, mapDispatchToProps);

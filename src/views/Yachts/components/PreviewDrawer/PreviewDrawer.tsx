@@ -169,17 +169,19 @@ export default function PreviewDrawer(props) {
           <Typography variant="subtitle1" color="secondary">
             from{' '}
             <span className={classes.Span}>
-              {selectedYacht.charter_price ?? ''}
+              € {!selectedYacht?.salePrice && '10022'}{' '}
             </span>{' '}
-            to
+            to{'  '}
             <span className={classes.Span}>
-              {selectedYacht.charter_max_price ?? ''}
+              € {!selectedYacht?.salePrice && '10022'}{' '}
             </span>
           </Typography>
         </Box>
         <br />
         <Box pl={3}>
-          {/* <YachtsSlider imageList={selectedYacht.attachments} /> */}
+          {/* <YachtsSlider imageList={selectedYacht.attachments} />
+           */}
+          <img src={selectedYacht.mainImage} alt="slider" />
         </Box>
         <Box pt={1} pb={6}>
           <Grid container justifyContent="center">

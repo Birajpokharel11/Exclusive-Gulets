@@ -19,7 +19,8 @@ const mapDispatchToProps = (dispatch) => ({
   onSignupStart: (formData) => dispatch(signupStart(formData)),
   onCreateYachtStart: (formData) => dispatch(createYachtStart(formData)),
   onFetchYachtsStart: () => dispatch(fetchAdminYachtsStart()),
-  onPicAddStart: (formData) => dispatch(addPictureStart(formData))
+  onPicAddStart: (formData, imgCode) =>
+    dispatch(addPictureStart(formData, imgCode))
 });
 
 const container = connect(mapStateToProps, mapDispatchToProps);

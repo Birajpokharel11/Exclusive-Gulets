@@ -180,9 +180,10 @@ function Blogs({
                     </Grid>
                   </Grid>
                   <Grid item xs={12}>
+                    <Typography variant="h4">Yacht Name</Typography>
+
                     <Field
                       fullWidth
-                      label="Yacht Name"
                       name="name"
                       type="text"
                       variant="outlined"
@@ -191,10 +192,11 @@ function Blogs({
                   </Grid>
 
                   <Grid item xs={12}>
+                    <Typography variant="h4">Ratings</Typography>
+
                     <Field
                       component={Select}
                       fullWidth
-                      label="Rating"
                       variant="outlined"
                       name="ratingId"
                       id="rating"
@@ -206,10 +208,11 @@ function Blogs({
                   </Grid>
 
                   <Grid item xs={12}>
+                    <Typography variant="h4">Yacht Type</Typography>
+
                     <Field
                       component={Select}
                       fullWidth
-                      label="Yacht Type"
                       variant="outlined"
                       name="yachtTypeId"
                       id="yachtType"
@@ -222,9 +225,10 @@ function Blogs({
                   </Grid>
 
                   <Grid item xs={6}>
+                    <Typography variant="h4">Year Built</Typography>
+
                     <Field
                       fullWidth
-                      label="Year Built"
                       name="buildYear"
                       type="text"
                       variant="outlined"
@@ -233,9 +237,10 @@ function Blogs({
                   </Grid>
 
                   <Grid item xs={6}>
+                    <Typography variant="h4">Year Refit</Typography>
+
                     <Field
                       fullWidth
-                      label="Year Refit"
                       name="refitYear"
                       type="text"
                       variant="outlined"
@@ -244,9 +249,10 @@ function Blogs({
                   </Grid>
 
                   <Grid item xs={6}>
+                    <Typography variant="h4">Length</Typography>
+
                     <Field
                       fullWidth
-                      label="Length"
                       name="length"
                       type="number"
                       variant="outlined"
@@ -255,9 +261,10 @@ function Blogs({
                   </Grid>
 
                   <Grid item xs={6}>
+                    <Typography variant="h4">Cabin</Typography>
+
                     <Field
                       fullWidth
-                      label="Cabin"
                       name="noOfCabins"
                       type="number"
                       variant="outlined"

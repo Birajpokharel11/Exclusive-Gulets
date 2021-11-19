@@ -90,10 +90,10 @@ export function* createPostAsync({
           }
         });
 
-        yield axiosConfig.post(
-          `https://yatchcloud-dev.fghire.com/api/blog/create`,
-          { ...formData, featuredImage: data.objectKey }
-        );
+        yield axiosConfig.post(`api/blog/create`, {
+          ...formData,
+          featuredImage: data.objectKey
+        });
 
         yield put(openAlert('Blog saved successfully!!!', 'success'));
         yield put(postsAction.createPostSuccess());
@@ -121,65 +121,71 @@ export function* createPostAsync({
 export function* editPostAsync({
   payload: { formData, mainSelectedFile, sideSelectedFile, domainName }
 }: ReturnType<typeof editPostStart>) {
-  try {
-    // console.log('entered editPostStart>>>', formData);
-    // const { data } = yield axiosConfig.post(`api/blog/edit`, formData);
-    // console.log('editPostAsync on success>>>', data);
+  console.log('entered editPostStart>>>', formData);
+  // const { data } = yield axiosConfig.post(`api/blog/edit`, formData);
+  // console.log('editPostAsync on success>>>', data);
 
-    // if (data.status === 'success') {
-    //   yield put(postsAction.editPostSuccess());
-    //   yield put(openAlert('Blog edited successfully!!!', 'success'));
-    //   router.push('/manage/blogs');
-    // } else {
-    //   yield put(openAlert('Failed to edit blog', 'error'));
-    // }
+  // if (data.status === 'success') {
+  //   yield put(postsAction.editPostSuccess());
+  //   yield put(openAlert('Blog edited successfully!!!', 'success'));
+  //   router.push('/manage/blogs');
+  // } else {
+  //   yield put(openAlert('Failed to edit blog', 'error'));
+  // }
 
-    if (mainSelectedFile) {
-      // saving image to s3 bucket
-      try {
-        const imageData = {
-          id: 1,
-          type: 'blog',
-          domain: domainName
-        };
+  if (mainSelectedFile) {
+    console.log('inside main img found...');
 
-        console.log('image data>>>', imageData);
+    // saving image to s3 bucket
+    try {
+      const imageData = {
+        id: 1,
+        type: 'blog',
+        domain: domainName
+      };
 
-        const { data } = yield axiosConfig.post(`api/putSignedUrl`, imageData);
+      console.log('image data>>>', imageData);
 
-        console.log('image response on saga>>>', data);
+      const { data } = yield axiosConfig.post(`api/putSignedUrl`, imageData);
 
-        yield axios.put(data.url, mainSelectedFile, {
-          headers: {
-            'Content-Type': mainSelectedFile.type
-          }
-        });
+      console.log('image response on saga>>>', data);
 
-        yield axiosConfig.post(`api/blog/edit`, {
-          ...formData,
-          featuredImage: data.objectKey
-        });
+      yield axios.put(data.url, mainSelectedFile, {
+        headers: {
+          'Content-Type': mainSelectedFile.type
+        }
+      });
 
-        yield put(openAlert('Blog edited successfully!!!', 'success'));
-        yield put(postsAction.editPostSuccess());
-        router.push('/manage/blogs');
-      } catch (error) {
-        console.error('error received>>>', error);
-        yield put(postsAction.createPostFailure(error));
-        yield put(openAlert('Failed to save blog', 'error'));
-      }
-    } else {
+      yield axiosConfig.post(`api/blog/edit`, {
+        ...formData,
+        featuredImage: data.objectKey
+      });
+
+      yield put(openAlert('Blog edited successfully!!!', 'success'));
+      yield put(postsAction.editPostSuccess());
+      router.push('/manage/blogs');
+    } catch (error) {
+      console.error('error received>>>', error);
+      yield put(postsAction.editPostFailure(error));
+      yield put(openAlert('Failed to save blog', 'error'));
+    }
+  } else {
+    console.log('inside else...');
+    try {
       const { data } = yield axiosConfig.post(`api/blog/edit`, formData);
       if (data.status === 'success') {
         yield put(postsAction.editPostSuccess());
         yield put(openAlert('Blog edited successfully!!!', 'success'));
         router.push('/manage/dashboard');
+      } else {
+        yield put(postsAction.editPostFailure(data.status));
+        yield put(openAlert('Failed to save blog', 'error'));
       }
+    } catch (err) {
+      console.error('error received>>>', err);
+      yield put(postsAction.editPostFailure(err));
+      yield put(openAlert('Failed to save blog', 'error'));
     }
-  } catch (err) {
-    console.error('error received>>>', err);
-    yield put(postsAction.editPostFailure(err));
-    yield put(openAlert('Failed to save blog', 'error'));
   }
 }
 
@@ -195,6 +201,7 @@ export function* deletePostAsync({ payload: { id, handleClose } }: AnyAction) {
       router.push('/manage/experiences');
     } else {
       yield put(openAlert('Failed to delete post', 'error'));
+      yield put(postsAction.deletePostFailure(data.status));
     }
   } catch (err) {
     console.error('error received>>>', err);

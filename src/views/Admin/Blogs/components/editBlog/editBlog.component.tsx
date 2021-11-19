@@ -160,11 +160,7 @@ function EditExperiences({
               onEditPostStart(
                 {
                   ...values,
-                  sideImage: 'sideImage',
                   slug: 'slug',
-                  images: ['image1', 'image2'],
-                  yachtList: ['1', '2'],
-                  relatedExperiences: ['1', '2'],
                   id: router.query.id
                 },
                 mainSelectedFile.raw,

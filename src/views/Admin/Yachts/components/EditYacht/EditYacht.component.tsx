@@ -95,7 +95,6 @@ function Blogs({
     console.log(e.target.files[0]);
     const data = e.target.files[0];
     console.log('photwwwo', data);
-    s;
 
     setPreview(window.URL.createObjectURL(data));
     setPhoto(data);
@@ -685,7 +684,7 @@ function Blogs({
           />
         </Grid>
         <Grid item md={4}>
-          <UploadFile />
+          {/* <UploadFile file={file} /> */}
         </Grid>
       </Grid>
     </Box>

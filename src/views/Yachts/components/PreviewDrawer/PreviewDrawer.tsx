@@ -21,12 +21,23 @@ import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
 import { Filter } from '../HeroSection/components';
 import YachtsSlider from './components/YachtsSlider';
 import { storeYacht } from '@store/siteCoordinator/siteCoordinator.actions';
+import clsx from 'clsx';
 
 const drawerWidth = '835px';
 const useStyles = makeStyles((theme) => ({
   toolbarMargin: {
     ...theme.mixins.toolbar,
     marginTop: '8px'
+  },
+  Typography: {
+    fontFamily: 'Lato',
+    fontStyle: 'normal',
+    fontWeight: 300,
+    fontSize: '24px',
+    color: ' #FFFFFF'
+  },
+  MiddleText: {
+    fontWeight: 600
   },
   logo: {
     maxWidth: ' 210px',
@@ -109,11 +120,10 @@ export default function PreviewDrawer(props) {
   const { open, handleDrawerToggle, selectedYacht } = props;
 
   const DynamicMobileData = [];
-
   const storeYachtDetails = (selectedYacht) => {
     dispatch(storeYacht(selectedYacht));
   };
-  console.log('Hellobro', selectedYacht.id);
+  console.log('Hellobro', selectedYacht);
   return (
     <>
       <div className={classes.toolbarMargin} />
@@ -148,7 +158,7 @@ export default function PreviewDrawer(props) {
         <Box display="flex" pt={1} justifyContent="space-between">
           <Box display="flex" alignItems="center" pl={3}>
             <Typography variant="h3" color="secondary">
-              {selectedYacht.name ?? ''}
+              {selectedYacht.name ?? 'Lamborgini'}
             </Typography>
             <IconButton>
               <FavoriteBorderIcon />
@@ -167,7 +177,12 @@ export default function PreviewDrawer(props) {
           <Grid container direction="column" spacing={2}>
             <Grid item>
               <img
-                src="/public/assets/yachts/image-38.png"
+                // src={
+                //   selectedYacht.mainImage
+                //     ? selectedYacht.mainImage
+                //     : '/assets/images/Yatchss.png'
+                // }
+                src="/assets/images/Yatchss.png"
                 style={{ width: '98%', height: '400px' }}
               />
               {/* <Filter /> */}
@@ -176,19 +191,21 @@ export default function PreviewDrawer(props) {
               <Grid container direction="row">
                 <Grid item container spacing={2} md={6} xs={6}>
                   <Grid item>
-                    <Typography variant="h6" gutterBottom color="secondary">
-                      from
-                    </Typography>
-                    <Typography variant="subtitle2" color="secondary">
-                      {selectedYacht.charter_price ?? ''}
-                    </Typography>
-                  </Grid>
-                  <Grid item>
-                    <Typography variant="h6" gutterBottom color="secondary">
-                      to
-                    </Typography>
-                    <Typography variant="subtitle2" color="secondary">
-                      {selectedYacht.charter_max_price ?? ''}
+                    <Typography className={classes.Typography}>
+                      From{' '}
+                      <span
+                        className={clsx(classes.Typography, classes.MiddleText)}
+                      >
+                        {' '}
+                        € {!selectedYacht?.salePrice && '10022'}{' '}
+                      </span>{' '}
+                      to{' '}
+                      <span
+                        className={clsx(classes.Typography, classes.MiddleText)}
+                      >
+                        {' '}
+                        € {!selectedYacht?.salePrice && '11302'}
+                      </span>
                     </Typography>
                   </Grid>
                 </Grid>
@@ -213,7 +230,7 @@ export default function PreviewDrawer(props) {
                 BUILDER
               </Typography>
               <Typography variant="subtitle1" color="secondary">
-                {selectedYacht.charter_price ?? ''}
+                {selectedYacht.charter_price ?? 'BB brothers'}
               </Typography>
             </Grid>
             <Grid item md={6} xs={6}>
@@ -221,7 +238,7 @@ export default function PreviewDrawer(props) {
                 GUESTS
               </Typography>
               <Typography variant="subtitle1" color="secondary">
-                {selectedYacht.charter_price ?? ''}
+                {selectedYacht?.noOfPassengers ?? '22'}
               </Typography>
             </Grid>
             <Grid item md={6} xs={6}>
@@ -229,7 +246,7 @@ export default function PreviewDrawer(props) {
                 LENGTH
               </Typography>
               <Typography variant="subtitle1" color="secondary">
-                {selectedYacht.charter_price ?? ''}
+                {selectedYacht.length ?? '222'}
               </Typography>
             </Grid>
             <Grid item md={6} xs={6}>
@@ -237,7 +254,7 @@ export default function PreviewDrawer(props) {
                 CABIN
               </Typography>
               <Typography variant="subtitle1" color="secondary">
-                {selectedYacht.charter_price ?? ''}
+                {selectedYacht.noOfCabins ?? '12'}
               </Typography>
             </Grid>
             <Grid item md={6} xs={6}>
@@ -245,7 +262,7 @@ export default function PreviewDrawer(props) {
                 CRUISING REGIONS
               </Typography>
               <Typography variant="subtitle1" color="secondary">
-                {selectedYacht.charter_price ?? ''}
+                {selectedYacht.charter_price ?? 'Europe'}
               </Typography>
             </Grid>
             <Grid item md={6} xs={6}>
@@ -253,7 +270,7 @@ export default function PreviewDrawer(props) {
                 CREW
               </Typography>
               <Typography variant="subtitle1" color="secondary">
-                {selectedYacht.charter_price ?? ''}
+                {selectedYacht.numberOfMembers ?? '13'}
               </Typography>
             </Grid>
           </Grid>

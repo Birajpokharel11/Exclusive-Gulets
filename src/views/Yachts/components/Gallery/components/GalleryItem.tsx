@@ -104,7 +104,11 @@ export default function GalleryItem({ adminList, handleDrawerOpen, i }: Props) {
       <Box className={classes.view} onClick={() => handleDrawerOpen()}>
         <img
           // src="assets/images/bg/destination_mobile.png"
-          src={adminList.mainImage}
+          src={
+            !adminList?.mainImage
+              ? '/assets/images/Yatchss.png'
+              : adminList?.mainImage
+          }
           className={classes.Img}
           data-cy={`Gallery Images${i}`}
           alt=""
@@ -155,7 +159,9 @@ export default function GalleryItem({ adminList, handleDrawerOpen, i }: Props) {
 
         <Box style={{ color: 'white' }}>
           <Typography color="inherit" variant="body1" key={i}>
-            {adminList?.flags?.countryName}
+            {!adminList?.flags?.countryName
+              ? 'USA'
+              : adminList.flags.countryName}
           </Typography>
         </Box>
       </Box>

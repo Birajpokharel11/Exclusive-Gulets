@@ -94,6 +94,7 @@ function Blogs({
     console.log(e.target.files[0]);
     const data = e.target.files[0];
     console.log('photwwwo', data);
+    s;
 
     setPreview(window.URL.createObjectURL(data));
     setPhoto(data);
@@ -115,9 +116,9 @@ function Blogs({
   };
 
   return (
-    <>
-      <Box mb={4} mt={6}>
-        <Container>
+    <Box pl={4} pr={4} pt={4}>
+      <Grid container spacing={8}>
+        <Grid item md={8}>
           <Formik
             initialValues={{
               name: soleYacht.name,
@@ -125,20 +126,20 @@ function Blogs({
               yachtTypeId: 1,
               buildYear: soleYacht.buildYear,
               refitYear: soleYacht.refitYear,
-              noOfCabins: soleYacht.noOfCabins,
+              noOfCabins: soleYacht.noOfCabins ?? '',
               flagsId: soleYacht.flagsId ?? 1,
               homePortId: soleYacht.homePortId ?? 1,
-              masterCabins: soleYacht.masterCabins ?? 0,
-              doubleCabins: soleYacht.doubleCabins ?? 0,
-              twinCabins: soleYacht.twinCabins ?? 0,
-              length: soleYacht.length ?? 0,
-              tripleCabins: soleYacht.tripleCabins ?? 0,
-              singleCabins: soleYacht.singleCabins ?? 0,
-              extraBunkBeds: soleYacht.extraBunkBeds ?? 0,
-              noOfPassengers: soleYacht.noOfPassengers ?? 0,
+              masterCabins: soleYacht.masterCabins ?? '',
+              doubleCabins: soleYacht.doubleCabins ?? '',
+              twinCabins: soleYacht.twinCabins ?? '',
+              length: soleYacht.length ?? '',
+              tripleCabins: soleYacht.tripleCabins ?? '',
+              singleCabins: soleYacht.singleCabins ?? '',
+              extraBunkBeds: soleYacht.extraBunkBeds ?? '',
+              noOfPassengers: soleYacht.noOfPassengers ?? '',
               registryPortId: soleYacht.registryPortId ?? 1,
               instanceCheckout: soleYacht.instanceCheckout ?? false,
-              additionalCosts: soleYacht.additionalCosts,
+              additionalCosts: soleYacht.additionalCosts ?? '',
               toysId: soleYacht.toysId ?? [],
               termsId: [],
               extrasId: [],
@@ -627,6 +628,8 @@ function Blogs({
               </Form>
             )}
           />
+        </Grid>
+        <Grid item md={4}>
           <Card>
             <CardContent>
               <div className={classes.details}>
@@ -672,9 +675,9 @@ function Blogs({
               </div>
             </CardActions>
           </Card>
-        </Container>
-      </Box>
-    </>
+        </Grid>
+      </Grid>
+    </Box>
   );
 }
 

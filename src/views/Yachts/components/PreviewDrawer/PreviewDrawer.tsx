@@ -11,7 +11,8 @@ import {
   Drawer,
   Grid,
   Button,
-  Container
+  Container,
+  Divider
 } from '@material-ui/core';
 
 import CloseIcon from '@material-ui/icons/Close';
@@ -124,12 +125,10 @@ export default function PreviewDrawer(props) {
           paper: classes.drawerPaper
         }}
       >
-        {' '}
-        {true && (
+        {false && (
           <>
             <div className={classes.toolbarMargin} />
             <Box className={classes.SOfferBox}>
-              {' '}
               <Grid item container justifyContent="center" lg={12}>
                 <img
                   src="/assets/images/Vector.svg"
@@ -165,40 +164,98 @@ export default function PreviewDrawer(props) {
           alignItems="center"
           justifyContent="space-between"
         >
-          <Filter />
-          <Typography variant="subtitle1" color="secondary">
-            from{' '}
-            <span className={classes.Span}>
-              {selectedYacht.charter_price ?? ''}
-            </span>{' '}
-            to
-            <span className={classes.Span}>
-              {selectedYacht.charter_max_price ?? ''}
-            </span>
-          </Typography>
+          <Grid container direction="column" spacing={2}>
+            <Grid item>
+              <img
+                src="/public/assets/yachts/image-38.png"
+                style={{ width: '98%', height: '400px' }}
+              />
+              {/* <Filter /> */}
+            </Grid>
+            <Grid item>
+              <Grid container direction="row">
+                <Grid item container spacing={2} md={6} xs={6}>
+                  <Grid item>
+                    <Typography variant="h6" gutterBottom color="secondary">
+                      from
+                    </Typography>
+                    <Typography variant="subtitle2" color="secondary">
+                      {selectedYacht.charter_price ?? ''}
+                    </Typography>
+                  </Grid>
+                  <Grid item>
+                    <Typography variant="h6" gutterBottom color="secondary">
+                      to
+                    </Typography>
+                    <Typography variant="subtitle2" color="secondary">
+                      {selectedYacht.charter_max_price ?? ''}
+                    </Typography>
+                  </Grid>
+                </Grid>
+                <Grid item container md={6} xs={6} justifyContent="flex-end">
+                  <Link href={`/yachts/${selectedYacht?.id}`}>
+                    <Button className={classes.button} variant="contained">
+                      View Details
+                    </Button>
+                  </Link>
+                </Grid>
+              </Grid>
+            </Grid>
+          </Grid>
         </Box>
         <br />
-        <Box pl={3}>
+        <Divider />
+        <Box pt={3} pl={3}>
           {/* <YachtsSlider imageList={selectedYacht.attachments} /> */}
-        </Box>
-        <Box pt={1} pb={6}>
-          <Grid container justifyContent="center">
-            <Link
-              // href={{
-              //   pathname: `/yachts/[slug]`,
-              //   query: {
-              //     id: selectedYacht.id
-              //   }
-              href={`/yachts/${selectedYacht?.id}`}
-            >
-              <Button
-                className={classes.button}
-                variant="contained"
-                onClick={() => storeYachtDetails(selectedYacht)}
-              >
-                View Details
-              </Button>
-            </Link>
+          <Grid container spacing={2}>
+            <Grid item md={6} xs={6}>
+              <Typography variant="h6" gutterBottom color="secondary">
+                BUILDER
+              </Typography>
+              <Typography variant="subtitle1" color="secondary">
+                {selectedYacht.charter_price ?? ''}
+              </Typography>
+            </Grid>
+            <Grid item md={6} xs={6}>
+              <Typography variant="h6" gutterBottom color="secondary">
+                GUESTS
+              </Typography>
+              <Typography variant="subtitle1" color="secondary">
+                {selectedYacht.charter_price ?? ''}
+              </Typography>
+            </Grid>
+            <Grid item md={6} xs={6}>
+              <Typography variant="h6" gutterBottom color="secondary">
+                LENGTH
+              </Typography>
+              <Typography variant="subtitle1" color="secondary">
+                {selectedYacht.charter_price ?? ''}
+              </Typography>
+            </Grid>
+            <Grid item md={6} xs={6}>
+              <Typography variant="h6" gutterBottom color="secondary">
+                CABIN
+              </Typography>
+              <Typography variant="subtitle1" color="secondary">
+                {selectedYacht.charter_price ?? ''}
+              </Typography>
+            </Grid>
+            <Grid item md={6} xs={6}>
+              <Typography variant="h6" gutterBottom color="secondary">
+                CRUISING REGIONS
+              </Typography>
+              <Typography variant="subtitle1" color="secondary">
+                {selectedYacht.charter_price ?? ''}
+              </Typography>
+            </Grid>
+            <Grid item md={6} xs={6}>
+              <Typography variant="h6" gutterBottom color="secondary">
+                CREW
+              </Typography>
+              <Typography variant="subtitle1" color="secondary">
+                {selectedYacht.charter_price ?? ''}
+              </Typography>
+            </Grid>
           </Grid>
         </Box>
         <Box>

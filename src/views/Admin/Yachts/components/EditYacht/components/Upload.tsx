@@ -32,7 +32,7 @@ import BackgroundVectors from '@components/BackgroundVectors';
 import { IYachtState } from '@store/interfaces';
 
 import container from './EditYacht.container';
-import UploadFile from './components/UploadFile';
+
 const useStyles = makeStyles((theme) =>
   createStyles({
     root: {
@@ -630,7 +630,51 @@ function Blogs({
           />
         </Grid>
         <Grid item md={4}>
-          <UploadFile />
+          <Card>
+            <CardContent>
+              <div className={classes.details}>
+                <img
+                  className={classes.avatar}
+                  src={preview}
+                  alt="picture"
+                  width={400}
+                  height={400}
+                />
+                {/* || `data:${user?.filename};base64,${user?.imageBase64}` */}
+              </div>
+            </CardContent>
+            <CardActions>
+              <div className={classes.root}>
+                <input
+                  accept="image/*"
+                  className={classes.input}
+                  id="contained-button-file"
+                  onChange={(e) => handleChange(e)}
+                  type="file"
+                  style={{ display: 'none' }}
+                />
+                <label htmlFor="contained-button-file">
+                  <Button
+                    className={classes.input}
+                    id="contained-button-file"
+                    onChange={(e) => handleChange(e)}
+                    variant="contained"
+                    color="primary"
+                    component="span"
+                  >
+                    Upload
+                  </Button>
+                  <Button
+                    disabled={!Photo && true}
+                    variant="contained"
+                    onClick={clickSubmits}
+                  >
+                    Submit
+                  </Button>
+                </label>
+              </div>
+            </CardActions>
+          </Card>
         </Grid>
       </Grid>
     </Box>

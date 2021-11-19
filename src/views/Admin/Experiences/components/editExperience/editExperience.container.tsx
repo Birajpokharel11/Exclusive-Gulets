@@ -14,7 +14,20 @@ const mapStateToProps = (state, props) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  onEditExperienceStart: (formData) => dispatch(editExperienceStart(formData)),
+  onEditExperienceStart: (
+    formData,
+    mainSelectedFile,
+    sideSelectedFile,
+    domainName
+  ) =>
+    dispatch(
+      editExperienceStart(
+        formData,
+        mainSelectedFile,
+        sideSelectedFile,
+        domainName
+      )
+    ),
   onFetchExperiencesStart: (id) => dispatch(fetchExperiencesStart(id)),
   onFetchExperienceByIdStart: (id) => dispatch(fetchExperienceByIdStart(id))
 });

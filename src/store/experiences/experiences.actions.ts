@@ -30,9 +30,14 @@ export const fetchExperienceByIdFailure = (error) => ({
   payload: error
 });
 
-export const createExperienceStart = (formData) => ({
+export const createExperienceStart = (
+  formData,
+  mainSelectedFile,
+  sideSelectedFile,
+  domainName
+) => ({
   type: ExperiencesType.CREATE_EXPERIENCE_START,
-  payload: { formData }
+  payload: { formData, mainSelectedFile, sideSelectedFile, domainName }
 });
 
 export const createExperienceSuccess = () => ({
@@ -44,9 +49,14 @@ export const createExperienceFailure = (error) => ({
   payload: error
 });
 
-export const editExperienceStart = (formData) => ({
+export const editExperienceStart = (
+  formData,
+  mainSelectedFile,
+  sideSelectedFile,
+  domainName
+) => ({
   type: ExperiencesType.EDIT_EXPERIENCE_START,
-  payload: { formData }
+  payload: { formData, mainSelectedFile, sideSelectedFile, domainName }
 });
 
 export const editExperienceSuccess = () => ({

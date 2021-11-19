@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import _ from 'lodash';
 import { createStyles, makeStyles } from '@material-ui/core/styles';
 import {
@@ -8,8 +8,12 @@ import {
   Grid,
   MenuItem,
   CircularProgress,
-  Button
+  Button,
+  Badge,
+  Avatar
 } from '@material-ui/core';
+import { openAlert } from '@store/alert/alert.actions';
+import InsertPhotoIcon from '@material-ui/icons/InsertPhoto';
 import container from './editBlog.container';
 import BackgroundVectors from '@components/BackgroundVectors';
 import router, { useRouter } from 'next/router';
@@ -35,6 +39,16 @@ const useStyles = makeStyles((theme) =>
       paddingTop: '40px',
       marginBottom: '20px',
       position: 'relative'
+    },
+    avatar: {
+      backgroundColor: '#fff',
+      border: '1px dashed #2A398D',
+      width: theme.spacing(14),
+      height: theme.spacing(14),
+      cursor: 'pointer'
+    },
+    avatarIcon: {
+      color: '#2A398D'
     }
   })
 );
@@ -47,10 +61,16 @@ interface Props {
   onCreatePostStart?: (formData) => any;
   onFetchPostsStart?: (formData) => any;
   onFetchPostsByIdStart?: (formData) => any;
-  onEditPostStart?: (formData) => any;
+  onEditPostStart?: (
+    formData,
+    mainSelectedFile,
+    sideSelectedFile,
+    domainName
+  ) => any;
 }
 function EditExperiences({
-  posts: { postsList, next_page, isCreating, soleBlog },
+  posts: { postsList, next_page, isCreating, soleBlog, isEditing },
+  auth: { currentUser },
   onFetchPostsByIdStart,
   onEditPostStart
 }: Props) {
@@ -63,6 +83,54 @@ function EditExperiences({
   }, [onFetchPostsByIdStart, router]);
 
   console.log('soleBlog>>>', soleBlog);
+  const [mainSelectedFile, setMainSelectedFile] = useState({
+    preview: '',
+    raw: ''
+  });
+  const [sideSelectedFile, setSideSelectedFile] = useState({
+    preview: '',
+    raw: ''
+  });
+
+  const fileChangedHandler = (e) => {
+    const reader = new FileReader();
+    const file = e.target.files[0];
+    const maxfilesize = 1024 * 1024 * 2; // 2 Mb
+    console.log('main file changed>>>', file);
+    if (file) {
+      if (file.size > maxfilesize) {
+        openAlert('image size cannot be greater than 2MB', 'error');
+      } else {
+        reader.onloadend = () => {
+          setMainSelectedFile({
+            preview: reader.result as string,
+            raw: file
+          });
+        };
+        reader.readAsDataURL(file);
+      }
+    }
+  };
+
+  const sideFileChangedHandler = (e) => {
+    const reader = new FileReader();
+    const file = e.target.files[0];
+    const maxfilesize = 1024 * 1024 * 2; // 2 Mb
+    console.log('sideFileChangedHandler>>>', file);
+    if (file) {
+      if (file.size > maxfilesize) {
+        openAlert('image size cannot be greater than 2MB', 'error');
+      } else {
+        reader.onloadend = () => {
+          setSideSelectedFile({
+            preview: reader.result as string,
+            raw: file
+          });
+        };
+        reader.readAsDataURL(file);
+      }
+    }
+  };
 
   return (
     <>
@@ -89,16 +157,20 @@ function EditExperiences({
               description: Yup.string().required('description is required')
             })}
             onSubmit={(values, { setSubmitting }) => {
-              onEditPostStart({
-                ...values,
-                featuredImage: 'featuredImage',
-                sideImage: 'sideImage',
-                slug: 'slug',
-                images: ['image1', 'image2'],
-                yachtList: ['1', '2'],
-                relatedExperiences: ['1', '2'],
-                id: router.query.id
-              });
+              onEditPostStart(
+                {
+                  ...values,
+                  sideImage: 'sideImage',
+                  slug: 'slug',
+                  images: ['image1', 'image2'],
+                  yachtList: ['1', '2'],
+                  relatedExperiences: ['1', '2'],
+                  id: router.query.id
+                },
+                mainSelectedFile.raw,
+                sideSelectedFile.raw,
+                currentUser.domainName
+              );
               setSubmitting(false);
             }}
             render={({ values }) => (
@@ -112,7 +184,13 @@ function EditExperiences({
                     </Grid>
                   </Grid>
 
-                  <Grid item container justify="space-between" spacing={3}>
+                  <Grid
+                    item
+                    container
+                    justify="space-between"
+                    spacing={3}
+                    xs={8}
+                  >
                     <Grid item sm={12}>
                       <Typography variant="h4">Title</Typography>
 
@@ -183,14 +261,117 @@ function EditExperiences({
                         variant="contained"
                         color="primary"
                         size="large"
-                        disabled={isCreating}
+                        disabled={isEditing}
                       >
-                        {isCreating ? (
+                        {isEditing ? (
                           <CircularProgress size="1rem" />
                         ) : (
                           <Typography color="secondary">Save</Typography>
                         )}
                       </Button>
+                    </Grid>
+                  </Grid>
+                  <Grid item container xs={4}>
+                    <Grid
+                      item
+                      container
+                      justifyContent="center"
+                      alignItems="center"
+                      spacing={2}
+                    >
+                      <Grid item>
+                        <input
+                          type="file"
+                          onChange={fileChangedHandler}
+                          accept="image/*"
+                          id="outlined-button-file"
+                          hidden
+                        />
+
+                        <Badge
+                          overlap="circle"
+                          anchorOrigin={{
+                            vertical: 'top',
+                            horizontal: 'right'
+                          }}
+                        >
+                          <label htmlFor="outlined-button-file">
+                            {mainSelectedFile.preview ? (
+                              <Avatar
+                                src={mainSelectedFile.preview}
+                                alt="course"
+                                className={classes.avatar}
+                              />
+                            ) : (
+                              <Avatar
+                                src={soleBlog.featuredImage}
+                                alt="course"
+                                className={classes.avatar}
+                              >
+                                <InsertPhotoIcon
+                                  className={classes.avatarIcon}
+                                />
+                              </Avatar>
+                            )}
+                          </label>
+                        </Badge>
+                      </Grid>
+                      <Grid item>
+                        <Typography variant="h4" align="center">
+                          Main Photo
+                        </Typography>
+                      </Grid>
+                    </Grid>
+
+                    <Grid
+                      item
+                      container
+                      justifyContent="center"
+                      alignItems="center"
+                      spacing={2}
+                    >
+                      <Grid item>
+                        <input
+                          type="file"
+                          onChange={sideFileChangedHandler}
+                          accept="image/*"
+                          id="outlined-button-file2"
+                          hidden
+                        />
+
+                        <Badge
+                          overlap="circle"
+                          anchorOrigin={{
+                            vertical: 'top',
+                            horizontal: 'right'
+                          }}
+                        >
+                          <label htmlFor="outlined-button-file2">
+                            {sideSelectedFile.preview ? (
+                              <Avatar
+                                src={sideSelectedFile.preview}
+                                alt="course"
+                                className={classes.avatar}
+                              />
+                            ) : (
+                              <Avatar
+                                src={currentUser.imageURL}
+                                alt="course"
+                                className={classes.avatar}
+                              >
+                                <InsertPhotoIcon
+                                  className={classes.avatarIcon}
+                                />
+                              </Avatar>
+                            )}
+                          </label>
+                        </Badge>
+                      </Grid>
+                      <Grid item>
+                        <Typography variant="h4" align="center">
+                          Side Photo
+                        </Typography>
+                      </Grid>
                     </Grid>
                   </Grid>
                 </Grid>

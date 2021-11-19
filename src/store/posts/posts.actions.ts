@@ -59,9 +59,14 @@ export const fetchPostsByIdFailure = (error) => ({
   payload: error
 });
 
-export const createPostStart = (formData) => ({
+export const createPostStart = (
+  formData,
+  mainSelectedFile,
+  sideSelectedFile,
+  domainName
+) => ({
   type: PostsType.CREATE_POST_START,
-  payload: { formData }
+  payload: { formData, mainSelectedFile, sideSelectedFile, domainName }
 });
 
 export const createPostSuccess = () => ({
@@ -73,9 +78,14 @@ export const createPostFailure = (error) => ({
   payload: error
 });
 
-export const editPostStart = (formData) => ({
+export const editPostStart = (
+  formData,
+  mainSelectedFile,
+  sideSelectedFile,
+  domainName
+) => ({
   type: PostsType.EDIT_POST_START,
-  payload: { formData }
+  payload: { formData, mainSelectedFile, sideSelectedFile, domainName }
 });
 
 export const editPostSuccess = () => ({

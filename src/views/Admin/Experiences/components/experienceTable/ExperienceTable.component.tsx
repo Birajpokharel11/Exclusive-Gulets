@@ -87,7 +87,15 @@ const TableList = (props) => {
       </TableCell>
 
       <TableCell>
-        <Image src={DefaultImage} alt="image" width={50} height={50} />
+        <img
+          src={
+            experience.featuredImage
+              ? experience.featuredImage
+              : '/assets/images/not_found_image.png'
+          }
+          alt="image"
+          style={{ width: '50px', height: '50px' }}
+        />
       </TableCell>
 
       <TableCell>{experience.title ?? ''}</TableCell>

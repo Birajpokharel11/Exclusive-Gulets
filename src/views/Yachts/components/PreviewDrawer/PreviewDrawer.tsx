@@ -177,12 +177,12 @@ export default function PreviewDrawer(props) {
           <Grid container direction="column" spacing={2}>
             <Grid item>
               <img
-                // src={
-                //   selectedYacht.mainImage
-                //     ? selectedYacht.mainImage
-                //     : '/assets/images/Yatchss.png'
-                // }
-                src="/assets/images/Yatchss.png"
+                src={
+                  selectedYacht.mainImage
+                    ? selectedYacht.mainImage
+                    : '/assets/images/Yatchss.png'
+                }
+                // src="/assets/images/Yatchss.png"
                 style={{ width: '98%', height: '400px' }}
               />
               {/* <Filter /> */}

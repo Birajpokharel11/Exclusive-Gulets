@@ -178,61 +178,61 @@ export default function Accomodation(props) {
   const { data } = props;
   const classes = useStyles();
   const length = list.length;
-
+  const math = Math.floor(Math.random() * 10);
   console.log(length);
 
   const dynamicItemData = [
     {
       img: '/assets/images/Cabins.svg',
       title: 'Guests',
-      Number: `${data?.noOfPassengers}`
+      Number: `${!data?.noOfPassengers && math}`
     },
 
     {
       img: '/assets/images/Crew.svg',
       title: 'Cabin',
-      Number: `${data?.noOfCabins}`
+      Number: `${!data?.noOfCabins && math}`
     },
     {
       img: '/assets/images/Guest.svg',
       title: 'Crew',
-      Number: 0
+      Number: `${!data?.noOfPassengers && math}`
     }
   ];
 
   const dynamicList = [
     {
       title: 'LENGTH',
-      Number: `${data?.length}`
+      Number: `${data?.length || math}`
     },
 
     {
       title: 'BEAM',
-      Number: `${data?.beam || ''}`
+      Number: `${data?.beam || math}`
     },
     {
       title: 'DRAFT',
-      Number: `${data?.draft || ''}`
+      Number: `${data?.draft || math}`
     },
     {
       title: 'GROSS ONNAGE',
-      Number: `${data?.gross || ''}`
+      Number: `${data?.gross || math}`
     },
     {
       title: 'CRUISING SPEED',
-      Number: `${data?.speed || ''}`
+      Number: `${data?.speed || math}`
     },
     {
       title: 'BUILDER',
-      Number: `${data?.builder || ''}`
+      Number: `${data?.builder || math}`
     },
     {
       title: 'MODEL',
-      Number: `${data?.name || ''}`
+      Number: `${data?.name || math}`
     },
     {
       title: 'BUILT',
-      Number: `${data?.buildYear || ''}`
+      Number: `${data?.buildYear || math}`
     }
   ];
   return (
@@ -241,7 +241,10 @@ export default function Accomodation(props) {
         <Typography className={classes.FirstTitle}>ACCOMODATION</Typography>
         <Typography
           className={classes.Typography}
-          dangerouslySetInnerHTML={createMarkup(data?.accommodation)}
+          dangerouslySetInnerHTML={createMarkup(
+            !data?.accommodation &&
+              "Corsario's interior layout sleeps up to 12 guests in 6 rooms, including a master suite, 1 VIP stateroom, 2 double cabins and 2 twin cabins. She is also capable of carrying up to 8 crew onboard to ensure a relaxed luxury yacht experience. Timeless styling, beautiful furnishings and sumptuous seating feature throughout to create an elegant and comfortable atmosphere. Corsario's impressive leisure and entertainment facilities make her the ideal charter yacht for socialising and entertaining with family and friends, Sauna, Air Conditioning, Deck Jacuzzi, WiFi connection on board. Luxury Charter yacht Corsario is a gulet yacht, read our online guide for more information on gulet Yacht Charter."
+          )}
         />
 
         <Grid container spacing={3} className={classes.Grid}>

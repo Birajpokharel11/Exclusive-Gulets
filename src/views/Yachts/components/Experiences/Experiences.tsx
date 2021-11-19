@@ -61,8 +61,8 @@ export default function Experiences(props) {
         </Grid>
         <Grid container spacing={3}>
           {experiences.length &&
-            experiences.map((item) => (
-              <Grid item container md={6} xs={12} spacing={2}>
+            experiences.map((item, i) => (
+              <Grid key={i} item container md={6} xs={12} spacing={2}>
                 <Grid item container justifyContent="center">
                   <img
                     src={item.featured_image?.url}

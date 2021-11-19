@@ -96,6 +96,9 @@ export default function GalleryItem({ adminList, handleDrawerOpen, i }: Props) {
   const classes = useStyles();
   console.log('AdminList', adminList);
   const [offers, setOffers] = React.useState(true);
+  const math = Math.floor(Math.random() * 1100);
+  const guest = Math.floor(Math.random() * 110);
+
   return (
     <Box className={classes.root}>
       <Box className={classes.view} onClick={() => handleDrawerOpen()}>
@@ -114,7 +117,8 @@ export default function GalleryItem({ adminList, handleDrawerOpen, i }: Props) {
           {adminList.name}
         </Typography>
         <Typography variant="h6" color="inherit">
-          From € 1134 to € 2243 | {adminList.length} m | 22224 Guests
+          From € 1134 to € 2243 | {!adminList?.length && math} m |{' '}
+          {!adminList.noofpassengers && guest}
         </Typography>
       </Box>
       {/* {/* {(SpecialOffers || InstantBooking) && (

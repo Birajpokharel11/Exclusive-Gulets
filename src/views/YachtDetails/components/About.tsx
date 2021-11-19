@@ -202,13 +202,16 @@ export default function Description(props) {
         <div className={classes.TextPosition}>
           <Typography
             className={classes.Typography1}
-            style={{ textTransform: 'uppercase' }}
+            style={{ textTransform: 'capitalize' }}
           >
-            ABOUT {data?.name}
+            About {!data?.name && 'Aresteas Sailor'}
           </Typography>
           <Typography
             className={clsx(classes.Typography)}
-            dangerouslySetInnerHTML={createMarkup(data?.about)}
+            dangerouslySetInnerHTML={createMarkup(
+              !data?.about &&
+                'Built in 2011, Corsario is a 56m (inc. bowsprit) modern classic sailing yacht, an authentic schooner, that combines state of the art construction with a timeless and elegant design that harks back to the classic yachts of the previous century. Exceptional seakeeping and performance under sail make her an exciting base for those looking to experience the thrills of traditional sailing and life right on the water. Corsario’s experienced Greek crew of seven are experts in all that the Greek islands have to offer and will help create an unforgettable custom itinerary for her lucky guests.'
+            )}
           />
           <div>
             <img
@@ -223,7 +226,10 @@ export default function Description(props) {
           <Typography
             className={classes.Typography}
             style={{ paddingBottom: '61px' }}
-            dangerouslySetInnerHTML={createMarkup(data?.entertainment)}
+            dangerouslySetInnerHTML={createMarkup(
+              !data?.entertainment &&
+                'Sauna, Air Conditioning, Deck Jacuzzi, WiFi connection on board. Luxury Charter yacht Corsario is a gulet yacht, read our online guide for more information on gulet Yacht Charter.'
+            )}
           />
 
           <Grid container className={classes.Grid}>

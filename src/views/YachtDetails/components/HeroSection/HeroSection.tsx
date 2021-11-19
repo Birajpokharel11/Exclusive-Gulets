@@ -131,7 +131,8 @@ const useStyles = makeStyles((theme) =>
 export default function HeroSection(props) {
   const { data } = props;
   const classes = useStyles();
-  console.log('yachtsdetail', data);
+  const math = Math.floor(Math.random() * 10);
+  console.log('yachtsdetail', data.length);
   return (
     <>
       <Container maxWidth={false} className={classes.Container}>
@@ -153,7 +154,9 @@ export default function HeroSection(props) {
                 classes.ImageText2Position
               )}
             >
-              {data?.length}m | {data?.category} | {data?.noOfPassengers} Guests
+              {!data.length ? math : data.length}m |{' '}
+              {!data?.category && 'Motor Yachts'} |{' '}
+              {!data?.noOfPassengers && math} Guests
             </Typography>
           </div>
         </div>

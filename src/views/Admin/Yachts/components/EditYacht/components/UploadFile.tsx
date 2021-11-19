@@ -1,4 +1,4 @@
-import { makeStyles } from '@material-ui/core/styles';
+import { makeStyles, useTheme } from '@material-ui/core/styles';
 import {
   Typography,
   Button,
@@ -24,79 +24,94 @@ const useStyles = makeStyles((theme) => ({
     background: theme.palette.background.default,
     height: theme.spacing(20),
     outline: 'none'
+  },
+  input: {
+    display: 'none'
   }
 }));
 
-export default function Home({ file, onDelete, onUpload }) {
+export default function Home({
+  name,
+  code,
+  file,
+  onChange,
+  onDelete,
+  onSubmit
+}) {
   const classes = useStyles();
-  const countRef = useRef(0);
+  const theme = useTheme();
 
-  const handle = () => {
-    countRef.current++;
-    console.log(`Clicked ${countRef.current} times`);
-  };
   return (
     <>
       <Card>
         <CardContent>
           <Grid item>
-            <br /> <Typography variant="h2">Main Photo</Typography>
+            <br />
+            <Typography variant="h2">{name}</Typography>
             <br />
             <div className={classes.dropzone}>
+              {file.preview ? (
+                <Box display="flex" style={{ width: '100%' }}>
+                  <img
+                    src={file.preview}
+                    style={{
+                      height: theme.spacing(20),
+                      display: 'block',
+                      marginLeft: 'auto',
+                      marginRight: 'auto',
+                      width: '50%'
+                    }}
+                  />
+                </Box>
+              ) : (
+                <label htmlFor={`file-${code}`} style={{ cursor: 'pointer' }}>
+                  <Box
+                    display="flex"
+                    justifyContent="center"
+                    style={{ width: '100%' }}
+                  >
+                    <Typography>Add {name}</Typography>
+                  </Box>
+
+                  <Box display="flex" justifyContent="center" pt={2}>
+                    <AddIcon style={{ color: 'red' }} />
+                  </Box>
+                </label>
+              )}
+
               <input
-                accept="image/*"
-                id="contained-button-file"
-                // onChange={(e) => handleChange(e)}
                 type="file"
+                accept="image/*"
+                id={`file-${code}`}
+                required={!file.preview}
+                // disabled={uploading == 'uploading'}
+                onChange={onChange}
+                className={classes.input}
               />
-              <Grid container>
-                <Grid item xs={12}>
-                  <Box
-                    display="flex"
-                    justifyContent="center"
-                    style={{ width: '100%' }}
-                  >
-                    <Typography>Drop Here</Typography>
-                  </Box>
-                  <br />
-                </Grid>
-                <Grid item xs={12}>
-                  <Box
-                    display="flex"
-                    justifyContent="center"
-                    style={{ width: '100%' }}
-                  >
-                    <IconButton onClick={handle}>
-                      <AddIcon style={{ color: 'red' }} />
-                    </IconButton>
-                  </Box>
-                </Grid>
-              </Grid>
             </div>
           </Grid>
 
-          <form>
-            <Grid container spacing={2} direction="column">
-              {file && (
+          {file?.raw && (
+            <form onSubmit={onSubmit}>
+              <Grid container spacing={2} direction="column">
                 <SingleFileUploadWithProgress
-                  file={file}
+                  file={file.raw}
                   onDelete={onDelete}
-                  onUpload={onUpload}
                 />
-              )}
 
-              <Grid item>
-                <Button
-                  variant="contained"
-                  color="primary"
-                  type="submit"
-                  fullWidth
-                >
-                  Submit
-                </Button>
+                <Grid item>
+                  <Button
+                    variant="contained"
+                    color="primary"
+                    type="submit"
+                    fullWidth
+                  >
+                    Submit
+                  </Button>
+                </Grid>
               </Grid>
-            </Grid>
-          </form>
+            </form>
+          )}
         </CardContent>
       </Card>
     </>

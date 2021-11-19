@@ -75,14 +75,16 @@ const useStyles = makeStyles((theme) =>
     }
   })
 );
+
 interface Props {
   yacht?: IYachtState;
   loading?: any;
   route?: string;
   next_page?: number;
   onEditYachtStart?: (formData) => any;
-  onPicAddStart?: (formData) => any;
+  onPicAddStart?: (formData, imgCode) => any;
 }
+
 function Blogs({
   yacht: {
     soleYacht,
@@ -99,35 +101,74 @@ function Blogs({
   onEditYachtStart,
   onPicAddStart
 }: Props) {
+  const router = useRouter();
+  const id = router.query.slug;
+
   const classes = useStyles();
   const [page, setpage] = React.useState(0);
 
   ///////////////////////////////////////////////////////////
   const [Photo, setPhoto] = React.useState('');
-  const [preview, setPreview] = React.useState(soleYacht?.mainImage);
+  const [mainImage, setMainImage] = React.useState({
+    preview: null,
+    raw: null
+  });
+  const [sideImage, setSideImage] = React.useState({
+    preview: null,
+    raw: null
+  });
 
   const handleChange = (e) => {
-    console.log(e.target.files[0]);
-    const data = e.target.files[0];
-    console.log('photwwwo', data);
+    const file = e.target.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = () => {
+        setMainImage({
+          preview: reader.result,
+          raw: file
+        });
+      };
+      reader.readAsDataURL(file);
+    }
+  };
 
-    setPreview(window.URL.createObjectURL(data));
-    setPhoto(data);
+  const handleChangeImg2 = (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = () => {
+        setSideImage({
+          preview: reader.result,
+          raw: file
+        });
+      };
+      reader.readAsDataURL(file);
+    }
   };
 
   ////////
-  const router = useRouter();
-  const id = router.query.slug;
-  const params = [Photo, { id: id, type: 'yacht' }];
-
-  const clickSubmits = (e) => {
+  const submitMainImage = (e) => {
     e.preventDefault();
-    onPicAddStart({
-      selectedFile: Photo,
-      id: id,
-      type: 'yacht'
-    });
-    console.log(params, 'PICCC');
+    onPicAddStart(
+      {
+        selectedFile: mainImage.raw,
+        id: id,
+        type: 'yacht'
+      },
+      'main'
+    );
+  };
+
+  const submitSideImage = (e) => {
+    e.preventDefault();
+    onPicAddStart(
+      {
+        selectedFile: sideImage.raw,
+        id: id,
+        type: 'yacht'
+      },
+      'side'
+    );
   };
 
   return (
@@ -772,7 +813,28 @@ function Blogs({
           />
         </Grid>
         <Grid item md={4}>
-          {/* <UploadFile file={file} /> */}
+          <Grid container direction="column" spacing={3}>
+            <Grid item>
+              <UploadFile
+                name="Main Photo"
+                code="main"
+                file={mainImage}
+                onChange={handleChange}
+                onDelete={() => setMainImage({ preview: '', raw: '' })}
+                onSubmit={submitMainImage}
+              />
+            </Grid>
+            <Grid item>
+              <UploadFile
+                name="Side Photo"
+                code="side"
+                file={sideImage}
+                onChange={handleChangeImg2}
+                onDelete={() => setSideImage({ preview: '', raw: '' })}
+                onSubmit={submitSideImage}
+              />
+            </Grid>
+          </Grid>
         </Grid>
       </Grid>
     </Box>

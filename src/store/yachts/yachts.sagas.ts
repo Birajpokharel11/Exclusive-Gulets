@@ -174,9 +174,11 @@ export function* fetchYachtFeatureAsync() {
   }
 }
 
-export function* createPictureAsync({ payload }: AnyAction) {
+export function* createPictureAsync({
+  payload: { formData, imgCode }
+}: AnyAction) {
   try {
-    console.log('hereinpictures', payload, payload.selectedFile.type);
+    console.log('hereinpictures', formData.selectedFile.type);
     const token = localStorage.getItem('token');
     console.log('TOken', token);
     const config = {
@@ -185,25 +187,32 @@ export function* createPictureAsync({ payload }: AnyAction) {
     console.log('config,', config);
     // with authorization header
     const { data } = yield axiosConfig.post(`api/putSignedUrl`, {
-      id: payload.id,
-      type: payload.type
+      id: formData.id,
+      type: formData.type
     });
     console.log('createYachtAsync data>>', data);
     // const yellow = data.url;
     // without authorization header
-    yield axios.put(data.url, payload.selectedFile, {
+    yield axios.put(data.url, formData.selectedFile, {
       headers: {
-        'Content-Type': payload.selectedFile.type
+        'Content-Type': formData.selectedFile.type
       }
     });
-    yield axiosConfig.post('https://yatchcloud-dev.fghire.com/api/yacht/edit', {
-      id: payload.id,
-      mainImage: data.objectKey
-    });
+    if (imgCode === 'main') {
+      yield axiosConfig.post('api/yacht/edit', {
+        id: formData.id,
+        mainImage: data.objectKey
+      });
+    } else if (imgCode === 'side') {
+      yield axiosConfig.post('api/yacht/edit', {
+        id: formData.id,
+        sideImage: data.objectKey
+      });
+    }
 
     yield put(
       openAlert(
-        `Picture Updated successfully for id no ${payload.id}`,
+        `Picture Updated successfully for id no ${formData.id}`,
         'success'
       )
     );

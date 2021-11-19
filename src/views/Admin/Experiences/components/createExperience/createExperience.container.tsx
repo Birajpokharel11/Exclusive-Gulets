@@ -10,8 +10,20 @@ const mapStateToProps = (state, props) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  onCreateExperienceStart: (formData) =>
-    dispatch(createExperienceStart(formData)),
+  onCreateExperienceStart: (
+    formData,
+    mainSelectedFile,
+    sideSelectedFile,
+    domainName
+  ) =>
+    dispatch(
+      createExperienceStart(
+        formData,
+        mainSelectedFile,
+        sideSelectedFile,
+        domainName
+      )
+    ),
   onFetchExperiencesStart: (id) => dispatch(fetchExperiencesStart(id))
 });
 

@@ -57,6 +57,7 @@ interface Props {
   experience?: IExperienceState;
   loading?: any;
   auth?: any;
+  posts?: any;
   route?: string;
   next_page?: number;
   onCreatePostStart?: (
@@ -68,7 +69,7 @@ interface Props {
   onFetchExperiencesStart?: (formData) => any;
 }
 function CreateExperiences({
-  experience: { isCreating, experiences, loading },
+  posts: { isCreating, loading },
   auth: { currentUser },
   onCreatePostStart,
   onFetchExperiencesStart

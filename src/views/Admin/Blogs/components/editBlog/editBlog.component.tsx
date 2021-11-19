@@ -69,7 +69,7 @@ interface Props {
   ) => any;
 }
 function EditExperiences({
-  posts: { postsList, next_page, isCreating, soleBlog },
+  posts: { postsList, next_page, isCreating, soleBlog, isEditing },
   auth: { currentUser },
   onFetchPostsByIdStart,
   onEditPostStart
@@ -160,7 +160,6 @@ function EditExperiences({
               onEditPostStart(
                 {
                   ...values,
-                  featuredImage: 'featuredImage',
                   sideImage: 'sideImage',
                   slug: 'slug',
                   images: ['image1', 'image2'],
@@ -262,9 +261,9 @@ function EditExperiences({
                         variant="contained"
                         color="primary"
                         size="large"
-                        disabled={isCreating}
+                        disabled={isEditing}
                       >
-                        {isCreating ? (
+                        {isEditing ? (
                           <CircularProgress size="1rem" />
                         ) : (
                           <Typography color="secondary">Save</Typography>
@@ -305,7 +304,7 @@ function EditExperiences({
                               />
                             ) : (
                               <Avatar
-                                src={currentUser.imageURL}
+                                src={soleBlog.featuredImage}
                                 alt="course"
                                 className={classes.avatar}
                               >

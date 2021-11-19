@@ -92,7 +92,7 @@ export function* createPostAsync({
 
         yield axiosConfig.post(
           `https://yatchcloud-dev.fghire.com/api/blog/create`,
-          formData
+          { ...formData, featuredImage: data.objectKey }
         );
 
         yield put(openAlert('Blog saved successfully!!!', 'success'));
@@ -155,7 +155,10 @@ export function* editPostAsync({
           }
         });
 
-        yield axiosConfig.post(`api/blog/edit`, formData);
+        yield axiosConfig.post(`api/blog/edit`, {
+          ...formData,
+          featuredImage: data.objectKey
+        });
 
         yield put(openAlert('Blog edited successfully!!!', 'success'));
         yield put(postsAction.editPostSuccess());

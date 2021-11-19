@@ -13,8 +13,6 @@ const mapStateToProps = (state, props) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  onCreateExperienceStart: (formData) =>
-    dispatch(createExperienceStart(formData)),
   onDeleteExperienceStart: (id, handleClose) =>
     dispatch(deletePostStart(id, handleClose))
 });

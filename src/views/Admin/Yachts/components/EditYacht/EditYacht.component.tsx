@@ -16,6 +16,11 @@ import {
   CardActions,
   ButtonGroup
 } from '@material-ui/core';
+import ListItem from '@material-ui/core/ListItem';
+import ListItemIcon from '@material-ui/core/ListItemIcon';
+import ListItemText from '@material-ui/core/ListItemText';
+import Checkbox from '@material-ui/core/Checkbox';
+import Divider from '@material-ui/core/Divider';
 import {
   Formik,
   Field,
@@ -27,13 +32,13 @@ import {
 import { TextField, Select } from 'formik-material-ui';
 import * as Yup from 'yup';
 
+import { IYachtState } from '@store/interfaces';
 import BackgroundVectors from '@components/BackgroundVectors';
 
-import { IYachtState } from '@store/interfaces';
+import UploadFile from './components/UploadFile';
 
 import container from './EditYacht.container';
-import UploadFile from './components/UploadFile';
-import CreateBlogs from './components/CreateBlogs';
+
 const useStyles = makeStyles((theme) =>
   createStyles({
     root: {
@@ -57,6 +62,16 @@ const useStyles = makeStyles((theme) =>
     },
     header: {
       fontWeight: 500
+    },
+    container: {
+      display: 'flex',
+      flexFlow: 'column wrap',
+      gap: '0 30px',
+      height: 320,
+      overflow: 'auto'
+    },
+    item: {
+      width: 'auto'
     }
   })
 );
@@ -145,9 +160,9 @@ function Blogs({
               extrasId: [],
               countriesId: [],
               featuresId: [],
-              about: soleYacht?.about,
-              accommodation: soleYacht?.accomodation,
-              entertainment: soleYacht?.entertainment
+              about: soleYacht?.about ?? '',
+              accommodation: soleYacht?.accomodation ?? '',
+              entertainment: soleYacht?.entertainment ?? ''
             }}
             onSubmit={(values, { setSubmitting }) => {
               console.log('submit clicked!!!', values);
@@ -250,12 +265,8 @@ function Blogs({
                     />
                   </Grid>
 
-                  <Grid item container xs={12} spacing={2}>
-                    <Grid item xs={12}>
-                      <Typography variant="h4" className={classes.header}>
-                        Flags:
-                      </Typography>
-                    </Grid>
+                  <Grid item xs={12}>
+                    <Typography variant="h4">Flags:</Typography>
 
                     <Field
                       component={Select}
@@ -273,56 +284,54 @@ function Blogs({
                     </Field>
                   </Grid>
 
-                  <Grid item container xs={12} spacing={2}>
-                    <Grid item xs={12}>
-                      <Typography variant="h4" className={classes.header}>
-                        SAILING REGION:
-                      </Typography>
-                    </Grid>
+                  <Grid item xs={12}>
+                    <Typography variant="h4" className={classes.header}>
+                      SAILING REGION:
+                    </Typography>
 
                     <FieldArray
                       name="countriesId"
                       render={(arrayHelpers) => (
-                        <>
-                          {countryList.map((country) => (
-                            <Grid item xs={4} key={country.id}>
-                              <Typography variant="h4">
-                                {country.name}
-                              </Typography>
-
-                              <input
-                                name="countriesId"
-                                type="checkbox"
-                                value={country.id}
-                                checked={values.countriesId
-                                  .map((e) => e)
-                                  .includes(country.id)}
-                                onChange={(e) => {
-                                  if (e.target.checked)
-                                    arrayHelpers.push(country.id);
-                                  else {
-                                    const index = values.countriesId
-                                      .map(function (e) {
-                                        return e.id;
-                                      })
-                                      .indexOf(country.id);
-                                    arrayHelpers.remove(index);
-                                  }
-                                }}
-                              />
-                            </Grid>
-                          ))}
-                        </>
+                        <div className={classes.container}>
+                          {countryList.map((country) => {
+                            return (
+                              <ListItem
+                                key={country.id}
+                                className={classes.item}
+                              >
+                                <ListItemIcon>
+                                  <Checkbox
+                                    edge="start"
+                                    disableRipple
+                                    value={country.id}
+                                    checked={values.countriesId
+                                      .map((e) => e)
+                                      .includes(country.id)}
+                                    onChange={(e) => {
+                                      if (e.target.checked)
+                                        arrayHelpers.push(country.id);
+                                      else {
+                                        const index = values.countriesId
+                                          .map(function (e) {
+                                            return e.id;
+                                          })
+                                          .indexOf(country.id);
+                                        arrayHelpers.remove(index);
+                                      }
+                                    }}
+                                  />
+                                </ListItemIcon>
+                                <ListItemText primary={country.name} />
+                              </ListItem>
+                            );
+                          })}
+                        </div>
                       )}
                     />
                   </Grid>
 
-                  <Grid item container xs={12} spacing={2}>
-                    <Grid item xs={12}>
-                      <Typography variant="h4" className={classes.header}>
-                        Home Port:
-                      </Typography>
-                    </Grid>
+                  <Grid item xs={12}>
+                    <Typography variant="h4">Home Port:</Typography>
 
                     <Field
                       component={Select}
@@ -341,9 +350,11 @@ function Blogs({
                   </Grid>
 
                   <Grid item xs={4}>
+                    <Typography variant="h4">Master Cabins</Typography>
+
                     <Field
                       fullWidth
-                      label="Master Cabins"
+                      placeholder="Master Cabins"
                       name="masterCabins"
                       type="number"
                       variant="outlined"
@@ -352,9 +363,10 @@ function Blogs({
                   </Grid>
 
                   <Grid item xs={4}>
+                    <Typography variant="h4">Double Cabins</Typography>
                     <Field
                       fullWidth
-                      label="Double Cabins"
+                      placeholder="Double Cabins"
                       name="doubleCabins"
                       type="number"
                       variant="outlined"
@@ -363,9 +375,11 @@ function Blogs({
                   </Grid>
 
                   <Grid item xs={4}>
+                    <Typography variant="h4">Twin Cabins</Typography>
+
                     <Field
                       fullWidth
-                      label="Twin Cabins"
+                      placeholder="Twin Cabins"
                       name="twinCabins"
                       type="number"
                       variant="outlined"
@@ -374,9 +388,11 @@ function Blogs({
                   </Grid>
 
                   <Grid item xs={4}>
+                    <Typography variant="h4">Triple Cabins</Typography>
+
                     <Field
                       fullWidth
-                      label="Triple Cabins"
+                      placeholder="Triple Cabins"
                       name="tripleCabins"
                       type="number"
                       variant="outlined"
@@ -385,9 +401,11 @@ function Blogs({
                   </Grid>
 
                   <Grid item xs={4}>
+                    <Typography variant="h4">Single Cabins</Typography>
+
                     <Field
                       fullWidth
-                      label="Single Cabins"
+                      placeholder="Single Cabins"
                       name="singleCabins"
                       type="number"
                       variant="outlined"
@@ -396,9 +414,11 @@ function Blogs({
                   </Grid>
 
                   <Grid item xs={4}>
+                    <Typography variant="h4">Extra Bunk Beds</Typography>
+
                     <Field
                       fullWidth
-                      label="Extra Bunk Beds"
+                      placeholder="Extra Bunk Beds"
                       name="extraBunkBeds"
                       type="number"
                       variant="outlined"
@@ -407,140 +427,188 @@ function Blogs({
                   </Grid>
 
                   <Grid item xs={4}>
+                    <Typography variant="h4">No Of Crew Members</Typography>
+
                     <Field
                       fullWidth
-                      label="No Of Crew Members"
+                      placeholder="No Of Crew Members"
                       name="noOfPassengers"
                       type="number"
                       variant="outlined"
                       component={TextField}
                     />
                   </Grid>
-
-                  <Grid item container xs={12} spacing={2}>
-                    <Grid item xs={12}>
-                      <Typography variant="h4" className={classes.header}>
-                        KEY FEATURES:
+                  <Grid item xs={12} container justifyContent="space-between">
+                    <Grid item>
+                      <Typography
+                        variant="h3"
+                        style={{ margin: '10px 0 30px' }}
+                      >
+                        NUMBER
+                        <br /> OF CABINS:{' '}
+                        <span style={{ fontSize: '30px', paddingLeft: '10px' }}>
+                          5
+                        </span>
                       </Typography>
                     </Grid>
+                    <Grid item>
+                      <Typography variant="h3">
+                        NUMBER
+                        <br /> OF PASSENGERS:{' '}
+                        <span style={{ fontSize: '30px', paddingLeft: '10px' }}>
+                          10
+                        </span>
+                      </Typography>
+                    </Grid>
+                    <Grid item>
+                      <Typography variant="h3">
+                        NUMBER
+                        <br /> OF MEMBERS:{' '}
+                        <span style={{ fontSize: '30px', paddingLeft: '10px' }}>
+                          3
+                        </span>
+                      </Typography>
+                    </Grid>
+                  </Grid>
+
+                  <Grid
+                    item
+                    xs={12}
+                    style={{
+                      borderTop: '1px solid rgba(0,32,78,.23)',
+                      paddingTop: '30px'
+                    }}
+                  >
+                    <Typography variant="h4" className={classes.header}>
+                      KEY FEATURES:
+                    </Typography>
 
                     <FieldArray
                       name="featuresId"
                       render={(arrayHelpers) => (
-                        <>
-                          {yachtFeaturesList.map((feature) => (
-                            <Grid item xs={4} key={feature.id}>
-                              <Typography variant="h4">
-                                {feature.name}
-                              </Typography>
-
-                              <input
-                                name="featuresId"
-                                type="checkbox"
-                                value={feature.id}
-                                checked={values.featuresId
-                                  .map((e) => e)
-                                  .includes(feature.id)}
-                                onChange={(e) => {
-                                  if (e.target.checked)
-                                    arrayHelpers.push(feature.id);
-                                  else {
-                                    const index = values.featuresId
-                                      .map(function (e) {
-                                        return e.id;
-                                      })
-                                      .indexOf(feature.id);
-                                    arrayHelpers.remove(index);
-                                  }
-                                }}
-                              />
-                            </Grid>
-                          ))}
-                        </>
+                        <div className={classes.container}>
+                          {yachtFeaturesList.map((feature) => {
+                            return (
+                              <ListItem
+                                key={feature.id}
+                                className={classes.item}
+                              >
+                                <ListItemIcon>
+                                  <Checkbox
+                                    edge="start"
+                                    disableRipple
+                                    value={feature.id}
+                                    checked={values.featuresId
+                                      .map((e) => e)
+                                      .includes(feature.id)}
+                                    onChange={(e) => {
+                                      if (e.target.checked)
+                                        arrayHelpers.push(feature.id);
+                                      else {
+                                        const index = values.featuresId
+                                          .map(function (e) {
+                                            return e.id;
+                                          })
+                                          .indexOf(feature.id);
+                                        arrayHelpers.remove(index);
+                                      }
+                                    }}
+                                  />
+                                </ListItemIcon>
+                                <ListItemText primary={feature.name} />
+                              </ListItem>
+                            );
+                          })}
+                        </div>
                       )}
                     />
                   </Grid>
 
-                  <Grid item container xs={12} spacing={2}>
-                    <Grid item xs={12}>
-                      <Typography variant="h4" className={classes.header}>
-                        WATER TOYS:
-                      </Typography>
-                    </Grid>
+                  <Grid item xs={12}>
+                    <Typography variant="h4" className={classes.header}>
+                      WATER TOYS:
+                    </Typography>
 
                     <FieldArray
                       name="toysId"
                       render={(arrayHelpers) => (
-                        <>
-                          {waterToysList.map((toy) => (
-                            <Grid item xs={4} key={toy.id}>
-                              <Typography variant="h4">{toy.name}</Typography>
-
-                              <input
-                                name="toysId"
-                                type="checkbox"
-                                value={toy.id}
-                                checked={values.toysId
-                                  .map((e) => e)
-                                  .includes(toy.id)}
-                                onChange={(e) => {
-                                  if (e.target.checked)
-                                    arrayHelpers.push(toy.id);
-                                  else {
-                                    const index = values.toysId
-                                      .map(function (e) {
-                                        return e.id;
-                                      })
-                                      .indexOf(toy.id);
-                                    arrayHelpers.remove(index);
-                                  }
-                                }}
-                              />
-                            </Grid>
-                          ))}
-                        </>
+                        <div
+                          className={classes.container}
+                          style={{ height: 410 }}
+                        >
+                          {waterToysList.map((toy) => {
+                            return (
+                              <ListItem key={toy.id} className={classes.item}>
+                                <ListItemIcon>
+                                  <Checkbox
+                                    edge="start"
+                                    disableRipple
+                                    value={toy.id}
+                                    checked={values.toysId
+                                      .map((e) => e)
+                                      .includes(toy.id)}
+                                    onChange={(e) => {
+                                      if (e.target.checked)
+                                        arrayHelpers.push(toy.id);
+                                      else {
+                                        const index = values.toysId
+                                          .map(function (e) {
+                                            return e.id;
+                                          })
+                                          .indexOf(toy.id);
+                                        arrayHelpers.remove(index);
+                                      }
+                                    }}
+                                  />
+                                </ListItemIcon>
+                                <ListItemText primary={toy.name} />
+                              </ListItem>
+                            );
+                          })}
+                        </div>
                       )}
                     />
                   </Grid>
 
-                  <Grid item container xs={12} spacing={2}>
-                    <Grid item xs={12}>
-                      <Typography variant="h4" className={classes.header}>
-                        INCLUSIVE TERMS:
-                      </Typography>
-                    </Grid>
+                  <Grid item xs={12}>
+                    <Typography variant="h4" className={classes.header}>
+                      INCLUSIVE TERMS:
+                    </Typography>
 
                     <FieldArray
                       name="termsId"
                       render={(arrayHelpers) => (
-                        <>
-                          {inclusiveTermList.map((term) => (
-                            <Grid item xs={4} key={term.id}>
-                              <Typography variant="h4">{term.name}</Typography>
-
-                              <input
-                                name="termsId"
-                                type="checkbox"
-                                value={term.id}
-                                checked={values.termsId
-                                  .map((e) => e)
-                                  .includes(term.id)}
-                                onChange={(e) => {
-                                  if (e.target.checked)
-                                    arrayHelpers.push(term.id);
-                                  else {
-                                    const index = values.termsId
-                                      .map(function (e) {
-                                        return e.id;
-                                      })
-                                      .indexOf(term.id);
-                                    arrayHelpers.remove(index);
-                                  }
-                                }}
-                              />
-                            </Grid>
-                          ))}
-                        </>
+                        <div className={classes.container}>
+                          {inclusiveTermList.map((term) => {
+                            return (
+                              <ListItem key={term.id} className={classes.item}>
+                                <ListItemIcon>
+                                  <Checkbox
+                                    edge="start"
+                                    disableRipple
+                                    value={term.id}
+                                    checked={values.termsId
+                                      .map((e) => e)
+                                      .includes(term.id)}
+                                    onChange={(e) => {
+                                      if (e.target.checked)
+                                        arrayHelpers.push(term.id);
+                                      else {
+                                        const index = values.termsId
+                                          .map(function (e) {
+                                            return e.id;
+                                          })
+                                          .indexOf(term.id);
+                                        arrayHelpers.remove(index);
+                                      }
+                                    }}
+                                  />
+                                </ListItemIcon>
+                                <ListItemText primary={term.name} />
+                              </ListItem>
+                            );
+                          })}
+                        </div>
                       )}
                     />
                   </Grid>
@@ -552,63 +620,64 @@ function Blogs({
                       </Typography>
                     </Grid>
 
-                    <FieldArray
-                      name="extrasId"
-                      render={(arrayHelpers) => (
-                        <>
-                          {extrasList.map((extra) => (
-                            <Grid item xs={4} key={extra.id}>
-                              <Typography variant="h4">{extra.name}</Typography>
-
-                              <input
-                                name="extrasId"
-                                type="checkbox"
-                                value={extra.id}
-                                checked={values.extrasId
-                                  .map((e) => e)
-                                  .includes(extra.id)}
-                                onChange={(e) => {
-                                  if (e.target.checked)
-                                    arrayHelpers.push(extra.id);
-                                  else {
-                                    const index = values.extrasId
-                                      .map(function (e) {
-                                        return e.id;
-                                      })
-                                      .indexOf(extra.id);
-                                    arrayHelpers.remove(index);
-                                  }
-                                }}
-                              />
-                            </Grid>
-                          ))}
-                        </>
-                      )}
-                    />
+                    <Grid item xs={12}>
+                      <FieldArray
+                        name="extrasId"
+                        render={(arrayHelpers) => (
+                          <div className={classes.container}>
+                            {extrasList.map((extra) => {
+                              return (
+                                <ListItem
+                                  key={extra.id}
+                                  className={classes.item}
+                                >
+                                  <ListItemIcon>
+                                    <Checkbox
+                                      edge="start"
+                                      disableRipple
+                                      value={extra.id}
+                                      checked={values.extrasId
+                                        .map((e) => e)
+                                        .includes(extra.id)}
+                                      onChange={(e) => {
+                                        if (e.target.checked)
+                                          arrayHelpers.push(extra.id);
+                                        else {
+                                          const index = values.extrasId
+                                            .map(function (e) {
+                                              return e.id;
+                                            })
+                                            .indexOf(extra.id);
+                                          arrayHelpers.remove(index);
+                                        }
+                                      }}
+                                    />
+                                  </ListItemIcon>
+                                  <ListItemText primary={extra.name} />
+                                </ListItem>
+                              );
+                            })}
+                          </div>
+                        )}
+                      />
+                    </Grid>
                   </Grid>
 
                   <Grid item xs={12}>
+                    <Typography variant="h4">Additional Costs</Typography>
                     <Field
-                      fullWidth
-                      label="Additional Costs"
-                      name="additionalCosts"
-                      type="text"
-                      variant="outlined"
                       component={TextField}
+                      placeholder="Additional Costs"
+                      variant="outlined"
+                      multiline
+                      rows={4}
+                      rowsMax={4}
+                      fullWidth
+                      name="additionalCosts"
+                      id="additionalCosts"
                     />
                   </Grid>
 
-                  <Grid item container sm={12}>
-                    <Typography variant="h4">
-                      AVAILABILITY FOR INSTANT CHECKOUT:
-                    </Typography>
-
-                    <Field
-                      type="checkbox"
-                      name="instanceCheckout"
-                      style={{ margin: '6px 0 0 10px' }}
-                    />
-                  </Grid>
                   <Grid item sm={12}>
                     <Typography variant="h3">
                       <strong> Content</strong>
@@ -678,6 +747,18 @@ function Blogs({
                       )}
                     </Button>
                   </Grid>
+                </Grid>
+
+                <Grid item container sm={12}>
+                  <Typography variant="h4">
+                    AVAILABILITY FOR INSTANT CHECKOUT:
+                  </Typography>
+
+                  <Field
+                    type="checkbox"
+                    name="instanceCheckout"
+                    style={{ margin: '6px 0 0 10px' }}
+                  />
                 </Grid>
               </Form>
             )}

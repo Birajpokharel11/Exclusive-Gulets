@@ -146,6 +146,10 @@ function ExperiencesTable({
     onDeleteExperienceStart(toDeleteId, handleClose);
   };
 
+  const filteredExperience = experiences.filter(
+    (exp) => exp.status === 'Active'
+  );
+
   console.log('handleClose>>', open);
 
   return (
@@ -162,7 +166,7 @@ function ExperiencesTable({
           </TableRow>
         </TableHead>
         <TableBody>
-          {experiences.map((experience, index) => (
+          {filteredExperience.map((experience, index) => (
             <TableList
               key={experience.id}
               experience={experience}

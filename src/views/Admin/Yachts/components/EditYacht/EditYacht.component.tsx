@@ -32,7 +32,8 @@ import BackgroundVectors from '@components/BackgroundVectors';
 import { IYachtState } from '@store/interfaces';
 
 import container from './EditYacht.container';
-
+import UploadFile from './components/UploadFile';
+import CreateBlogs from './components/CreateBlogs';
 const useStyles = makeStyles((theme) =>
   createStyles({
     root: {
@@ -115,9 +116,9 @@ function Blogs({
   };
 
   return (
-    <>
-      <Box mb={4} mt={6}>
-        <Container>
+    <Box pl={4} pr={4} pt={4}>
+      <Grid container spacing={8}>
+        <Grid item md={8}>
           <Formik
             initialValues={{
               name: soleYacht.name,
@@ -125,25 +126,28 @@ function Blogs({
               yachtTypeId: 1,
               buildYear: soleYacht.buildYear,
               refitYear: soleYacht.refitYear,
-              noOfCabins: soleYacht.noOfCabins,
+              noOfCabins: soleYacht.noOfCabins ?? '',
               flagsId: soleYacht.flagsId ?? 1,
               homePortId: soleYacht.homePortId ?? 1,
-              masterCabins: soleYacht.masterCabins ?? 0,
-              doubleCabins: soleYacht.doubleCabins ?? 0,
-              twinCabins: soleYacht.twinCabins ?? 0,
-              length: soleYacht.length ?? 0,
-              tripleCabins: soleYacht.tripleCabins ?? 0,
-              singleCabins: soleYacht.singleCabins ?? 0,
-              extraBunkBeds: soleYacht.extraBunkBeds ?? 0,
-              noOfPassengers: soleYacht.noOfPassengers ?? 0,
+              masterCabins: soleYacht.masterCabins ?? '',
+              doubleCabins: soleYacht.doubleCabins ?? '',
+              twinCabins: soleYacht.twinCabins ?? '',
+              length: soleYacht.length ?? '',
+              tripleCabins: soleYacht.tripleCabins ?? '',
+              singleCabins: soleYacht.singleCabins ?? '',
+              extraBunkBeds: soleYacht.extraBunkBeds ?? '',
+              noOfPassengers: soleYacht.noOfPassengers ?? '',
               registryPortId: soleYacht.registryPortId ?? 1,
               instanceCheckout: soleYacht.instanceCheckout ?? false,
-              additionalCosts: soleYacht.additionalCosts,
+              additionalCosts: soleYacht.additionalCosts ?? '',
               toysId: soleYacht.toysId ?? [],
               termsId: [],
               extrasId: [],
               countriesId: [],
-              featuresId: []
+              featuresId: [],
+              about: soleYacht?.about,
+              accommodation: soleYacht?.accomodation,
+              entertainment: soleYacht?.entertainment
             }}
             onSubmit={(values, { setSubmitting }) => {
               console.log('submit clicked!!!', values);
@@ -605,7 +609,58 @@ function Blogs({
                       style={{ margin: '6px 0 0 10px' }}
                     />
                   </Grid>
+                  <Grid item sm={12}>
+                    <Typography variant="h3">
+                      <strong> Content</strong>
+                    </Typography>
+                    <br />
+                    <Typography variant="h4">About Yacht</Typography>
 
+                    <Field
+                      component={TextField}
+                      fullWidth
+                      variant="outlined"
+                      multiline
+                      rows={4}
+                      rowsMax={4}
+                      placeholder="About"
+                      name="about"
+                      id="about"
+                    />
+                  </Grid>
+
+                  <Grid item sm={12}>
+                    <Typography variant="h4">ACCOMMODATION:</Typography>
+
+                    <Field
+                      component={TextField}
+                      placeholder="Accommodation"
+                      variant="outlined"
+                      fullWidth
+                      multiline
+                      rows={4}
+                      rowsMax={4}
+                      name="accommodation"
+                      id="accommodation"
+                    />
+                  </Grid>
+                  <Grid item sm={12}>
+                    <Typography variant="h4">
+                      AMENITIES & ENTERTAINMENT:
+                    </Typography>
+
+                    <Field
+                      component={TextField}
+                      placeholder="Entertainment"
+                      variant="outlined"
+                      multiline
+                      rows={4}
+                      rowsMax={4}
+                      fullWidth
+                      name="entertainment"
+                      id="entertainment"
+                    />
+                  </Grid>
                   <Grid item xs={12}>
                     <Button
                       color="primary"
@@ -627,54 +682,12 @@ function Blogs({
               </Form>
             )}
           />
-          <Card>
-            <CardContent>
-              <div className={classes.details}>
-                <img
-                  className={classes.avatar}
-                  src={preview}
-                  alt="picture"
-                  width={400}
-                  height={400}
-                />
-                {/* || `data:${user?.filename};base64,${user?.imageBase64}` */}
-              </div>
-            </CardContent>
-            <CardActions>
-              <div className={classes.root}>
-                <input
-                  accept="image/*"
-                  className={classes.input}
-                  id="contained-button-file"
-                  onChange={(e) => handleChange(e)}
-                  type="file"
-                  style={{ display: 'none' }}
-                />
-                <label htmlFor="contained-button-file">
-                  <Button
-                    className={classes.input}
-                    id="contained-button-file"
-                    onChange={(e) => handleChange(e)}
-                    variant="contained"
-                    color="primary"
-                    component="span"
-                  >
-                    Upload
-                  </Button>
-                  <Button
-                    disabled={!Photo && true}
-                    variant="contained"
-                    onClick={clickSubmits}
-                  >
-                    Submit
-                  </Button>
-                </label>
-              </div>
-            </CardActions>
-          </Card>
-        </Container>
-      </Box>
-    </>
+        </Grid>
+        <Grid item md={4}>
+          {/* <UploadFile file={file} /> */}
+        </Grid>
+      </Grid>
+    </Box>
   );
 }
 

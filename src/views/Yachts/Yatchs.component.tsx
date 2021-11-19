@@ -29,7 +29,6 @@ const YatchDetails = (props) => {
 
     setOpen(!open);
   };
-
   return (
     <Box component="section">
       <HeroSection />

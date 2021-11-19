@@ -24,7 +24,7 @@ export default function Gallery({ handleDrawerOpen, adminList }) {
           </Grid>
         ))}
       </Grid>
-      <PaginationSection />
+      <PaginationSection adminList={adminList} />
     </Box>
   );
 }

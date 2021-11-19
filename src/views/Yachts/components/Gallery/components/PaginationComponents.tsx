@@ -46,18 +46,20 @@ const useStyles = makeStyles((theme: Theme) =>
     }
   })
 );
-
-export default function PaginationSection() {
+interface Props {
+  adminList?: any[];
+}
+export default function PaginationSection({ adminList }: Props) {
   const classes = useStyles();
   const theme = useTheme();
   const matches = useMediaQuery(theme.breakpoints.down('xs'));
   const [offers, setOffers] = React.useState(true);
-
+  console.log('preview Drawer', adminList.length);
   return (
     <Box className={classes.Box}>
       <Container maxWidth="xl" className={classes.Container}>
         <Typography align={matches ? 'center' : undefined} color="secondary">
-          120 yachts are listed
+          {adminList?.length} yachts are listed
         </Typography>
         <Pagination
           className={classes.paginationStyle}

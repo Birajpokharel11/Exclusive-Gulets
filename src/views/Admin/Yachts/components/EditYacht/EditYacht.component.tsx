@@ -33,6 +33,7 @@ import { IYachtState } from '@store/interfaces';
 
 import container from './EditYacht.container';
 import UploadFile from './components/UploadFile';
+import CreateBlogs from './components/CreateBlogs';
 const useStyles = makeStyles((theme) =>
   createStyles({
     root: {
@@ -144,7 +145,10 @@ function Blogs({
               termsId: [],
               extrasId: [],
               countriesId: [],
-              featuresId: []
+              featuresId: [],
+              about: soleYacht?.about,
+              accommodation: soleYacht?.accomodation,
+              entertainment: soleYacht?.entertainment
             }}
             onSubmit={(values, { setSubmitting }) => {
               console.log('submit clicked!!!', values);
@@ -606,7 +610,54 @@ function Blogs({
                       style={{ margin: '6px 0 0 10px' }}
                     />
                   </Grid>
+                  <Grid item sm={12}>
+                    <Typography variant="h4">About Yacht</Typography>
 
+                    <Field
+                      component={TextField}
+                      fullWidth
+                      variant="outlined"
+                      multiline
+                      rows={4}
+                      rowsMax={4}
+                      placeholder="About"
+                      name="about"
+                      id="about"
+                    />
+                  </Grid>
+
+                  <Grid item sm={12}>
+                    <Typography variant="h4">ACCOMMODATION:</Typography>
+
+                    <Field
+                      component={TextField}
+                      placeholder="Accommodation"
+                      variant="outlined"
+                      fullWidth
+                      multiline
+                      rows={4}
+                      rowsMax={4}
+                      name="accommodation"
+                      id="accommodation"
+                    />
+                  </Grid>
+                  <Grid item sm={12}>
+                    <Typography variant="h4">
+                      AMENITIES & ENTERTAINMENT:
+                    </Typography>
+
+                    <Field
+                      component={TextField}
+                      placeholder="Entertainment"
+                      variant="outlined"
+                      multiline
+                      rows={4}
+                      rowsMax={4}
+                      fullWidth
+                      name="entertainment"
+                      id="entertainment"
+                    />
+                  </Grid>
                   <Grid item xs={12}>
                     <Button
                       color="primary"

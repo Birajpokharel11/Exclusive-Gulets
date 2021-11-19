@@ -14,7 +14,9 @@ const INITIAL_STATE: IPostState = {
   postsList: [],
   error: null,
   loading: false,
-  isCreating: false
+  isCreating: false,
+  isEditing: false,
+  isDeleting: false
 };
 
 const PostsReducer = (state = INITIAL_STATE, action) => {
@@ -99,6 +101,44 @@ const PostsReducer = (state = INITIAL_STATE, action) => {
       return {
         ...state,
         isCreating: false,
+        error: payload
+      };
+
+    case PostsType.EDIT_POST_START:
+      return {
+        ...state,
+        isEditing: true
+      };
+
+    case PostsType.EDIT_POST_SUCCESS:
+      return {
+        ...state,
+        isEditing: false
+      };
+
+    case PostsType.EDIT_POST_FAILURE:
+      return {
+        ...state,
+        isEditing: false,
+        error: payload
+      };
+
+    case PostsType.DELETE_POST_START:
+      return {
+        ...state,
+        isDeleting: true
+      };
+
+    case PostsType.DELETE_POST_SUCCESS:
+      return {
+        ...state,
+        isDeleting: false
+      };
+
+    case PostsType.DELETE_POST_FAILURE:
+      return {
+        ...state,
+        isDeleting: false,
         error: payload
       };
 

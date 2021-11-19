@@ -56,6 +56,55 @@ export function* createExperienceAsync({ payload: { formData } }: AnyAction) {
   }
 }
 
+export function* editExperienceAsync({ payload: { formData } }: AnyAction) {
+  try {
+    console.log('entered editExperienceAsync>>>', formData);
+    const { data } = yield axios.post(
+      `https://yatchcloud-dev.fghire.com/api/experience/edit`,
+      formData
+    );
+    console.log('editExperienceAsync on success>>>', data);
+    if (data.status === 'success') {
+      yield put(experiencesAction.editExperienceSuccess());
+      yield put(openAlert('Experience edited successfully!!!', 'success'));
+      router.push('/manage/experiences');
+    } else {
+      yield put(openAlert('Failed to edit experience', 'error'));
+    }
+  } catch (err) {
+    console.error('error received>>>', err);
+    yield put(experiencesAction.editExperienceFailure(err));
+    yield put(openAlert('Failed to save experience', 'error'));
+  }
+}
+
+export function* deleteExperienceAsync({
+  payload: { id, handleClose }
+}: AnyAction) {
+  try {
+    console.log('entered deleteExperienceAsync>>>', id);
+    const { data } = yield axios.post(
+      `https://yatchcloud-dev.fghire.com/api/experience/delete`,
+      { id }
+    );
+    console.log('deleteExperienceAsync on success>>>', data);
+    if (data.status === 'success') {
+      yield put(experiencesAction.deleteExperienceSuccess());
+      yield put(openAlert('Experience deleted successfully!!!', 'success'));
+      yield handleClose();
+      router.push('/manage/experiences');
+    } else {
+      const err = 'error on deleting experience';
+      yield put(experiencesAction.deleteExperienceFailure(err));
+      yield put(openAlert('Failed to delete experience', 'error'));
+    }
+  } catch (err) {
+    console.error('error received>>>', err);
+    yield put(experiencesAction.deleteExperienceFailure(err));
+    yield put(openAlert('Failed to delete experience', 'error'));
+  }
+}
+
 export function* watchExperiencesOffer() {
   yield takeLatest(
     ExperiencesType.FETCH_EXPERIENCES_START,
@@ -77,10 +126,23 @@ export function* watchCreateExperience() {
   );
 }
 
+export function* watchDeleteExperience() {
+  yield takeLatest(
+    ExperiencesType.DELETE_EXPERIENCE_START,
+    deleteExperienceAsync
+  );
+}
+
+export function* watchEditExperience() {
+  yield takeLatest(ExperiencesType.EDIT_EXPERIENCE_START, editExperienceAsync);
+}
+
 export function* experiencesSagas() {
   yield all([
     call(watchExperiencesOffer),
     call(watchExperienceById),
-    call(watchCreateExperience)
+    call(watchCreateExperience),
+    call(watchEditExperience),
+    call(watchDeleteExperience)
   ]);
 }

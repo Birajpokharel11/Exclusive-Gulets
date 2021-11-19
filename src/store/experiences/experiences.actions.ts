@@ -43,3 +43,31 @@ export const createExperienceFailure = (error) => ({
   type: ExperiencesType.CREATE_EXPERIENCE_FAILURE,
   payload: error
 });
+
+export const editExperienceStart = (formData) => ({
+  type: ExperiencesType.EDIT_EXPERIENCE_START,
+  payload: { formData }
+});
+
+export const editExperienceSuccess = () => ({
+  type: ExperiencesType.EDIT_EXPERIENCE_SUCCESS
+});
+
+export const editExperienceFailure = (error) => ({
+  type: ExperiencesType.EDIT_EXPERIENCE_FAILURE,
+  payload: error
+});
+
+export const deleteExperienceStart = (id, handleClose) => ({
+  type: ExperiencesType.DELETE_EXPERIENCE_START,
+  payload: { id, handleClose }
+});
+
+export const deleteExperienceSuccess = () => ({
+  type: ExperiencesType.DELETE_EXPERIENCE_SUCCESS
+});
+
+export const deleteExperienceFailure = (error) => ({
+  type: ExperiencesType.DELETE_EXPERIENCE_FAILURE,
+  payload: error
+});

@@ -611,6 +611,10 @@ function Blogs({
                     />
                   </Grid>
                   <Grid item sm={12}>
+                    <Typography variant="h3">
+                      <strong> Content</strong>
+                    </Typography>
+                    <br />
                     <Typography variant="h4">About Yacht</Typography>
 
                     <Field

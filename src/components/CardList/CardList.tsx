@@ -96,7 +96,7 @@ export default function CardList({
                 height="290"
                 width="352"
                 image={
-                  item.featured_image?.url ||
+                  item.featuredImage ||
                   '/assets/images/Blog_single/Aresteas.jpg'
                 }
                 title="title"

@@ -173,7 +173,14 @@ function Blogs({
 
   return (
     <Box pl={4} pr={4} pt={4}>
-      <Grid container spacing={8}>
+      <Grid container spacing={3}>
+        <Grid item container justify="space-between">
+          <Grid item>
+            <Typography variant="h3">
+              <strong>Edit Yacht</strong>
+            </Typography>
+          </Grid>
+        </Grid>
         <Grid item md={8}>
           <Formik
             initialValues={{
@@ -212,14 +219,7 @@ function Blogs({
             }}
             render={({ values }) => (
               <Form>
-                <Grid container spacing={3}>
-                  <Grid item container justify="space-between">
-                    <Grid item>
-                      <Typography variant="h3">
-                        <strong>Edit Yacht</strong>
-                      </Typography>
-                    </Grid>
-                  </Grid>
+                <Grid container>
                   <Grid item xs={12}>
                     <Typography variant="h4">Yacht Name</Typography>
 
@@ -243,8 +243,8 @@ function Blogs({
                       id="rating"
                     >
                       <MenuItem value={1}>3.0</MenuItem>
-                      <MenuItem value={1}>4.0</MenuItem>
-                      <MenuItem value={1}>5.0</MenuItem>
+                      <MenuItem value={2}>4.0</MenuItem>
+                      <MenuItem value={3}>5.0</MenuItem>
                     </Field>
                   </Grid>
 
@@ -259,9 +259,9 @@ function Blogs({
                       id="yachtType"
                     >
                       <MenuItem value={1}>Catamaran</MenuItem>
-                      <MenuItem value={1}>Gulet</MenuItem>
-                      <MenuItem value={1}>Motor Sailer</MenuItem>
-                      <MenuItem value={1}>Motor Yacht</MenuItem>
+                      <MenuItem value={2}>Gulet</MenuItem>
+                      <MenuItem value={3}>Motor Sailer</MenuItem>
+                      <MenuItem value={4}>Motor Yacht</MenuItem>
                     </Field>
                   </Grid>
 

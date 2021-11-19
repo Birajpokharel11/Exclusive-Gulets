@@ -98,8 +98,8 @@ const AddYacht = ({ onCreateYachtStart, isCreating, onPicAddStart }) => {
                   id="rating"
                 >
                   <MenuItem value={1}>3.0</MenuItem>
-                  <MenuItem value={1}>4.0</MenuItem>
-                  <MenuItem value={1}>5.0</MenuItem>
+                  <MenuItem value={2}>4.0</MenuItem>
+                  <MenuItem value={3}>5.0</MenuItem>
                 </Field>
               </Grid>
 
@@ -113,9 +113,9 @@ const AddYacht = ({ onCreateYachtStart, isCreating, onPicAddStart }) => {
                   id="yachtType"
                 >
                   <MenuItem value={1}>Catamaran</MenuItem>
-                  <MenuItem value={1}>Gulet</MenuItem>
-                  <MenuItem value={1}>Motor Sailer</MenuItem>
-                  <MenuItem value={1}>Motor Yacht</MenuItem>
+                  <MenuItem value={2}>Gulet</MenuItem>
+                  <MenuItem value={3}>Motor Sailer</MenuItem>
+                  <MenuItem value={4}>Motor Yacht</MenuItem>
                 </Field>
               </Grid>
 

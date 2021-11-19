@@ -1,6 +1,9 @@
 import { connect } from 'react-redux';
-import { createExperienceStart } from '@store/experiences/experiences.actions';
-import { fetchExperiencesStart } from '@store/experiences/experiences.actions';
+import {
+  createExperienceStart,
+  fetchExperiencesStart,
+  uploadExperienceImgStart
+} from '@store/experiences/experiences.actions';
 
 const mapStateToProps = (state, props) => ({
   destination: state.destination,
@@ -10,20 +13,10 @@ const mapStateToProps = (state, props) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  onCreateExperienceStart: (
-    formData,
-    mainSelectedFile,
-    sideSelectedFile,
-    domainName
-  ) =>
-    dispatch(
-      createExperienceStart(
-        formData,
-        mainSelectedFile,
-        sideSelectedFile,
-        domainName
-      )
-    ),
+  onPicAddStart: (formData, imgCode) =>
+    dispatch(uploadExperienceImgStart(formData, imgCode)),
+  onCreateExperienceStart: (formData) =>
+    dispatch(createExperienceStart(formData)),
   onFetchExperiencesStart: (id) => dispatch(fetchExperiencesStart(id))
 });
 

@@ -61,9 +61,9 @@ export const fetchPostsByIdFailure = (error) => ({
 
 export const createPostStart = (
   formData,
-  mainSelectedFile,
-  sideSelectedFile,
-  domainName
+  mainSelectedFile?: any,
+  sideSelectedFile?: any,
+  domainName?: any
 ) => ({
   type: PostsType.CREATE_POST_START,
   payload: { formData, mainSelectedFile, sideSelectedFile, domainName }
@@ -80,9 +80,9 @@ export const createPostFailure = (error) => ({
 
 export const editPostStart = (
   formData,
-  mainSelectedFile,
-  sideSelectedFile,
-  domainName
+  mainSelectedFile?: any,
+  sideSelectedFile?: any,
+  domainName?: any
 ) => ({
   type: PostsType.EDIT_POST_START,
   payload: { formData, mainSelectedFile, sideSelectedFile, domainName }
@@ -108,5 +108,20 @@ export const deletePostSuccess = () => ({
 
 export const deletePostFailure = (error) => ({
   type: PostsType.DELETE_POST_FAILURE,
+  payload: error
+});
+
+export const uploadPostImgStart = (formData, imgCode) => ({
+  type: PostsType.UPLOAD_POST_START,
+  payload: { formData, imgCode }
+});
+
+export const uploadPostImgSuccess = (imgCode, key) => ({
+  type: PostsType.UPLOAD_POST_SUCCESS,
+  payload: { imgCode, key }
+});
+
+export const uploadPostImgFailure = (error) => ({
+  type: PostsType.UPLOAD_POST_FAILURE,
   payload: error
 });

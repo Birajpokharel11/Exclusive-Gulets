@@ -16,7 +16,8 @@ const INITIAL_STATE: IPostState = {
   loading: false,
   isCreating: false,
   isEditing: false,
-  isDeleting: false
+  isDeleting: false,
+  uploading: false
 };
 
 const PostsReducer = (state = INITIAL_STATE, action) => {
@@ -139,6 +140,29 @@ const PostsReducer = (state = INITIAL_STATE, action) => {
       return {
         ...state,
         isDeleting: false,
+        error: payload
+      };
+
+    case PostsType.UPLOAD_POST_START:
+      return {
+        ...state,
+        uploading: true
+      };
+
+    case PostsType.UPLOAD_POST_SUCCESS:
+      return {
+        ...state,
+        uploading: false,
+        soleBlog: {
+          ...state.soleBlog,
+          [payload.imgCode]: payload.key
+        }
+      };
+
+    case PostsType.UPLOAD_POST_FAILURE:
+      return {
+        ...state,
+        uploading: false,
         error: payload
       };
 

@@ -3,7 +3,8 @@ import { createExperienceStart } from '@store/experiences/experiences.actions';
 import {
   fetchExperiencesStart,
   fetchExperienceByIdStart,
-  editExperienceStart
+  editExperienceStart,
+  uploadExperienceImgStart
 } from '@store/experiences/experiences.actions';
 
 const mapStateToProps = (state, props) => ({
@@ -14,20 +15,9 @@ const mapStateToProps = (state, props) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  onEditExperienceStart: (
-    formData,
-    mainSelectedFile,
-    sideSelectedFile,
-    domainName
-  ) =>
-    dispatch(
-      editExperienceStart(
-        formData,
-        mainSelectedFile,
-        sideSelectedFile,
-        domainName
-      )
-    ),
+  onPicAddStart: (formData, imgCode) =>
+    dispatch(uploadExperienceImgStart(formData, imgCode)),
+  onEditExperienceStart: (formData) => dispatch(editExperienceStart(formData)),
   onFetchExperiencesStart: (id) => dispatch(fetchExperiencesStart(id)),
   onFetchExperienceByIdStart: (id) => dispatch(fetchExperienceByIdStart(id))
 });

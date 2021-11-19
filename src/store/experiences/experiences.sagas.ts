@@ -41,137 +41,39 @@ export function* fetchExperienceByIdAsync({ payload: { id } }: AnyAction) {
   }
 }
 
-export function* createExperienceAsync({
-  payload: { formData, mainSelectedFile, sideSelectedFile, domainName }
-}: AnyAction) {
-  // console.log('entered createExperienceAsync>>>', formData);
-  // const { data } = yield axiosConfig.post(`api/experience/create`, formData);
-  // console.log('createExperienceAsync on success>>>', data);
-  // yield put(experiencesAction.createExperienceSuccess());
-  // yield put(openAlert('Experience saved successfully!!!', 'success'));
-  // router.push('/manage/dashboard');
-  if (mainSelectedFile) {
-    // saving image to s3 bucket
-    try {
-      const imageData = {
-        id: 1,
-        type: 'experience',
-        domain: domainName
-      };
-
-      console.log('image data>>>', imageData);
-
-      const { data } = yield axiosConfig.post(`api/putSignedUrl`, imageData);
-
-      console.log('image response on saga>>>', data);
-
-      yield axios.put(data.url, mainSelectedFile, {
-        headers: {
-          'Content-Type': mainSelectedFile.type
-        }
-      });
-
-      yield axiosConfig.post(`api/experience/create`, {
-        ...formData,
-        featuredImage: data.objectKey
-      });
-
-      yield put(openAlert('Experience saved successfully!!!', 'success'));
+export function* createExperienceAsync({ payload: { formData } }: AnyAction) {
+  try {
+    const { data } = yield axiosConfig.post(`api/experience/create`, formData);
+    if (data.status === 'success') {
       yield put(experiencesAction.createExperienceSuccess());
+      yield put(openAlert('Experience saved successfully!!!', 'success'));
       router.push('/manage/experiences');
-    } catch (error) {
-      console.error('error received>>>', error);
-      yield put(experiencesAction.createExperienceFailure(error));
+    } else {
       yield put(openAlert('Failed to save experience', 'error'));
+      yield put(experiencesAction.createExperienceFailure(data.status));
     }
-  } else {
-    try {
-      const { data } = yield axiosConfig.post(
-        `api/experience/create`,
-        formData
-      );
-      if (data.status === 'success') {
-        yield put(experiencesAction.createExperienceSuccess());
-        yield put(openAlert('Experience saved successfully!!!', 'success'));
-        router.push('/manage/experiences');
-      } else {
-        yield put(openAlert('Failed to save experience', 'error'));
-        yield put(experiencesAction.createExperienceFailure(data.status));
-      }
-    } catch (err) {
-      console.error('error received>>>', err);
-      yield put(experiencesAction.createExperienceFailure(err));
-      yield put(openAlert('Failed to save experience', 'error'));
-    }
+  } catch (err) {
+    console.error('error received>>>', err);
+    yield put(experiencesAction.createExperienceFailure(err));
+    yield put(openAlert('Failed to save experience', 'error'));
   }
 }
 
-export function* editExperienceAsync({
-  payload: { formData, mainSelectedFile, sideSelectedFile, domainName }
-}: AnyAction) {
-  // const { data } = yield axios.post(
-  //   `https://yatchcloud-dev.fghire.com/api/experience/edit`,
-  //   formData
-  // );
-  // console.log('editExperienceAsync on success>>>', data);
-  // if (data.status === 'success') {
-  //   yield put(experiencesAction.editExperienceSuccess());
-  //   yield put(openAlert('Experience edited successfully!!!', 'success'));
-  //   router.push('/manage/experiences');
-  // } else {
-  //   yield put(openAlert('Failed to edit experience', 'error'));
-  // }
-  if (mainSelectedFile) {
-    // saving image to s3 bucket
-    console.log('mainSelectedFile>>>>>>>>>>>>>>>>', mainSelectedFile);
-    try {
-      const imageData = {
-        id: formData.id,
-        type: 'experience',
-        domain: domainName
-      };
-
-      console.log('image data>>>', imageData);
-
-      const { data } = yield axiosConfig.post(`api/putSignedUrl`, imageData);
-
-      console.log('image response on saga>>>', data);
-
-      yield axios.put(data.url, mainSelectedFile, {
-        headers: {
-          'Content-Type': mainSelectedFile.type
-        }
-      });
-
-      yield axiosConfig.post(`api/experience/edit`, {
-        ...formData,
-        featuredImage: data.objectKey
-      });
-
-      yield put(openAlert('Experience edit successfully!!!', 'success'));
+export function* editExperienceAsync({ payload: { formData } }: AnyAction) {
+  try {
+    const { data } = yield axiosConfig.post(`api/experience/edit`, formData);
+    if (data.status === 'success') {
       yield put(experiencesAction.editExperienceSuccess());
+      yield put(openAlert('Experience edited successfully!!!', 'success'));
       router.push('/manage/experiences');
-    } catch (error) {
-      console.error('error received>>>', error);
-      yield put(experiencesAction.editExperienceFailure(error));
-      yield put(openAlert('Failed to edit experience', 'error'));
-    }
-  } else {
-    try {
-      const { data } = yield axiosConfig.post(`api/experience/edit`, formData);
-      if (data.status === 'success') {
-        yield put(experiencesAction.editExperienceSuccess());
-        yield put(openAlert('Experience edited successfully!!!', 'success'));
-        router.push('/manage/experiences');
-      } else {
-        yield put(experiencesAction.editExperienceFailure(data.status));
-        yield put(openAlert('Failed to save experience', 'error'));
-      }
-    } catch (err) {
-      console.error('error received>>>', err);
-      yield put(experiencesAction.editExperienceFailure(err));
+    } else {
+      yield put(experiencesAction.editExperienceFailure(data.status));
       yield put(openAlert('Failed to save experience', 'error'));
     }
+  } catch (err) {
+    console.error('error received>>>', err);
+    yield put(experiencesAction.editExperienceFailure(err));
+    yield put(openAlert('Failed to save experience', 'error'));
   }
 }
 
@@ -180,10 +82,7 @@ export function* deleteExperienceAsync({
 }: AnyAction) {
   try {
     console.log('entered deleteExperienceAsync>>>', id);
-    const { data } = yield axios.post(
-      `https://yatchcloud-dev.fghire.com/api/experience/delete`,
-      { id }
-    );
+    const { data } = yield axiosConfig.post(`api/experience/delete`, { id });
     console.log('deleteExperienceAsync on success>>>', data);
     if (data.status === 'success') {
       yield put(experiencesAction.deleteExperienceSuccess());
@@ -199,6 +98,60 @@ export function* deleteExperienceAsync({
     console.error('error received>>>', err);
     yield put(experiencesAction.deleteExperienceFailure(err));
     yield put(openAlert('Failed to delete experience', 'error'));
+  }
+}
+
+export function* createPictureAsync({
+  payload: { formData, imgCode }
+}: AnyAction) {
+  const imageData = {
+    id: 1,
+    type: 'experience',
+    domain: formData.domainName
+  };
+  try {
+    // with authorization header
+    const { data } = yield axiosConfig.post(`api/putSignedUrl`, imageData);
+    console.log('createPictureAsync data>>', data);
+    // const yellow = data.url;
+    // without authorization header
+    yield axios.put(data.url, formData.selectedFile, {
+      headers: {
+        'Content-Type': formData.selectedFile.type
+      }
+    });
+    if (imgCode === 'main') {
+      imgCode = 'featuredImage';
+      yield axiosConfig.post('api/experience/edit', {
+        id: formData.id,
+        featuredImage: data.objectKey
+      });
+    } else if (imgCode === 'side') {
+      imgCode = 'sideImage';
+
+      yield axiosConfig.post('api/experience/edit', {
+        id: formData.id,
+        sideImage: data.objectKey
+      });
+    }
+
+    yield put(
+      openAlert(
+        `Picture Updated successfully for id no ${formData.id}`,
+        'success'
+      )
+    );
+
+    yield put(
+      experiencesAction.uploadExperienceImgSuccess(imgCode, data.objectKey)
+    );
+
+    // console.log('Updated', red);
+
+    // yield put(postsAction.addPictureSuccess(data));
+  } catch (err) {
+    console.error('error received>>>', err);
+    yield put(experiencesAction.uploadExperienceImgFailure(err));
   }
 }
 
@@ -234,12 +187,17 @@ export function* watchEditExperience() {
   yield takeLatest(ExperiencesType.EDIT_EXPERIENCE_START, editExperienceAsync);
 }
 
+export function* watchUploadExperienceImg() {
+  yield takeLatest(ExperiencesType.UPLOAD_EXPERIENCE_START, createPictureAsync);
+}
+
 export function* experiencesSagas() {
   yield all([
     call(watchExperiencesOffer),
     call(watchExperienceById),
     call(watchCreateExperience),
     call(watchEditExperience),
-    call(watchDeleteExperience)
+    call(watchDeleteExperience),
+    call(watchUploadExperienceImg)
   ]);
 }

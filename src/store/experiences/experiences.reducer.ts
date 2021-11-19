@@ -11,7 +11,8 @@ const INITIAL_STATE: IExperienceState = {
   loading: false,
   isCreating: false,
   isEditing: false,
-  isDeleting: false
+  isDeleting: false,
+  uploading: false
 };
 
 const experiencesReducer = (state = INITIAL_STATE, action) => {
@@ -114,6 +115,29 @@ const experiencesReducer = (state = INITIAL_STATE, action) => {
       return {
         ...state,
         isDeleting: false,
+        error: payload
+      };
+
+    case ExperiencesType.UPLOAD_EXPERIENCE_START:
+      return {
+        ...state,
+        uploading: true
+      };
+
+    case ExperiencesType.UPLOAD_EXPERIENCE_SUCCESS:
+      return {
+        ...state,
+        uploading: false,
+        soleExperience: {
+          ...state.soleExperience,
+          [payload.imgCode]: payload.key
+        }
+      };
+
+    case ExperiencesType.UPLOAD_EXPERIENCE_FAILURE:
+      return {
+        ...state,
+        uploading: false,
         error: payload
       };
 

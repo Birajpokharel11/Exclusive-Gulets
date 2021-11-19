@@ -30,6 +30,7 @@ export interface IPostState {
   isCreating: boolean;
   isEditing: boolean;
   isDeleting: boolean;
+  uploading: boolean;
 }
 
 export interface IExperienceState {
@@ -40,6 +41,7 @@ export interface IExperienceState {
   isCreating: boolean;
   isEditing: boolean;
   isDeleting: boolean;
+  uploading: boolean;
 }
 
 export interface IDinningState {

@@ -32,9 +32,9 @@ export const fetchExperienceByIdFailure = (error) => ({
 
 export const createExperienceStart = (
   formData,
-  mainSelectedFile,
-  sideSelectedFile,
-  domainName
+  mainSelectedFile?: any,
+  sideSelectedFile?: any,
+  domainName?: any
 ) => ({
   type: ExperiencesType.CREATE_EXPERIENCE_START,
   payload: { formData, mainSelectedFile, sideSelectedFile, domainName }
@@ -51,9 +51,9 @@ export const createExperienceFailure = (error) => ({
 
 export const editExperienceStart = (
   formData,
-  mainSelectedFile,
-  sideSelectedFile,
-  domainName
+  mainSelectedFile?: any,
+  sideSelectedFile?: any,
+  domainName?: any
 ) => ({
   type: ExperiencesType.EDIT_EXPERIENCE_START,
   payload: { formData, mainSelectedFile, sideSelectedFile, domainName }
@@ -79,5 +79,20 @@ export const deleteExperienceSuccess = () => ({
 
 export const deleteExperienceFailure = (error) => ({
   type: ExperiencesType.DELETE_EXPERIENCE_FAILURE,
+  payload: error
+});
+
+export const uploadExperienceImgStart = (formData, imgCode) => ({
+  type: ExperiencesType.UPLOAD_EXPERIENCE_START,
+  payload: { formData, imgCode }
+});
+
+export const uploadExperienceImgSuccess = (imgCode, key) => ({
+  type: ExperiencesType.UPLOAD_EXPERIENCE_SUCCESS,
+  payload: { imgCode, key }
+});
+
+export const uploadExperienceImgFailure = (error) => ({
+  type: ExperiencesType.UPLOAD_EXPERIENCE_FAILURE,
   payload: error
 });

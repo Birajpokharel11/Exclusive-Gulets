@@ -17,8 +17,16 @@ const YatchDetails = (props) => {
     destination: { randomDestination },
     yacht: { yachtsList },
     adminList,
-    experience: { experiences }
+    experience: { experiences },
+    siteCoordinator: {
+      domain: { data }
+    },
+    onFetchExperiencesStart
   } = props;
+
+  useEffect(() => {
+    onFetchExperiencesStart(data.id);
+  }, [data]);
 
   const [open, setOpen] = useState(false);
   const [selectedYacht, setSelectedYacht] = useState({});

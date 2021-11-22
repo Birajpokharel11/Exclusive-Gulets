@@ -60,38 +60,39 @@ export default function Experiences(props) {
           </Grid>
         </Grid>
         <Grid container spacing={3}>
-          {experiences.length &&
-            experiences.map((item, i) => (
-              <Grid key={i} item container md={6} xs={12} spacing={2}>
-                <Grid item container justifyContent="center">
-                  <img
-                    src={item.featured_image?.url}
-                    alt="guest"
-                    style={{ width: '100%', height: '100%' }}
-                  />
-                </Grid>
-                <Grid item container justifyContent="center">
-                  <Typography
-                    color="textPrimary"
-                    align="center"
-                    variant="subtitle1"
-                    style={{ fontWeight: 'bold' }}
-                  >
-                    {item?.title}
-                  </Typography>
-                </Grid>
+          {experiences.length
+            ? experiences.map((item, i) => (
+                <Grid key={i} item container md={6} xs={12} spacing={2}>
+                  <Grid item container justifyContent="center">
+                    <img
+                      src={item.featured_image?.url}
+                      alt="guest"
+                      style={{ width: '100%', height: '100%' }}
+                    />
+                  </Grid>
+                  <Grid item container justifyContent="center">
+                    <Typography
+                      color="textPrimary"
+                      align="center"
+                      variant="subtitle1"
+                      style={{ fontWeight: 'bold' }}
+                    >
+                      {item?.title}
+                    </Typography>
+                  </Grid>
 
-                <Grid item>
-                  <Typography
-                    align="center"
-                    color="textPrimary"
-                    variant="subtitle2"
-                  >
-                    {item?.meta_description}
-                  </Typography>
+                  <Grid item>
+                    <Typography
+                      align="center"
+                      color="textPrimary"
+                      variant="subtitle2"
+                    >
+                      {item?.meta_description}
+                    </Typography>
+                  </Grid>
                 </Grid>
-              </Grid>
-            ))}
+              ))
+            : ''}
 
           <Grid item container justifyContent="center">
             <Button

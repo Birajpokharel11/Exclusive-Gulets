@@ -179,7 +179,6 @@ function EditExperiences({
               metaDescription: Yup.string().required(
                 'metaDescription is required'
               ),
-              featured: Yup.bool().oneOf([true], 'feature post is required'),
 
               content: Yup.string().required('content is required'),
 

@@ -22,7 +22,7 @@ const useStyles = makeStyles((theme) =>
     },
     media: {
       height: '270px',
-      width: '270px'
+      width: '100%'
     },
     btnLabel: {
       color: '#ab3996',

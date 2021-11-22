@@ -5,6 +5,7 @@ export interface IAuthState {
   newUser: object | any;
   error: any | null;
   loading: boolean;
+  isEditing: boolean;
 }
 
 export interface IDestinationState {

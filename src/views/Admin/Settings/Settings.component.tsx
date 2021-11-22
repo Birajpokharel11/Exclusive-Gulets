@@ -58,8 +58,12 @@ interface Props {
   route?: string;
   next_page?: number;
   onCreatePostStart?: (formData) => any;
+  onEditBrokerProfileStart?: (formData) => any;
 }
-function Blogs({ auth: { currentUser, loading } }: Props) {
+function Blogs({
+  auth: { currentUser, loading, isEditing },
+  onEditBrokerProfileStart
+}: Props) {
   const classes = useStyles();
   const [page, setpage] = React.useState(0);
   const [selectedFile, setSelectedFile] = useState({ preview: '', raw: '' });
@@ -97,26 +101,22 @@ function Blogs({ auth: { currentUser, loading } }: Props) {
               phoneNumber: currentUser.phoneNumber ?? ''
             }}
             validationSchema={Yup.object({
-              title: Yup.string()
-                .matches(/^[a-zA-Z ]+$/, 'Only letters')
-                .max(100, 'less than 100')
-                .required('title is required'),
-              metaDescription: Yup.string()
-                .matches(/^[a-zA-Z ]+$/, 'Only letters')
-                .max(500, 'less than 500')
-                .required('title is required'),
-              featurePost: Yup.bool().oneOf([true], 'feature post is required'),
+              firstName: Yup.string().required('first name is required'),
+              lastName: Yup.string().required('last name is required'),
 
-              content: Yup.string()
-                .max(1100, 'less than 1100')
-                .required('validation.noDescription'),
+              email: Yup.string()
+                .email('Must be a valid email')
+                .max(255)
+                .required('Email is required'),
 
-              description: Yup.string()
-                .max(1100, 'less than 1100')
-                .required('validation.noDescription')
+              phoneNumber: Yup.string()
             })}
             onSubmit={(values, { setSubmitting }) => {
-              setSubmitting(false);
+              onEditBrokerProfileStart({
+                ...values,
+                id: currentUser.id,
+                logo: 'uiyuiyuiy'
+              });
             }}
           >
             <Form>
@@ -232,9 +232,9 @@ function Blogs({ auth: { currentUser, loading } }: Props) {
                       variant="contained"
                       color="primary"
                       size="large"
-                      disabled={loading}
+                      disabled={isEditing}
                     >
-                      {loading ? (
+                      {isEditing ? (
                         <CircularProgress size="1rem" />
                       ) : (
                         <Typography color="secondary">Save</Typography>

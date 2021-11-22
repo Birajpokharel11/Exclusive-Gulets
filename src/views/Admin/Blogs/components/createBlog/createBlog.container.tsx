@@ -1,5 +1,9 @@
 import { connect } from 'react-redux';
-import { createPostStart, fetchPostsStart } from '@store/posts/posts.actions';
+import {
+  createPostStart,
+  fetchPostsStart,
+  uploadPostImgStart
+} from '@store/posts/posts.actions';
 
 const mapStateToProps = (state, props) => ({
   destination: state.destination,
@@ -9,15 +13,9 @@ const mapStateToProps = (state, props) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  onCreatePostStart: (
-    formData,
-    mainSelectedFile,
-    sideSelectedFile,
-    domainName
-  ) =>
-    dispatch(
-      createPostStart(formData, mainSelectedFile, sideSelectedFile, domainName)
-    )
+  onPicAddStart: (formData, imgCode) =>
+    dispatch(uploadPostImgStart(formData, imgCode)),
+  onCreatePostStart: (formData) => dispatch(createPostStart(formData))
 });
 
 const container = connect(mapStateToProps, mapDispatchToProps);

@@ -5,6 +5,7 @@ export interface IAuthState {
   newUser: object | any;
   error: any | null;
   loading: boolean;
+  isEditing: boolean;
 }
 
 export interface IDestinationState {
@@ -30,6 +31,7 @@ export interface IPostState {
   isCreating: boolean;
   isEditing: boolean;
   isDeleting: boolean;
+  uploading: boolean;
 }
 
 export interface IExperienceState {
@@ -40,6 +42,7 @@ export interface IExperienceState {
   isCreating: boolean;
   isEditing: boolean;
   isDeleting: boolean;
+  uploading: boolean;
 }
 
 export interface IDinningState {

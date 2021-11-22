@@ -1,5 +1,7 @@
 import { takeLatest, call, all, put } from 'redux-saga/effects';
 import axios from 'axios';
+import { AnyAction } from 'redux';
+
 import router from 'next/router';
 import _ from 'lodash';
 
@@ -98,7 +100,12 @@ export function* onSignupBrokerAsync({
     console.log('value fo data after success>>>', data);
     if (data.status === 'success') {
       yield put(authActions.signupBrokerSuccess());
-      yield put(openAlert('User signed Up successfully!!', 'success'));
+      yield put(
+        openAlert(
+          'User signed Up successfully.Please check your email for verification!!',
+          'success'
+        )
+      );
       router.push('/signin');
     } else {
       yield put(openAlert(data.status || 'Internal Server Error!!', 'error'));
@@ -184,6 +191,25 @@ export function* signOutAsync({
   }
 }
 
+export function* editBrokerProfileAsync({ payload: { formData } }: AnyAction) {
+  try {
+    console.log('inside of editBrokerProfileAsync', formData);
+    let { data } = yield axiosConfig.post(`public/editBroker`, formData);
+    if (data.status === 'success') {
+      console.log('result of editBrokerProfileAsync', data);
+      yield put(authActions.editBrokerProfileSuccess(formData));
+      yield put(openAlert('Broker Profile Updated Successfully!!', 'success'));
+      router.push('/manage/dashboard');
+    } else {
+      yield put(authActions.editBrokerProfileFail(data));
+      yield put(openAlert('Internal Server Error!!', 'error'));
+    }
+  } catch (err) {
+    yield put(authActions.editBrokerProfileFail(err));
+    yield put(openAlert('Internal Server Error!!', 'error'));
+  }
+}
+
 export function* watchLoadUser() {
   yield takeLatest(AuthType.LOAD_USER_START, loadUserAsync);
 }
@@ -212,6 +238,10 @@ export function* watchVerifyBroker() {
   yield takeLatest(AuthType.VERIFY_BROKER_START, verifyBrokerAsync);
 }
 
+export function* watchEditBrokerProfile() {
+  yield takeLatest(AuthType.EDIT_BROKER_PROFILE_START, editBrokerProfileAsync);
+}
+
 export function* authSagas() {
   yield all([
     call(watchLoadUser),
@@ -220,6 +250,7 @@ export function* authSagas() {
     call(watchSignupBroker),
     call(watchSignout),
     call(watchValidateUser),
-    call(watchVerifyBroker)
+    call(watchVerifyBroker),
+    call(watchEditBrokerProfile)
   ]);
 }

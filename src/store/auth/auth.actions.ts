@@ -105,3 +105,18 @@ export const verifyBrokerFail = (error) => ({
 export const clearErrorLog = () => ({
   type: AuthType.CLEAR_ERROR_LOG
 });
+
+export const editBrokerProfileStart = (formData) => ({
+  type: AuthType.EDIT_BROKER_PROFILE_START,
+  payload: { formData }
+});
+
+export const editBrokerProfileSuccess = (data) => ({
+  type: AuthType.EDIT_BROKER_PROFILE_SUCCESS,
+  payload: data
+});
+
+export const editBrokerProfileFail = (error) => ({
+  type: AuthType.EDIT_BROKER_PROFILE_FAILURE,
+  payload: error
+});

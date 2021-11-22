@@ -130,3 +130,8 @@ export const smoothScroll: SmoothScrollProps = {
 export const createMarkup = (encodedHtml) => ({
   __html: _.unescape(encodedHtml)
 });
+
+export const trimString = (string) => {
+  const dot = '...';
+  return string.length > 150 ? string.substring(0, 150) + dot : string;
+};

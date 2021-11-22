@@ -63,7 +63,7 @@ export default function Destinations() {
   };
   const [personName, setPersonName] = React.useState(['Destinations:']);
   const theme = useTheme();
-  const matches = useMediaQuery(theme.breakpoints.down('xs'));
+  const matches = useMediaQuery(theme.breakpoints.down(768));
 
   return (
     <Container maxWidth={false} className={classes.Container}>

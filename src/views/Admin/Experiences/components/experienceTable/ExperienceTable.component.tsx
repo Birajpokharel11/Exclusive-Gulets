@@ -30,6 +30,7 @@ import EditIcon from '@material-ui/icons/Edit';
 import DeleteIcon from '@material-ui/icons/Delete';
 import { IExperienceState } from '@store/interfaces';
 import DefaultImage from '@assets/images/not_found_image.png';
+import { trimString } from '@utils/misc';
 
 const useStyles = makeStyles((theme) =>
   createStyles({
@@ -99,9 +100,9 @@ const TableList = (props) => {
       </TableCell>
 
       <TableCell>{experience.title ?? ''}</TableCell>
-      <TableCell>{experience.description ?? ''}</TableCell>
+      <TableCell>{trimString(experience.description) ?? ''}</TableCell>
 
-      <TableCell>{experience.metaDescription ?? ''}</TableCell>
+      <TableCell>{trimString(experience.metaDescription) ?? ''}</TableCell>
       <TableCell className={classes.actionBtn} colSpan={2}>
         <IconButton
           aria-label="edit"

@@ -182,9 +182,7 @@ export default function Filters() {
           </Box>
         </Grid>
         <Grid item>
-          {' '}
           <IconButton
-            onClick={() => setPrice((prev) => !prev)}
             className={clsx(classes.Button, {
               [classes.Rotate]: price
             })}
@@ -225,9 +223,8 @@ export default function Filters() {
         <Grid item>
           {' '}
           <IconButton
-            onClick={() => setLength((prev) => !prev)}
             className={clsx(classes.Button, {
-              [classes.Rotate]: price
+              [classes.Rotate]: length
             })}
           >
             <ExpandMoreIcon className={classes.Icon} />
@@ -266,9 +263,8 @@ export default function Filters() {
         <Grid item>
           {' '}
           <IconButton
-            onClick={() => setType((prev) => !prev)}
             className={clsx(classes.Button, {
-              [classes.Rotate]: price
+              [classes.Rotate]: type
             })}
           >
             <ExpandMoreIcon className={classes.Icon} />
@@ -310,9 +306,8 @@ export default function Filters() {
         <Grid item>
           {' '}
           <IconButton
-            onClick={() => setCabins((prev) => !prev)}
             className={clsx(classes.Button, {
-              [classes.Rotate]: price
+              [classes.Rotate]: cabins
             })}
           >
             <ExpandMoreIcon className={classes.Icon} />
@@ -356,9 +351,8 @@ export default function Filters() {
         <Grid item>
           {' '}
           <IconButton
-            onClick={() => setKeyfeatures((prev) => !prev)}
             className={clsx(classes.Button, {
-              [classes.Rotate]: price
+              [classes.Rotate]: keyFeatures
             })}
           >
             <ExpandMoreIcon className={classes.Icon} />
@@ -408,9 +402,8 @@ export default function Filters() {
         <Grid item>
           {' '}
           <IconButton
-            onClick={() => setWatertoys((prev) => !prev)}
             className={clsx(classes.Button, {
-              [classes.Rotate]: price
+              [classes.Rotate]: waterToys
             })}
           >
             <ExpandMoreIcon className={classes.Icon} />
@@ -455,9 +448,8 @@ export default function Filters() {
         <Grid item>
           {' '}
           <IconButton
-            onClick={() => setTags((prev) => !prev)}
             className={clsx(classes.Button, {
-              [classes.Rotate]: price
+              [classes.Rotate]: tags
             })}
           >
             <ExpandMoreIcon className={classes.Icon} />

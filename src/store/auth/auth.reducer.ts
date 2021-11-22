@@ -10,7 +10,8 @@ const INITIAL_STATE: IAuthState = {
   currentUser: {},
   newUser: {},
   error: null,
-  loading: false
+  loading: false,
+  isEditing: false
 };
 
 const authReducer = (state = INITIAL_STATE, action) => {
@@ -90,6 +91,24 @@ const authReducer = (state = INITIAL_STATE, action) => {
         ...state,
         loading: false,
         error: payload
+      };
+
+    case AuthType.EDIT_BROKER_PROFILE_START:
+      return {
+        ...state,
+        isEditing: true
+      };
+
+    case AuthType.EDIT_BROKER_PROFILE_SUCCESS:
+      return {
+        ...state,
+        isEditing: false
+      };
+
+    case AuthType.EDIT_BROKER_PROFILE_FAILURE:
+      return {
+        ...state,
+        isEditing: false
       };
 
     case AuthType.CLEAR_ERROR_LOG:

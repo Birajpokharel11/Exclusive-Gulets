@@ -110,11 +110,12 @@ function Blogs({
   ///////////////////////////////////////////////////////////
   const [Photo, setPhoto] = React.useState('');
   const [mainImage, setMainImage] = React.useState({
-    preview: null,
+    preview: soleYacht?.mainImage,
     raw: null
   });
   const [sideImage, setSideImage] = React.useState({
-    preview: null,
+    preview: soleYacht?.sideImage,
+
     raw: null
   });
 

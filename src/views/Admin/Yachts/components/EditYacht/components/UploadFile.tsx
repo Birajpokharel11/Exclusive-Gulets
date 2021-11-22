@@ -41,7 +41,7 @@ export default function Home({
 }) {
   const classes = useStyles();
   const theme = useTheme();
-
+  console.log('fle', file);
   return (
     <>
       <Card>
@@ -50,7 +50,7 @@ export default function Home({
             <br />
             <Typography variant="h2">{name}</Typography>
             <br />
-            <div className={clsx({ [classes.dropzone]: !file.raw })}>
+            <div className={clsx({ [classes.dropzone]: !file.preview })}>
               {file.preview ? (
                 <Box display="flex" style={{ width: '100%' }}>
                   <img
@@ -91,7 +91,13 @@ export default function Home({
               />
             </div>
           </Grid>
-
+          <Box display="flex" justifyContent="center">
+            <Button>
+              <label htmlFor={`file-${code}`} style={{ cursor: 'pointer' }}>
+                Add New Pic
+              </label>
+            </Button>
+          </Box>
           {file?.raw && (
             <form onSubmit={onSubmit}>
               <Grid container spacing={2} direction="column">

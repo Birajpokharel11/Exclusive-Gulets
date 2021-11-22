@@ -13,6 +13,7 @@ import React from 'react';
 import { SingleFileUploadWithProgress } from './upload/SingleFileUploadWithProgress';
 import { UploadError } from './upload/UploadError';
 import { useRef } from 'react';
+import clsx from 'clsx';
 
 const useStyles = makeStyles((theme) => ({
   dropzone: {
@@ -49,7 +50,7 @@ export default function Home({
             <br />
             <Typography variant="h2">{name}</Typography>
             <br />
-            <div className={classes.dropzone}>
+            <div className={clsx({ [classes.dropzone]: !file.raw })}>
               {file.preview ? (
                 <Box display="flex" style={{ width: '100%' }}>
                   <img

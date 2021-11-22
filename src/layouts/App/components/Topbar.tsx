@@ -218,46 +218,51 @@ export default function Header({
                 label="sad"
                 style={{ display: 'none', padding: '0', margin: '0' }}
               />
-              <Tab
-                className={classes.tab}
-                label="YACHTS"
-                data-cy="YACHTS"
-                onClick={() =>
-                  router.push('/yachts', undefined, { shallow: true })
-                }
-              />
-              <Tab
-                className={classes.tab}
-                label="OFFERS"
-                data-cy="OFFERS"
-                onClick={() =>
-                  router.push('/yachts/offers', undefined, { shallow: true })
-                }
-              />
-              <Tab
-                className={classes.tab}
-                label="DESTINATIONS"
-                data-cy="DESTINATIONS"
-                onClick={() =>
-                  router.push('/destinations', undefined, { shallow: true })
-                }
-              />
-              <Tab
-                className={classes.tab}
-                label="BESPOKE EXPERIENCES"
-                data-cy="BESPOKEEXPERIENCES"
-                onClick={() =>
-                  router.push('/experiences', undefined, { shallow: true })
-                }
-              />
-              <Tab
-                className={classes.tab}
-                label="NEWS & BLOGS"
-                data-cy="NEWSBLOGS"
-                onClick={() =>
-                  router.push('/blogs', undefined, { shallow: true })
-                }
-              />
+              <Link href="/yachts" passHref>
+                <a>
+                  <Tab
+                    className={classes.tab}
+                    label="YACHTS"
+                    data-cy="YACHTS"
+                  />
+                </a>
+              </Link>
+              <Link href="/yachts/offers" passHref>
+                <a>
+                  <Tab
+                    className={classes.tab}
+                    label="OFFERS"
+                    data-cy="OFFERS"
+                  />
+                </a>
+              </Link>
+              <Link href="/destinations" passHref>
+                <a>
+                  <Tab
+                    className={classes.tab}
+                    label="DESTINATIONS"
+                    data-cy="DESTINATIONS"
+                  />
+                </a>
+              </Link>
+              <Link href="/experiences" passHref>
+                <a>
+                  <Tab
+                    className={classes.tab}
+                    label="BESPOKE EXPERIENCES"
+                    data-cy="BESPOKEEXPERIENCES"
+                  />
+                </a>
+              </Link>
+
+              <Link href="/blogs" passHref>
+                <Tab
+                  className={classes.tab}
+                  label="NEWS & BLOGS"
+                  data-cy="NEWSBLOGS"
+                />
+              </Link>
+
               <Tab
                 className={classes.tab}
                 label="MORE"
@@ -280,25 +285,22 @@ export default function Header({
                       id="menu-list-grow"
                       onKeyDown={handleListKeyDown}
                     >
-                      <MenuItem
-                        className={clsx(classes.tab, classes.Menu)}
-                        onClick={() =>
-                          router.push('/about', undefined, { shallow: true })
-                        }
-                        data-cy="ABOUTYOU"
-                        href="/about"
-                      >
-                        ABOUT YOU
-                      </MenuItem>
-                      <MenuItem
-                        className={clsx(classes.tab, classes.Menu)}
-                        onClick={() =>
-                          router.push('/dinning', undefined, { shallow: true })
-                        }
-                        data-cy="DINNING"
-                      >
-                        DINNING
-                      </MenuItem>
+                      <Link href="/about" passHref>
+                        <MenuItem
+                          className={clsx(classes.tab, classes.Menu)}
+                          data-cy="ABOUTYOU"
+                        >
+                          ABOUT YOU
+                        </MenuItem>
+                      </Link>
+                      <Link href="/dinning" passHref>
+                        <MenuItem
+                          className={clsx(classes.tab, classes.Menu)}
+                          data-cy="DINNING"
+                        >
+                          DINNING
+                        </MenuItem>
+                      </Link>
                     </MenuList>
                   </ClickAwayListener>
                 </Paper>

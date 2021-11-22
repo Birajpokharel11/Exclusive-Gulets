@@ -110,11 +110,12 @@ function Blogs({
   ///////////////////////////////////////////////////////////
   const [Photo, setPhoto] = React.useState('');
   const [mainImage, setMainImage] = React.useState({
-    preview: null,
+    preview: soleYacht?.mainImage,
     raw: null
   });
   const [sideImage, setSideImage] = React.useState({
-    preview: null,
+    preview: soleYacht?.sideImage,
+
     raw: null
   });
 
@@ -173,14 +174,7 @@ function Blogs({
 
   return (
     <Box pl={4} pr={4} pt={4}>
-      <Grid container spacing={3}>
-        <Grid item container justify="space-between">
-          <Grid item>
-            <Typography variant="h3">
-              <strong>Edit Yacht</strong>
-            </Typography>
-          </Grid>
-        </Grid>
+      <Grid container spacing={8}>
         <Grid item md={8}>
           <Formik
             initialValues={{
@@ -189,20 +183,20 @@ function Blogs({
               yachtTypeId: 1,
               buildYear: soleYacht.buildYear,
               refitYear: soleYacht.refitYear,
-              noOfCabins: soleYacht.noOfCabins ?? '',
+              noOfCabins: soleYacht.noOfCabins,
               flagsId: soleYacht.flagsId ?? 1,
               homePortId: soleYacht.homePortId ?? 1,
-              masterCabins: soleYacht.masterCabins ?? '',
-              doubleCabins: soleYacht.doubleCabins ?? '',
-              twinCabins: soleYacht.twinCabins ?? '',
-              length: soleYacht.length ?? '',
-              tripleCabins: soleYacht.tripleCabins ?? '',
-              singleCabins: soleYacht.singleCabins ?? '',
-              extraBunkBeds: soleYacht.extraBunkBeds ?? '',
-              noOfPassengers: soleYacht.noOfPassengers ?? '',
+              masterCabins: soleYacht.masterCabins ?? 0,
+              doubleCabins: soleYacht.doubleCabins ?? 0,
+              twinCabins: soleYacht.twinCabins ?? 0,
+              length: soleYacht.length ?? 0,
+              tripleCabins: soleYacht.tripleCabins ?? 0,
+              singleCabins: soleYacht.singleCabins ?? 0,
+              extraBunkBeds: soleYacht.extraBunkBeds ?? 0,
+              noOfPassengers: soleYacht.noOfPassengers ?? 0,
               registryPortId: soleYacht.registryPortId ?? 1,
               instanceCheckout: soleYacht.instanceCheckout ?? false,
-              additionalCosts: soleYacht.additionalCosts ?? '',
+              additionalCosts: soleYacht.additionalCosts,
               toysId: soleYacht.toysId ?? [],
               termsId: [],
               extrasId: [],
@@ -219,7 +213,14 @@ function Blogs({
             }}
             render={({ values }) => (
               <Form>
-                <Grid container>
+                <Grid container spacing={3}>
+                  <Grid item container justify="space-between">
+                    <Grid item>
+                      <Typography variant="h3">
+                        <strong>Edit Yacht</strong>
+                      </Typography>
+                    </Grid>
+                  </Grid>
                   <Grid item xs={12}>
                     <Typography variant="h4">Yacht Name</Typography>
 
@@ -243,8 +244,8 @@ function Blogs({
                       id="rating"
                     >
                       <MenuItem value={1}>3.0</MenuItem>
-                      <MenuItem value={2}>4.0</MenuItem>
-                      <MenuItem value={3}>5.0</MenuItem>
+                      <MenuItem value={1}>4.0</MenuItem>
+                      <MenuItem value={1}>5.0</MenuItem>
                     </Field>
                   </Grid>
 
@@ -259,9 +260,9 @@ function Blogs({
                       id="yachtType"
                     >
                       <MenuItem value={1}>Catamaran</MenuItem>
-                      <MenuItem value={2}>Gulet</MenuItem>
-                      <MenuItem value={3}>Motor Sailer</MenuItem>
-                      <MenuItem value={4}>Motor Yacht</MenuItem>
+                      <MenuItem value={1}>Gulet</MenuItem>
+                      <MenuItem value={1}>Motor Sailer</MenuItem>
+                      <MenuItem value={1}>Motor Yacht</MenuItem>
                     </Field>
                   </Grid>
 
@@ -778,6 +779,17 @@ function Blogs({
                       id="entertainment"
                     />
                   </Grid>
+                  <Grid item container sm={12}>
+                    <Typography variant="h4">
+                      AVAILABILITY FOR INSTANT CHECKOUT:
+                    </Typography>
+
+                    <Field
+                      type="checkbox"
+                      name="instanceCheckout"
+                      style={{ margin: '6px 0 0 10px' }}
+                    />
+                  </Grid>
                   <Grid item xs={12}>
                     <Button
                       color="primary"
@@ -795,18 +807,6 @@ function Blogs({
                       )}
                     </Button>
                   </Grid>
-                </Grid>
-
-                <Grid item container sm={12}>
-                  <Typography variant="h4">
-                    AVAILABILITY FOR INSTANT CHECKOUT:
-                  </Typography>
-
-                  <Field
-                    type="checkbox"
-                    name="instanceCheckout"
-                    style={{ margin: '6px 0 0 10px' }}
-                  />
                 </Grid>
               </Form>
             )}

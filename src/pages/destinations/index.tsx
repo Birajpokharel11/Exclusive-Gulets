@@ -3,6 +3,7 @@ import Head from 'next/head';
 import { END } from 'redux-saga';
 import { wrapper } from '@store/index';
 import { fetchDestinationStart } from '@store/destination/destination.actions';
+import { checkDomainStart } from '@store/siteCoordinator/siteCoordinator.actions';
 
 import WithLayout from '@components/WithLayout';
 import Main from '@layouts/App';
@@ -46,6 +47,7 @@ export const getServerSideProps = wrapper.getServerSideProps(
         'Cache-Control',
         'public, s-maxage=1, stale-while-revalidate=59'
       );
+      store.dispatch(checkDomainStart(subdomain));
 
       store.dispatch(fetchDestinationStart());
       store.dispatch(END);

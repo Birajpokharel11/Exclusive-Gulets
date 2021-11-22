@@ -190,9 +190,9 @@ export function* editBrokerProfileAsync({ payload: { formData } }: AnyAction) {
   try {
     console.log('inside of editBrokerProfileAsync', formData);
     let { data } = yield axiosConfig.post(`public/editBroker`, formData);
-    console.log('result of editBrokerProfileAsync', data);
     if (data.status === 'success') {
-      yield put(authActions.editBrokerProfileSuccess(data));
+      console.log('result of editBrokerProfileAsync', data);
+      yield put(authActions.editBrokerProfileSuccess(formData));
       yield put(openAlert('Broker Profile Updated Successfully!!', 'success'));
       router.push('/manage/dashboard');
     } else {

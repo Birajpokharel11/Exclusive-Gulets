@@ -18,7 +18,7 @@ const authReducer = (state = INITIAL_STATE, action) => {
   const { type, payload } = action;
   switch (type) {
     case HYDRATE:
-      return { ...state, ...payload };
+      return { ...state, ...payload.auth };
 
     case AuthType.SIGN_IN_START:
     case AuthType.SIGN_UP_START:
@@ -100,9 +100,16 @@ const authReducer = (state = INITIAL_STATE, action) => {
       };
 
     case AuthType.EDIT_BROKER_PROFILE_SUCCESS:
+      console.log('EDIT_BROKER_PROFILE_SUCCESS>>>', payload);
       return {
         ...state,
-        isEditing: false
+        isEditing: false,
+        currentUser: {
+          ...state.currentUser,
+          firstName: payload.firstName,
+          lastName: payload.lastName,
+          phoneNumber: payload.phoneNumber
+        }
       };
 
     case AuthType.EDIT_BROKER_PROFILE_FAILURE:

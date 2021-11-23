@@ -68,17 +68,19 @@ function Destinations({
     });
   };
 
+  const filteredPosts = postsList.filter((post) => post.status === 'Active');
+
   const getBlogs = () => {
-    if (!postsList.length && !loading) {
+    if (!filteredPosts.length && !loading) {
       return (
         <Typography variant="h2" align="center">
           Data Not Found!!
         </Typography>
       );
-    } else if (postsList.length && !loading) {
+    } else if (filteredPosts.length && !loading) {
       return (
         <CardList
-          list={postsList}
+          list={filteredPosts}
           showMore={showMore}
           routeRedirect={redirectDetailsPage}
           route={route}

@@ -61,17 +61,21 @@ const Experiences = (props: Props) => {
     });
   };
 
+  const filteredExperience = experiences.filter(
+    (exp) => exp.status === 'Active'
+  );
+
   const getExperiences = () => {
-    if (!experiences.length && !loading) {
+    if (!filteredExperience.length && !loading) {
       return (
         <Typography variant="h2" align="center">
           Data Not Found!!
         </Typography>
       );
-    } else if (experiences.length && !loading) {
+    } else if (filteredExperience.length && !loading) {
       return (
         <CardList
-          list={experiences}
+          list={filteredExperience}
           route="experiences"
           routeRedirect={routeRedirect}
         />

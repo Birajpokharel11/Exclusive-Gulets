@@ -73,7 +73,7 @@ export default function NewsAndBlogs({ posts, redirectDetailsPage }: Props) {
   return (
     <Box component="section" className={classes.root}>
       <Container maxWidth="lg">
-        <Box textAlign="center">
+        <Box textAlign="center" style={{ paddingBottom: '60px' }}>
           <Typography variant="h2" color="textPrimary" align="center" stripped>
             News & Blogs
           </Typography>

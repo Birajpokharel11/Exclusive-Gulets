@@ -102,7 +102,7 @@ export function* onSignupBrokerAsync({
       yield put(authActions.signupBrokerSuccess());
       yield put(
         openAlert(
-          'User signed Up successfully.Please check your email for verification!!',
+          'User signed Up successfully.Please check your email to verify user!!',
           'success'
         )
       );

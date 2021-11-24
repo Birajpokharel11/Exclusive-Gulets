@@ -11,6 +11,7 @@ import Enquiry from './components/Enquiry';
 import PreviewDrawer from './components/PreviewDrawer';
 
 import container from './Yatchs.container';
+import _ from 'lodash';
 
 const YatchDetails = (props) => {
   const {
@@ -25,7 +26,9 @@ const YatchDetails = (props) => {
   } = props;
 
   useEffect(() => {
-    onFetchExperiencesStart(data.id);
+    if (!_.isEmpty(data)) {
+      onFetchExperiencesStart(data.id);
+    }
   }, [data]);
 
   const [open, setOpen] = useState(false);

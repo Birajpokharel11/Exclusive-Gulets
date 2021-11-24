@@ -68,6 +68,9 @@ export interface IOfferState {
   offers: any[];
   error: any | null;
   loading: boolean;
+  isCreating: boolean;
+  isFetching: boolean;
+  soleOffer: object;
 }
 
 export interface IYachtState {

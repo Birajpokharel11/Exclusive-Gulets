@@ -299,7 +299,7 @@ export default function Header({
                           className={clsx(classes.tab, classes.Menu)}
                           data-cy="DINNING"
                         >
-                          DINNING
+                          w DINING
                         </MenuItem>
                       </Link>
                     </MenuList>

@@ -6,19 +6,21 @@ import {
   Box,
   Typography,
   Button,
+  Select,
   MenuItem
 } from '@material-ui/core';
 import { useTheme } from '@material-ui/core/styles';
 
 import { Formik, Field, Form } from 'formik';
-import { TextField, Select } from 'formik-material-ui';
+import { TextField } from 'formik-material-ui';
 import * as Yup from 'yup';
 
 import countryList from '@mocks/country_code.json';
 
 import Placeholder from '@modules/components/Placeholder';
-
+import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import { menuProps } from '@utils/utils';
+import Person from '@material-ui/icons/Person';
 
 const useStyles = makeStyles((theme) =>
   createStyles({
@@ -32,6 +34,7 @@ const useStyles = makeStyles((theme) =>
     },
     buttonStyle: {
       backgroundColor: '#2A398D',
+      width: '260px',
       '&:hover': {
         backgroundColor: '#2A398D'
       },
@@ -71,7 +74,12 @@ export default function EnquiryForm() {
           </Grid>
 
           <Grid item>
-            <Typography align="center" color="textPrimary" variant="subtitle1">
+            <Typography
+              style={{ width: '800px', height: '90px' }}
+              align="center"
+              color="textPrimary"
+              variant="subtitle1"
+            >
               We understand that your time is valuable, and it is no easy task
               to choose the right boat out of so many! Our on-line portfolio
               represents a small number of the yachts that eXclusive Gulets has
@@ -81,6 +89,7 @@ export default function EnquiryForm() {
           </Grid>
         </Grid>
       </Container>
+      <div style={{ paddingTop: '59px' }} />
       <Container>
         <Formik
           initialValues={{
@@ -104,18 +113,19 @@ export default function EnquiryForm() {
           <Form>
             <Grid container spacing={3}>
               <Grid item container md={6} sm={12} xs={12} spacing={2}>
-                <Grid item xs={3}>
+                <Grid item xs={4}>
                   <Field
-                    component={TextField}
+                    component={Select}
                     name="title"
                     id="title"
                     label="Title"
                     variant="outlined"
-                    fullWidth
-                    SelectProps={{
-                      MenuProps: menuProps
+                    style={{ marginTop: '10px' }}
+                    InputLabelProps={{
+                      style: { color: '#091527' }
                     }}
-                    InputProps={{ notched: false }}
+                    IconComponent={() => <ExpandMoreIcon />}
+                    fullWidth
                   >
                     <MenuItem value="Mr.">Mr.</MenuItem>
                     <MenuItem value="Mrs.">Mrs.</MenuItem>
@@ -124,7 +134,7 @@ export default function EnquiryForm() {
                     <MenuItem value="Mx.">Mx.</MenuItem>
                   </Field>
                 </Grid>
-                <Grid item xs={9}>
+                <Grid item xs={8}>
                   <Field
                     component={TextField}
                     id="name"
@@ -132,6 +142,9 @@ export default function EnquiryForm() {
                     label="Full Name"
                     variant="outlined"
                     fullWidth
+                    InputLabelProps={{
+                      style: { color: '#091527' }
+                    }}
                     InputProps={{ notched: false }}
                     placeholder="Write your name"
                   />
@@ -141,6 +154,9 @@ export default function EnquiryForm() {
                     component={TextField}
                     id="email"
                     name="email"
+                    InputLabelProps={{
+                      style: { color: '#091527' }
+                    }}
                     label="Email"
                     variant="outlined"
                     fullWidth
@@ -149,10 +165,14 @@ export default function EnquiryForm() {
                 </Grid>
                 <Grid item xs={3}>
                   <Field
-                    component={TextField}
+                    component={Select}
                     id="country"
                     name="country"
-                    select
+                    InputLabelProps={{
+                      style: { color: '#091527' }
+                    }}
+                    style={{ marginTop: '10px' }}
+                    IconComponent={() => <ExpandMoreIcon />}
                     label="Select"
                     variant="outlined"
                     fullWidth
@@ -176,6 +196,9 @@ export default function EnquiryForm() {
                     label="Mobile Phone"
                     variant="outlined"
                     fullWidth
+                    InputLabelProps={{
+                      style: { color: '#091527' }
+                    }}
                     InputProps={{ notched: false }}
                   />
                 </Grid>
@@ -186,8 +209,12 @@ export default function EnquiryForm() {
                   id="comments"
                   name="comments"
                   label="Your Comments"
+                  style={{ color: 'green' }}
                   multiline
-                  rows={9}
+                  InputLabelProps={{
+                    style: { color: '#091527' }
+                  }}
+                  rows={11}
                   variant="outlined"
                   fullWidth
                   InputProps={{ notched: false }}

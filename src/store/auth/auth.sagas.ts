@@ -100,7 +100,12 @@ export function* onSignupBrokerAsync({
     console.log('value fo data after success>>>', data);
     if (data.status === 'success') {
       yield put(authActions.signupBrokerSuccess());
-      yield put(openAlert('User signed Up successfully!!', 'success'));
+      yield put(
+        openAlert(
+          'User signed Up successfully.Please check your email for verification!!',
+          'success'
+        )
+      );
       router.push('/signin');
     } else {
       yield put(openAlert(data.status || 'Internal Server Error!!', 'error'));

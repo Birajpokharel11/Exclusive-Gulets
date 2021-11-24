@@ -11,7 +11,8 @@ const useStyles = makeStyles(() => ({
     height: '100%'
   },
   content: {
-    height: '100%'
+    height: '100%',
+    marginTop: '-72px'
   }
 }));
 

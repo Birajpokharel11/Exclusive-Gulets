@@ -109,14 +109,15 @@ export default function Header({
     domain: { name }
   }
 }) {
-  const trigger = useScrollTrigger();
-
   const classes = useStyles();
-
   const [value, setValue] = useState(0);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [open, setOpen] = useState(false);
-
+  const trigger = useScrollTrigger({
+    disableHysteresis: true,
+    threshold: 50
+  });
+  console.log('Triggered', trigger);
   const handleChange = (e, value) => {
     setValue(value);
   };
@@ -194,7 +195,7 @@ export default function Header({
         elevation={0}
         className={classes.AppBar}
         style={{
-          backgroundColor: 'rgba(9, 21, 39, 0.8)'
+          backgroundColor: trigger ? '#091527' : 'rgba(9, 21, 39, 0.8)'
         }}
       >
         <Toolbar>

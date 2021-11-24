@@ -26,7 +26,7 @@ const YatchDetails = (props) => {
   console.log('yachtsdetails', soleYacht);
   return (
     <Container maxWidth={false} style={{ padding: '0%' }}>
-      {/* <SpecialOffer /> */}
+      <SpecialOffer />
       <HeroSection data={soleYacht} />
       <AboutSection data={soleYacht} />
       {/* <GallerySection /> */}

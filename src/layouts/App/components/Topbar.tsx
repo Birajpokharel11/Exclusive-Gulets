@@ -52,7 +52,7 @@ const useStyles = makeStyles((theme) => ({
   AppBar: {
     height: '72px',
     maxWidth: '100%',
-    zIndex: theme.zIndex.modal + 1
+    zIndex: 1
   },
   tab: {
     fontFamily: 'Lato',
@@ -194,7 +194,7 @@ export default function Header({
         elevation={0}
         className={classes.AppBar}
         style={{
-          backgroundColor: '#091527'
+          backgroundColor: 'rgba(9, 21, 39, 0.8)'
         }}
       >
         <Toolbar>
@@ -299,7 +299,7 @@ export default function Header({
                           className={clsx(classes.tab, classes.Menu)}
                           data-cy="DINNING"
                         >
-                          w DINING
+                          DINNING
                         </MenuItem>
                       </Link>
                     </MenuList>

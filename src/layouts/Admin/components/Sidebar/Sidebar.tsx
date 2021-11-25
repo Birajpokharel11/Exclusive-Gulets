@@ -10,6 +10,7 @@ import TextFieldsIcon from '@material-ui/icons/TextFields';
 import ImageIcon from '@material-ui/icons/Image';
 import AccountBoxIcon from '@material-ui/icons/AccountBox';
 import SettingsIcon from '@material-ui/icons/Settings';
+import LocalOfferIcon from '@material-ui/icons/LocalOffer';
 import LockOpenIcon from '@material-ui/icons/LockOpen';
 import DirectionsBoatIcon from '@material-ui/icons/DirectionsBoat';
 import PerfectScrollbar from 'react-perfect-scrollbar';
@@ -76,10 +77,22 @@ const Sidebar = (props) => {
       visible: !isVisible('ROLE_MANAGER')
     },
     {
+      title: 'Offers',
+      href: '/manage/offers',
+      icon: <LocalOfferIcon />,
+      visible: !isVisible('ROLE_MANAGER')
+    },
+    {
+      title: 'Destinations',
+      href: '/manage/destinations',
+      icon: <LocalOfferIcon />,
+      visible: !isVisible('ROLE_MANAGER')
+    },
+    {
       title: 'Settings',
       href: '/manage/settings',
       icon: <SettingsIcon />,
-      visible: true
+      visible: !isVisible('ROLE_BROKER')
     }
   ];
 
@@ -91,13 +104,11 @@ const Sidebar = (props) => {
       open={open}
       variant={variant}
     >
-      <PerfectScrollbar>
-        <div {...rest} className={clsx(classes.root, className)}>
-          <Profile {...rest} />
-          <Divider className={classes.divider} />
-          <SidebarNav className={classes.nav} pages={pages} {...rest} />
-        </div>
-      </PerfectScrollbar>
+      <div {...rest} className={clsx(classes.root, className)}>
+        <Profile {...rest} />
+        <Divider className={classes.divider} />
+        <SidebarNav className={classes.nav} pages={pages} {...rest} />
+      </div>
     </Drawer>
   );
 };

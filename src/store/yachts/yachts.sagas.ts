@@ -44,7 +44,7 @@ export function* fetchYachtByIdAsync({ payload }: AnyAction) {
     console.log('yacht_id >>>', yacht_id);
     const { data } = yield axiosConfig.get(`api/yacht/get/${yacht_id}`);
     console.log('DAtaIdsss', data.detail.data);
-    yield put(postsAction.fetchYachtByIdSuccess(data.detail.data[0]));
+    yield put(postsAction.fetchYachtByIdSuccess(data.detail.data));
     console.log('IDSUCESSFULL');
   } catch (err) {
     console.error('error received>>>', err);

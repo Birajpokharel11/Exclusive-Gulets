@@ -29,6 +29,8 @@ export function* loadUserAsync({ payload }: ReturnType<typeof loadUserStart>) {
   try {
     const { data } = yield axiosConfig.get(`api/getUserSession`);
 
+    console.log('load user async>>', data);
+
     const profile = {
       ...data.detail.data.profile,
       userType: data.detail.data.userType,
@@ -76,7 +78,7 @@ export function* onSignupAsync({
   delete formData.password2;
 
   try {
-    const { data } = yield axiosConfig.post(`public/createManager`, formData);
+    const { data } = yield axiosConfig.post(`api/manager/create`, formData);
 
     console.log('value fo data after success>>>', data);
 
@@ -90,13 +92,52 @@ export function* onSignupAsync({
   }
 }
 
+export function* createPictureAsync({ payload: { formData } }: AnyAction) {
+  const imageData = {
+    type: 'logo',
+    domain: formData.domainName
+  };
+  console.log('create picture>>>', formData);
+  try {
+    // with authorization header
+    const { data } = yield axiosConfig.post(`api/putSignedUrl`, imageData);
+    console.log('createPictureAsync data>>', data);
+    // const yellow = data.url;
+    // without authorization header
+    yield axios.put(data.url, formData.selectedFile, {
+      headers: {
+        'Content-Type': formData.selectedFile.type
+      }
+    });
+    yield axiosConfig.post('api/broker/edit', {
+      id: formData.id,
+      logo: data.objectKey,
+      firstName: formData.firstName,
+      lastName: formData.lastName,
+      phoneNumber: formData.phoneNumber
+    });
+
+    yield put(
+      openAlert(
+        `Broker logo updated successfully for id no ${formData.id}`,
+        'success'
+      )
+    );
+
+    yield put(authActions.uploadBrokerImgSuccess(data.objectKey));
+  } catch (err) {
+    console.error('error received>>>', err);
+    yield put(authActions.uploadBrokerImgFailure(err));
+  }
+}
+
 export function* onSignupBrokerAsync({
   payload: { formData }
 }: ReturnType<typeof signupBrokerStart>) {
   delete formData.password2;
   console.log('onsignup async>>>', formData);
   try {
-    const { data } = yield axiosConfig.post(`public/createBroker`, formData);
+    const { data } = yield axiosConfig.post(`api/broker/create`, formData);
     console.log('value fo data after success>>>', data);
     if (data.status === 'success') {
       yield put(authActions.signupBrokerSuccess());
@@ -108,7 +149,7 @@ export function* onSignupBrokerAsync({
       );
       router.push('/signin');
     } else {
-      yield put(openAlert(data.status || 'Internal Server Error!!', 'error'));
+      yield put(openAlert(' Domain name already taken', 'error'));
       yield put(authActions.signupBrokerFail(data.status));
     }
   } catch (err) {
@@ -121,10 +162,7 @@ export function* validateUserAsync({
   payload: { formData }
 }: ReturnType<typeof validateUserEmailStart>) {
   try {
-    const { data } = yield axiosConfig.post(
-      `public/validateUserEmailAndBrokerSite`,
-      formData
-    );
+    const { data } = yield axiosConfig.post(`api/broker/validate`, formData);
 
     console.log('value fo data after success>>>', data);
 
@@ -155,7 +193,7 @@ export function* verifyBrokerAsync({
 
   try {
     let { data } = yield axiosConfig.post(
-      `public/verifyBrokerAccount
+      `public/broker/verify
       `,
       formData
     );
@@ -194,12 +232,11 @@ export function* signOutAsync({
 export function* editBrokerProfileAsync({ payload: { formData } }: AnyAction) {
   try {
     console.log('inside of editBrokerProfileAsync', formData);
-    let { data } = yield axiosConfig.post(`public/editBroker`, formData);
+    let { data } = yield axiosConfig.post(`api/broker/edit`, formData);
     if (data.status === 'success') {
       console.log('result of editBrokerProfileAsync', data);
       yield put(authActions.editBrokerProfileSuccess(formData));
       yield put(openAlert('Broker Profile Updated Successfully!!', 'success'));
-      router.push('/manage/dashboard');
     } else {
       yield put(authActions.editBrokerProfileFail(data));
       yield put(openAlert('Internal Server Error!!', 'error'));
@@ -242,6 +279,9 @@ export function* watchEditBrokerProfile() {
   yield takeLatest(AuthType.EDIT_BROKER_PROFILE_START, editBrokerProfileAsync);
 }
 
+export function* watchUploadPostImg() {
+  yield takeLatest(AuthType.UPLOAD_POST_START, createPictureAsync);
+}
 export function* authSagas() {
   yield all([
     call(watchLoadUser),
@@ -251,6 +291,7 @@ export function* authSagas() {
     call(watchSignout),
     call(watchValidateUser),
     call(watchVerifyBroker),
-    call(watchEditBrokerProfile)
+    call(watchEditBrokerProfile),
+    call(watchUploadPostImg)
   ]);
 }

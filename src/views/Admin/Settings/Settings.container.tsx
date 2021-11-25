@@ -1,6 +1,9 @@
 import { connect } from 'react-redux';
 import { createPostStart } from '@store/posts/posts.actions';
-import { editBrokerProfileStart } from '@store/auth/auth.actions';
+import {
+  editBrokerProfileStart,
+  uploadBrokerImgStart
+} from '@store/auth/auth.actions';
 
 const mapStateToProps = (state, props) => ({
   destination: state.destination,
@@ -19,7 +22,8 @@ const mapDispatchToProps = (dispatch) => ({
       createPostStart(formData, mainSelectedFile, sideSelectedFile, domainName)
     ),
   onEditBrokerProfileStart: (formData) =>
-    dispatch(editBrokerProfileStart(formData))
+    dispatch(editBrokerProfileStart(formData)),
+  onPicAddStart: (formData) => dispatch(uploadBrokerImgStart(formData))
 });
 
 const container = connect(mapStateToProps, mapDispatchToProps);

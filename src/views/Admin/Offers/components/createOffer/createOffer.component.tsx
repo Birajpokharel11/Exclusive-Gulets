@@ -184,10 +184,12 @@ function CreateExperiences({
             onSubmit={(values, { setSubmitting }) => {
               onCreateGenericOfferStart({
                 ...values,
-                offerStartDate: moment(values.offerStartDate).toISOString(),
-                offerExpirationDate: moment(
-                  values.offerExpirationDate
-                ).toISOString()
+                offerStartDate: moment(values.offerStartDate).format(
+                  'YYYY-MM-DD'
+                ),
+                offerExpirationDate: moment(values.offerExpirationDate).format(
+                  'YYYY-MM-DD'
+                )
               });
               setSubmitting(false);
             }}

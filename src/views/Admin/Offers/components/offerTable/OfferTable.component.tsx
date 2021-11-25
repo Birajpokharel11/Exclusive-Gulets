@@ -66,6 +66,7 @@ const useStyles = makeStyles((theme) =>
 interface Props {
   experience?: IExperienceState;
   loading?: any;
+  offer?: any;
   route?: string;
   next_page?: number;
   onCreateExperienceStart?: (formData) => any;
@@ -75,7 +76,7 @@ interface Props {
 const TableList = (props) => {
   const classes = useStyles();
 
-  const { experience, index, handleClickOpen } = props;
+  const { offer, index, handleClickOpen } = props;
 
   return (
     <TableRow hover>
@@ -89,20 +90,16 @@ const TableList = (props) => {
 
       <TableCell>
         <img
-          src={
-            experience.featuredImage
-              ? experience.featuredImage
-              : '/assets/images/not_found_image.png'
-          }
+          src={offer.photo ? offer.photo : '/assets/images/not_found_image.png'}
           alt="image"
           style={{ width: '50px', height: '50px' }}
         />
       </TableCell>
 
-      <TableCell>{experience.title ?? ''}</TableCell>
-      <TableCell>{trimString(experience.description) ?? ''}</TableCell>
+      <TableCell>{offer.name ?? ''}</TableCell>
+      <TableCell>{trimString(offer.description) ?? ''}</TableCell>
 
-      <TableCell>{trimString(experience.metaDescription) ?? ''}</TableCell>
+      <TableCell>{offer.airports ?? ''}</TableCell>
       <TableCell className={classes.actionBtn} colSpan={2}>
         <IconButton
           aria-label="edit"
@@ -111,7 +108,7 @@ const TableList = (props) => {
           onClick={() =>
             router.push({
               pathname: '/manage/offers/edit-offer',
-              query: { id: experience.id }
+              query: { id: offer.id }
             })
           }
         >
@@ -121,7 +118,7 @@ const TableList = (props) => {
           aria-label="delete"
           edge="end"
           size="small"
-          onClick={() => handleClickOpen(experience.id)}
+          onClick={() => handleClickOpen(offer.id)}
         >
           <DeleteIcon color="primary" />
         </IconButton>
@@ -132,6 +129,7 @@ const TableList = (props) => {
 
 function ExperiencesTable({
   experience: { isCreating, experiences, isDeleting },
+  offer: { genericOffers, loading },
   onCreateExperienceStart,
   onDeleteExperienceStart
 }: Props) {
@@ -155,10 +153,6 @@ function ExperiencesTable({
     onDeleteExperienceStart(toDeleteId, handleClose);
   };
 
-  const filteredExperience = experiences.filter(
-    (exp) => exp.status === 'Active'
-  );
-
   console.log('handleClose>>', open);
 
   return (
@@ -175,10 +169,10 @@ function ExperiencesTable({
           </TableRow>
         </TableHead>
         <TableBody>
-          {filteredExperience.map((experience, index) => (
+          {genericOffers.map((offer, index) => (
             <TableList
-              key={experience.id}
-              experience={experience}
+              key={offer.id}
+              offer={offer}
               index={index}
               handleClickOpen={handleClickOpen}
             />

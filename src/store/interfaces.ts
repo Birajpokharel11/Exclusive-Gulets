@@ -67,6 +67,7 @@ export interface IHomeState {
 
 export interface IOfferState {
   offers: any[];
+  genericOffers: any[];
   error: any | null;
   loading: boolean;
   isCreating: boolean;

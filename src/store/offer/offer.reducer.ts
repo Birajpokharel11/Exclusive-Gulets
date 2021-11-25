@@ -6,6 +6,7 @@ import { IOfferState } from '../interfaces';
 
 const INITIAL_STATE: IOfferState = {
   offers: [],
+  genericOffers: [],
   error: null,
   loading: false,
   isCreating: false,
@@ -28,7 +29,7 @@ const destinationReducer = (state = INITIAL_STATE, action) => {
     case OfferType.FETCH_OFFER_SUCCESS:
       return {
         ...state,
-        offers: payload,
+        genericOffers: payload,
         loading: false
       };
 

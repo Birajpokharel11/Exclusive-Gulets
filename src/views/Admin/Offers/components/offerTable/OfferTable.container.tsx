@@ -7,7 +7,8 @@ import {
 const mapStateToProps = (state, props) => ({
   destination: state.destination,
   posts: state.posts,
-  experience: state.experience
+  experience: state.experience,
+  offer: state.offer
 });
 
 const mapDispatchToProps = (dispatch) => ({

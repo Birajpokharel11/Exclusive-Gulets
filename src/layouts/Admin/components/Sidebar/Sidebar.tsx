@@ -92,7 +92,7 @@ const Sidebar = (props) => {
       title: 'Settings',
       href: '/manage/settings',
       icon: <SettingsIcon />,
-      visible: true
+      visible: !isVisible('ROLE_BROKER')
     }
   ];
 

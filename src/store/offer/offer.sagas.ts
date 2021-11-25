@@ -14,11 +14,19 @@ import * as destinationAction from './offer.actions';
 
 export function* fetchOfferAsync() {
   try {
-    const { data } = yield axios.get(
-      `${process.env.REACT_APP_PROD_URL}/special_offers`
-    );
+    console.log('inside of fetch offer async');
+    const { data } = yield axiosConfig.get(`api/offer/generic/list`);
 
-    yield put(destinationAction.fetchOfferSuccess(data.offers));
+    if (data.status === 'success') {
+      yield put(destinationAction.fetchOfferSuccess(data.detail.data));
+    } else {
+      yield put(destinationAction.fetchOfferFailure(data.message));
+      yield put(openAlert('Failed to fetch offer', 'error'));
+    }
+
+    console.log('fetchOfferAsync>>>', data);
+
+    yield put(destinationAction.fetchOfferSuccess(data.detail.data));
   } catch (err) {
     console.error('error received>>>', err);
     yield put(destinationAction.fetchOfferFailure(err));

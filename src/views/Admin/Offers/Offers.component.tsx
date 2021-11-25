@@ -45,24 +45,20 @@ interface Props {
   auth?: any;
   route?: string;
   next_page?: number;
-  onCreateExperienceStart?: (formData) => any;
-  onFetchExperiencesStart?: (formData) => any;
+  onFetchOfferStart?: () => any;
 }
 function Experiences({
   experience: { isCreating, experiences, loading },
   auth: { currentUser },
-  onCreateExperienceStart,
-  onFetchExperiencesStart,
+  onFetchOfferStart,
   ...rest
 }: Props) {
   const classes = useStyles();
   const [page, setpage] = React.useState(0);
 
   useEffect(() => {
-    if (!_.isEmpty(currentUser)) {
-      onFetchExperiencesStart(currentUser.id);
-    }
-  }, [currentUser, onFetchExperiencesStart]);
+    onFetchOfferStart();
+  }, [onFetchOfferStart]);
 
   return (
     <>

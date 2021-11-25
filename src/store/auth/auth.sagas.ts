@@ -78,7 +78,7 @@ export function* onSignupAsync({
   delete formData.password2;
 
   try {
-    const { data } = yield axiosConfig.post(`public/createManager`, formData);
+    const { data } = yield axiosConfig.post(`api/manager/create`, formData);
 
     console.log('value fo data after success>>>', data);
 
@@ -109,7 +109,7 @@ export function* createPictureAsync({ payload: { formData } }: AnyAction) {
         'Content-Type': formData.selectedFile.type
       }
     });
-    yield axiosConfig.post('public/editBroker', {
+    yield axiosConfig.post('api/broker/edit', {
       id: formData.id,
       logo: data.objectKey,
       firstName: formData.firstName,
@@ -137,7 +137,7 @@ export function* onSignupBrokerAsync({
   delete formData.password2;
   console.log('onsignup async>>>', formData);
   try {
-    const { data } = yield axiosConfig.post(`public/createBroker`, formData);
+    const { data } = yield axiosConfig.post(`api/broker/create`, formData);
     console.log('value fo data after success>>>', data);
     if (data.status === 'success') {
       yield put(authActions.signupBrokerSuccess());
@@ -149,7 +149,7 @@ export function* onSignupBrokerAsync({
       );
       router.push('/signin');
     } else {
-      yield put(openAlert(data.status || 'Internal Server Error!!', 'error'));
+      yield put(openAlert(' Domain name already taken', 'error'));
       yield put(authActions.signupBrokerFail(data.status));
     }
   } catch (err) {
@@ -162,10 +162,7 @@ export function* validateUserAsync({
   payload: { formData }
 }: ReturnType<typeof validateUserEmailStart>) {
   try {
-    const { data } = yield axiosConfig.post(
-      `public/validateUserEmailAndBrokerSite`,
-      formData
-    );
+    const { data } = yield axiosConfig.post(`api/broker/validate`, formData);
 
     console.log('value fo data after success>>>', data);
 
@@ -196,7 +193,7 @@ export function* verifyBrokerAsync({
 
   try {
     let { data } = yield axiosConfig.post(
-      `public/verifyBrokerAccount
+      `public/broker/verify
       `,
       formData
     );
@@ -235,7 +232,7 @@ export function* signOutAsync({
 export function* editBrokerProfileAsync({ payload: { formData } }: AnyAction) {
   try {
     console.log('inside of editBrokerProfileAsync', formData);
-    let { data } = yield axiosConfig.post(`public/editBroker`, formData);
+    let { data } = yield axiosConfig.post(`api/broker/edit`, formData);
     if (data.status === 'success') {
       console.log('result of editBrokerProfileAsync', data);
       yield put(authActions.editBrokerProfileSuccess(formData));

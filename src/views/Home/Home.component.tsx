@@ -22,8 +22,11 @@ import container from './Home.container';
 const useStyles = makeStyles((theme) =>
   createStyles({
     root: {
-      height: '60vh',
-      padding: 0
+      height: '100vh',
+      padding: 0,
+      [theme.breakpoints.down('xs')]: {
+        height: '60vh'
+      }
     }
   })
 );

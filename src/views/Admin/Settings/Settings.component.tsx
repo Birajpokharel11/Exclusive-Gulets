@@ -75,15 +75,15 @@ function Blogs({
     preview: null,
     raw: null
   });
+  const [address, setAddress] = useState('');
 
   useEffect(() => {
     setMainImage({
       preview: currentUser.imageURL ?? null,
       raw: null
     });
+    setAddress(currentUser.address ?? '');
   }, [currentUser]);
-
-  const [address, setAddress] = useState('');
 
   const handleChange = (e) => {
     const file = e.target.files[0];

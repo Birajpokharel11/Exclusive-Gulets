@@ -48,6 +48,42 @@ const useStyles = makeStyles((theme) =>
     },
     textWidth: {
       width: '100%'
+    },
+    SelectTitle: {
+      marginTop: '10px',
+      width: '190px',
+      border: '1px solid rgba(42, 57, 141, 0.5)',
+      borderRadius: '4px',
+      [theme.breakpoints.down('sm')]: { width: '105px' }
+    },
+    TextFieldName: {
+      borderRadius: '4px',
+      maxWidth: '400px',
+
+      border: '1px solid rgba(42, 57, 141, 0.5)',
+      [theme.breakpoints.down('sm')]: { width: '228px' }
+    },
+    TextFieldEmail: {
+      borderRadius: '4px',
+      border: '1px solid rgba(42, 57, 141, 0.5)',
+      [theme.breakpoints.down('sm')]: { width: '342px' }
+    },
+    SelectCountry: {
+      borderRadius: '4px',
+      border: '1px solid rgba(42, 57, 141, 0.5)',
+      marginTop: '10px',
+      width: '190px',
+      [theme.breakpoints.down('sm')]: { width: '166px' }
+    },
+    TextFieldMobile: {
+      borderRadius: '4px',
+      border: '1px solid rgba(42, 57, 141, 0.5)',
+      [theme.breakpoints.down('sm')]: { width: '166px' }
+    },
+    TextFieldComment: {
+      borderRadius: '4px',
+      border: '1px solid rgba(42, 57, 141, 0.5)',
+      [theme.breakpoints.down('sm')]: { width: '352px' }
     }
   })
 );
@@ -96,7 +132,7 @@ export default function EnquiryForm() {
 
           <Grid item>
             <Typography
-              style={{ width: '800px', height: '90px' }}
+              style={{ maxWidth: '800px', height: '90px' }}
               align="center"
               color="textPrimary"
               variant="subtitle1"
@@ -111,11 +147,11 @@ export default function EnquiryForm() {
         </Grid>
       </Container>
       <div style={{ paddingTop: '59px' }} />
-      <Container>
+      <Container style={{ width: '100vw', paddingLeft: '20px' }}>
         <form onSubmit={formik.handleSubmit}>
-          <Grid container spacing={3}>
-            <Grid item container md={6} sm={12} xs={12} spacing={2}>
-              <Grid item xs={4}>
+          <Grid container spacing={5}>
+            <Grid item container md={6} sm={6} xs={12} spacing={2}>
+              <Grid item md={5} lg={4} xs={4} sm="auto">
                 <FormControl
                   variant="outlined"
                   error={formik.touched.title && Boolean(formik.errors.title)}
@@ -129,7 +165,7 @@ export default function EnquiryForm() {
                   <Select
                     id="title"
                     name="title"
-                    style={{ marginTop: '10px', width: '190px' }}
+                    className={classes.SelectTitle}
                     IconComponent={() => (
                       <ExpandMoreIcon style={{ color: '#2A398D' }} />
                     )}
@@ -179,13 +215,14 @@ export default function EnquiryForm() {
                   <MenuItem value="Mx.">Mx.</MenuItem>
                 </Field> */}
               </Grid>
-              <Grid item xs={8}>
+              <Grid item md={7} lg={8} xs={8} sm={6}>
                 <TextField
                   id="name"
                   name="name"
                   label="Full Name"
                   variant="outlined"
                   fullWidth
+                  className={classes.TextFieldName}
                   value={formik.values.name}
                   onChange={formik.handleChange}
                   error={formik.touched.name && Boolean(formik.errors.name)}
@@ -206,6 +243,7 @@ export default function EnquiryForm() {
                   fullWidth
                   value={formik.values.email}
                   onChange={formik.handleChange}
+                  className={classes.TextFieldEmail}
                   error={formik.touched.email && Boolean(formik.errors.email)}
                   // InputProps={{ notched: false }}
                   InputLabelProps={{
@@ -213,7 +251,7 @@ export default function EnquiryForm() {
                   }}
                 />
               </Grid>
-              <Grid item xs={4}>
+              <Grid item md={5} lg={4} xs={4} sm="auto">
                 <FormControl
                   variant="outlined"
                   error={
@@ -229,10 +267,7 @@ export default function EnquiryForm() {
                   <Select
                     id="country"
                     name="country"
-                    style={{
-                      marginTop: '10px',
-                      width: '190px'
-                    }}
+                    className={classes.SelectCountry}
                     IconComponent={() => (
                       <ExpandMoreIcon style={{ color: '#2A398D' }} />
                     )}
@@ -280,13 +315,14 @@ export default function EnquiryForm() {
                   ))}
                 </Field> */}
               </Grid>
-              <Grid item xs={8}>
+              <Grid item md={7} lg={8} xs={8} sm={5}>
                 <TextField
                   id="phonenumber"
                   name="phonenumber"
                   label="Mobile Phone"
                   variant="outlined"
                   fullWidth
+                  className={classes.TextFieldMobile}
                   value={formik.values.phonenumber}
                   onChange={formik.handleChange}
                   error={
@@ -306,7 +342,7 @@ export default function EnquiryForm() {
                 />
               </Grid>
             </Grid>
-            <Grid item md={6} sm={12} xs={12}>
+            <Grid item md={6} sm={3} xs={12}>
               <TextField
                 id="comments"
                 name="comments"
@@ -315,6 +351,7 @@ export default function EnquiryForm() {
                 rows={10}
                 variant="outlined"
                 fullWidth
+                className={classes.TextFieldComment}
                 InputLabelProps={{
                   style: { color: '#091527' }
                 }}

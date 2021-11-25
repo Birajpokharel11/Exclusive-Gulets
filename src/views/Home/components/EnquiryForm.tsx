@@ -11,7 +11,8 @@ import {
   TextField,
   FormControl,
   InputLabel,
-  FormHelperText
+  FormHelperText,
+  useMediaQuery
 } from '@material-ui/core';
 import { useTheme } from '@material-ui/core/styles';
 
@@ -51,7 +52,7 @@ const useStyles = makeStyles((theme) =>
     },
     SelectTitle: {
       marginTop: '10px',
-      width: '190px',
+      width: '180px',
       border: '1px solid rgba(42, 57, 141, 0.5)',
       borderRadius: '4px',
       [theme.breakpoints.down('sm')]: { width: '105px' }
@@ -61,29 +62,43 @@ const useStyles = makeStyles((theme) =>
       maxWidth: '400px',
 
       border: '1px solid rgba(42, 57, 141, 0.5)',
-      [theme.breakpoints.down('sm')]: { width: '228px' }
+      [theme.breakpoints.down('sm')]: { width: '228px' },
+      [theme.breakpoints.down('xs')]: { width: '100%' }
     },
     TextFieldEmail: {
       borderRadius: '4px',
       border: '1px solid rgba(42, 57, 141, 0.5)',
-      [theme.breakpoints.down('sm')]: { width: '342px' }
+      [theme.breakpoints.down('sm')]: { width: '342px' },
+      [theme.breakpoints.down('xs')]: { width: '355px' },
+      [theme.breakpoints.down(390)]: { width: '100%' }
     },
     SelectCountry: {
       borderRadius: '4px',
       border: '1px solid rgba(42, 57, 141, 0.5)',
       marginTop: '10px',
-      width: '190px',
-      [theme.breakpoints.down('sm')]: { width: '166px' }
+      width: '180px',
+      [theme.breakpoints.down('sm')]: { width: '166px' },
+      [theme.breakpoints.down('sm')]: { width: '161px' }
     },
     TextFieldMobile: {
       borderRadius: '4px',
       border: '1px solid rgba(42, 57, 141, 0.5)',
-      [theme.breakpoints.down('sm')]: { width: '166px' }
+      [theme.breakpoints.down('sm')]: { width: '160px' },
+      [theme.breakpoints.down('xs')]: { width: '169px' },
+      [theme.breakpoints.down(390)]: { width: '100%' }
     },
     TextFieldComment: {
       borderRadius: '4px',
       border: '1px solid rgba(42, 57, 141, 0.5)',
-      [theme.breakpoints.down('sm')]: { width: '352px' }
+      [theme.breakpoints.down('sm')]: { width: '352px' },
+      [theme.breakpoints.down('xs')]: { width: '355px' },
+      [theme.breakpoints.down(390)]: { width: '100%' }
+    },
+    Container: {
+      width: '100vw',
+      paddingLeft: '20px',
+      [theme.breakpoints.down('xs')]: { padding: '0 30px' },
+      [theme.breakpoints.down(390)]: { padding: '0 20px' }
     }
   })
 );
@@ -99,7 +114,6 @@ const validationSchema = Yup.object({
 export default function EnquiryForm() {
   const classes = useStyles();
 
-  const theme = useTheme();
   const formik = useFormik({
     initialValues: {
       title: '',
@@ -114,6 +128,8 @@ export default function EnquiryForm() {
       alert(JSON.stringify(values, null, 2));
     }
   });
+  const theme = useTheme();
+  const matches = useMediaQuery(theme.breakpoints.up('xs'));
   return (
     <Box component="section" className={classes.root}>
       <Container maxWidth="md">
@@ -146,8 +162,9 @@ export default function EnquiryForm() {
           </Grid>
         </Grid>
       </Container>
+      {matches && <div style={{ paddingBottom: '51px' }} />}
       <div style={{ paddingTop: '59px' }} />
-      <Container style={{ width: '100vw', paddingLeft: '20px' }}>
+      <Container className={classes.Container}>
         <form onSubmit={formik.handleSubmit}>
           <Grid container spacing={5}>
             <Grid item container md={6} sm={6} xs={12} spacing={2}>
@@ -226,13 +243,16 @@ export default function EnquiryForm() {
                   value={formik.values.name}
                   onChange={formik.handleChange}
                   error={formik.touched.name && Boolean(formik.errors.name)}
-                  helperText={formik.touched.name && formik.errors.name}
                   InputLabelProps={{
                     style: { color: '#091527' }
                   }}
                   // InputProps={{ notched: false }}
-                  placeholder="Write your name"
                 />
+                {formik.touched.name && formik.errors.name && (
+                  <FormHelperText style={{ color: 'red' }}>
+                    {formik.errors.name}
+                  </FormHelperText>
+                )}
               </Grid>
               <Grid item xs={12}>
                 <TextField
@@ -241,17 +261,21 @@ export default function EnquiryForm() {
                   label="Email"
                   variant="outlined"
                   fullWidth
+                  className={classes.TextFieldEmail}
                   value={formik.values.email}
                   onChange={formik.handleChange}
-                  className={classes.TextFieldEmail}
                   error={formik.touched.email && Boolean(formik.errors.email)}
-                  // InputProps={{ notched: false }}
                   InputLabelProps={{
                     style: { color: '#091527' }
                   }}
-                />
+                />{' '}
+                {formik.touched.email && formik.errors.email && (
+                  <FormHelperText style={{ color: 'red' }}>
+                    {formik.errors.email}
+                  </FormHelperText>
+                )}
               </Grid>
-              <Grid item md={5} lg={4} xs={4} sm="auto">
+              <Grid item md={5} lg={4} xs={6} sm="auto">
                 <FormControl
                   variant="outlined"
                   error={
@@ -279,7 +303,6 @@ export default function EnquiryForm() {
                     error={
                       formik.touched.country && Boolean(formik.errors.country)
                     }
-                    helperText={formik.touched.country && formik.errors.country}
                   >
                     {countryList.map((country) => (
                       <MenuItem key={country.label} value={country.value}>
@@ -315,7 +338,7 @@ export default function EnquiryForm() {
                   ))}
                 </Field> */}
               </Grid>
-              <Grid item md={7} lg={8} xs={8} sm={5}>
+              <Grid item md={7} lg={8} xs={6} sm={5}>
                 <TextField
                   id="phonenumber"
                   name="phonenumber"
@@ -329,9 +352,6 @@ export default function EnquiryForm() {
                     formik.touched.phonenumber &&
                     Boolean(formik.errors.phonenumber)
                   }
-                  helperText={
-                    formik.touched.phonenumber && formik.errors.phonenumber
-                  }
                   InputLabelProps={{
                     style: { color: '#091527' }
                   }}
@@ -340,6 +360,11 @@ export default function EnquiryForm() {
                   // }}
                   // InputProps={{ notched: false }}
                 />
+                {formik.touched.phonenumber && formik.errors.phonenumber && (
+                  <FormHelperText style={{ color: 'red' }}>
+                    {formik.errors.phonenumber}
+                  </FormHelperText>
+                )}
               </Grid>
             </Grid>
             <Grid item md={6} sm={3} xs={12}>
@@ -364,8 +389,12 @@ export default function EnquiryForm() {
                 error={
                   formik.touched.comments && Boolean(formik.errors.comments)
                 }
-                helperText={formik.touched.comments && formik.errors.comments}
-              />
+              />{' '}
+              {formik.touched.comments && formik.errors.comments && (
+                <FormHelperText style={{ color: 'red' }}>
+                  {formik.errors.comments}
+                </FormHelperText>
+              )}
             </Grid>
             <Grid item container justifyContent="center">
               <Button

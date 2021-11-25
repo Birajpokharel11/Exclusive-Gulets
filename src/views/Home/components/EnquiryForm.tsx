@@ -118,20 +118,27 @@ export default function EnquiryForm() {
               <Grid item xs={4}>
                 <FormControl
                   variant="outlined"
-                  className={classes.formControl}
                   error={formik.touched.title && Boolean(formik.errors.title)}
                 >
-                  <InputLabel id="demo-simple-select-outlined-label">
+                  <InputLabel
+                    id="demo-simple-select-outlined-label"
+                    style={{ color: '#091527', margin: '12px 0' }}
+                  >
                     Title
                   </InputLabel>
                   <Select
                     id="title"
                     name="title"
                     style={{ marginTop: '10px', width: '190px' }}
-                    IconComponent={() => <ExpandMoreIcon />}
+                    IconComponent={() => (
+                      <ExpandMoreIcon style={{ color: '#2A398D' }} />
+                    )}
                     label="Select"
                     fullWidth
                     MenuProps={menuProps}
+                    InputLabelProps={{
+                      style: { color: '#091527' }
+                    }}
                     InputProps={{ notched: false }}
                     value={formik.values.title}
                     onChange={formik.handleChange}
@@ -183,9 +190,9 @@ export default function EnquiryForm() {
                   onChange={formik.handleChange}
                   error={formik.touched.name && Boolean(formik.errors.name)}
                   helperText={formik.touched.name && formik.errors.name}
-                  // InputLabelProps={{
-                  //   style: { color: '#091527' }
-                  // }}
+                  InputLabelProps={{
+                    style: { color: '#091527' }
+                  }}
                   // InputProps={{ notched: false }}
                   placeholder="Write your name"
                 />
@@ -201,9 +208,9 @@ export default function EnquiryForm() {
                   onChange={formik.handleChange}
                   error={formik.touched.email && Boolean(formik.errors.email)}
                   // InputProps={{ notched: false }}
-                  // InputLabelProps={{
-                  //   style: { color: '#091527' }
-                  // }}
+                  InputLabelProps={{
+                    style: { color: '#091527' }
+                  }}
                 />
               </Grid>
               <Grid item xs={4}>
@@ -213,18 +220,25 @@ export default function EnquiryForm() {
                     formik.touched.country && Boolean(formik.errors.country)
                   }
                 >
-                  <InputLabel id="demo-simple-select-outlined-label">
+                  <InputLabel
+                    id="demo-simple-select-outlined-label"
+                    style={{ color: '#091527', margin: '12px 0' }}
+                  >
                     Country
                   </InputLabel>
                   <Select
                     id="country"
                     name="country"
-                    style={{ marginTop: '10px', width: '190px' }}
-                    IconComponent={() => <ExpandMoreIcon />}
+                    style={{
+                      marginTop: '10px',
+                      width: '190px'
+                    }}
+                    IconComponent={() => (
+                      <ExpandMoreIcon style={{ color: '#2A398D' }} />
+                    )}
                     label="Select"
                     fullWidth
                     MenuProps={menuProps}
-                    InputProps={{ notched: false }}
                     value={formik.values.country}
                     onChange={formik.handleChange}
                     error={
@@ -282,6 +296,9 @@ export default function EnquiryForm() {
                   helperText={
                     formik.touched.phonenumber && formik.errors.phonenumber
                   }
+                  InputLabelProps={{
+                    style: { color: '#091527' }
+                  }}
                   // InputLabelProps={{
                   //   style: { color: '#091527' }
                   // }}
@@ -295,9 +312,12 @@ export default function EnquiryForm() {
                 name="comments"
                 label="Your Comments"
                 multiline
-                rows={11}
+                rows={10}
                 variant="outlined"
                 fullWidth
+                InputLabelProps={{
+                  style: { color: '#091527' }
+                }}
                 // InputProps={{ notched: false }}
                 // InputLabelProps={{
                 //   style: { color: '#091527' }

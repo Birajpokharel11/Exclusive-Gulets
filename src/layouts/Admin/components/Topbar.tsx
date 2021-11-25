@@ -48,7 +48,7 @@ const user = {
 
 const Topbar = (props) => {
   const {
-    auth: { token },
+    auth: { token, currentUser },
     onSidebarOpen,
     onSignoutStart,
     className,
@@ -103,7 +103,7 @@ const Topbar = (props) => {
           <Avatar
             alt="Person"
             className={avatarClass.avatar}
-            src={user.avatar}
+            src={currentUser.imageURL ?? user.avatar}
             ref={anchorRef}
             onClick={handleToggle}
           />

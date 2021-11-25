@@ -31,7 +31,7 @@ const Profile = (props) => {
 
   const user = {
     name: currentUser.firstName ?? '',
-    avatar: '/static/images/avatars/avatar_11.png'
+    avatar: currentUser.imageURL ?? '/static/images/avatars/avatar_11.png'
   };
 
   return (

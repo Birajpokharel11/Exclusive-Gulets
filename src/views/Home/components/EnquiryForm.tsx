@@ -186,20 +186,11 @@ export default function EnquiryForm() {
                     id="title"
                     name="title"
                     className={classes.SelectTitle}
-                    IconComponent={() => (
-                      <ExpandMoreIcon style={{ color: '#2A398D' }} />
-                    )}
                     label="Select"
                     fullWidth
                     MenuProps={menuProps}
-                    InputLabelProps={{
-                      style: { color: '#091527' }
-                    }}
-                    InputProps={{ notched: false }}
                     value={formik.values.title}
                     onChange={formik.handleChange}
-                    error={formik.touched.title && Boolean(formik.errors.title)}
-                    helperText={formik.touched.title && formik.errors.title}
                   >
                     <MenuItem value="">
                       <em>None</em>
@@ -295,9 +286,6 @@ export default function EnquiryForm() {
                     id="country"
                     name="country"
                     className={classes.SelectCountry}
-                    IconComponent={() => (
-                      <ExpandMoreIcon style={{ color: '#2A398D' }} />
-                    )}
                     label="Select"
                     fullWidth
                     MenuProps={menuProps}

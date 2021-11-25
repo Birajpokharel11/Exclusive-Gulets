@@ -6,6 +6,7 @@ export interface IAuthState {
   error: any | null;
   loading: boolean;
   isEditing: boolean;
+  uploading: boolean;
 }
 
 export interface IDestinationState {

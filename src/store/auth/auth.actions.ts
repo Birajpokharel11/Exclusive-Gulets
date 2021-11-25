@@ -120,3 +120,18 @@ export const editBrokerProfileFail = (error) => ({
   type: AuthType.EDIT_BROKER_PROFILE_FAILURE,
   payload: error
 });
+
+export const uploadBrokerImgStart = (formData) => ({
+  type: AuthType.UPLOAD_POST_START,
+  payload: { formData }
+});
+
+export const uploadBrokerImgSuccess = (key) => ({
+  type: AuthType.UPLOAD_POST_SUCCESS,
+  payload: { key }
+});
+
+export const uploadBrokerImgFailure = (error) => ({
+  type: AuthType.UPLOAD_POST_FAILURE,
+  payload: error
+});

@@ -24,7 +24,9 @@ const useStyles = makeStyles((theme) =>
     root: {
       height: '100vh',
       padding: 0,
-      marginTop: '-72px'
+      [theme.breakpoints.down('xs')]: {
+        height: '60vh'
+      }
     }
   })
 );

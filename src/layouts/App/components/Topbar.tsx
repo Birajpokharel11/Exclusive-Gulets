@@ -52,7 +52,7 @@ const useStyles = makeStyles((theme) => ({
   AppBar: {
     height: '72px',
     maxWidth: '100%',
-    zIndex: 1
+    zIndex: 4
   },
   tab: {
     fontFamily: 'Lato',
@@ -81,7 +81,7 @@ const useStyles = makeStyles((theme) => ({
   },
   drawerPaper: {
     width: drawerWidth,
-    backgroundColor: '#071529D9',
+    backgroundColor: '#091527',
     paddingRight: '2%',
     [theme.breakpoints.down(785)]: {
       width: '80%'
@@ -365,17 +365,6 @@ export default function Header({
               </Typography>
             </IconButton>{' '}
           </Hidden>
-          <Hidden xsDown>
-            <Divider
-              orientation="vertical"
-              flexItem
-              style={{
-                backgroundColor: 'rgba(255, 255, 255,  0.23)',
-                marginTop: '4px',
-                marginLeft: '8px'
-              }}
-            />
-          </Hidden>
           <Hidden lgUp>
             <IconButton
               color="inherit"
@@ -437,6 +426,7 @@ export default function Header({
               </div>
             </Hidden>
             <div style={{ display: 'flex', alignItems: 'center' }}>
+              <Divider orientation="vertical" flexItem />
               <IconButton color="inherit" data-cy="TMB-PersonIcon">
                 <PersonIcon />{' '}
                 <Typography className={classes.tab}>Members</Typography>

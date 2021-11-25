@@ -24,9 +24,11 @@ const useStyles = makeStyles((theme) => ({
   root: {},
   details: {},
   avatar: {},
-  input: {},
   textField: {
     marginTop: theme.spacing(2)
+  },
+  input: {
+    color: 'black !important'
   },
   signInButton: {
     margin: theme.spacing(2, 0)
@@ -96,6 +98,9 @@ const AddYacht = ({ onCreateYachtStart, isCreating, onPicAddStart }) => {
                   variant="outlined"
                   name="ratingId"
                   id="rating"
+                  InputLabelProps={{
+                    className: classes.input
+                  }}
                 >
                   <MenuItem value={1}>3.0</MenuItem>
                   <MenuItem value={2}>4.0</MenuItem>

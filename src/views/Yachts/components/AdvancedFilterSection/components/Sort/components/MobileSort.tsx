@@ -89,7 +89,7 @@ export default function MobileSort({
                 }
                 label="Price - Low to High"
               />
-              <Divider component="li" className={classes.Divider} />
+              <Divider className={classes.Divider} />
               <FormControlLabel
                 control={
                   <Checkbox
@@ -100,7 +100,7 @@ export default function MobileSort({
                 }
                 label="Price - High to Low"
               />{' '}
-              <Divider component="li" className={classes.Divider} />
+              <Divider className={classes.Divider} />
               <FormControlLabel
                 control={
                   <Checkbox
@@ -111,7 +111,7 @@ export default function MobileSort({
                 }
                 label="Length - Low to High"
               />{' '}
-              <Divider component="li" className={classes.Divider} />
+              <Divider className={classes.Divider} />
               <FormControlLabel
                 control={
                   <Checkbox

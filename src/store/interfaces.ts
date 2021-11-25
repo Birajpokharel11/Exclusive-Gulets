@@ -6,6 +6,7 @@ export interface IAuthState {
   error: any | null;
   loading: boolean;
   isEditing: boolean;
+  uploading: boolean;
 }
 
 export interface IDestinationState {
@@ -66,8 +67,12 @@ export interface IHomeState {
 
 export interface IOfferState {
   offers: any[];
+  genericOffers: any[];
   error: any | null;
   loading: boolean;
+  isCreating: boolean;
+  isFetching: boolean;
+  soleOffer: object;
 }
 
 export interface IYachtState {

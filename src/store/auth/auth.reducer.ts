@@ -8,6 +8,7 @@ const INITIAL_STATE: IAuthState = {
   token: typeof window !== 'undefined' ? localStorage.getItem('token') : null,
   isAuthenticated: null,
   currentUser: {},
+  uploading: false,
   newUser: {},
   error: null,
   loading: false,
@@ -122,6 +123,29 @@ const authReducer = (state = INITIAL_STATE, action) => {
       return {
         ...state,
         error: null
+      };
+
+    case AuthType.UPLOAD_POST_START:
+      return {
+        ...state,
+        uploading: true
+      };
+
+    case AuthType.UPLOAD_POST_SUCCESS:
+      return {
+        ...state,
+        uploading: false
+        // soleBlog: {
+        //   ...state.soleBlog,
+        //   [payload.imgCode]: payload.key
+        // }
+      };
+
+    case AuthType.UPLOAD_POST_FAILURE:
+      return {
+        ...state,
+        uploading: false,
+        error: payload
       };
 
     default:

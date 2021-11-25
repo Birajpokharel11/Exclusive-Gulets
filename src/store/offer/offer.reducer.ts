@@ -1,13 +1,17 @@
 import { HYDRATE } from 'next-redux-wrapper';
 
-import * as DestinationType from './offer.types';
+import * as OfferType from './offer.types';
 
 import { IOfferState } from '../interfaces';
 
 const INITIAL_STATE: IOfferState = {
   offers: [],
+  genericOffers: [],
   error: null,
-  loading: false
+  loading: false,
+  isCreating: false,
+  isFetching: false,
+  soleOffer: {}
 };
 
 const destinationReducer = (state = INITIAL_STATE, action) => {
@@ -16,23 +20,62 @@ const destinationReducer = (state = INITIAL_STATE, action) => {
     case HYDRATE:
       return { ...state, ...payload.offer };
 
-    case DestinationType.FETCH_OFFER_START:
+    case OfferType.FETCH_OFFER_START:
       return {
         ...state,
         loading: true
       };
 
-    case DestinationType.FETCH_OFFER_SUCCESS:
+    case OfferType.FETCH_OFFER_SUCCESS:
       return {
         ...state,
-        offers: payload,
+        genericOffers: payload,
         loading: false
       };
 
-    case DestinationType.FETCH_OFFER_FAILURE:
+    case OfferType.FETCH_OFFER_FAILURE:
       return {
         ...state,
         loading: false,
+        error: payload
+      };
+
+    case OfferType.CREATE_GENERIC_OFFER_START:
+      return {
+        ...state,
+        isCreating: true
+      };
+
+    case OfferType.CREATE_GENERIC_OFFER_SUCCESS:
+      return {
+        ...state,
+        isCreating: false
+      };
+
+    case OfferType.CREATE_GENERIC_OFFER_FAILURE:
+      return {
+        ...state,
+        isCreating: false,
+        error: payload
+      };
+
+    case OfferType.FETCH_GENERIC_OFFER_BY_ID_START:
+      return {
+        ...state,
+        isFetching: true
+      };
+
+    case OfferType.FETCH_GENERIC_OFFER_BY_ID_SUCCESS:
+      return {
+        ...state,
+        isFetching: false,
+        soleOffer: payload
+      };
+
+    case OfferType.FETCH_GENERIC_OFFER_BY_ID_FAILURE:
+      return {
+        ...state,
+        isFetching: false,
         error: payload
       };
 

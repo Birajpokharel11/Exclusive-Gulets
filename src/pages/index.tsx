@@ -70,7 +70,6 @@ export const getServerSideProps = wrapper.getServerSideProps(
         store.dispatch(checkDomainStart(subdomain));
         store.dispatch(fetchYachtsStart());
         store.dispatch(fetchRandomDestinationStart());
-        store.dispatch(fetchOfferStart());
         store.dispatch(fetchHomeStart());
         store.dispatch(END);
 

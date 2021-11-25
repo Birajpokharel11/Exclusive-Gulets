@@ -96,9 +96,12 @@ const YachtsReducer = (state = INITIAL_STATE, action) => {
       };
 
     case YachtsType.CREATE_YACHT_SUCCESS:
+      console.log('payload', payload);
       return {
         ...state,
-        isCreating: false
+        isCreating: false,
+
+        adminYachtsList: state.adminYachtsList.concat(payload)
       };
 
     case YachtsType.CREATE_YACHT_FAILURE:

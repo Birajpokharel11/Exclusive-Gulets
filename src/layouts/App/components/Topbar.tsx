@@ -52,7 +52,7 @@ const useStyles = makeStyles((theme) => ({
   AppBar: {
     height: '72px',
     maxWidth: '100%',
-    zIndex: theme.zIndex.modal + 1
+    zIndex: 1
   },
   tab: {
     fontFamily: 'Lato',
@@ -109,14 +109,15 @@ export default function Header({
     domain: { name }
   }
 }) {
-  const trigger = useScrollTrigger();
-
   const classes = useStyles();
-
   const [value, setValue] = useState(0);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [open, setOpen] = useState(false);
-
+  const trigger = useScrollTrigger({
+    disableHysteresis: true,
+    threshold: 50
+  });
+  console.log('Triggered', trigger);
   const handleChange = (e, value) => {
     setValue(value);
   };
@@ -194,7 +195,7 @@ export default function Header({
         elevation={0}
         className={classes.AppBar}
         style={{
-          backgroundColor: '#091527'
+          backgroundColor: trigger ? '#091527' : 'rgba(9, 21, 39, 0.8)'
         }}
       >
         <Toolbar>
@@ -219,7 +220,7 @@ export default function Header({
                 style={{ display: 'none', padding: '0', margin: '0' }}
               />
               <Link href="/yachts" passHref>
-                <a>
+                <a style={{ textDecoration: 'none' }}>
                   <Tab
                     className={classes.tab}
                     label="YACHTS"
@@ -228,7 +229,7 @@ export default function Header({
                 </a>
               </Link>
               <Link href="/yachts/offers" passHref>
-                <a>
+                <a style={{ textDecoration: 'none' }}>
                   <Tab
                     className={classes.tab}
                     label="OFFERS"
@@ -237,7 +238,7 @@ export default function Header({
                 </a>
               </Link>
               <Link href="/destinations" passHref>
-                <a>
+                <a style={{ textDecoration: 'none' }}>
                   <Tab
                     className={classes.tab}
                     label="DESTINATIONS"
@@ -246,7 +247,7 @@ export default function Header({
                 </a>
               </Link>
               <Link href="/experiences" passHref>
-                <a>
+                <a style={{ textDecoration: 'none' }}>
                   <Tab
                     className={classes.tab}
                     label="BESPOKE EXPERIENCES"
@@ -293,6 +294,7 @@ export default function Header({
                           ABOUT YOU
                         </MenuItem>
                       </Link>
+
                       <Link href="/dinning" passHref>
                         <MenuItem
                           className={clsx(classes.tab, classes.Menu)}
@@ -324,25 +326,25 @@ export default function Header({
             </Tooltip>
             {/* <Tooltip> */}
             <IconButton
-              href="tel:+44 2081445834"
+              href="mailto:info@exclusivegulets.com"
               color="inherit"
               data-cy="PhoneEnabledIcon"
             >
-              <PhoneEnabledIcon />
+              <Image
+                src="/assets/images/Mail.png"
+                height={14}
+                width={20}
+                alt="Search"
+              />
             </IconButton>{' '}
             {/* </Tooltip> */}
           </Hidden>
           <IconButton
-            href="mailto:info@exclusivegulets.com"
+            href="tel:+44 2081445834"
             color="inherit"
             data-cy="EmailIcon"
           >
-            <Image
-              src="/assets/images/Mail.png"
-              height={14}
-              width={20}
-              alt="Search"
-            />
+            <PhoneEnabledIcon />
           </IconButton>{' '}
           <Hidden smDown>
             <Divider
@@ -425,19 +427,16 @@ export default function Header({
                   />
                 </IconButton>
                 <IconButton color="inherit" data-cy="TMB-PhoneEnabledIcon">
-                  <PhoneEnabledIcon />
+                  <Image
+                    src="/assets/images/Mail.png"
+                    height={14}
+                    width={20}
+                    alt="Search"
+                  />
                 </IconButton>{' '}
               </div>
             </Hidden>
             <div style={{ display: 'flex', alignItems: 'center' }}>
-              <Divider
-                orientation="vertical"
-                flexItem
-                style={{
-                  backgroundColor: 'rgba(255, 255, 255,  0.23)',
-                  marginTop: '4px'
-                }}
-              />
               <IconButton color="inherit" data-cy="TMB-PersonIcon">
                 <PersonIcon />{' '}
                 <Typography className={classes.tab}>Members</Typography>
@@ -452,7 +451,15 @@ export default function Header({
               data-cy="TMB-YATCHS"
             >
               <ListItem className={classes.listStyle}>
-                <ListItemText primary="YACHTS" />
+                <ListItemText
+                  primary={
+                    <Link href="/yachts" passHref>
+                      <Typography variant="h4" style={{ color: 'white' }}>
+                        YACHTS
+                      </Typography>
+                    </Link>
+                  }
+                ></ListItemText>
               </ListItem>
             </Button>
             <Divider variant="middle" style={{ backgroundColor: 'white' }} />
@@ -465,11 +472,13 @@ export default function Header({
               <ListItem className={classes.listStyle}>
                 <ListItemText
                   primary={
-                    <Typography variant="h4" style={{ color: 'white' }}>
-                      OFFERS
-                    </Typography>
+                    <Link href="/yachts/offers" passHref>
+                      <Typography variant="h4" style={{ color: 'white' }}>
+                        OFFERS
+                      </Typography>
+                    </Link>
                   }
-                />
+                ></ListItemText>
               </ListItem>{' '}
             </Button>
             <Divider variant="middle" style={{ backgroundColor: 'white' }} />
@@ -482,9 +491,11 @@ export default function Header({
               <ListItem className={classes.listStyle}>
                 <ListItemText
                   primary={
-                    <Typography variant="h4" style={{ color: 'white' }}>
-                      DESTINATIONS
-                    </Typography>
+                    <Link href="/destinations" passHref>
+                      <Typography variant="h4" style={{ color: 'white' }}>
+                        DESTINATIONS
+                      </Typography>
+                    </Link>
                   }
                 />
               </ListItem>{' '}
@@ -499,9 +510,11 @@ export default function Header({
               <ListItem className={classes.listStyle}>
                 <ListItemText
                   primary={
-                    <Typography variant="h4" style={{ color: 'white' }}>
-                      BESPOKE EXPERIENCES
-                    </Typography>
+                    <Link href="/experiences" passHref>
+                      <Typography variant="h4" style={{ color: 'white' }}>
+                        BESPOKE EXPERIENCES
+                      </Typography>
+                    </Link>
                   }
                 />
               </ListItem>{' '}
@@ -516,9 +529,11 @@ export default function Header({
               <ListItem className={classes.listStyle}>
                 <ListItemText
                   primary={
-                    <Typography variant="h4" style={{ color: 'white' }}>
-                      NEWS & BLOGS
-                    </Typography>
+                    <Link href="/blogs" passHref>
+                      <Typography variant="h4" style={{ color: 'white' }}>
+                        NEWS & BLOGS
+                      </Typography>
+                    </Link>
                   }
                 />
               </ListItem>{' '}
@@ -533,9 +548,11 @@ export default function Header({
               <ListItem className={classes.listStyle}>
                 <ListItemText
                   primary={
-                    <Typography variant="h4" style={{ color: 'white' }}>
-                      ABOUTYOU
-                    </Typography>
+                    <Link href="/about" passHref>
+                      <Typography variant="h4" style={{ color: 'white' }}>
+                        ABOUT YOU
+                      </Typography>
+                    </Link>
                   }
                 />
               </ListItem>{' '}
@@ -549,9 +566,11 @@ export default function Header({
               <ListItem className={classes.listStyle}>
                 <ListItemText
                   primary={
-                    <Typography variant="h4" style={{ color: 'white' }}>
-                      DINNING
-                    </Typography>
+                    <Link href="dinning" passHref>
+                      <Typography variant="h4" style={{ color: 'white' }}>
+                        DINNING
+                      </Typography>
+                    </Link>
                   }
                 />
               </ListItem>{' '}

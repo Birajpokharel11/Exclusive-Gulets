@@ -14,6 +14,7 @@ const useStyles = makeStyles(() => ({
     background: '#FB4E4E',
     color: '#ffffff',
     width: '8rem',
+    height: '2.5rem',
     '&:hover': {
       backgroundColor: '#FB4E4E',
       boxShadow: 'none'
@@ -67,7 +68,7 @@ const ConfirmDelete = ({
             <Grid item>
               <Button
                 variant="outlined"
-                color="primary"
+                color="secondary"
                 onClick={handleClose}
                 className={classes.cancel}
               >

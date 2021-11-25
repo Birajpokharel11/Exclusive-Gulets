@@ -48,8 +48,9 @@ export const createYachtStart = (formData) => ({
   payload: { formData }
 });
 
-export const createYachtSuccess = () => ({
-  type: YachtsType.CREATE_YACHT_SUCCESS
+export const createYachtSuccess = (result) => ({
+  type: YachtsType.CREATE_YACHT_SUCCESS,
+  payload: result
 });
 
 export const createYachtFailure = (error) => ({

@@ -58,9 +58,11 @@ export function* createYachtAsync({ payload }: AnyAction) {
     console.log('createYachtAsync>>', formData);
     const { data } = yield axiosConfig.post(`api/yacht/create`, formData);
     console.log('createYachtAsync data>>', data);
-    yield put(postsAction.createYachtSuccess());
     if (data.status === 'success') {
       yield put(openAlert('yacht created successfully!!', 'success'));
+      yield put(
+        postsAction.createYachtSuccess({ ...formData, id: data.detail.data.id })
+      );
     } else {
       yield put(openAlert(data.status, 'error'));
     }

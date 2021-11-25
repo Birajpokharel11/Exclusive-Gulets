@@ -22,8 +22,9 @@ import container from './Home.container';
 const useStyles = makeStyles((theme) =>
   createStyles({
     root: {
-      height: 'calc(100vh - 64px)',
-      padding: 0
+      height: '100vh',
+      padding: 0,
+      marginTop: '-72px'
     }
   })
 );

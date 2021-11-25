@@ -11,7 +11,8 @@ const useStyles = makeStyles(() => ({
     height: '100%'
   },
   content: {
-    height: '100%'
+    height: '100%',
+    marginTop: '-72px'
   }
 }));
 
@@ -23,7 +24,6 @@ const Main = (props) => {
   return (
     <div className={classes.root}>
       <Topbar {...rest} />
-      <CustomAlert {...alert} />
       <main className={classes.content}>{children}</main>
       <Footer />
     </div>

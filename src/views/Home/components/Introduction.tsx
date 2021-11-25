@@ -1,7 +1,7 @@
 import React from 'react';
 import Image from 'next/image';
 import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
-import { Container, Grid, Box, Button } from '@material-ui/core';
+import { Container, Grid, Box, Button, Hidden } from '@material-ui/core';
 import Underline from '@assets/images/svg/blue_large_underline.svg';
 import Wheel from '@assets/images/Why_Charter/wheel.svg';
 
@@ -10,8 +10,9 @@ import Typography from '@modules/components/Typography';
 const useStyles = makeStyles((theme) =>
   createStyles({
     root: {
-      padding: '4rem 0',
-      position: 'relative'
+      padding: '60px 0',
+      position: 'relative',
+      height: '40vh'
     },
     btnLabel: {
       color: '#ab3996',
@@ -23,7 +24,10 @@ const useStyles = makeStyles((theme) =>
       position: 'absolute',
       right: 0,
       bottom: -80,
-      zIndex: -10
+      zIndex: -10,
+      [theme.breakpoints.down('sm')]: {
+        display: 'none'
+      }
     }
   })
 );
@@ -39,11 +43,10 @@ export default function Introduction() {
             align="center"
             variant="h2"
             id="home-intro"
+            stripped
           >
             Luxury Gulet & Yacht Charter Experts since 2009
           </Typography>
-
-          <Image src={Underline} alt="underline" />
 
           <Typography align="center" color="textPrimary" variant="subtitle1">
             Exclusive Gulets was founded when not many people new the meaning of

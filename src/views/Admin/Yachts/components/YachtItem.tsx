@@ -43,7 +43,12 @@ function YachtItem({ name, yachtType, id, mainImage, ...rest }) {
         <Grid container spacing={2}>
           <Grid item>
             <ButtonBase className={classes.image}>
-              <img width={128} height={128} alt="complex" src={mainImage} />
+              <img
+                width={128}
+                height={128}
+                alt="complex"
+                src={mainImage || '/assets/images/Yatchss.png'}
+              />
             </ButtonBase>
           </Grid>
           <Grid item xs={12} sm container>

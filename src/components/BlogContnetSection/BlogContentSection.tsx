@@ -139,6 +139,7 @@ export default function BlogContentSection(props) {
                 >
                   <Typography
                     variant="subtitle2"
+                    align="justify"
                     dangerouslySetInnerHTML={createMarkup(individual?.content)}
                   />
                 </Container>

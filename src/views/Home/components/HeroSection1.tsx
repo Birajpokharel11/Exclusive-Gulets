@@ -166,37 +166,35 @@ export const HomeVideo = ({ isIOS }) => {
       />
       <Box className={classes.overlay} style={{ paddingBottom: '3.5rem' }}>
         <Container>
-          <Hidden xsDown>
-            <div
-              className={classes.controls}
-              style={{ display: isLoading ? 'none' : 'flex' }}
+          <div
+            className={classes.controls}
+            style={{ display: isLoading ? 'none' : 'flex' }}
+          >
+            <IconButton
+              className={classes.controlBtn}
+              id="button-play-fullscreen"
+              onClick={() => {
+                setMuted(false);
+                if (screenfull.isEnabled) {
+                  screenfull.request(playerRef.current.wrapper);
+                }
+              }}
+              hidden={isIOS}
             >
-              <IconButton
-                className={classes.controlBtn}
-                id="button-play-fullscreen"
-                onClick={() => {
-                  setMuted(false);
-                  if (screenfull.isEnabled) {
-                    screenfull.request(playerRef.current.wrapper);
-                  }
-                }}
-                hidden={isIOS}
-              >
-                <PlayIcon className={classes.playIcon} />
-              </IconButton>
-              <IconButton
-                className={classes.controlBtn}
-                id="button-sound-toggle"
-                onClick={() => setMuted(!muted)}
-              >
-                {muted ? (
-                  <SoundVolumeIcon className={classes.volumeIcon} />
-                ) : (
-                  <SoundMutedIcon className={classes.volumeIcon} />
-                )}
-              </IconButton>
-            </div>
-          </Hidden>
+              <PlayIcon className={classes.playIcon} />
+            </IconButton>
+            <IconButton
+              className={classes.controlBtn}
+              id="button-sound-toggle"
+              onClick={() => setMuted(!muted)}
+            >
+              {muted ? (
+                <SoundVolumeIcon className={classes.volumeIcon} />
+              ) : (
+                <SoundMutedIcon className={classes.volumeIcon} />
+              )}
+            </IconButton>
+          </div>
 
           <Typography
             variant="h1"

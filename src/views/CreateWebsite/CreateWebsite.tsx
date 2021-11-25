@@ -261,7 +261,7 @@ export function FormikStepper({
         onOpenAlert('This email is valid', 'success');
         handleNext();
       } else {
-        onOpenAlert('This email is invalid', 'error');
+        onOpenAlert('  User exists with this email address', 'error');
       }
     } else {
       setStep((s) => s + 1);

@@ -65,7 +65,7 @@ export function* onSigninAsync({
     yield put(authActions.loadUserStart(route));
   } catch (err) {
     console.error('error received onSigninAsync>>>', err);
-    yield put(openAlert('Internal Server Error!!', 'error'));
+    yield put(openAlert('Invalid Email or password', 'error'));
     yield put(authActions.signinFail(err));
   }
 }

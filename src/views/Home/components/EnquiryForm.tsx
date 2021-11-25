@@ -55,7 +55,8 @@ const useStyles = makeStyles((theme) =>
       width: '180px',
       border: '1px solid rgba(42, 57, 141, 0.5)',
       borderRadius: '4px',
-      [theme.breakpoints.down('sm')]: { width: '105px' }
+      [theme.breakpoints.down('sm')]: { width: '105px' },
+      [theme.breakpoints.down(375)]: { width: '90px' }
     },
     TextFieldName: {
       borderRadius: '4px',
@@ -78,7 +79,8 @@ const useStyles = makeStyles((theme) =>
       marginTop: '10px',
       width: '180px',
       [theme.breakpoints.down('sm')]: { width: '166px' },
-      [theme.breakpoints.down('sm')]: { width: '161px' }
+      [theme.breakpoints.down('sm')]: { width: '161px' },
+      [theme.breakpoints.down(375)]: { width: '130px' }
     },
     TextFieldMobile: {
       borderRadius: '4px',
@@ -98,7 +100,8 @@ const useStyles = makeStyles((theme) =>
       width: '100vw',
       paddingLeft: '20px',
       [theme.breakpoints.down('xs')]: { padding: '0 30px' },
-      [theme.breakpoints.down(390)]: { padding: '0 20px' }
+      [theme.breakpoints.down(390)]: { padding: '0 20px' },
+      [theme.breakpoints.down(375)]: { padding: '0 18px' }
     }
   })
 );
@@ -162,7 +165,7 @@ export default function EnquiryForm() {
           </Grid>
         </Grid>
       </Container>
-      {matches && <div style={{ paddingBottom: '51px' }} />}
+      {matches && <div style={{ paddingBottom: '91px' }} />}
       <div style={{ paddingTop: '59px' }} />
       <Container className={classes.Container}>
         <form onSubmit={formik.handleSubmit}>

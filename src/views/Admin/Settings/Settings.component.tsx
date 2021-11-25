@@ -19,7 +19,6 @@ import { TextField, Select } from 'formik-material-ui';
 import * as Yup from 'yup';
 import InsertPhotoIcon from '@material-ui/icons/InsertPhoto';
 import UploadFile from '@components/SingleUpload';
-import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css'; // ES6
 
 import { IAuthState } from '@store/interfaces';
@@ -76,6 +75,9 @@ function Blogs({
     raw: null
   });
   const [address, setAddress] = useState('');
+
+  const ReactQuill =
+    typeof window === 'object' ? require('react-quill') : () => false;
 
   useEffect(() => {
     setMainImage({
@@ -135,7 +137,6 @@ function Blogs({
                   youtube: currentUser.youtube ?? '',
                   contactEmail: currentUser.contactEmail,
                   contactPhoneNumber: currentUser.contactPhoneNumber,
-                  address: address,
                   heroHeading: currentUser.heroHeading ?? '',
                   heroSubHeading: currentUser.heroSubHeading ?? ''
                 }}

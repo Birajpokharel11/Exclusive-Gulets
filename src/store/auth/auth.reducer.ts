@@ -10,7 +10,7 @@ const INITIAL_STATE: IAuthState = {
   uploading: false,
   newUser: {},
   error: null,
-  loading: false,
+  loading: true,
   isEditing: false
 };
 

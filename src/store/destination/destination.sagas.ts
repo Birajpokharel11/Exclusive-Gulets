@@ -86,7 +86,7 @@ export function* watchFetchDestination() {
 
 export function* watchSubmitDestination() {
   yield takeLatest(
-    DestinationType.SUBMIT_DESTINATION_START,
+    DestinationType.CREATE_DESTINATION_START,
     submitDestinationAsync
   );
 }

@@ -85,8 +85,6 @@ function EditExperiences({
     }
   }, [onFetchExperienceByIdStart, router]);
 
-  console.log('soleExperience>>>', soleExperience);
-
   const [mainImage, setMainImage] = React.useState({
     preview: soleExperience.featuredImage,
     raw: null
@@ -138,6 +136,9 @@ function EditExperiences({
   ////////
   const submitMainImage = (e) => {
     e.preventDefault();
+
+    alert('submit!!');
+
     onPicAddStart(
       {
         selectedFile: mainImage.raw,

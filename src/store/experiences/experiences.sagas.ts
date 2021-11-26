@@ -102,6 +102,7 @@ export function* deleteExperienceAsync({
 export function* createPictureAsync({
   payload: { formData, imgCode }
 }: AnyAction) {
+  alert('createPictureAsync>>>');
   const imageData = {
     id: 1,
     type: 'experience',

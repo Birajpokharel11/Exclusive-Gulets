@@ -47,16 +47,21 @@ export const fetchDestinationByIdFailure = (error) => ({
 });
 
 export const submitDestinationStart = (formData) => ({
-  type: DestinationType.SUBMIT_DESTINATION_START,
+  type: DestinationType.CREATE_DESTINATION_START,
   payload: { formData }
 });
 
 export const submitDestinationSuccess = (result) => ({
-  type: DestinationType.SUBMIT_DESTINATION_SUCCESS,
+  type: DestinationType.CREATE_DESTINATION_SUCCESS,
   payload: result
 });
 
 export const submitDestinationFailure = (error) => ({
-  type: DestinationType.SUBMIT_DESTINATION_FAIL,
+  type: DestinationType.CREATE_DESTINATION_FAIL,
   payload: error
+});
+
+export const deleteDestinationStart = (id, handleClose) => ({
+  type: DestinationType.DELETE_DESTINATION_START,
+  payload: { id, handleClose }
 });

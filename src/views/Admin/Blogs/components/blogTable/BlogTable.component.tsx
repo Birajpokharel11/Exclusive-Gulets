@@ -70,9 +70,8 @@ interface Props {
   auth?: any;
   route?: string;
   next_page?: number;
-  onCreatePostStart?: (formData) => any;
   onFetchPostsStart?: (formData) => any;
-  onDeleteExperienceStart?: (id, handleClose) => any;
+  onDeletePostStart?: (toDeleteId, handleClose) => any;
 }
 
 const TableList = (props) => {
@@ -134,7 +133,7 @@ const TableList = (props) => {
 
 function ExperiencesTable({
   posts: { postsList, next_page, isCreating, isDeleting },
-  onDeleteExperienceStart
+  onDeletePostStart
 }: Props) {
   const classes = useStyles();
   const [page, setpage] = React.useState(0);
@@ -153,7 +152,7 @@ function ExperiencesTable({
   };
 
   const deleteDataHandler = () => {
-    onDeleteExperienceStart(toDeleteId, handleClose);
+    onDeletePostStart(toDeleteId, handleClose);
   };
 
   const filteredPosts = postsList.filter((post) => post.status === 'Active');

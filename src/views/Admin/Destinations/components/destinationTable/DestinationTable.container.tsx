@@ -1,8 +1,5 @@
 import { connect } from 'react-redux';
-import {
-  createExperienceStart,
-  deleteExperienceStart
-} from '@store/experiences/experiences.actions';
+import { deleteDestinationStart } from '@store/destination/destination.actions';
 
 const mapStateToProps = (state, props) => ({
   destination: state.destination,
@@ -11,22 +8,8 @@ const mapStateToProps = (state, props) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  onCreateExperienceStart: (
-    formData,
-    mainSelectedFile,
-    sideSelectedFile,
-    domainName
-  ) =>
-    dispatch(
-      createExperienceStart(
-        formData,
-        mainSelectedFile,
-        sideSelectedFile,
-        domainName
-      )
-    ),
-  onDeleteExperienceStart: (id, handleClose) =>
-    dispatch(deleteExperienceStart(id, handleClose))
+  onDeleteDestinationStart: (id, handleClose) =>
+    dispatch(deleteDestinationStart(id, handleClose))
 });
 
 const container = connect(mapStateToProps, mapDispatchToProps);

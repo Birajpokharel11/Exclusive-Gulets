@@ -55,8 +55,8 @@ export function* fetchPostsaByIdAsync({
   try {
     const { data } = yield axiosConfig.get(`api/getBlogsById/${id}`);
 
-    console.log('fetchPostsaByIdAsync data>>', data.detail.data[0]);
-    yield put(postsAction.fetchPostsByIdSuccess(data.detail.data[0]));
+    console.log('fetchPostsaByIdAsync data>>', data.detail.data);
+    yield put(postsAction.fetchPostsByIdSuccess(data.detail.data));
   } catch (err) {
     console.error('error received>>>', err);
     yield put(postsAction.fetchPostsByIdFailure(err));

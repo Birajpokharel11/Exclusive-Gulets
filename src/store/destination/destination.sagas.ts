@@ -41,7 +41,9 @@ export function* submitDestinationAsync({ payload: { formData } }: AnyAction) {
     }
   } catch (err) {
     console.error('error received>>>', err);
-    yield put(destinationAction.fetchDestinationFailure(err));
+    yield put(openAlert('Failed to save destination', 'error'));
+
+    yield put(destinationAction.submitDestinationFailure(err));
   }
 }
 

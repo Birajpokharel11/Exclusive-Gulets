@@ -210,12 +210,10 @@ export default function Header({
         <Toolbar>
           <div onClick={() => router.push('/', undefined, { shallow: true })}>
             {data?.logo ? (
-              <Avatar
-                alt="Person"
-                className={avatarClass.avatar}
-                src={data.logo}
-                ref={anchorRef}
-                onClick={handleToggle}
+              <img
+                src={data?.logo}
+                alt="img"
+                style={{ height: '50px', width: '100px' }}
               />
             ) : (
               <Typography

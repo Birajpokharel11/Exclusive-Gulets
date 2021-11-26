@@ -56,13 +56,13 @@ export default function Introduction() {
             Gulet Cruising”.{' '}
           </Typography>
 
-          <Button
+          {/* <Button
             size="small"
             classes={{ label: classes.btnLabel }}
             disableTouchRipple
           >
             Read More
-          </Button>
+          </Button> */}
         </Box>
       </Container>
       <div className={classes.wheelImage}>

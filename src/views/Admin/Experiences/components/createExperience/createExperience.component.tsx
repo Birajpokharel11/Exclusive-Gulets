@@ -161,11 +161,7 @@ function CreateExperiences({
             onSubmit={(values, { setSubmitting }) => {
               onCreateExperienceStart({
                 ...values,
-                sideImage: 'sideImage',
-                slug: 'slug',
-                images: ['image1', 'image2'],
-                yachtList: ['1', '2'],
-                relatedExperiences: ['1', '2']
+                slug: 'slug'
               });
               setSubmitting(false);
             }}

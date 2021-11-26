@@ -1,5 +1,3 @@
-import { HYDRATE } from 'next-redux-wrapper';
-
 import * as DestinationType from './destination.types';
 
 import { IDestinationState } from '../interfaces';
@@ -17,8 +15,6 @@ const INITIAL_STATE: IDestinationState = {
 const destinationReducer = (state = INITIAL_STATE, action) => {
   const { type, payload } = action;
   switch (type) {
-    case HYDRATE:
-      return { ...state, ...payload.destination };
     case DestinationType.FETCH_DESTINATION_START:
       return {
         ...state,

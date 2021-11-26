@@ -1,5 +1,3 @@
-import { HYDRATE } from 'next-redux-wrapper';
-
 import * as AuthType from './auth.types';
 
 import { IAuthState } from '../interfaces';
@@ -18,9 +16,6 @@ const INITIAL_STATE: IAuthState = {
 const authReducer = (state = INITIAL_STATE, action) => {
   const { type, payload } = action;
   switch (type) {
-    case HYDRATE:
-      return { ...state, ...payload.auth };
-
     case AuthType.SIGN_IN_START:
     case AuthType.SIGN_UP_START:
     case AuthType.SIGN_UP_BROKER_START:

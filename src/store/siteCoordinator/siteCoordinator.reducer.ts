@@ -1,5 +1,3 @@
-import { HYDRATE } from 'next-redux-wrapper';
-
 import * as SiteCoordinatorType from './siteCoordinator.types';
 
 const INITIAL_STATE = {
@@ -17,9 +15,6 @@ const siteCoordinatorReducer = (state = INITIAL_STATE, action) => {
   let updatedState;
 
   switch (type) {
-    case HYDRATE:
-      return { ...state, ...payload.siteCoordinator };
-
     case SiteCoordinatorType.LANGUAGE_CHANGE:
       updatedState = {
         ...state,

@@ -1,5 +1,3 @@
-import { HYDRATE } from 'next-redux-wrapper';
-
 import * as OfferType from './offer.types';
 
 import { IOfferState } from '../interfaces';
@@ -17,9 +15,6 @@ const INITIAL_STATE: IOfferState = {
 const destinationReducer = (state = INITIAL_STATE, action) => {
   const { type, payload } = action;
   switch (type) {
-    case HYDRATE:
-      return { ...state, ...payload.offer };
-
     case OfferType.FETCH_OFFER_START:
       return {
         ...state,

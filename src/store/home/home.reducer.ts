@@ -1,5 +1,3 @@
-import { HYDRATE } from 'next-redux-wrapper';
-
 import * as HomeType from './home.types';
 
 import { IHomeState } from '../interfaces';
@@ -13,9 +11,6 @@ const INITIAL_STATE: IHomeState = {
 const homeReducer = (state = INITIAL_STATE, action) => {
   const { type, payload } = action;
   switch (type) {
-    case HYDRATE:
-      return { ...state, ...payload.home };
-
     case HomeType.FETCH_HOME_START:
       return {
         ...state,

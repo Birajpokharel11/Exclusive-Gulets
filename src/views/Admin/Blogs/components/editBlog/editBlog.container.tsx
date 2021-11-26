@@ -18,8 +18,8 @@ const mapDispatchToProps = (dispatch) => ({
     dispatch(
       editPostStart(formData, mainSelectedFile, sideSelectedFile, domainName)
     ),
-  onPicAddStart: (formData, imgCode) =>
-    dispatch(uploadPostImgStart(formData, imgCode))
+  onPicAddStart: (imgData, imgCode, formData) =>
+    dispatch(uploadPostImgStart(imgData, imgCode, formData))
 });
 
 const container = connect(mapStateToProps, mapDispatchToProps);

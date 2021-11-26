@@ -80,7 +80,7 @@ export function* deleteExperienceAsync({
 }: AnyAction) {
   try {
     console.log('entered deleteExperienceAsync>>>', id);
-    const { data } = yield axiosConfig.post(`api/experience/delete`, { id });
+    const { data } = yield axiosConfig.post(`/api/experience/delete`, { id });
     console.log('deleteExperienceAsync on success>>>', data);
     if (data.status === 200) {
       yield put(experiencesAction.deleteExperienceSuccess());
@@ -100,35 +100,36 @@ export function* deleteExperienceAsync({
 }
 
 export function* createPictureAsync({
-  payload: { formData, imgCode }
+  payload: { imgData, imgCode, formData }
 }: AnyAction) {
-  const imageData = {
+  console.log('createPictureAsync>>>', { imgData, imgCode, formData });
+  const newImgData = {
     id: 1,
     type: 'experience',
-    domain: formData.domainName
+    domain: imgData.domainName
   };
   try {
     // with authorization header
-    const { data } = yield axiosConfig.post(`api/putSignedUrl`, imageData);
+    const { data } = yield axiosConfig.post(`api/putSignedUrl`, newImgData);
     console.log('createPictureAsync data>>', data);
     // const yellow = data.url;
     // without authorization header
-    yield axios.put(data.url, formData.selectedFile, {
+    yield axios.put(data.url, imgData.selectedFile, {
       headers: {
-        'Content-Type': formData.selectedFile.type
+        'Content-Type': imgData.selectedFile.type
       }
     });
     if (imgCode === 'main') {
       imgCode = 'featuredImage';
       yield axiosConfig.post('api/experience/edit', {
-        id: formData.id,
+        ...formData,
         featuredImage: data.objectKey
       });
     } else if (imgCode === 'side') {
       imgCode = 'sideImage';
 
       yield axiosConfig.post('api/experience/edit', {
-        id: formData.id,
+        ...formData,
         sideImage: data.objectKey
       });
     }

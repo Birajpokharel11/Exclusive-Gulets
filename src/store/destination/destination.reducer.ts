@@ -36,19 +36,19 @@ const destinationReducer = (state = INITIAL_STATE, action) => {
         error: payload
       };
 
-    case DestinationType.SUBMIT_DESTINATION_START:
+    case DestinationType.CREATE_DESTINATION_START:
       return {
         ...state,
         isSubmitting: true
       };
 
-    case DestinationType.SUBMIT_DESTINATION_SUCCESS:
+    case DestinationType.CREATE_DESTINATION_SUCCESS:
       return {
         ...state,
         isSubmitting: false
       };
 
-    case DestinationType.SUBMIT_DESTINATION_FAIL:
+    case DestinationType.CREATE_DESTINATION_FAIL:
       return {
         ...state,
         isSubmitting: false,

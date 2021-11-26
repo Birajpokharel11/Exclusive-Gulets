@@ -111,9 +111,9 @@ export const deletePostFailure = (error) => ({
   payload: error
 });
 
-export const uploadPostImgStart = (formData, imgCode) => ({
+export const uploadPostImgStart = (imgData, imgCode, formData?: any) => ({
   type: PostsType.UPLOAD_POST_START,
-  payload: { formData, imgCode }
+  payload: { imgData, formData, imgCode }
 });
 
 export const uploadPostImgSuccess = (imgCode, key) => ({

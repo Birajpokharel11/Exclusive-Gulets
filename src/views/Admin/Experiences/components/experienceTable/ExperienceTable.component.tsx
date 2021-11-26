@@ -68,7 +68,6 @@ interface Props {
   loading?: any;
   route?: string;
   next_page?: number;
-  onCreateExperienceStart?: (formData) => any;
   onDeleteExperienceStart?: (toDeleteId, handleClose) => any;
 }
 
@@ -131,7 +130,6 @@ const TableList = (props) => {
 
 function ExperiencesTable({
   experience: { isCreating, experiences, isDeleting },
-  onCreateExperienceStart,
   onDeleteExperienceStart
 }: Props) {
   const classes = useStyles();

@@ -68,8 +68,7 @@ interface Props {
   loading?: any;
   route?: string;
   next_page?: number;
-  onCreateExperienceStart?: (formData) => any;
-  onDeleteExperienceStart?: (toDeleteId, handleClose) => any;
+  onDeleteDestinationStart?: (toDeleteId, handleClose) => any;
 }
 
 const TableList = (props) => {
@@ -132,8 +131,7 @@ const TableList = (props) => {
 
 function ExperiencesTable({
   experience: { isCreating, experiences, isDeleting },
-  onCreateExperienceStart,
-  onDeleteExperienceStart
+  onDeleteDestinationStart
 }: Props) {
   const classes = useStyles();
   const [page, setpage] = React.useState(0);
@@ -152,7 +150,7 @@ function ExperiencesTable({
   };
 
   const deleteDataHandler = () => {
-    onDeleteExperienceStart(toDeleteId, handleClose);
+    onDeleteDestinationStart(toDeleteId, handleClose);
   };
 
   const filteredExperience = experiences.filter(

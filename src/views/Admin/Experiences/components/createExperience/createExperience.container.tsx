@@ -13,8 +13,8 @@ const mapStateToProps = (state, props) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  onPicAddStart: (formData, imgCode) =>
-    dispatch(uploadExperienceImgStart(formData, imgCode)),
+  onPicAddStart: (imgData, imgCode) =>
+    dispatch(uploadExperienceImgStart(imgData, imgCode)),
   onCreateExperienceStart: (formData) =>
     dispatch(createExperienceStart(formData)),
   onFetchExperiencesStart: (id) => dispatch(fetchExperiencesStart(id))

@@ -64,7 +64,7 @@ interface Props {
   next_page?: number;
   onCreateExperienceStart?: (formData) => any;
   onFetchExperiencesStart?: (formData) => any;
-  onPicAddStart?: (formData, imgCode) => any;
+  onPicAddStart?: (imgData, imgCode) => any;
 }
 function CreateExperiences({
   experience: { isCreating, experiences, loading },

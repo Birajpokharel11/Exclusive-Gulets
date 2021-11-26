@@ -1,8 +1,7 @@
 import { takeLatest, call, all, put } from 'redux-saga/effects';
-import axiosConfig from '@config/axios.config';
 import { AnyAction } from 'redux';
 
-import axios from 'axios';
+import axiosConfig from '@config/axios.config';
 
 import * as HomeType from './enquiry.types';
 import * as homeAction from './enquiry.actions';
@@ -30,8 +29,12 @@ export function* fetchEnqueriesAsync() {
     console.log('Here fetching enqueries list again ');
 
     console.log('dataEnquiry', data);
-    // yield put(homeAction.fetchEnqueriesSuccess(data));
-    yield put(openAlert('EnQuiry Successfully Submitted', 'success'));
+    if (data.status === 'success') {
+      yield put(homeAction.fetchEnqueriesSuccess(data));
+      yield put(openAlert('EnQuiry Successfully fetched!!', 'success'));
+    } else {
+      yield put(homeAction.fetchEnqueriesFailure('Data Not found!!'));
+    }
   } catch (err) {
     console.error('error received>>>', err);
     yield put(homeAction.fetchEnqueriesFailure(err));
@@ -65,7 +68,7 @@ export function* watchFetchEnqueriesById() {
   );
 }
 
-export function* homeSagas() {
+export function* enquirySagas() {
   yield all([
     call(watchSubmitEnquiry),
     call(watchFetchEnqueries),

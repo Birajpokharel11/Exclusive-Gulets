@@ -9,6 +9,7 @@ import { postsSagas } from './posts/posts.sagas';
 import { homeSagas } from './home/home.sagas';
 import { dinningSagas } from './dining/dinning.sagas';
 import { charterSagas } from './whyCharter/charter.sagas';
+import { enquirySagas } from './enquiry/enquiry.sagas';
 import { siteCoordinatorSagas } from './siteCoordinator/siteCoordinator.sagas';
 
 export default function* rootSaga() {
@@ -22,6 +23,7 @@ export default function* rootSaga() {
     call(homeSagas),
     call(dinningSagas),
     call(charterSagas),
+    call(enquirySagas),
     call(siteCoordinatorSagas)
   ]);
 }

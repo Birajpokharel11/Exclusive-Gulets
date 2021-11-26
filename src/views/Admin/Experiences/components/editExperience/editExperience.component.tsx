@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import router, { useRouter } from 'next/router';
+import { useRouter } from 'next/router';
 import _ from 'lodash';
 
 import { createStyles, makeStyles } from '@material-ui/core/styles';
@@ -66,7 +66,7 @@ interface Props {
   onCreateExperienceStart?: (formData) => any;
   onEditExperienceStart?: (formData) => any;
   onFetchExperienceByIdStart?: (formData) => any;
-  onPicAddStart?: (formData, imgCode) => any;
+  onPicAddStart?: (imgData, imgCode, formData) => any;
 }
 
 function EditExperiences({
@@ -78,12 +78,13 @@ function EditExperiences({
   onPicAddStart
 }: Props) {
   const classes = useStyles();
+  const router = useRouter();
+
+  const id = router.query.slug;
 
   useEffect(() => {
-    if (router.query) {
-      onFetchExperienceByIdStart(router.query.id);
-    }
-  }, [onFetchExperienceByIdStart, router]);
+    onFetchExperienceByIdStart(id);
+  }, [onFetchExperienceByIdStart, id]);
 
   const [mainImage, setMainImage] = React.useState({
     preview: soleExperience.featuredImage,
@@ -137,20 +138,28 @@ function EditExperiences({
   const submitMainImage = (e) => {
     e.preventDefault();
 
-    alert('submit!!');
-
     onPicAddStart(
       {
         selectedFile: mainImage.raw,
-        domainName: currentUser.domainName
+        domainName: currentUser.domainName,
+        id: id
       },
-      'main'
+      'main',
+      { ...soleExperience }
     );
   };
 
   const submitSideImage = (e) => {
     e.preventDefault();
-    onPicAddStart({ selectedFile: sideImage.raw }, 'side');
+    onPicAddStart(
+      {
+        selectedFile: sideImage.raw,
+        domainName: currentUser.domainName,
+        id: id
+      },
+      'side',
+      { ...soleExperience }
+    );
   };
 
   return (
@@ -167,11 +176,12 @@ function EditExperiences({
           <Formik
             enableReinitialize
             initialValues={{
-              title: soleExperience.title,
-              metaDescription: soleExperience.metaDescription,
-              description: soleExperience.description,
-              content: soleExperience.content,
-              featured: soleExperience.featured
+              id: soleExperience.id,
+              title: soleExperience.title ?? '',
+              metaDescription: soleExperience.metaDescription ?? '',
+              description: soleExperience.description ?? '',
+              content: soleExperience.content ?? '',
+              featured: soleExperience.featured ?? false
             }}
             validationSchema={Yup.object({
               title: Yup.string().required('title is required'),
@@ -185,9 +195,7 @@ function EditExperiences({
             })}
             onSubmit={(values, { setSubmitting }) => {
               onEditExperienceStart({
-                ...values,
-                slug: 'slug',
-                id: router.query.id
+                ...values
               });
               setSubmitting(false);
             }}

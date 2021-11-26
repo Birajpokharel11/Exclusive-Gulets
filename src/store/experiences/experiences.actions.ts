@@ -82,9 +82,9 @@ export const deleteExperienceFailure = (error) => ({
   payload: error
 });
 
-export const uploadExperienceImgStart = (formData, imgCode) => ({
+export const uploadExperienceImgStart = (imgData, imgCode, formData?: any) => ({
   type: ExperiencesType.UPLOAD_EXPERIENCE_START,
-  payload: { formData, imgCode }
+  payload: { imgData, imgCode, formData }
 });
 
 export const uploadExperienceImgSuccess = (imgCode, key) => ({

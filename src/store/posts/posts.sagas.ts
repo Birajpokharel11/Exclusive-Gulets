@@ -128,35 +128,35 @@ export function* deletePostAsync({ payload: { id, handleClose } }: AnyAction) {
 }
 
 export function* createPictureAsync({
-  payload: { formData, imgCode }
+  payload: { imgData, formData, imgCode }
 }: AnyAction) {
-  const imageData = {
+  const newImgData = {
     id: 1,
     type: 'blog',
-    domain: formData.domainName
+    domain: imgData.domainName
   };
   try {
     // with authorization header
-    const { data } = yield axiosConfig.post(`api/putSignedUrl`, imageData);
+    const { data } = yield axiosConfig.post(`api/putSignedUrl`, newImgData);
     console.log('createPictureAsync data>>', data);
     // const yellow = data.url;
     // without authorization header
-    yield axios.put(data.url, formData.selectedFile, {
+    yield axios.put(data.url, imgData.selectedFile, {
       headers: {
-        'Content-Type': formData.selectedFile.type
+        'Content-Type': imgData.selectedFile.type
       }
     });
     if (imgCode === 'main') {
       imgCode = 'featuredImage';
       yield axiosConfig.post('api/blog/edit', {
-        id: formData.id,
+        ...formData,
         featuredImage: data.objectKey
       });
     } else if (imgCode === 'side') {
       imgCode = 'sideImage';
 
       yield axiosConfig.post('api/blog/edit', {
-        id: formData.id,
+        ...formData,
         sideImage: data.objectKey
       });
     }

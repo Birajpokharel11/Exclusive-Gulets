@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import router, { useRouter } from 'next/router';
+import { useRouter } from 'next/router';
 import _ from 'lodash';
 import { createStyles, makeStyles } from '@material-ui/core/styles';
 import {
@@ -66,7 +66,7 @@ interface Props {
   onFetchPostsStart?: (formData) => any;
   onFetchPostsByIdStart?: (formData) => any;
   onEditPostStart?: (formData) => any;
-  onPicAddStart?: (formData, imgCode) => any;
+  onPicAddStart?: (imgData, imgCode, formData) => any;
 }
 function EditExperiences({
   posts: { postsList, next_page, isCreating, soleBlog, isEditing },
@@ -76,12 +76,13 @@ function EditExperiences({
   onPicAddStart
 }: Props) {
   const classes = useStyles();
+  const router = useRouter();
+
+  const id = router.query.slug;
 
   useEffect(() => {
-    if (router.query) {
-      onFetchPostsByIdStart(router.query.id);
-    }
-  }, [onFetchPostsByIdStart, router]);
+    onFetchPostsByIdStart(id);
+  }, [onFetchPostsByIdStart, id]);
 
   const [mainImage, setMainImage] = React.useState({
     preview: null,
@@ -134,12 +135,14 @@ function EditExperiences({
   ////////
   const submitMainImage = (e) => {
     e.preventDefault();
+
     onPicAddStart(
       {
         selectedFile: mainImage.raw,
         domainName: currentUser.domainName
       },
-      'main'
+      'main',
+      { ...soleBlog }
     );
   };
 
@@ -147,10 +150,11 @@ function EditExperiences({
     e.preventDefault();
     onPicAddStart(
       {
-        selectedFile: mainImage.raw,
+        selectedFile: sideImage.raw,
         domainName: currentUser.domainName
       },
-      'side'
+      'main',
+      { ...soleBlog }
     );
   };
 
@@ -168,6 +172,7 @@ function EditExperiences({
           <Formik
             enableReinitialize
             initialValues={{
+              id: soleBlog.id,
               title: soleBlog.title,
               metaDescription: soleBlog.metaDescription,
               description: soleBlog.description,
@@ -186,9 +191,7 @@ function EditExperiences({
             })}
             onSubmit={(values, { setSubmitting }) => {
               onEditPostStart({
-                ...values,
-                slug: 'slug',
-                id: router.query.id
+                ...values
               });
               setSubmitting(false);
             }}

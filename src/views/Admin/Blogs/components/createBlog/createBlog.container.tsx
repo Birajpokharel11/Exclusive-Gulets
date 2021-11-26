@@ -13,8 +13,8 @@ const mapStateToProps = (state, props) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  onPicAddStart: (formData, imgCode) =>
-    dispatch(uploadPostImgStart(formData, imgCode)),
+  onPicAddStart: (imgData, imgCode, formData) =>
+    dispatch(uploadPostImgStart(imgData, imgCode, formData)),
   onCreatePostStart: (formData) => dispatch(createPostStart(formData))
 });
 

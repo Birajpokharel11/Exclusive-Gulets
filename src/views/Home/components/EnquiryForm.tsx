@@ -215,11 +215,11 @@ export default function EnquiryForm({
                     <MenuItem value="">
                       <em>None</em>
                     </MenuItem>
-                    <MenuItem value={10}>Mr.</MenuItem>
-                    <MenuItem value={20}>Ms.</MenuItem>
-                    <MenuItem value={30}>Mrs.</MenuItem>
-                    <MenuItem value={30}>Miss.</MenuItem>
-                    <MenuItem value={30}>Mx.</MenuItem>
+                    <MenuItem value="Mr">Mr.</MenuItem>
+                    <MenuItem value="Ms">Ms.</MenuItem>
+                    <MenuItem value="Mrs">Mrs.</MenuItem>
+                    <MenuItem value="Miss">Miss.</MenuItem>
+                    <MenuItem value="Mx">Mx.</MenuItem>
                   </Select>
                   {formik.touched.title && formik.errors.title && (
                     <FormHelperText>{formik.errors.title}</FormHelperText>

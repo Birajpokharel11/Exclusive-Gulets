@@ -3,7 +3,8 @@ import * as AuthType from './auth.types';
 import { IAuthState } from '../interfaces';
 
 const INITIAL_STATE: IAuthState = {
-  token: typeof window !== 'undefined' ? localStorage.getItem('token') : null,
+  access_token:
+    typeof window !== 'undefined' ? localStorage.getItem('access_token') : null,
   isAuthenticated: null,
   currentUser: {},
   uploading: false,
@@ -28,13 +29,13 @@ const authReducer = (state = INITIAL_STATE, action) => {
       };
 
     case AuthType.SIGN_IN_SUCCESS:
-      localStorage.setItem('token', payload.access_token);
+      localStorage.setItem('access_token', payload.access_token);
       localStorage.setItem('refresh_token', payload.refresh_token);
       localStorage.setItem('expires_in', payload.expires_in);
       return {
         ...state,
         ...payload,
-        token: payload.access_token,
+        access_token: payload.access_token,
         isAuthenticated: true,
         loading: false
       };

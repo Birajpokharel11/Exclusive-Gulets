@@ -22,8 +22,8 @@ import {
 } from './auth.actions';
 
 export function* loadUserAsync({ payload }: ReturnType<typeof loadUserStart>) {
-  if (localStorage.token) {
-    setAuthToken(localStorage.token);
+  if (localStorage['access_token']) {
+    setAuthToken(localStorage['access_token']);
   }
 
   try {

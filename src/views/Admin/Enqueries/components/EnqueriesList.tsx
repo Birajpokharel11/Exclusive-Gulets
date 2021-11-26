@@ -17,7 +17,8 @@ import {
   TableCell,
   IconButton,
   Avatar,
-  Paper
+  Paper,
+  Chip
 } from '@material-ui/core';
 import { IExperienceState } from '@store/interfaces';
 
@@ -62,13 +63,11 @@ const TableList = ({ list }) => {
 
   return list.map((item) => (
     <TableRow hover key={item.id}>
-      <TableCell>Biraj Pokharel</TableCell>
-      <TableCell>biraj@gmail.com</TableCell>
+      <TableCell>{item?.fullName}</TableCell>
+      <TableCell>{item?.email}</TableCell>
 
       <TableCell>
-        <Paper style={{ background: 'red' }}>
-          <Typography align="center">New</Typography>
-        </Paper>
+        <Chip label={item?.inquiriesStatus.name} style={{ color: '' }} />
       </TableCell>
       <TableCell className={classes.actionBtn} colSpan={2}>
         <Button>View</Button>

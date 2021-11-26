@@ -30,7 +30,7 @@ export function* fetchEnqueriesAsync() {
 
     console.log('dataEnquiry', data);
     if (data.status === 'success') {
-      yield put(homeAction.fetchEnqueriesSuccess(data));
+      yield put(homeAction.fetchEnqueriesSuccess(data.detail.data));
       yield put(openAlert('EnQuiry Successfully fetched!!', 'success'));
     } else {
       yield put(homeAction.fetchEnqueriesFailure('Data Not found!!'));

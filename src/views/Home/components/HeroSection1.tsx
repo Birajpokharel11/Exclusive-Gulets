@@ -88,7 +88,12 @@ const useStyles = makeStyles((theme) =>
   })
 );
 
-export const HomeVideo = ({ isIOS }) => {
+export const HomeVideo = ({
+  isIOS,
+  siteCoordinator: {
+    domain: { data }
+  }
+}) => {
   const classes = useStyles();
   const theme = useTheme();
   const matchesMD = useMediaQuery(theme.breakpoints.up('md'));
@@ -201,7 +206,7 @@ export const HomeVideo = ({ isIOS }) => {
             color="inherit"
             style={{ marginBottom: '15px' }}
           >
-            Explore the World of Exclusive Gulets
+            {data?.heroHeading}
           </Typography>
 
           <Typography
@@ -209,7 +214,7 @@ export const HomeVideo = ({ isIOS }) => {
             color="inherit"
             style={{ marginBottom: '32px' }}
           >
-            Experience Exceptional Yachting
+            {data?.heroSubHeading}
           </Typography>
 
           <Hidden xsDown>

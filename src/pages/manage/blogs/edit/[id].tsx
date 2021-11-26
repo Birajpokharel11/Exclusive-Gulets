@@ -9,9 +9,9 @@ import WithLayout from '@components/WithLayout';
 import Admin from '@layouts/Admin';
 import WithAuth from '@components/WithAuth';
 
-import Experience from '@views/Admin/Blogs/components/editBlog';
+import BlogPage from '@views/Admin/Blogs/components/editBlog';
 
-function CreateBlog() {
+function EditBlog() {
   return (
     <>
       <Head>
@@ -19,11 +19,11 @@ function CreateBlog() {
         <meta name="og:image" content="/assets/images/Blog/Hero-bg.jpg" />
       </Head>
 
-      <WithLayout component={Experience} layout={Admin} />
+      <WithLayout component={BlogPage} layout={Admin} />
     </>
   );
 }
 
-const WrappedPage = WithAuth(CreateBlog, ['ROLE_BROKER']);
+const WrappedPage = WithAuth(EditBlog, ['ROLE_BROKER']);
 
 export default WrappedPage;

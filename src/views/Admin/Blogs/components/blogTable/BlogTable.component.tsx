@@ -78,7 +78,7 @@ interface Props {
 const TableList = (props) => {
   const classes = useStyles();
 
-  const { experience, index, handleClickOpen } = props;
+  const { blog, index, handleClickOpen } = props;
 
   return (
     <TableRow hover>
@@ -93,8 +93,8 @@ const TableList = (props) => {
       <TableCell>
         <img
           src={
-            experience.featuredImage
-              ? experience.featuredImage
+            blog.featuredImage
+              ? blog.featuredImage
               : '/assets/images/not_found_image.png'
           }
           alt="image"
@@ -102,10 +102,10 @@ const TableList = (props) => {
         />
       </TableCell>
 
-      <TableCell> {experience.title ?? ''}</TableCell>
-      <TableCell>{trimString(experience.description) ?? ''}</TableCell>
+      <TableCell> {blog.title ?? ''}</TableCell>
+      <TableCell>{trimString(blog.description) ?? ''}</TableCell>
 
-      <TableCell>{trimString(experience.metaDescription) ?? ''}</TableCell>
+      <TableCell>{trimString(blog.metaDescription) ?? ''}</TableCell>
       <TableCell className={classes.actionBtn} colSpan={2}>
         <IconButton
           aria-label="edit"
@@ -113,8 +113,7 @@ const TableList = (props) => {
           size="small"
           onClick={() =>
             router.push({
-              pathname: '/manage/blogs/edit-blog',
-              query: { id: experience.id }
+              pathname: `/manage/blogs/edit/${blog.id}`
             })
           }
         >
@@ -124,7 +123,7 @@ const TableList = (props) => {
           aria-label="delete"
           edge="end"
           size="small"
-          onClick={() => handleClickOpen(experience.id)}
+          onClick={() => handleClickOpen(blog.id)}
         >
           <DeleteIcon color="primary" />
         </IconButton>
@@ -173,10 +172,10 @@ function ExperiencesTable({
           </TableRow>
         </TableHead>
         <TableBody>
-          {filteredPosts.map((experience, index) => (
+          {filteredPosts.map((blog, index) => (
             <TableList
-              key={experience.id}
-              experience={experience}
+              key={blog.id}
+              blog={blog}
               index={index}
               handleClickOpen={handleClickOpen}
             />

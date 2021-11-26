@@ -138,7 +138,6 @@ export default function EnquiryForm({
     },
     validationSchema: validationSchema,
     onSubmit: (values) => {
-      alert(JSON.stringify(values, null, 2));
       const formdata = {
         brokerId: data.id,
         title: values.title,

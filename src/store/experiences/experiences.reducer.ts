@@ -1,5 +1,3 @@
-import { HYDRATE } from 'next-redux-wrapper';
-
 import * as ExperiencesType from './experiences.types';
 
 import { IExperienceState } from '../interfaces';
@@ -18,9 +16,6 @@ const INITIAL_STATE: IExperienceState = {
 const experiencesReducer = (state = INITIAL_STATE, action) => {
   const { type, payload } = action;
   switch (type) {
-    case HYDRATE:
-      return { ...state, ...payload.experience };
-
     case ExperiencesType.FETCH_EXPERIENCES_START:
       return {
         ...state,

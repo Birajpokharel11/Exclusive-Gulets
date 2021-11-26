@@ -17,7 +17,7 @@ export function* fetchOfferAsync() {
     console.log('inside of fetch offer async');
     const { data } = yield axiosConfig.get(`api/offer/generic/list`);
 
-    if (data.status === 'success') {
+    if (data.status === 200) {
       yield put(destinationAction.fetchOfferSuccess(data.detail.data));
     } else {
       yield put(destinationAction.fetchOfferFailure(data.message));

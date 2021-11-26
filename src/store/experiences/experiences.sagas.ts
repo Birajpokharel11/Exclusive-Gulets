@@ -14,9 +14,7 @@ import * as experiencesAction from './experiences.actions';
 export function* fetchExperiencesAsync({ payload: { id } }: AnyAction) {
   try {
     console.log('fetchExperiencesAsync>>>', id);
-    const { data } = yield axiosConfig.get(
-      `public/getExperiencesByBroker/${id}`
-    );
+    const { data } = yield axiosConfig.get(`api/getExperiencesByBroker/${id}`);
 
     console.log('fetch experience value>>>', data);
 
@@ -29,7 +27,7 @@ export function* fetchExperiencesAsync({ payload: { id } }: AnyAction) {
 
 export function* fetchExperienceByIdAsync({ payload: { id } }: AnyAction) {
   try {
-    const { data } = yield axiosConfig.get(`public/getExperiencesById/${id}`);
+    const { data } = yield axiosConfig.get(`api/getExperiencesById/${id}`);
 
     console.log('individual experience data>>', data);
     yield put(

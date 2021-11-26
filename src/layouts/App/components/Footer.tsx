@@ -123,11 +123,11 @@ const Footer = ({
               EXCLUSIVE GULETS
             </Typography>
             <Typography
-              className={classes.ListItems2}
+              color="secondary"
               dangerouslySetInnerHTML={{ __html: address }}
             />
 
-            <Typography className={classes.ListItems2}>
+            <Typography className={classes.ListItems2} color="secondary">
               {contactEmail ?? ''}
               <br />
               {contactPhoneNumber ?? ''}

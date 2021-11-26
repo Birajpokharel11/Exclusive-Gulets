@@ -5,6 +5,8 @@ import axios from 'axios';
 import axiosConfig from '@config/axios.config';
 
 import { Limits, Sort } from '@utils/enums';
+import { openAlert } from '../alert/alert.actions';
+import router from 'next/router';
 
 import * as DestinationType from './destination.types';
 import * as destinationAction from './destination.actions';
@@ -27,12 +29,16 @@ export function* fetchDestinationAsync() {
 
 export function* submitDestinationAsync({ payload: { formData } }: AnyAction) {
   try {
-    const { data } = yield axiosConfig.post(
-      '/api/destination/create',
-      formData
-    );
-
-    yield put(destinationAction.fetchDestinationSuccess(data.destinations));
+    console.log('here in submit destination>>>', formData);
+    const { data } = yield axiosConfig.post('api/destination/create', formData);
+    if (data.status === 200) {
+      yield put(destinationAction.submitDestinationSuccess(data.destinations));
+      yield put(openAlert('Destination saved successfully!!!', 'success'));
+      router.push('/manage/destinations');
+    } else {
+      yield put(destinationAction.submitDestinationFailure(data.status));
+      yield put(openAlert('Failed to save destination', 'error'));
+    }
   } catch (err) {
     console.error('error received>>>', err);
     yield put(destinationAction.fetchDestinationFailure(err));

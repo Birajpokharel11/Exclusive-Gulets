@@ -34,6 +34,7 @@ import CloseIcon from '@material-ui/icons/Close';
 import PreviewDrawer from '@views/Yachts/components/PreviewDrawer';
 import SearchDialouge from '@components/SearchDialouge';
 import Tooltip from '@material-ui/core/Tooltip';
+import Avatar from '@material-ui/core/Avatar';
 
 const drawerWidth = 400;
 const useStyles = makeStyles((theme) => ({
@@ -104,9 +105,15 @@ const useStyles = makeStyles((theme) => ({
   // }
 }));
 
+const useStylesAvatar = makeStyles((theme) => ({
+  avatar: {
+    margin: theme.spacing(1)
+  }
+}));
+
 export default function Header({
   siteCoordinator: {
-    domain: { name }
+    domain: { name, data }
   }
 }) {
   const classes = useStyles();
@@ -121,6 +128,8 @@ export default function Header({
   const handleChange = (e, value) => {
     setValue(value);
   };
+
+  const avatarClass = useStylesAvatar();
 
   const handleDrawerOpen = () => {
     setMobileOpen(true);
@@ -200,13 +209,23 @@ export default function Header({
       >
         <Toolbar>
           <div onClick={() => router.push('/', undefined, { shallow: true })}>
-            <Typography
-              variant="h3"
-              color="secondary"
-              style={{ textTransform: 'uppercase' }}
-            >
-              {name ?? ''}
-            </Typography>
+            {data?.logo ? (
+              <Avatar
+                alt="Person"
+                className={avatarClass.avatar}
+                src={data.logo}
+                ref={anchorRef}
+                onClick={handleToggle}
+              />
+            ) : (
+              <Typography
+                variant="h3"
+                color="secondary"
+                style={{ textTransform: 'uppercase' }}
+              >
+                {name ?? ''}
+              </Typography>
+            )}
           </div>
           <div style={{ flexGrow: 1 }} />
           <Hidden mdDown>

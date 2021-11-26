@@ -1,7 +1,6 @@
 import { connect } from 'react-redux';
 
-import { createGenericOfferStart } from '@store/offer/offer.actions';
-import { fetchAdminYachtsStart } from '@store/yachts/yachts.actions';
+import { submitDestinationStart } from '@store/destination/destination.actions';
 
 const mapStateToProps = (state, props) => ({
   destination: state.destination,
@@ -12,9 +11,8 @@ const mapStateToProps = (state, props) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  onCreateGenericOfferStart: (formData) =>
-    dispatch(createGenericOfferStart(formData)),
-  onFetchYachtsStart: () => dispatch(fetchAdminYachtsStart())
+  onSubmitDestinationStart: (formData) =>
+    dispatch(submitDestinationStart(formData))
 });
 
 const container = connect(mapStateToProps, mapDispatchToProps);

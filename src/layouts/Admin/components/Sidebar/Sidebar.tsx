@@ -89,6 +89,12 @@ const Sidebar = (props) => {
       visible: !isVisible('ROLE_MANAGER')
     },
     {
+      title: 'Enqueries',
+      href: '/manage/enqueries',
+      icon: <DirectionsBoatIcon />,
+      visible: !isVisible('ROLE_MANAGER')
+    },
+    {
       title: 'Settings',
       href: '/manage/settings',
       icon: <SettingsIcon />,

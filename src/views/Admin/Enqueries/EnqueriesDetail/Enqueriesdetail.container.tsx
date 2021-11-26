@@ -4,16 +4,13 @@ import {
   fetchEnqueriesStart
 } from '@store/enquiry/enquiry.actions';
 
-const mapStateToProps = (state, props) => ({
+const mapStateToProps = (state) => ({
   auth: state.auth,
-  enquiry: state.enquiry
+  enquiry: state.enquiry.soloEnquiries
 });
-
 const mapDispatchToProps = (dispatch) => ({
-  onFetchEnqueriesStart: () => dispatch(fetchEnqueriesStart()),
-  onfetchEnqueriesByIdStart: (id) => dispatch(fetchEnqueriesByIdStart(id))
+  onFetchEnqueriesByIdStart: (id) => dispatch(fetchEnqueriesByIdStart(id))
 });
-
 const container = connect(mapStateToProps, mapDispatchToProps);
 
 export default container;

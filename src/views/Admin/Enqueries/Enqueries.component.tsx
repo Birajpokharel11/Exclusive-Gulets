@@ -46,12 +46,14 @@ interface Props {
   auth?: IAuthState;
   enquiry?: any;
   onFetchEnqueriesStart?: () => any;
+  onfetchEnqueriesByIdStart?: (id) => any;
 }
 
 function EnqueriesComponent({
   auth: { currentUser },
   enquiry: { loading, enquiries },
   onFetchEnqueriesStart,
+  onfetchEnqueriesByIdStart,
   ...rest
 }: Props) {
   const classes = useStyles();
@@ -59,7 +61,7 @@ function EnqueriesComponent({
 
   useEffect(() => {
     onFetchEnqueriesStart();
-  }, []);
+  }, [onFetchEnqueriesStart]);
 
   return (
     <>
@@ -77,7 +79,11 @@ function EnqueriesComponent({
               </Grid>
             </Grid>
             <Grid item container>
-              <EnqueriesList enquiries={enquiries} loading={loading} />
+              <EnqueriesList
+                enquiries={enquiries}
+                loading={loading}
+                onfetchEnqueriesByIdStart={onfetchEnqueriesByIdStart}
+              />
             </Grid>
           </Grid>
         </Container>

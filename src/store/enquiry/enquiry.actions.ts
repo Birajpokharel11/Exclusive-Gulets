@@ -37,7 +37,7 @@ export const fetchEnqueriesFailure = (error) => ({
 
 export const fetchEnqueriesByIdStart = (id) => ({
   type: HomeType.FETCH_ENQUERIES_By_Id_START,
-  payload: id
+  payload: { id }
 });
 
 export const fetchEnqueriesByIdSuccess = (result) => ({

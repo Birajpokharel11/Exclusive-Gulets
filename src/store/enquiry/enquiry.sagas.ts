@@ -46,11 +46,16 @@ export function* fetchEnqueriesByIdAsync({ payload: { id } }: AnyAction) {
   try {
     const { data } = yield axiosConfig.get(`/api/general-inquiries/get/${id}`);
     console.log('dataEnquiry', data);
-    yield put(homeAction.fetchEnqueriesSuccess(data));
-    yield put(openAlert('EnQuiry Successfully Submitted', 'success'));
+    if (data.status === 'success') {
+      yield put(homeAction.fetchEnqueriesByIdSuccess(data.detail.data));
+      yield put(openAlert('EnQuiry solo Sucessfully Loaded', 'success'));
+    } else {
+      yield put(homeAction.fetchEnqueriesByIdFailure('Data not found solo'));
+    }
   } catch (err) {
     console.error('error received>>>', err);
-    yield put(homeAction.fetchEnqueriesFailure(err));
+    yield put(homeAction.fetchEnqueriesByIdFailure(err));
+    yield put(openAlert('EnQuiry solo failed', 'error'));
   }
 }
 

@@ -21,6 +21,7 @@ import {
   Chip
 } from '@material-ui/core';
 import { IExperienceState } from '@store/interfaces';
+import { useRouter } from 'next/router';
 
 const useStyles = makeStyles((theme) =>
   createStyles({
@@ -56,13 +57,20 @@ const useStyles = makeStyles((theme) =>
 interface Props {
   enquiries?: any[];
   loading?: boolean;
+  onfetchEnqueriesByIdStart?: (id) => any;
 }
-
-const TableList = ({ list }) => {
+const TableList = ({ list, onfetchEnqueriesByIdStart }) => {
   const classes = useStyles();
+  const router = useRouter();
+
+  const handleIndividualList = (id) => {
+    router.push({
+      pathname: `/manage/enqueries/${id}`
+    });
+  };
 
   return list.map((item) => (
-    <TableRow hover key={item.id}>
+    <TableRow hover key={item.id} onClick={() => handleIndividualList(item.id)}>
       <TableCell>{item?.fullName}</TableCell>
       <TableCell>{item?.email}</TableCell>
 
@@ -76,7 +84,11 @@ const TableList = ({ list }) => {
   ));
 };
 
-function EnqueriesList({ enquiries, loading }: Props) {
+function EnqueriesList({
+  enquiries,
+  loading,
+  onfetchEnqueriesByIdStart
+}: Props) {
   const getContent = () => {
     if (loading && !enquiries.length) {
       return (
@@ -92,7 +104,12 @@ function EnqueriesList({ enquiries, loading }: Props) {
       );
     }
 
-    return <TableList list={enquiries} />;
+    return (
+      <TableList
+        list={enquiries}
+        onfetchEnqueriesByIdStart={onfetchEnqueriesByIdStart}
+      />
+    );
   };
 
   return (

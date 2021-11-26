@@ -52,7 +52,9 @@ const Experiences = (props: Props) => {
   } = props;
 
   useEffect(() => {
-    onFetchExperiencesStart(data.id);
+    if (data) {
+      onFetchExperiencesStart(data.id);
+    }
   }, [data]);
 
   const routeRedirect = (data) => {

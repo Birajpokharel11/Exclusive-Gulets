@@ -9,6 +9,8 @@ const INITIAL_STATE: IOfferState = {
   loading: false,
   isCreating: false,
   isFetching: false,
+  isDeleting: false,
+  isEditing: false,
   soleOffer: {}
 };
 
@@ -71,6 +73,44 @@ const destinationReducer = (state = INITIAL_STATE, action) => {
       return {
         ...state,
         isFetching: false,
+        error: payload
+      };
+
+    case OfferType.DELETE_GENERIC_OFFER_START:
+      return {
+        ...state,
+        isDeleting: true
+      };
+
+    case OfferType.DELETE_GENERIC_OFFER_SUCCESS:
+      return {
+        ...state,
+        isDeleting: false
+      };
+
+    case OfferType.DELETE_GENERIC_OFFER_FAILURE:
+      return {
+        ...state,
+        isDeleting: false,
+        error: payload
+      };
+
+    case OfferType.EDIT_GENERIC_OFFER_START:
+      return {
+        ...state,
+        isEditing: true
+      };
+
+    case OfferType.EDIT_GENERIC_OFFER_SUCCESS:
+      return {
+        ...state,
+        isEditing: false
+      };
+
+    case OfferType.EDIT_GENERIC_OFFER_FAILURE:
+      return {
+        ...state,
+        isEditing: false,
         error: payload
       };
 

@@ -21,6 +21,7 @@ import * as Yup from 'yup';
 
 import BackgroundVectors from '@components/BackgroundVectors';
 import UploadFile from '@components/SingleUpload';
+import moment from 'moment';
 
 import { openAlert } from '@store/alert/alert.actions';
 import { IExperienceState } from '@store/interfaces';
@@ -73,6 +74,7 @@ interface Props {
   next_page?: number;
   onFetchYachtsStart?: () => any;
   onFetchGenericOfferByIdStart?: (id) => any;
+  onEditGenericOfferStart?: (formData) => any;
 }
 
 function EditExperiences({
@@ -81,7 +83,8 @@ function EditExperiences({
   yacht: { adminYachtsList },
   auth: { currentUser },
   onFetchYachtsStart,
-  onFetchGenericOfferByIdStart
+  onFetchGenericOfferByIdStart,
+  onEditGenericOfferStart
 }: Props) {
   const classes = useStyles();
 
@@ -106,7 +109,7 @@ function EditExperiences({
 
   useEffect(() => {
     setMainImage({
-      preview: soleOffer.featuredImage ?? null,
+      preview: soleOffer.photo ?? null,
       raw: null
     });
     setSideImage({
@@ -172,17 +175,21 @@ function EditExperiences({
         </Grid>
         <Grid item md={8}>
           <Formik
+            enableReinitialize
             initialValues={{
-              name: '',
-              description: '',
-              offerStartDate: '',
-              offerExpirationDate: '',
-              freeCancellation: false,
-              simpleItinerary: '',
-              airports: '',
-              inclusiveTerms: '',
-              photo: '',
-              yachtId: 1
+              name: soleOffer.name,
+              description: soleOffer.description,
+              offerStartDate: moment(soleOffer.offerStartDate).format(
+                'YYYY-MM-DD'
+              ),
+              offerExpirationDate: moment(soleOffer.offerExpirationDate).format(
+                'YYYY-MM-DD'
+              ),
+              freeCancellation: soleOffer.freeCancellation,
+              yachtId: soleOffer.yachtId,
+              simpleItinerary: soleOffer.simpleItinerary,
+              airports: soleOffer.airports,
+              inclusiveTerms: soleOffer.inclusiveTerms
             }}
             validationSchema={Yup.object({
               name: Yup.string().required('name is required'),
@@ -201,6 +208,7 @@ function EditExperiences({
               )
             })}
             onSubmit={(values, { setSubmitting }) => {
+              onEditGenericOfferStart({ ...values, id: soleOffer.id });
               setSubmitting(false);
             }}
           >

@@ -43,3 +43,33 @@ export const fetchGenericOfferByIdFailure = (error) => ({
   type: OfferType.FETCH_GENERIC_OFFER_BY_ID_FAILURE,
   payload: error
 });
+
+export const deleteGenericOfferStart = (id, handleClose) => ({
+  type: OfferType.DELETE_GENERIC_OFFER_START,
+  payload: { id, handleClose }
+});
+
+export const deleteGenericOfferSuccess = (result) => ({
+  type: OfferType.DELETE_GENERIC_OFFER_SUCCESS,
+  payload: result
+});
+
+export const deleteGenericOfferFailure = (error) => ({
+  type: OfferType.DELETE_GENERIC_OFFER_FAILURE,
+  payload: error
+});
+
+export const editGenericOfferStart = (formData) => ({
+  type: OfferType.EDIT_GENERIC_OFFER_START,
+  payload: { formData }
+});
+
+export const editGenericOfferSuccess = (result) => ({
+  type: OfferType.EDIT_GENERIC_OFFER_SUCCESS,
+  payload: result
+});
+
+export const editGenericOfferFailure = (error) => ({
+  type: OfferType.EDIT_GENERIC_OFFER_FAILURE,
+  payload: error
+});

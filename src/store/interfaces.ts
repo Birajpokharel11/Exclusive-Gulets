@@ -71,7 +71,9 @@ export interface IOfferState {
   error: any | null;
   loading: boolean;
   isCreating: boolean;
+  isDeleting: boolean;
   isFetching: boolean;
+  isEditing: boolean;
   soleOffer: object;
 }
 

@@ -70,7 +70,7 @@ interface Props {
   route?: string;
   next_page?: number;
   onCreateExperienceStart?: (formData) => any;
-  onDeleteExperienceStart?: (toDeleteId, handleClose) => any;
+  onDeleteGenericOfferStart?: (toDeleteId, handleClose) => any;
 }
 
 const TableList = (props) => {
@@ -128,10 +128,9 @@ const TableList = (props) => {
 };
 
 function ExperiencesTable({
-  experience: { isCreating, experiences, isDeleting },
-  offer: { genericOffers, loading },
+  offer: { genericOffers, isDeleting },
   onCreateExperienceStart,
-  onDeleteExperienceStart
+  onDeleteGenericOfferStart
 }: Props) {
   const classes = useStyles();
   const [page, setpage] = React.useState(0);
@@ -150,7 +149,7 @@ function ExperiencesTable({
   };
 
   const deleteDataHandler = () => {
-    onDeleteExperienceStart(toDeleteId, handleClose);
+    onDeleteGenericOfferStart(toDeleteId, handleClose);
   };
 
   console.log('handleClose>>', open);

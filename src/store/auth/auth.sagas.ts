@@ -139,7 +139,7 @@ export function* onSignupBrokerAsync({
   try {
     const { data } = yield axiosConfig.post(`api/broker/create`, formData);
     console.log('value fo data after success>>>', data);
-    if (data.status === 'success') {
+    if (data.status === 200) {
       yield put(authActions.signupBrokerSuccess());
       yield put(
         openAlert(
@@ -166,7 +166,7 @@ export function* validateUserAsync({
 
     console.log('value fo data after success>>>', data);
 
-    if (data.status === 'success') {
+    if (data.status === 200) {
       yield put(authActions.validateUserEmailSuccess(data.detail.data));
 
       if (data.detail.data.isValidEmail === true) {
@@ -195,7 +195,7 @@ export function* verifyBrokerAsync({
     let { data } = yield axiosConfig.post(`api/broker/verify`, formData);
 
     console.log('value fo data after success>>>', data);
-    if (data.status === 'success') {
+    if (data.status === 200) {
       yield put(authActions.verifyBrokerSuccess(data.detail.data));
       yield put(openAlert('User Account Verified!!', 'success'));
     } else {

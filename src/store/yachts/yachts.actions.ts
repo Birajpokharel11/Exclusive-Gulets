@@ -14,8 +14,9 @@ export const fetchYachtsFailure = (error) => ({
   payload: error
 });
 
-export const filterYachtsStart = () => ({
-  type: YachtsType.FILTER_YACHTS_START
+export const filterYachtsStart = (formData) => ({
+  type: YachtsType.FILTER_YACHTS_START,
+  payload: { formData }
 });
 
 export const filterYachtsSuccess = (result) => ({

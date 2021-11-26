@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 
-import { filterYachtStart } from '@/store/search/search.actions';
+import { filterYachtsStart } from '@store/yachts/yachts.actions';
 
 const mapStateToProps = (state, props) => ({
   destination: state.destination,
@@ -11,7 +11,7 @@ const mapStateToProps = (state, props) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  onFilterYachtStart: (formData) => dispatch(filterYachtStart(formData))
+  onFilterYachtsStart: (formData) => dispatch(filterYachtsStart(formData))
 });
 
 const container = connect(mapStateToProps, mapDispatchToProps);

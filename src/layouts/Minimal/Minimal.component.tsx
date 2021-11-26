@@ -5,6 +5,8 @@ import CustomAlert from '@components/CustomAlert';
 
 import { Footer } from '../App/components';
 
+import container from './Minimal.container';
+
 const useStyles = makeStyles((theme) => ({
   root: {
     height: '100%'
@@ -23,9 +25,9 @@ const Minimal = (props) => {
     <div className={classes.root}>
       <CustomAlert />
       <main className={classes.content}>{children}</main>
-      <Footer />
+      <Footer {...rest} />
     </div>
   );
 };
 
-export default Minimal;
+export default container(Minimal);

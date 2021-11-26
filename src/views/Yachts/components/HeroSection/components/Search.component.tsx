@@ -26,6 +26,8 @@ import Filter from './Filter';
 import Guests from './Guests';
 import DestinationDialouge from './DestinationDialouge';
 
+import container from './Search.container';
+
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     Button: {
@@ -59,9 +61,11 @@ const useStyles = makeStyles((theme: Theme) =>
   })
 );
 
-export default function SearchFilter() {
+function SearchFilter(props) {
   const classes = useStyles();
   const theme = useTheme();
+
+  const { onFilterYachtsStart } = props;
 
   const [open, setOpen] = React.useState(false);
   const [value, setValue] = React.useState<number[]>([0, 100]);
@@ -78,7 +82,13 @@ export default function SearchFilter() {
     setOpen(false);
   };
 
-  const handleSubmit = () => {};
+  const handleSubmit = () => {
+    const data = {
+      minGuest: value[0],
+      maxGuest: value[1]
+    };
+    onFilterYachtsStart(data);
+  };
 
   return (
     <>
@@ -136,3 +146,5 @@ export default function SearchFilter() {
     </>
   );
 }
+
+export default container(SearchFilter);

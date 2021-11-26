@@ -1,4 +1,5 @@
 import { takeLatest, call, all, put } from 'redux-saga/effects';
+import { AnyAction } from 'redux';
 import axiosConfig from '@config/axios.config';
 import axios from 'axios';
 
@@ -18,7 +19,7 @@ export function* fetchHomeAsync() {
     yield put(homeAction.fetchHomeFailure(err));
   }
 }
-export function* submitEnquiryAsync({ payload: { formData } }) {
+export function* submitEnquiryAsync({ payload: { formData } }: AnyAction) {
   console.log('FoormData', formData);
   try {
     const { data } = yield axiosConfig.post('/api/inquiries/create', formData);

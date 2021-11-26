@@ -17,6 +17,7 @@ export interface IDestinationState {
   destination: object | any;
   error: any | null;
   loading: boolean;
+  isSubmitting: boolean;
 }
 
 export interface IPostState {

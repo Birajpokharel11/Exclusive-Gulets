@@ -1,11 +1,6 @@
 import * as DestinationType from './destination.types';
 
-interface IFetchDestination {
-  page?: number;
-  amount_per_page?: number;
-  sort_by?: string;
-  sort_order?: string;
-}
+import { IFetchDestination } from './destination.interfaces';
 
 export const fetchDestinationStart = (data?: IFetchDestination) => ({
   type: DestinationType.FETCH_DESTINATION_START,

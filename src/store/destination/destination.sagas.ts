@@ -1,7 +1,8 @@
 import { takeLatest, call, all, put } from 'redux-saga/effects';
-import queryString from 'query-string';
-
+import { AnyAction } from 'redux';
 import axios from 'axios';
+
+import axiosConfig from '@config/axios.config';
 
 import { Limits, Sort } from '@utils/enums';
 
@@ -12,25 +13,23 @@ import {
   fetchDestinationByIdStart
 } from './destination.actions';
 
-export function* fetchDestinationAsync({
-  payload: {
-    page = 1,
-    amount_per_page = Limits.BLOGS_PER_PAGE,
-    sort_by = Sort.SORT_BY,
-    sort_order = Sort.SORT_ORDER
-  }
-}: ReturnType<typeof fetchDestinationStart>) {
+export function* fetchDestinationAsync() {
   try {
-    const { data } = yield axios.get(
-      `https://app.exclusivegulets.com/api/v1/destinations.json`,
-      {
-        params: {
-          page,
-          amount_per_page,
-          sort_by,
-          sort_order
-        }
-      }
+    const { data } = yield axiosConfig.get('/api/destination/list');
+    console.log('data>>>', data);
+
+    yield put(destinationAction.fetchDestinationSuccess(data.destinations));
+  } catch (err) {
+    console.error('error received>>>', err);
+    yield put(destinationAction.fetchDestinationFailure(err));
+  }
+}
+
+export function* submitDestinationAsync({ payload: { formData } }: AnyAction) {
+  try {
+    const { data } = yield axiosConfig.post(
+      '/api/destination/create',
+      formData
     );
 
     yield put(destinationAction.fetchDestinationSuccess(data.destinations));
@@ -77,6 +76,13 @@ export function* watchFetchDestination() {
   );
 }
 
+export function* watchSubmitDestination() {
+  yield takeLatest(
+    DestinationType.SUBMIT_DESTINATION_START,
+    submitDestinationAsync
+  );
+}
+
 export function* watchFetchRandomDestination() {
   yield takeLatest(
     DestinationType.FETCH_RANDOM_DESTINATION_START,
@@ -94,6 +100,7 @@ export function* watchDestinationById() {
 export function* destinationSagas() {
   yield all([
     call(watchFetchDestination),
+    call(watchSubmitDestination),
     call(watchFetchRandomDestination),
     call(watchDestinationById)
   ]);

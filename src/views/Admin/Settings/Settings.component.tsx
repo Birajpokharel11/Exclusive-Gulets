@@ -1,4 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
+import dynamic from 'next/dynamic';
+
 import { createStyles, makeStyles } from '@material-ui/core/styles';
 import {
   Box,
@@ -68,16 +70,17 @@ function Blogs({
   onEditBrokerProfileStart,
   onPicAddStart
 }: Props) {
+  const ReactQuill = dynamic(() => import('react-quill'), {
+    ssr: false
+  });
+
   const classes = useStyles();
-  const [page, setpage] = React.useState(0);
-  const [mainImage, setMainImage] = React.useState({
+  const [page, setpage] = useState(0);
+  const [mainImage, setMainImage] = useState({
     preview: null,
     raw: null
   });
   const [address, setAddress] = useState('');
-
-  const ReactQuill =
-    typeof window === 'object' ? require('react-quill') : () => false;
 
   useEffect(() => {
     setMainImage({

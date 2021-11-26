@@ -86,21 +86,13 @@ const MenuProps = {
   }
 };
 
-export default function Filter() {
+export default function Filter(props) {
   const classes = useStyles();
 
   const [open, setOpen] = useState(false);
 
   const anchorRef = React.useRef<HTMLDivElement>(null);
 
-  ////////////////////////////////////////////////////////////////Range slider
-  const [value, setValue] = React.useState<number[]>([0, 100]);
-
-  const handleToggle = () => {
-    setOpen((prevOpen) => !prevOpen);
-  };
-
-  ////////////////////////////////////////////////////////////////////////////
   const handleClose = (event: React.MouseEvent<EventTarget>) => {
     if (
       anchorRef.current &&
@@ -111,13 +103,6 @@ export default function Filter() {
 
     setOpen(false);
   };
-
-  function handleListKeyDown(event: React.KeyboardEvent) {
-    if (event.key === 'Tab') {
-      event.preventDefault();
-      setOpen(false);
-    }
-  }
 
   // return focus to the button when we transitioned from !open -> open
   const prevOpen = React.useRef(open);
@@ -130,68 +115,27 @@ export default function Filter() {
   }, [open]);
 
   return (
-    <>
-      <FormControl variant="outlined" className={classes.formControl}>
-        <InputLabel style={{ color: 'white' }}>Guests</InputLabel>
-        <Select
-          style={{
-            border: '1px solid rgba(255, 255, 255, 0.5)',
-            height: '52px'
-          }}
-          IconComponent={() => (
-            <ExpandMoreIcon style={{ color: 'white', cursor: 'pointer' }} />
-          )}
-          variant="filled"
-          MenuProps={MenuProps}
-          fullWidth
-          ref={anchorRef}
-        >
-          <ClickAwayListener onClickAway={handleClose}>
-            <Paper elevation={0} className={classes.Paper}>
-              <RangeSlider />
-            </Paper>
-          </ClickAwayListener>
-        </Select>
-
-        {/* <Grid container justifyContent="center" ref={anchorRef}>
-          <Grid item xs style={{ display: 'flex' }}>
-            <input className={classes.input} placeholder="Check in" />
-            <IconButton
-              className={clsx(classes.expand, {
-                [classes.expandOpen]: open
-              })}
-              onClick={handleToggle}
-              aria-label="show more"
-            >
-              <ExpandMoreIcon />
-            </IconButton>
-          </Grid>
-        </Grid> */}
-      </FormControl>
-
-      {/* <Popper
-        open={open}
-        anchorEl={anchorRef.current}
-        role={undefined}
-        transition
-        disablePortal
-      >
-        {({ TransitionProps, placement }) => (
-          <Grow
-            {...TransitionProps}
-            style={{
-              transformOrigin:
-                placement === 'bottom' ? 'center top' : 'center bottom'
-            }}
-          >
-            <ClickAwayListener onClickAway={handleClose}>
-              <Paper className={classes.Paper}>
-                <RangeSlider />
-              </Paper>
-            </ClickAwayListener>
-          </Grow>
+    <FormControl variant="outlined" className={classes.formControl}>
+      <InputLabel style={{ color: 'white' }}>Guests</InputLabel>
+      <Select
+        style={{
+          border: '1px solid rgba(255, 255, 255, 0.5)',
+          height: '52px'
+        }}
+        IconComponent={() => (
+          <ExpandMoreIcon style={{ color: 'white', cursor: 'pointer' }} />
         )}
-      </Popper> */}
-    </>
+        variant="filled"
+        MenuProps={MenuProps}
+        fullWidth
+        ref={anchorRef}
+      >
+        <ClickAwayListener onClickAway={handleClose}>
+          <Paper elevation={0} className={classes.Paper}>
+            <RangeSlider {...props} />
+          </Paper>
+        </ClickAwayListener>
+      </Select>
+    </FormControl>
   );
 }

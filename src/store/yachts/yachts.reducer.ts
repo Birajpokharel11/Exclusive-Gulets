@@ -25,12 +25,14 @@ const YachtsReducer = (state = INITIAL_STATE, action) => {
   const { type, payload } = action;
   switch (type) {
     case YachtsType.FETCH_YACHTS_START:
+    case YachtsType.FILTER_YACHTS_START:
       return {
         ...state,
         loading: true
       };
 
     case YachtsType.FETCH_YACHTS_SUCCESS:
+    case YachtsType.FILTER_YACHTS_SUCCESS:
       return {
         ...state,
         yachtsList: payload,
@@ -38,6 +40,7 @@ const YachtsReducer = (state = INITIAL_STATE, action) => {
       };
 
     case YachtsType.FETCH_YACHTS_FAILURE:
+    case YachtsType.FILTER_YACHTS_FAIL:
       return {
         ...state,
         loading: false,

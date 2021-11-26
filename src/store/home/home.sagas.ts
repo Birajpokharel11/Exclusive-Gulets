@@ -18,7 +18,6 @@ export function* fetchHomeAsync() {
     yield put(homeAction.fetchHomeFailure(err));
   }
 }
-
 export function* watchFetchHome() {
   yield takeLatest(HomeType.FETCH_HOME_START, fetchHomeAsync);
 }

@@ -24,6 +24,7 @@ const Main = (props) => {
   return (
     <div className={classes.root}>
       <Topbar {...rest} />
+      <CustomAlert />
       <main className={classes.content}>{children}</main>
       <Footer />
     </div>

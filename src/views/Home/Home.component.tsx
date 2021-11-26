@@ -45,6 +45,7 @@ const Home = (props) => {
       domain: { data }
     },
     onFetchExperiencesStart,
+    submitEnquiryStart,
     fetchPostsStart
     // home: {
     //   home: { yachts }
@@ -88,7 +89,7 @@ const Home = (props) => {
         redirectDetailsPage={redirectDetailsPage}
         posts={postsList}
       />
-      <EnquiryForm />
+      <EnquiryForm submitEnquiryStart={submitEnquiryStart} />
     </div>
   );
 };

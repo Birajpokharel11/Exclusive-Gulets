@@ -114,7 +114,11 @@ const validationSchema = Yup.object({
   phonenumber: Yup.string().required('This field is required'),
   comments: Yup.string().required('This field is required')
 });
-export default function EnquiryForm() {
+
+interface Props {
+  submitEnquiryStart?: (formdata) => Function;
+}
+export default function EnquiryForm({ submitEnquiryStart }: Props) {
   const classes = useStyles();
 
   const formik = useFormik({
@@ -129,6 +133,17 @@ export default function EnquiryForm() {
     validationSchema: validationSchema,
     onSubmit: (values) => {
       alert(JSON.stringify(values, null, 2));
+      const formdata = {
+        title: values.title,
+        fullName: values.name,
+        email: values.email,
+        comment: values.comments,
+        phoneNumber: values.phonenumber,
+        preferredDestination: values.country
+      };
+
+      console.log('hello', JSON.stringify(formdata));
+      submitEnquiryStart(formdata);
     }
   });
   const theme = useTheme();
@@ -296,7 +311,7 @@ export default function EnquiryForm() {
                     }
                   >
                     {countryList.map((country) => (
-                      <MenuItem key={country.label} value={country.value}>
+                      <MenuItem key={country.label} value={country.label}>
                         {country.label}
                       </MenuItem>
                     ))}

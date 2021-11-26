@@ -30,25 +30,6 @@ const homeReducer = (state = INITIAL_STATE, action) => {
         loading: false,
         error: payload
       };
-    case HomeType.SUBMIT_ENQUIRY_START:
-      return {
-        ...state,
-        loading: true
-      };
-
-    case HomeType.SUBMIT_ENQUIRY_SUCCESS:
-      return {
-        ...state,
-        home: payload,
-        loading: false
-      };
-
-    case HomeType.SUBMIT_ENQUIRY_FAILURE:
-      return {
-        ...state,
-        loading: false,
-        error: payload
-      };
     default:
       return state;
   }

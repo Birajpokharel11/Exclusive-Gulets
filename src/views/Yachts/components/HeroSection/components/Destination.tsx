@@ -6,6 +6,7 @@ import {
   Theme
 } from '@material-ui/core/styles';
 import Input from '@material-ui/core/Input';
+import Hidden from '@material-ui/core/Hidden';
 import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
 import FormControl from '@material-ui/core/FormControl';
@@ -111,37 +112,36 @@ export default function MultipleSelect() {
   };
   return (
     <>
-      <FormControl variant="outlined" className={classes.Destinations}>
-        <InputLabel style={{ color: 'white' }}>Destination</InputLabel>
-        <Select
-          variant="filled"
-          fullWidth
-          multiple
-          classes={{
-            root: classes.root
-          }}
-          MenuProps={MenuProps}
-          onChange={handleChange}
-          value={personName}
-          renderValue={(selected) => (selected as string[]).join(', ')}
-          placeholder="Select Destination"
-          margin="dense"
-          // IconComponent={() => (
-          //   <ExpandMoreIcon style={{ color: 'white', cursor: 'pointer' }} />
-          // )}
-        >
-          {matches ? (
-            names.map((name) => (
+      <Hidden mdDown>
+        <FormControl variant="outlined" className={classes.Destinations}>
+          <InputLabel style={{ color: 'white' }}>Destination</InputLabel>
+          <Select
+            variant="filled"
+            fullWidth
+            multiple
+            classes={{
+              root: classes.root
+            }}
+            MenuProps={MenuProps}
+            onChange={handleChange}
+            value={personName}
+            renderValue={(selected) => (selected as string[]).join(', ')}
+            placeholder="Select Destination"
+            margin="dense"
+            // IconComponent={() => (
+            //   <ExpandMoreIcon style={{ color: 'white', cursor: 'pointer' }} />
+            // )}
+          >
+            {names.map((name) => (
               <MenuItem key={name} value={name}>
                 <Checkbox checked={personName.indexOf(name) > -1} />
                 <ListItemText primary={name} />
               </MenuItem>
-            ))
-          ) : (
-            <DestinationDialouge />
-          )}
-        </Select>
-      </FormControl>
+            ))}
+          </Select>
+        </FormControl>
+      </Hidden>
+      <Hidden smUp></Hidden>
     </>
   );
 }

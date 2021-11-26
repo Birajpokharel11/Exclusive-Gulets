@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 import { fetchExperiencesStart } from 'src/store/experiences/experiences.actions';
 import { fetchPostsStart } from '@store/posts/posts.actions';
-import { submitEnquiryStart } from '@store/home/home.actions';
+import { submitEnquiryStart } from '@store/enquiry/enquiry.actions';
 
 const mapStateToProps = (state, props) => ({
   destination: state.destination,
@@ -15,7 +15,7 @@ const mapStateToProps = (state, props) => ({
 const mapDispatchToProps = (dispatch) => ({
   onFetchExperiencesStart: (id) => dispatch(fetchExperiencesStart(id)),
   fetchPostsStart: (id) => dispatch(fetchPostsStart(id)),
-  submitEnquiryStart: (formdata) => dispatch(submitEnquiryStart(formdata))
+  onSubmitEnquiryStart: (formdata) => dispatch(submitEnquiryStart(formdata))
 });
 
 const container = connect(mapStateToProps, mapDispatchToProps);

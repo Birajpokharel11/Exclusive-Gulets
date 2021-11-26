@@ -26,7 +26,7 @@ const Main = (props) => {
       <Topbar {...rest} />
       <CustomAlert />
       <main className={classes.content}>{children}</main>
-      <Footer />
+      <Footer {...rest} />
     </div>
   );
 };

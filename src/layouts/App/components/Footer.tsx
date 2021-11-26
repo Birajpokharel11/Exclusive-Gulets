@@ -92,7 +92,20 @@ const useStyles = makeStyles((theme: Theme) => ({
   }
 }));
 
-const Footer = () => {
+const Footer = ({
+  siteCoordinator: {
+    domain: {
+      facebook,
+      youtube,
+      linkedin,
+      twitter,
+      instagram,
+      contactEmail,
+      contactPhoneNumber,
+      address
+    }
+  }
+}) => {
   const classes = useStyles();
   const theme = useTheme();
   const matches = useMediaQuery(theme.breakpoints.down(800));
@@ -198,7 +211,11 @@ const Footer = () => {
                   Contact Us
                 </Typography>
                 <div>
-                  <IconButton color="inherit" data-cy="Footer-facebook">
+                  <IconButton
+                    color="inherit"
+                    data-cy="Footer-facebook"
+                    onClick={() => window.open(facebook, '_blank')}
+                  >
                     <img src="/assets/images/Facebook.svg" alt="facebook" />
                   </IconButton>
                   <IconButton color="inherit" data-cy="Footer-Instagram">

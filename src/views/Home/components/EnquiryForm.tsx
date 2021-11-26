@@ -117,8 +117,14 @@ const validationSchema = Yup.object({
 
 interface Props {
   submitEnquiryStart?: (formdata) => Function;
+  siteCoordinator?: any;
 }
-export default function EnquiryForm({ submitEnquiryStart }: Props) {
+export default function EnquiryForm({
+  submitEnquiryStart,
+  siteCoordinator: {
+    domain: { data }
+  }
+}: Props) {
   const classes = useStyles();
 
   const formik = useFormik({
@@ -132,14 +138,13 @@ export default function EnquiryForm({ submitEnquiryStart }: Props) {
     },
     validationSchema: validationSchema,
     onSubmit: (values) => {
-      alert(JSON.stringify(values, null, 2));
       const formdata = {
+        brokerId: data.id,
         title: values.title,
         fullName: values.name,
         email: values.email,
         comment: values.comments,
-        phoneNumber: values.phonenumber,
-        preferredDestination: values.country
+        phoneNumber: values.phonenumber
       };
 
       console.log('hello', JSON.stringify(formdata));

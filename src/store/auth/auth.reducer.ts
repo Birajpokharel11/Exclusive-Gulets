@@ -69,6 +69,9 @@ const authReducer = (state = INITIAL_STATE, action) => {
       };
 
     case AuthType.SIGN_OUT_SUCCESS:
+      localStorage.removeItem('access_token');
+      localStorage.removeItem('refresh_token');
+      localStorage.removeItem('expires_in');
       return {
         ...state,
         isAuthenticated: null,

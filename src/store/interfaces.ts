@@ -17,6 +17,7 @@ export interface IDestinationState {
   destination: object | any;
   error: any | null;
   loading: boolean;
+  isSubmitting: boolean;
 }
 
 export interface IPostState {
@@ -71,7 +72,9 @@ export interface IOfferState {
   error: any | null;
   loading: boolean;
   isCreating: boolean;
+  isDeleting: boolean;
   isFetching: boolean;
+  isEditing: boolean;
   soleOffer: object;
 }
 

@@ -55,8 +55,10 @@ const Home = (props) => {
   /////////////////////////////////////////
 
   useEffect(() => {
-    onFetchExperiencesStart(data.id);
-    fetchPostsStart(data.id);
+    if (data) {
+      onFetchExperiencesStart(data.id);
+      fetchPostsStart(data.id);
+    }
   }, [data]);
 
   const router = useRouter();

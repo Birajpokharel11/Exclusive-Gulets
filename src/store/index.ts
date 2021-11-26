@@ -27,7 +27,10 @@ const reducer = (state: RootState, action: AnyAction) => {
     const nextState = { ...clientState, ...serverState };
 
     const auth = { ...state.auth };
-    const siteCoordinator = { ...state.siteCoordinator };
+    const siteCoordinator = {
+      ...clientState.siteCoordinator,
+      ...serverState.siteCoordinator
+    };
 
     if (state) {
       nextState.auth = auth;

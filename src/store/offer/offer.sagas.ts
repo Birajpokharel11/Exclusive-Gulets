@@ -17,7 +17,7 @@ export function* fetchOfferAsync() {
     console.log('inside of fetch offer async');
     const { data } = yield axiosConfig.get(`api/offer/generic/list`);
 
-    if (data.status === 200) {
+    if (data.status === 'success') {
       yield put(destinationAction.fetchOfferSuccess(data.detail.data));
     } else {
       yield put(destinationAction.fetchOfferFailure(data.message));
@@ -40,7 +40,7 @@ export function* createGenericOfferAsync({ payload: { formData } }: AnyAction) {
       `api/offer/generic/create`,
       formData
     );
-    if (data.status === 200) {
+    if (data.status === 'success') {
       yield put(destinationAction.createGenericOfferSuccess(data));
       yield put(openAlert('Offer saved successfully!!!', 'success'));
       router.push('/manage/dashboard');
@@ -58,7 +58,7 @@ export function* fetchGenericOfferByIdAsync({ payload: { id } }: AnyAction) {
   try {
     console.log('fetchGenericOfferByIdAsync>>>', id);
     const { data } = yield axiosConfig.get(`api/offer/generic/get/${id}`);
-    if (data.status === 200) {
+    if (data.status === 'success') {
       console.log('fetchGenericOfferByIdAsync data>>>', data);
       yield put(
         destinationAction.fetchGenericOfferByIdSuccess(data.detail.data)
@@ -79,7 +79,7 @@ export function* deleteGenericOfferAsync({
   try {
     console.log('deleteGenericOfferAsync>>>', id);
     const { data } = yield axiosConfig.post(`api/offer/generic/delete/${id}`);
-    if (data.status === 200) {
+    if (data.status === 'success') {
       yield put(destinationAction.deleteGenericOfferSuccess(data));
       yield put(openAlert('Deleted offer successfully!!', 'success'));
       yield handleClose();
@@ -97,7 +97,7 @@ export function* editGenericOfferAsync({ payload: { formData } }: AnyAction) {
   try {
     console.log('editGenericOfferAsync>>>', formData);
     const { data } = yield axiosConfig.post(`api/offer/generic/edit`, formData);
-    if (data.status === 200) {
+    if (data.status === 'success') {
       yield put(destinationAction.editGenericOfferSuccess(data));
       yield put(openAlert('Offer saved successfully!!!', 'success'));
       router.push('/manage/dashboard');

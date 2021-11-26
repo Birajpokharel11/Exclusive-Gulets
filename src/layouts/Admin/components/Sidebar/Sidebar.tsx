@@ -95,7 +95,7 @@ const Sidebar = (props) => {
       visible: isVisible('ROLE_MANAGER')
     },
     {
-      title: 'Enqueries',
+      title: 'Inquiries',
       href: '/manage/enqueries',
       icon: <DirectionsBoatIcon />,
       visible: isVisible('ROLE_BROKER')

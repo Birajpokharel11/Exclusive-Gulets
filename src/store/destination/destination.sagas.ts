@@ -31,7 +31,7 @@ export function* submitDestinationAsync({ payload: { formData } }: AnyAction) {
   try {
     console.log('here in submit destination>>>', formData);
     const { data } = yield axiosConfig.post('api/destination/create', formData);
-    if (data.status === 200) {
+    if (data.status === 'success') {
       yield put(destinationAction.submitDestinationSuccess(data.destinations));
       yield put(openAlert('Destination saved successfully!!!', 'success'));
       router.push('/manage/destinations');

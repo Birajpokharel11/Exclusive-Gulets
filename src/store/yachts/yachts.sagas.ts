@@ -69,7 +69,7 @@ export function* createYachtAsync({ payload }: AnyAction) {
     console.log('createYachtAsync>>', formData);
     const { data } = yield axiosConfig.post(`api/yacht/create`, formData);
     console.log('createYachtAsync data>>', data);
-    if (data.status === 200) {
+    if (data.status === 'success') {
       yield put(openAlert('yacht created successfully!!', 'success'));
       yield put(
         postsAction.createYachtSuccess({ ...formData, id: data.detail.data.id })
@@ -91,7 +91,7 @@ export function* editYachtAsync({ payload }: AnyAction) {
     const { data } = yield axiosConfig.post(`api/yacht/edit`, formData);
     console.log('editYachtAsync data>>', data);
     yield put(postsAction.editYachtSuccess());
-    if (data.status === 200) {
+    if (data.status === 'success') {
       yield put(openAlert('yacht updated successfully!!', 'success'));
     } else {
       yield put(openAlert(data.status, 'error'));

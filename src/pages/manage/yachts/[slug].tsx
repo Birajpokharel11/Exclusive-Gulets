@@ -16,10 +16,13 @@ import {
 import WithLayout from '@components/WithLayout';
 import Admin from '@layouts/Admin';
 import EditYachtDetails from '@views/Admin/Yachts/components/EditYacht';
+import withAuth from '@components/WithAuth';
 
-export default function YachtDetails() {
+function YachtDetails() {
   return <WithLayout component={EditYachtDetails} layout={Admin} />;
 }
+
+const WrappedPage = withAuth(YachtDetails);
 
 export const getServerSideProps = wrapper.getServerSideProps(
   (store) =>
@@ -42,3 +45,5 @@ export const getServerSideProps = wrapper.getServerSideProps(
       };
     }
 );
+
+export default WrappedPage;

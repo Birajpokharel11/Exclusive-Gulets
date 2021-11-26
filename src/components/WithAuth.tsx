@@ -6,7 +6,7 @@ import { RootState } from '@store/root-reducer';
 
 import SimpleBackdrop from './SpinnerOverlay';
 
-const withAuth = (WrappedComponent, roles) => (props) => {
+const withAuth = (WrappedComponent, roles?: null | string[]) => (props) => {
   // checks whether we are on client / browser or server.
   if (typeof window !== 'undefined') {
     const router = useRouter();

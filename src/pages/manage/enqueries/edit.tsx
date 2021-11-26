@@ -5,8 +5,9 @@ import WithLayout from '@components/WithLayout';
 import Admin from '@layouts/Admin';
 
 import Offer from '@views/Admin/Offers/components/editOffer';
+import withAuth from '@components/WithAuth';
 
-export default function EditOffer() {
+function EditEnquiry() {
   return (
     <>
       <Head>
@@ -18,3 +19,6 @@ export default function EditOffer() {
     </>
   );
 }
+const WrappedPage = withAuth(EditEnquiry, ['ROLE_BROKER']);
+
+export default WrappedPage;

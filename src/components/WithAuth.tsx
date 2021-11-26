@@ -26,10 +26,13 @@ const withAuth = (WrappedComponent, roles?: null | string[]) => (props) => {
     }
 
     // check if route is restricted by role
-    if (roles && roles.indexOf(currentUser.role) === -1) {
-      // role not authorised so redirect to home page
-      router.push('/');
-      return null;
+    if (roles) {
+      const check = _.intersection(roles, currentUser.roles);
+      if (check.length === 0) {
+        // role not authorised so redirect to home page
+        router.push('/');
+        return null;
+      }
     }
 
     return <WrappedComponent {...props} />;

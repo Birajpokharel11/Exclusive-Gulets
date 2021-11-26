@@ -9,7 +9,6 @@ import WithLayout from '@components/WithLayout';
 import Admin from '@layouts/Admin';
 
 import EnqueriesComponent from '@views/Admin/Enqueries';
-import { fetchEnqueriesStart } from '@store/home/home.actions';
 import withAuth from '@components/WithAuth';
 
 function OffersPage() {

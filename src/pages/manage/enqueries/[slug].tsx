@@ -10,32 +10,19 @@ import WithLayout from '@components/WithLayout';
 import Main from '@layouts/App';
 import BlogsDetails from '@views/Blogs/Details';
 
-import { getTenantDomain } from '@utils/data';
-import { Limits, Sort } from '@utils/enums';
-import { Typography } from '@material-ui/core';
 import Admin from '@layouts/Admin';
-import { fetchEnqueriesByIdStart } from '@store/home/home.actions';
+import withAuth from '@components/WithAuth';
 
-export default function NewsBlogs() {
+function EnquiryPage() {
   return (
     <WithLayout
-      component={() => <Typography>Hell0 Enquery</Typography>}
+      component={() => <div>Hello Enquery</div>}
       layout={Admin}
       context
     />
   );
 }
 
-export const getServerSideProps = wrapper.getServerSideProps(
-  (store) =>
-    async ({ req, res, ...context }) => {
-      store.dispatch(fetchEnqueriesByIdStart(1));
+const WrappedPage = withAuth(EnquiryPage, ['ROLE_BROKER']);
 
-      store.dispatch(END);
-
-      await store.sagaTask?.toPromise();
-      return {
-        props: {}
-      };
-    }
-);
+export default WrappedPage;

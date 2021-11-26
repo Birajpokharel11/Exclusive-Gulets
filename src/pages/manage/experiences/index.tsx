@@ -9,8 +9,9 @@ import WithLayout from '@components/WithLayout';
 import Admin from '@layouts/Admin';
 
 import Experiences from '@views/Admin/Experiences';
+import withAuth from '@components/WithAuth';
 
-export default function ExperiencesPage() {
+function ExperiencesPage() {
   return (
     <>
       <Head>
@@ -22,3 +23,6 @@ export default function ExperiencesPage() {
     </>
   );
 }
+const WrappedPage = withAuth(ExperiencesPage, ['ROLE_BROKER']);
+
+export default WrappedPage;

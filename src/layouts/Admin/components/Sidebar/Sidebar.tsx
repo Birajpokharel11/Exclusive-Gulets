@@ -98,7 +98,7 @@ const Sidebar = (props) => {
       title: 'Enqueries',
       href: '/manage/enqueries',
       icon: <DirectionsBoatIcon />,
-      visible: !isVisible('ROLE_MANAGER')
+      visible: isVisible('ROLE_BROKER')
     },
     {
       title: 'Settings',

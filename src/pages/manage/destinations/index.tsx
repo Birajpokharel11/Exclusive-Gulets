@@ -9,8 +9,9 @@ import WithLayout from '@components/WithLayout';
 import Admin from '@layouts/Admin';
 
 import Destinations from '@views/Admin/Destinations';
+import withAuth from '@components/WithAuth';
 
-export default function DestinationsPage() {
+function DestinationsPage() {
   return (
     <>
       <Head>
@@ -22,3 +23,6 @@ export default function DestinationsPage() {
     </>
   );
 }
+const WrappedPage = withAuth(DestinationsPage, ['ROLE_MANAGER']);
+
+export default WrappedPage;

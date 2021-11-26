@@ -91,7 +91,7 @@ const Home = (props) => {
         redirectDetailsPage={redirectDetailsPage}
         posts={postsList}
       />
-      <EnquiryForm submitEnquiryStart={onSubmitEnquiryStart} />
+      <EnquiryForm submitEnquiryStart={onSubmitEnquiryStart} {...props} />
     </div>
   );
 };

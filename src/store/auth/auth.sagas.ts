@@ -139,7 +139,7 @@ export function* onSignupBrokerAsync({
   try {
     const { data } = yield axiosConfig.post(`api/broker/create`, formData);
     console.log('value fo data after success>>>', data);
-    if (data.status === 200) {
+    if (data.status === 'success') {
       yield put(authActions.signupBrokerSuccess());
       yield put(
         openAlert(
@@ -166,7 +166,7 @@ export function* validateUserAsync({
 
     console.log('value fo data after success>>>', data);
 
-    if (data.status === 200) {
+    if (data.status === 'success') {
       yield put(authActions.validateUserEmailSuccess(data.detail.data));
 
       if (data.detail.data.isValidEmail === true) {
@@ -195,7 +195,7 @@ export function* verifyBrokerAsync({
     let { data } = yield axiosConfig.post(`api/broker/verify`, formData);
 
     console.log('value fo data after success>>>', data);
-    if (data.status === 200) {
+    if (data.status === 'success') {
       yield put(authActions.verifyBrokerSuccess(data.detail.data));
       yield put(openAlert('User Account Verified!!', 'success'));
     } else {
@@ -213,7 +213,7 @@ export function* signOutAsync({
     console.log('inside of signout async???', token);
     let { data } = yield axiosConfig.post(`api/oauth/logout`, token);
     console.log('data on signout>>>', data);
-    if (data.status === 200) {
+    if (data.status === 'success') {
       yield put(authActions.signoutSuccess());
       yield put(openAlert('User Signed Out Successfully!!', 'success'));
       router.push('/');
@@ -231,7 +231,7 @@ export function* editBrokerProfileAsync({ payload: { formData } }: AnyAction) {
     let { data } = yield axiosConfig.post(`api/broker/edit`, formData);
     console.log('editBrokerProfileAsync after save', data);
 
-    if (data.status === 200) {
+    if (data.status === 'success') {
       console.log('result of editBrokerProfileAsync', data);
       yield put(authActions.editBrokerProfileSuccess(formData));
       yield put(openAlert('Broker Profile Updated Successfully!!', 'success'));

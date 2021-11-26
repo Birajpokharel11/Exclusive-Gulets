@@ -14,9 +14,7 @@ import * as experiencesAction from './experiences.actions';
 export function* fetchExperiencesAsync({ payload: { id } }: AnyAction) {
   try {
     console.log('fetchExperiencesAsync>>>', id);
-    const { data } = yield axiosConfig.get(
-      `public/getExperiencesByBroker/${id}`
-    );
+    const { data } = yield axiosConfig.get(`api/getExperiencesByBroker/${id}`);
 
     console.log('fetch experience value>>>', data);
 
@@ -29,7 +27,7 @@ export function* fetchExperiencesAsync({ payload: { id } }: AnyAction) {
 
 export function* fetchExperienceByIdAsync({ payload: { id } }: AnyAction) {
   try {
-    const { data } = yield axiosConfig.get(`public/getExperiencesById/${id}`);
+    const { data } = yield axiosConfig.get(`api/getExperiencesById/${id}`);
 
     console.log('individual experience data>>', data);
     yield put(
@@ -44,7 +42,7 @@ export function* fetchExperienceByIdAsync({ payload: { id } }: AnyAction) {
 export function* createExperienceAsync({ payload: { formData } }: AnyAction) {
   try {
     const { data } = yield axiosConfig.post(`api/experience/create`, formData);
-    if (data.status === 'success') {
+    if (data.status === 200) {
       yield put(experiencesAction.createExperienceSuccess());
       yield put(openAlert('Experience saved successfully!!!', 'success'));
       router.push('/manage/experiences');
@@ -62,7 +60,7 @@ export function* createExperienceAsync({ payload: { formData } }: AnyAction) {
 export function* editExperienceAsync({ payload: { formData } }: AnyAction) {
   try {
     const { data } = yield axiosConfig.post(`api/experience/edit`, formData);
-    if (data.status === 'success') {
+    if (data.status === 200) {
       yield put(experiencesAction.editExperienceSuccess());
       yield put(openAlert('Experience edited successfully!!!', 'success'));
       router.push('/manage/experiences');
@@ -84,7 +82,7 @@ export function* deleteExperienceAsync({
     console.log('entered deleteExperienceAsync>>>', id);
     const { data } = yield axiosConfig.post(`api/experience/delete`, { id });
     console.log('deleteExperienceAsync on success>>>', data);
-    if (data.status === 'success') {
+    if (data.status === 200) {
       yield put(experiencesAction.deleteExperienceSuccess());
       yield put(openAlert('Experience deleted successfully!!!', 'success'));
       yield handleClose();

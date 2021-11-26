@@ -45,6 +45,7 @@ const Home = (props) => {
       domain: { data }
     },
     onFetchExperiencesStart,
+    onSubmitEnquiryStart,
     fetchPostsStart
     // home: {
     //   home: { yachts }
@@ -54,8 +55,10 @@ const Home = (props) => {
   /////////////////////////////////////////
 
   useEffect(() => {
-    onFetchExperiencesStart(data.id);
-    fetchPostsStart(data.id);
+    if (data) {
+      onFetchExperiencesStart(data.id);
+      fetchPostsStart(data.id);
+    }
   }, [data]);
 
   const router = useRouter();
@@ -88,7 +91,7 @@ const Home = (props) => {
         redirectDetailsPage={redirectDetailsPage}
         posts={postsList}
       />
-      <EnquiryForm />
+      <EnquiryForm submitEnquiryStart={onSubmitEnquiryStart} />
     </div>
   );
 };

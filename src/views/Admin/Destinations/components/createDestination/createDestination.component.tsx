@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useRouter } from 'next/router';
+
 import _ from 'lodash';
 import { createStyles, makeStyles } from '@material-ui/core/styles';
 import {
@@ -63,29 +63,23 @@ const useStyles = makeStyles((theme) =>
     }
   })
 );
+
 interface Props {
   experience?: IExperienceState;
   loading?: any;
   auth?: any;
+  destination?: any;
   yacht?: any;
   route?: string;
   next_page?: number;
-  // onPicAddStart?: (formData, imgCode) => any;
-  onCreateGenericOfferStart?: (formData) => any;
-  onFetchYachtsStart?: () => any;
+  onSubmitDestinationStart?: (formData) => any;
 }
+
 function CreateExperiences({
-  experience: { isCreating, experiences, loading },
-  yacht: { adminYachtsList },
-  auth: { currentUser },
-  onCreateGenericOfferStart,
-  onFetchYachtsStart
+  destination: { isSubmitting },
+  onSubmitDestinationStart
 }: Props) {
   const classes = useStyles();
-
-  useEffect(() => {
-    onFetchYachtsStart();
-  }, []);
 
   const [mainImage, setMainImage] = React.useState({
     preview: null,
@@ -158,27 +152,21 @@ function CreateExperiences({
               metaDescription: '',
               description: '',
               heading: '',
-              introContentBold: '',
-              introContentSimple: '',
-              testimonial: false
+              introContent: '',
+              introContent2: '',
+              testimonial: '',
+              content: ''
             }}
             validationSchema={Yup.object({
-              name: Yup.string().required('name is required'),
+              title: Yup.string().required('title is required'),
               description: Yup.string().required('description is required'),
-              offerStartDate: Yup.string().required(
-                'offer start date is required'
-              ),
-              offerExpirationDate: Yup.string().required(
-                'offer expiration date is required'
-              ),
-              yachtId: Yup.number().required('yacht is required'),
-
-              airports: Yup.string().required('airports is required'),
-              inclusiveTerms: Yup.string().required(
-                'inclusiveTerms is required'
+              metaDescription: Yup.string().required(
+                'metaDescription is required'
               )
             })}
             onSubmit={(values, { setSubmitting }) => {
+              console.log('formik submit', values);
+              onSubmitDestinationStart(values);
               setSubmitting(false);
             }}
           >
@@ -244,8 +232,8 @@ function CreateExperiences({
                     rows={4}
                     rowsMax={4}
                     fullWidth
-                    name="introContentBold"
-                    id="introContentBold"
+                    name="introContent"
+                    id="introContent"
                   />
                 </Grid>
                 <Grid item sm={12}>
@@ -259,8 +247,8 @@ function CreateExperiences({
                     rows={4}
                     rowsMax={4}
                     fullWidth
-                    name="introContentSimple"
-                    id="introContentSimple"
+                    name="introContent2"
+                    id="introContent2"
                   />
                 </Grid>
                 <Grid item container sm={12}>
@@ -290,8 +278,8 @@ function CreateExperiences({
                     rows={4}
                     rowsMax={4}
                     fullWidth
-                    name="mainContent"
-                    id="mainContent"
+                    name="content"
+                    id="content"
                   />
                 </Grid>
                 <Grid item container sm={12}>
@@ -300,9 +288,9 @@ function CreateExperiences({
                     variant="contained"
                     color="primary"
                     size="large"
-                    disabled={isCreating}
+                    disabled={isSubmitting}
                   >
-                    {isCreating ? (
+                    {isSubmitting ? (
                       <CircularProgress size="1rem" />
                     ) : (
                       <Typography color="secondary">Save</Typography>

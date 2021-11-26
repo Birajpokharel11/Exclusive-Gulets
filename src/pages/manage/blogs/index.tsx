@@ -7,10 +7,11 @@ import { fetchPostsStart } from '@store/posts/posts.actions';
 
 import WithLayout from '@components/WithLayout';
 import Admin from '@layouts/Admin';
+import WithAuth from '@components/WithAuth';
 
 import Blogs from '@views/Admin/Blogs';
 
-export default function BlogsPage() {
+function BlogsPage() {
   return (
     <>
       <Head>
@@ -22,3 +23,7 @@ export default function BlogsPage() {
     </>
   );
 }
+
+const WrappedPage = WithAuth(BlogsPage, ['ROLE_BROKER']);
+
+export default WrappedPage;

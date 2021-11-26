@@ -4,6 +4,8 @@ import {
   deleteExperienceStart
 } from '@store/experiences/experiences.actions';
 
+import { deleteGenericOfferStart } from '@store/offer/offer.actions';
+
 const mapStateToProps = (state, props) => ({
   destination: state.destination,
   posts: state.posts,
@@ -26,8 +28,8 @@ const mapDispatchToProps = (dispatch) => ({
         domainName
       )
     ),
-  onDeleteExperienceStart: (id, handleClose) =>
-    dispatch(deleteExperienceStart(id, handleClose))
+  onDeleteGenericOfferStart: (id, handleClose) =>
+    dispatch(deleteGenericOfferStart(id, handleClose))
 });
 
 const container = connect(mapStateToProps, mapDispatchToProps);

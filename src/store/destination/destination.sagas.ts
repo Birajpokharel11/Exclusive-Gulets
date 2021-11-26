@@ -1,9 +1,12 @@
 import { takeLatest, call, all, put } from 'redux-saga/effects';
-import queryString from 'query-string';
-
+import { AnyAction } from 'redux';
 import axios from 'axios';
 
+import axiosConfig from '@config/axios.config';
+
 import { Limits, Sort } from '@utils/enums';
+import { openAlert } from '../alert/alert.actions';
+import router from 'next/router';
 
 import * as DestinationType from './destination.types';
 import * as destinationAction from './destination.actions';
@@ -12,31 +15,35 @@ import {
   fetchDestinationByIdStart
 } from './destination.actions';
 
-export function* fetchDestinationAsync({
-  payload: {
-    page = 1,
-    amount_per_page = Limits.BLOGS_PER_PAGE,
-    sort_by = Sort.SORT_BY,
-    sort_order = Sort.SORT_ORDER
-  }
-}: ReturnType<typeof fetchDestinationStart>) {
+export function* fetchDestinationAsync() {
   try {
-    const { data } = yield axios.get(
-      `https://app.exclusivegulets.com/api/v1/destinations.json`,
-      {
-        params: {
-          page,
-          amount_per_page,
-          sort_by,
-          sort_order
-        }
-      }
-    );
+    const { data } = yield axiosConfig.get('/api/destination/list');
+    console.log('data>>>', data);
 
     yield put(destinationAction.fetchDestinationSuccess(data.destinations));
   } catch (err) {
     console.error('error received>>>', err);
     yield put(destinationAction.fetchDestinationFailure(err));
+  }
+}
+
+export function* submitDestinationAsync({ payload: { formData } }: AnyAction) {
+  try {
+    console.log('here in submit destination>>>', formData);
+    const { data } = yield axiosConfig.post('api/destination/create', formData);
+    if (data.status === 200) {
+      yield put(destinationAction.submitDestinationSuccess(data.destinations));
+      yield put(openAlert('Destination saved successfully!!!', 'success'));
+      router.push('/manage/destinations');
+    } else {
+      yield put(destinationAction.submitDestinationFailure(data.status));
+      yield put(openAlert('Failed to save destination', 'error'));
+    }
+  } catch (err) {
+    console.error('error received>>>', err);
+    yield put(openAlert('Failed to save destination', 'error'));
+
+    yield put(destinationAction.submitDestinationFailure(err));
   }
 }
 
@@ -77,6 +84,13 @@ export function* watchFetchDestination() {
   );
 }
 
+export function* watchSubmitDestination() {
+  yield takeLatest(
+    DestinationType.SUBMIT_DESTINATION_START,
+    submitDestinationAsync
+  );
+}
+
 export function* watchFetchRandomDestination() {
   yield takeLatest(
     DestinationType.FETCH_RANDOM_DESTINATION_START,
@@ -94,6 +108,7 @@ export function* watchDestinationById() {
 export function* destinationSagas() {
   yield all([
     call(watchFetchDestination),
+    call(watchSubmitDestination),
     call(watchFetchRandomDestination),
     call(watchDestinationById)
   ]);

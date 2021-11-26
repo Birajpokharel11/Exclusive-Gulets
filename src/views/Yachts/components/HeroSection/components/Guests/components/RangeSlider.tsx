@@ -76,17 +76,9 @@ const useStyles = makeStyles((theme) =>
     }
   })
 );
-export default function RangeSlider() {
+export default function RangeSlider({ value, handleChange }) {
   const classes = useStyles();
-  const [value, setValue] = React.useState<number[]>([0, 100]);
 
-  const handleChange = (event: any, newValue: number | number[]) => {
-    setValue(newValue as number[]);
-  };
-
-  function valuetext(value) {
-    return `${value}°C`;
-  }
   return (
     <div className={classes.root}>
       <div className={classes.NEw}>
@@ -130,9 +122,7 @@ export default function RangeSlider() {
                 className: classes.multilineColor
               }}
               value={value[1]}
-            >
-              {' '}
-            </TextField>
+            ></TextField>
           </Grid>
         </Grid>
       </Box>
@@ -142,7 +132,6 @@ export default function RangeSlider() {
         onChange={handleChange}
         aria-labelledby="range-slider"
         className={classes.RangeSlider}
-        getAriaValueText={valuetext}
       />
       <Box
         className={classes.RangeText}
@@ -153,7 +142,6 @@ export default function RangeSlider() {
         <Typography>{value[0]}</Typography>
         <Typography>{value[1]}</Typography>
       </Box>
-      {console.log('valueText', value[0])}
     </div>
   );
 }

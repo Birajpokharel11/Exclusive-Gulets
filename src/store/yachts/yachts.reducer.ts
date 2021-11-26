@@ -1,5 +1,3 @@
-import { HYDRATE } from 'next-redux-wrapper';
-
 import * as YachtsType from './yachts.types';
 
 import { IYachtState } from '../interfaces';
@@ -26,16 +24,15 @@ const INITIAL_STATE: IYachtState = {
 const YachtsReducer = (state = INITIAL_STATE, action) => {
   const { type, payload } = action;
   switch (type) {
-    case HYDRATE:
-      return { ...state, ...payload.yacht };
-
     case YachtsType.FETCH_YACHTS_START:
+    case YachtsType.FILTER_YACHTS_START:
       return {
         ...state,
         loading: true
       };
 
     case YachtsType.FETCH_YACHTS_SUCCESS:
+    case YachtsType.FILTER_YACHTS_SUCCESS:
       return {
         ...state,
         yachtsList: payload,
@@ -43,6 +40,7 @@ const YachtsReducer = (state = INITIAL_STATE, action) => {
       };
 
     case YachtsType.FETCH_YACHTS_FAILURE:
+    case YachtsType.FILTER_YACHTS_FAIL:
       return {
         ...state,
         loading: false,

@@ -1,11 +1,6 @@
 import * as DestinationType from './destination.types';
 
-interface IFetchDestination {
-  page?: number;
-  amount_per_page?: number;
-  sort_by?: string;
-  sort_order?: string;
-}
+import { IFetchDestination } from './destination.interfaces';
 
 export const fetchDestinationStart = (data?: IFetchDestination) => ({
   type: DestinationType.FETCH_DESTINATION_START,
@@ -48,5 +43,20 @@ export const fetchDestinationByIdSuccess = (result) => ({
 
 export const fetchDestinationByIdFailure = (error) => ({
   type: DestinationType.FETCH_DESTINATION_BY_ID_FAILURE,
+  payload: error
+});
+
+export const submitDestinationStart = (formData) => ({
+  type: DestinationType.SUBMIT_DESTINATION_START,
+  payload: { formData }
+});
+
+export const submitDestinationSuccess = (result) => ({
+  type: DestinationType.SUBMIT_DESTINATION_SUCCESS,
+  payload: result
+});
+
+export const submitDestinationFailure = (error) => ({
+  type: DestinationType.SUBMIT_DESTINATION_FAIL,
   payload: error
 });

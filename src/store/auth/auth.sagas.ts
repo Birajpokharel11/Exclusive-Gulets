@@ -22,8 +22,8 @@ import {
 } from './auth.actions';
 
 export function* loadUserAsync({ payload }: ReturnType<typeof loadUserStart>) {
-  if (localStorage.token) {
-    setAuthToken(localStorage.token);
+  if (localStorage['access_token']) {
+    setAuthToken(localStorage['access_token']);
   }
 
   try {
@@ -139,7 +139,7 @@ export function* onSignupBrokerAsync({
   try {
     const { data } = yield axiosConfig.post(`api/broker/create`, formData);
     console.log('value fo data after success>>>', data);
-    if (data.status === 'success') {
+    if (data.status === 200) {
       yield put(authActions.signupBrokerSuccess());
       yield put(
         openAlert(
@@ -166,7 +166,7 @@ export function* validateUserAsync({
 
     console.log('value fo data after success>>>', data);
 
-    if (data.status === 'success') {
+    if (data.status === 200) {
       yield put(authActions.validateUserEmailSuccess(data.detail.data));
 
       if (data.detail.data.isValidEmail === true) {
@@ -192,14 +192,10 @@ export function* verifyBrokerAsync({
   console.log(formData);
 
   try {
-    let { data } = yield axiosConfig.post(
-      `public/broker/verify
-      `,
-      formData
-    );
+    let { data } = yield axiosConfig.post(`api/broker/verify`, formData);
 
     console.log('value fo data after success>>>', data);
-    if (data.status === 'success') {
+    if (data.status === 200) {
       yield put(authActions.verifyBrokerSuccess(data.detail.data));
       yield put(openAlert('User Account Verified!!', 'success'));
     } else {
@@ -233,7 +229,9 @@ export function* editBrokerProfileAsync({ payload: { formData } }: AnyAction) {
   try {
     console.log('inside of editBrokerProfileAsync', formData);
     let { data } = yield axiosConfig.post(`api/broker/edit`, formData);
-    if (data.status === 'success') {
+    console.log('editBrokerProfileAsync after save', data);
+
+    if (data.status === 200) {
       console.log('result of editBrokerProfileAsync', data);
       yield put(authActions.editBrokerProfileSuccess(formData));
       yield put(openAlert('Broker Profile Updated Successfully!!', 'success'));

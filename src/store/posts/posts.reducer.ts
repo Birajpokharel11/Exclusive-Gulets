@@ -23,9 +23,6 @@ const INITIAL_STATE: IPostState = {
 const PostsReducer = (state = INITIAL_STATE, action) => {
   const { type, payload } = action;
   switch (type) {
-    case HYDRATE:
-      return { ...state, ...payload.posts };
-
     case PostsType.FETCH_POSTS_START:
       return {
         ...state,

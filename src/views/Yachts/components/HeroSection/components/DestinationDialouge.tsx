@@ -7,9 +7,6 @@ import {
 } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import Dialog from '@material-ui/core/Dialog';
-import ListItemText from '@material-ui/core/ListItemText';
-import MenuItem from '@material-ui/core/MenuItem';
-import FormControl from '@material-ui/core/FormControl';
 import Slide from '@material-ui/core/Slide';
 import { TransitionProps } from '@material-ui/core/transitions';
 import { Box, Checkbox, Divider, IconButton, Paper } from '@material-ui/core';
@@ -60,17 +57,14 @@ const Transition = React.forwardRef(function Transition(
   return <Slide direction="up" ref={ref} {...props} />;
 });
 
-export default function DestinationDialouge() {
+export default function DestinationDialouge({
+  open,
+  handleClose,
+  value,
+  handleChange
+}) {
   const classes = useStyles();
-  const [open, setOpen] = React.useState(false);
 
-  const handleClickOpen = () => {
-    setOpen(true);
-  };
-
-  const handleClose = () => {
-    setOpen(false);
-  };
   ////////////////////
   const names = [
     'Oliver Hansen',
@@ -86,9 +80,6 @@ export default function DestinationDialouge() {
   ];
   const length = names.length;
 
-  const [personName, setPersonName] = React.useState<string[]>([]);
-  //////////////////////////////////////////////////
-
   function getStepContent(stepIndex: number) {
     switch (stepIndex) {
       case 0:
@@ -96,7 +87,7 @@ export default function DestinationDialouge() {
       case 1:
         return <FilterMobile />;
       case 2:
-        return <RangeSlider />;
+        return <RangeSlider value={value} handleChange={handleChange} />;
       default:
         return <CheckBoxDestinations />;
     }
@@ -115,80 +106,73 @@ export default function DestinationDialouge() {
   const handleReset = () => {
     setActiveStep(0);
   };
-  ////////////////////////////////////////////////////
-  console.log('Hero', activeStep);
+
   return (
-    <div>
-      <Dialog
-        fullScreen
-        className={classes.Dialouge}
-        open={true}
-        onClose={handleClose}
-        TransitionComponent={Transition}
-      >
-        <Box style={{ marginTop: '70px' }}>
-          <Box
-            display="flex"
-            justifyContent="flex-end"
-            style={{ paddingBottom: '28px' }}
-          >
-            <IconButton>
-              <CloseIcon color="primary" />
-            </IconButton>
-          </Box>
-          <Box pl={3}>
-            {' '}
-            <Typography variant="h3">
-              Select a{activeStep == 0 && ' Destination'}
-              {activeStep == 1 && ' check-in date'}
-              {activeStep == 2 && ' guest number'}
-              {console.log('Nwe', activeStep)}
-            </Typography>
-          </Box>
-        </Box>
-
-        <Box> {getStepContent(activeStep)}</Box>
-        <div style={{ flexGrow: 2 }} />
-        <Paper
-          style={{
-            height: '108px',
-            width: '100%',
-            background: '#F5F0E4'
-          }}
+    <Dialog
+      fullScreen
+      className={classes.Dialouge}
+      open={open}
+      onClose={handleClose}
+      TransitionComponent={Transition}
+    >
+      <Box style={{ marginTop: '70px' }}>
+        <Box
+          display="flex"
+          justifyContent="flex-end"
+          style={{ paddingBottom: '28px' }}
         >
-          <Box
-            style={{ width: '100%', gap: '1rem', paddingTop: '32px' }}
-            display="flex"
-            justifyContent="center"
-          >
-            <Button
-              className={classes.Button1}
-              onClick={handleBack}
-              variant="outlined"
-              disabled={activeStep == 0 && true}
-            >
-              Back
-            </Button>
+          <IconButton>
+            <CloseIcon color="primary" />
+          </IconButton>
+        </Box>
+        <Box pl={3}>
+          <Typography variant="h3">
+            Select a{activeStep == 0 && ' Destination'}
+            {activeStep == 1 && ' check-in date'}
+            {activeStep == 2 && ' guest number'}
+            {console.log('Nwe', activeStep)}
+          </Typography>
+        </Box>
+      </Box>
 
-            {activeStep == 2 ? (
-              <Button className={classes.Next} color="primary">
-                See Yachts
-              </Button>
-            ) : (
-              <Button
-                onClick={handleNext}
-                className={classes.Next}
-                color="primary"
-                //   className={clsx(classes.Calenderbefore, {
-                //     [classes.Calender]: fexible
-                //   })}
-              >
-                Next
-              </Button>
-            )}
-          </Box>
-        </Paper>
-      </Dialog>
-    </div>
+      <Box>{getStepContent(activeStep)}</Box>
+      <div style={{ flexGrow: 2 }} />
+      <Paper
+        style={{
+          height: '108px',
+          width: '100%',
+          background: '#F5F0E4'
+        }}
+      >
+        <Box
+          style={{ width: '100%', gap: '1rem', paddingTop: '32px' }}
+          display="flex"
+          justifyContent="center"
+        >
+          <Button
+            className={classes.Button1}
+            onClick={handleBack}
+            variant="outlined"
+            disabled={activeStep == 0 && true}
+          >
+            Back
+          </Button>
+
+          {activeStep == 2 ? (
+            <Button className={classes.Next} color="primary">
+              See Yachts
+            </Button>
+          ) : (
+            <Button
+              onClick={handleNext}
+              className={classes.Next}
+              color="primary"
+            >
+              Next
+            </Button>
+          )}
+        </Box>
+      </Paper>
+    </Dialog>
   );
 }

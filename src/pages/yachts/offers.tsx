@@ -5,6 +5,7 @@ import { END } from 'redux-saga';
 import { wrapper } from '@store/index';
 import { fetchYachtsStart } from '@store/yachts/yachts.actions';
 import { fetchRandomDestinationStart } from '@store/destination/destination.actions';
+import { checkDomainStart } from '@store/siteCoordinator/siteCoordinator.actions';
 
 import WithLayout from '@components/WithLayout';
 import Main from '@layouts/App';
@@ -52,6 +53,8 @@ export const getServerSideProps = wrapper.getServerSideProps(
         'Cache-Control',
         'public, s-maxage=1, stale-while-revalidate=59'
       );
+
+      store.dispatch(checkDomainStart(subdomain));
 
       store.dispatch(fetchYachtsStart());
       store.dispatch(fetchRandomDestinationStart());

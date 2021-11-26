@@ -1,5 +1,3 @@
-import { HYDRATE } from 'next-redux-wrapper';
-
 import * as charterType from './charter.types';
 
 import { IDinningState } from '../interfaces';
@@ -15,9 +13,6 @@ const INITIAL_STATE = {
 const charterReducer = (state = INITIAL_STATE, action) => {
   const { type, payload } = action;
   switch (type) {
-    case HYDRATE:
-      return { ...state, ...payload.about };
-
     case charterType.FETCH_CHARTER_START:
       return {
         ...state,

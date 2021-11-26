@@ -1,7 +1,7 @@
 const INITIAL_STATE = {
   openAlert: false,
-  message: 'Something went wrong!',
-  severity: 'error'
+  message: '',
+  severity: ''
 };
 
 const alertReducer = (state = INITIAL_STATE, action) => {

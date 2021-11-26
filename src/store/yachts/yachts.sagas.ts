@@ -24,6 +24,17 @@ export function* fetchYachtsAsync() {
   }
 }
 
+export function* filterYachtsAsync({ payload: { formData } }: AnyAction) {
+  try {
+    const { data } = yield axiosConfig.post(`/api/search/yachts`, formData);
+    console.log('fetch yacht list>>>', data);
+    yield put(postsAction.filterYachtsSuccess(data.yachts));
+  } catch (err) {
+    console.error('error received>>>', err);
+    yield put(postsAction.filterYachtsFailure(err));
+  }
+}
+
 export function* fetchAdminYachtListAsync() {
   try {
     const { data } = yield axiosConfig.get('api/yacht/list');
@@ -58,7 +69,7 @@ export function* createYachtAsync({ payload }: AnyAction) {
     console.log('createYachtAsync>>', formData);
     const { data } = yield axiosConfig.post(`api/yacht/create`, formData);
     console.log('createYachtAsync data>>', data);
-    if (data.status === 'success') {
+    if (data.status === 200) {
       yield put(openAlert('yacht created successfully!!', 'success'));
       yield put(
         postsAction.createYachtSuccess({ ...formData, id: data.detail.data.id })
@@ -80,7 +91,7 @@ export function* editYachtAsync({ payload }: AnyAction) {
     const { data } = yield axiosConfig.post(`api/yacht/edit`, formData);
     console.log('editYachtAsync data>>', data);
     yield put(postsAction.editYachtSuccess());
-    if (data.status === 'success') {
+    if (data.status === 200) {
       yield put(openAlert('yacht updated successfully!!', 'success'));
     } else {
       yield put(openAlert(data.status, 'error'));
@@ -226,8 +237,14 @@ export function* createPictureAsync({
     yield put(postsAction.addPictureStop(err));
   }
 }
+
+//////////////////////////////////////////
 export function* watchFetchYachts() {
   yield takeLatest(PostsType.FETCH_YACHTS_START, fetchYachtsAsync);
+}
+
+export function* watchFilterYachts() {
+  yield takeLatest(PostsType.FILTER_YACHTS_START, filterYachtsAsync);
 }
 
 export function* watchAdminFetchYachts() {
@@ -240,6 +257,7 @@ export function* watchAdminFetchYachts() {
 export function* watchFetchYachtById() {
   yield takeLatest(PostsType.FETCH_YACHT_BY_ID_START, fetchYachtByIdAsync);
 }
+
 export function* watchCreateYacht() {
   yield takeLatest(PostsType.CREATE_YACHT_START, createYachtAsync);
 }
@@ -289,6 +307,7 @@ export function* watchCreatePicture() {
 export function* yachtsSagas() {
   yield all([
     call(watchFetchYachts),
+    call(watchFilterYachts),
     call(watchFetchYachtById),
     call(watchCreateYacht),
     call(watchAdminFetchYachts),

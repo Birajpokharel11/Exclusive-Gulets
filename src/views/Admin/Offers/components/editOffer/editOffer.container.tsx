@@ -1,6 +1,9 @@
 import { connect } from 'react-redux';
 import { fetchAdminYachtsStart } from '@store/yachts/yachts.actions';
-import { fetchGenericOfferByIdStart } from '@store/offer/offer.actions';
+import {
+  fetchGenericOfferByIdStart,
+  editGenericOfferStart
+} from '@store/offer/offer.actions';
 
 const mapStateToProps = (state, props) => ({
   destination: state.destination,
@@ -13,7 +16,10 @@ const mapStateToProps = (state, props) => ({
 
 const mapDispatchToProps = (dispatch) => ({
   onFetchYachtsStart: () => dispatch(fetchAdminYachtsStart()),
-  onFetchGenericOfferByIdStart: (id) => dispatch(fetchGenericOfferByIdStart(id))
+  onFetchGenericOfferByIdStart: (id) =>
+    dispatch(fetchGenericOfferByIdStart(id)),
+  onEditGenericOfferStart: (formData) =>
+    dispatch(editGenericOfferStart(formData))
 });
 
 const container = connect(mapStateToProps, mapDispatchToProps);

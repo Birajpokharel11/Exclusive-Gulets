@@ -1,8 +1,15 @@
-import { applyMiddleware, createStore, Middleware, StoreEnhancer } from 'redux';
-import { createWrapper } from 'next-redux-wrapper';
+import {
+  applyMiddleware,
+  createStore,
+  Middleware,
+  AnyAction,
+  StoreEnhancer,
+  Store
+} from 'redux';
+import { createWrapper, Context, HYDRATE } from 'next-redux-wrapper';
 import createSagaMiddleware from 'redux-saga';
 
-import rootReducer from './root-reducer';
+import combinedReducer, { RootState } from './root-reducer';
 import rootSaga from './root-saga';
 
 const bindMiddleware = (middleware: Middleware[]): StoreEnhancer => {
@@ -13,12 +20,35 @@ const bindMiddleware = (middleware: Middleware[]): StoreEnhancer => {
   return applyMiddleware(...middleware);
 };
 
-export const makeStore = (context) => {
+const reducer = (state: RootState, action: AnyAction) => {
+  if (action.type === HYDRATE) {
+    const clientState = { ...state };
+    const serverState = { ...action.payload };
+    const nextState = { ...clientState, ...serverState };
+
+    const auth = { ...state.auth };
+    const siteCoordinator = {
+      ...clientState.siteCoordinator,
+      ...serverState.siteCoordinator
+    };
+
+    if (state) {
+      nextState.auth = auth;
+      nextState.siteCoordinator = siteCoordinator;
+    }
+
+    return nextState;
+  }
+
+  return combinedReducer(state, action);
+};
+
+export const makeStore = (context: Context) => {
   // 1: Create the middleware
   const sagaMiddleware = createSagaMiddleware();
 
   // 2: Add an extra parameter for applying middleware:
-  const store = createStore(rootReducer, bindMiddleware([sagaMiddleware]));
+  const store = createStore(reducer, bindMiddleware([sagaMiddleware]));
 
   // 3: Run your sagas on server
   store.sagaTask = sagaMiddleware.run(rootSaga);
@@ -27,4 +57,4 @@ export const makeStore = (context) => {
   return store;
 };
 
-export const wrapper = createWrapper(makeStore);
+export const wrapper = createWrapper<Store<RootState>>(makeStore);

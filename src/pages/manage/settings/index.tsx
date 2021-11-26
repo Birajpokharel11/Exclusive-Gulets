@@ -9,8 +9,9 @@ import WithLayout from '@components/WithLayout';
 import Admin from '@layouts/Admin';
 
 import SettingsView from '@views/Admin/Settings';
+import withAuth from '@components/WithAuth';
 
-export default function Settings() {
+function Settings() {
   return (
     <>
       <Head>
@@ -22,3 +23,7 @@ export default function Settings() {
     </>
   );
 }
+
+const WrappedPage = withAuth(Settings);
+
+export default WrappedPage;

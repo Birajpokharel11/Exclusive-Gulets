@@ -10,6 +10,7 @@ import YachtsReducer from './yachts/yachts.reducer';
 import HomeReducer from './home/home.reducer';
 import dinningReducer from './dining/dinning.reducers';
 import charterReducer from './whyCharter/charter.reducer';
+import enquiryReducer from './enquiry/enquiry.reducer';
 import alertReducer from './alert/alert.reducer';
 
 const rootReducer = combineReducers({
@@ -23,6 +24,7 @@ const rootReducer = combineReducers({
   home: HomeReducer,
   dining: dinningReducer,
   about: charterReducer,
+  enquiry: enquiryReducer,
   alert: alertReducer
 });
 

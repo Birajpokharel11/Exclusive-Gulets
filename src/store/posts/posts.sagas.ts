@@ -53,10 +53,10 @@ export function* fetchPostsaByIdAsync({
   payload: { id }
 }: ReturnType<typeof fetchPostsByIdStart>) {
   try {
-    const { data } = yield axiosConfig.get(`public/getBlogsById/${id}`);
+    const { data } = yield axiosConfig.get(`api/getBlogsById/${id}`);
 
-    console.log('fetchPostsaByIdAsync data>>', data.detail.data[0]);
-    yield put(postsAction.fetchPostsByIdSuccess(data.detail.data[0]));
+    console.log('fetchPostsaByIdAsync data>>', data.detail.data);
+    yield put(postsAction.fetchPostsByIdSuccess(data.detail.data));
   } catch (err) {
     console.error('error received>>>', err);
     yield put(postsAction.fetchPostsByIdFailure(err));
@@ -70,7 +70,7 @@ export function* createPostAsync({
 }: ReturnType<typeof createPostStart>) {
   try {
     const { data } = yield axiosConfig.post(`api/blog/create`, formData);
-    if (data.status === 'success') {
+    if (data.status === 200) {
       yield put(postsAction.createPostSuccess());
       yield put(openAlert('Blog saved successfully!!!', 'success'));
       router.push('/manage/dashboard');
@@ -91,7 +91,7 @@ export function* editPostAsync({
   console.log('inside else...');
   try {
     const { data } = yield axiosConfig.post(`api/blog/edit`, formData);
-    if (data.status === 'success') {
+    if (data.status === 200) {
       yield put(postsAction.editPostSuccess());
       yield put(openAlert('Blog edited successfully!!!', 'success'));
       router.push('/manage/dashboard');
@@ -111,7 +111,7 @@ export function* deletePostAsync({ payload: { id, handleClose } }: AnyAction) {
     console.log('entered deletePostAsync>>>', id);
     const { data } = yield axiosConfig.post(`api/blog/delete`, { id });
     console.log('deletePostAsync on success>>>', data);
-    if (data.status === 'success') {
+    if (data.status === 200) {
       yield put(postsAction.deletePostSuccess());
       yield put(openAlert('Post deleted successfully!!!', 'success'));
       yield handleClose();

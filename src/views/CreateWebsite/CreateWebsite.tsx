@@ -12,11 +12,12 @@ import {
   StepLabel,
   CircularProgress
 } from '@material-ui/core';
-import axios from 'axios';
 
 import { Formik, Field, Form, FormikConfig, FormikValues } from 'formik';
 import { TextField } from 'formik-material-ui';
 import * as Yup from 'yup';
+
+import axios from '@config/axios.config';
 
 import container from './CreateWebsite.container';
 
@@ -252,10 +253,9 @@ export function FormikStepper({
       // const valid = await onValidateUserEmailStart(
       //   values.email.trim().toLowerCase()
       // );
-      const { data } = await axios.post(
-        `https://yatchcloud-dev.fghire.com/public/validateUserEmailAndBrokerSite`,
-        { email: values.email.trim().toLowerCase() }
-      );
+      const { data } = await axios.post('api/broker/validate', {
+        email: values.email.trim().toLowerCase()
+      });
       console.log('data received>>>', data);
       if (data.detail.data.isValidEmail) {
         onOpenAlert('This email is valid', 'success');

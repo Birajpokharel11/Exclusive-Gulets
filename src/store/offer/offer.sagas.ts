@@ -17,7 +17,7 @@ export function* fetchOfferAsync() {
     console.log('inside of fetch offer async');
     const { data } = yield axiosConfig.get(`api/offer/generic/list`);
 
-    if (data.status === 'success') {
+    if (data.status === 200) {
       yield put(destinationAction.fetchOfferSuccess(data.detail.data));
     } else {
       yield put(destinationAction.fetchOfferFailure(data.message));
@@ -40,7 +40,7 @@ export function* createGenericOfferAsync({ payload: { formData } }: AnyAction) {
       `api/offer/generic/create`,
       formData
     );
-    if (data.status === 'success') {
+    if (data.status === 200) {
       yield put(destinationAction.createGenericOfferSuccess(data));
       yield put(openAlert('Offer saved successfully!!!', 'success'));
       router.push('/manage/dashboard');
@@ -57,9 +57,12 @@ export function* createGenericOfferAsync({ payload: { formData } }: AnyAction) {
 export function* fetchGenericOfferByIdAsync({ payload: { id } }: AnyAction) {
   try {
     console.log('fetchGenericOfferByIdAsync>>>', id);
-    const { data } = yield axiosConfig.get(`offer/generic/get/${id}`);
-    if (data.status === 'success') {
-      yield put(destinationAction.fetchGenericOfferByIdSuccess(data));
+    const { data } = yield axiosConfig.get(`api/offer/generic/get/${id}`);
+    if (data.status === 200) {
+      console.log('fetchGenericOfferByIdAsync data>>>', data);
+      yield put(
+        destinationAction.fetchGenericOfferByIdSuccess(data.detail.data)
+      );
     } else {
       yield put(destinationAction.fetchGenericOfferByIdFailure(data.status));
       yield put(openAlert('Failed to fetch offer', 'error'));
@@ -67,6 +70,44 @@ export function* fetchGenericOfferByIdAsync({ payload: { id } }: AnyAction) {
   } catch (err) {
     console.error('error received>>>', err);
     yield put(destinationAction.fetchGenericOfferByIdFailure(err));
+  }
+}
+
+export function* deleteGenericOfferAsync({
+  payload: { id, handleClose }
+}: AnyAction) {
+  try {
+    console.log('deleteGenericOfferAsync>>>', id);
+    const { data } = yield axiosConfig.post(`api/offer/generic/delete/${id}`);
+    if (data.status === 200) {
+      yield put(destinationAction.deleteGenericOfferSuccess(data));
+      yield put(openAlert('Deleted offer successfully!!', 'success'));
+      yield handleClose();
+    } else {
+      yield put(destinationAction.deleteGenericOfferFailure(data.status));
+      yield put(openAlert('Failed to delete offer', 'error'));
+    }
+  } catch (err) {
+    console.error('error received>>>', err);
+    yield put(destinationAction.deleteGenericOfferFailure(err));
+  }
+}
+
+export function* editGenericOfferAsync({ payload: { formData } }: AnyAction) {
+  try {
+    console.log('editGenericOfferAsync>>>', formData);
+    const { data } = yield axiosConfig.post(`api/offer/generic/edit`, formData);
+    if (data.status === 200) {
+      yield put(destinationAction.editGenericOfferSuccess(data));
+      yield put(openAlert('Offer saved successfully!!!', 'success'));
+      router.push('/manage/dashboard');
+    } else {
+      yield put(destinationAction.editGenericOfferFailure(data.status));
+      yield put(openAlert('Failed to save offer', 'error'));
+    }
+  } catch (err) {
+    console.error('error received>>>', err);
+    yield put(destinationAction.editGenericOfferFailure(err));
   }
 }
 
@@ -88,10 +129,26 @@ export function* watchCreateGenericOffer() {
   );
 }
 
+export function* watchDeleteGenericOfferAsync() {
+  yield takeLatest(
+    DestinationType.DELETE_GENERIC_OFFER_START,
+    deleteGenericOfferAsync
+  );
+}
+
+export function* watchEditGenericOfferAsync() {
+  yield takeLatest(
+    DestinationType.EDIT_GENERIC_OFFER_START,
+    editGenericOfferAsync
+  );
+}
+
 export function* offerSagas() {
   yield all([
     call(watchFetchOffer),
     call(watchCreateGenericOffer),
-    call(watchFetchGenericOfferById)
+    call(watchFetchGenericOfferById),
+    call(watchDeleteGenericOfferAsync),
+    call(watchEditGenericOfferAsync)
   ]);
 }

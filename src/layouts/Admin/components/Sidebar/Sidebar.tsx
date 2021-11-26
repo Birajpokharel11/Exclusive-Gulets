@@ -48,7 +48,13 @@ const Sidebar = (props) => {
   const { currentUser } = rest.auth;
 
   const isVisible = (role) => {
-    return currentUser.roles && currentUser.roles.indexOf(role) === -1;
+    if (!currentUser.roles) {
+      return false;
+    }
+    if (currentUser.roles.indexOf(role) === -1) {
+      return false;
+    }
+    return true;
   };
 
   const pages = [
@@ -62,37 +68,43 @@ const Sidebar = (props) => {
       title: 'News and Blogs',
       href: '/manage/blogs',
       icon: <PeopleIcon />,
-      visible: !isVisible('ROLE_BROKER')
+      visible: isVisible('ROLE_BROKER')
     },
     {
       title: 'Experiences',
       href: '/manage/experiences',
       icon: <ShoppingBasketIcon />,
-      visible: !isVisible('ROLE_BROKER')
+      visible: isVisible('ROLE_BROKER')
     },
     {
       title: 'Yachts',
       href: '/manage/yachts',
       icon: <DirectionsBoatIcon />,
-      visible: !isVisible('ROLE_MANAGER')
+      visible: isVisible('ROLE_MANAGER')
     },
     {
       title: 'Offers',
       href: '/manage/offers',
       icon: <LocalOfferIcon />,
-      visible: !isVisible('ROLE_MANAGER')
+      visible: isVisible('ROLE_MANAGER')
     },
     {
       title: 'Destinations',
       href: '/manage/destinations',
       icon: <LocalOfferIcon />,
-      visible: !isVisible('ROLE_MANAGER')
+      visible: isVisible('ROLE_MANAGER')
+    },
+    {
+      title: 'Enqueries',
+      href: '/manage/enqueries',
+      icon: <DirectionsBoatIcon />,
+      visible: isVisible('ROLE_BROKER')
     },
     {
       title: 'Settings',
       href: '/manage/settings',
       icon: <SettingsIcon />,
-      visible: !isVisible('ROLE_BROKER')
+      visible: isVisible('ROLE_BROKER')
     }
   ];
 

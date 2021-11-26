@@ -14,6 +14,7 @@ import ListItem from '@material-ui/core/ListItem';
 import { IconButton } from '@material-ui/core';
 import Searchbar from './Searchbar';
 import { useTheme } from '@material-ui/core/styles';
+import { createMarkup } from '@utils/misc';
 
 const useStyles = makeStyles((theme: Theme) => ({
   root: {
@@ -92,7 +93,22 @@ const useStyles = makeStyles((theme: Theme) => ({
   }
 }));
 
-const Footer = () => {
+const Footer = ({
+  siteCoordinator: {
+    domain: {
+      data: {
+        facebook,
+        youtube,
+        linkedin,
+        twitter,
+        instagram,
+        contactEmail,
+        contactPhoneNumber,
+        address
+      }
+    }
+  }
+}) => {
   const classes = useStyles();
   const theme = useTheme();
   const matches = useMediaQuery(theme.breakpoints.down(800));
@@ -106,15 +122,15 @@ const Footer = () => {
             <Typography className={classes.TypographyHeading}>
               EXCLUSIVE GULETS
             </Typography>
-            <Typography className={classes.ListItems2}>
-              Level 1. Devonshire House
-              <br /> One Mayfair Place <br />
-              Mayfair, London ,<br />
-              W1J8AJ, ENGLAND
+            <Typography
+              color="secondary"
+              dangerouslySetInnerHTML={{ __html: address }}
+            />
+
+            <Typography className={classes.ListItems2} color="secondary">
+              {contactEmail ?? ''}
               <br />
-              <br />
-              info@exclusivegulet.com <br />
-              t. +44 208 144 58 34
+              {contactPhoneNumber ?? ''}
             </Typography>
           </Grid>
           <Grid item sm={4} xs={12} className={classes.GridAbout}>
@@ -198,19 +214,39 @@ const Footer = () => {
                   Contact Us
                 </Typography>
                 <div>
-                  <IconButton color="inherit" data-cy="Footer-facebook">
+                  <IconButton
+                    color="inherit"
+                    data-cy="Footer-facebook"
+                    onClick={() => window.open(facebook, '_blank')}
+                  >
                     <img src="/assets/images/Facebook.svg" alt="facebook" />
                   </IconButton>
-                  <IconButton color="inherit" data-cy="Footer-Instagram">
+                  <IconButton
+                    color="inherit"
+                    data-cy="Footer-Instagram"
+                    onClick={() => window.open(instagram, '_blank')}
+                  >
                     <img src="/assets/images/Instagram.svg" alt="Instagram" />
                   </IconButton>
-                  <IconButton color="inherit" data-cy="Footer-LinkedIn">
+                  <IconButton
+                    color="inherit"
+                    data-cy="Footer-LinkedIn"
+                    onClick={() => window.open(linkedin, '_blank')}
+                  >
                     <img src="/assets/images/Linkedin.svg" alt="LinkedIn" />
                   </IconButton>
-                  <IconButton color="inherit" data-cy="Footer-Twitter">
+                  <IconButton
+                    color="inherit"
+                    data-cy="Footer-Twitter"
+                    onClick={() => window.open(twitter, '_blank')}
+                  >
                     <img src="/assets/images/Twitter.svg" alt="Twitter" />
                   </IconButton>
-                  <IconButton color="inherit" data-cy="Footer-Youtube">
+                  <IconButton
+                    color="inherit"
+                    data-cy="Footer-Youtube"
+                    onClick={() => window.open(youtube, '_blank')}
+                  >
                     <img src="/assets/images/Youtube.svg" alt="Youtube" />
                   </IconButton>
                 </div>

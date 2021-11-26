@@ -10,7 +10,7 @@ import {
   Box
 } from '@material-ui/core';
 
-import Search from './components/Search';
+import Search from './components/Search.component';
 
 const useStyles = makeStyles((theme) =>
   createStyles({

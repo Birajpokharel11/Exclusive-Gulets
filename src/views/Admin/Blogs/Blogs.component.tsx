@@ -89,7 +89,7 @@ function Blogs({
                     <Button
                       variant="contained"
                       color="primary"
-                      onClick={() => router.push('/manage/blogs/create-blog')}
+                      onClick={() => router.push('/manage/blogs/create')}
                     >
                       Create Blog
                     </Button>

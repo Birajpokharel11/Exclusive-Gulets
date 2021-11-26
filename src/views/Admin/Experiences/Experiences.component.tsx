@@ -89,9 +89,7 @@ function Experiences({
                     <Button
                       variant="contained"
                       color="primary"
-                      onClick={() =>
-                        router.push('/manage/experiences/create-experience')
-                      }
+                      onClick={() => router.push('/manage/experiences/create')}
                     >
                       Create Experience
                     </Button>

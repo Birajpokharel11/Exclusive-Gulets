@@ -110,8 +110,7 @@ const TableList = (props) => {
           size="small"
           onClick={() =>
             router.push({
-              pathname: '/manage/experiences/edit-experience',
-              query: { id: experience.id }
+              pathname: `/manage/experiences/edit/${experience.id}`
             })
           }
         >

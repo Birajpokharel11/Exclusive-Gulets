@@ -70,7 +70,7 @@ export function* createPostAsync({
 }: ReturnType<typeof createPostStart>) {
   try {
     const { data } = yield axiosConfig.post(`api/blog/create`, formData);
-    if (data.status === 'success') {
+    if (data.status === 200) {
       yield put(postsAction.createPostSuccess());
       yield put(openAlert('Blog saved successfully!!!', 'success'));
       router.push('/manage/dashboard');

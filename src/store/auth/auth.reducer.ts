@@ -102,9 +102,7 @@ const authReducer = (state = INITIAL_STATE, action) => {
         isEditing: false,
         currentUser: {
           ...state.currentUser,
-          firstName: payload.firstName,
-          lastName: payload.lastName,
-          phoneNumber: payload.phoneNumber
+          ...payload
         }
       };
 

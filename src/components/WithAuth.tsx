@@ -21,7 +21,7 @@ const withAuth = (WrappedComponent, roles?: null | string[]) => (props) => {
 
     if (!isAuthenticated && !loading) {
       // not logged in so redirect to login page with the return url
-      router.push('/login');
+      router.push('/signin');
       return null;
     }
 

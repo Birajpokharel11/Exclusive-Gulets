@@ -53,7 +53,7 @@ export function* fetchPostsaByIdAsync({
   payload: { id }
 }: ReturnType<typeof fetchPostsByIdStart>) {
   try {
-    const { data } = yield axiosConfig.get(`public/getBlogsById/${id}`);
+    const { data } = yield axiosConfig.get(`api/getBlogsById/${id}`);
 
     console.log('fetchPostsaByIdAsync data>>', data.detail.data[0]);
     yield put(postsAction.fetchPostsByIdSuccess(data.detail.data[0]));

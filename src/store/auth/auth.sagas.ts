@@ -192,11 +192,7 @@ export function* verifyBrokerAsync({
   console.log(formData);
 
   try {
-    let { data } = yield axiosConfig.post(
-      `public/broker/verify
-      `,
-      formData
-    );
+    let { data } = yield axiosConfig.post(`api/broker/verify`, formData);
 
     console.log('value fo data after success>>>', data);
     if (data.status === 'success') {

@@ -105,10 +105,12 @@ function EnqueriesList({
     }
 
     return (
-      <TableList
-        list={enquiries}
-        onfetchEnqueriesByIdStart={onfetchEnqueriesByIdStart}
-      />
+      <>
+        <TableList
+          list={enquiries}
+          onfetchEnqueriesByIdStart={onfetchEnqueriesByIdStart}
+        />
+      </>
     );
   };
 

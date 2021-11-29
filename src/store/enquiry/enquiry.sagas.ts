@@ -15,8 +15,13 @@ export function* submitEnquiryAsync({ payload: { formData } }: AnyAction) {
       formData
     );
     console.log('dataEnquiry', data);
-    yield put(homeAction.submitEnquirySuccess(data));
-    yield put(openAlert('EnQuiry Successfully Submitted', 'success'));
+    if (data.status === 'success') {
+      yield put(homeAction.submitEnquirySuccess(data));
+      yield put(openAlert('Enquiry Successfully Submitted', 'success'));
+    } else {
+      yield put(openAlert('Enquiry failed to save', 'error'));
+      yield put(homeAction.submitEnquiryFailure(data.status));
+    }
   } catch (err) {
     console.error('error received>>>', err);
     yield put(homeAction.submitEnquiryFailure(err));

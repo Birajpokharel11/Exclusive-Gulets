@@ -155,7 +155,8 @@ function CreateExperiences({
               introContent: '',
               introContent2: '',
               testimonial: '',
-              content: ''
+              content: '',
+              slug: 'this is slug'
             }}
             validationSchema={Yup.object({
               title: Yup.string().required('title is required'),

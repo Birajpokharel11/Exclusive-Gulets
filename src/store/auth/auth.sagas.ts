@@ -213,7 +213,7 @@ export function* signOutAsync({
     console.log('inside of signout async???', token);
     let { data } = yield axiosConfig.post(`api/oauth/logout`, token);
     console.log('data on signout>>>', data);
-    if (data.status === 'success') {
+    if (data.status === 200) {
       yield put(authActions.signoutSuccess());
       yield put(openAlert('User Signed Out Successfully!!', 'success'));
       router.push('/');

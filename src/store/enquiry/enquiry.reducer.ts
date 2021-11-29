@@ -3,6 +3,7 @@ import * as HomeType from './enquiry.types';
 const INITIAL_STATE = {
   enquiries: [],
   error: null,
+  soloEnquiries: {},
   loading: false
 };
 
@@ -42,6 +43,25 @@ const homeReducer = (state = INITIAL_STATE, action) => {
       };
 
     case HomeType.FETCH_ENQUERIES_FAILURE:
+      return {
+        ...state,
+        loading: false,
+        error: payload
+      };
+    case HomeType.FETCH_ENQUERIES_By_Id_START:
+      return {
+        ...state,
+        loading: true
+      };
+
+    case HomeType.FETCH_ENQUERIES_By_Id_Success:
+      return {
+        ...state,
+        soloEnquiries: payload,
+        loading: false
+      };
+
+    case HomeType.FETCH_ENQUERIES_By_Id_Failure:
       return {
         ...state,
         loading: false,

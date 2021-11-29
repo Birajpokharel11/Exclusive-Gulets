@@ -48,7 +48,7 @@ const user = {
 
 const Topbar = (props) => {
   const {
-    auth: { token, currentUser },
+    auth: { token, currentUser, access_token },
     onSidebarOpen,
     onSignoutStart,
     className,
@@ -77,7 +77,7 @@ const Topbar = (props) => {
   }
 
   const handleClickSignout = () => {
-    onSignoutStart(token);
+    onSignoutStart(token || access_token);
     setOpen(false);
   };
 

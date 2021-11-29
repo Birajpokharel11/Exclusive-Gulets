@@ -26,9 +26,6 @@ import Placeholder from '@modules/components/Placeholder';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import { menuProps } from '@utils/utils';
 import Person from '@material-ui/icons/Person';
-import container from './Enqueriesdetail.container';
-import Form from './components/Form';
-
 const useStyles = makeStyles((theme) =>
   createStyles({
     root: {
@@ -112,41 +109,117 @@ const useStyles = makeStyles((theme) =>
     }
   })
 );
-
-const validationSchema = Yup.object({
-  title: Yup.string().required('This field is required'),
-  name: Yup.string().required('This field is required'),
-  email: Yup.string().required('This field is required'),
-  country: Yup.string().required('This field is required'),
-  phonenumber: Yup.string().required('This field is required'),
-  comments: Yup.string().required('This field is required')
-});
-
 interface Props {
   enquiry?: any;
   onFetchEnqueriesByIdStart?: (id) => Function;
 }
 
-const EnquiryForm = ({ enquiry, onFetchEnqueriesByIdStart }: Props) => {
+export default function Form({ onFetchEnqueriesByIdStart, enquiry }: Props) {
   const classes = useStyles();
-  useEffect(() => {
-    if (router.query) {
-      onFetchEnqueriesByIdStart(router.query.slug);
-    }
-  }, [router]);
 
   const theme = useTheme();
   const matches = useMediaQuery(theme.breakpoints.up('xs'));
   return (
-    <Box component="section" className={classes.root}>
-      <Container maxWidth="lg">
-        <Typography variant="h3" align="left">
-          Individual Enqueries
-        </Typography>
-      </Container>{' '}
-      <Form enquiry={enquiry} />
-    </Box>
-  );
-};
+    <div>
+      <Container className={classes.Container}>
+        <form className={classes.root} noValidate autoComplete="off">
+          <InputLabel
+            id="demo-simple-select-outlined-label"
+            className={classes.labelTextColor}
+          >
+            Full Name
+          </InputLabel>
+          <TextField
+            id="outlined-read-only-input"
+            value={enquiry?.fullName}
+            fullWidth
+            defaultValue="Hello World"
+            InputProps={{
+              readOnly: true,
+              className: classes.labelTextColor
+            }}
+            variant="outlined"
+            className={classes.labelTextColor}
+          />
+          <br />
+          <InputLabel
+            id="demo-simple-select-outlined-label"
+            style={{ color: '#091527', margin: '12px 0' }}
+          >
+            Email
+          </InputLabel>
+          <TextField
+            id="outlined-read-only-input"
+            value={enquiry?.email}
+            fullWidth
+            InputProps={{
+              readOnly: true,
+              className: classes.labelTextColor
+            }}
+            variant="outlined"
+            className={classes.labelTextColor}
+          />{' '}
+          <br />
+          <InputLabel
+            id="demo-simple-select-outlined-label"
+            style={{ color: '#091527', margin: '12px 0' }}
+          >
+            Phone Number
+          </InputLabel>
+          <TextField
+            id="outlined-read-only-input"
+            fullWidth
+            value={enquiry?.phoneNumber}
+            InputProps={{
+              readOnly: true,
 
-export default container(EnquiryForm);
+              className: classes.labelTextColor
+            }}
+            variant="outlined"
+            className={classes.labelTextColor}
+          />{' '}
+          <br />
+          <InputLabel
+            id="demo-simple-select-outlined-label"
+            style={{ color: '#091527', margin: '12px 0' }}
+          >
+            PreferredDestination
+          </InputLabel>
+          <TextField
+            id="outlined-read-only-input"
+            fullWidth
+            value={enquiry?.preferredDestination}
+            InputProps={{
+              readOnly: true,
+
+              className: classes.labelTextColor
+            }}
+            variant="outlined"
+            className={classes.labelTextColor}
+          />{' '}
+          <br />
+          <InputLabel
+            id="demo-simple-select-outlined-label"
+            style={{ color: '#091527', margin: '12px 0' }}
+          >
+            Comments
+          </InputLabel>
+          <TextField
+            id="outlined-read-only-input"
+            InputProps={{
+              readOnly: true,
+
+              className: classes.labelTextColor
+            }}
+            variant="outlined"
+            className={classes.labelTextColor}
+            multiline
+            rows={10}
+            fullWidth
+            value={enquiry?.comment}
+          />{' '}
+        </form>
+      </Container>
+    </div>
+  );
+}

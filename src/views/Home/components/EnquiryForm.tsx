@@ -143,6 +143,7 @@ export default function EnquiryForm({
         title: values.title,
         fullName: values.name,
         email: values.email,
+        country: values.country,
         comment: values.comments,
         phoneNumber: values.phonenumber
       };
